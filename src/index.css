@@ -1,0 +1,11 @@
+html {
+  height: 100%;
+  background-color: #f8f9fa;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: transparent;
+}
