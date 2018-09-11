@@ -29,7 +29,11 @@
 }
 
 .dot {
-  stroke: #fff;
+  stroke: rgba(255, 255, 255, .4);
+}
+
+.dot:hover {
+  stroke: rgba(0,0,0,.6);
 }
 
 .axis {
@@ -48,6 +52,20 @@ svg {
   overflow: visible;
 }
 
+.quantile-plot, .quantile-areas {
+  transition: .65s;
+  transform-origin: 50%;
+}
+
+.quantile-plot.show, .quantile-areas.show {
+  transform: scaleY(1);
+}
+
+.quantile-plot.hidden, .quantile-areas.hidden {
+  transform: scaleY(0);
+  visibility: hidden;
+}
+
 a {
   color: inherit;
 }
@@ -63,8 +81,4 @@ a:hover {
 
 span.input-group-text {
   border: none;
-}
-
-.hidden {
-  visibility: hidden;
 }

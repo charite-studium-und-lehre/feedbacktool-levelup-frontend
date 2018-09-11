@@ -36,7 +36,7 @@ class App extends Component {
           <Navbar isLoggedIn={this.state.loggedIn}></Navbar>
           <Route path="/login" component={login}></Route>
           <PrivateRoute path="/dashboard" component={Dashboard} isLoggedIn={this.state.loggedIn}></PrivateRoute>
-          <PrivateRoute path="/exams" component={Exams} isLoggedIn={this.state.loggedIn}></PrivateRoute>
+          <PrivateRoute path="/exams/:graphs?" component={Exams} isLoggedIn={this.state.loggedIn}></PrivateRoute>
           <Route exact path="/" render={() => (
               <Redirect to="/dashboard"/>
           )}/>

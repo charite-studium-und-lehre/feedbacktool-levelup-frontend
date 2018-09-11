@@ -10,5 +10,5 @@ export default function AreaGraph (props) {
 	
 	const dataset = props.data.map((d) => ({"y0": d[0], "y1": d[1]}));
 	
-	return <path d={_area(dataset)} className={"area " + (props.className || '')} style={{fill: props.color || "black"}}></path>
+	return <path d={_area(dataset)} className="area" style={{fill: props.color || "black"}}></path>
 }

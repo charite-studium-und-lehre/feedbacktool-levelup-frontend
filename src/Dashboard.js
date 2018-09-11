@@ -27,7 +27,7 @@ export default function Dashboard() {
           </div>
           <div className="row">
             <div className="col-lg-4">
-                <Link to="/exams">
+                <Link to="/exams/semester">
                     <DashboardCard 
                         header={Math.round(Math.random() * 100) + ' %'} 
                         title="Semesterprüfungen" 
@@ -41,28 +41,32 @@ export default function Dashboard() {
                 </Link>
             </div>
             <div className="col-lg-4">
-              <DashboardCard 
-                header={Math.round(Math.random() * 100) + ' %'} 
-                title="Stationsprüfungen" 
-                text="Deine Stärken und Schwächen">
-                    <div className="m-3" style={{height: '6rem'}}>
-                        <Chart yDomain={[0,100]} xDomain={[0,11]}>
-                            <BarGraph data={new Array(10).fill(0).map(() => Math.random() * 100)} color="rgba(64,64,64,.3)"></BarGraph>
-                        </Chart>
-                    </div>
-              </DashboardCard>
+                <Link to="/exams/stations">
+                    <DashboardCard 
+                    header={Math.round(Math.random() * 100) + ' %'} 
+                    title="Stationsprüfungen" 
+                    text="Deine Stärken und Schwächen">
+                        <div className="m-3" style={{height: '6rem'}}>
+                            <Chart yDomain={[0,100]} xDomain={[0,11]}>
+                                <BarGraph data={new Array(10).fill(0).map(() => Math.random() * 100)} color="rgba(64,64,64,.3)"></BarGraph>
+                            </Chart>
+                        </div>
+                    </DashboardCard>
+                </Link>
             </div>
             <div className="col-lg-4">
-              <DashboardCard 
-                header={Math.round(Math.random() * 100) + ' %'} 
-                title="PTM" 
-                text="Alle Ergbenisse, alle Semester">
-                <div className="m-3" style={{height: '6rem'}}>
-                    <Chart yDomain={[0,100]} xDomain={[0,9]}>
-                        <LineGraph data={new Array(10).fill(0).map(() => Math.random() * 100)} color="rgba(64,64,64,.3)"></LineGraph>
-                    </Chart>
-                </div>
-              </DashboardCard>
+                <Link to="/exams/ptm">
+                    <DashboardCard 
+                    header={Math.round(Math.random() * 100) + ' %'} 
+                    title="PTM" 
+                    text="Alle Ergbenisse, alle Semester">
+                    <div className="m-3" style={{height: '6rem'}}>
+                        <Chart yDomain={[0,100]} xDomain={[0,9]}>
+                            <LineGraph data={new Array(10).fill(0).map(() => Math.random() * 100)} color="rgba(64,64,64,.3)"></LineGraph>
+                        </Chart>
+                    </div>
+                    </DashboardCard>
+                </Link>
             </div>
           </div>
         </div>
