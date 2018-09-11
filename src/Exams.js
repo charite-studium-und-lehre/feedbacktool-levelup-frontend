@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import Chart from './Chart';
-import QuantilesPlot from './QuantilesPlot';
+import React, { Component } from 'react'
+import Chart from './Chart'
+import QuantilesPlot from './QuantilesPlot'
+import PointGraph from './PointGraph'
 
 class Exams extends Component {
     constructor({props, match}) {
@@ -17,8 +18,9 @@ class Exams extends Component {
                 color: 240
             },
             stations: {
+                data: new Array(3).fill(0).map((d,i) => [i*3+1, Math.random() * 100]),
                 show: match.params.graphs === 'stations',
-                color: 180
+                color: 0
             }
         }
     }
@@ -42,21 +44,26 @@ class Exams extends Component {
                 <div className="col">
                     <div className="card">
                         <div className="card-body">
-                            <h5 className="card-title">Deine Prüfungen</h5>
+                            <h5 className="card-title">Deine Prüfungsergebnisse</h5>
                             <div className="m-3" style={{height: '12rem'}}>
                                 <Chart xDomain={[0,9]} yDomain={[0,100]}>
                                     <QuantilesPlot 
                                         color={this.state.semester.color}
                                         data={this.state.semester.data}
                                         className={this.state.semester.show ? 'show' : 'hidden'}
-                                        showAreas={this.shownGraphs() < 2}>
+                                        showAreas={this.state.semester.show && this.shownGraphs() < 2}>
                                     </QuantilesPlot>
                                     <QuantilesPlot 
                                         color={this.state.ptm.color}
                                         data={this.state.ptm.data}
                                         className={this.state.ptm.show ? 'show' : 'hidden'}
-                                        showAreas={this.shownGraphs() < 2}>
+                                        showAreas={this.state.ptm.show && this.shownGraphs() < 2}>
                                     </QuantilesPlot>
+                                    <PointGraph
+                                        data={this.state.stations.data}
+                                        color={`hsla(${this.state.stations.color}, 100%, 30%, .4)`}
+                                        className={this.state.stations.show ? 'show' : 'hidden'}>
+                                    </PointGraph>
                                 </Chart>
                             </div>
                             <div className="row p-3 mt-4">

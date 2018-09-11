@@ -52,16 +52,16 @@ svg {
   overflow: visible;
 }
 
-.quantile-plot, .quantile-areas {
-  transition: .65s;
+g.animated {
+  transition: .55s;
   transform-origin: 50%;
 }
 
-.quantile-plot.show, .quantile-areas.show {
+g.show {
   transform: scaleY(1);
 }
 
-.quantile-plot.hidden, .quantile-areas.hidden {
+g.hidden {
   transform: scaleY(0);
   visibility: hidden;
 }
