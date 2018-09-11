@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Redirect } from 'react-router';
 
-import logo from './logo.svg';
 import './App.css';
 import Navbar from './navbar';
 import Dashboard from './Dashboard';
+import Exams from './Exams';
 import Login from './Login';
 
-const PrivateRoute = ({ component: Component, isLoggedIn: isLoggedIn, ...rest }) => (
+const PrivateRoute = ({ component: Component, isLoggedIn, ...rest }) => (
   <Route {...rest} render={(props) => (
     isLoggedIn === true
       ? <Component {...props} />
@@ -36,6 +36,7 @@ class App extends Component {
           <Navbar isLoggedIn={this.state.loggedIn}></Navbar>
           <Route path="/login" component={login}></Route>
           <PrivateRoute path="/dashboard" component={Dashboard} isLoggedIn={this.state.loggedIn}></PrivateRoute>
+          <PrivateRoute path="/exams" component={Exams} isLoggedIn={this.state.loggedIn}></PrivateRoute>
           <Route exact path="/" render={() => (
               <Redirect to="/dashboard"/>
           )}/>

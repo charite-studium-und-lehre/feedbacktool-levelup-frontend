@@ -47,3 +47,24 @@
 svg {
   overflow: visible;
 }
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.input-group-text {
+  background-color: transparent;
+}
+
+span.input-group-text {
+  border: none;
+}
+
+.hidden {
+  visibility: hidden;
+}

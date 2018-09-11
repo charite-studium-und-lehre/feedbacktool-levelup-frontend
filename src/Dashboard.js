@@ -1,13 +1,11 @@
 import React from 'react';
 import DashboardCard from './DashboardCard';
-import AreaChart from './AreaGraph';
 import Chart from './Chart';
-import LineGraph from './LineGraph';
 import BarGraph from './BarGraph';
+import LineGraph from './LineGraph'
+import { Link } from 'react-router-dom';
 
 export default function Dashboard() {
-    const data = new Array(10).fill(0).map(() => [Math.random() * 100, Math.random() * 25, Math.random() * 25 + 25, Math.random() * 25 + 50, Math.random() * 25 + 75 ])
-
     return (
         <div className="container-fluid">
           <div className="row mb-2 mt-2">
@@ -27,43 +25,43 @@ export default function Dashboard() {
                 </div>
             </div>
           </div>
-          <div className="row mb-2 mt-2">
-            <div className="col">
-                <div className="card">
-                    <div className="card-body">
-                        <h5 className="card-title">Semesterprüfungen</h5>
-                    </div>
-                    <div className="m-4">
-                        <Chart xDomain={[0,data.length - 1]} yDomain={[0,100]}>
-                            <AreaChart data={data.map(d => d.slice(1,3))} color="hsla(120, 100%, 30%, .4)"></AreaChart>
-                            <AreaChart data={data.map(d => d.slice(2,4))} color="hsla(120, 100%, 50%, .4)"></AreaChart>
-                            <AreaChart data={data.map(d => d.slice(3))} color="hsla(120, 100%, 70%, .4)"></AreaChart>
-                            <LineGraph data={data.map(d => d[0])} color="hsla(240, 100%, 50%, .4)"></LineGraph>
-                        </Chart>
-                    </div>
-                </div>
-            </div>
-          </div>
           <div className="row">
-            <div className="col-sm-4">
-              <DashboardCard 
-                header={Math.round(Math.random() * 100) + ' %'} 
-                title="Semesterprüfungen" 
-                text="">
-              </DashboardCard>
+            <div className="col-lg-4">
+                <Link to="/exams">
+                    <DashboardCard 
+                        header={Math.round(Math.random() * 100) + ' %'} 
+                        title="Semesterprüfungen" 
+                        text="Deine Ergebnisse für alle Semester">
+                        <div className="m-3" style={{height: '6rem'}}>
+                            <Chart yDomain={[0,100]} xDomain={[0,9]}>
+                                <LineGraph data={new Array(10).fill(0).map(() => Math.random() * 100)} color="rgba(64,64,64,.3)"></LineGraph>
+                            </Chart>
+                        </div>
+                    </DashboardCard>
+                </Link>
             </div>
-            <div className="col-sm-4">
+            <div className="col-lg-4">
               <DashboardCard 
                 header={Math.round(Math.random() * 100) + ' %'} 
                 title="Stationsprüfungen" 
-                text="Some quick example text to build on the card title and make up the bulk of the card's content.">
+                text="Deine Stärken und Schwächen">
+                    <div className="m-3" style={{height: '6rem'}}>
+                        <Chart yDomain={[0,100]} xDomain={[0,11]}>
+                            <BarGraph data={new Array(10).fill(0).map(() => Math.random() * 100)} color="rgba(64,64,64,.3)"></BarGraph>
+                        </Chart>
+                    </div>
               </DashboardCard>
             </div>
-            <div className="col-sm-4">
+            <div className="col-lg-4">
               <DashboardCard 
                 header={Math.round(Math.random() * 100) + ' %'} 
                 title="PTM" 
-                text="Some quick example text to build on the card title and make up the bulk of the card's content.">
+                text="Alle Ergbenisse, alle Semester">
+                <div className="m-3" style={{height: '6rem'}}>
+                    <Chart yDomain={[0,100]} xDomain={[0,9]}>
+                        <LineGraph data={new Array(10).fill(0).map(() => Math.random() * 100)} color="rgba(64,64,64,.3)"></LineGraph>
+                    </Chart>
+                </div>
               </DashboardCard>
             </div>
           </div>

@@ -6,7 +6,7 @@ export default function BarGraph(props) {
 		x={props.xScale(i+1)} 
 		y={props.yScale(d)}
 		height={props.yScale(0) - props.yScale(d)}
-		width="25"
+		width={props.xScale(1)}
 		key={"bar" + i} ></rect>)
-	return <g transform="translate(-12.5, 0)">{bars}</g>
+	return <g transform={`translate(-${props.xScale(1) / 2}, 0)`}>{bars}</g>
 }

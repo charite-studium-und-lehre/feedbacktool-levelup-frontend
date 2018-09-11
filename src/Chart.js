@@ -64,7 +64,7 @@ class Chart extends Component {
 
     render() {
         const size = this.state.size;
-        return (<svg ref={this.node} width="100%">
+        return (<svg ref={this.node} width="100%" height="100%">
             <g ref={this.axis.y} className="y axis"></g>
             <g ref={this.axis.x} className="x axis"></g>
             { size && this.renderContent() }

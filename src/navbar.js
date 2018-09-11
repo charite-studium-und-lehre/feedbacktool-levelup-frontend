@@ -1,14 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 export default function Navbar(props) {
     const isLoggedIn = props.isLoggedIn;
     let button;
 
     if (isLoggedIn) {
-        button = <Link className="nav-link pull-right" to="/logout">logout</Link>;
+        button = <NavLink className="nav-link pull-right" to="/logout">logout</NavLink>;
     } else {
-        button = <Link className="nav-link pull-right" to="/login">login</Link>
+        button = <NavLink className="nav-link pull-right" to="/login">login</NavLink>
     }
 
     return (
@@ -19,8 +19,17 @@ export default function Navbar(props) {
             </button>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
-                    <li className="nav-item active">
-                        <Link className="nav-link" to="/dashboard">Dashboard <span className="sr-only">(current)</span></Link>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/dashboard">Dashboard <span className="sr-only">(current)</span></NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/exams">Prüfungen</NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/practicals">Ärztliche Tätigkeiten</NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/counselling">Beratung</NavLink>
                     </li>
                 </ul>
                 <ul className="navbar-nav">
