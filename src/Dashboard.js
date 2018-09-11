@@ -1,9 +1,9 @@
 import React from 'react';
 import DashboardCard from './DashboardCard';
-import LineChart from './LineGraph';
 import AreaChart from './AreaGraph';
-import BaseChart from './BaseChart';
+import Chart from './Chart';
 import LineGraph from './LineGraph';
+import BarGraph from './BarGraph';
 
 export default function Dashboard() {
     const data = new Array(10).fill(0).map(() => [Math.random() * 100, Math.random() * 25, Math.random() * 25 + 25, Math.random() * 25 + 50, Math.random() * 25 + 75 ])
@@ -19,6 +19,11 @@ export default function Dashboard() {
                         Hier kommt ein Fortschrittsbalken mit Meilensteinen.
                         </div>
                     </div>
+                    <div className="m-4">
+                        <Chart xDomain={[0, 17]} yDomain={[0,60]} ticks={{x:6}}>
+                            <BarGraph data={new Array(16).fill(0).map(() => Math.random() * 50)}></BarGraph>
+                        </Chart>
+                    </div>
                 </div>
             </div>
           </div>
@@ -29,12 +34,12 @@ export default function Dashboard() {
                         <h5 className="card-title">Semesterprüfungen</h5>
                     </div>
                     <div className="m-4">
-                        <BaseChart xDomain={[0,data.length - 1]} yDomain={[0,100]}>
-                            <AreaChart data={data.map(d => d.slice(1,3))} color="hsla(120, 100%, 25%, .4)"></AreaChart>
+                        <Chart xDomain={[0,data.length - 1]} yDomain={[0,100]}>
+                            <AreaChart data={data.map(d => d.slice(1,3))} color="hsla(120, 100%, 30%, .4)"></AreaChart>
                             <AreaChart data={data.map(d => d.slice(2,4))} color="hsla(120, 100%, 50%, .4)"></AreaChart>
-                            <AreaChart data={data.map(d => d.slice(3))} color="hsla(120, 100%, 75%, .4)"></AreaChart>
+                            <AreaChart data={data.map(d => d.slice(3))} color="hsla(120, 100%, 70%, .4)"></AreaChart>
                             <LineGraph data={data.map(d => d[0])} color="hsla(240, 100%, 50%, .4)"></LineGraph>
-                        </BaseChart>
+                        </Chart>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import BaseChart from './BaseChart'
+import Chart from './Chart'
 import LineGraph from './LineGraph'
 
 export default function DashboardCard(props) {
@@ -13,9 +13,9 @@ export default function DashboardCard(props) {
                 <h5 className="card-title">{props.title}</h5>
                 <p className="card-text">{props.text}</p>
                 <div className="m-3">
-                    <BaseChart yDomain={[0,100]} xDomain={[0,9]}>
+                    <Chart yDomain={[0,100]} xDomain={[0,9]}>
                         <LineGraph data={new Array(10).fill(0).map(() => Math.random() * 100)} color="rgba(64,64,64,.3)"></LineGraph>
-                    </BaseChart>
+                    </Chart>
                 </div>
             </div>
           </div>

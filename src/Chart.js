@@ -3,7 +3,7 @@ import { scaleLinear } from 'd3-scale'
 import { select } from 'd3-selection'
 import { axisBottom, axisLeft } from 'd3-axis'
 
-class BaseChart extends Component {
+class Chart extends Component {
     constructor(props){
         super(props)
         this.node = React.createRef()
@@ -12,6 +12,7 @@ class BaseChart extends Component {
             y: React.createRef()
         }
         this.state = { size: null }
+        this.ticks = {x: null, y: 2, ...this.props.ticks}
     }
 
     componentDidMount() {
@@ -21,34 +22,39 @@ class BaseChart extends Component {
                     width: this.node.current.width.baseVal.value,
                     height: this.node.current.height.baseVal.value,
                 },
-            });
+            })
         })
     }
 
     renderContent() {
-        const { width, height } = this.state.size;
+        const { width, height } = this.state.size
 
         const xScale = scaleLinear()
             .domain(this.props.xDomain)
-            .range([0, width]);
+            .range([0, width])
         
         const yScale = scaleLinear()
             .domain(this.props.yDomain)
-            .range([height, 0]);
+            .range([height, 0])
         
         select(this.node.current)
             .attr("viewBox", "0 0 " + width + " " + height )
-            .attr("preserveAspectRatio", "xMidYMid meet");
+            .attr("preserveAspectRatio", "xMidYMid meet")
         
         const yAxis = axisLeft(yScale)
             .tickValues([(this.props.yDomain[1] - this.props.yDomain[0]) / 2, this.props.yDomain[1]])
-            .ticks(2, ",.0f")
-            .tickSize(-width);
+            .ticks(this.ticks.y || 2, ",.0f")
+            .tickSize(-width)
+
+        const xAxis = axisBottom(xScale)
+            .ticks(this.ticks.x)
+            .tickSize(0)
+
         
         yAxis(select(this.axis.y.current));
         select(this.axis.x.current)
             .attr("transform", "translate(0," + height + ")")
-            .call(axisBottom(xScale));
+            .call(xAxis);
 
         const childrenWithSize = React.Children.map(this.props.children, child => {
             return React.cloneElement(child, { xScale, yScale });
@@ -65,4 +71,4 @@ class BaseChart extends Component {
         </svg>)
    }
 }
-export default BaseChart
+export default Chart
