@@ -3,15 +3,15 @@ import { line, curveMonotoneX } from 'd3-shape'
 
 export default function LineGraph(props) {
     const _line = line()
-        .x((d, i) => props.xScale(i+1))
-        .y(d => props.yScale(d))
+        .x(d => props.xScale(d[0]))
+        .y(d => props.yScale(d[1]))
         .curve(curveMonotoneX)
 
     const circles = props.noPoints || props.data.map((d, i) => <circle 
-        key={"circle" + i} 
+        key={i} 
         className="dot" 
-        cx={props.xScale(i+1)} 
-        cy={props.yScale(d)} 
+        cx={props.xScale(d[0])} 
+        cy={props.yScale(d[1])} 
         r="5" 
         style={{fill: props.color}}>
     </circle>)

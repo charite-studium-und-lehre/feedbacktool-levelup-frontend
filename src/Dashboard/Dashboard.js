@@ -30,7 +30,7 @@ export default function Dashboard() {
                         color="color-1">
                         <div className="m-3" style={{height: '6rem'}}>
                             <Chart yDomain={[0,100]} xDomain={[1,4]}>
-                                <LineGraph data={new Array(4).fill(0).map(() => Math.random() * 100)} color="rgba(64,64,64,.3)"></LineGraph>
+                                <LineGraph data={new Array(4).fill(0).map((d,i) => [i+1, Math.random() * 100])} color="rgba(64,64,64,.3)"></LineGraph>
                             </Chart>
                         </div>
                     </DashboardCard>
@@ -60,7 +60,7 @@ export default function Dashboard() {
                     color="color-2">
                     <div className="m-3" style={{height: '6rem'}}>
                         <Chart yDomain={[0,100]} xDomain={[1,10]}>
-                            <LineGraph data={new Array(10).fill(0).map(() => Math.random() * 100)} color="rgba(64,64,64,.3)"></LineGraph>
+                            <LineGraph data={new Array(10).fill(0).map((d,i) => [i+1, Math.random() * 100])} color="rgba(64,64,64,.3)"></LineGraph>
                         </Chart>
                     </div>
                     </DashboardCard>
