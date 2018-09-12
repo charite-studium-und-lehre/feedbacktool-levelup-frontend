@@ -1,30 +1,25 @@
 import React from 'react';
-import DashboardCard from './DashboardCard';
-import Chart from './Chart';
-import BarGraph from './BarGraph';
-import LineGraph from './LineGraph'
 import { Link } from 'react-router-dom';
+import DashboardCard from './DashboardCard';
+import Chart from '../Charting/Chart';
+import BarGraph from '../Charting/BarGraph';
+import LineGraph from '../Charting/LineGraph'
+import Progress from './Progress'
+import Achievements from './Achievements'
 
 export default function Dashboard() {
     return (
         <div className="container-fluid">
           <div className="row mb-2 mt-2">
-            <div className="col">
-                <div className="card">
-                    <div className="card-body">
-                        <h5 className="card-title">Dein Fortschritt im Studium</h5>
-                        <div className="card-text">
-                        Hier kommt ein Fortschrittsbalken mit Meilensteinen.
-                        </div>
-                    </div>
-                    <div className="m-4">
-                        <Chart xDomain={[0, 17]} yDomain={[0,60]} ticks={{x:6}}>
-                            <BarGraph width=".75" data={new Array(16).fill(0).map(() => Math.random() * 50)}></BarGraph>
-                        </Chart>
-                    </div>
-                </div>
+            <div className="col-lg-8">
+                <Progress></Progress>
+            </div>
+            <div className="col-lg-4">
+                <Achievements></Achievements>
             </div>
           </div>
+          <div className="row">
+          <div className="col-xl-9">
           <div className="row">
             <div className="col-lg-4">
                 <Link to="/exams/semester">
@@ -34,7 +29,7 @@ export default function Dashboard() {
                         text="Deine Ergebnisse für alle Semester"
                         color="color-1">
                         <div className="m-3" style={{height: '6rem'}}>
-                            <Chart yDomain={[0,100]} xDomain={[0,3]}>
+                            <Chart yDomain={[0,100]} xDomain={[1,4]}>
                                 <LineGraph data={new Array(4).fill(0).map(() => Math.random() * 100)} color="rgba(64,64,64,.3)"></LineGraph>
                             </Chart>
                         </div>
@@ -64,13 +59,27 @@ export default function Dashboard() {
                     text="Alle Ergbenisse, alle Semester"
                     color="color-2">
                     <div className="m-3" style={{height: '6rem'}}>
-                        <Chart yDomain={[0,100]} xDomain={[0,9]}>
+                        <Chart yDomain={[0,100]} xDomain={[1,10]}>
                             <LineGraph data={new Array(10).fill(0).map(() => Math.random() * 100)} color="rgba(64,64,64,.3)"></LineGraph>
                         </Chart>
                     </div>
                     </DashboardCard>
                 </Link>
             </div>
+          </div>
+          </div>
+        <div className="col-xl-3">
+            <div className="card">
+                <Link to="/practcals">
+                    <DashboardCard 
+                    header={Math.round(Math.random() * 100) + ' p'} 
+                    title="Ärztliche Tätigkeiten" 
+                    text="Dein Fortschritt in praktischen Fähigkeiten auf dem Weg zum Healthcare Professional."
+                    color="color-2">
+                    </DashboardCard>
+                </Link>
+            </div>
+        </div>
           </div>
         </div>
     );

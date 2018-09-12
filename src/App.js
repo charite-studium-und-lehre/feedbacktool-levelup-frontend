@@ -4,8 +4,8 @@ import { Route, Redirect } from 'react-router';
 
 import './App.css';
 import Navbar from './navbar';
-import Dashboard from './Dashboard';
-import Exams from './Exams';
+import Dashboard from './Dashboard/Dashboard';
+import Exams from './Exams/Exams';
 import Login from './Login';
 
 const PrivateRoute = ({ component: Component, isLoggedIn, ...rest }) => (

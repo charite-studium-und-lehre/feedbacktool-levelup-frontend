@@ -3,7 +3,7 @@ import { area, curveMonotoneX } from 'd3-shape'
 
 export default function AreaGraph (props) {
 	const _area = area()
-		.x(function(d, i) { return props.xScale(i); })
+		.x(function(d, i) { return props.xScale(i+1); })
 		.y0(function(d) { return props.yScale(d.y0); })
 		.y1(function(d) { return props.yScale(d.y1); })
 		.curve(curveMonotoneX);
