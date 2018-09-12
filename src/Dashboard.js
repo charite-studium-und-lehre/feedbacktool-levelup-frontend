@@ -19,7 +19,7 @@ export default function Dashboard() {
                     </div>
                     <div className="m-4">
                         <Chart xDomain={[0, 17]} yDomain={[0,60]} ticks={{x:6}}>
-                            <BarGraph data={new Array(16).fill(0).map(() => Math.random() * 50)}></BarGraph>
+                            <BarGraph width=".75" data={new Array(16).fill(0).map(() => Math.random() * 50)}></BarGraph>
                         </Chart>
                     </div>
                 </div>
@@ -31,10 +31,11 @@ export default function Dashboard() {
                     <DashboardCard 
                         header={Math.round(Math.random() * 100) + ' %'} 
                         title="Semesterprüfungen" 
-                        text="Deine Ergebnisse für alle Semester">
+                        text="Deine Ergebnisse für alle Semester"
+                        color="color-1">
                         <div className="m-3" style={{height: '6rem'}}>
-                            <Chart yDomain={[0,100]} xDomain={[0,9]}>
-                                <LineGraph data={new Array(10).fill(0).map(() => Math.random() * 100)} color="rgba(64,64,64,.3)"></LineGraph>
+                            <Chart yDomain={[0,100]} xDomain={[0,3]}>
+                                <LineGraph data={new Array(4).fill(0).map(() => Math.random() * 100)} color="rgba(64,64,64,.3)"></LineGraph>
                             </Chart>
                         </div>
                     </DashboardCard>
@@ -45,7 +46,8 @@ export default function Dashboard() {
                     <DashboardCard 
                     header={Math.round(Math.random() * 100) + ' %'} 
                     title="Stationsprüfungen" 
-                    text="Deine Stärken und Schwächen">
+                    text="Deine Stärken und Schwächen"
+                    color="color-3">
                         <div className="m-3" style={{height: '6rem'}}>
                             <Chart yDomain={[0,100]} xDomain={[0,11]}>
                                 <BarGraph data={new Array(10).fill(0).map(() => Math.random() * 100)} color="rgba(64,64,64,.3)"></BarGraph>
@@ -59,7 +61,8 @@ export default function Dashboard() {
                     <DashboardCard 
                     header={Math.round(Math.random() * 100) + ' %'} 
                     title="PTM" 
-                    text="Alle Ergbenisse, alle Semester">
+                    text="Alle Ergbenisse, alle Semester"
+                    color="color-2">
                     <div className="m-3" style={{height: '6rem'}}>
                         <Chart yDomain={[0,100]} xDomain={[0,9]}>
                             <LineGraph data={new Array(10).fill(0).map(() => Math.random() * 100)} color="rgba(64,64,64,.3)"></LineGraph>

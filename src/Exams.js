@@ -9,7 +9,7 @@ class Exams extends Component {
         this.state = {
             semester: {
                 data: new Array(10).fill(0).map(() => [Math.random() * 100, Math.random() * 25, Math.random() * 25 + 25, Math.random() * 25 + 50, Math.random() * 25 + 75 ]),
-                show: match.params.graphs === 'semester',
+                show: (match.params.graphs || 'semester') === 'semester',
                 color: 120,
             },
             ptm: {

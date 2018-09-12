@@ -40,11 +40,15 @@
   color: rgba(1,1,1,.4); 
 }
 
-.y > .tick {
+.axis.y > .tick {
   stroke-dasharray: 2,2;
 }
 
-.y > path {
+.axis.y > path {
+  display: none;
+}
+
+.dashboard-card .axis.x > .tick {
   display: none;
 }
 
@@ -81,4 +85,14 @@ a:hover {
 
 span.input-group-text {
   border: none;
+}
+
+.color-1 {
+  background-color: hsla(120, 100%, 50%, .4);
+}
+.color-2 {
+  background-color: hsla(240, 100%, 50%, .4);
+}
+.color-3 {
+  background-color: hsla(0, 100%, 50%, .4);
 }
