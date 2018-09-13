@@ -21,7 +21,7 @@ export default function Achievements() {
 
     return (<div className="card">
         <div className="card-body">
-            <h5 className="card-title">Achievments</h5>
+            <h5 className="card-title">Achievements</h5>
             <div className="card-text">
                 <div className="row">
                     <div className="col d-flex flex-wrap">

@@ -51,8 +51,8 @@ class Chart extends Component {
             .tickSize(0)
 
         
-        yAxis(select(this.axis.y.current));
-        select(this.axis.x.current)
+        this.props.noAxis || yAxis(select(this.axis.y.current));
+        this.props.noAxis || select(this.axis.x.current)
             .attr("transform", "translate(0," + height + ")")
             .call(xAxis);
 
