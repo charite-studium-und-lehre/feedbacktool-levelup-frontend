@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Chart from '../Charting/Chart'
-import QuantilesPlot from '../Charting/QuantilesPlot'
-import PointGraph from '../Charting/PointGraph'
+import { QuantilesPlotWithGraphData, PointGraphWithGraphData } from './WithGraphData'
 import graphs from './Graphs'
 import Checkbox from './Checkbox'
 import _ from 'lodash'
@@ -11,7 +10,8 @@ class Exams extends Component {
         super(props)
         this.graphs = graphs.data
         this.state = {
-            shownGraphs: [ match.params.graphs || 'semester' ]
+            shownGraphs: [ match.params.graphs || 'semester' ],
+            selectedPoint: {}
         }
     }
 
@@ -30,6 +30,11 @@ class Exams extends Component {
         return this.state.shownGraphs.length
     }
 
+    selectPoint( graph, point ) {
+        console.log(point + ' selected in ' + graph)
+        this.setState({ selectedPoint: { graph, point }})
+    }
+    
     render() {
         const checkboxes = this.graphs.map(( graph ) => (<Checkbox 
             key={graph.name}
@@ -50,23 +55,15 @@ class Exams extends Component {
                                     <h5 className="card-title">Deine Prüfungsergebnisse</h5>
                                     <div className="m-3" style={{height: '12rem'}}>
                                         <Chart xDomain={[1,graphs.pointCount]} yDomain={[0,100]} ticks={{x: graphs.pointCount}}>
-                                            <QuantilesPlot 
-                                                color={this.graphs[0].color}
-                                                data={this.graphs[0].data}
-                                                className={this.isGraphShown('semester') ? 'show' : 'hidden'}
-                                                showAreas={this.isGraphShown('semester') && this.shownGraphs() < 2}>
-                                            </QuantilesPlot>
-                                            <QuantilesPlot 
-                                                color={this.graphs[1].color}
-                                                data={this.graphs[1].data}
-                                                className={this.isGraphShown('ptm') ? 'show' : 'hidden'}
-                                                showAreas={this.isGraphShown('ptm') && this.shownGraphs() < 2}>
-                                            </QuantilesPlot>
-                                            <PointGraph
-                                                data={this.graphs[2].data}
-                                                color={`hsla(${this.graphs[2].color}, 100%, 30%, .4)`}
-                                                className={this.isGraphShown('stations') ? 'show' : 'hidden'}>
-                                            </PointGraph>
+                                            <QuantilesPlotWithGraphData
+                                                context={this}
+                                                graph={this.graphs[0]}
+                                                showAreas={this.isGraphShown('semester') && this.shownGraphs() < 2} />
+                                            <QuantilesPlotWithGraphData
+                                                context={this}
+                                                graph={this.graphs[1]}
+                                                showAreas={this.isGraphShown('ptm') && this.shownGraphs() < 2} />
+                                            <PointGraphWithGraphData graph={this.graphs[2]} context={this} />
                                         </Chart>
                                     </div>
                                     <div className="row p-3 mt-4">

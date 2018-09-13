@@ -12,8 +12,8 @@
 }
 
 .dot:hover, .dot.selected {
-  stroke: rgba(0,0,0,.4);
-  stroke-width: 9;
+  stroke: rgba(0,0,0,.2);
+  stroke-width: 11;
 }
 
 .axis {
