@@ -1,5 +1,9 @@
+function rndInt(n, m) {
+    return Math.floor(Math.random() * n) + m
+}
+
 function randomData(n = 10) {
-    return new Array(n).fill(0).map(() => [Math.random() * 75 + 20, Math.random() * 15 + 10, Math.random() * 15 + 30, Math.random() * 15 + 55, Math.random() * 15 + 80 ]);
+    return new Array(n).fill(0).map((d,i) => [i+1, rndInt(75, 20), rndInt(15, 10), rndInt(15, 30), rndInt(15, 55), rndInt(15, 80) ]);
 }
 
 const n = 8;

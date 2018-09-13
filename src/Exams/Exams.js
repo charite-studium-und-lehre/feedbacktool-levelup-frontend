@@ -4,6 +4,7 @@ import { QuantilesPlotWithGraphData, PointGraphWithGraphData } from './WithGraph
 import graphs from './Graphs'
 import Checkbox from './Checkbox'
 import _ from 'lodash'
+import Details from './Details';
 
 class Exams extends Component {
     constructor({props, match}) {
@@ -16,9 +17,14 @@ class Exams extends Component {
     }
 
     toggleVisibility( graph ) {
+        let selectedPoint = { ...this.state.selectedPoint }
+        if( graph === this.state.selectedPoint.graph )
+            selectedPoint = {}
+
         let s = [ ...this.state.shownGraphs ]
         this.setState({
-            shownGraphs: _.xor(s, [ graph ])
+            shownGraphs: _.xor(s, [ graph ]),
+            selectedPoint
         })
     }
 
@@ -31,12 +37,20 @@ class Exams extends Component {
     }
 
     selectPoint( graph, point ) {
-        console.log(point + ' selected in ' + graph)
-        this.setState({ selectedPoint: { graph, point }})
+        let selectedPoint = 
+            this.state.selectedPoint.graph === graph && this.state.selectedPoint.point === point ? {} : { graph, point }
+        this.setState({ selectedPoint })
+    }
+
+    selectedPointData() {
+        if(!this.state.selectedPoint.graph) return [];
+        let graph = this.graphs.find(g => g.name === this.state.selectedPoint.graph);
+        let d = graph.data.find(d => d[0] === this.state.selectedPoint.point)
+        return d
     }
     
     render() {
-        const checkboxes = this.graphs.map(( graph ) => (<Checkbox 
+        const checkboxes = this.graphs.map( graph => (<Checkbox 
             key={graph.name}
             color={graph.color}
             checked={this.isGraphShown(graph.name)}
@@ -44,14 +58,22 @@ class Exams extends Component {
             label={graph.label}>
         </Checkbox>))
 
+        const thumbnails = this.state.shownGraphs.map( ( graph, i ) => (<div className="row my-2" key={i}>
+            <div className="col">
+                <div className="card p-2">
+                    <h3>{graph}</h3>
+                </div>
+            </div>
+        </div>))
+
         return (
             <div className="container-fluid">
-            <div className="row mb-2 mt-2">
+            <div className="row my-2">
                 <div className="col">
                     <div className="card">
                         <div className="card-body">
-                            <div className="row">
-                                <div className="col-lg-9">
+                            <div className="d-flex ">
+                                <div className="flex-grow-1">
                                     <h5 className="card-title">Deine Prüfungsergebnisse</h5>
                                     <div className="m-3" style={{height: '12rem'}}>
                                         <Chart xDomain={[1,graphs.pointCount]} yDomain={[0,100]} ticks={{x: graphs.pointCount}}>
@@ -70,16 +92,16 @@ class Exams extends Component {
                                         {checkboxes}
                                     </div>
                                 </div>
-                                <div className="col-lg-3">
-                                    <h3>Zahlen zu angeklickter Prüfung</h3>
-                                    <h3>Link zu Details zu angeklickter Prüfung</h3>
-                                    <h3>Link zu Fragen in angeklickter Prüfung</h3>
-                                </div>
+                                <Details 
+                                    data={this.selectedPointData()} 
+                                    visible={!!this.state.selectedPoint.graph} 
+                                    onClose={() => this.selectPoint(null, null)} />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {thumbnails}
             </div>
         );
     }
