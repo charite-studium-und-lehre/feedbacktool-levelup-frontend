@@ -8,7 +8,7 @@ export default function PointGraph(props) {
         cx={props.xScale(d[0])} 
         cy={props.yScale(d[1])} 
         r="5" 
-        style={{fill: `hsla(${props.color || 32}, 100%, 30%, .4)`}}
+        style={{fill: props.color || 'black'}}
         onClick={() => onClick(d[0])}>>
     </circle>)
 	return <g className={`point animated ${props.className}`}>{circles}</g>

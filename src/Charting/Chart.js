@@ -56,10 +56,10 @@ class Chart extends Component {
             .attr("transform", "translate(0," + height + ")")
             .call(xAxis);
 
-        const childrenWithSize = React.Children.map(this.props.children, child => {
+        const childrenWithScales = React.Children.map(this.props.children, child => {
             return React.cloneElement(child, { xScale, yScale });
         });
-        return <g>{childrenWithSize}</g>
+        return <g>{childrenWithScales}</g>
     }
 
     render() {

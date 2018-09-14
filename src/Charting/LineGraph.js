@@ -1,28 +1,28 @@
 import React from 'react'
-import { line, curveMonotoneX } from 'd3-shape'
+import { line, curveMonotoneX, curveStep } from 'd3-shape'
 
 export default function LineGraph(props) {
     const onClick = props.onClick || (() => {})
     const _line = line()
-        .x(d => props.xScale(d[0]))
-        .y(d => props.yScale(d[1]))
-        .curve(curveMonotoneX)
+        .x(d => props.xScale(d.x))
+        .y(d => props.yScale(d.y))
+        .curve(props.noSmooth ? curveStep : curveMonotoneX)
         
     const texts = !props.labels || props.data.map((d, i) => (<text
         key={i}
-        x={props.xScale(d[0]) - 10}
-        y={props.yScale(d[1]) + 15}
+        x={props.xScale(d.x) - 10}
+        y={props.yScale(d.y) + 15}
         fontFamily="sans-serif" 
-        fontSize=".6rem">{d[0]}. Semester</text>))
+        fontSize=".6rem">{d.x}. Semester</text>))
 
     const circles = props.noPoints || props.data.map((d, i) => <circle 
         key={i} 
-        className={`dot ${props.selectedPoint === d[0] ? 'selected' : ''}`}
-        cx={props.xScale(d[0])} 
-        cy={props.yScale(d[1])} 
+        className={`dot ${props.selectedPoint === d.x ? 'selected' : ''}`}
+        cx={props.xScale(d.x)} 
+        cy={props.yScale(d.y)} 
         r="5" 
-        style={{fill: props.color}}
-        onClick={() => onClick(d[0])}>
+        style={{fill: props.color || "black"}}
+        onClick={() => onClick(d.x)}>
     </circle>)
 
     return (<g>

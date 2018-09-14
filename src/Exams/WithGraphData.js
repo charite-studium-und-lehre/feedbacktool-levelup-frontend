@@ -2,10 +2,13 @@ import React from 'react'
 import QuantilesPlot from '../Charting/QuantilesPlot'
 import PointGraph from '../Charting/PointGraph'
 
+function valueToColor(v) {
+    return `hsla(${v}, 100%, 30%, .4)`
+}
 function withGraphData(Type) {
     return (props) => {
         return (<Type 
-            color={props.graph.color}
+            color={valueToColor(props.graph.color)}
             data={props.graph.data}
             className={props.context.isGraphShown(props.graph.name) ? 'show' : 'hidden'}
             onClick={( point ) => props.context.selectPoint(props.graph.name, point)}

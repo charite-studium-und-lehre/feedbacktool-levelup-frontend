@@ -8,7 +8,5 @@ export default function AreaGraph (props) {
 		.y1(d => props.yScale(d.y1) )
 		.curve(curveMonotoneX);
 	
-	const dataset = props.data.map((d) => ({"x": d[0], "y0": d[1], "y1": d[2]}));
-	
-	return <path d={_area(dataset)} className="area" style={{fill: props.color || "black"}}></path>
+	return <path d={_area(props.data)} className="area" style={{fill: props.color || "black"}}></path>
 }
