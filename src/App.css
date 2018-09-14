@@ -1,5 +1,6 @@
 .App {
-  overflow: hidden;
+  overflow-x: hidden;
+  height: 100%;
 }
 
 .navbar {
@@ -76,6 +77,7 @@ span.input-group-text {
   margin-left: 1rem;
   max-width: 20rem;
   right: 1rem;
+  z-index: 1;
 }
 
 .point-details.hidden {

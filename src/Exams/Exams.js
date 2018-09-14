@@ -4,7 +4,7 @@ import { QuantilesPlotWithGraphData, PointGraphWithGraphData } from './WithGraph
 import graphs from './Graphs'
 import Checkbox from './Checkbox'
 import _ from 'lodash'
-import Details from './Details';
+import Info from './Info';
 
 class Exams extends Component {
     constructor({props, match}) {
@@ -43,7 +43,7 @@ class Exams extends Component {
     }
 
     selectedPointData() {
-        if(!this.state.selectedPoint.graph) return [];
+        if(!this.state.selectedPoint.graph) return [0,0];
         let graph = this.graphs.find(g => g.name === this.state.selectedPoint.graph);
         let d = graph.data.find(d => d[0] === this.state.selectedPoint.point)
         return d
@@ -92,7 +92,7 @@ class Exams extends Component {
                                         {checkboxes}
                                     </div>
                                 </div>
-                                <Details 
+                                <Info 
                                     data={this.selectedPointData()} 
                                     visible={!!this.state.selectedPoint.graph} 
                                     onClose={() => this.selectPoint(null, null)} />
