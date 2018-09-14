@@ -25,11 +25,27 @@
   color: rgba(1,1,1,.4); 
 }
 
-.axis.y > .tick {
+.axis > .tick {
   stroke-dasharray: 2,2;
 }
 
+.y.axis > .tick:first-of-type {
+  display: none;
+}
+
+svg.horizontal .y.axis > .tick:last-of-type {
+  display: none;
+}
+
+svg.horizontal .x.axis > .tick:first-of-type {
+  display: none;
+}
+
 .axis.y > path {
+  display: none;
+}
+
+svg.horizontal .axis.x > path {
   display: none;
 }
 

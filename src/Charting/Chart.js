@@ -39,18 +39,18 @@ class Chart extends Component {
         
         select(this.node.current)
             .attr("viewBox", "0 0 " + width + " " + height )
-            .attr("preserveAspectRatio", "xMidYMid meet")
+            .attr("preserveAspectRatio", "none")
         
         const yAxis = axisLeft(yScale)
-            .tickValues([(this.props.yDomain[1] - this.props.yDomain[0]) / 2, this.props.yDomain[1]])
-            .ticks(this.ticks.y || 2, ",.0f")
-            .tickSize(-width)
+            .ticks(this.ticks.y || 2, "f")
+            .tickSize(this.props.horizontal ? 0 : -width)
+            .tickFormat( this.ticks.yFormat )
 
         const xAxis = axisBottom(xScale)
             .ticks(this.ticks.x)
-            .tickSize(0)
+            .tickSize(!this.props.horizontal ? 0 : -height)
+            .tickFormat( this.ticks.xFormat )
 
-        
         this.props.noAxis || yAxis(select(this.axis.y.current));
         this.props.noAxis || select(this.axis.x.current)
             .attr("transform", "translate(0," + height + ")")
@@ -64,9 +64,9 @@ class Chart extends Component {
 
     render() {
         const size = this.state.size;
-        return (<svg ref={this.node} width="100%" height="100%">
-            <g ref={this.axis.y} className="y axis"></g>
+        return (<svg ref={this.node} width="100%" height="100%" className={this.props.horizontal ? 'horizontal' : ''}>
             <g ref={this.axis.x} className="x axis"></g>
+            <g ref={this.axis.y} className="y axis"></g>
             { size && this.renderContent() }
         </svg>)
    }
