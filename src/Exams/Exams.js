@@ -43,10 +43,10 @@ class Exams extends Component {
     }
 
     selectedPointData() {
-        if(!this.state.selectedPoint.graph) return [0,0];
-        let graph = this.graphs.find(g => g.name === this.state.selectedPoint.graph);
-        let d = graph.data.find(d => d[0] === this.state.selectedPoint.point)
-        return d
+        const graph = this.graphs.find(g => g.name === this.state.selectedPoint.graph)
+        if(!graph) return {}
+        const data = graph.data.find(d => d.x === this.state.selectedPoint.point)
+        return data
     }
     
     render() {
@@ -92,7 +92,8 @@ class Exams extends Component {
                                         {checkboxes}
                                     </div>
                                 </div>
-                                <Info 
+                                <Info
+                                    graph={(this.graphs.find(g => g.name === this.state.selectedPoint.graph) || {}).label}
                                     data={this.selectedPointData()} 
                                     visible={!!this.state.selectedPoint.graph} 
                                     onClose={() => this.selectPoint(null, null)} />
