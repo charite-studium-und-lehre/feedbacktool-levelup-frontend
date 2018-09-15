@@ -8,12 +8,12 @@ export default function LineGraph(props) {
         .y(d => props.yScale(d.y))
         .curve(props.noSmooth ? curveStep : curveMonotoneX)
         
-    const texts = !props.labels || props.data.map((d, i) => (<text
+    const texts = !props.withLabels || props.data.map((d, i) => (<text
         key={i}
         x={props.xScale(d.x) - 10}
         y={props.yScale(d.y) + 15}
         fontFamily="sans-serif" 
-        fontSize=".6rem">{d.x}. Semester</text>))
+        fontSize=".6rem">{d.label}</text>))
 
     const circles = props.noPoints || props.data.map((d, i) => <circle 
         key={i} 

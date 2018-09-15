@@ -1,20 +1,13 @@
-import React, { Component } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { Route, Redirect } from 'react-router';
+import React, { Component } from 'react'
+import { BrowserRouter } from 'react-router-dom'
+import { Route, Redirect } from 'react-router'
 
 import './App.css';
-import Navbar from './navbar';
-import Dashboard from './Dashboard/Dashboard';
-import Exams from './Exams/Exams';
-import Login from './Login';
-
-const PrivateRoute = ({ component: Component, isLoggedIn, ...rest }) => (
-  <Route {...rest} render={(props) => (
-    isLoggedIn === true
-      ? <Component {...props} />
-      : <Redirect to='/login' />
-  )} />
-)
+import Navbar from './Core/navbar'
+import Login from './Login'
+import Breadcrums from './Core/Breadcrumbs'
+import PrivateRoute from './Core/PrivateRoute'
+import Routes from './Core/Routes'
 
 class App extends Component {
   constructor(props) {
@@ -23,7 +16,7 @@ class App extends Component {
   }
 
   render() {
-    let login;
+    let login
     if(!this.state.loggedIn) {
       login = () => (<Login handleLogin={() => this.setState({loggedIn: true})}></Login>);
     } else {
@@ -34,9 +27,12 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Navbar isLoggedIn={this.state.loggedIn}></Navbar>
-          <Route path="/login" component={login}></Route>
-          <PrivateRoute path="/dashboard" component={Dashboard} isLoggedIn={this.state.loggedIn}></PrivateRoute>
-          <PrivateRoute path="/exams/:graphs?" component={Exams} isLoggedIn={this.state.loggedIn}></PrivateRoute>
+          <Breadcrums />
+          <Route path="/login" component={login} />
+          {Routes.map( route => ( route.private ?
+            <PrivateRoute key={route.path} path={route.path} component={route.component} exact={route.exact} isLoggedIn={this.state.loggedIn} /> :
+            <Route key={route.path} path={route.path} component={route.component} exact={route.exact} />
+          ))}
           <Route exact path="/" render={() => (
               <Redirect to="/dashboard"/>
           )}/>

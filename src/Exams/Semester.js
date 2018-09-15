@@ -11,18 +11,29 @@ function randn_bm() {
     while(v === 0) v = Math.random()
     return Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v )
 }
-const data = new Array(100).fill(0).map(d => Math.floor(randn_bm() * 14 + 50)).sort((a,b) => a-b).map((d,i) => [i+1,d])
 
-export default function() {
-    return (
-    <div className="p-2 mb-2">
-        <Chart xDomain={[1,100]} yDomain={[0,100]}>
-            <LineGraph data={data.map(d => ({x: d[0], y: d[1]}))} color="hsla(181, 100%, 41%, .6)" noPoints noSmooth/>
-            <AreaGraph data={data.map(d => ({x: d[0], y0: 0, y1: d[1]}))} color="hsla(181, 100%, 41%, .3)"></AreaGraph>
-            <PointGraph 
-                data={[[_.findIndex(data, d => d[1] === props.data[1]), props.data[1]]]} 
-                color="181"
-                label="Du" />
-        </Chart>
-    </div>)
-}
+const result = Math.floor(Math.random() * 75 + 25)
+const data = new Array(100).fill(0).map(d => Math.floor(randn_bm() * 13 + 50)).concat([ result ]).sort((a,b) => a-b).map((d,i) => ({x: (i+1)/1.01, y: d}))
+
+const Semester = ({ props, match }) => (
+    <div className="container-fluid">
+        <div className="row">
+        <div className="col">
+        <div className="card p-4">
+            <div className="p-2 mb-2">
+                <Chart xDomain={[0,100]} yDomain={[Math.min(...data.map(d => d.y)), Math.max(...data.map(d => d.y))]}>
+                    <LineGraph data={data} color="hsla(181, 100%, 41%, .6)" noPoints noSmooth/>
+                    <AreaGraph data={data.map(d => ({x: d.x, y0: Math.min(...data.map(d => d.y)), y1: d.y}))} color="hsla(181, 100%, 41%, .3)"></AreaGraph>
+                    <PointGraph 
+                        data={[{x: _.findIndex(data, d => d.y === result), y: result, label: 'Du'}]} 
+                        color="hsla(181, 100%, 30%, .6)"
+                        withLabels />
+                </Chart>
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+)
+
+export default Semester
