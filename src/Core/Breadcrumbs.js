@@ -6,9 +6,9 @@ const Breadcrums = () =>  (
     <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
             {Routes.map(route => (
-                <Route key={route.path} path={route.path} exact={route.exact} component={() => (
-                    <li className="breadcrumb-item active" aria-current="page">
-                        <Link to={route.path}>{route.breadcrumb} foo bar</Link>
+                <Route key={route.path} path={route.path} render={() => (
+                    <li className="breadcrumb-item" aria-current="page">
+                        <Link to={route.path.split('/:')[0]}>{route.breadcrumb}</Link>
                     </li>
             )} />))}
         </ol>
