@@ -101,11 +101,11 @@ span.input-group-text {
 }
 
 .color-1 {
-  background-color: hsla(120, 100%, 50%, .4);
+  border-color: hsla(120, 100%, 50%, .4);
 }
 .color-2 {
-  background-color: hsla(240, 100%, 50%, .4);
+  border-color: hsla(240, 100%, 50%, .4);
 }
 .color-3 {
-  background-color: hsla(0, 100%, 50%, .4);
+  border-color: hsla(0, 100%, 50%, .4);
 }

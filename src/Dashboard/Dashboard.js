@@ -10,7 +10,7 @@ import Achievements from './Achievements'
 export default function Dashboard() {
     return (
         <div className="container-fluid">
-          <div className="row mb-2 mt-2">
+          <div className="row mt-2">
             <div className="col-lg-8">
                 <Progress></Progress>
             </div>
@@ -19,7 +19,7 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="row">
-          <div className="col-xl-9">
+          <div className="col-xl-9 mt-2">
           <div className="row">
             <div className="col-lg-4">
                 <Link to="/exams/semester">
@@ -68,7 +68,7 @@ export default function Dashboard() {
             </div>
           </div>
           </div>
-        <div className="col-xl-3">
+        <div className="col-xl-3 mt-2">
             <div className="card">
                 <Link to="/practcals">
                     <DashboardCard 

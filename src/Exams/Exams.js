@@ -4,15 +4,19 @@ import { QuantilesPlotWithGraphData, PointGraphWithGraphData } from './WithGraph
 import graphs from './Graphs'
 import Checkbox from './Checkbox'
 import _ from 'lodash'
-import Info from './Info';
+import SemesterInfo from './SemesterInfo'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 class Exams extends Component {
     constructor({props, match}) {
         super(props)
+        this.legend = React.createRef()
         this.graphs = graphs.data
         this.state = {
             shownGraphs: [ match.params.graphs || 'semester' ],
-            selectedPoint: {}
+            selectedPoint: {},
+            showHelp: true,
         }
     }
 
@@ -28,6 +32,11 @@ class Exams extends Component {
         })
     }
 
+    toggleHelp() {
+        this.originalHeight = this.originalHeight || this.legend.current.offsetHeight
+        this.legend.current.style.height = !this.state.showHelp ? `${this.originalHeight}px` : 0
+        this.setState({ ...this.state, showHelp: !this.state.showHelp })
+    }
     isGraphShown( graph ) {
         return this.state.shownGraphs.indexOf(graph) >= 0
     }
@@ -50,22 +59,6 @@ class Exams extends Component {
     }
     
     render() {
-        const checkboxes = this.graphs.map( graph => (<Checkbox 
-            key={graph.name}
-            color={graph.color}
-            checked={this.isGraphShown(graph.name)}
-            onChange={() => this.toggleVisibility(graph.name)} 
-            label={graph.label}>
-        </Checkbox>))
-
-        const thumbnails = this.state.shownGraphs.map( ( graph, i ) => (<div className="row my-2" key={i}>
-            <div className="col">
-                <div className="card p-2">
-                    <h3>{graph}</h3>
-                </div>
-            </div>
-        </div>))
-
         return (
             <div className="container-fluid">
             <div className="row my-2">
@@ -74,7 +67,13 @@ class Exams extends Component {
                         <div className="card-body">
                             <div className="d-flex ">
                                 <div className="flex-grow-1">
-                                    <h5 className="card-title">Deine Prüfungsergebnisse</h5>
+                                    <div className="d-flex">
+                                        <h5 className="mr-auto">Deine Prüfungsergebnisse</h5>
+                                        <div className="pr-3"><FontAwesomeIcon onClick={() => this.toggleHelp()} className={this.state.showHelp ? 'text-primary' : 'text-muted'} style={{fontSize: '1.3rem'}} icon={faInfoCircle} /></div>
+                                    </div>
+                                    <div ref={this.legend} className="animated row m-2" style={{overflow: 'hidden'}}>
+                                        Legend
+                                    </div>
                                     <div className="m-3" style={{height: '12rem'}}>
                                         <Chart xDomain={[1,graphs.pointCount]} yDomain={[0,100]} ticks={{x: graphs.pointCount}}>
                                             <QuantilesPlotWithGraphData
@@ -89,10 +88,17 @@ class Exams extends Component {
                                         </Chart>
                                     </div>
                                     <div className="row p-3 mt-4">
-                                        {checkboxes}
+                                    {this.graphs.map( graph => (
+                                        <Checkbox 
+                                            key={graph.name}
+                                            color={graph.color}
+                                            checked={this.isGraphShown(graph.name)}
+                                            onChange={() => this.toggleVisibility(graph.name)} 
+                                            label={graph.label}>
+                                        </Checkbox>))}
                                     </div>
                                 </div>
-                                <Info
+                                <SemesterInfo
                                     graph={(this.graphs.find(g => g.name === this.state.selectedPoint.graph) || {}).label}
                                     data={this.selectedPointData()} 
                                     visible={!!this.state.selectedPoint.graph} 
@@ -102,7 +108,14 @@ class Exams extends Component {
                     </div>
                 </div>
             </div>
-            {thumbnails}
+            {this.state.shownGraphs.map( ( graph, i ) => (
+                <div className="row my-2" key={i}>
+                    <div className="col">
+                        <div className="card p-2">
+                            <h3>{graph}</h3>
+                        </div>
+                    </div>
+                </div>))}
             </div>
         );
     }

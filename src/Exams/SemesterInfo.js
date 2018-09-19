@@ -3,7 +3,7 @@ import Chart from '../Charting/Chart'
 import HorizontalBarGraph from '../Charting/HorizontalBarGraph'
 import { Link } from 'react-router-dom'
 
-const Info = props =>
+const SemesterInfo = props =>
     (<div className={`point-details p-3 animated card position-absolute ${props.visible ? 'show' : 'hidden'}`}>
         <h5>{props.graph} - {props.data.label}</h5>
         <div>Dein Ergebnis:<span className="font-italic"> {props.data.result} %</span></div>
@@ -19,4 +19,4 @@ const Info = props =>
         <button type="button" className="btn btn-outline-info mt-2" onClick={() => props.onClose()}>schließen</button>
     </div>)
 
-export default Info
+export default SemesterInfo
