@@ -109,3 +109,16 @@ span.input-group-text {
 .color-3 {
   border-color: hsla(0, 100%, 50%, .4);
 }
+
+.marker > path, .marker > text {
+  stroke-width: 1;
+  display: none;
+}
+
+.marker > text {
+  font-size: 0.7rem;
+}
+
+circle:hover ~ path, circle:hover ~ text {
+  display: block;
+}

@@ -29,7 +29,7 @@ class Label extends Component {
             fontFamily="sans-serif" 
             fontSize=".7rem"
             fill="white" 
-            textAnchor="middle">{this.props.children}</text></g>)
+            textAnchor={this.props.textAnchor || "middle"}>{this.props.children}</text></g>)
     }
 }
 

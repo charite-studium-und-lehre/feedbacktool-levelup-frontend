@@ -18,7 +18,7 @@ function randn_bm() {
 const result = Math.floor(Math.random() * 60 + 25)
 const data = new Array(100).fill(0).map(d => Math.floor(randn_bm() * 13 + 50)).concat([ result ]).sort((a,b) => a-b).map((d,i) => ({x: (i+1)/1.01, y: d}))
 const histo = _.map(_.groupBy(data, d => Math.floor(d.y / 5)), (d, i) => ({x: +i*5, y: d.length, highlight: +i === Math.floor(result / 5)}))
-const mean = data.reduce((s, d) => s + d.y, 0) / data.length
+const mean = Math.round(data.reduce((s, d) => s + d.y, 0) / data.length)
 
 function toAreaData(_data) {
     return _data.map(d => ({x: d.x, y0: Math.min(...data.map(d => d.y)), y1: d.y}))
@@ -67,8 +67,8 @@ class Semester extends Component {
                                     <AreaGraph noSmooth data={percentileArea(75, 90)} color="hsla(217, 100%, 63%, .3)"></AreaGraph>
                                     <AreaGraph noSmooth data={percentileArea(50, 75)} color="hsla(217, 100%, 43%, .3)"></AreaGraph>
                                     <LineGraph data={data} color="hsla(181, 100%, 41%, .6)" noPoints noSmooth/>
-                                    <Marker x={_.findLastIndex(data, d => d.y === result)} y={result} label='Du' color="hsla(181, 100%, 30%, .6)" />
-                                    <Marker x={_.findIndex(data, d => d.y >= mean)} y={mean} label='Mittelwert' color="hsla(181, 100%, 30%, .6)" />
+                                    <Marker x={_.findLastIndex(data, d => d.y === result)} y={result} label='Du' color="hsla(0, 100%, 30%, .6)" />
+                                    <Marker x={_.findIndex(data, d => d.y >= mean)} y={mean} label='Mittelwert' color="hsla(0, 100%, 30%, .6)" />
                                 </Chart>
                                 ) : (
                                 <Chart xDomain={[0,100]} yDomain={[0,Math.max(...histo.map(d => d.y))]}>
