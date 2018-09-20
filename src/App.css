@@ -119,6 +119,6 @@ span.input-group-text {
   font-size: 0.7rem;
 }
 
-circle:hover ~ path, circle:hover ~ text {
+circle:hover ~ path, circle:hover ~ text, .marker.selected > path, .marker.selected > text {
   display: block;
 }
