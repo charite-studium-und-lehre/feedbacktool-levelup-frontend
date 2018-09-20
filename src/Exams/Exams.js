@@ -69,7 +69,7 @@ class Exams extends Component {
                                 <div className="flex-grow-1">
                                     <div className="d-flex">
                                         <h5 className="mr-auto">Deine Prüfungsergebnisse</h5>
-                                        <div className="pr-3"><FontAwesomeIcon onClick={() => this.toggleHelp()} className={this.state.showHelp ? 'text-primary' : 'text-muted'} style={{fontSize: '1.3rem'}} icon={faInfoCircle} /></div>
+                                        <div><FontAwesomeIcon onClick={() => this.toggleHelp()} className={this.state.showHelp ? 'text-primary' : 'text-muted'} style={{fontSize: '1.3rem'}} icon={faInfoCircle} /></div>
                                     </div>
                                     <div ref={this.legend} className="animated row m-2" style={{overflow: 'hidden'}}>
                                         Legend

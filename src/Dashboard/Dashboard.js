@@ -45,7 +45,7 @@ export default function Dashboard() {
                     color="color-3">
                         <div className="m-3" style={{height: '6rem'}}>
                             <Chart yDomain={[0,100]} xDomain={[0,11]}>
-                                <BarGraph data={new Array(10).fill(0).map(() => Math.random() * 100)} color="rgba(64,64,64,.3)"></BarGraph>
+                                <BarGraph data={new Array(10).fill(0).map((d,i) => ({x: i+1, y: Math.random() * 100}))} color="rgba(64,64,64,.3)"></BarGraph>
                             </Chart>
                         </div>
                     </DashboardCard>
