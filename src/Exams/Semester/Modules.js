@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import _ from 'lodash'
 import Chart from '../../Charting/Chart'
 import BarGraph from '../../Charting/BarGraph'
 import LineMarker from '../../Charting/LineMarker'
