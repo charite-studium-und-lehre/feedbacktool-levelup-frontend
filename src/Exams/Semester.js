@@ -107,8 +107,8 @@ class Semester extends Component {
                                 <div className=""><FontAwesomeIcon onClick={() => this.toggleHelp()} className={this.state.showHelp ? 'text-primary' : 'text-muted'} style={{fontSize: '1.3rem'}} icon={faInfoCircle} /></div>
                             </div>
                             <Chart xDomain={[0,5]} yDomain={[0,Math.max(...result)]} ticks={{x: 6, xFormat: d => `M0${d}`}}>
-                                <BarGraph offset={-0.15} width={.3} data={result.map((d, i) => ({x: i+1, y: d}))} color="hsla(33, 100%, 20%, .5)" highlightColor="hsla(33, 100%, 20%, .8)" />
-                                <BarGraph offset={0.15} width={.3} data={_.zip(...data).map((d, i) => ({x: i+1, y: mean(d)}))} color="hsla(33, 100%, 40%, .5)" highlightColor="hsla(33, 100%, 40%, .8)" />
+                                <BarGraph labels offset={-0.15} width={.3} data={result.map((d, i) => ({x: i+1, y: d}))} color="hsla(33, 100%, 20%, .5)" highlightColor="hsla(33, 100%, 20%, .8)" />
+                                <BarGraph labels offset={0.15} width={.3} data={_.zip(...data).map((d, i) => ({x: i+1, y: mean(d)}))} color="hsla(33, 100%, 40%, .5)" highlightColor="hsla(33, 100%, 40%, .8)" />
                                 <LineMarker value={mean(graphData.map(d => d.y))} label="Durchschnitt" />
                             </Chart>
                         </div>
