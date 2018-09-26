@@ -3,11 +3,12 @@ import Chart from '../Charting/Chart'
 import LineGraph from '../Charting/LineGraph'
 import AreaGraph from '../Charting/AreaGraph'
 import _ from 'lodash'
-import Marker from '../Charting/Marker';
-import BarGraph from '../Charting/BarGraph';
-import HorizontalBarGraph from '../Charting/HorizontalBarGraph';
+import Marker from '../Charting/Marker'
+import BarGraph from '../Charting/BarGraph'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import Tracker from '../Charting/Tracker'
+import LineMarker from '../Charting/LineMarker'
 
 function randn_bm() {
     var u = 0, v = 0
@@ -20,11 +21,13 @@ function mean(x) {
     return Math.round(x.reduce((s, d) => s+d, 0) / x.length)
 }
 
+const moduleMeans = new Array(4).fill(0).map(() => Math.floor(Math.random() * 10) + 50)
 const result = new Array(4).fill(0).map(() => Math.floor(Math.random() * 60 + 25))
-const data = new Array(100).fill(0).map(() => new Array(4).fill(0).map(() => Math.floor(randn_bm() * 13 + 50))).concat([ result ]).sort((a,b) => mean(a)-mean(b))
+const data = new Array(100).fill(0).map(() => new Array(4).fill(0).map((d,i) => Math.floor(randn_bm() * 13 + moduleMeans[i]))).concat([ result ]).sort((a,b) => mean(a)-mean(b))
 const graphData = data.map((d,i) => ({x: (i+1)/1.01, y: mean(d)}))
-const histo = _.zip(...data).map((m,module) => _.map(_.groupBy(m, d => Math.floor(d / 5)), (d, i) => ({x: +i*5, y: d.length, highlight: +i === Math.floor(result[module] / 5)})))
-console.log(histo)
+//const histo = _.zip(...data).map((m,module) => _.map(_.groupBy(m, d => Math.floor(d / 5)), (d, i) => ({x: +i*5, y: d.length, highlight: +i === Math.floor(result[module] / 5)})))
+const histo = _.map(_.groupBy(data.map(d => mean(d)), d => Math.floor(d / 5)), (d, i) => ({x: +i*5, y: d.length, highlight: +i === Math.floor(mean(result) / 5)}))
+
 function toAreaData(_data) {
     return _data.map(d => ({x: d.x, y0: Math.min(...graphData.map(d => d.y)), y1: d.y}))
 }
@@ -39,7 +42,7 @@ class Semester extends Component {
         super(props)
         this.match = match
         this.state = {
-            mode: 'histo'
+            mode: 'graph'
         }
     }
 
@@ -52,13 +55,18 @@ class Semester extends Component {
         <div className="container-fluid">
             <div className="row">
                 <div className="col">
+                    <h4 className="mr-auto">Semesterprüfung - {this.match.params.test}</h4>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col">
                     <div className="card p-4">
                         <div className="p-2 mb-2">
                             <div className="d-flex flex-wrap">
-                                <h4 className="mr-auto">Semesterprüfung - {this.match.params.test}</h4>
+                                <h4 className="mr-auto">Gesamt</h4>
                                 <div className=""><FontAwesomeIcon onClick={() => this.toggleHelp()} className={this.state.showHelp ? 'text-primary' : 'text-muted'} style={{fontSize: '1.3rem'}} icon={faInfoCircle} /></div>
                             </div>
-                            <div ref={this.legend} className="animated row m-2" style={{overflow: 'hidden'}}>
+                            <div ref={this.legend} className="animated row m-2" style={{display: 'none', overflow: 'hidden'}}>
                                 Legend
                             </div>
                             <div style={{textAlign: 'right'}}>
@@ -72,24 +80,37 @@ class Semester extends Component {
                                     <AreaGraph noSmooth data={percentileArea(75, 90)} color="hsla(120, 100%, 60%, .2)"></AreaGraph>
                                     <AreaGraph noSmooth data={percentileArea(50, 75)} color="hsla(120, 100%, 40%, .2)"></AreaGraph>
                                     <AreaGraph noSmooth data={percentileArea(0, 50)} color="hsla(120, 100%, 20%, .2)"></AreaGraph>
-                                    <LineGraph data={graphData} color="hsla(181, 100%, 41%, .6)" noPoints noSmooth/>
+                                    <LineGraph data={graphData} color="hsla(181, 100%, 41%, .6)" noPoints noSmooth>
+                                        {/* <Tracker getY={ x => this.getY(x) } /> */}
+                                    </LineGraph>
                                     <Marker x={_.findLastIndex(graphData, d => d.y === mean(result))} y={mean(result)} label='Du' color="hsla(0, 100%, 30%, .6)" />
-                                    <Marker x={_.findIndex(graphData, d => d.y >= mean(graphData.map(d => d.y)))} y={mean(graphData.map(d => d.y))} label='Mittelwert' color="hsla(0, 100%, 30%, .6)" />
+                                    <LineMarker value={mean(graphData.map(d => d.y))} label='Durchschnitt' color="hsla(0, 100%, 30%, .6)" />
                                 </Chart>
                                 ) : (
-                                <Chart xDomain={[0,100]} yDomain={[0,Math.max(...histo.map(d => Math.max(...d.map(y => y.y))))]}>
-                                    <BarGraph offset={-1.5} width={1} data={histo[0]} color="hsla(33, 100%, 20%, .5)" highlightColor="hsla(33, 100%, 20%, .8)" />
-                                    <BarGraph offset={-0.5} width={1} data={histo[1]} color="hsla(33, 100%, 40%, .5)" highlightColor="hsla(33, 100%, 40%, .8)" />
-                                    <BarGraph offset={0.5} width={1} data={histo[2]} color="hsla(33, 100%, 60%, .5)" highlightColor="hsla(33, 100%, 60%, .8)" />
-                                    <BarGraph offset={1.5} width={1} data={histo[3]} color="hsla(33, 100%, 80%, .5)" highlightColor="hsla(33, 100%, 80%, .8)" />
+                                <div>
+                                <Chart xDomain={[0,100]} yDomain={[0,Math.max(...histo.map(d => d.y))]}>
+                                    <BarGraph offset={0} width={4} data={histo} color="hsla(33, 100%, 20%, .5)" highlightColor="hsla(33, 100%, 20%, .8)" />
                                 </Chart>
+                                </div>
                                 )}
                             </div>
-                            <div className="mt-3">
-                                <Chart horizontal xDomain={[0,100]} yDomain={[0,5]} ticks={{x: 11, y: 6, yFormat: d => 'M0' + d }}>
-                                    <HorizontalBarGraph data={result} />
-                                </Chart>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="row mt-3">
+                <div className="col">
+                    <div className="card p-4">
+                        <div className="mt-3">
+                            <div className="d-flex flex-wrap">
+                                <h4 className="mr-auto">Module</h4>
+                                <div className=""><FontAwesomeIcon onClick={() => this.toggleHelp()} className={this.state.showHelp ? 'text-primary' : 'text-muted'} style={{fontSize: '1.3rem'}} icon={faInfoCircle} /></div>
                             </div>
+                            <Chart xDomain={[0,5]} yDomain={[0,Math.max(...result)]} ticks={{x: 6, xFormat: d => `M0${d}`}}>
+                                <BarGraph offset={-0.15} width={.3} data={result.map((d, i) => ({x: i+1, y: d}))} color="hsla(33, 100%, 20%, .5)" highlightColor="hsla(33, 100%, 20%, .8)" />
+                                <BarGraph offset={0.15} width={.3} data={_.zip(...data).map((d, i) => ({x: i+1, y: mean(d)}))} color="hsla(33, 100%, 40%, .5)" highlightColor="hsla(33, 100%, 40%, .8)" />
+                                <LineMarker value={mean(graphData.map(d => d.y))} label="Durchschnitt" />
+                            </Chart>
                         </div>
                     </div>
                 </div>

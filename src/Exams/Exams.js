@@ -75,7 +75,7 @@ class Exams extends Component {
                                         Legend
                                     </div>
                                     <div className="m-3" style={{height: '12rem'}}>
-                                        <Chart xDomain={[1,graphs.pointCount]} yDomain={[0,100]} ticks={{x: graphs.pointCount}}>
+                                        <Chart yLabel="% richtig" xDomain={[1,graphs.pointCount]} yDomain={[0,100]} ticks={{x: graphs.pointCount}}>
                                             <QuantilesPlotWithGraphData
                                                 context={this}
                                                 graph={this.graphs[0]}

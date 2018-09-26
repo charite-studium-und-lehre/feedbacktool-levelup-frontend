@@ -21,7 +21,7 @@ class Label extends Component {
             .style("fill", this.props.color || 'black')
             .style("fill-opacity", ".5")
             .style("stroke", this.props.color || 'black')
-            .style("stroke-width", "0");
+            .style("stroke-width", "0")
     }
 
     render() {

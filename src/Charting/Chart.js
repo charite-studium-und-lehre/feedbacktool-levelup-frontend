@@ -54,7 +54,7 @@ class Chart extends Component {
         this.props.noAxis || yAxis(select(this.axis.y.current));
         this.props.noAxis || select(this.axis.x.current)
             .attr("transform", "translate(0," + height + ")")
-            .call(xAxis);
+            .call(xAxis)
 
         const childrenWithScales = React.Children.map(this.props.children, child => {
             return React.cloneElement(child, { xScale, yScale });
