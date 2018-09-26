@@ -11,7 +11,7 @@ const BarGraph = props => {
 				y={props.yScale(d.y)}
 				height={props.yScale(props.yScale.domain()[0]) - props.yScale(d.y)}
 				width={width} />
-			{props.labels ? <text x={props.xScale(d.x + offset)} y={props.yScale(d.y) - 2} textAnchor="middle">{d.y}</text> : ''}
+			{props.labels ? <text x={props.xScale(d.x + offset)} y={props.yScale(d.y) - 3} textAnchor="middle">{d.y}</text> : ''}
 		</g>)}
 	</g>)
 }

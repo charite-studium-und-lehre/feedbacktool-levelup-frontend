@@ -1,6 +1,6 @@
 import Dashboard from '../Dashboard/Dashboard'
 import Exams from '../Exams/Exams'
-import Semester from '../Exams/Semester'
+import Semester from '../Exams/Semester/Semester'
 
 const Routes = [
   {
