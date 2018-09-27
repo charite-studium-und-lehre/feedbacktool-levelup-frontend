@@ -6,7 +6,7 @@ import AreaGraph from '../../Charting/AreaGraph'
 import BarGraph from '../../Charting/BarGraph'
 import Marker from '../../Charting/Marker'
 import LineMarker from '../../Charting/LineMarker'
-import Legend from './Legend'
+import Legend from '../../Charting/Legend'
 
 class Totals extends Component {
     constructor(props) {
@@ -34,7 +34,7 @@ class Totals extends Component {
         return (
             <div className="card p-4">
                 <div className="p-2 mb-2">
-                    <Legend title="Gesamt" />
+                    <Legend title="Gesamt">Foo Bar</Legend>
                     <div style={{textAlign: 'right'}}>
                         <label className="m-0 mr-2"><input type="radio" name="mode" checked={this.state.mode === 'graph'} onChange={() => this.setMode('graph')} className="mx-2" />Graph</label>
                         <label><input type="radio" name="mode" checked={this.state.mode === 'histo'} onChange={() => this.setMode('histo')} className="mx-2" />Histogramm</label>

@@ -5,8 +5,7 @@ import graphs from './Graphs'
 import Checkbox from './Checkbox'
 import _ from 'lodash'
 import SemesterInfo from './SemesterInfo'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import Legend from '../Charting/Legend';
 
 class Exams extends Component {
     constructor({props, match}) {
@@ -16,7 +15,6 @@ class Exams extends Component {
         this.state = {
             shownGraphs: [ match.params.graphs || 'semester' ],
             selectedPoint: {},
-            showHelp: true,
         }
     }
 
@@ -32,11 +30,6 @@ class Exams extends Component {
         })
     }
 
-    toggleHelp() {
-        this.originalHeight = this.originalHeight || this.legend.current.offsetHeight
-        this.legend.current.style.height = !this.state.showHelp ? `${this.originalHeight}px` : 0
-        this.setState({ ...this.state, showHelp: !this.state.showHelp })
-    }
     isGraphShown( graph ) {
         return this.state.shownGraphs.indexOf(graph) >= 0
     }
@@ -67,13 +60,7 @@ class Exams extends Component {
                         <div className="card-body">
                             <div className="d-flex ">
                                 <div className="flex-grow-1">
-                                    <div className="d-flex">
-                                        <h5 className="mr-auto">Deine Prüfungsergebnisse</h5>
-                                        <div><FontAwesomeIcon onClick={() => this.toggleHelp()} className={this.state.showHelp ? 'text-primary' : 'text-muted'} style={{fontSize: '1.3rem'}} icon={faInfoCircle} /></div>
-                                    </div>
-                                    <div ref={this.legend} className="animated row m-2" style={{overflow: 'hidden'}}>
-                                        Legend
-                                    </div>
+                                    <Legend title="Deine Prüfungsergebnisse">Legende</Legend>
                                     <div className="m-3" style={{height: '12rem'}}>
                                         <Chart yLabel="% richtig" xDomain={[1,graphs.pointCount]} yDomain={[0,100]} ticks={{x: graphs.pointCount}}>
                                             <QuantilesPlotWithGraphData

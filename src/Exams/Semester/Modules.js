@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Chart from '../../Charting/Chart'
 import BarGraph from '../../Charting/BarGraph'
 import LineMarker from '../../Charting/LineMarker'
-import Legend from './Legend'
+import Legend from '../../Charting/Legend'
 
 class Modules extends Component {
     render() {

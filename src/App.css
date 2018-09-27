@@ -67,6 +67,11 @@ svg {
   transform-origin: 50%;
 }
 
+.animated.fast {
+  transition-timing-function: linear;
+  transition: .15s;
+}
+
 g.show {
   transform: scaleY(1);
 }
@@ -118,12 +123,9 @@ span.input-group-text {
 .marker > path, .marker > text {
   stroke-width: 1;
   display: none;
-}
-
-.marker > text {
   font-size: 0.7rem;
 }
 
-circle:hover ~ path, circle:hover ~ text, .marker.selected > path, .marker.selected > text {
+.marker circle:hover ~ path, .marker circle:hover ~ text, .marker.selected > path, .marker.selected > text {
   display: block;
 }
