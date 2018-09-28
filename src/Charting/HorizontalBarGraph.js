@@ -7,6 +7,7 @@ export default function HorizontalBarGraph(props) {
 		x={0}
 		width={props.xScale(d)}
 		height={(props.yScale(0) - props.yScale(1)) * (props.width || .8)}
-		key={"bar" + i} ></rect>)
+		key={"bar" + i} 
+		className="bar animated" ></rect>)
 	return <g transform={`translate(0, -${(props.yScale(0) - props.yScale(1)) * (props.width || .8) / 2})`}>{bars}</g>
 }

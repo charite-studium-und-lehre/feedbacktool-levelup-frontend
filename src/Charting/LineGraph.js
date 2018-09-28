@@ -1,12 +1,13 @@
 import React from 'react'
-import { line, curveMonotoneX, curveStep } from 'd3-shape'
+import { line } from 'd3-shape'
+import { curveSelect } from './Utils'
 
 export default function LineGraph(props) {
     const onClick = props.onClick || (() => {})
     const _line = line()
         .x(d => props.xScale(d.x))
         .y(d => props.yScale(d.y))
-        .curve(props.noSmooth ? curveStep : curveMonotoneX)
+        .curve(curveSelect(props.curve))
         
     const texts = !props.withLabels || props.data.map((d, i) => (<text
         key={i}
@@ -17,7 +18,7 @@ export default function LineGraph(props) {
 
     const circles = props.noPoints || props.data.map((d, i) => <circle 
         key={i} 
-        className={`dot ${props.selectedPoint === d.x ? 'selected' : ''}`}
+        className={`dot ${props.selectedPoint === d.x ? 'selected' : ''} animated`}
         cx={props.xScale(d.x)} 
         cy={props.yScale(d.y)} 
         r="5" 
@@ -25,8 +26,8 @@ export default function LineGraph(props) {
         onClick={() => onClick(d.x)}>
     </circle>)
 
-    return (<g>
-        <path d={_line(props.data)} className="line" style={{stroke: props.color || "black"}}></path>
+    return (<g className="animated" style={props.style}>
+        <path d={_line(props.data)} className="line animated" style={{stroke: props.color || "black"}}></path>
         {circles}
         {texts}
     </g>)
