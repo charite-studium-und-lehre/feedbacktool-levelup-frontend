@@ -7,7 +7,7 @@ const BarGraph = props => {
 	const offset = (props.offset || 0) * width
 	const clickHandler = props.onClick || (() => {})
 	return (<g>{props.data.map((d, i) => 
-		<g key={"bar" + i} className="bar">
+		<g key={"bar" + i} className="bar animated" style={props.style}>
 			<rect 
 				style={{fill: d.highlight ? (props.highlightColor || '#fe99f2') : (props.color || '#fe9922')}} 
 				x={props.xScale(d.x) + offset - width/2}
