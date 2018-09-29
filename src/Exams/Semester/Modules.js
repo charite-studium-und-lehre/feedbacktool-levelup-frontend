@@ -33,22 +33,23 @@ class Modules extends Component {
                         xDomain={[this.state.selectedModule ? this.state.selectedModule.x - .5 : 0, this.state.selectedModule ? this.state.selectedModule.x + .5 : 5]} 
                         yDomain={[0, Math.max(...this.props.result, ...this.props.data.map(d => d.mean))]} 
                         ticks={{x: this.state.selectedModule ? 1 : 6, xFormat: d => `Modul 0${d}`}}>
-                        <BarGraph labels offset={-.5} width={width} data={this.props.result.map((d, i) => ({x: i+1, y: d}))} color="hsla(33, 100%, 20%, .5)" highlightColor="hsla(33, 100%, 20%, .8)" onClick={this.showDetail.bind(this)} />
-                        <BarGraph labels offset={.5} width={width} data={this.props.data.map(d => ({x: d.module, y: d.mean}))} color="hsla(33, 100%, 40%, .5)" highlightColor="hsla(33, 100%, 40%, .8)" onClick={this.showDetail.bind(this)} />
+                        <BarGraph labels offset={-.5} width={width} data={this.props.result.map((d, i) => ({x: i+1, y: d}))} color="hsla(180, 100%, 20%, .5)" highlightColor="hsla(180, 100%, 20%, .8)" onClick={this.showDetail.bind(this)} />
+                        <BarGraph labels offset={.5} width={width} data={this.props.data.map(d => ({x: d.module, y: d.mean}))} color="hsla(180, 100%, 40%, .5)" highlightColor="hsla(180, 100%, 40%, .8)" onClick={this.showDetail.bind(this)} />
                         {this.histo.map((h, i) =>
-                            <LineGraph 
+                            <LineGraph
+                                className={this.state.selectedModule ? "" : "d-none d-md-block"}
                                 key={`density${i}`} noPoints curve="basis" width={.8} 
                                 data={h.map(d => ({x: i + 1 - width + d.x * 2 * width, y: d.y * histoScale, highlight: d.highlight}))} 
-                                color="hsla(33, 100%, 20%, .5)" 
-                                highlightColor="hsla(33, 100%, 20%, .8)" 
+                                color="hsla(180, 100%, 20%, .5)" 
+                                highlightColor="hsla(180, 100%, 20%, .8)" 
                                 style={{opacity: this.state.selectedModule ? 0.7 : 1}}/>
                         )}
                         {this.histo.map((h, i) =>
-                            <BarGraph 
+                            <BarGraph
                                 key={`histo${i}`} noPoints curve="basis" width={.8} 
                                 data={h.map(d => ({x: i + 1 - width + d.x * 2 * width, y: d.y * histoScale, highlight: d.highlight}))} 
-                                color="hsla(33, 100%, 20%, .5)" 
-                                highlightColor="hsla(33, 100%, 20%, .8)" 
+                                color="hsla(180, 100%, 20%, .5)" 
+                                highlightColor="hsla(180, 100%, 20%, .8)" 
                                 style={{opacity: this.state.selectedModule && this.state.selectedModule.x === i+1 ? 1 : 0}}/>
                         )}
                         <LineMarker value={this.props.totalMean} label="Durchschnitt" />
@@ -63,22 +64,24 @@ class Modules extends Component {
                         xDomain={[this.state.selectedModule ? this.state.selectedModule.x - .5 : 0, this.state.selectedModule ? this.state.selectedModule.x + .5 : 5]} 
                         yDomain={[0, Math.max(...this.props.result, ...this.props.data.map(d => d.mean))]} 
                         ticks={{x: this.state.selectedModule ? 1 : 6, xFormat: d => `Modul 0${d}`}}>
-                        <BarGraph labels offset={-.5} width={width} data={this.props.result.map((d, i) => ({x: i+1, y: d}))} color="hsla(33, 100%, 20%, .5)" highlightColor="hsla(33, 100%, 20%, .8)" onClick={this.showDetail.bind(this)} />
-                        <BarGraph labels offset={.5} width={width} data={this.props.data.map(d => ({x: d.module, y: d.mean}))} color="hsla(33, 100%, 40%, .5)" highlightColor="hsla(33, 100%, 40%, .8)" onClick={this.showDetail.bind(this)} />
+                        <BarGraph labels offset={-.5} width={width} data={this.props.result.map((d, i) => ({x: i+1, y: d}))} color="hsla(180, 100%, 20%, .5)" highlightColor="hsla(180, 100%, 20%, .8)" onClick={this.showDetail.bind(this)} />
+                        <BarGraph labels offset={.5} width={width} data={this.props.data.map(d => ({x: d.module, y: d.mean}))} color="hsla(180, 100%, 40%, .5)" highlightColor="hsla(180, 100%, 40%, .8)" onClick={this.showDetail.bind(this)} />
                         {this.histo.map((h, i) =>
-                            <LineGraph 
+                            <LineGraph
+                                className={this.state.selectedModule ? "" : "d-none d-md-block"}
                                 key={`density${i}`} noPoints curve="basis" width={.8} 
                                 data={h.map(d => ({x: i + 1 - width + d.x * 2 * width, y: d.y * histoScale, highlight: d.highlight}))} 
-                                color="hsla(33, 100%, 20%, .5)" 
-                                highlightColor="hsla(33, 100%, 20%, .8)" 
+                                color="hsla(180, 100%, 20%, .5)" 
+                                highlightColor="hsla(180, 100%, 20%, .8)" 
                                 style={{opacity: this.state.selectedModule ? 0.7 : 0.1}}/>
                         )}
                         {this.histo.map((h, i) =>
-                            <BarGraph 
+                            <BarGraph
+                                className={this.state.selectedModule ? "" : "d-none d-md-block"}
                                 key={`histo${i}`} noPoints curve="basis" width={.8} 
                                 data={h.map(d => ({x: i + 1 - width + d.x * 2 * width, y: d.y * histoScale, highlight: d.highlight}))} 
-                                color="hsla(33, 100%, 20%, .5)" 
-                                highlightColor="hsla(33, 100%, 20%, .8)" 
+                                color="hsla(180, 100%, 20%, .5)" 
+                                highlightColor="hsla(180, 100%, 20%, .8)" 
                                 style={{opacity: this.state.selectedModule && this.state.selectedModule.x === i+1 ? 1 : 1}}/>
                         )}
                         <LineMarker value={this.props.totalMean} label="Durchschnitt" />
@@ -93,22 +96,22 @@ class Modules extends Component {
                         xDomain={[this.state.selectedModule ? this.state.selectedModule.x - .5 : 0, this.state.selectedModule ? this.state.selectedModule.x + .5 : 5]} 
                         yDomain={[0, Math.max(...this.props.result, ...this.props.data.map(d => d.mean))]} 
                         ticks={{x: this.state.selectedModule ? 1 : 6, xFormat: d => `Modul 0${d}`}}>
-                        <BarGraph labels offset={-.5} width={width} data={this.props.result.map((d, i) => ({x: i+1, y: d}))} color="hsla(33, 100%, 20%, .5)" highlightColor="hsla(33, 100%, 20%, .8)" onClick={this.showDetail.bind(this)} />
-                        <BarGraph labels offset={.5} width={width} data={this.props.data.map(d => ({x: d.module, y: d.mean}))} color="hsla(33, 100%, 40%, .5)" highlightColor="hsla(33, 100%, 40%, .8)" onClick={this.showDetail.bind(this)} />
+                        <BarGraph labels offset={-.5} width={width} data={this.props.result.map((d, i) => ({x: i+1, y: d}))} color="hsla(180, 100%, 20%, .5)" highlightColor="hsla(180, 100%, 20%, .8)" onClick={this.showDetail.bind(this)} />
+                        <BarGraph labels offset={.5} width={width} data={this.props.data.map(d => ({x: d.module, y: d.mean}))} color="hsla(180, 100%, 40%, .5)" highlightColor="hsla(180, 100%, 40%, .8)" onClick={this.showDetail.bind(this)} />
                         {this.histo.map((h, i) =>
-                            <LineGraph 
+                            <LineGraph
                                 key={`density${i}`} noPoints curve="basis" width={.8} 
                                 data={h.map(d => ({x: i + 1 - width + d.x * 2 * width, y: d.y * histoScale, highlight: d.highlight}))} 
-                                color="hsla(33, 100%, 20%, .5)" 
-                                highlightColor="hsla(33, 100%, 20%, .8)" 
+                                color="hsla(180, 100%, 20%, .5)" 
+                                highlightColor="hsla(180, 100%, 20%, .8)" 
                                 style={{opacity: this.state.selectedModule ? 0.7 : 0}}/>
                         )}
                         {this.histo.map((h, i) =>
-                            <BarGraph 
+                            <BarGraph
                                 key={`histo${i}`} noPoints curve="basis" width={.8} 
                                 data={h.map(d => ({x: i + 1 - width + d.x * 2 * width, y: d.y * histoScale, highlight: d.highlight}))} 
-                                color="hsla(33, 100%, 20%, .5)" 
-                                highlightColor="hsla(33, 100%, 20%, .8)" 
+                                color="hsla(180, 100%, 20%, .5)" 
+                                highlightColor="hsla(180, 100%, 20%, .8)" 
                                 style={{opacity: this.state.selectedModule && this.state.selectedModule.x === i+1 ? 1 : 0}}/>
                         )}
                         <LineMarker value={this.props.totalMean} label="Durchschnitt" />

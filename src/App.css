@@ -129,3 +129,7 @@ span.input-group-text {
 .marker circle:hover ~ path, .marker circle:hover ~ text, .marker.selected > path, .marker.selected > text {
   display: block;
 }
+
+.card {
+  overflow: scroll;
+}

@@ -26,7 +26,7 @@ export default function LineGraph(props) {
         onClick={() => onClick(d.x)}>
     </circle>)
 
-    return (<g className="animated" style={props.style}>
+    return (<g className={`animated ${props.className}`} style={props.style}>
         <path d={_line(props.data)} className="line animated" style={{stroke: props.color || "black"}}></path>
         {circles}
         {texts}
