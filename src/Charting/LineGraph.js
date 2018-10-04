@@ -1,13 +1,13 @@
 import React from 'react'
 import { line } from 'd3-shape'
-import { curveSelect } from './Utils'
+import { curveMonotoneX } from 'd3-shape'
 
 export default function LineGraph(props) {
     const onClick = props.onClick || (() => {})
     const _line = line()
         .x(d => props.xScale(d.x))
         .y(d => props.yScale(d.y))
-        .curve(curveSelect(props.curve))
+        .curve(props.curve || curveMonotoneX)
         
     const texts = !props.withLabels || props.data.map((d, i) => (<text
         key={i}

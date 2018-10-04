@@ -33,7 +33,7 @@ const graphs = {
     {
         name: 'stations',
         label: 'Stationsprüfung',
-        data: new Array(Math.floor(n/4)).fill(0).map((d,i) => ({x: i*4+Math.floor(Math.random()*4)+1, y: Math.random() * 100})),
+        data: new Array(2).fill(2).map((d,i) => ({x: d+i*5, y: Math.random() * 100})),
         color: 0
     },
 ]}

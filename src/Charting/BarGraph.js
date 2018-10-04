@@ -23,7 +23,7 @@ const BarGraph = props => {
 					y="0"
 					textAnchor="middle"
 					className="animated">
-					{d.y}
+					{d.label || d.y}
 				</text>
 			}
 		</g>)}
