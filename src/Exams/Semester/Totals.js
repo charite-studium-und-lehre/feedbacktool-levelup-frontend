@@ -8,6 +8,7 @@ import BarGraph from '../../Charting/BarGraph'
 import Marker from '../../Charting/Marker'
 import LineMarker from '../../Charting/LineMarker'
 import Legend from '../../Charting/Legend'
+import { XAxis, YAxis } from '../../Charting/Axis'
 
 class Totals extends Component {
     constructor(props) {
@@ -42,7 +43,9 @@ class Totals extends Component {
                     </div>
                     <div className="mt-3">
                         {this.state.mode === 'graph' ? (
-                        <Chart ticks={{y:4}} xDomain={[0, Math.max(...this.props.data.map(d => d.x))]} yDomain={[Math.min(...this.props.data.map(d => d.y)), Math.max(...this.props.data.map(d => d.y))]}>
+                        <Chart xDomain={[0, Math.max(...this.props.data.map(d => d.x))]} yDomain={[Math.min(...this.props.data.map(d => d.y)), Math.max(...this.props.data.map(d => d.y))]}>
+                            <XAxis />
+                            <YAxis ticks={{ count: 4 }} />
                             <AreaGraph curve={curveStep} data={this.percentileArea(90, 100)} color="hsla(120, 100%, 80%, .2)"></AreaGraph>
                             <AreaGraph curve={curveStep} data={this.percentileArea(75, 90)} color="hsla(120, 100%, 60%, .2)"></AreaGraph>
                             <AreaGraph curve={curveStep} data={this.percentileArea(50, 75)} color="hsla(120, 100%, 40%, .2)"></AreaGraph>
@@ -56,6 +59,8 @@ class Totals extends Component {
                         ) : (
                         <div>
                         <Chart xDomain={[Math.min(...this.histo.map(d => d.x)) - 5, Math.max(...this.histo.map(d => d.x)) + 5]} yDomain={[0,Math.max(...this.histo.map(d => d.y))]}>
+                            <XAxis />
+                            <YAxis />
                             <BarGraph labels width={.75} data={this.histo} color="hsla(33, 100%, 20%, .5)" highlightColor="hsla(33, 100%, 20%, .8)" />
                         </Chart>
                         </div>

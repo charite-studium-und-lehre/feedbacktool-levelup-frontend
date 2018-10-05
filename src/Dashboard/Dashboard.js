@@ -6,6 +6,7 @@ import BarGraph from '../Charting/BarGraph';
 import LineGraph from '../Charting/LineGraph'
 import Progress from './Progress'
 import Achievements from './Achievements'
+import { XAxis, YAxis } from '../Charting/Axis'
 
 export default function Dashboard() {
     return (
@@ -30,6 +31,8 @@ export default function Dashboard() {
                         color="color-1">
                         <div className="m-3" style={{height: '6rem'}}>
                             <Chart yDomain={[0,100]} xDomain={[1,4]}>
+                                <XAxis />
+                                <YAxis />
                                 <LineGraph data={new Array(4).fill(0).map((d,i) => ({x: i+1, y: Math.random() * 100}))} color="rgba(64,64,64,.3)"></LineGraph>
                             </Chart>
                         </div>
@@ -45,6 +48,8 @@ export default function Dashboard() {
                     color="color-3">
                         <div className="m-3" style={{height: '6rem'}}>
                             <Chart yDomain={[0,100]} xDomain={[0,11]}>
+                                <XAxis />
+                                <YAxis />
                                 <BarGraph data={new Array(10).fill(0).map((d,i) => ({x: i+1, y: Math.random() * 100}))} color="rgba(64,64,64,.3)" width={.8}></BarGraph>
                             </Chart>
                         </div>
@@ -60,6 +65,8 @@ export default function Dashboard() {
                     color="color-2">
                     <div className="m-3" style={{height: '6rem'}}>
                         <Chart yDomain={[0,100]} xDomain={[1,10]}>
+                            <XAxis />
+                            <YAxis />
                             <LineGraph data={new Array(10).fill(0).map((d,i) => ({x: i+1, y: Math.random() * 100}))} color="rgba(64,64,64,.3)"></LineGraph>
                         </Chart>
                     </div>

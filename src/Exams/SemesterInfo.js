@@ -2,6 +2,7 @@ import React from 'react'
 import Chart from '../Charting/Chart'
 import HorizontalBarGraph from '../Charting/HorizontalBarGraph'
 import { Link } from 'react-router-dom'
+import { XAxis, YAxis } from '../Charting/Axis'
 
 const SemesterInfo = props =>
     (<div className={`point-details p-3 animated card position-absolute ${props.visible ? 'show' : 'hidden'}`}>
@@ -9,7 +10,9 @@ const SemesterInfo = props =>
         <div>Dein Ergebnis:<span className="font-italic"> {props.data.result} %</span></div>
         <div>Durchschnitt:<span className="font-italic"> {props.data.mean} %</span></div>
         <div className="px-3 mb-2" style={{height: '5rem'}}>
-            <Chart horizontal xDomain={[0,100]} yDomain={[0,5]} ticks={{x: 6, y: 6, yFormat: d => 'M0' + d }}>
+            <Chart xDomain={[0,100]} yDomain={[0,5]} ticks={{x: 6, y: 6, yFormat: d => 'M0' + d }}>
+                <XAxis horizontal ticks={{count: 6}} />
+                <YAxis horizontal ticks={{count: 6, format: d => 'M0' + d }} />
                 <HorizontalBarGraph data={new Array(4).fill(0).map(() => Math.random() * 100)} />
             </Chart>
         </div>

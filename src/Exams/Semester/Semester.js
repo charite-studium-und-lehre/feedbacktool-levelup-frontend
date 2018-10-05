@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import Totals from './Totals'
-import Modules from './Modules'
+import Details from './Details'
 import { randomNormal } from 'd3-random'
 
 function mean(x) {
@@ -27,7 +27,7 @@ const Semester = ({ match }) => {
             </div>
             <div className="row mt-3">
                 <div className="col">
-                    <Modules result={result} data={_.zip(...data).map((d, i) => ({module: i+1, data: d, mean: mean(d)}))} totalMean={mean(data.map(d => mean(d)))} />
+                    <Details result={result} data={_.zip(...data).map((d, i) => ({module: i+1, data: d, mean: mean(d)}))} totalMean={mean(data.map(d => mean(d)))} />
                 </div>
             </div>
         </div>

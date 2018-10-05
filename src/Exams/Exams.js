@@ -5,7 +5,8 @@ import graphs from './Graphs'
 import Checkbox from './Checkbox'
 import _ from 'lodash'
 import SemesterInfo from './SemesterInfo'
-import Legend from '../Charting/Legend';
+import Legend from '../Charting/Legend'
+import { XAxis, YAxis } from '../Charting/Axis'
 
 class Exams extends Component {
     constructor({props, match}) {
@@ -62,7 +63,9 @@ class Exams extends Component {
                                 <div className="flex-grow-1">
                                     <Legend title="Deine Prüfungsergebnisse">Legende</Legend>
                                     <div className="m-3" style={{height: '12rem'}}>
-                                        <Chart yLabel="% richtig" xDomain={[1,graphs.pointCount]} yDomain={[0,100]} ticks={{x: graphs.pointCount}}>
+                                        <Chart xDomain={[1,graphs.pointCount]} yDomain={[0,100]}>
+                                            <XAxis ticks={{count: graphs.pointCount}} label="Semester"/>
+                                            <YAxis label="% richtig" />
                                             <QuantilesPlotWithGraphData
                                                 context={this}
                                                 graph={this.graphs[0]}

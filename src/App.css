@@ -38,11 +38,11 @@
   display: none;
 }
 
-svg.horizontal .y.axis > .tick:last-of-type {
+.axis.y.horizontal > .tick:last-of-type {
   display: none;
 }
 
-svg.horizontal .x.axis > .tick:first-of-type {
+.axis.x.horizontal > .tick:first-of-type {
   display: none;
 }
 
@@ -50,7 +50,7 @@ svg.horizontal .x.axis > .tick:first-of-type {
   display: none;
 }
 
-svg.horizontal .axis.x > path {
+.axis.x.horizontal > path {
   display: none;
 }
 

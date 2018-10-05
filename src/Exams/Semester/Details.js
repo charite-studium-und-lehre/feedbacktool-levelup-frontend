@@ -6,14 +6,15 @@ import BarGraph from '../../Charting/BarGraph'
 import LineMarker from '../../Charting/LineMarker'
 import LineGraph from '../../Charting/LineGraph'
 import Legend from '../../Charting/Legend'
+import { XAxis, YAxis } from '../../Charting/Axis'
 
-class Modules extends Component {
+class Details extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            selectedModule: null
+            selectedModule: null,
+            mode: 'module'
         }
-        this.chart = React.createRef()
         this.histo = props.data.map((module, index) => _.map(_.groupBy(module.data, d => Math.floor(d / 5)), (d, i) => ({x: +i*0.05, y: d.length, highlight: +i === Math.floor(props.result[index] / 5)})))
     }
 
@@ -29,11 +30,14 @@ class Modules extends Component {
             <div className="card p-4 mb-3" style={{overflow: 'hidden'}}>
                 <Legend title="Module">Legende</Legend>
                 <div className="mt-3">
-                    <Chart 
-                        ref={this.chart} 
+                    <Chart
                         xDomain={[this.state.selectedModule ? this.state.selectedModule.x - .5 : 0, this.state.selectedModule ? this.state.selectedModule.x + .5 : 5]} 
-                        yDomain={[0, Math.max(...this.props.result, ...this.props.data.map(d => d.mean))]} 
-                        ticks={{x: this.state.selectedModule ? 20 : 6, xFormat: d => this.state.selectedModule ? Math.round((d-this.state.selectedModule.x+.5)*100) : `Modul 0${d}`}}>
+                        yDomain={[0, Math.max(...this.props.result, ...this.props.data.map(d => d.mean))]}>
+                        <XAxis 
+                            ticks={{count: this.state.selectedModule ? 10 : 6, format: d => this.state.selectedModule ? Math.round((d-this.state.selectedModule.x+.5)*100) : `Modul 0${d}`}} 
+                            label={this.state.selectedModule ? `Modul ${this.state.selectedModule.x}` : '' }
+                        />
+                        <YAxis />
                         <BarGraph labels offset={-.5} width={width} data={this.props.result.map((d, i) => ({x: i+1, y: d, label: `${d} %`}))} color="hsla(180, 100%, 20%, .5)" highlightColor="hsla(180, 100%, 20%, .8)" onClick={this.showDetail.bind(this)} />
                         <BarGraph labels offset={.5} width={width} data={this.props.data.map(d => ({x: d.module, y: d.mean, label: `${d.mean} %`}))} color="hsla(180, 100%, 40%, .5)" highlightColor="hsla(180, 100%, 40%, .8)" onClick={this.showDetail.bind(this)} />
                         {this.histo.map((h, i) =>
@@ -41,7 +45,7 @@ class Modules extends Component {
                                 className={this.state.selectedModule ? "" : "d-none d-md-block"}
                                 key={`density${i}`} noPoints curve={curveBasis} width={.8} 
                                 data={h.map(d => ({x: i + 1 - width + d.x * 2 * width, y: d.y * histoScale, highlight: d.highlight}))} 
-                                color="hsla(180, 100%, 20%, .5)" 
+                                color="hsla(180, 100%, 20%, .2)" 
                                 highlightColor="hsla(180, 100%, 20%, .8)" 
                                 style={{opacity: this.state.selectedModule ? 0.7 : 1}}/>
                         )}
@@ -61,10 +65,10 @@ class Modules extends Component {
                 <Legend title="Module">Legende</Legend>
                 <div className="mt-3">
                     <Chart 
-                        ref={this.chart} 
                         xDomain={[this.state.selectedModule ? this.state.selectedModule.x - .5 : 0, this.state.selectedModule ? this.state.selectedModule.x + .5 : 5]} 
-                        yDomain={[0, Math.max(...this.props.result, ...this.props.data.map(d => d.mean))]} 
-                        ticks={{x: this.state.selectedModule ? 1 : 6, xFormat: d => `Modul 0${d}`}}>
+                        yDomain={[0, Math.max(...this.props.result, ...this.props.data.map(d => d.mean))]}>
+                        <XAxis ticks={{count: this.state.selectedModule ? 10 : 6, format: d => this.state.selectedModule ? Math.round((d-this.state.selectedModule.x+.5)*100) : `Modul 0${d}`}} />
+                        <YAxis />
                         <BarGraph labels offset={-.5} width={width} data={this.props.result.map((d, i) => ({x: i+1, y: d}))} color="hsla(180, 100%, 20%, .5)" highlightColor="hsla(180, 100%, 20%, .8)" onClick={this.showDetail.bind(this)} />
                         <BarGraph labels offset={.5} width={width} data={this.props.data.map(d => ({x: d.module, y: d.mean}))} color="hsla(180, 100%, 40%, .5)" highlightColor="hsla(180, 100%, 40%, .8)" onClick={this.showDetail.bind(this)} />
                         {this.histo.map((h, i) =>
@@ -89,39 +93,9 @@ class Modules extends Component {
                     </Chart>
                 </div>
             </div>
-            <div className="card p-4" style={{overflow: 'hidden'}}>
-                <Legend title="Module">Legende</Legend>
-                <div className="mt-3">
-                    <Chart 
-                        ref={this.chart} 
-                        xDomain={[this.state.selectedModule ? this.state.selectedModule.x - .5 : 0, this.state.selectedModule ? this.state.selectedModule.x + .5 : 5]} 
-                        yDomain={[0, Math.max(...this.props.result, ...this.props.data.map(d => d.mean))]} 
-                        ticks={{x: this.state.selectedModule ? 1 : 6, xFormat: d => `Modul 0${d}`}}>
-                        <BarGraph labels offset={-.5} width={width} data={this.props.result.map((d, i) => ({x: i+1, y: d}))} color="hsla(180, 100%, 20%, .5)" highlightColor="hsla(180, 100%, 20%, .8)" onClick={this.showDetail.bind(this)} />
-                        <BarGraph labels offset={.5} width={width} data={this.props.data.map(d => ({x: d.module, y: d.mean}))} color="hsla(180, 100%, 40%, .5)" highlightColor="hsla(180, 100%, 40%, .8)" onClick={this.showDetail.bind(this)} />
-                        {this.histo.map((h, i) =>
-                            <LineGraph
-                                key={`density${i}`} noPoints curve={curveBasis} width={.8} 
-                                data={h.map(d => ({x: i + 1 - width + d.x * 2 * width, y: d.y * histoScale, highlight: d.highlight}))} 
-                                color="hsla(180, 100%, 20%, .5)" 
-                                highlightColor="hsla(180, 100%, 20%, .8)" 
-                                style={{opacity: this.state.selectedModule ? 0.7 : 0}}/>
-                        )}
-                        {this.histo.map((h, i) =>
-                            <BarGraph
-                                key={`histo${i}`} noPoints curve={curveBasis} width={.8} 
-                                data={h.map(d => ({x: i + 1 - width + d.x * 2 * width, y: d.y * histoScale, highlight: d.highlight}))} 
-                                color="hsla(180, 100%, 20%, .5)" 
-                                highlightColor="hsla(180, 100%, 20%, .8)" 
-                                style={{opacity: this.state.selectedModule && this.state.selectedModule.x === i+1 ? 1 : 0}}/>
-                        )}
-                        <LineMarker value={this.props.totalMean} label="Durchschnitt" />
-                    </Chart>
-                </div>
-            </div>
             </div>
         )
     }
 }
 
-export default Modules
+export default Details
