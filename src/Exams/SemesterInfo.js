@@ -16,9 +16,13 @@ const SemesterInfo = props =>
                 <HorizontalBarGraph data={new Array(4).fill(0).map(() => Math.random() * 100)} />
             </Chart>
         </div>
-        <Link to={`/exams/semester/${props.data.label}`}><button type="button" className="btn btn-outline-primary my-2 w-100">Details</button></Link>
+        <Link to={`/exams/semester/${props.data.label}`}>
+            <button type="button" className="btn btn-outline-primary my-2 w-100">Details</button>
+        </Link>
         <span className="text-justify">Alle Fragen und Antworten dieser Prüfung</span>
-        <button type="button" className="btn btn-outline-primary mt-2">Fragen und Antworten</button>
+        <Link to={`/exams/semester/${props.data.label}/questions`}>
+            <button type="button" className="btn btn-outline-primary mt-2 w-100">Fragen und Antworten</button>
+        </Link>
         <button type="button" className="btn btn-outline-info mt-2" onClick={() => props.onClose()}>schließen</button>
     </div>)
 

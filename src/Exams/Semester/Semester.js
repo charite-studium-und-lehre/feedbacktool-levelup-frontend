@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import _ from 'lodash'
 import Totals from './Totals'
 import Details from './Details'
@@ -30,6 +31,14 @@ const Semester = ({ match }) => {
                     <Details result={result} data={_.zip(...data).map((d, i) => ({module: i+1, data: d, mean: mean(d)}))} totalMean={mean(data.map(d => mean(d)))} />
                 </div>
             </div>
+            <div className="row mt-3">
+                <div className="col">
+                    <Link to={`${match.url}/questions`}>
+                        <button type="button" className="btn btn-outline-primary mt-2">Fragen und Antworten</button>
+                    </Link>
+                </div>
+            </div>
+
         </div>
     )
 }

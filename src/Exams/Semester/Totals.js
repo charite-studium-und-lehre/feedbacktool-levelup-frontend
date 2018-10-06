@@ -57,13 +57,11 @@ class Totals extends Component {
                             <LineMarker value={this.props.totalMean} label='Durchschnitt' color="hsla(0, 100%, 30%, .6)" />
                         </Chart>
                         ) : (
-                        <div>
                         <Chart xDomain={[Math.min(...this.histo.map(d => d.x)) - 5, Math.max(...this.histo.map(d => d.x)) + 5]} yDomain={[0,Math.max(...this.histo.map(d => d.y))]}>
                             <XAxis />
                             <YAxis />
                             <BarGraph labels width={.75} data={this.histo} color="hsla(33, 100%, 20%, .5)" highlightColor="hsla(33, 100%, 20%, .8)" />
                         </Chart>
-                        </div>
                         )}
                     </div>
                 </div>
