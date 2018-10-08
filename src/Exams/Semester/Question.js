@@ -23,11 +23,11 @@ const Question = props => {
                         { props.answers.map(answer => 
                             <Answer key={answer.label} {...answer}>{answer.text}</Answer>) }
                     </div>
-                    <div className="my-1 text-center text-white question-bar" style={{backgroundImage: `linear-gradient(to right, rgba(23, 162, 184, .8) ${percentage}%, rgba(23, 162, 184, .4) ${percentage}%)`}}>
+                    <div className="my-1 text-center text-white question-bar" style={{backgroundImage: `linear-gradient(to right, rgba(51, 137, 51, 0.8) ${percentage}%, rgba(51, 137, 51, 0.4) ${percentage}%)`}}>
                         {percentage} % haben diese Frage richtig beantwortet
                     </div>
                     <div className="text-right">
-                        { (props.tags || []).map(tag => <span className="badge badge-primary mr-1" style={{backgroundColor: tag.color}} key={tag.label}>{ tag.label }</span> )}
+                        { (props.tags || []).map(tag => <span className="badge badge-primary mr-1 bg-info" key={tag.label}>{ tag.label }</span> )}
                     </div>
                 </div>
             </div>
