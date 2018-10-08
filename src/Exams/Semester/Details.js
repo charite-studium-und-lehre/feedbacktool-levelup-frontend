@@ -30,11 +30,15 @@ class Details extends Component {
             <div className="card p-4 mb-3" style={{overflow: 'hidden'}}>
                 <Legend title="Module">Legende</Legend>
                 <div className="mt-3">
+                    {this.state.mode === 'module' ? 
                     <Chart
                         xDomain={[this.state.selectedModule ? this.state.selectedModule.x - .5 : 0, this.state.selectedModule ? this.state.selectedModule.x + .5 : 5]} 
                         yDomain={[0, Math.max(...this.props.result, ...this.props.data.map(d => d.mean))]}>
                         <XAxis 
-                            ticks={{count: this.state.selectedModule ? 10 : 6, format: d => this.state.selectedModule ? Math.round((d-this.state.selectedModule.x+.5)*100) : `Modul 0${d}`}} 
+                            ticks={{
+                                count: this.state.selectedModule ? 10 : 6, 
+                                format: d => this.state.selectedModule ? Math.round((d-this.state.selectedModule.x+.5)*100) : `Modul 0${d}`
+                            }} 
                             label={this.state.selectedModule ? `Modul ${this.state.selectedModule.x}` : '' }
                         />
                         <YAxis />
@@ -59,9 +63,17 @@ class Details extends Component {
                         )}
                         <LineMarker value={this.props.totalMean} label="Durchschnitt" />
                     </Chart>
+                    : 
+                    <Chart 
+                        xDomain={[0, 100]}
+                        yDomain={[0, 100]}>
+                        <XAxis />
+                        <YAxis />
+                    </Chart>
+                    }
                 </div>
             </div>
-            <div className="card p-4 mb-3" style={{overflow: 'hidden'}}>
+            <div className="card p-4 mb-3" style={{display: 'none', overflow: 'hidden'}}>
                 <Legend title="Module">Legende</Legend>
                 <div className="mt-3">
                     <Chart 

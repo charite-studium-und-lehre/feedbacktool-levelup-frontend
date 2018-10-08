@@ -38,7 +38,6 @@ const Semester = ({ match }) => {
                     </Link>
                 </div>
             </div>
-
         </div>
     )
 }

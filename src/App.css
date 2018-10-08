@@ -129,3 +129,10 @@ span.input-group-text {
 .marker circle:hover ~ path, .marker circle:hover ~ text, .marker.selected > path, .marker.selected > text {
   display: block;
 }
+
+.question-bar {
+  line-height: .8rem; 
+  font-size: .7rem;
+  height: .8rem;
+  width: 100%;
+}
