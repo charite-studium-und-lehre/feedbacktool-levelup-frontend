@@ -38,8 +38,8 @@ class Totals extends Component {
                 <div className="p-2 mb-2">
                     <Legend title="Gesamt">Foo Bar</Legend>
                     <div style={{textAlign: 'right'}}>
-                        <label className="m-0 mr-2"><input type="radio" name="mode" checked={this.state.mode === 'graph'} onChange={() => this.setMode('graph')} className="mx-2" />Graph</label>
-                        <label><input type="radio" name="mode" checked={this.state.mode === 'histo'} onChange={() => this.setMode('histo')} className="mx-2" />Histogramm</label>
+                        <label className="m-0 mr-2"><input type="radio" name="totals.mode" checked={this.state.mode === 'graph'} onChange={() => this.setMode('graph')} className="mx-2" />Graph</label>
+                        <label><input type="radio" name="totals.mode" checked={this.state.mode === 'histo'} onChange={() => this.setMode('histo')} className="mx-2" />Histogramm</label>
                     </div>
                     <div className="mt-3">
                         {this.state.mode === 'graph' ? (

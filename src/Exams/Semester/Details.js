@@ -13,7 +13,7 @@ class Details extends Component {
         super(props)
         this.state = {
             selectedModule: null,
-            mode: 'module'
+            mode: 'modules'
         }
         this.histo = props.data.map((module, index) => _.map(_.groupBy(module.data, d => Math.floor(d / 5)), (d, i) => ({x: +i*0.05, y: d.length, highlight: +i === Math.floor(props.result[index] / 5)})))
     }
@@ -22,15 +22,23 @@ class Details extends Component {
         this.setState({ selectedModule: selectedModule && this.state.selectedModule && this.state.selectedModule.x === selectedModule.x ? null : selectedModule })
     }
 
+    setMode(mode) {
+        this.setState({ mode })
+    }
+
     render() {
         const width = .4
         const histoScale = Math.min(...this.props.data.map(d => d.mean)) / Math.max(...this.histo.map(d => Math.max(...d.map(d => d.y))))
         return (
             <div>
             <div className="card p-4 mb-3" style={{overflow: 'hidden'}}>
-                <Legend title="Module">Legende</Legend>
+                <Legend title={this.state.mode === 'modules' ? 'Module' : 'Fächer'}>Legende</Legend>
+                <div style={{textAlign: 'right'}}>
+                    <label className="m-0 mr-2"><input type="radio" name="details.mode" checked={this.state.mode === 'modules'} onChange={() => this.setMode('modules')} className="mx-2" />Module</label>
+                    <label><input type="radio" name="details.mode" checked={this.state.mode === 'subjects'} onChange={() => this.setMode('subjects')} className="mx-2" />Fächer</label>
+                </div>
                 <div className="mt-3">
-                    {this.state.mode === 'module' ? 
+                    {this.state.mode === 'modules' ?
                     <Chart
                         xDomain={[this.state.selectedModule ? this.state.selectedModule.x - .5 : 0, this.state.selectedModule ? this.state.selectedModule.x + .5 : 5]} 
                         yDomain={[0, Math.max(...this.props.result, ...this.props.data.map(d => d.mean))]}>

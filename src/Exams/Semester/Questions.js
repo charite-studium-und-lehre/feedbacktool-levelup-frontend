@@ -8,7 +8,7 @@ let filters = _.uniq(_.flatMap(DummyQuestions, q => q.tags)).map(t => ({label: t
     { label: 'richtig beantwortet', pred: q => q.answers.some( a => a.correct && a.selected )},
     { label: 'falsch beantwortet', pred: q => q.answers.some( a => !a.correct && a.selected )},
     { label: 'schwer', pred: q => q.answers.find( a => a.correct ).percentage < 50 },
-    { label: 'leicht', pred: q => q.answers.some( a => a.correct ).percentage > 80 }
+    { label: 'leicht', pred: q => q.answers.find( a => a.correct ).percentage > 80 }
 ])
 
 class Questions extends Component {
@@ -32,7 +32,7 @@ class Questions extends Component {
     }
 
     render() {
-        const questions = DummyQuestions.filter(_.overSome(this.state.filters.filter(f => f.selected).map(f => f.pred)))
+        const questions = DummyQuestions.filter(_.overEvery(this.state.filters.filter(f => f.selected).map(f => f.pred)))
         return (
             <div className="container-fluid">
                 <div className="row">
