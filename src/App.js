@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { Route, Redirect } from 'react-router'
+import 'd3-transition'
 
 import './App.css';
 import Navbar from './Core/navbar'

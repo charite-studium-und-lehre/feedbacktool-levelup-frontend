@@ -33,9 +33,7 @@ class Exams extends Component {
             {this.state.shownGraphs.map( ( graph, i ) => (
                 <div className="row my-2" key={i}>
                     <div className="col">
-                        <div className="card p-2">
-                            <Summery graph={graph} />
-                        </div>
+                        <Summery graph={graph} data={new Array(8).fill(0).map((d,i) => ({ x:i+1, y: Math.floor(Math.random() * 30) }))} />
                     </div>
                 </div>))}
             </div>

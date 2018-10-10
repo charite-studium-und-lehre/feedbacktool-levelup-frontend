@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { axisBottom, axisLeft } from 'd3-axis'
 import { select } from 'd3-selection'
-import Transition from 'd3-transition'
 
 class Axis extends Component {
     count = null
@@ -60,7 +59,7 @@ class YAxis extends Axis {
 
     createAxis() {
         return axisLeft(this.props.yScale)
-            .tickSize(this.props.horizontal ? 0 : -this.props.xScale(this.props.xScale.domain()[1]))
+            .tickSize(this.props.horizontal ? 0 : -this.props.xScale.range()[1])
     }
     
     render() {

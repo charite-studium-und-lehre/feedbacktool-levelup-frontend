@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
-import Chart from '../Charting/Chart'
+import { LinearChart } from '../Charting/Chart'
 import { QuantilesPlotWithGraphData, PointGraphWithGraphData } from './WithGraphData'
 import Checkbox from './Checkbox'
 import SemesterInfo from './SemesterInfo'
@@ -42,7 +42,7 @@ class MainChart extends Component {
                         <div className="flex-grow-1">
                             <Legend title="Deine Prüfungsergebnisse">Legende</Legend>
                             <div className="m-3" style={{height: '12rem'}}>
-                                <Chart xDomain={[1,this.props.pointCount]} yDomain={[0,100]}>
+                                <LinearChart xDomain={[1,this.props.pointCount]} yDomain={[0,100]}>
                                     <XAxis ticks={{count: this.props.pointCount}} label="Semester"/>
                                     <YAxis label="% richtig" />
                                     <QuantilesPlotWithGraphData
@@ -62,7 +62,7 @@ class MainChart extends Component {
                                         className={_.includes(this.props.shownGraphs, 'stations') ? 'show' : 'hidden'} 
                                         selectPoint={this.selectPoint.bind(this)} 
                                         selectedPoint={this.state.selectedPoint.graph === 'stations' ? this.state.selectedPoint.point : null} />
-                                </Chart>
+                                </LinearChart>
                             </div>
                             <div className="row p-3 mt-4">
                             {this.props.graphs.map( graph => (

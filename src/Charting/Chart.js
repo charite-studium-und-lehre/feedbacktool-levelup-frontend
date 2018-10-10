@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { scaleLinear } from 'd3-scale'
+import { scaleLinear, scaleBand } from 'd3-scale'
 import { select } from 'd3-selection'
 
 class Chart extends Component {
@@ -22,23 +22,15 @@ class Chart extends Component {
 
     renderContent() {
         const { width, height } = this.state.size
-
-        const xScale = scaleLinear()
-            .domain(this.props.xDomain)
-            .range([0, width])
-        
-        const yScale = scaleLinear()
-            .domain(this.props.yDomain)
-            .range([height, 0])
         
         select(this.node.current)
             .attr("viewBox", "0 0 " + width + " " + height )
             .attr("preserveAspectRatio", "none")
 
-        const childrenWithScales = React.Children.map(this.props.children, child => {
-            return React.cloneElement(child, { xScale: xScale, yScale: yScale });
+        const childrenWithSizes = React.Children.map(this.props.children, child => {
+            return React.cloneElement(child, { width, height });
         });
-        return <g>{childrenWithScales}</g>
+        return <g>{childrenWithSizes}</g>
     }
 
     render() {
@@ -48,4 +40,64 @@ class Chart extends Component {
         </svg>)
    }
 }
+
 export default Chart
+
+class LinearScales extends Component {
+    render() {
+        const xScale = scaleLinear()
+            .domain(this.props.xDomain)
+            .range([0, this.props.width])
+        
+        const yScale = scaleLinear()
+            .domain(this.props.yDomain)
+            .range([this.props.height, 0])
+        
+        const childrenWithScales = React.Children.map(this.props.children, child => {
+            return React.cloneElement(child, { xScale, yScale });
+        });
+
+        return childrenWithScales
+    }
+}
+
+const LinearChart = props => {
+    return (
+        <Chart>
+            <LinearScales {...props} >
+                {props.children}
+            </LinearScales>
+        </Chart>
+    )
+}
+
+class OrdinalScales extends Component {
+    render() {
+        const xScale = scaleBand()
+            .domain(this.props.xDomain)
+            .rangeRound([0, this.props.width])
+            .padding(0.5)
+
+        const yScale = scaleLinear()
+            .domain(this.props.yDomain)
+            .range([this.props.height, 0])
+        
+        const childrenWithScales = React.Children.map(this.props.children, child => {
+            return React.cloneElement(child, { xScale, yScale });
+        });
+
+        return childrenWithScales
+    }
+}
+
+const OrdinalChart = props => {
+    return (
+        <Chart>
+            <OrdinalScales {...props} >
+                {props.children}
+            </OrdinalScales>
+        </Chart>
+    )
+}
+
+export { LinearChart, LinearScales, OrdinalChart, OrdinalScales }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { curveBasis } from 'd3-shape'
 import _ from 'lodash'
-import Chart from '../../Charting/Chart'
+import { LinearChart } from '../../Charting/Chart'
 import BarGraph from '../../Charting/BarGraph'
 import LineMarker from '../../Charting/LineMarker'
 import LineGraph from '../../Charting/LineGraph'
@@ -39,7 +39,7 @@ class Details extends Component {
                 </div>
                 <div className="mt-3">
                     {this.state.mode === 'modules' ?
-                    <Chart
+                    <LinearChart
                         xDomain={[this.state.selectedModule ? this.state.selectedModule.x - .5 : 0, this.state.selectedModule ? this.state.selectedModule.x + .5 : 5]} 
                         yDomain={[0, Math.max(...this.props.result, ...this.props.data.map(d => d.mean))]}>
                         <XAxis 
@@ -70,21 +70,21 @@ class Details extends Component {
                                 style={{opacity: this.state.selectedModule && this.state.selectedModule.x === i+1 ? 1 : 0}}/>
                         )}
                         <LineMarker value={this.props.totalMean} label="Durchschnitt" />
-                    </Chart>
+                    </LinearChart>
                     : 
-                    <Chart 
+                    <LinearChart 
                         xDomain={[0, 100]}
                         yDomain={[0, 100]}>
                         <XAxis />
                         <YAxis />
-                    </Chart>
+                    </LinearChart>
                     }
                 </div>
             </div>
             <div className="card p-4 mb-3" style={{display: 'none', overflow: 'hidden'}}>
                 <Legend title="Module">Legende</Legend>
                 <div className="mt-3">
-                    <Chart 
+                    <LinearChart 
                         xDomain={[this.state.selectedModule ? this.state.selectedModule.x - .5 : 0, this.state.selectedModule ? this.state.selectedModule.x + .5 : 5]} 
                         yDomain={[0, Math.max(...this.props.result, ...this.props.data.map(d => d.mean))]}>
                         <XAxis ticks={{count: this.state.selectedModule ? 10 : 6, format: d => this.state.selectedModule ? Math.round((d-this.state.selectedModule.x+.5)*100) : `Modul 0${d}`}} />
@@ -110,7 +110,7 @@ class Details extends Component {
                                 style={{opacity: this.state.selectedModule && this.state.selectedModule.x === i+1 ? 1 : 1}}/>
                         )}
                         <LineMarker value={this.props.totalMean} label="Durchschnitt" />
-                    </Chart>
+                    </LinearChart>
                 </div>
             </div>
             </div>

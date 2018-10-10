@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import DashboardCard from './DashboardCard';
-import Chart from '../Charting/Chart';
+import { LinearChart } from '../Charting/Chart';
 import BarGraph from '../Charting/BarGraph';
 import LineGraph from '../Charting/LineGraph'
 import Progress from './Progress'
@@ -30,11 +30,11 @@ export default function Dashboard() {
                         text="Deine Ergebnisse für alle Semester"
                         color="color-1">
                         <div className="m-3" style={{height: '6rem'}}>
-                            <Chart yDomain={[0,100]} xDomain={[1,4]}>
+                            <LinearChart yDomain={[0,100]} xDomain={[1,4]}>
                                 <XAxis />
                                 <YAxis />
                                 <LineGraph data={new Array(4).fill(0).map((d,i) => ({x: i+1, y: Math.random() * 100}))} color="rgba(64,64,64,.3)"></LineGraph>
-                            </Chart>
+                            </LinearChart>
                         </div>
                     </DashboardCard>
                 </Link>
@@ -47,11 +47,11 @@ export default function Dashboard() {
                     text="Deine Stärken und Schwächen"
                     color="color-3">
                         <div className="m-3" style={{height: '6rem'}}>
-                            <Chart yDomain={[0,100]} xDomain={[0,11]}>
+                            <LinearChart yDomain={[0,100]} xDomain={[0,11]}>
                                 <XAxis />
                                 <YAxis />
                                 <BarGraph data={new Array(10).fill(0).map((d,i) => ({x: i+1, y: Math.random() * 100}))} color="rgba(64,64,64,.3)" width={.8}></BarGraph>
-                            </Chart>
+                            </LinearChart>
                         </div>
                     </DashboardCard>
                 </Link>
@@ -64,11 +64,11 @@ export default function Dashboard() {
                     text="Alle Ergbenisse, alle Semester"
                     color="color-2">
                     <div className="m-3" style={{height: '6rem'}}>
-                        <Chart yDomain={[0,100]} xDomain={[1,10]}>
+                        <LinearChart yDomain={[0,100]} xDomain={[1,10]}>
                             <XAxis />
                             <YAxis />
                             <LineGraph data={new Array(10).fill(0).map((d,i) => ({x: i+1, y: Math.random() * 100}))} color="rgba(64,64,64,.3)"></LineGraph>
-                        </Chart>
+                        </LinearChart>
                     </div>
                     </DashboardCard>
                 </Link>
