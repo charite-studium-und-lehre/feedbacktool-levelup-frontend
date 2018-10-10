@@ -10,9 +10,7 @@ function withGraphData(Type) {
         return (<Type 
             color={valueToColor(props.graph.color)}
             data={props.graph.data}
-            className={props.context.isGraphShown(props.graph.name) ? 'show' : 'hidden'}
-            onClick={( point ) => props.context.selectPoint(props.graph.name, point)}
-            selectedPoint={props.context.state.selectedPoint.graph === props.graph.name ? props.context.state.selectedPoint.point : null}
+            onClick={( point ) => props.selectPoint(props.graph.name, point)}
             {...props}>
         </Type>)
     }

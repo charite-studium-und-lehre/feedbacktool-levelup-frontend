@@ -34,7 +34,7 @@ const Semester = ({ match }) => {
             <div className="row mt-3">
                 <div className="col">
                     <Link to={`${match.url}/questions`}>
-                        <button type="button" className="btn btn-outline-primary mt-2">Fragen und Antworten</button>
+                        <button type="button" className="btn btn-outline-primary">Fragen und Antworten</button>
                     </Link>
                 </div>
             </div>

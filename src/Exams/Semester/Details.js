@@ -31,7 +31,7 @@ class Details extends Component {
         const histoScale = Math.min(...this.props.data.map(d => d.mean)) / Math.max(...this.histo.map(d => Math.max(...d.map(d => d.y))))
         return (
             <div>
-            <div className="card p-4 mb-3" style={{overflow: 'hidden'}}>
+            <div className="card p-4" style={{overflow: 'hidden'}}>
                 <Legend title={this.state.mode === 'modules' ? 'Module' : 'Fächer'}>Legende</Legend>
                 <div style={{textAlign: 'right'}}>
                     <label className="m-0 mr-2"><input type="radio" name="details.mode" checked={this.state.mode === 'modules'} onChange={() => this.setMode('modules')} className="mx-2" />Module</label>
