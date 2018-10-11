@@ -30,6 +30,10 @@
   color: rgba(1,1,1,.4); 
 }
 
+.axis path {
+  shape-rendering: crispEdges;
+}
+
 .axis > .tick {
   stroke-dasharray: 2,2;
 }

@@ -16,10 +16,16 @@ class Axis extends Component {
             .ticks( ticks.count )
             .tickFormat( ticks.format )
         
-        select(this.node.current)
+        const el = select(this.node.current)
             .transition()
             .duration(transition ? 550 : 0)
-            .call(axis);
+            .call(axis)
+        
+        this.props.rotateLabels && el.selectAll("text")	
+            .style("text-anchor", "start")
+            .attr("dx", ".8em")
+            .attr("dy", ".15em")
+            .attr("transform", "rotate(90)")
     }
 
     componentDidMount() {
@@ -39,12 +45,12 @@ class XAxis extends Axis {
 
     render() {
         return (
-            <g transform={`translate(0,${this.props.yScale(this.props.yScale.domain()[0])})`}>
+            <g transform={`translate(0,${this.props.yScale.range()[0]})`}>
                 <g ref={this.node} className={`x axis ${this.props.horizontal ? 'horizontal' : ''}`} />
                 <text 
                     className="label" 
                     dy="-2"
-                    x={this.props.xScale(this.props.xScale.domain()[1])}
+                    x={this.props.xScale.range()[1]}
                     fontSize=".7rem" fill="rgba(1,1,1,.4)"
                     style={{textAnchor: "end"}}>
                     {this.props.label}

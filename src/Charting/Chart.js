@@ -43,61 +43,56 @@ class Chart extends Component {
 
 export default Chart
 
-class LinearScales extends Component {
-    render() {
-        const xScale = scaleLinear()
-            .domain(this.props.xDomain)
-            .range([0, this.props.width])
-        
-        const yScale = scaleLinear()
-            .domain(this.props.yDomain)
-            .range([this.props.height, 0])
-        
-        const childrenWithScales = React.Children.map(this.props.children, child => {
-            return React.cloneElement(child, { xScale, yScale });
-        });
+const LinearScales = props => {
+    const xScale = scaleLinear()
+        .domain(props.xDomain || [])
+        .range([0, props.width])
+    
+    const yScale = scaleLinear()
+        .domain(props.yDomain || [])
+        .range([props.height, 0])
+    
+    const childrenWithScales = React.Children.map(props.children, child => {
+        return React.cloneElement(child, { xScale, yScale });
+    });
 
-        return childrenWithScales
-    }
+    return childrenWithScales
 }
 
-const LinearChart = props => {
-    return (
-        <Chart>
-            <LinearScales {...props} >
-                {props.children}
-            </LinearScales>
-        </Chart>
-    )
+const LinearChart = props => (
+    <Chart>
+        <LinearScales {...props} >
+            {props.children}
+        </LinearScales>
+    </Chart>
+)
+
+const OrdinalScales = props => {
+    const offset = props.offset ? (props.offset * props.width) : 0
+    const scale = props.scale || 1
+    const xScale = scaleBand()
+        .domain(props.xDomain || [])
+        .rangeRound([offset, offset + props.width * scale])
+        .paddingInner(props.padding || 0.2)
+        .paddingOuter(props.padding || 0.2)
+
+    const yScale = scaleLinear()
+        .domain(props.yDomain || [])
+        .range([props.height, 0])
+    
+    const childrenWithScales = React.Children.map(props.children, child => {
+        return React.cloneElement(child, { xScale, yScale });
+    });
+
+    return childrenWithScales
 }
 
-class OrdinalScales extends Component {
-    render() {
-        const xScale = scaleBand()
-            .domain(this.props.xDomain)
-            .rangeRound([0, this.props.width])
-            .padding(0.5)
-
-        const yScale = scaleLinear()
-            .domain(this.props.yDomain)
-            .range([this.props.height, 0])
-        
-        const childrenWithScales = React.Children.map(this.props.children, child => {
-            return React.cloneElement(child, { xScale, yScale });
-        });
-
-        return childrenWithScales
-    }
-}
-
-const OrdinalChart = props => {
-    return (
-        <Chart>
-            <OrdinalScales {...props} >
-                {props.children}
-            </OrdinalScales>
-        </Chart>
-    )
-}
+const OrdinalChart = props => (
+    <Chart>
+        <OrdinalScales {...props} >
+            {props.children}
+        </OrdinalScales>
+    </Chart>
+)
 
 export { LinearChart, LinearScales, OrdinalChart, OrdinalScales }
