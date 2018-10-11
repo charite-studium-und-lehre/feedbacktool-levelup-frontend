@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import graphs from './Graphs'
 import _ from 'lodash'
 import MainChart from './MainChart'
-import Summery from './Summery'
+import Summary from './Summary'
 
 class Exams extends Component {
     constructor({props, match}) {
@@ -33,7 +33,7 @@ class Exams extends Component {
             {this.state.shownGraphs.map( ( graph, i ) => (
                 <div className="row my-2" key={i}>
                     <div className="col">
-                        <Summery graph={graph} />
+                        <Summary graph={graph} />
                     </div>
                 </div>))}
             </div>

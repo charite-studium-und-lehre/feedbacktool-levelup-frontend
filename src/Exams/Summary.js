@@ -6,7 +6,7 @@ import { XAxis, YAxis } from '../Charting/Axis'
 import BarGraph from '../Charting/BarGraph'
 import Subjects from './Subjects'
 
-class Summery extends Component {
+class Summary extends Component {
     constructor(props) {
         super(props)
         this.state = { extended: [] }
@@ -58,4 +58,4 @@ class Summery extends Component {
     }
 }
 
-export default Summery
+export default Summary
