@@ -14,7 +14,7 @@ class Exams extends Component {
     }
 
     toggleVisibility( graph ) {
-        let s = [ ...this.state.shownGraphs ]
+        const s = [ ...this.state.shownGraphs ]
         this.setState({ shownGraphs: _.xor(s, [ graph ]) })
     }
     

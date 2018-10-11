@@ -84,7 +84,7 @@ const OrdinalScales = props => {
         return React.cloneElement(child, { xScale, yScale });
     });
 
-    return childrenWithScales
+    return <g onClick={props.onClick}>{childrenWithScales}</g>
 }
 
 const OrdinalChart = props => (

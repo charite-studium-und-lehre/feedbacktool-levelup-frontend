@@ -17,6 +17,10 @@
   fill: rgba(0, 0, 0, .6);
 }
 
+.bar-graph.collapsed .bar:not(:first-child) {
+  opacity: 0;
+}
+
 .dot {
   stroke: rgba(255, 255, 255, .4);
 }
