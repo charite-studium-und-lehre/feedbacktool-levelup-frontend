@@ -9,51 +9,51 @@ import Subjects from './Subjects'
 class Summary extends Component {
     constructor(props) {
         super(props)
-        this.state = { extended: [] }
+        this.state = { extended: null }
         
         this.Samples = Subjects()
             .map(cat => ({ ...cat, subjects: _.chain(cat.subjects).sampleSize(Math.random() * cat.subjects.length).sortBy(s => -s.questions).value()}))
     }
     
-    toggleExtended( cat ) {
-        const extended = _.xor([ ...this.state.extended ], [ cat.title ])
-        this.setState({ extended })
+    setExtended( cat ) {
+        this.setState({ extended: cat })
     }
 
-    isExtended( cat ) {
-        return _.includes(this.state.extended, cat.title)
+    getExtended() {
+        return this.Samples.find( c => c.title === this.state.extended )
+    }
+
+    formatTick( label ) {
+        const cat = this.Samples.find( c => c.title === label )
+        return cat ? `${label} (${cat.subjects.length})` : label 
     }
 
     render() {
-        const barsInCat = cat => this.isExtended(cat) ? cat.subjects.length : 1
-        const totalBars = _.sumBy(this.Samples, barsInCat )
-        const offsets = this.Samples.map((cat, i) => _.chain(this.Samples).slice(0, i).sumBy( barsInCat ) / totalBars )
+        const data = this.state.extended ? 
+            this.getExtended().subjects.map( s => ({ x: s.title, y: s.questions })) :
+            this.Samples.map((cat, i) => ({ x: cat.title, y: _.sumBy(cat.subjects, s => s.questions), color: `hsla(${32 + i/this.Samples.length*360}, 100%, 56%, .4)`}))
+        const domain = this.state.extended ? 
+            this.getExtended().subjects.map( s => s.title ) :
+            this.Samples.map( c => c.title )
+        const clickHandler = this.state.extended ?
+            () => this.setExtended(null) :
+            d => this.setExtended(d.x)
+        const color = this.state.extended ?
+            `hsla(${32 + this.Samples.indexOf(this.getExtended())/this.Samples.length*360}, 100%, 56%, .4)` :
+            null
         return (
             <div className="card">
                 <div className="card-body">
                     <Legend title={this.props.graph}>Legende</Legend>
                     <div className="m-3" style={{paddingBottom: '12rem'}}>
                         <Chart>
-                            {/* <LinearScales yDomain={[0,max]}>
+                            <OrdinalScales xDomain={domain} yDomain={[0,Math.max(...data.map( d => d.y ))]}>
+                                <BarGraph labels onClick={clickHandler} data={data} color={color}/>
+                                <BarGraph labels onClick={clickHandler} data={data.map(d => ({...d, y: 192838757 % Math.max(d.y, 1) }))} color={color}/>
+                                <XAxis rotateLabels ticks={{ format: this.formatTick.bind(this) }} />
                                 <YAxis />
-                            </LinearScales> */}
-                            {this.Samples.map((cat, i) => {
-                                const data = this.isExtended(cat) ? 
-                                    cat.subjects.map( s => ({ x: s.title, y: s.questions })) :
-                                    cat.subjects.map(() => ({ x: cat.title, y: _.sumBy(cat.subjects, s => s.questions) }))
-                                const domain = this.isExtended(cat) ?
-                                    cat.subjects.map( s => s.title ) :
-                                    [cat.title]
-
-                                return (
-                                    <OrdinalScales onClick={() => this.toggleExtended(cat)} key={i} offset={offsets[i]} scale={ barsInCat(cat) / totalBars } xDomain={domain} yDomain={[0,Math.max(...data.map( d => d.y ))]}>
-                                            <BarGraph labels data={data} color={`hsla(${32 + i/this.Samples.length*360}, 100%, 56%, .4)`} className={this.isExtended(cat) ? '' : 'collapsed'} />
-                                            <BarGraph labels data={data.map(d => ({...d, y: 192838757 % Math.max(d.y, 1)}))} color={`hsla(${32 + i/this.Samples.length*360}, 100%, 56%, 1)`} className={this.isExtended(cat) ? '' : 'collapsed'} />
-                                            <XAxis rotateLabels />
-                                    </OrdinalScales>
-                                )
-                            })}
-                        </Chart>
+                            </OrdinalScales>
+                       </Chart>
                     </div>
                 </div>
             </div>

@@ -8,9 +8,9 @@ const BarGraph = props => {
 	const dx = props.xScale.bandwidth ? 0 : (offset - width/2)
 	const clickHandler = props.onClick || (() => {})
 	return (<g className={`bar-graph ${props.className || ''}`}>{props.data.map((d, i) => 
-		<g key={"bar" + i} className="bar animated" style={props.style}>
+		<g key={"bar" + d.x} className="bar animated" style={props.style}>
 			<rect 
-				style={{fill: d.highlight ? (props.highlightColor || '#fe99f2') : (props.color || '#fe9922')}} 
+				style={{fill: d.highlight ? (props.highlightColor || '#fe99f2') : (d.color || props.color || '#fe9922')}} 
 				x={props.xScale(d.x) + dx}
 				y={props.yScale(d.y)}
 				height={props.yScale(props.yScale.domain()[0]) - props.yScale(d.y)}
