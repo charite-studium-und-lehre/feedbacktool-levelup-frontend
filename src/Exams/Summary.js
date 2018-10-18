@@ -10,6 +10,9 @@ class Summary extends Component {
     constructor(props) {
         super(props)
         this.state = { extended: [] }
+        
+        this.Samples = Subjects()
+            .map(cat => ({ ...cat, subjects: _.chain(cat.subjects).sampleSize(Math.random() * cat.subjects.length).sortBy(s => -s.questions).value()}))
     }
     
     toggleExtended( cat ) {
@@ -23,8 +26,8 @@ class Summary extends Component {
 
     render() {
         const barsInCat = cat => this.isExtended(cat) ? cat.subjects.length : 1
-        const totalBars = _.sumBy(Subjects, barsInCat )
-        const offsets = Subjects.map((cat, i) => _.chain(Subjects).slice(0, i).sumBy( barsInCat ) / totalBars )
+        const totalBars = _.sumBy(this.Samples, barsInCat )
+        const offsets = this.Samples.map((cat, i) => _.chain(this.Samples).slice(0, i).sumBy( barsInCat ) / totalBars )
         return (
             <div className="card">
                 <div className="card-body">
@@ -34,7 +37,7 @@ class Summary extends Component {
                             {/* <LinearScales yDomain={[0,max]}>
                                 <YAxis />
                             </LinearScales> */}
-                            {Subjects.map((cat, i) => {
+                            {this.Samples.map((cat, i) => {
                                 const data = this.isExtended(cat) ? 
                                     cat.subjects.map( s => ({ x: s.title, y: s.questions })) :
                                     cat.subjects.map(() => ({ x: cat.title, y: _.sumBy(cat.subjects, s => s.questions) }))
@@ -44,8 +47,8 @@ class Summary extends Component {
 
                                 return (
                                     <OrdinalScales onClick={() => this.toggleExtended(cat)} key={i} offset={offsets[i]} scale={ barsInCat(cat) / totalBars } xDomain={domain} yDomain={[0,Math.max(...data.map( d => d.y ))]}>
-                                            <BarGraph labels data={data} color={`hsla(${32 + i/Subjects.length*360}, 100%, 56%, .4)`} className={this.isExtended(cat) ? '' : 'collapsed'} />
-                                            <BarGraph labels data={data.map(d => ({...d, y: 192838757 % Math.max(d.y, 1)}))} color={`hsla(${32 + i/Subjects.length*360}, 100%, 56%, 1)`} className={this.isExtended(cat) ? '' : 'collapsed'} />
+                                            <BarGraph labels data={data} color={`hsla(${32 + i/this.Samples.length*360}, 100%, 56%, .4)`} className={this.isExtended(cat) ? '' : 'collapsed'} />
+                                            <BarGraph labels data={data.map(d => ({...d, y: 192838757 % Math.max(d.y, 1)}))} color={`hsla(${32 + i/this.Samples.length*360}, 100%, 56%, 1)`} className={this.isExtended(cat) ? '' : 'collapsed'} />
                                             <XAxis rotateLabels />
                                     </OrdinalScales>
                                 )

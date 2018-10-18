@@ -42,5 +42,5 @@ const Subjects = [
     }
 ]
 
-const SubjectsWithNumbers = Subjects.map( cat => ({ ...cat, subjects: cat.subjects.map( s => ({ title: s, questions: Math.floor(Math.random() * 20) }))}))
+const SubjectsWithNumbers = () => Subjects.map( cat => ({ ...cat, subjects: cat.subjects.map( s => ({ title: s, questions: Math.floor(Math.random() * 20) }))}))
 export default SubjectsWithNumbers
