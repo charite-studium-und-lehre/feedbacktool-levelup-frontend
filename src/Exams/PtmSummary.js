@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import _ from 'lodash'
 import Chart, { OrdinalScales, LinearScales } from '../Charting/Chart'
 import Legend from '../Charting/Legend'
@@ -44,7 +45,7 @@ class Summary extends Component {
         return (
             <div className="card">
                 <div className="card-body">
-                    <Legend title={this.props.graph}>Legende</Legend>
+                    <Legend title="Von dir beantwortete Fragen im letzten PTM">Legende</Legend>
                     <div className="m-3" style={{paddingBottom: '12rem'}}>
                         <Chart>
                             <OrdinalScales xDomain={domain} yDomain={[0,Math.max(...data.map( d => d.y ))]}>
@@ -54,6 +55,11 @@ class Summary extends Component {
                                 <YAxis />
                             </OrdinalScales>
                        </Chart>
+                    </div>
+                    <div className="d-flex justify-content-end flex-wrap">
+                        <Link to="/exams/ptm/latest">
+                            <button className="btn btn-outline-primary">Dein Ergebnis im Detail</button>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import graphs from './Graphs'
 import _ from 'lodash'
 import MainChart from './MainChart'
-import Summary from './Summary'
 
 class Exams extends Component {
     constructor({props, match}) {
@@ -30,12 +29,14 @@ class Exams extends Component {
                         toggleVisibility={this.toggleVisibility.bind(this)} />
                 </div>
             </div>
-            {this.state.shownGraphs.map( ( graph, i ) => (
-                <div className="row my-2" key={i}>
+            {this.graphs.filter(g => _.includes(this.state.shownGraphs, g.name)).map( ( graph, i ) => {
+                const Summary = graph.summary || (() => null)
+                return (<div className="row my-2" key={i}>
                     <div className="col">
                         <Summary graph={graph} />
                     </div>
-                </div>))}
+                </div>)
+            })}
             </div>
         );
     }

@@ -4,6 +4,7 @@ import Dashboard from '../Dashboard/Dashboard'
 import Exams from '../Exams/Exams'
 import Semester from '../Exams/Semester/Semester'
 import Questions from '../Exams/Semester/Questions'
+import Ptm from '../Exams/Ptm/Ptm'
 
 const Routes = [
   {
@@ -34,6 +35,16 @@ const Routes = [
     path: '/exams/semester/:test/questions',
     component: Questions,
     breadcrumb: params => <Link to="/dashboard">Fragen und Antworten</Link>,
+    exact: true,
+    private: true,
+  },
+  {
+    path: '/exams/ptm/:test',
+    component: Ptm,
+    breadcrumb: params => [
+      <Link to="/exams/ptm">PTM</Link>,
+      <Link to={`/exams/ptm/${params.test}`}>aktuelles Ergebnis</Link>
+    ],
     exact: true,
     private: true,
   },

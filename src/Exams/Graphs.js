@@ -1,6 +1,8 @@
 import SemesterInfo from './SemesterInfo'
 import PtmInfo from './PtmInfo'
 import StationsInfo from './StationsInfo'
+import SemesterSummary from './SemesterSummary'
+import PtmSummary from './PtmSummary'
 
 function rndInt(n, m) {
     return Math.floor(Math.random() * n) + m
@@ -28,6 +30,7 @@ const graphs = {
         data: randomData(n, 'Semesterprüfung'),
         color: 120,
         info: SemesterInfo,
+        summary: SemesterSummary,
     },
     {
         name: 'ptm',
@@ -35,6 +38,7 @@ const graphs = {
         data: randomData(n, 'PTM'),
         color: 240,
         info: PtmInfo,
+        summary: PtmSummary,
     },
     {
         name: 'stations',
