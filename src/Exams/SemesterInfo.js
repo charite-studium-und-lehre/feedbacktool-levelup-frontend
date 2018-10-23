@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom'
 import { XAxis, YAxis } from '../Charting/Axis'
 
 const SemesterInfo = props =>
-    (<div className={`point-details p-3 animated card position-absolute ${props.visible ? 'show' : 'hidden'}`}>
-        <h5>{props.graph} - {props.data.label}</h5>
+    (<div>
         <div>Dein Ergebnis:<span className="font-italic"> {props.data.result} %</span></div>
         <div>Durchschnitt:<span className="font-italic"> {props.data.mean} %</span></div>
         <div className="px-3 mb-2" style={{height: '5rem'}}>

@@ -1,3 +1,7 @@
+import SemesterInfo from './SemesterInfo'
+import PtmInfo from './PtmInfo'
+import StationsInfo from './StationsInfo'
+
 function rndInt(n, m) {
     return Math.floor(Math.random() * n) + m
 }
@@ -23,18 +27,21 @@ const graphs = {
         label: 'Semesterprüfung',
         data: randomData(n, 'Semesterprüfung'),
         color: 120,
+        info: SemesterInfo,
     },
     {
         name: 'ptm',
         label: 'PTM',
         data: randomData(n, 'PTM'),
-        color: 240
+        color: 240,
+        info: PtmInfo,
     },
     {
         name: 'stations',
         label: 'Stationsprüfung',
-        data: new Array(2).fill(2).map((d,i) => ({x: d+i*5, y: Math.random() * 100})),
-        color: 0
+        data: new Array(2).fill(2).map((d,i) => ({x: d+i*2, y: Math.random() * 100, label: `${d+i*2}. Semester`})),
+        color: 0,
+        info: StationsInfo,
     },
 ]}
 

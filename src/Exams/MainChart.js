@@ -3,7 +3,7 @@ import _ from 'lodash'
 import { LinearChart } from '../Charting/Chart'
 import { QuantilesPlotWithGraphData, PointGraphWithGraphData } from './WithGraphData'
 import Checkbox from './Checkbox'
-import SemesterInfo from './SemesterInfo'
+import InfoOverlay from './InfoOverlay'
 import Legend from '../Charting/Legend'
 import { XAxis, YAxis } from '../Charting/Axis'
 
@@ -75,11 +75,12 @@ class MainChart extends Component {
                                 </Checkbox>))}
                             </div>
                         </div>
-                        <SemesterInfo
-                            graph={(this.props.graphs.find(g => g.name === this.state.selectedPoint.graph) || {}).label}
-                            data={this.selectedPointData()}
+                        <InfoOverlay 
                             visible={!!this.state.selectedPoint.graph}
-                            onClose={() => this.selectPoint(null, null)} />
+                            graph={(this.props.graphs.find(g => g.name === this.state.selectedPoint.graph) || {label: ''})}
+                            onClose={() => this.selectPoint(null, null)}
+                            selectedPoint={this.selectedPointData()}>
+                        </InfoOverlay>
                     </div>
                 </div>
             </div>
