@@ -9,10 +9,10 @@ const SemesterInfo = props =>
         <div>Dein Ergebnis:<span className="font-italic"> {props.data.result} %</span></div>
         <div>Durchschnitt:<span className="font-italic"> {props.data.mean} %</span></div>
         <div className="px-3 mb-2" style={{height: '5rem'}}>
-            <LinearChart xDomain={[0,100]} yDomain={[0,5]} ticks={{x: 6, y: 6, yFormat: d => 'M0' + d }}>
+            <LinearChart xDomain={[0,100]} yDomain={[0,5]}>
                 <XAxis horizontal ticks={{count: 6}} />
                 <YAxis horizontal ticks={{count: 6, format: d => 'M0' + d }} />
-                <HorizontalBarGraph data={new Array(4).fill(0).map(() => Math.random() * 100)} />
+                <HorizontalBarGraph data={new Array(4).fill(0).map((d,i) => ({x: i+1, y: Math.random() * 100}))} />
             </LinearChart>
         </div>
         <Link to={`/exams/semester/${props.data.label}`}>
