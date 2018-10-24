@@ -22,7 +22,7 @@ const Subjects = [
         subjects: [
             "Allgemeinmedizin",
             "Anästhesiologie, Notfall- und Intensivmedizin",
-            "Arbeits- und Sozialme,dizin, Gesundheitswesen",
+            "Arbeits- und Sozialmedizin, Gesundheitswesen",
             "Augenheilkunde",
             "Chirurgie",
             "Dermatologie, Venerologie",

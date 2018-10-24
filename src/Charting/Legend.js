@@ -25,8 +25,8 @@ class Legend extends Component {
         return (
             <div>
                 <div className="d-flex flex-wrap">
-                    <h4 className="mr-auto">{this.props.title}</h4>
-                    <div>
+                    {this.props.title && <h4>{this.props.title}</h4>}
+                    <div className="ml-auto">
                         <FontAwesomeIcon 
                             onClick={() => this.toggleHelp()}
                             className={this.state.showHelp ? 'text-primary' : 'text-muted'}
