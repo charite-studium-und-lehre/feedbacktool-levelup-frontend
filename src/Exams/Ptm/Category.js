@@ -13,11 +13,17 @@ class Category extends Component {
 
     render() {
         return (
-            <div>
-                <h4 className="m2" onClick={() => this.toggleExtended()}>{this.props.title}</h4>
-                {this.state.extended && this.props.subjects.map(s => 
-                    <Subject {...s} />
+            <div className="m-2 my-3">
+                <h4 onClick={() => this.toggleExtended()}
+                    style={{borderBottom: '1px solid black', cursor: 'pointer'}} >
+                    <span className="float-right" style={{fontSize: '1rem'}}>{this.state.extended ? '▼' : '►'}</span>
+                    {this.props.title}
+                </h4>
+                <div className="d-flex flex-wrap">
+                {this.state.extended && this.props.subjects.map((s, i) => 
+                    <Subject {...s} id={i} />
                 )}
+                </div>
             </div>
         )
     }
