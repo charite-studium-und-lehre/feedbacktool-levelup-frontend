@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
-import Chart, { OrdinalScales, LinearScales } from '../Charting/Chart'
+import Chart, { OrdinalScales } from '../Charting/Chart'
 import Legend from '../Charting/Legend'
 import { XAxis, YAxis } from '../Charting/Axis'
 import BarGraph from '../Charting/BarGraph'

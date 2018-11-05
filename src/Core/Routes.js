@@ -43,7 +43,7 @@ const Routes = [
     component: Ptm,
     breadcrumb: params => [
       <Link to="/exams/ptm">PTM</Link>,
-      <Link to={`/exams/ptm/${params.test}`}>aktuelles Ergebnis</Link>
+      <Link to={`/exams/ptm/${params.test}`}>{params.test}</Link>
     ],
     exact: true,
     private: true,

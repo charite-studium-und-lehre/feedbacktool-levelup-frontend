@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { scaleLinear, scaleBand } from 'd3-scale'
+import { scaleLinear, scaleBand, scaleTime } from 'd3-scale'
 import { select } from 'd3-selection'
 
 class Chart extends Component {
@@ -95,4 +95,28 @@ const OrdinalChart = props => (
     </Chart>
 )
 
-export { LinearChart, LinearScales, OrdinalChart, OrdinalScales }
+const TimeScales = props => {
+    const xScale = scaleTime()
+        .domain(props.xDomain || [])
+        .range([0, props.width])
+    
+    const yScale = scaleLinear()
+        .domain(props.yDomain || [])
+        .range([props.height, 0])
+    
+    const childrenWithScales = React.Children.map(props.children, child => {
+        return React.cloneElement(child, { xScale, yScale });
+    });
+
+    return childrenWithScales
+}
+
+const TimeChart = props => (
+    <Chart>
+        <TimeScales {...props} >
+            {props.children}
+        </TimeScales>
+    </Chart>
+)
+
+export { LinearChart, LinearScales, OrdinalChart, OrdinalScales, TimeChart, TimeScales }

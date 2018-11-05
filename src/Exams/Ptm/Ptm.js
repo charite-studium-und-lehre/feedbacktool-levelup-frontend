@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'lodash'
 import { OrdinalChart } from '../../Charting/Chart'
 import { XAxis, YAxis } from '../../Charting/Axis'
 import BarGraph from '../../Charting/BarGraph'
@@ -7,14 +6,14 @@ import Subjects from '../Subjects'
 import Category from './Category';
 
 const labels = ['richtig', 'falsch', 'weiß nicht']
-const Ptm = () => {
+const Ptm = ({ match }) => {
         const sample = Subjects()
             .map(c => ({...c, subjects: c.subjects.map(s => ({ ...s, correct: Math.floor(Math.random() * s.questions)})).sort((a,b) => - a.correct / (a.questions+.1) + b.correct / (b.questions + .1)) }))
         return (
         <div className="container-fluid">
             <div className="row">
                 <div className="col">
-                    <h4 className="mr-auto">Dein aktueller PTM</h4>
+                    <h4 className="mr-auto">PTM - {match.params.test}</h4>
                 </div>
             </div>
             <div className="row mt-3">
@@ -38,7 +37,7 @@ const Ptm = () => {
                                 <div>
                                     <h5>Deine 3 besten Fächer</h5>
                                     {sample.map(c =>
-                                        <div>
+                                        <div key={c.title}>
                                             <p><i>{c.title}</i>: {c.subjects[0].title}</p>
                                             <div className="my-1 text-center text-white question-bar" style={{backgroundImage: `linear-gradient(to right, rgba(51, 137, 51, 0.8) ${c.subjects[0].correct / c.subjects[0].questions * 100}%, rgba(51, 137, 51, 0.4) ${c.subjects[0].correct / c.subjects[0].questions * 100}%)`}}>
                                             {c.subjects[0].correct} von {c.subjects[0].questions} richtig
@@ -54,7 +53,7 @@ const Ptm = () => {
             <div className="row mt-3">
                 <div className="col">
                     {sample.map(c =>
-                        <Category {...c} />
+                        <Category key={c.title} {...c} />
                     )}
                 </div>
             </div>
