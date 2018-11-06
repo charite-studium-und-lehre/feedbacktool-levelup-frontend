@@ -3,7 +3,8 @@ import { OrdinalChart } from '../../Charting/Chart'
 import { XAxis, YAxis } from '../../Charting/Axis'
 import BarGraph from '../../Charting/BarGraph'
 import Subjects from '../Subjects'
-import Category from './Category';
+import Extendable from '../../Core/Extendable'
+import Subject from './Subject'
 
 const labels = ['richtig', 'falsch', 'weiß nicht']
 const Ptm = ({ match }) => {
@@ -53,7 +54,11 @@ const Ptm = ({ match }) => {
             <div className="row mt-3">
                 <div className="col">
                     {sample.map(c =>
-                        <Category key={c.title} {...c} />
+                        <Extendable key={c.title} title={c.title}>
+                        {c.subjects.map((s, i) => 
+                            <Subject {...s} key={i} id={i} />
+                        )}
+                        </Extendable>
                     )}
                 </div>
             </div>

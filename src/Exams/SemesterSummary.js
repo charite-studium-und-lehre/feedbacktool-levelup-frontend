@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import _ from 'lodash'
 import Chart, { OrdinalScales } from '../Charting/Chart'
 import Legend from '../Charting/Legend'
@@ -56,7 +57,7 @@ class Summary extends Component {
                        </Chart>
                     </div>
                     <div className="d-flex justify-content-end flex-wrap">
-                        <button className="btn btn-outline-primary">Deine Stärken und Schwächen</button>
+                        <Link to="/strengths"><button className="btn btn-outline-primary">Deine Stärken und Schwächen</button></Link>
                     </div>
                 </div>
             </div>

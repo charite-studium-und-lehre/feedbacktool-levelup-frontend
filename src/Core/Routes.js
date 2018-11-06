@@ -5,6 +5,7 @@ import Exams from '../Exams/Exams'
 import Semester from '../Exams/Semester/Semester'
 import Questions from '../Exams/Semester/Questions'
 import Ptm from '../Exams/Ptm/Ptm'
+import Strengths from '../Strengths/Strengths'
 
 const Routes = [
   {
@@ -44,6 +45,15 @@ const Routes = [
     breadcrumb: params => [
       <Link to="/exams/ptm">PTM</Link>,
       <Link to={`/exams/ptm/${params.test}`}>{params.test}</Link>
+    ],
+    exact: true,
+    private: true,
+  },
+  {
+    path: '/strengths/:subject?',
+    component: Strengths,
+    breadcrumb: params => [
+      <Link to="/strengths">Stärken und Schwächen</Link>,
     ],
     exact: true,
     private: true,

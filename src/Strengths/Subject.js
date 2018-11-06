@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
-import { LinearChart } from '../../Charting/Chart'
-import { XAxis, YAxis } from '../../Charting/Axis'
-import LineGraph from '../../Charting/LineGraph'
-import HorizontalBarGraph from '../../Charting/HorizontalBarGraph'
-import Legend from '../../Charting/Legend'
+import { LinearChart } from '../Charting/Chart'
+import { XAxis, YAxis } from '../Charting/Axis'
+import LineGraph from '../Charting/LineGraph'
+import HorizontalBarGraph from '../Charting/HorizontalBarGraph'
+import Legend from '../Charting/Legend'
 
 const labels = ['richtig', 'falsch', 'weiß nicht']
 class Subject extends Component {
