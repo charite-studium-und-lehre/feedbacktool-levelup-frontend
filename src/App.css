@@ -144,3 +144,14 @@ span.input-group-text {
   height: .8rem;
   width: 100%;
 }
+
+.nav-link {
+  cursor: pointer;
+}
+
+.nav-pills .nav-link.active {
+  border-bottom: 2px solid #007bff;
+  background-color: transparent;
+  color: #007bff;
+  border-radius: 0;
+}

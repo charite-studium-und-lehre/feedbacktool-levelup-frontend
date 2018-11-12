@@ -3,8 +3,8 @@ import { OrdinalChart } from '../Charting/Chart'
 import { XAxis, YAxis } from '../Charting/Axis'
 import BarGraph from '../Charting/BarGraph'
 import Subjects from '../Exams/Subjects'
-import Extendable from '../Core/Extendable'
 import Subject from './Subject'
+import SubjectsTabs from './Tabs'
 
 const Strengths = props => {
     const sample = Subjects()
@@ -52,11 +52,16 @@ const Strengths = props => {
         </div>
         <div className="row mt-3">
             <div className="col">
-                {sample.map(c =>
-                    <Extendable key={c.title} title={c.title}>
-                        {c.subjects.map(s => <Subject {...s} />)}
-                    </Extendable>
-                )}
+                <div className="card p-3">
+                    <SubjectsTabs 
+                        tabTitles={sample.map(c => c.title)}
+                        tabContents={sample.map(c => 
+                            <div className="d-flex flex-wrap">
+                                {c.subjects.map(s => <Subject key={s.title} {...s} />)}
+                            </div>
+                        )}
+                    />
+                </div>
             </div>
         </div>
     </div>
