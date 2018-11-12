@@ -7,7 +7,7 @@ class Legend extends Component {
         super(props)
         this.legend = React.createRef()
         this.state = {
-            showHelp: true
+            showHelp: null
         }
     }
 
@@ -17,8 +17,9 @@ class Legend extends Component {
     }
 
     toggleHelp() {
-        this.legend.current.style.height = !this.state.showHelp ? `${this.originalHeight}px` : 0
-        this.setState({ showHelp: !this.state.showHelp })
+        const showHelp = this.state.showHelp === null ? window.innerWidth > 768 ? true : false : !this.state.showHelp
+        this.legend.current.style.height = showHelp ? `${this.originalHeight}px` : 0
+        this.setState({ showHelp })
     }
 
     render() {
@@ -35,7 +36,7 @@ class Legend extends Component {
                     </div>
                 </div>
                 <div ref={this.legend} className="animated fast row" style={{ overflow: 'hidden' }}>
-                    <div className="col">
+                    <div className="col my-2" style={{fontSize: '.8rem'}}>
                         {this.props.children}
                     </div>
                 </div>

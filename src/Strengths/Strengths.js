@@ -1,10 +1,14 @@
 import React from 'react'
+import _ from 'lodash'
 import { OrdinalChart } from '../Charting/Chart'
 import { XAxis, YAxis } from '../Charting/Axis'
 import BarGraph from '../Charting/BarGraph'
 import Subjects from '../Exams/Subjects'
 import Subject from './Subject'
-import SubjectsTabs from './Tabs'
+import SubjectsTabs from '../Core/Tabs'
+import Legend from '../Charting/Legend';
+import LegendTexts from '../Core/LegendTexts'
+const LegendText = LegendTexts.Strengths
 
 const Strengths = props => {
     const sample = Subjects()
@@ -13,7 +17,7 @@ const Strengths = props => {
     <div className="container-fluid">
         <div className="row">
             <div className="col">
-                <h4 className="mr-auto">Deine Stärken und Schwächen</h4>
+                <Legend title={LegendText.Main.title}>{LegendText.Main.text}</Legend>
             </div>
         </div>
         <div className="row mt-3">
@@ -21,7 +25,7 @@ const Strengths = props => {
                 <div className="d-flex flex-wrap">
                     <div className="card m-2 flex-fill">
                         <div className="card-body">
-                            <h4>Gesamt</h4>
+                            <Legend title={LegendText.Totals.title}>{LegendText.Totals.text}</Legend>
                             <div className="p-2">
                                 <OrdinalChart xDomain={[0,1,2]} yDomain={[0,100]}>
                                     <XAxis />
@@ -31,16 +35,15 @@ const Strengths = props => {
                             </div>
                         </div>
                     </div>
-                    <div className="card m-2 flex-fill">
+                    <div className="card m-2 flex-fill" style={{maxWidth: '40rem'}}>
                         <div className="card-body">
-                            <h4>Stärken</h4>
+                        <Legend title={LegendText.Strengths.title}>{LegendText.Strengths.text}</Legend>
                             <div>
-                                <h5>Deine 3 besten Fächer</h5>
-                                {sample.map(c =>
-                                    <div key={c.title}>
-                                        <p><i>{c.title}</i>: {c.subjects[0].title}</p>
-                                        <div className="my-1 text-center text-white question-bar" style={{backgroundImage: `linear-gradient(to right, rgba(51, 137, 51, 0.8) ${c.subjects[0].correct / c.subjects[0].questions * 100}%, rgba(51, 137, 51, 0.4) ${c.subjects[0].correct / c.subjects[0].questions * 100}%)`}}>
-                                        {c.subjects[0].correct} von {c.subjects[0].questions} richtig
+                                {_.sampleSize(_.flatMap(sample, c => c.subjects).sort((a,b) => -a.correct / a.questions + b.correct / b.questions), 3).map(s =>
+                                    <div key={s.title}>
+                                        <p>{s.title}</p>
+                                        <div className="my-1 text-center text-white question-bar" style={{backgroundImage: `linear-gradient(to right, rgba(51, 137, 51, 0.8) ${s.correct / s.questions * 100}%, rgba(51, 137, 51, 0.4) ${s.correct / s.questions * 100}%)`}}>
+                                        {s.correct} von {s.questions} richtig
                                         </div>
                                     </div>
                                 )}

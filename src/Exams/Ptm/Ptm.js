@@ -3,8 +3,11 @@ import { OrdinalChart } from '../../Charting/Chart'
 import { XAxis, YAxis } from '../../Charting/Axis'
 import BarGraph from '../../Charting/BarGraph'
 import Subjects from '../Subjects'
-import Extendable from '../../Core/Extendable'
+import SubjectsTabs from '../../Core/Tabs'
 import Subject from './Subject'
+import Legend from '../../Charting/Legend'
+import LegendTexts from '../../Core/LegendTexts'
+const LegendText = LegendTexts.Exams.Ptm
 
 const labels = ['richtig', 'falsch', 'weiß nicht']
 const Ptm = ({ match }) => {
@@ -20,9 +23,9 @@ const Ptm = ({ match }) => {
             <div className="row mt-3">
                 <div className="col">
                     <div className="d-flex flex-wrap">
-                        <div className="card m-2 flex-fill">
+                        <div className="card m-2 flex-fill" style={{maxWidth: ''}}>
                             <div className="card-body">
-                                <h4>Gesamt</h4>
+                                <Legend title={LegendText.Totals.title}>{LegendText.Totals.text}</Legend>
                                 <div className="p-2">
                                     <OrdinalChart xDomain={labels} yDomain={[0,100]}>
                                         <XAxis />
@@ -32,11 +35,10 @@ const Ptm = ({ match }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="card m-2 flex-fill">
+                        <div className="card m-2 flex-fill" style={{maxWidth: '40rem'}}>
                             <div className="card-body">
-                                <h4>Stärken</h4>
+                                <Legend title={LegendText.Strengths.title}>{LegendText.Strengths.text}</Legend>
                                 <div>
-                                    <h5>Deine 3 besten Fächer</h5>
                                     {sample.map(c =>
                                         <div key={c.title}>
                                             <p><i>{c.title}</i>: {c.subjects[0].title}</p>
@@ -53,13 +55,16 @@ const Ptm = ({ match }) => {
             </div>
             <div className="row mt-3">
                 <div className="col">
-                    {sample.map(c =>
-                        <Extendable key={c.title} title={c.title}>
-                        {c.subjects.map((s, i) => 
-                            <Subject {...s} key={i} id={i} />
-                        )}
-                        </Extendable>
-                    )}
+                    <div className="card p-3">
+                        <SubjectsTabs 
+                            tabTitles={sample.map(c => c.title)}
+                            tabContents={sample.map(c => 
+                                <div className="d-flex flex-wrap">
+                                    {c.subjects.map(s => <Subject key={s.title} {...s} />)}
+                                </div>
+                            )}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

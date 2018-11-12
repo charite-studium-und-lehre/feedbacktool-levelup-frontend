@@ -6,6 +6,8 @@ import Checkbox from './Checkbox'
 import InfoOverlay from './InfoOverlay'
 import Legend from '../Charting/Legend'
 import { XAxis, YAxis } from '../Charting/Axis'
+import Legends from '../Core/LegendTexts'
+const LegendText = Legends.Exams.MainChart
 
 class MainChart extends Component {
     constructor(props) {
@@ -40,7 +42,7 @@ class MainChart extends Component {
                 <div className="card-body">
                     <div className="d-flex ">
                         <div className="flex-grow-1">
-                            <Legend title="Deine Prüfungsergebnisse">Legende</Legend>
+                            <Legend title={LegendText.title}>{LegendText.text}</Legend>
                             <div className="m-3" style={{height: '12rem'}}>
                                 <LinearChart xDomain={[1,this.props.pointCount]} yDomain={[0,100]}>
                                     <XAxis ticks={{count: this.props.pointCount}} label="Semester"/>

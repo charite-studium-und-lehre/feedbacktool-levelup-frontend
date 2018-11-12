@@ -3,6 +3,9 @@ import _ from 'lodash'
 import Question from './Question'
 import { Link } from 'react-router-dom'
 import DummyQuestions from './DummyQuestions'
+import Legend from '../../Charting/Legend'
+import Legends from '../../Core/LegendTexts'
+const LegendText = Legends.Exams.Semester.Questions
 
 let filters = _.uniq(_.flatMap(DummyQuestions, q => q.tags)).map(t => ({label: t.label, pred: q => _.includes(q.tags, t)})).concat([
     { label: 'richtig beantwortet', pred: q => q.answers.some( a => a.correct && a.selected )},
@@ -38,13 +41,12 @@ class Questions extends Component {
                 <div className="row">
                     <div className="col">
                         {/* <h4 className="mr-auto">Semesterprüfung - {match.params.test}</h4> */}
-                        <h4 className="mr-auto">Fragen und Antworten</h4>
+                        <Legend title={LegendText.title}>{LegendText.text}</Legend>
                     </div>
                 </div>
                 <div className="row mb-2 mt-1">
                     <div className="col">
-                        <button className="btn btn-outline-primary mr-1 mt-1" onClick={ () => this.selectAll() }>alle</button>
-                        <button className="btn btn-outline-primary mr-1 mt-1" onClick={ () => this.selectNone() }>keine</button>
+                        <button className="btn btn-outline-primary mr-1 mt-1" onClick={ () => this.selectNone() }>alle anzeigen</button>
                         {this.state.filters.map(filter => (<button key={filter.label} 
                             className={`mr-1 mt-1 btn ${filter.selected ? 'btn-primary' : 'btn-outline-primary'}`}
                             onClick={() => this.toggleFilter(filter)}>

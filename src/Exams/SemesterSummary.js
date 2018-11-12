@@ -6,6 +6,8 @@ import Legend from '../Charting/Legend'
 import { XAxis, YAxis } from '../Charting/Axis'
 import BarGraph from '../Charting/BarGraph'
 import Subjects from './Subjects'
+import Legends from '../Core/LegendTexts'
+const LegendText = Legends.Exams.Semester.Summary
 
 class Summary extends Component {
     constructor(props) {
@@ -45,7 +47,7 @@ class Summary extends Component {
         return (
             <div className="card">
                 <div className="card-body">
-                    <Legend title="Von dir beantwortete Fragen in deinen Semesterprüfungen">Legende</Legend>
+                    <Legend title={LegendText.title}>{LegendText.text}</Legend>
                     <div className="m-3" style={{paddingBottom: '12rem'}}>
                         <Chart>
                             <OrdinalScales xDomain={domain} yDomain={[0,Math.max(...data.map( d => d.y ))]}>
@@ -57,7 +59,7 @@ class Summary extends Component {
                        </Chart>
                     </div>
                     <div className="d-flex justify-content-end flex-wrap">
-                        <Link to="/strengths"><button className="btn btn-outline-primary">Deine Stärken und Schwächen</button></Link>
+                        <Link to="/strengths"><button className="btn btn-outline-primary">Mehr zu deiner Entwicklung</button></Link>
                     </div>
                 </div>
             </div>

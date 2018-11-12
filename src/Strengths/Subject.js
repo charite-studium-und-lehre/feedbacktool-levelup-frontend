@@ -18,7 +18,7 @@ class Subject extends Component {
 
     render() {
         return (
-            <div className="card m-2 flex-grow-1" style={{minWidth: '20rem'}}>
+            <div className="card m-2 flex-grow-1" style={{minWidth: '20rem', boxShadow: 'rgba(0,0,0,.2) 1px 1px 5px'}}>
                 <div className="card-body">
                     <h4>{this.props.title}</h4>
                     <div style={{textAlign: 'right'}}>
@@ -26,7 +26,6 @@ class Subject extends Component {
                         <label><input type="radio" name={`subject-${this.props.title}-mode`} checked={this.state.mode === 'timeline'} onChange={() => this.setMode('timeline')} className="mx-2" />zeitl. Verlauf</label>
                     </div>
                     <div className="p-2" onClick={() => this.setMode()}>
-                        <Legend>Legende</Legend>
                         <LinearChart style={{height:'15rem'}} xDomain={[1,5]} yDomain={[0,30]}>
                             <YAxis label="richtige Antworten" ticks={{count: 4}} />
                             <XAxis label="Semester" ticks={{count: 5}} />
