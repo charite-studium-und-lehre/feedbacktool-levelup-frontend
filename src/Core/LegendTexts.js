@@ -49,8 +49,8 @@ export default {
             text: 'Hier findest du eine Übersicht über deine Ergebnisse in allen Semesterprüfungen.'
         },
         Strengths: {
-            title: 'Starke Fächer in diesem PTM',
-            text: 'Hier findest du eine Übersicht zu deinen besten vorklinischen, klinischen und Querschnittsfächern im PTM diesen Semesters. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen beantworteten Fragen.'
+            title: 'Starke Fächer',
+            text: 'Hier findest du eine Übersicht zu deinen besten vorklinischen, klinischen und Querschnittsfächern in allen deinen Semesterprüfungen. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen beantworteten Fragen.'
         }
     }
 }

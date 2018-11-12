@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from 'lodash'
 import { OrdinalChart } from '../../Charting/Chart'
 import { XAxis, YAxis } from '../../Charting/Axis'
 import BarGraph from '../../Charting/BarGraph'
@@ -39,11 +40,11 @@ const Ptm = ({ match }) => {
                             <div className="card-body">
                                 <Legend title={LegendText.Strengths.title}>{LegendText.Strengths.text}</Legend>
                                 <div>
-                                    {sample.map(c =>
-                                        <div key={c.title}>
-                                            <p><i>{c.title}</i>: {c.subjects[0].title}</p>
-                                            <div className="my-1 text-center text-white question-bar" style={{backgroundImage: `linear-gradient(to right, rgba(51, 137, 51, 0.8) ${c.subjects[0].correct / c.subjects[0].questions * 100}%, rgba(51, 137, 51, 0.4) ${c.subjects[0].correct / c.subjects[0].questions * 100}%)`}}>
-                                            {c.subjects[0].correct} von {c.subjects[0].questions} richtig
+                                    {_.take(_.flatMap(sample, c => c.subjects).sort((a,b) => -a.correct / a.questions + b.correct / b.questions), 3).map(s =>
+                                        <div key={s.title} className="py-2">
+                                            <h5>{s.title}</h5>
+                                            <div className="my-1 text-center text-white question-bar" style={{backgroundImage: `linear-gradient(to right, rgba(51, 137, 51, 0.8) ${s.correct / s.questions * 100}%, rgba(51, 137, 51, 0.4) ${s.correct / s.questions * 100}%)`}}>
+                                            {s.correct} von {s.questions} richtig
                                             </div>
                                         </div>
                                     )}

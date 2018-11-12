@@ -3,12 +3,16 @@ import React, { Component } from 'react'
 class Tabs extends Component {
     constructor(props) {
         super(props)
-        this.state = { tab: 0 }
+        this.state = { tab: null }
     }
 
     static defaultProps = {
         tabTitles: [], 
         tabContents: [],
+    }
+
+    componentDidMount() {
+        setTimeout(() => this.selectTab(0), 100)
     }
 
     selectTab( tab ) {
@@ -27,7 +31,7 @@ class Tabs extends Component {
                 </ul>
                 <div className="tab-content">
                     {this.props.tabContents.map((tc, i) =>
-                        <div key={i} className={`tab-pane fade ${this.state.tab === i ? 'show active': ''}`} role="tabpanel">{tc}</div>
+                        <div key={i} className={`tab-pane fade ${this.state.tab === null || this.state.tab === i ? 'show active': ''}`} role="tabpanel">{tc}</div>
                     )}
                 </div>
             </div>

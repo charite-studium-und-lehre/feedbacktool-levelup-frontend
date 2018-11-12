@@ -39,9 +39,9 @@ const Strengths = props => {
                         <div className="card-body">
                         <Legend title={LegendText.Strengths.title}>{LegendText.Strengths.text}</Legend>
                             <div>
-                                {_.sampleSize(_.flatMap(sample, c => c.subjects).sort((a,b) => -a.correct / a.questions + b.correct / b.questions), 3).map(s =>
-                                    <div key={s.title}>
-                                        <p>{s.title}</p>
+                                {_.take(_.flatMap(sample, c => c.subjects).sort((a,b) => -a.correct / a.questions + b.correct / b.questions), 3).map(s =>
+                                    <div key={s.title} className="py-2">
+                                        <h5>{s.title}</h5>
                                         <div className="my-1 text-center text-white question-bar" style={{backgroundImage: `linear-gradient(to right, rgba(51, 137, 51, 0.8) ${s.correct / s.questions * 100}%, rgba(51, 137, 51, 0.4) ${s.correct / s.questions * 100}%)`}}>
                                         {s.correct} von {s.questions} richtig
                                         </div>

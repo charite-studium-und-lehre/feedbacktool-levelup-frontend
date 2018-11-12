@@ -4,7 +4,6 @@ import { LinearChart } from '../Charting/Chart'
 import { XAxis, YAxis } from '../Charting/Axis'
 import LineGraph from '../Charting/LineGraph'
 import HorizontalBarGraph from '../Charting/HorizontalBarGraph'
-import Legend from '../Charting/Legend'
 
 class Subject extends Component {
     constructor(props) {
@@ -21,11 +20,11 @@ class Subject extends Component {
             <div className="card m-2 flex-grow-1" style={{minWidth: '20rem', boxShadow: 'rgba(0,0,0,.2) 1px 1px 5px'}}>
                 <div className="card-body">
                     <h4>{this.props.title}</h4>
-                    <div style={{textAlign: 'right'}}>
+                    {/* <div style={{textAlign: 'right'}}>
                         <label className="m-0 mr-2"><input type="radio" name={`subject-${this.props.title}-mode`} checked={this.state.mode === 'current'} onChange={() => this.setMode('current')} className="mx-2" />aktuell</label>
                         <label><input type="radio" name={`subject-${this.props.title}-mode`} checked={this.state.mode === 'timeline'} onChange={() => this.setMode('timeline')} className="mx-2" />zeitl. Verlauf</label>
-                    </div>
-                    <div className="p-2" onClick={() => this.setMode()}>
+                    </div> */}
+                    <div className="p-4" onClick={() => this.setMode()}>
                         <LinearChart style={{height:'15rem'}} xDomain={[1,5]} yDomain={[0,30]}>
                             <YAxis label="richtige Antworten" ticks={{count: 4}} />
                             <XAxis label="Semester" ticks={{count: 5}} />
