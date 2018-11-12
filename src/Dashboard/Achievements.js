@@ -13,7 +13,7 @@ export default function Achievements() {
         {name: 'OSCE', done: false, icon: faMedkit},
     ]
     const cards = achievements.map((a,i) => (
-        <span key={i} style={{fontSize: '.35rem'}} className={`text-center m-2 flex-grow-1 ${a.done ? 'text-info' : 'text-light'}`}>
+        <span key={i} style={{fontSize: '.7rem'}} className={`text-center m-2 flex-grow-1 ${a.done ? 'text-info' : 'text-light'}`}>
             <FontAwesomeIcon style={{fontSize: '3rem'}} icon={a.icon}/>
             <br /><br />{a.name}
         </span>

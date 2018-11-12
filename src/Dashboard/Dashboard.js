@@ -11,18 +11,18 @@ import { XAxis, YAxis } from '../Charting/Axis'
 export default function Dashboard() {
     return (
         <div className="container-fluid">
-          <div className="row mt-2">
-            <div className="col-lg-8">
+          <div className="row">
+            <div className="col-lg-8 mt-2">
                 <Progress></Progress>
             </div>
-            <div className="col-lg-4">
+            <div className="col-lg-4 mt-2">
                 <Achievements></Achievements>
             </div>
           </div>
           <div className="row">
-          <div className="col-xl-9 mt-2">
+          <div className="col-xl-9">
           <div className="row">
-            <div className="col-lg-4">
+            <div className="col-lg-4 mt-2">
                 <Link to="/exams/semester">
                     <DashboardCard 
                         header={Math.round(Math.random() * 100) + ' %'} 
@@ -39,7 +39,7 @@ export default function Dashboard() {
                     </DashboardCard>
                 </Link>
             </div>
-            <div className="col-lg-4">
+            <div className="col-lg-4 mt-2">
                 <Link to="/exams/stations">
                     <DashboardCard 
                     header={Math.round(Math.random() * 100) + ' %'} 
@@ -56,7 +56,7 @@ export default function Dashboard() {
                     </DashboardCard>
                 </Link>
             </div>
-            <div className="col-lg-4">
+            <div className="col-lg-4 mt-2">
                 <Link to="/exams/ptm">
                     <DashboardCard 
                     header={Math.round(Math.random() * 100) + ' %'} 
@@ -75,13 +75,23 @@ export default function Dashboard() {
             </div>
           </div>
           </div>
-        <div className="col-xl-3 mt-2">
-            <div className="card">
-                <Link to="/practcals">
+        <div className="col-xl-3">
+            <div className="card mt-2">
+                <Link to="/practicals">
                     <DashboardCard 
                     header={Math.round(Math.random() * 100) + ' p'} 
                     title="Ärztliche Tätigkeiten" 
                     text="Dein Fortschritt in praktischen Fähigkeiten auf dem Weg zum Healthcare Professional."
+                    color="color-2">
+                    </DashboardCard>
+                </Link>
+            </div>
+            <div className="card mt-2">
+                <Link to="/strengths">
+                    <DashboardCard 
+                    header={Math.round(Math.random() * 100) + ' p'} 
+                    title="Deine Stärken" 
+                    text="Deine Entwicklung in allen Fächern im gesamten Studium."
                     color="color-2">
                     </DashboardCard>
                 </Link>
