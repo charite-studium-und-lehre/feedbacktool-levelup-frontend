@@ -17,7 +17,7 @@ class Subject extends Component {
 
     render() {
         return (
-            <div className="card m-2 flex-grow-1" style={{minWidth: '20rem', boxShadow: 'rgba(0,0,0,.2) 1px 1px 5px'}}>
+            <div className="card m-2 flex-grow-1" style={{width: '20rem', boxShadow: 'rgba(0,0,0,.2) 1px 1px 5px'}}>
                 <div className="card-body">
                     <h4>{this.props.title}</h4>
                     {/* <div style={{textAlign: 'right'}}>

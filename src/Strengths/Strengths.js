@@ -23,7 +23,7 @@ const Strengths = props => {
         <div className="row mt-3">
             <div className="col">
                 <div className="d-flex flex-wrap">
-                    <div className="card m-2 flex-fill">
+                    <div className="card m-2 flex-fill" style={{width: '20rem'}}>
                         <div className="card-body">
                             <Legend title={LegendText.Totals.title}>{LegendText.Totals.text}</Legend>
                             <div className="p-2">
@@ -35,7 +35,7 @@ const Strengths = props => {
                             </div>
                         </div>
                     </div>
-                    <div className="card m-2 flex-fill" style={{maxWidth: '40rem'}}>
+                    <div className="card m-2 flex-fill" style={{width: '40rem'}}>
                         <div className="card-body">
                         <Legend title={LegendText.Strengths.title}>{LegendText.Strengths.text}</Legend>
                             <div>
