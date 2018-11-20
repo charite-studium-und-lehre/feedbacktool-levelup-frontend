@@ -12,7 +12,7 @@ class Tabs extends Component {
     }
 
     componentDidMount() {
-        setTimeout(() => this.selectTab(0), 100)
+        setTimeout(() => this.selectTab(Math.max(this.props.tabTitles.indexOf(this.props.active), 0)), 100)
     }
 
     selectTab( tab ) {
@@ -22,6 +22,7 @@ class Tabs extends Component {
     render() {
         return (
             <div>
+                {this.props.active}
                 <ul className="nav nav-pills mb-3" role="tablist">
                     {this.props.tabTitles.map((t, i) => 
                         <li key={i} className="nav-item" onClick={() => this.selectTab(i)}>

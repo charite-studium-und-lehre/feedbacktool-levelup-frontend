@@ -7,7 +7,7 @@ import HorizontalBarGraph from '../../Charting/HorizontalBarGraph'
 
 const labels = ['richtig', 'falsch', 'weiß nicht']
 const Subject = props => (
-    <div className="card m-2 flex-grow-1" style={{minWidth: '20rem'}}>
+    <div className="card m-2 flex-grow-1" style={{width: '20rem'}}>
         <div className="card-body">
             <h4>{props.title}</h4>
             <div className="p-2 pl-5" style={{height: '6rem'}} >

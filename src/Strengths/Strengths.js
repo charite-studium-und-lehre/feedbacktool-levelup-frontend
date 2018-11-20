@@ -10,7 +10,7 @@ import Legend from '../Charting/Legend';
 import LegendTexts from '../Core/LegendTexts'
 const LegendText = LegendTexts.Strengths
 
-const Strengths = props => {
+const Strengths = ({ match }) => {
     const sample = Subjects()
         .map(c => ({...c, subjects: c.subjects.map(s => ({ ...s, correct: Math.floor(Math.random() * s.questions)})).sort((a,b) => - a.correct / (a.questions+.1) + b.correct / (b.questions + .1)) }))
     return (
@@ -60,9 +60,10 @@ const Strengths = props => {
                         tabTitles={sample.map(c => c.title)}
                         tabContents={sample.map(c => 
                             <div className="d-flex flex-wrap">
-                                {c.subjects.map(s => <Subject key={s.title} {...s} />)}
+                                {c.subjects.map(s => <Subject key={s.title} {...s} flash={s.title === match.params.subject} />)}
                             </div>
                         )}
+                        active={sample.reduce((r, c) => c.subjects.some(s => s.title === match.params.subject) ? c.title : r, "")}
                     />
                 </div>
             </div>

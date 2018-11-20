@@ -8,7 +8,13 @@ import HorizontalBarGraph from '../Charting/HorizontalBarGraph'
 class Subject extends Component {
     constructor(props) {
         super(props)
-        this.state = { mode: "current" }
+        this.state = { mode: "current", flash: props.flash }
+        this.node = React.createRef()
+    }
+    
+    componentDidMount() {
+        if(this.state.flash) window.scrollTo(0, this.node.current.getBoundingClientRect().y)
+        this.setState({ flash: false })
     }
 
     setMode(mode) {
@@ -18,7 +24,7 @@ class Subject extends Component {
     render() {
         return (
             <div className="card m-2 flex-grow-1" style={{width: '20rem', boxShadow: 'rgba(0,0,0,.2) 1px 1px 5px'}}>
-                <div className="card-body">
+                <div ref={this.node} className={`card-body ${this.state.flash ? 'bg-primary' : ''}`} style={{transition: '5s'}}>
                     <h4>{this.props.title}</h4>
                     {/* <div style={{textAlign: 'right'}}>
                         <label className="m-0 mr-2"><input type="radio" name={`subject-${this.props.title}-mode`} checked={this.state.mode === 'current'} onChange={() => this.setMode('current')} className="mx-2" />aktuell</label>
