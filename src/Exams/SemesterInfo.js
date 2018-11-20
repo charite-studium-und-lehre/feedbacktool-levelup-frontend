@@ -22,7 +22,7 @@ const SemesterInfo = props =>
         <Link to={`/exams/semester/${props.data.label}/questions`}>
             <button type="button" className="btn btn-outline-primary mt-2 w-100">Fragen und Antworten</button>
         </Link>
-        <button type="button" className="btn btn-outline-info mt-2" onClick={() => props.onClose()}>schließen</button>
+        <button type="button" className="btn btn-outline-info mt-2 w-100" onClick={() => props.onClose()}>schließen</button>
     </div>)
 
 export default SemesterInfo

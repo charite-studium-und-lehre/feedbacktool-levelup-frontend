@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
-import { LinearChart } from '../Charting/Chart'
+import { TimeChart } from '../Charting/Chart'
 import { XAxis, YAxis } from '../Charting/Axis'
 import LineGraph from '../Charting/LineGraph'
 import HorizontalBarGraph from '../Charting/HorizontalBarGraph'
@@ -24,12 +24,12 @@ class Subject extends Component {
                         <label className="m-0 mr-2"><input type="radio" name={`subject-${this.props.title}-mode`} checked={this.state.mode === 'current'} onChange={() => this.setMode('current')} className="mx-2" />aktuell</label>
                         <label><input type="radio" name={`subject-${this.props.title}-mode`} checked={this.state.mode === 'timeline'} onChange={() => this.setMode('timeline')} className="mx-2" />zeitl. Verlauf</label>
                     </div> */}
-                    <div className="p-4" onClick={() => this.setMode()}>
-                        <LinearChart style={{height:'15rem'}} xDomain={[1,5]} yDomain={[0,30]}>
+                    <div className="p-4">
+                        <TimeChart style={{height:'15rem'}} xDomain={[new Date(2014, 6, 15),new Date(2018, 6, 15)]} yDomain={[0,30]}>
                             <YAxis label="richtige Antworten" ticks={{count: 4}} />
                             <XAxis label="Semester" ticks={{count: 5}} />
-                            <LineGraph data={new Array(4).fill(0).map((d,i) => ({ x:i+1, y: _.random(0,20) })).concat([{x: 5, y: this.props.correct}]) } color="hsla(250, 100%, 50%, .6)" />
-                        </LinearChart>
+                            <LineGraph data={new Array(4).fill(0).map((d,i) => ({ x:new Date(2014+i+1, 1, 1), y: _.random(0,20) })) } color="hsla(250, 100%, 50%, .6)" />
+                        </TimeChart>
                     </div>
                 </div>
             </div>

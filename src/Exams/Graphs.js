@@ -10,7 +10,7 @@ function rndInt(n, m) {
 
 function randomData(n = 10, name) {
     return new Array(n).fill(0).map((d,i) => ({
-        x: i+1, 
+        x: new Date(2018 - i, 6, 15),
         result: rndInt(75, 20),
         q0: rndInt(15, 10),
         q25: rndInt(15, 30), 
@@ -43,7 +43,7 @@ const graphs = {
     {
         name: 'stations',
         label: 'Stationsprüfung',
-        data: new Array(2).fill(2).map((d,i) => ({x: d+i*2, y: Math.random() * 100, label: `${d+i*2}. Semester`})),
+        data: new Array(2).fill(2).map((d,i) => ({x: new Date(2018-d-i*2, 6, 15), y: Math.random() * 100, label: `${d+i*2}. Semester`})),
         color: 0,
         info: StationsInfo,
     },
