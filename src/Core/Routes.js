@@ -6,6 +6,7 @@ import Semester from '../Exams/Semester/Semester'
 import Questions from '../Exams/Semester/Questions'
 import Ptm from '../Exams/Ptm/Ptm'
 import Strengths from '../Strengths/Strengths'
+import Stations from '../Exams/Stations/Stations'
 
 const Routes = [
   {
@@ -54,6 +55,16 @@ const Routes = [
     component: Strengths,
     breadcrumb: params => [
       <Link to="/strengths">Stärken und Schwächen</Link>,
+    ],
+    exact: true,
+    private: true,
+  },
+  {
+    path: '/exams/stations/:test',
+    component: Stations,
+    breadcrumb: params => [
+      <Link to="/exams/stations">Stationsprüfungen</Link>,
+      <Link to={`/exams/stations/${params.test}`}>{params.test}</Link>
     ],
     exact: true,
     private: true,

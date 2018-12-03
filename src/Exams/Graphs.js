@@ -43,7 +43,7 @@ const graphs = {
     {
         name: 'stations',
         label: 'Stationsprüfung',
-        data: new Array(2).fill(2).map((d,i) => ({x: new Date(2018-d-i*2, 6, 15), y: Math.random() * 100, label: `${d+i*2}. Semester`})),
+        data: new Array(2).fill(2).map((d,i) => ({result: rndInt(75, 20), mean: rndInt(25, 40), x: new Date(2018-d-i*2, 6, 15), y: Math.random() * 100, label: `${d+i*2}. Semester`})),
         color: 0,
         info: StationsInfo,
     },
