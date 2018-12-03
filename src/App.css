@@ -155,3 +155,8 @@ span.input-group-text {
   color: #007bff;
   border-radius: 0;
 }
+
+.with-border {
+  border-top: 2px solid #007bff;
+  border-radius: 0;
+}

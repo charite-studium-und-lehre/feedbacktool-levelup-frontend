@@ -28,7 +28,7 @@ export default function Dashboard() {
                         header={Math.round(Math.random() * 100) + ' %'} 
                         title="Semesterprüfungen" 
                         text="Deine Ergebnisse für alle Semester"
-                        color="color-1">
+>
                         <div className="m-3" style={{height: '6rem'}}>
                             <LinearChart yDomain={[0,100]} xDomain={[1,4]}>
                                 <XAxis />
@@ -44,8 +44,7 @@ export default function Dashboard() {
                     <DashboardCard 
                     header={Math.round(Math.random() * 100) + ' %'} 
                     title="Stationsprüfungen" 
-                    text="Deine Stärken und Schwächen"
-                    color="color-3">
+                    text="Deine Stärken und Schwächen">
                         <div className="m-3" style={{height: '6rem'}}>
                             <LinearChart yDomain={[0,100]} xDomain={[0,11]}>
                                 <XAxis />
@@ -61,8 +60,7 @@ export default function Dashboard() {
                     <DashboardCard 
                     header={Math.round(Math.random() * 100) + ' %'} 
                     title="PTM" 
-                    text="Alle Ergbenisse, alle Semester"
-                    color="color-2">
+                    text="Alle Ergbenisse, alle Semester">
                     <div className="m-3" style={{height: '6rem'}}>
                         <LinearChart yDomain={[0,100]} xDomain={[1,10]}>
                             <XAxis />
@@ -76,28 +74,32 @@ export default function Dashboard() {
           </div>
           </div>
         <div className="col-xl-3">
-            <div className="card mt-2">
+        <div className="row">
+        <div className="col-lg-6">
+            <div className="mt-2">
                 <Link to="/practicals">
                     <DashboardCard 
                     header={Math.round(Math.random() * 100) + ' p'} 
                     title="Ärztliche Tätigkeiten" 
-                    text="Dein Fortschritt in praktischen Fähigkeiten auf dem Weg zum Healthcare Professional."
-                    color="color-2">
-                    </DashboardCard>
-                </Link>
-            </div>
-            <div className="card mt-2">
-                <Link to="/strengths">
-                    <DashboardCard 
-                    header={Math.round(Math.random() * 100) + ' p'} 
-                    title="Deine Stärken" 
-                    text="Deine Entwicklung in allen Fächern im gesamten Studium."
-                    color="color-2">
+                    text="Dein Fortschritt in praktischen Fähigkeiten auf dem Weg zum Healthcare Professional.">
                     </DashboardCard>
                 </Link>
             </div>
         </div>
-          </div>
+        <div className="col-lg-6">
+            <div className="mt-2">
+                <Link to="/strengths">
+                    <DashboardCard 
+                    header={Math.round(Math.random() * 100) + ' p'} 
+                    title="Deine Stärken" 
+                    text="Deine Entwicklung in allen Fächern im gesamten Studium.">
+                    </DashboardCard>
+                </Link>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
         </div>
     );
 }

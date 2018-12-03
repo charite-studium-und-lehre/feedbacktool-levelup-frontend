@@ -3,7 +3,7 @@ import { LinearChart } from '../Charting/Chart'
 import LineGraph from '../Charting/LineGraph';
 
 const Progress = props => (
-    <div className="card progress-card">
+    <div className="card progress-card with-border">
         <div className="card-body">
             <h5 className="card-title">Dein Studienfortschritt</h5>
             <div className="card-text">

@@ -19,7 +19,7 @@ export default function Achievements() {
         </span>
     ))
 
-    return (<div className="card">
+    return (<div className="card with-border">
         <div className="card-body">
             <h5 className="card-title">Achievements</h5>
             <div className="card-text">

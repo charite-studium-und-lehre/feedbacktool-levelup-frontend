@@ -17,7 +17,7 @@ class Chart extends Component {
                     height: this.node.current.height.baseVal.value,
                 },
             })
-        })
+        }, 100)
     }
 
     renderContent() {
