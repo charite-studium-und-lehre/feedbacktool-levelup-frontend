@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import DummyQuestions from './DummyQuestions'
 import Legend from '../../Charting/Legend'
 import Legends from '../../Core/LegendTexts'
+import Filter from '../../Utils/Filter'
 const LegendText = Legends.Exams.Semester.Questions
 
 let filters = _.uniq(_.flatMap(DummyQuestions, q => q.tags)).map(t => ({label: t.label, pred: q => _.includes(q.tags, t)})).concat([
@@ -21,19 +22,6 @@ class Questions extends Component {
         this.state = { filters }
     }
     
-    toggleFilter(filter) {
-        filter.selected = !filter.selected
-        this.setState({ filters: this.state.filters })
-    }
-
-    selectAll() {
-        this.setState({ filters: this.state.filters.map(filter => ({ ...filter, selected: true })) })
-    }
-
-    selectNone() {
-        this.setState({ filters: this.state.filters.map(filter => ({ ...filter, selected: false })) })
-    }
-
     render() {
         const questions = DummyQuestions.filter(_.overEvery(this.state.filters.filter(f => f.selected).map(f => f.pred)))
         return (
@@ -44,16 +32,7 @@ class Questions extends Component {
                         <Legend title={LegendText.title}>{LegendText.text}</Legend>
                     </div>
                 </div>
-                <div className="row mb-2 mt-1">
-                    <div className="col">
-                        <button className="btn btn-outline-primary mr-1 mt-1" onClick={ () => this.selectNone() }>alle anzeigen</button>
-                        {this.state.filters.map(filter => (<button key={filter.label} 
-                            className={`mr-1 mt-1 btn ${filter.selected ? 'btn-primary' : 'btn-outline-primary'}`}
-                            onClick={() => this.toggleFilter(filter)}>
-                            {filter.label}
-                        </button>))}
-                    </div>
-                </div>
+                <Filter showAll filters={ filters } onUpdate={ filters => this.setState( { filters } )} />
                 <div className="row">
                     <div className="col">
                         <span className="font-weight-bold">{questions.length} von {DummyQuestions.length} angezeigt</span>

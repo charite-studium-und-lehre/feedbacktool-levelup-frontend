@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import { select } from 'd3-selection'
 
 class Label extends Component {
+    static defaultProps = {
+        color: 'white',
+        bgcolor: 'black',
+        textAnchor: "middle",
+    }
+
     constructor(props) {
         super(props)
         this.ref = React.createRef()
@@ -18,9 +24,9 @@ class Label extends Component {
             .attr("ry", 3)
             .attr("width", bbox.width + this.padding.right + this.padding.left)
             .attr("height", bbox.height + this.padding.bottom + this.padding.top )
-            .style("fill", this.props.color || 'black')
+            .style("fill", this.props.bgcolor)
             .style("fill-opacity", ".5")
-            .style("stroke", this.props.color || 'black')
+            .style("stroke", this.props.bgcolor)
             .style("stroke-width", "0")
     }
 
@@ -28,8 +34,8 @@ class Label extends Component {
         return (<g ref={this.ref}><text {...this.props} 
             fontFamily="sans-serif" 
             fontSize=".7rem"
-            fill="white" 
-            textAnchor={this.props.textAnchor || "middle"}>{this.props.children}</text></g>)
+            fill={this.props.color}
+            textAnchor={this.props.textAnchor}>{this.props.children}</text></g>)
     }
 }
 

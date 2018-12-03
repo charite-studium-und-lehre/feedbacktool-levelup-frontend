@@ -1,4 +1,38 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { select } from 'd3-selection'
+import AnimatedText from './AnimatedText'
+
+const transition = true
+
+class Bar extends Component {
+	constructor(props) {
+        super(props)
+		this.node = React.createRef()
+		this.state = { x: props.x, y: props.y, width: props.width, height: props.height }
+	}
+
+	componentDidUpdate() {
+		select(this.node.current)
+			.datum(this.props)
+            .transition()
+			.duration(550)
+			.attr('x', d => d.x)
+			.attr('y', d => d.y)
+			.attr('height', d => d.height)
+			.attr('width', d => d.width)
+	}
+
+	render() {
+		return (<rect
+			ref={this.node}
+			style={this.props.style }
+			x={this.state.x}
+			y={this.state.y}
+			height={this.state.height}
+			width={this.state.width} 
+			onClick={this.props.onClick} />)
+	}
+}
 
 const BarGraph = props => {
 	const width = props.xScale.bandwidth ? props.xScale.bandwidth() : (props.data.length > 1 ? 
@@ -9,23 +43,17 @@ const BarGraph = props => {
 	const clickHandler = props.onClick || (() => {})
 	return (<g className={`bar-graph ${props.className || ''}`}>{props.data.map((d, i) => 
 		<g key={"bar" + d.x} className="bar animated" style={props.style}>
-			<rect 
+			<Bar 
 				style={{fill: d.highlight ? (props.highlightColor || '#fe99f2') : (d.color || props.color || '#fe9922')}} 
 				x={props.xScale(d.x) + dx}
 				y={props.yScale(d.y)}
 				height={props.yScale(props.yScale.domain()[0]) - props.yScale(d.y)}
 				width={width} 
-				onClick={() => clickHandler(d, i)} 
-				className="animated" />
+				onClick={() => clickHandler(d, i)} />
 			{props.labels && 
-				<text
-					transform={`translate(${props.xScale(d.x) + (props.xScale.bandwidth ? (width/2) : offset)}, ${props.yScale(d.y) - 3})`}
-					x="0"
-					y="0"
-					textAnchor="middle"
-					className="animated">
+				<AnimatedText x={props.xScale(d.x) + (props.xScale.bandwidth ? (width/2) : offset)} y={props.yScale(d.y) - 3}>
 					{d.label || d.y}
-				</text>
+				</AnimatedText>
 			}
 		</g>)}
 	</g>)
