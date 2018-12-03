@@ -25,11 +25,12 @@ class Filter extends Component {
 
     render() {
         return (
-            <div className="row mb-2 mt-1">
+            <div className="row mb-2 mt-1" style={this.props.style}>
                 <div className="col">
-                    {this.props.showAll && <button className="btn btn-outline-primary mr-1 mt-1" onClick={ () => this.selectNone() }>alle anzeigen</button>}
+                    {this.props.showAll && <button className="btn btn-outline-primary btn-sm mr-1 mt-1" onClick={ () => this.selectNone() }>alle anzeigen</button>}
                     {this.state.filters.map(filter => (<button key={filter.label} 
-                        className={`mr-1 mt-1 btn ${filter.selected ? 'btn-primary' : 'btn-outline-primary'}`}
+                        className={`mr-1 mt-1 btn ${filter.selected ? 'btn-primary' : 'btn-outline-primary'} btn-sm`}
+                        disabled={filter.disabled || this.props.disabled}
                         onClick={() => this.toggleFilter(filter)}>
                         {filter.label}
                     </button>))}

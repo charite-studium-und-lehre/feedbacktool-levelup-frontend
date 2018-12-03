@@ -62,10 +62,7 @@ const Routes = [
   {
     path: '/exams/stations/:test',
     component: Stations,
-    breadcrumb: params => [
-      <Link to="/exams/stations">Stationsprüfungen</Link>,
-      <Link to={`/exams/stations/${params.test}`}>{params.test}</Link>
-    ],
+    breadcrumb: params => <Link to="/exams/stations">Stationsprüfungen</Link>,
     exact: true,
     private: true,
   },

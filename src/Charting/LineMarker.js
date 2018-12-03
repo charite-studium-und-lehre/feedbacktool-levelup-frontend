@@ -6,27 +6,27 @@ const LineMarker = props => {
     [
         [
             props.xScale(props.value),
-            props.yScale(props.yScale.domain()[0]),
+            props.yScale.range()[0],
         ],
         [
             props.xScale(props.value),
-            props.yScale(props.yScale.domain()[1]),
+            props.yScale.range()[1],
         ]
     ] :
     [
         [
-            props.xScale(props.xScale.domain()[0]),
+            props.xScale.range()[0],
             props.yScale(props.value),
         ],
         [
-            props.xScale(props.xScale.domain()[1]),
+            props.xScale.range()[1],
             props.yScale(props.value),
         ]
     ]
-    const xLabel = props.vertical ? props.xScale(props.xScale.domain()[0]) : props.xScale(props.xScale.domain()[1])
+    const xLabel = props.vertical ? props.xScale.range()[0] : props.xScale.range()[1]
     const yLabel = props.vertical ? -props.xScale(props.value) - 2 : (props.yScale(props.value) - 2)
-    const xValue=props.vertical ? props.xScale(props.value) : (props.xScale(props.xScale.domain()[0]) - 2)
-    const yValue=props.vertical ? (props.yScale(props.yScale.domain()[0]) + 2) : props.yScale(props.value)
+    const xValue=props.vertical ? props.xScale(props.value) : (props.xScale.range()[0] - 2)
+    const yValue=props.vertical ? (props.yScale.range()[0] + 2) : props.yScale(props.value)
 	return (<g className="marker selected">
 		<path d={line()(_line)} className="line animated" style={{stroke: props.color || "rgba(0,0,0,.6)"}} />
         <text 

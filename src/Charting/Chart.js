@@ -74,7 +74,7 @@ const OrdinalScales = props => {
         .domain(props.xDomain || [])
         .rangeRound([offset, offset + props.width * scale])
         .paddingInner(props.padding || 0.2)
-        .paddingOuter(props.padding || 0.2)
+        .paddingOuter(props.padding || 0.1)
 
     const yScale = scaleLinear()
         .domain(props.yDomain || [])

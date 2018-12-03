@@ -38,6 +38,12 @@ export default {
                 text: 'Hier findest du eine Übersicht zu deinen besten vorklinischen, klinischen und Querschnittsfächern im PTM diesen Semesters. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen beantworteten Fragen.'
             }
         },
+        Stations: {
+            Main: {
+                title: 'Stationsprüfungen',
+                text: 'Hier siehst du deine Ergebnisse in den bis jetzt absolvierten Stationsprüfungen. Klicke auf die Flächen über dem Diagramm um deine Ergebnisse zu filtern. Wenn du auf die Balken im Diagramm klickst, bekommst du genauere Informationen zu der jeweiligen Station.'
+            },
+        },
     },
     Strengths: {
         Main: {

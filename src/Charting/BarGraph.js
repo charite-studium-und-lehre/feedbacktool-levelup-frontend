@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { select } from 'd3-selection'
 import AnimatedText from './AnimatedText'
 
-const transition = true
-
 class Bar extends Component {
 	constructor(props) {
         super(props)
@@ -25,7 +23,7 @@ class Bar extends Component {
 	render() {
 		return (<rect
 			ref={this.node}
-			style={this.props.style }
+			style={this.props.style}
 			x={this.state.x}
 			y={this.state.y}
 			height={this.state.height}
@@ -43,11 +41,11 @@ const BarGraph = props => {
 	const clickHandler = props.onClick || (() => {})
 	return (<g className={`bar-graph ${props.className || ''}`}>{props.data.map((d, i) => 
 		<g key={"bar" + d.x} className="bar animated" style={props.style}>
-			<Bar 
+			<Bar
 				style={{fill: d.highlight ? (props.highlightColor || '#fe99f2') : (d.color || props.color || '#fe9922')}} 
 				x={props.xScale(d.x) + dx}
 				y={props.yScale(d.y)}
-				height={props.yScale(props.yScale.domain()[0]) - props.yScale(d.y)}
+				height={props.yScale.range()[0] - props.yScale(d.y)}
 				width={width} 
 				onClick={() => clickHandler(d, i)} />
 			{props.labels && 
@@ -60,3 +58,4 @@ const BarGraph = props => {
 }
 
 export default BarGraph
+export { Bar }

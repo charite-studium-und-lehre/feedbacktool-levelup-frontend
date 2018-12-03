@@ -24,7 +24,7 @@ const Ptm = ({ match }) => {
             <div className="row mt-3">
                 <div className="col">
                     <div className="d-flex flex-wrap">
-                        <div className="card m-2 flex-fill" style={{maxWidth: ''}}>
+                        <div className="card m-2 flex-grow-1" style={{width: '60rem'}}>
                             <div className="card-body">
                                 <Legend title={LegendText.Totals.title}>{LegendText.Totals.text}</Legend>
                                 <div className="p-2">
@@ -36,7 +36,7 @@ const Ptm = ({ match }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="card m-2 flex-fill" style={{maxWidth: '40rem'}}>
+                        <div className="card m-2 flex-grow-1" style={{width: '20rem'}}>
                             <div className="card-body">
                                 <Legend title={LegendText.Strengths.title}>{LegendText.Strengths.text}</Legend>
                                 <div>

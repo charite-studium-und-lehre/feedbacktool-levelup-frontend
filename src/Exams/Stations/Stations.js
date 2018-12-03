@@ -1,21 +1,27 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
-import { OrdinalChart } from '../../Charting/Chart'
+import Chart, { OrdinalScales } from '../../Charting/Chart'
 import { XAxis, YAxis } from '../../Charting/Axis';
-import BarGraph from '../../Charting/BarGraph';
+import Legend from '../../Charting/Legend'
 import Filter from '../../Utils/Filter'
 import data from './Data'
-
-const categories = _.uniq(data.map(d => d.category))
-const exams = _.uniq(data.map(d => d.exam))
-let categoryFilters = categories.map(c => ({label: c, pred: d => d.category === c }))
-let examFilters = exams.map(e => ({ label: e, pred: d => d.exam === e }))
+import Station from './Station'
+import Legends from '../../Core/LegendTexts'
+const LegendText = Legends.Exams.Stations.Main
 
 class Stations extends Component {
     constructor({ props, match }) {
         super(props)
-        this.match = match
+
+        const categories = _.uniq(data.map(d => d.category))
+        const exams = _.uniq(data.map(d => d.exam))
+        const categoryFilters = categories.map(c => ({label: c, pred: d => d.category === c , selected: true }))
+        const examFilters = exams.map(e => ({ label: e, pred: d => d.exam === e, selected: e === match.params.test }))
         this.state = { categoryFilters, examFilters }
+    }
+
+    selectItem(item, index) {
+        this.setState({ selectedItem: item, index: item ? index : null })
     }
 
     render() {
@@ -26,17 +32,29 @@ class Stations extends Component {
         <div className="container-fluid">
             <div className="row">
                 <div className="col">
-                    <h4 className="mr-auto">Stationsprüfungen</h4>
-                    <Filter filters={ categoryFilters } onUpdate={ categoryFilters => this.setState({ categoryFilters }) } />
-                    <Filter filters={ examFilters } onUpdate={ examFilters => this.setState({ examFilters }) } />
+                    <Legend title={LegendText.title}>{LegendText.text}</Legend>
                     <div className="row col">
-                        <div className="card p-4">
-                            <OrdinalChart xDomain={filteredData.map(d => d.name)} yDomain={[0, 100]} >
-                                <XAxis />
-                                <YAxis label="% richtig"/>
-                                <BarGraph labels data={filteredData.map(d => ({x: d.name, y: d.result}))} />
-                            </OrdinalChart>
+                        <div className="card px-4 pb-4" style={{overflow: 'hidden'}}>
+                            <div className="mt-2 mb-3 d-flex flex-wrap">
+                                <div style={{fontSize: '.9rem'}}>
+                                    Bereich: <Filter style={{display: 'inline-block'}} disabled={!!this.state.selectedItem} filters={ this.state.categoryFilters } onUpdate={ categoryFilters => this.setState({ categoryFilters }) } />
+                                </div>
+                                <div style={{fontSize: '.9rem', width: '17rem'}} className="flex-grow-1">
+                                    Prüfungen: <Filter style={{display: 'inline-block'}} disabled={!!this.state.selectedItem} filters={ this.state.examFilters } onUpdate={ examFilters => this.setState({ examFilters }) } />
+                                </div>
+                            </div>
+                            <Chart>
+                                <OrdinalScales offset={this.state.selectedItem ? -this.state.index : 0} scale={this.state.selectedItem ? filteredData.length : 1} xDomain={filteredData.map(d => d.name)} yDomain={[0, 100]} >
+                                    {filteredData.map((d, i) => <Station key={d.name} data={d} onClick={ item => this.selectItem(item, i)} />)}
+                                    {/* <BarGraph labels onClick={(item, index) => this.selectItem(item, index)} data={filteredData.map(d => ({x: d.name, y: d.result}))} /> */}
+                                    <XAxis />
+                                    <YAxis label="% richtig"/>
+                                </OrdinalScales>
+                            </Chart>
                         </div>
+                    </div>
+                    <div className="row col my-2">
+                        <button className="btn btn-primary" disabled={!this.state.selectedItem} onClick={() => this.selectItem(null)}>zurück</button>
                     </div>
                 </div>
             </div>
