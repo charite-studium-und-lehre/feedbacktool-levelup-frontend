@@ -34,7 +34,7 @@ class Stations extends Component {
                 <div className="col">
                     <Legend title={LegendText.title}>{LegendText.text}</Legend>
                     <div className="row col" style={{height: '20rem'}}>
-                        <div className="card px-4 pb-4" style={{overflow: 'hidden'}}>
+                        <div className="card px-4 pb-4 w-100" style={{overflow: 'hidden'}}>
                             <div className="mt-2 mb-3 d-flex flex-wrap">
                                 <div style={{fontSize: '.9rem'}}>
                                     Bereich: <Filter style={{display: 'inline-block'}} disabled={!!this.state.selectedItem} filters={ this.state.categoryFilters } onUpdate={ categoryFilters => this.setState({ categoryFilters }) } />
