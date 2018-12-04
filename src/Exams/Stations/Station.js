@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import { Bar } from '../../Charting/BarGraph'
 import AnimatedText from '../../Charting/AnimatedText'
-import { scaleBand } from 'd3-scale'
+import { scaleBand, scaleOrdinal } from 'd3-scale'
+import { schemeBlues } from 'd3-scale-chromatic'
+import LineMarker from '../../Charting/LineMarker'
 
+const colors = scaleOrdinal(schemeBlues[5])
 class Station extends Component {
     constructor(props) {
         super(props)
@@ -10,19 +14,14 @@ class Station extends Component {
     }
 
     select() {
+        this.props.onClick(this.state.selected ? null : this.props.data)
         this.setState({ selected: !this.state.selected })
-        this.props.onClick(this.props.data)
-    }
-
-    deselect() {
-        this.setState({ selected: false })
-        this.props.onClick()
     }
 
     render() {
         const scale = scaleBand()
-            .domain([1,2,3,4])
-            .rangeRound([0, this.props.xScale.step() + this.props.xScale.paddingInner()])
+            .domain(_.range(5))
+            .rangeRound([this.props.xScale(this.props.data.name), this.props.xScale(this.props.data.name) + this.props.xScale.bandwidth()])
             .paddingInner(0.2)
             .paddingOuter(0.1)
         return <g onClick={() => this.select()}>
@@ -40,12 +39,27 @@ class Station extends Component {
                 </AnimatedText>
             </g>
             <g style={{opacity: this.state.selected ? 1 : 0}} className="animated">
-                <Bar
-                    style={{fill: '#000099'}}
-                    x={scale(1)}
-                    y={this.props.yScale(50)}
-                    height={this.props.yScale.range()[0] - this.props.yScale(50)}
-                    width={scale.bandwidth()} />
+                {this.props.data.details.map((d,i) => 
+                <g className="bar" key={i}>
+                    <Bar
+                        style={{fill: colors(i)}}
+                        x={scale(i)}
+                        y={this.props.yScale(d.value)}
+                        height={this.props.yScale.range()[0] - this.props.yScale(d.value)}
+                        width={scale.bandwidth()} />
+                    <AnimatedText 
+                        x={scale(i) + scale.bandwidth() / 2} 
+                        y={this.props.yScale(d.value) - 3}>
+                        {d.value}
+                    </AnimatedText>
+                    <AnimatedText
+                        x={scale(i) + scale.bandwidth() / 2} 
+                        y={this.props.yScale.range()[0]}>
+                        {d.label}
+                    </AnimatedText>
+                </g>)}
+                <LineMarker value={this.props.data.mean} label="Durchschnitt" xScale={scale} yScale={this.props.yScale}></LineMarker>
+                <LineMarker value={this.props.data.result} label="Dein Ergebnis" xScale={scale} yScale={this.props.yScale}></LineMarker>
             </g>
         </g>
     }

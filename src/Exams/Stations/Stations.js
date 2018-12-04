@@ -33,7 +33,7 @@ class Stations extends Component {
             <div className="row">
                 <div className="col">
                     <Legend title={LegendText.title}>{LegendText.text}</Legend>
-                    <div className="row col">
+                    <div className="row col" style={{height: '20rem'}}>
                         <div className="card px-4 pb-4" style={{overflow: 'hidden'}}>
                             <div className="mt-2 mb-3 d-flex flex-wrap">
                                 <div style={{fontSize: '.9rem'}}>
@@ -52,9 +52,6 @@ class Stations extends Component {
                                 </OrdinalScales>
                             </Chart>
                         </div>
-                    </div>
-                    <div className="row col my-2">
-                        <button className="btn btn-primary" disabled={!this.state.selectedItem} onClick={() => this.selectItem(null)}>zurück</button>
                     </div>
                 </div>
             </div>

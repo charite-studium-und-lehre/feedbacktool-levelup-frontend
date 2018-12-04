@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { axisBottom, axisLeft } from 'd3-axis'
 import { select } from 'd3-selection'
+import { animationTime } from './Utils'
 
 class Axis extends Component {
     count = null
@@ -18,7 +19,7 @@ class Axis extends Component {
         
         const el = select(this.node.current)
             .transition()
-            .duration(transition ? 550 : 0)
+            .duration(transition ? animationTime : 0)
             .call(axis)
         
         this.props.rotateLabels && el.selectAll("text")	

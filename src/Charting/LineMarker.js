@@ -1,5 +1,6 @@
 import React from 'react'
-import { line } from 'd3-shape'
+import AnimatedText from './AnimatedText'
+import AnimatedLine from './AnimatedLine'
 
 const LineMarker = props => {
     let _line = props.vertical ? 
@@ -28,25 +29,22 @@ const LineMarker = props => {
     const xValue=props.vertical ? props.xScale(props.value) : (props.xScale.range()[0] - 2)
     const yValue=props.vertical ? (props.yScale.range()[0] + 2) : props.yScale(props.value)
 	return (<g className="marker selected">
-		<path d={line()(_line)} className="line animated" style={{stroke: props.color || "rgba(0,0,0,.6)"}} />
-        <text 
-            alignmentBaseline="baseline" 
-            x="0"
-            y="0"
+        <AnimatedLine d={_line} />
+        <AnimatedText  
+            x={xLabel}
+            y={yLabel}
             textAnchor={props.vertical ? 'begin' : 'end'}
-            transform={`rotate(${props.vertical ? '90' : '0'}) translate(${xLabel},${yLabel})`}
-            className="animated">
+            vertical={props.vertical}>
             {props.label}
-        </text>
-        <text 
+        </AnimatedText>
+        <AnimatedText 
             alignmentBaseline={props.vertical ? 'hanging' : 'central'}
-            x="0"
-            y="0"
+            x={xValue}
+            y={yValue}
             textAnchor={props.vertical ? 'middle' : 'end'}
-            transform={`rotate(${props.vertical ? '90' : '0'}) translate(${xValue},${yValue})`}
-            className="animated">
+            vertical={props.vertical}>
             {props.value}
-        </text>
+        </AnimatedText>
 	</g>)
 }
 

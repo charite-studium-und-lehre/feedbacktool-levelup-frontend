@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { select } from 'd3-selection'
 import AnimatedText from './AnimatedText'
+import { animationTime } from './Utils'
 
 class Bar extends Component {
 	constructor(props) {
@@ -13,7 +14,7 @@ class Bar extends Component {
 		select(this.node.current)
 			.datum(this.props)
             .transition()
-			.duration(550)
+			.duration(animationTime)
 			.attr('x', d => d.x)
 			.attr('y', d => d.y)
 			.attr('height', d => d.height)
