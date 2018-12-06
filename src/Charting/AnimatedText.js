@@ -31,7 +31,6 @@ class AnimatedText extends Component {
             x={this.state.x}
             y={this.state.y}
             textAnchor={this.props.textAnchor}
-            transform={this.props.transform}
             color={this.props.color}
             alignmentBaseline={this.props.alignmentBaseline}
             transform={`rotate(${this.props.vertical ? '-90' : '0'})`}

@@ -2,98 +2,87 @@ import React, { Component } from 'react'
 import { scaleLinear, scaleBand, scaleTime } from 'd3-scale'
 import { select } from 'd3-selection'
 
-class Chart extends Component {
-    constructor(props){
-        super(props)
-        this.node = React.createRef()
-        this.state = { size: null }
-    }
-
-    componentDidMount() {
-        setTimeout(() => {
-            this.setState({
-                size: {
-                    width: this.node.current.width.baseVal.value,
-                    height: this.node.current.height.baseVal.value,
-                },
-            })
-        }, 100)
-    }
-
-    renderContent() {
-        const { width, height } = this.state.size
-        
-        select(this.node.current)
-            .attr("viewBox", "0 0 " + width + " " + height )
-            .attr("preserveAspectRatio", "none")
-
-        const childrenWithSizes = React.Children.map(this.props.children, child => {
-            return React.cloneElement(child, { width, height });
-        });
-        return <g>{childrenWithSizes}</g>
-    }
-
-    render() {
-        const size = this.state.size;
-        return (<svg ref={this.node} width="100%" height="100%">
-            { size && this.renderContent() }
-        </svg>)
-   }
+const copyPropsToChildren = props => {
+    const {children, ...additionalprops} = props
+    return React.Children.map(children, child => React.cloneElement(child, additionalprops))
 }
+
+const asChart = WrappedComponent =>
+    class extends Component {
+        constructor(props){
+            super(props)
+            this.node = React.createRef()
+            this.state = { size: null }
+        }
+
+        componentDidMount() {
+            setTimeout(() => {
+                this.setState({
+                    size: {
+                        width: this.node.current.width.baseVal.value,
+                        height: this.node.current.height.baseVal.value,
+                    },
+                })
+            }, 100)
+        }
+
+        renderContent() {
+            const { width, height } = this.state.size
+            
+            select(this.node.current)
+                .attr("viewBox", "0 0 " + width + " " + height )
+                .attr("preserveAspectRatio", "none")
+
+            return <g><WrappedComponent {...this.props} width={width} height={height} /></g>
+        }
+
+        render() {
+            const size = this.state.size;
+            return (<svg ref={this.node} width="100%" height="100%">
+                { size && this.renderContent() }
+            </svg>)
+        }
+    }
+
+const Chart = asChart(copyPropsToChildren)
 
 export default Chart
 
-const LinearScales = props => {
+const withLinearScales = WrappedComponent => props => {
+    const { width, height, ...otherProps } = props
     const xScale = scaleLinear()
         .domain(props.xDomain || [])
-        .range([0, props.width])
+        .range([0, width])
     
     const yScale = scaleLinear()
         .domain(props.yDomain || [])
-        .range([props.height, 0])
-    
-    const childrenWithScales = React.Children.map(props.children, child => {
-        return React.cloneElement(child, { xScale, yScale });
-    });
+        .range([height, 0])
 
-    return childrenWithScales
+    return <WrappedComponent {...otherProps} xScale={xScale} yScale={yScale} />
 }
 
-const LinearChart = props => (
-    <Chart>
-        <LinearScales {...props} >
-            {props.children}
-        </LinearScales>
-    </Chart>
-)
+const LinearScales = withLinearScales(copyPropsToChildren)
 
-const OrdinalScales = props => {
-    const offset = props.offset ? (props.offset * props.width) : 0
-    const scale = props.scale || 1
+const LinearChart = asChart(withLinearScales(copyPropsToChildren))
+
+const withOrdinalScales = WrappedComponent => props => {
+    const { width, height, offset, scale, xDomain, yDomain, padding, ...otherProps } = props
     const xScale = scaleBand()
-        .domain(props.xDomain || [])
-        .rangeRound([offset, offset + props.width * scale])
-        .paddingInner(props.padding || 0.2)
-        .paddingOuter(props.padding || 0.1)
-
-    const yScale = scaleLinear()
-        .domain(props.yDomain || [])
-        .range([props.height, 0])
+        .domain(xDomain || [])
+        .rangeRound([offset * width, offset * width + width * (scale || 1)])
+        .paddingInner(padding || 0.2)
+        .paddingOuter(padding || 0.1)
     
-    const childrenWithScales = React.Children.map(props.children, child => {
-        return React.cloneElement(child, { xScale, yScale });
-    });
-
-    return <g onClick={props.onClick}>{childrenWithScales}</g>
+    const yScale = scaleLinear()
+        .domain(yDomain || [])
+        .range([height, 0])
+    
+    return <WrappedComponent {...otherProps} xScale={xScale} yScale={yScale} />
 }
 
-const OrdinalChart = props => (
-    <Chart>
-        <OrdinalScales {...props} >
-            {props.children}
-        </OrdinalScales>
-    </Chart>
-)
+const OrdinalScales = withOrdinalScales(copyPropsToChildren)
+
+const OrdinalChart = asChart(withOrdinalScales(copyPropsToChildren))
 
 const TimeScales = props => {
     const xScale = scaleTime()
@@ -119,4 +108,4 @@ const TimeChart = props => (
     </Chart>
 )
 
-export { LinearChart, LinearScales, OrdinalChart, OrdinalScales, TimeChart, TimeScales }
+export { asChart, LinearChart, LinearScales, OrdinalChart, OrdinalScales, TimeChart, TimeScales }

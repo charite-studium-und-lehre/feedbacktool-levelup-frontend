@@ -41,7 +41,7 @@ class Axis extends Component {
 class XAxis extends Axis {
     createAxis() {
         return axisBottom( this.props.xScale )
-            .tickSize(!this.props.horizontal ? 0 : -this.props.yScale(0))
+            .tickSize(!this.props.horizontal ? 0 : -this.props.yScale.range()[0])
     }
 
     render() {

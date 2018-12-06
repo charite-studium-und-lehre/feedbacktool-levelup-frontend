@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
-import { LinearChart, TimeChart } from '../Charting/Chart'
+import { TimeChart } from '../Charting/Chart'
 import { QuantilesPlotWithGraphData, PointGraphWithGraphData } from './WithGraphData'
 import Checkbox from './Checkbox'
 import InfoOverlay from './InfoOverlay'

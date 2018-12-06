@@ -27,8 +27,7 @@ export default function Dashboard() {
                     <DashboardCard 
                         header={Math.round(Math.random() * 100) + ' %'} 
                         title="Semesterprüfungen" 
-                        text="Deine Ergebnisse für alle Semester"
->
+                        text="Deine Ergebnisse für alle Semester">
                         <div className="m-3" style={{height: '6rem'}}>
                             <LinearChart yDomain={[0,100]} xDomain={[1,4]}>
                                 <XAxis />

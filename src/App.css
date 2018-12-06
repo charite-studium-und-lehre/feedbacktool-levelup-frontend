@@ -46,8 +46,8 @@
   display: none;
 }
 
-.axis.y.horizontal > .tick:last-of-type {
-  display: none;
+.y.axis.horizontal > .tick:first-of-type {
+  display: block;
 }
 
 .axis.x.horizontal > .tick:first-of-type {
@@ -116,16 +116,6 @@ span.input-group-text {
 
 .point-details.hidden {
   right: -25rem;
-}
-
-.color-1 {
-  border-color: hsla(120, 100%, 50%, .4);
-}
-.color-2 {
-  border-color: hsla(240, 100%, 50%, .4);
-}
-.color-3 {
-  border-color: hsla(0, 100%, 50%, .4);
 }
 
 .marker > path, .marker > text {

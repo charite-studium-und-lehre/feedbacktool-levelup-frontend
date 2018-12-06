@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import _ from 'lodash'
-import { Bar } from '../../Charting/BarGraph'
+import BarGraph, { Bar } from '../../Charting/BarGraph'
 import AnimatedText from '../../Charting/AnimatedText'
 import { scaleBand, scaleOrdinal } from 'd3-scale'
 import { schemeBlues } from 'd3-scale-chromatic'
@@ -19,8 +18,8 @@ class Station extends Component {
     }
 
     render() {
-        const scale = scaleBand()
-            .domain(_.range(5))
+        const detailsXScale = scaleBand()
+            .domain(this.props.data.details.map( d => d.label ))
             .rangeRound([this.props.xScale(this.props.data.name), this.props.xScale(this.props.data.name) + this.props.xScale.bandwidth()])
             .paddingInner(0.2)
             .paddingOuter(0.1)
@@ -39,27 +38,9 @@ class Station extends Component {
                 </AnimatedText>
             </g>
             <g style={{opacity: this.state.selected ? 1 : 0}} className="animated">
-                {this.props.data.details.map((d,i) => 
-                <g className="bar" key={i}>
-                    <Bar
-                        style={{fill: colors(i)}}
-                        x={scale(i)}
-                        y={this.props.yScale(d.value)}
-                        height={this.props.yScale.range()[0] - this.props.yScale(d.value)}
-                        width={scale.bandwidth()} />
-                    <AnimatedText 
-                        x={scale(i) + scale.bandwidth() / 2} 
-                        y={this.props.yScale(d.value) - 3}>
-                        {d.value}
-                    </AnimatedText>
-                    <AnimatedText
-                        x={scale(i) + scale.bandwidth() / 2} 
-                        y={this.props.yScale.range()[0]}>
-                        {d.label}
-                    </AnimatedText>
-                </g>)}
-                <LineMarker value={this.props.data.mean} label="Durchschnitt" xScale={scale} yScale={this.props.yScale}></LineMarker>
-                <LineMarker value={this.props.data.result} label="Dein Ergebnis" xScale={scale} yScale={this.props.yScale}></LineMarker>
+                <BarGraph labels xScale={detailsXScale} yScale={this.props.yScale} data={this.props.data.details.map((d, i) => ({x:d.label, y:d.value, color: colors(i)}))}/>
+                <LineMarker value={this.props.data.mean} label="Durchschnitt" xScale={detailsXScale} yScale={this.props.yScale}></LineMarker>
+                <LineMarker value={this.props.data.result} label="Dein Ergebnis" xScale={detailsXScale} yScale={this.props.yScale}></LineMarker>
             </g>
         </g>
     }

@@ -1,19 +1,16 @@
 import React from 'react'
-import { LinearChart } from '../Charting/Chart'
-import HorizontalBarGraph from '../Charting/HorizontalBarGraph'
+import _ from 'lodash'
 import { Link } from 'react-router-dom'
-import { XAxis, YAxis } from '../Charting/Axis'
+import { HorizontalBarChart } from '../Charting/HorizontalBarGraph'
 
-const SemesterInfo = props =>
-    (<div>
+const SemesterInfo = props => {
+    const data = new Array(4).fill(0).map((d,i) => ({y: `Modul 0${i+1}`, x: _.random(5,100)}))
+
+    return (<div>
         <div>Dein Ergebnis:<span className="font-italic"> {props.data.result} %</span></div>
         <div>Durchschnitt:<span className="font-italic"> {props.data.mean} %</span></div>
         <div className="px-3 mb-2" style={{height: '5rem'}}>
-            <LinearChart xDomain={[0,100]} yDomain={[0,5]}>
-                <XAxis horizontal ticks={{count: 6}} />
-                <YAxis horizontal ticks={{count: 6, format: d => 'M0' + d }} />
-                <HorizontalBarGraph data={new Array(4).fill(0).map((d,i) => ({x: i+1, y: Math.random() * 100}))} />
-            </LinearChart>
+                <HorizontalBarChart data={data} />
         </div>
         <Link to={`/exams/semester/${props.data.label}`}>
             <button type="button" className="btn btn-outline-primary my-2 w-100">Details</button>
@@ -24,5 +21,6 @@ const SemesterInfo = props =>
         </Link>
         <button type="button" className="btn btn-outline-info mt-2 w-100" onClick={() => props.onClose()}>schließen</button>
     </div>)
+}
 
 export default SemesterInfo

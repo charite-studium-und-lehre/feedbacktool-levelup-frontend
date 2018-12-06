@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { curveBasis } from 'd3-shape'
 import _ from 'lodash'
-import { LinearChart } from '../../Charting/Chart'
+import { LinearChart, OrdinalChart } from '../../Charting/Chart'
 import BarGraph from '../../Charting/BarGraph'
 import LineMarker from '../../Charting/LineMarker'
 import LineGraph from '../../Charting/LineGraph'
@@ -41,19 +41,14 @@ class Details extends Component {
                 </div>
                 <div className="mt-3">
                     {this.state.mode === 'modules' ?
-                    <LinearChart
-                        xDomain={[this.state.selectedModule ? this.state.selectedModule.x - .5 : 0, this.state.selectedModule ? this.state.selectedModule.x + .5 : 5]} 
+                    <OrdinalChart
+                        // xDomain={[this.state.selectedModule ? this.state.selectedModule.x - .5 : 0, this.state.selectedModule ? this.state.selectedModule.x + .5 : 5]} 
+                        xDomain={['Modul 01', 'Modul 02', 'Modul 03', 'Modul 04']} 
                         yDomain={[0, Math.max(...this.props.result, ...this.props.data.map(d => d.mean))]}>
-                        <XAxis 
-                            ticks={{
-                                count: this.state.selectedModule ? 10 : 6, 
-                                format: d => this.state.selectedModule ? Math.round((d-this.state.selectedModule.x+.5)*100) : `Modul 0${d}`
-                            }} 
-                            label={this.state.selectedModule ? `Modul ${this.state.selectedModule.x}` : '' }
-                        />
+                        <XAxis label={this.state.selectedModule ? `Modul ${this.state.selectedModule.x}` : '' }/>
                         <YAxis />
-                        <BarGraph labels offset={-.5} width={width} data={this.props.result.map((d, i) => ({x: i+1, y: d, label: `${d} %`}))} color="hsla(180, 100%, 20%, .5)" highlightColor="hsla(180, 100%, 20%, .8)" onClick={this.showDetail.bind(this)} />
-                        <BarGraph labels offset={.5} width={width} data={this.props.data.map(d => ({x: d.module, y: d.mean, label: `${d.mean} %`}))} color="hsla(180, 100%, 40%, .5)" highlightColor="hsla(180, 100%, 40%, .8)" onClick={this.showDetail.bind(this)} />
+                        <BarGraph labels offset={-.5} width={width} data={this.props.result.map((d, i) => ({x: `Modul 0${i+1}`, y: d, label: `${d} %`}))} color="hsla(180, 100%, 20%, .5)" highlightColor="hsla(180, 100%, 20%, .8)" onClick={this.showDetail.bind(this)} />
+                        <BarGraph labels offset={.5} width={width} data={this.props.data.map(d => ({x: `Modul 0${d.module}`, y: d.mean, label: `${d.mean} %`}))} color="hsla(180, 100%, 40%, .5)" highlightColor="hsla(180, 100%, 40%, .8)" onClick={this.showDetail.bind(this)} />
                         {this.histo.map((h, i) =>
                             <LineGraph
                                 className={this.state.selectedModule ? "" : "d-none d-md-block"}
@@ -72,7 +67,7 @@ class Details extends Component {
                                 style={{opacity: this.state.selectedModule && this.state.selectedModule.x === i+1 ? 1 : 0}}/>
                         )}
                         <LineMarker value={this.props.totalMean} label="Durchschnitt" />
-                    </LinearChart>
+                    </OrdinalChart>
                     : 
                     <LinearChart 
                         xDomain={[0, 100]}
@@ -81,38 +76,6 @@ class Details extends Component {
                         <YAxis />
                     </LinearChart>
                     }
-                </div>
-            </div>
-            <div className="card p-4 mb-3" style={{display: 'none', overflow: 'hidden'}}>
-                <Legend title={LegendText.title}>{LegendText.text}</Legend>
-                <div className="mt-3">
-                    <LinearChart 
-                        xDomain={[this.state.selectedModule ? this.state.selectedModule.x - .5 : 0, this.state.selectedModule ? this.state.selectedModule.x + .5 : 5]} 
-                        yDomain={[0, Math.max(...this.props.result, ...this.props.data.map(d => d.mean))]}>
-                        <XAxis ticks={{count: this.state.selectedModule ? 10 : 6, format: d => this.state.selectedModule ? Math.round((d-this.state.selectedModule.x+.5)*100) : `Modul 0${d}`}} />
-                        <YAxis />
-                        <BarGraph labels offset={-.5} width={width} data={this.props.result.map((d, i) => ({x: i+1, y: d}))} color="hsla(180, 100%, 20%, .5)" highlightColor="hsla(180, 100%, 20%, .8)" onClick={this.showDetail.bind(this)} />
-                        <BarGraph labels offset={.5} width={width} data={this.props.data.map(d => ({x: d.module, y: d.mean}))} color="hsla(180, 100%, 40%, .5)" highlightColor="hsla(180, 100%, 40%, .8)" onClick={this.showDetail.bind(this)} />
-                        {this.histo.map((h, i) =>
-                            <LineGraph
-                                className={this.state.selectedModule ? "" : "d-none d-md-block"}
-                                key={`density${i}`} noPoints curve={curveBasis} width={.8} 
-                                data={h.map(d => ({x: i + 1 - width + d.x * 2 * width, y: d.y * histoScale, highlight: d.highlight}))} 
-                                color="hsla(180, 100%, 20%, .5)" 
-                                highlightColor="hsla(180, 100%, 20%, .8)" 
-                                style={{opacity: this.state.selectedModule ? 0.7 : 0.1}}/>
-                        )}
-                        {this.histo.map((h, i) =>
-                            <BarGraph
-                                className={this.state.selectedModule ? "" : "d-none d-md-block"}
-                                key={`histo${i}`} noPoints curve={curveBasis} width={.8} 
-                                data={h.map(d => ({x: i + 1 - width + d.x * 2 * width, y: d.y * histoScale, highlight: d.highlight}))} 
-                                color="hsla(180, 100%, 20%, .5)" 
-                                highlightColor="hsla(180, 100%, 20%, .8)" 
-                                style={{opacity: this.state.selectedModule && this.state.selectedModule.x === i+1 ? 1 : 1}}/>
-                        )}
-                        <LineMarker value={this.props.totalMean} label="Durchschnitt" />
-                    </LinearChart>
                 </div>
             </div>
             </div>

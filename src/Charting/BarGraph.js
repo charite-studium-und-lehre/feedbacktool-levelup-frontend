@@ -36,7 +36,7 @@ class Bar extends Component {
 const BarGraph = props => {
 	const width = props.xScale.bandwidth ? props.xScale.bandwidth() : (props.data.length > 1 ? 
 		(props.xScale(Math.max(...props.data.map(d => d.x))) - props.xScale(Math.min(...props.data.map(d => d.x)))) / (props.data.length - 1) * (props.width || 1) :
-		(props.xScale(props.xScale.domain()[1]) * (props.width || .8)))
+		(props.xScale.range()[1] * (props.width || .8)))
 	const offset = (props.offset || 0) * width
 	const dx = props.xScale.bandwidth ? 0 : (offset - width/2)
 	const clickHandler = props.onClick || (() => {})
@@ -50,7 +50,9 @@ const BarGraph = props => {
 				width={width} 
 				onClick={() => clickHandler(d, i)} />
 			{props.labels && 
-				<AnimatedText x={props.xScale(d.x) + (props.xScale.bandwidth ? (width/2) : offset)} y={props.yScale(d.y) - 3}>
+				<AnimatedText 
+					x={props.xScale(d.x) + (props.xScale.bandwidth ? (width/2) : offset)} 
+					y={props.yScale(d.y) - 3}>
 					{d.label || d.y}
 				</AnimatedText>
 			}

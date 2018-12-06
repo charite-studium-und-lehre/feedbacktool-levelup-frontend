@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import _ from 'lodash'
 import { LinearChart } from '../../Charting/Chart'
 import { XAxis, YAxis } from '../../Charting/Axis'
 import HorizontalBarGraph from '../../Charting/HorizontalBarGraph'

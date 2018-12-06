@@ -3,7 +3,6 @@ import _ from 'lodash'
 import { TimeChart } from '../Charting/Chart'
 import { XAxis, YAxis } from '../Charting/Axis'
 import LineGraph from '../Charting/LineGraph'
-import HorizontalBarGraph from '../Charting/HorizontalBarGraph'
 
 class Subject extends Component {
     constructor(props) {
