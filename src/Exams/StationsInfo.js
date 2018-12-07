@@ -10,7 +10,7 @@ const StationsInfo = props =>
         <div>Durchschnitt:<span className="font-weight-bold"> {props.data.mean} %</span></div>
         <div>geschrieben am <span className="font-weight-bold"> {props.data.x.toLocaleDateString()}</span></div>
         <div className="pl-5 pr-3 mb-2" style={{height: '5rem'}}>
-            <HorizontalBarChart data={[{y: categories[0], x: _.random(5,100)}, {y: categories[1], x: _.random(5,100)}]} />
+            <HorizontalBarChart yDomain={categories} data={[{y: categories[0], x: _.random(5,100)}, {y: categories[1], x: _.random(5,100)}]} />
         </div>
         <Link to={`/exams/stations/${props.data.label}`}>
             <button type="button" className="btn btn-outline-primary my-2 w-100">Details</button>

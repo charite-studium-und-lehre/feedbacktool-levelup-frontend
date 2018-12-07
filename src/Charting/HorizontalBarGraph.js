@@ -1,7 +1,6 @@
 import React from 'react'
-import { scaleLinear, scaleBand } from 'd3-scale'
 import { XAxis, YAxis } from './Axis'
-import { asChart } from './Chart'
+import { asChart, withHorizontalOrdinalScales } from './Chart'
 import AnimatedText from './AnimatedText'
 import { Bar } from './BarGraph'
 
@@ -39,20 +38,12 @@ const HorizontalBarGraph = props => {
 
 export default HorizontalBarGraph
 
-const HorizontalBarChart = asChart(props => {
-    const scales = {
-        xScale: scaleLinear().domain([0,100]).range([0, props.width]),
-		yScale: scaleBand()
-					.domain(props.data.map(d => d.y))
-					.range([props.height, 0])
-					.paddingInner(.2)
-					.paddingOuter(.1)
-    }
+const HorizontalBarChart = asChart(withHorizontalOrdinalScales(props => {
     return <g>
-        <HorizontalBarGraph labels {...scales} data={props.data} />
-        <YAxis horizontal {...scales} />
-        <XAxis horizontal {...scales} ticks={{count:4}} />
+        <HorizontalBarGraph labels xScale={props.xScale} yScale={props.yScale} data={props.data} />
+        <YAxis horizontal xScale={props.xScale} yScale={props.yScale} />
+        <XAxis horizontal xScale={props.xScale} yScale={props.yScale} ticks={{count:4}} />
     </g>
-})
+}))
 
 export { HorizontalBarChart }

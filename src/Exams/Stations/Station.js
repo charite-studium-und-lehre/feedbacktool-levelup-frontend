@@ -20,28 +20,30 @@ class Station extends Component {
     render() {
         const detailsXScale = scaleBand()
             .domain(this.props.data.details.map( d => d.label ))
-            .rangeRound([this.props.xScale(this.props.data.name), this.props.xScale(this.props.data.name) + this.props.xScale.bandwidth()])
+            .rangeRound([this.props.yScale(this.props.data.name), this.props.yScale(this.props.data.name) + this.props.yScale.bandwidth()])
             .paddingInner(0.2)
             .paddingOuter(0.1)
         return <g onClick={() => this.select()}>
             <g style={{opacity: !this.state.selected ? 1 : 0}} className="bar animated">
                 <Bar
                     style={{fill: '#fe9922'}}
-                    x={this.props.xScale(this.props.data.name)}
-                    y={this.props.yScale(this.props.data.result)}
-                    height={this.props.yScale.range()[0] - this.props.yScale(this.props.data.result)}
-                    width={this.props.xScale.bandwidth()}  />
+                    x={0}
+                    y={this.props.yScale(this.props.data.name)}
+                    width={this.props.xScale(this.props.data.result)}
+                    height={this.props.yScale.bandwidth()}  />
                 <AnimatedText 
-                    x={this.props.xScale(this.props.data.name) + this.props.xScale.bandwidth() / 2} 
-                    y={this.props.yScale(this.props.data.result) - 3}>
+                    y={this.props.yScale(this.props.data.name) + this.props.yScale.bandwidth() / 2} 
+                    x={this.props.xScale(this.props.data.result) + 3}
+                    textAnchor="start"
+                    dominantBaseline="central">
                     {this.props.data.result}
                 </AnimatedText>
             </g>
-            <g style={{opacity: this.state.selected ? 1 : 0}} className="animated">
-                <BarGraph labels xScale={detailsXScale} yScale={this.props.yScale} data={this.props.data.details.map((d, i) => ({x:d.label, y:d.value, color: colors(i)}))}/>
+            {/* <g style={{opacity: this.state.selected ? 1 : 0}} className="animated">
+                <BarGraph labels xScale={detailsXScale} yScale={this.props.xScale} data={this.props.data.details.map((d, i) => ({x:d.label, y:d.value, color: colors(i)}))}/>
                 <LineMarker value={this.props.data.mean} label="Durchschnitt" xScale={detailsXScale} yScale={this.props.yScale}></LineMarker>
                 <LineMarker value={this.props.data.result} label="Dein Ergebnis" xScale={detailsXScale} yScale={this.props.yScale}></LineMarker>
-            </g>
+            </g> */}
         </g>
     }
 }

@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
-import Chart, { OrdinalScales } from '../../Charting/Chart'
-import { XAxis, YAxis } from '../../Charting/Axis';
 import Legend from '../../Charting/Legend'
 import Filter from '../../Utils/Filter'
 import data from './Data'
-import Station from './Station'
+import StationsChart from './StationsChart'
 import Legends from '../../Core/LegendTexts'
 const LegendText = Legends.Exams.Stations.Main
 
@@ -43,14 +41,7 @@ class Stations extends Component {
                                     Prüfungen: <Filter style={{display: 'inline-block'}} disabled={!!this.state.selectedItem} filters={ this.state.examFilters } onUpdate={ examFilters => this.setState({ examFilters }) } />
                                 </div>
                             </div>
-                            <Chart>
-                                <OrdinalScales offset={this.state.selectedItem ? -this.state.index : 0} scale={this.state.selectedItem ? filteredData.length : 1} xDomain={filteredData.map(d => d.name)} yDomain={[0, 100]} >
-                                    {filteredData.map((d, i) => <Station key={d.name} data={d} onClick={ item => this.selectItem(item, i)} />)}
-                                    {/* <BarGraph labels onClick={(item, index) => this.selectItem(item, index)} data={filteredData.map(d => ({x: d.name, y: d.result}))} /> */}
-                                    <XAxis />
-                                    <YAxis label="% richtig"/>
-                                </OrdinalScales>
-                            </Chart>
+                            <StationsChart data={filteredData} />
                         </div>
                     </div>
                 </div>

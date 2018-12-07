@@ -10,7 +10,7 @@ const SemesterInfo = props => {
         <div>Dein Ergebnis:<span className="font-italic"> {props.data.result} %</span></div>
         <div>Durchschnitt:<span className="font-italic"> {props.data.mean} %</span></div>
         <div className="pl-5 px-3 mb-2" style={{height: '5rem'}}>
-                <HorizontalBarChart data={data} />
+                <HorizontalBarChart yDomain={data.map(d => d.y)} data={data} />
         </div>
         <Link to={`/exams/semester/${props.data.label}`}>
             <button type="button" className="btn btn-outline-primary my-2 w-100">Details</button>
