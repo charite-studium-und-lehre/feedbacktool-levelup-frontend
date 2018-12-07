@@ -28,7 +28,7 @@ const HorizontalBarGraph = props => {
 						x={props.xScale(d.x) + 3}
 						y={props.yScale(d.y) + height / 2}
 						textAnchor="start"
-						alignmentBaseline="central">
+						dominantBaseline="central">
 						{d.label || d.x}
 					</AnimatedText>
 				}

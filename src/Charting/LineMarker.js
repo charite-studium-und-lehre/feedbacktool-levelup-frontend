@@ -38,7 +38,7 @@ const LineMarker = props => {
             {props.label}
         </AnimatedText>
         <AnimatedText 
-            alignmentBaseline={props.vertical ? 'hanging' : 'central'}
+            dominantBaseline={props.vertical ? 'hanging' : 'central'}
             x={xValue}
             y={yValue}
             textAnchor={props.vertical ? 'middle' : 'end'}

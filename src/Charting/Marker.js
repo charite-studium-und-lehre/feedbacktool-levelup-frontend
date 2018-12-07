@@ -26,9 +26,9 @@ class Marker extends Component {
                     onClick={() => this.toggleSelected()}
                 />
                 <path d={line()([[this.props.xScale(this.props.x), this.props.yScale(this.props.y)],[this.props.xScale(this.props.x), this.props.yScale(this.props.yScale.domain()[0])]])} className="line" style={{stroke: this.props.color || "black"}} />
-                <text alignmentBaseline="central" x={this.props.xScale(this.props.xScale.domain()[0]) - 2} y={this.props.yScale(this.props.y)} textAnchor="end">{this.props.y}</text>
+                <text dominantBaseline="central" x={this.props.xScale(this.props.xScale.domain()[0]) - 2} y={this.props.yScale(this.props.y)} textAnchor="end">{this.props.y}</text>
                 <path d={line()([[this.props.xScale(this.props.xScale.domain()[0]), this.props.yScale(this.props.y)],[this.props.xScale(this.props.x), this.props.yScale(this.props.y)]])} className="line" style={{stroke: this.props.color || "black"}} />
-                <text alignmentBaseline="before-edge" x={this.props.xScale(this.props.x)} y={this.props.yScale(this.props.yScale.domain()[0])} textAnchor="middle">{this.props.x}</text>
+                <text dominantBaseline="before-edge" x={this.props.xScale(this.props.x)} y={this.props.yScale(this.props.yScale.domain()[0])} textAnchor="middle">{this.props.x}</text>
                 <Label onClick={() => this.toggleSelected()} x={this.props.xScale(this.props.x)} y={this.props.yScale(this.props.y) + (this.props.offset || -20)}>{this.props.label}</Label>
             </g>
         )
