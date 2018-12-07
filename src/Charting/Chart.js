@@ -69,7 +69,7 @@ const withOrdinalScales = WrappedComponent => props => {
     const { width, height, offset, scale, xDomain, yDomain, padding, ...otherProps } = props
     const xScale = scaleBand()
         .domain(xDomain || [])
-        .rangeRound([offset * width, offset * width + width * (scale || 1)])
+        .rangeRound([(offset || 0) * width, (offset || 0) * width + width * (scale || 1)])
         .paddingInner(padding || 0.2)
         .paddingOuter(padding || 0.1)
     
@@ -84,28 +84,20 @@ const OrdinalScales = withOrdinalScales(copyPropsToChildren)
 
 const OrdinalChart = asChart(withOrdinalScales(copyPropsToChildren))
 
-const TimeScales = props => {
+const withTimeScales = WrappedComponent => props => {
+    const { width, height, ...otherProps } = props
     const xScale = scaleTime()
         .domain(props.xDomain || [])
-        .range([0, props.width])
+        .range([0, width])
     
     const yScale = scaleLinear()
         .domain(props.yDomain || [])
-        .range([props.height, 0])
-    
-    const childrenWithScales = React.Children.map(props.children, child => {
-        return React.cloneElement(child, { xScale, yScale });
-    });
+        .range([height, 0])
 
-    return childrenWithScales
+    return <WrappedComponent {...otherProps} xScale={xScale} yScale={yScale} />
 }
+const TimeScales = withTimeScales(copyPropsToChildren)
 
-const TimeChart = props => (
-    <Chart>
-        <TimeScales {...props} >
-            {props.children}
-        </TimeScales>
-    </Chart>
-)
+const TimeChart = asChart(withTimeScales(copyPropsToChildren))
 
 export { asChart, LinearChart, LinearScales, OrdinalChart, OrdinalScales, TimeChart, TimeScales }
