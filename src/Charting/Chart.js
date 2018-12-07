@@ -15,6 +15,20 @@ const asChart = WrappedComponent =>
             this.state = { size: null }
         }
 
+        componentDidUpdate() {
+            setTimeout(() => {
+                    if(!this.state.size || this.state.size.height !== this.node.current.height.baseVal.value || 
+                        this.state.size.width !== this.node.current.width.baseVal.value) {
+                        this.setState({
+                            size: {
+                                width: this.node.current.width.baseVal.value,
+                                height: this.node.current.height.baseVal.value,
+                            },
+                        })
+                    }
+                }, 100)
+        }
+
         componentDidMount() {
             setTimeout(() => {
                 this.setState({
@@ -30,7 +44,6 @@ const asChart = WrappedComponent =>
             const { width, height } = this.state.size
             
             select(this.node.current)
-                .attr("viewBox", "0 0 " + width + " " + height )
                 .attr("preserveAspectRatio", "none")
 
             return <g><WrappedComponent {...this.props} width={width} height={height} /></g>
@@ -98,12 +111,12 @@ const withTimeScales = WrappedComponent => props => {
 }
 
 const withHorizontalOrdinalScales = WrappedComponent => props => {
-	const { width, height, xDomain, yDomain, ...otherProps } = props
+	const { width, height, offset, scale, xDomain, yDomain, padding, ...otherProps } = props
 	const scales = {
 		xScale: scaleLinear().domain(xDomain || [0,100]).range([0, width]),
 		yScale: scaleBand()
 					.domain(yDomain)
-					.range([height, 0])
+					.rangeRound([(offset || 0) * height + height * (scale || 1), (offset || 0) * height])
 					.paddingInner(.2)
 					.paddingOuter(.1)
 	}

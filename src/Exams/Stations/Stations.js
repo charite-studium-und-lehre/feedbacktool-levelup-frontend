@@ -16,6 +16,7 @@ class Stations extends Component {
         const categoryFilters = categories.map(c => ({label: c, pred: d => d.category === c , selected: true }))
         const examFilters = exams.map(e => ({ label: e, pred: d => d.exam === e, selected: e === match.params.test }))
         this.state = { categoryFilters, examFilters }
+        this.selectItem = this.selectItem.bind(this)
     }
 
     selectItem(item, index) {
@@ -41,7 +42,11 @@ class Stations extends Component {
                                     Prüfungen: <Filter style={{display: 'inline-block'}} disabled={!!this.state.selectedItem} filters={ this.state.examFilters } onUpdate={ examFilters => this.setState({ examFilters }) } />
                                 </div>
                             </div>
-                            <StationsChart data={filteredData} />
+                            <StationsChart 
+                                offset={this.state.selectedItem ? -filteredData.length + this.state.index + 1 : 0} 
+                                scale={this.state.selectedItem ? filteredData.length : 1} 
+                                selectItem={this.selectItem} 
+                                data={filteredData} />
                         </div>
                     </div>
                 </div>
