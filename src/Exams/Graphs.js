@@ -10,14 +10,14 @@ function rndInt(n, m) {
 
 function randomData(n = 10, name) {
     return new Array(n).fill(0).map((d,i) => ({
-        x: new Date(2018 - i, 6, 15),
+        x: new Date(2018 - i, 6 + rndInt(2, -1), 15 + rndInt(20, -10)),
         result: rndInt(75, 20),
         q0: rndInt(15, 10),
         q25: rndInt(15, 30), 
         q75: rndInt(15, 55), 
         q100: rndInt(15, 80),
         mean: rndInt(25, 40),
-        label: `${i+1}. Semester`
+        label: `${n-i}. Semester`
     }))
 }
 

@@ -1,6 +1,12 @@
 import React from 'react'
 
 export default {
+    Dashboard: {
+        Timeline: {
+            title: 'Timeline',
+            text: 'Hier siehst du die Prüfungen, die du in letzter Zeit abgelegt hast.'
+        },
+    },
     Exams: {
         MainChart: {
             title: 'Deine Prüfungsergebnisse',

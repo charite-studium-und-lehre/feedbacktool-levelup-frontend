@@ -7,13 +7,24 @@ import LineGraph from '../Charting/LineGraph'
 import Progress from './Progress'
 import Achievements from './Achievements'
 import { XAxis, YAxis } from '../Charting/Axis'
+import Timeline from './Timeline'
+import graphs from '../Exams/Graphs'
 
 export default function Dashboard() {
     return (
         <div className="container-fluid">
           <div className="row">
-            <div className="col-lg-8 mt-2">
-                <Progress></Progress>
+            <div className="col-lg-8">
+                <div className="row mt-2">
+                    <div className="col-12">
+                        <Progress />
+                    </div>
+                </div>
+                <div className="row mt-2">
+                    <div className="col-12">
+                        <Timeline data={graphs.data} />
+                    </div>
+                </div>
             </div>
             <div className="col-lg-4 mt-2">
                 <Achievements></Achievements>
