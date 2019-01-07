@@ -117,8 +117,8 @@ const withHorizontalOrdinalScales = WrappedComponent => props => {
 		yScale: scaleBand()
 					.domain(yDomain)
 					.rangeRound([(offset || 0) * height + height * (scale || 1), (offset || 0) * height])
-					.paddingInner(.2)
-					.paddingOuter(.1)
+					.paddingInner(padding || 0.2)
+					.paddingOuter(padding || .1)
 	}
 	return <WrappedComponent {...otherProps} {...scales} />
 }

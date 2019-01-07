@@ -7,7 +7,7 @@ const labels = ['richtig', 'falsch', 'weiß nicht']
 const PtmInfo = props =>
     (<div>
         <div>Dein Antworten:</div>
-        <div className="pr-3 pl-5 mb-2" style={{height: '5rem'}}>
+        <div className="my-2" style={{height: '10rem'}}>
             <HorizontalBarChart yDomain={labels} data={new Array(3).fill(0).map((d,i) => ({y: labels[i], x: _.random(5,100) }))} />
         </div>
         <Link to={`/exams/ptm/${props.data.label}`}>

@@ -24,9 +24,11 @@ class Stations extends Component {
     }
 
     render() {
+        const detailsScale = 4
         const filteredData = data
             .filter(_.overSome(this.state.categoryFilters.filter(f => f.selected).map(f => f.pred)))
             .filter(_.overSome(this.state.examFilters.filter(f => f.selected).map(f => f.pred)))
+        const offset = this.state.selectedItem ? -detailsScale/filteredData.length*(Math.min(Math.max(filteredData.length - 1 - this.state.index - (filteredData.length-1)/2/detailsScale, 0), filteredData.length-1)) : 0
         return (
         <div className="container-fluid">
             <div className="row">
@@ -43,8 +45,8 @@ class Stations extends Component {
                                 </div>
                             </div>
                             <StationsChart 
-                                offset={this.state.selectedItem ? -filteredData.length + this.state.index + 1 : 0} 
-                                scale={this.state.selectedItem ? filteredData.length : 1} 
+                                offset={offset} 
+                                scale={this.state.selectedItem ? detailsScale : 1} 
                                 selectItem={this.selectItem} 
                                 data={filteredData} />
                         </div>

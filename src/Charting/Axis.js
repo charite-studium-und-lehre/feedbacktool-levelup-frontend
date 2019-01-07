@@ -22,6 +22,7 @@ class Axis extends Component {
             .duration(transition ? animationTime : 0)
             .call(axis)
         
+        // el.selectAll("text").attr("text-anchor", "start")
         this.props.rotateLabels && el.selectAll("text")	
             .style("text-anchor", "start")
             .attr("dx", ".8em")
