@@ -4,7 +4,7 @@ const InfoOverlay = function (props) {
     const Info = props.graph.info || (() => null)
     return (
     <div className={`point-details p-3 animated card with-border position-absolute ${props.visible ? 'show' : 'hidden'}`}>
-        <h5>{props.graph.label} - {props.selectedPoint.label}</h5>
+        <h5>{props.graph.label} - {(props.selectedPoint || {label: 'foo'}).label}</h5>
         <Info data={props.selectedPoint} onClose={props.onClose} />
     </div>)
 }
