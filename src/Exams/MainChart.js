@@ -62,7 +62,7 @@ class MainChart extends Component {
                                     <PointGraphWithGraphData 
                                         graph={this.props.graphs[2]} 
                                         className={_.includes(this.props.shownGraphs, 'stations') ? 'show' : 'hidden'} 
-                                        selectPoint={this.selectPoint.bind(this)} 
+                                        selectPoint={(graph, point) => this.selectPoint(graph, point.x)} 
                                         selectedPoint={this.state.selectedPoint.graph === 'stations' ? this.state.selectedPoint.point : null} />
                                 </TimeChart>
                             </div>
