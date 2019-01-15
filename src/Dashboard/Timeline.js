@@ -4,23 +4,27 @@ import PointGraph from '../Charting/PointGraph'
 import Legend from '../Charting/Legend'
 import { XAxis, YAxis } from '../Charting/Axis'
 import Legends from '../Core/LegendTexts'
+import InfoOverlay from './InfoOverlay'
+
 const LegendText = Legends.Dashboard.Timeline
-const year = 1000 * 60 * 60 * 24 * 365
+const day= 1000 * 60 * 60 * 24
+const year = day * 365
+
 class Timeline extends Component {
     constructor(props) {
         super(props)
         this.state = { oldest: new Date(Date.now() - year * 3), newest: new Date(), selectedPoint: null }
     }
 
-    zoomIn(point) {
+    zoomIn(point, graph) {
         const newState = this.state.selectedPoint ? 
             { oldest: new Date(Date.now() - year * 3), newest: new Date(), selectedPoint: null } :
-            { selectedPoint: point, oldest: new Date(point.x.getTime() - 1000 * 60 * 60 * 24 * 7 * 2), newest: new Date(point.x.getTime() + 1000 * 60 * 60 * 24 * 7 * 2)  }
+            { selectedPoint: point, oldest: new Date(point.x.getTime() - day * 1), newest: new Date(point.x.getTime() + day * 7 * 2), graph }
         this.setState(newState)
     }
 
     zoomOut() {
-        this.setState( { oldest: new Date(this.state.oldest.getTime() - year) })
+        this.setState( { oldest: new Date(this.state.oldest.getTime() - year), newest: new Date(), selectedPoint: null })
     }
 
     render() {
@@ -28,14 +32,20 @@ class Timeline extends Component {
             <div className="card with-border">
                 <div className="card-body">
                     <Legend title={LegendText.title}>{LegendText.text}</Legend>
-                    <div className="p-3" style={{overflow: 'hidden'}}>
+                    <div className="p-3 position-relative" style={{overflow: 'hidden'}}>
                         <TimeChart xDomain={[this.state.oldest, this.state.newest]} yDomain={[0,100]}>
                             {this.props.data.map((g, i) => (
-                                <PointGraph onClick={(point) => this.zoomIn(point)} key={i} data={g.data.map(d => ({ ...d, y: d.result }))} color={`hsla(${g.color}, 50%, 50%, .75)`} />
+                                <PointGraph onClick={(point) => this.zoomIn(point, g.name)} key={i} data={g.data.map(d => ({ ...d, y: d.result }))} color={`hsla(${g.color}, 50%, 50%, .75)`} />
                             ))}
                             <YAxis label="% richtig" />
                             <XAxis />
                         </TimeChart>
+                        <InfoOverlay 
+                            visible={!!this.state.selectedPoint}
+                            graph={this.state.graph}
+                            onClose={() => this.zoomIn()}
+                            selectedPoint={this.state.selectedPoint || {label: ''}}>
+                        </InfoOverlay>
                     </div>
                     <div className="mt-2">
                         {this.props.data.map(g => (
