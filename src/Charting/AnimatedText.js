@@ -4,10 +4,12 @@ import { animationTime } from './Utils'
 
 class AnimatedText extends Component {
     static defaultProps = {
+        color: 'black',
         textAnchor: 'middle',
         className: '',
         transform: '',
         dominantBaseline: "baseline",
+        style: {},
     }
 
     constructor(props) {
@@ -31,7 +33,8 @@ class AnimatedText extends Component {
             x={this.state.x}
             y={this.state.y}
             textAnchor={this.props.textAnchor}
-            color={this.props.color}
+            fill={this.props.color}
+            style={this.props.style}
             dominantBaseline={this.props.dominantBaseline}
             transform={`rotate(${this.props.vertical ? '-90' : '0'})`}
             className={`animated ${this.props.className}`}>

@@ -11,8 +11,8 @@ class Stations extends Component {
     constructor({ props, match }) {
         super(props)
 
-        const categories = _.uniq(data.map(d => d.category))
-        const exams = _.uniq(data.map(d => d.exam))
+        const categories = _.uniq(_.flatMap(data, e => e.stations).map(d => d.category))
+        const exams = _.uniq(_.flatMap(data, e => e.stations).map(d => d.exam))
         const categoryFilters = categories.map(c => ({label: c, pred: d => d.category === c , selected: true }))
         const examFilters = exams.map(e => ({ label: e, pred: d => d.exam === e, selected: e === match.params.test }))
         this.state = { categoryFilters, examFilters }
@@ -25,10 +25,12 @@ class Stations extends Component {
 
     render() {
         const detailsScale = 4
-        const filteredData = data
+        const filteredData = data.map(e => ({...e, stations: e.stations
             .filter(_.overSome(this.state.categoryFilters.filter(f => f.selected).map(f => f.pred)))
             .filter(_.overSome(this.state.examFilters.filter(f => f.selected).map(f => f.pred)))
-        const offset = this.state.selectedItem ? -detailsScale/filteredData.length*(Math.min(Math.max(filteredData.length - 1 - this.state.index - (filteredData.length-1)/2/detailsScale, 0), filteredData.length-1)) : 0
+        }))
+        const numStations = filteredData.reduce((acc, cur) => acc + cur.stations.length, 0)
+        const offset = this.state.selectedItem ? -detailsScale/numStations*(Math.min(Math.max(numStations - 1 - this.state.index - (numStations-1)/2/detailsScale, 0), numStations-1)) : 0
         return (
         <div className="container-fluid">
             <div className="row">
