@@ -1,8 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import { Link } from 'react-router-dom'
-import { HorizontalBarChart } from '../Charting/HorizontalBarGraph'
-const labels = [1,2,3]
+
 const InfoOverlay = function (props) {
     const Info = props.info || (() => null)
     return (

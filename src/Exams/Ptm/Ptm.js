@@ -1,16 +1,31 @@
 import React from 'react'
 import _ from 'lodash'
+import { scaleOrdinal } from 'd3-scale'
+import { schemeGreens } from 'd3-scale-chromatic'
 import { OrdinalChart } from '../../Charting/Chart'
 import { XAxis, YAxis } from '../../Charting/Axis'
 import BarGraph from '../../Charting/BarGraph'
+import PointGraph from '../../Charting/PointGraph'
 import Subjects from '../Subjects'
 import SubjectsTabs from '../../Core/Tabs'
 import Subject from './Subject'
 import Legend from '../../Charting/Legend'
 import LegendTexts from '../../Core/LegendTexts'
 const LegendText = LegendTexts.Exams.Ptm
+const colors = scaleOrdinal(schemeGreens[3])
 
-const labels = ['richtig', 'falsch', 'weiß nicht']
+const labels = ['richtig', 'falsch', 'nicht beantwortet']
+const confidence = ['sicher', 'wahrscheinlich', 'geraten']
+const results = [
+    _.sampleSize(_.range(10, 100), 3).sort(),
+    _.sampleSize(_.range(10, 100), 3).sort(),
+    [_.random(100)]
+]
+const data = [
+    _.range(2).map((d, i) => ({x: labels[i], result: results[i][2], color: colors(2)})),
+    _.range(2).map((d, i) => ({x: labels[i], result: results[i][1], color: colors(1)})),
+    _.range(3).map((d, i) => ({x: labels[i], result: results[i][0], color: colors(0)})),
+]
 const Ptm = ({ match }) => {
         const sample = Subjects()
             .map(c => ({...c, subjects: c.subjects.map(s => ({ ...s, correct: Math.floor(Math.random() * s.questions)})).sort((a,b) => - a.correct / (a.questions+.1) + b.correct / (b.questions + .1)) }))
@@ -26,12 +41,24 @@ const Ptm = ({ match }) => {
                     <div className="d-flex flex-wrap">
                         <div className="card m-2 flex-grow-1" style={{width: '60rem'}}>
                             <div className="card-body">
-                                <Legend title={LegendText.Totals.title}>{LegendText.Totals.text}</Legend>
+                                <Legend title={LegendText.Totals.title}>{LegendText.Totals.text}
+                                    <div className="mt-2">{confidence.map((c, i) => 
+                                        <span className="d-inline-block mr-2" style={{height: '1.2rem', lineHeight: '1.2rem'}}>
+                                            <span className="d-inline-block mr-1" style={{width: '2rem', height: '100%', backgroundColor: colors(i)}}>&nbsp;</span>
+                                            {c}
+                                        </span>)}
+                                        <span className="d-inline-block mr-2" style={{height: '1.2rem', lineHeight: '1.2rem'}}>
+                                            <span className="d-inline-block mr-1" style={{borderRadius: '.6rem', width: '.6rem', height: '.6rem', backgroundColor: 'rgba(0,0,0,.6)'}}></span>
+                                            Durchschnitt in der Kohorte
+                                        </span>
+                                    </div>
+                                </Legend>
                                 <div className="p-2">
                                     <OrdinalChart xDomain={labels} yDomain={[0,100]}>
                                         <XAxis />
                                         <YAxis />
-                                        <BarGraph labels data={new Array(3).fill(0).map((d,i) => ({x: labels[i], y: Math.floor(Math.random() * 100)}))} />
+                                        {data.map(d => <BarGraph labels data={d.map(s => ({...s, y: s.result}))} />)}
+                                        <PointGraph color="rgba(0, 0, 0, .6)" data={labels.map(l => ({x: l, y: _.random(30, 85)}))} />
                                     </OrdinalChart>
                                 </div>
                             </div>
