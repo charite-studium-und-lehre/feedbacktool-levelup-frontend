@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
+import { scaleOrdinal } from 'd3-scale'
+import { schemeSpectral } from 'd3-scale-chromatic'
 import Legend from '../../Charting/Legend'
 import Filter from '../../Utils/Filter'
 import data from './Data'
 import StationsChart from './StationsChart'
 import Legends from '../../Core/LegendTexts'
 const LegendText = Legends.Exams.Stations.Main
+const colors = scaleOrdinal(schemeSpectral[6])
 
 class Stations extends Component {
     constructor({ props, match }) {
@@ -13,7 +16,8 @@ class Stations extends Component {
 
         const categories = _.uniq(_.flatMap(data, e => e.stations).map(d => d.category))
         const exams = _.uniq(_.flatMap(data, e => e.stations).map(d => d.exam))
-        const categoryFilters = categories.map(c => ({label: c, pred: d => d.category === c , selected: true }))
+        this.categoryColors = c => colors(categories.indexOf(c))
+        const categoryFilters = categories.map(c => ({label: c, pred: d => d.category === c , selected: true, color: this.categoryColors(c) }))
         const examFilters = exams.map(e => ({ label: e, pred: d => d.exam === e, selected: e === match.params.test }))
         this.state = { categoryFilters, examFilters }
         this.selectItem = this.selectItem.bind(this)
@@ -40,13 +44,18 @@ class Stations extends Component {
                         <div className="card px-4 pb-4 w-100" style={{overflow: 'hidden'}}>
                             <div className="mt-2 mb-3 d-flex flex-wrap">
                                 <div style={{fontSize: '.9rem'}}>
-                                    Bereich: <Filter style={{display: 'inline-block'}} disabled={!!this.state.selectedItem} filters={ this.state.categoryFilters } onUpdate={ categoryFilters => this.setState({ categoryFilters }) } />
+                                    Bereich: <Filter
+                                        style={{display: 'inline-block'}}
+                                        disabled={!!this.state.selectedItem}
+                                        filters={ this.state.categoryFilters } 
+                                        onUpdate={ categoryFilters => this.setState({ categoryFilters }) } />
                                 </div>
                                 <div style={{fontSize: '.9rem', width: '17rem'}} className="flex-grow-1">
                                     Prüfungen: <Filter style={{display: 'inline-block'}} disabled={!!this.state.selectedItem} filters={ this.state.examFilters } onUpdate={ examFilters => this.setState({ examFilters }) } />
                                 </div>
                             </div>
-                            <StationsChart 
+                            <StationsChart
+                                colors={this.categoryColors}
                                 offset={offset} 
                                 scale={this.state.selectedItem ? detailsScale : 1} 
                                 selectItem={this.selectItem} 

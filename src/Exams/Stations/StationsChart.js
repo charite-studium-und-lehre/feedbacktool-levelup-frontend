@@ -5,13 +5,13 @@ import { XAxis } from '../../Charting/Axis';
 import StationsExam from './StationsExam';
 
 const Chart = asChart(withHorizontalOrdinalScales(props => {
-    const scales = {xScale: props.xScale, yScale: props.yScale}
+    const { xScale, yScale, ...otherProps } = props
     return (
         <g>
         {props.data.filter(e => e.stations.length > 0).map(e =>
-            <StationsExam label={e.exam} stations={e.stations} scales={scales} />
+            <StationsExam label={e.exam} stations={e.stations} scales={{xScale, yScale}} {...otherProps} />
         )}
-            <XAxis horizontal label="% richtig" {...scales} />
+            <XAxis horizontal label="% richtig" xScale={xScale} yScale={yScale} />
         </g>
     )
 }))

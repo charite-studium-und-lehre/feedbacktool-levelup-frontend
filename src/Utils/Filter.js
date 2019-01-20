@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 
 class Filter extends Component {
     constructor( props) {
@@ -28,12 +29,13 @@ class Filter extends Component {
             <div className="row mb-2 mt-1" style={this.props.style}>
                 <div className="col">
                     {this.props.showAll && <button className="btn btn-outline-primary btn-sm mr-1 mt-1" onClick={ () => this.selectNone() }>alle anzeigen</button>}
-                    {this.state.filters.map(filter => (<button key={filter.label} 
-                        className={`mr-1 mt-1 btn ${filter.selected ? 'btn-primary' : 'btn-outline-primary'} btn-sm`}
+                    {this.state.filters.map(filter => (<span className="d-inline-block mr-1 mt-1 " style={filter.color ? {borderRight: `10px solid ${filter.color}`} : {}}><button key={filter.label} 
+                        className={`btn ${filter.selected ? 'btn-primary' : 'btn-outline-primary'} btn-sm`}
+                        style={{borderRadius: 0}}
                         disabled={filter.disabled || this.props.disabled}
                         onClick={() => this.toggleFilter(filter)}>
                         {filter.label}
-                    </button>))}
+                    </button></span>))}
                 </div>
             </div>
         )
