@@ -13,12 +13,12 @@ const year = day * 365
 class Timeline extends Component {
     constructor(props) {
         super(props)
-        this.state = { oldest: new Date(Date.now() - year * 3), newest: new Date(), selectedPoint: null }
+        this.state = { oldest: new Date(Date.now() - year * 7), newest: new Date(), selectedPoint: null }
     }
 
     zoomIn(point, graph) {
         const newState = this.state.selectedPoint ? 
-            { oldest: new Date(Date.now() - year * 3), newest: new Date(), selectedPoint: null } :
+            { oldest: new Date(Date.now() - year * 7), newest: new Date(), selectedPoint: null } :
             { selectedPoint: point, oldest: new Date(point.x.getTime() - day * 1), newest: new Date(point.x.getTime() + day * 7 * 2), graph }
         this.setState(newState)
     }
