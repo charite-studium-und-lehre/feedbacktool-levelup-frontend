@@ -1,6 +1,9 @@
 import SemesterInfo from './SemesterInfo'
 import PtmInfo from './PtmInfo'
 import StationsInfo from './StationsInfo'
+import SemesterTimelineInfo from '../Dashboard/SemesterTimelineInfo'
+import PtmTimelineInfo from '../Dashboard/PtmTimelineInfo'
+import StationsTimelineInfo from '../Dashboard/StationsTimelineInfo'
 import SemesterSummary from './SemesterSummary'
 import PtmSummary from './PtmSummary'
 
@@ -30,6 +33,7 @@ const graphs = {
         data: randomData(n, 'Semesterprüfung'),
         color: 120,
         info: SemesterInfo,
+        timelineinfo: SemesterTimelineInfo,
         summary: SemesterSummary,
     },
     {
@@ -38,6 +42,7 @@ const graphs = {
         data: randomData(n, 'PTM'),
         color: 240,
         info: PtmInfo,
+        timelineinfo: PtmTimelineInfo,
         summary: PtmSummary,
     },
     {
@@ -46,6 +51,7 @@ const graphs = {
         data: new Array(2).fill(2).map((d,i) => ({result: rndInt(75, 20), mean: rndInt(25, 40), x: new Date(2018-d-(2-i)*2, 6, 15), y: Math.random() * 100, label: `${d+i*2}. Semester`})),
         color: 0,
         info: StationsInfo,
+        timelineinfo: StationsTimelineInfo,
     },
 ]}
 

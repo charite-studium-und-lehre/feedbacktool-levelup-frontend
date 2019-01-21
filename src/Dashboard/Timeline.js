@@ -18,7 +18,7 @@ class Timeline extends Component {
 
     zoomIn(point, graph) {
         const newState = this.state.selectedPoint ? 
-            { oldest: new Date(Date.now() - year * 7), newest: new Date(), selectedPoint: null } :
+            { oldest: new Date(Date.now() - year * 7), newest: new Date(), selectedPoint: null, graph: null } :
             { selectedPoint: point, oldest: new Date(point.x.getTime() - day * 1), newest: new Date(point.x.getTime() + day * 7 * 2), graph }
         this.setState(newState)
     }
@@ -35,14 +35,18 @@ class Timeline extends Component {
                     <div className="p-3 position-relative" style={{overflow: 'hidden'}}>
                         <TimeChart xDomain={[this.state.oldest, this.state.newest]} yDomain={[0,100]}>
                             {this.props.data.map((g, i) => (
-                                <PointGraph onClick={(point) => this.zoomIn(point, g.name)} key={i} data={g.data.map(d => ({ ...d, y: d.result }))} color={`hsla(${g.color}, 50%, 50%, .75)`} />
+                                <PointGraph 
+                                    selectedPoint={this.state.selectedPoint ? this.state.selectedPoint.x : 0} 
+                                    onClick={(point) => this.zoomIn(point, g)} 
+                                    key={i} data={g.data.map(d => ({ ...d, y: d.result }))} 
+                                    color={`hsla(${g.color}, 50%, 50%, .75)`} />
                             ))}
                             <YAxis label="% richtig" />
                             <XAxis />
                         </TimeChart>
                         <InfoOverlay 
                             visible={!!this.state.selectedPoint}
-                            graph={this.state.graph}
+                            graph={this.state.graph || {}}
                             onClose={() => this.zoomIn()}
                             selectedPoint={this.state.selectedPoint || {label: ''}}>
                         </InfoOverlay>

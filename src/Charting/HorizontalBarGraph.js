@@ -49,7 +49,7 @@ const HorizontalBarChart = asChart(withHorizontalOrdinalScales(props => {
     return <g>
         <HorizontalBarGraph labels xScale={props.xScale} yScale={props.yScale} data={props.data} />
         {/* <YAxis horizontal xScale={props.xScale} yScale={props.yScale} /> */}
-        <XAxis horizontal xScale={props.xScale} yScale={props.yScale} ticks={{count:4}} />
+        {props.noaxis || <XAxis horizontal xScale={props.xScale} yScale={props.yScale} ticks={{count:4}} />}
     </g>
 }))
 
