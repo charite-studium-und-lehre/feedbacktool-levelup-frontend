@@ -12,7 +12,7 @@ class Subject extends Component {
     }
     
     componentDidMount() {
-        if(this.state.flash) window.scrollTo(0, this.node.current.getBoundingClientRect().y)
+        if(this.state.flash) window.scrollTo(0, this.node.current.getBoundingClientRect().y + 70)
         this.setState({ flash: false })
     }
 
