@@ -2,7 +2,7 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import Routes from './Routes';
 
-const Breadcrums = () =>  (
+const Breadcrumbs = () => (
     <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
             {Routes.map(route => (
@@ -18,4 +18,4 @@ const Breadcrums = () =>  (
     </nav>
 )
 
-export default Breadcrums
+export default Breadcrumbs

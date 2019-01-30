@@ -6,7 +6,7 @@ import 'd3-transition'
 import './App.css';
 import Navbar from './Core/navbar'
 import Login from './Login'
-import Breadcrums from './Core/Breadcrumbs'
+import Breadcrumbs from './Core/Breadcrumbs'
 import PrivateRoute from './Core/PrivateRoute'
 import Routes from './Core/Routes'
 
@@ -28,7 +28,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Navbar isLoggedIn={this.state.loggedIn}></Navbar>
-          <Breadcrums />
+          <Breadcrumbs />
           <Route path="/login" component={login} />
           {Routes.map( route => ( route.private ?
             <PrivateRoute key={route.path} path={route.path} component={route.component} exact={route.exact} isLoggedIn={this.state.loggedIn} /> :
