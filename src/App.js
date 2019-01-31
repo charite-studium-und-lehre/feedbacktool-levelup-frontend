@@ -17,13 +17,9 @@ class App extends Component {
   }
 
   render() {
-    let navbar  =  (
-      <Navbar isLoggedIn={this.state.loggedIn}></Navbar>
-    )
     let login
     if(!this.state.loggedIn) {
       login = () => (<Login handleLogin={() => this.setState({loggedIn: true})}></Login>);
-       navbar = null
     } else {
       login = () => (<Redirect to="/"></Redirect>);
     }
@@ -31,7 +27,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          {navbar}
+          <Navbar isLoggedIn={this.state.loggedIn}></Navbar>
           <Breadcrums />
           <Route path="/login" component={login} />
           {Routes.map( route => ( route.private ?
