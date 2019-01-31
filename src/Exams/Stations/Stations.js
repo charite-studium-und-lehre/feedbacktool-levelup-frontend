@@ -37,10 +37,10 @@ class Stations extends Component {
         const offset = this.state.selectedItem ? -detailsScale/numStations*(Math.min(Math.max(numStations - 1 - this.state.index - (numStations-1)/2/detailsScale, 0), numStations-1)) : 0
         return (
         <div className="container-fluid">
-            <div className="row ">
-                <div className="col ">
+            <div className="row">
+                <div className="col">
                     <Legend title={LegendText.title}>{LegendText.text}</Legend>
-                    <div className="row col " style={{minHeight: '25rem'}}>
+                    <div className="row col" style={{height: '20rem'}}>
                         <div className="card px-4 pb-4 w-100" style={{overflow: 'hidden'}}>
                             <div className="mt-2 mb-3 d-flex flex-wrap">
                                 <div style={{fontSize: '.9rem'}}>

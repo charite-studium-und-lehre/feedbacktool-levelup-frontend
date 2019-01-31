@@ -2,7 +2,7 @@ import _ from 'lodash'
 
 const characters = "abcdefghijklmnopqrstuvwxyz"
 function createDetails() {
-    return _.range(5).map(d => ({
+    return new Array(5).fill(0).map(d => ({
         label: _.sampleSize(characters.split(''), _.random(4,12)).join(''),
         value: _.random(25,100)
     }))

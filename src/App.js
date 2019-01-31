@@ -6,7 +6,7 @@ import 'd3-transition'
 import './App.css';
 import Navbar from './Core/navbar'
 import Login from './Login'
-import Breadcrumbs from './Core/Breadcrumbs'
+import Breadcrums from './Core/Breadcrumbs'
 import PrivateRoute from './Core/PrivateRoute'
 import Routes from './Core/Routes'
 
