@@ -4,7 +4,7 @@ import DashboardCard from './DashboardCard';
 import { LinearChart } from '../Charting/Chart';
 import BarGraph from '../Charting/BarGraph';
 import LineGraph from '../Charting/LineGraph'
-import Progress from './Progress'
+import Progress from './Progress/Progress'
 import Achievements from './Achievements'
 import { XAxis, YAxis } from '../Charting/Axis'
 import Timeline from './Timeline'
