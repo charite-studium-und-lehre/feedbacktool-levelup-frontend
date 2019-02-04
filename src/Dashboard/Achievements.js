@@ -5,12 +5,12 @@ import { faHeartbeat, faHeart, faSyringe, faHospital, faBandAid, faBookOpen, faM
 export default function Achievements() {
     const achievements = [
         {name: 'Basic Life Support', done: true, icon: faHeart}, 
-        {name: 'Advanced Life Support',  done: false, icon: faHeartbeat}, 
+        {name: 'Advanced Life Support',  done: true, icon: faHeartbeat}, 
         {name: 'Famulaturreife',  done: true, icon: faSyringe}, 
         {name: 'Pflegepraktikum',  done: true, icon: faBandAid}, 
         {name: 'Physikum',  done: true, icon: faBookOpen}, 
-        {name: 'PJ',  done: false, icon: faHospital}, 
-        {name: 'OSCE', done: false, icon: faMedkit},
+        {name: 'PJ',  done: true, icon: faHospital}, 
+        {name: 'OSCE', done: true, icon: faMedkit},
     ]
     const cards = achievements.map((a,i) => (
         <span key={i} style={{fontSize: '.7rem'}} className={`text-center m-2 flex-grow-1 ${a.done ? 'text-info' : 'text-light'}`}>
