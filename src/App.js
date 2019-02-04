@@ -28,7 +28,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Navbar isLoggedIn={this.state.loggedIn}></Navbar>
-          <Breadcrums />
+          <Breadcrumbs />
           <Route path="/login" component={login} />
           {Routes.map( route => ( route.private ?
             <PrivateRoute key={route.path} path={route.path} component={route.component} exact={route.exact} isLoggedIn={this.state.loggedIn} /> :
