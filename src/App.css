@@ -152,6 +152,7 @@ span.input-group-text {
 }
 
 
+
 /* ***********LoginSeit********** */
 
 .container-form {
@@ -212,3 +213,8 @@ svg.svg-inline--fa.fa-hospital.fa-w-14,
 svg.svg-inline--fa.fa-medkit.fa-w-16 {
   opacity: .2;
 }
+ /* text {
+  fill: black;
+ 
+} */
+
