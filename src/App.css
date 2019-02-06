@@ -148,61 +148,7 @@ span.input-group-text {
 
 .with-border {
   border-top: 2px solid #007bff;
-  border-radius: 0;
-}
-
-
-
-/* ***********LoginSeit********** */
-
-.container-form {
-  width: 550px;
-  margin: 100px auto;
-  background-color: rgb(204, 227, 247);
-  padding: 55px;
-  height: 419px;
-  border-radius: 68px 0;
-  font-size: 18px
-}
-
-/* input[type="checkbox" i] {
-  -webkit-appearance: none;
-  outline: none
-}
- input[type="checkbox"]::after{
-  content: '';
-  position: relative;
-  display: inline-block;
-  top: 7px;
-  left: -6px;
-  height: 25px;
-  width: 25px;
-  background: #ccc;
-  border: 1px solid rgb(194, 192, 192);
-}
-input[type="checkbox"]:checked + label:after {
-  font-family: 'fontawesome';
-  content: '\f103';
-  position: absolute;
-  top: -2px;
-  left: -34px;
-  font-size: 20px;
-  color: rgb(131, 131, 204);
-} */
-
-
-
-.container-form .form-control {
-  margin-bottom: 10px;
-  border-radius: 24px 0;
-  height: 40px;
-}
-.container-form button {
-  margin-top: 10px;
-  width: 100%;
-  border-radius: 24px 0;
-  height: 40px;
-  
+  border-radius: 50px 0;
 }
 
 

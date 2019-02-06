@@ -1,0 +1,75 @@
+/* ***********LoginSeit********** */
+
+.login-image {
+    background:url(./images/login.jpg) no-repeat center center;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+.container-form {
+    width: 33%;
+    margin: 100px auto;
+    background-color: rgb(204, 227, 247, .8);
+    padding: 55px;
+    /* height: 419px; */
+    border-radius: 68px 0;
+    font-size: 18px;
+    /* border: 2px solid red */
+  }
+  
+  
+  /* input[type="checkbox" i] {
+    -webkit-appearance: none;
+    outline: none
+  }
+ 
+   input[type="checkbox"]::after{
+    content: '';
+    position: relative;
+    display: inline-block;
+    top: 7px;
+    left: -6px;
+    height: 25px;
+    width: 25px;
+    background: #ccc;
+    border: 1px solid rgb(194, 192, 192);
+  }
+  input[type="checkbox"]:checked + label:after {
+    font-family: 'fontawesome';
+    content: '\f103';
+    position: absolute;
+    top: -2px;
+    left: -34px;
+    font-size: 20px;
+    color: rgb(131, 131, 204);
+  }  */
+  
+  
+  
+  .container-form .form-control {
+    margin-bottom: 10px;
+    border-radius: 24px 0;
+    height: 40px;
+  }
+   svg.svg-inline--fa.fa-lock.fa-w-14,
+   svg.svg-inline--fa.fa-envelope.fa-w-16 {
+color: red;
+position: relative;
+line-height: 100px;
+top:  -44px;
+right: -42%;
+font-size: 20px;
+z-index: 99;
+  }
+  .container-form button {
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 24px 0;
+    height: 40px;
+    
+  }
+  
