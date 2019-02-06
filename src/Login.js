@@ -46,12 +46,12 @@ const Login = props => (
               
                
             </div>
-            {/* <div className="form-check">
+             <div className="form-group">
                 <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-                <Checkbox/>
+                <label className="form-check-label" htmlFor="exampleCheck1">Remenber me </label>
+                {/* <Checkbox/> */}
                 
-            </div> */}
+            </div> 
             <button type="button" className="btn btn-primary" onClick={() => props.handleLogin()}>Login</button>
         </form>
     </div>
