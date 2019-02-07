@@ -9,16 +9,43 @@
     height: 100%;
     width: 100%;
     overflow: hidden;
+    position: absolute;
+}
+.overlay {
+  background-image: linear-gradient( to right, rgba(236, 240, 243, 0.4), rgb(2, 28, 49, 1));
+  height: 100%; 
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* .navbar  {
+  text-align: center
+} */
+.navbar h2 {
+  color: white;
+  margin: auto;
+  letter-spacing: 2px;
+ 
 }
 .container-form {
     width: 33%;
-    margin: 100px auto;
-    background-color: rgb(204, 227, 247, .8);
+    height: 70%;
+    margin: 50px auto;
+    /* background-color: rgb(204, 227, 247, .8); */
+    /* background-color:rgba(12, 36, 56, .8); */
+    
+  background-image: linear-gradient( to right, rgba(236, 240, 243, 0.4), rgb(2, 28, 49, 1));
+
+    /* background-image: linear-gradient( rgb(204, 227, 247, .4), rgb(2, 28, 49), rgb(204, 227, 247, .4)); */
     padding: 55px;
     /* height: 419px; */
     border-radius: 68px 0;
     font-size: 18px;
-    /* border: 2px solid red */
+    border: 2px solid  black; 
+    position: relative;
+    z-index: 2;
+    box-shadow: 20px 20px 20px 
   }
   
   
@@ -48,7 +75,11 @@
     color: rgb(131, 131, 204);
   }  */
   
+  .form-group .right {
+    color: white;
+    float: right;
   
+  }
   
   .container-form .form-control {
     margin-bottom: 10px;
@@ -65,11 +96,20 @@ right: -42%;
 font-size: 20px;
 z-index: 99;
   }
+  svg.svg-inline--fa.fa-sign-in-alt.fa-w-16 {
+    color: red;
+    float:right;
+    font-size: 20px;
+    margin-right: 5px;
+    position: absolute;
+    right: 10px;
+    
+  }
   .container-form button {
     margin-top: 10px;
     width: 100%;
     border-radius: 24px 0;
     height: 40px;
-    
+   
   }
   
