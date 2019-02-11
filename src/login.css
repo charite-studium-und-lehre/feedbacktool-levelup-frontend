@@ -12,31 +12,29 @@
     position: absolute;
 }
 .overlay {
-  background-image: linear-gradient( to right, rgba(236, 240, 243, 0.4), rgb(2, 28, 49, 1));
+  background-image: linear-gradient( to right, rgba(236, 240, 243, 0.4), rgb(2, 28, 49, .8));
+  /* background: rgba(14, 14, 14, 0.3); */
   height: 100%; 
   width: 100%;
   position: absolute;
   top: 0;
   left: 0;
 }
-/* .navbar  {
-  text-align: center
-} */
+
 .navbar h2 {
   color: white;
-  padding: 12px 33px;
+  padding: 12px 38px;
   margin: 20px auto;
   border-radius: 33px 0;
   letter-spacing: 2px;
   background-image: linear-gradient( to right, rgba(236, 240, 243, 0.4), rgb(2, 28, 49, 1));
   box-shadow: 10px 10px 10px  rgb(2, 28, 49, 1);
   border: 2px solid  black; 
- 
 }
 .container-form {
-    width: 33%;
-    height: 450px;
-    margin: 40px auto;
+    width: 30%;
+    height: 55%;
+    margin: 80px auto;
     /* background-color: rgb(204, 227, 247, .8); */
     /* background-color:rgba(12, 36, 56, .8); */
     
