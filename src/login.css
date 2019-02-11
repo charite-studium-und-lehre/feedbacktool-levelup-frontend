@@ -24,57 +24,40 @@
 } */
 .navbar h2 {
   color: white;
-  margin: auto;
+  padding: 12px 33px;
+  margin: 20px auto;
+  border-radius: 33px 0;
   letter-spacing: 2px;
+  background-image: linear-gradient( to right, rgba(236, 240, 243, 0.4), rgb(2, 28, 49, 1));
+  box-shadow: 10px 10px 10px  rgb(2, 28, 49, 1);
+  border: 2px solid  black; 
  
 }
 .container-form {
     width: 33%;
-    height: 70%;
-    margin: 50px auto;
+    height: 450px;
+    margin: 40px auto;
     /* background-color: rgb(204, 227, 247, .8); */
     /* background-color:rgba(12, 36, 56, .8); */
     
   background-image: linear-gradient( to right, rgba(236, 240, 243, 0.4), rgb(2, 28, 49, 1));
 
     /* background-image: linear-gradient( rgb(204, 227, 247, .4), rgb(2, 28, 49), rgb(204, 227, 247, .4)); */
-    padding: 55px;
+    padding: 50px 55px;
     /* height: 419px; */
     border-radius: 68px 0;
     font-size: 18px;
     border: 2px solid  black; 
     position: relative;
     z-index: 2;
-    box-shadow: 20px 20px 20px 
+    box-shadow: 20px 15px 20px rgb(2, 28, 49, 1)
   }
+  .container-form .h2-login {
+    color: white;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
   
-  
-  /* input[type="checkbox" i] {
-    -webkit-appearance: none;
-    outline: none
   }
- 
-   input[type="checkbox"]::after{
-    content: '';
-    position: relative;
-    display: inline-block;
-    top: 7px;
-    left: -6px;
-    height: 25px;
-    width: 25px;
-    background: #ccc;
-    border: 1px solid rgb(194, 192, 192);
-  }
-  input[type="checkbox"]:checked + label:after {
-    font-family: 'fontawesome';
-    content: '\f103';
-    position: absolute;
-    top: -2px;
-    left: -34px;
-    font-size: 20px;
-    color: rgb(131, 131, 204);
-  }  */
-  
   .form-group .right {
     color: white;
     float: right;
@@ -86,30 +69,33 @@
     border-radius: 24px 0;
     height: 40px;
   }
+  ::-webkit-input-placeholder {
+    font-weight: bold
+  }
    svg.svg-inline--fa.fa-lock.fa-w-14,
    svg.svg-inline--fa.fa-envelope.fa-w-16 {
-color: red;
-position: relative;
-line-height: 100px;
-top:  -44px;
-right: -42%;
-font-size: 20px;
-z-index: 99;
-  }
-  svg.svg-inline--fa.fa-sign-in-alt.fa-w-16 {
     color: red;
-    float:right;
+    position: relative;
+    line-height: 100px;
+    top:  -44px;
+    right: -42%;
     font-size: 20px;
-    margin-right: 5px;
-    position: absolute;
-    right: 10px;
-    
+    z-index: 99;
+    transition: .5s ease-in-out;
   }
+  .container-form input[type ='email']:focus ~ svg    {
+    right: -58%;
+  }
+  .container-form input[type ='password']:focus ~ svg    {
+    right: -58%;
+  }
+
   .container-form button {
     margin-top: 10px;
     width: 100%;
     border-radius: 24px 0;
     height: 40px;
-   
+    font-weight: bold;
+    letter-spacing: 1px;
   }
   
