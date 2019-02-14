@@ -29,7 +29,7 @@ export default function Navbar(props) {
                         <NavLink className="nav-link" to="/practicals">Ärztliche Tätigkeiten</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/counselling">Beratung</NavLink>
+                        <NavLink className="nav-link" to="/beratung">Beratung</NavLink>
                     </li>
                 </ul>
                 <ul className="navbar-nav">

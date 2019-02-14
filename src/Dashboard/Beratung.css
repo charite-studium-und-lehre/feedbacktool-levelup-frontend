@@ -1,0 +1,34 @@
+
+.beratung {
+    border: 1px solid #ccc;
+    padding: 20px 0;
+
+}
+
+.beratung-foto {
+    background:url(../images/beratung.jpg) no-repeat center center;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    height: 400px;
+    width: 800px
+  
+}
+.beratund-text {
+    /* border: 2px solid black */
+}
+.beratug-card {
+    margin-top: 60px
+}
+.beratug-card .col-md-4 {
+    margin-bottom: 20px;
+   
+}
+h2 {
+    /* text-align: center */
+}
+.beratug-card .card-body {
+    background: rgb(236, 234, 234);
+   
+}

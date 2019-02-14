@@ -9,7 +9,7 @@ import Login from './Login'
 import Breadcrumbs from './Core/Breadcrumbs'
 import PrivateRoute from './Core/PrivateRoute'
 import Routes from './Core/Routes'
-import Beratung from './Dashboard/beratung';
+import Beratung from './Dashboard/Beratung';
 
 class App extends Component {
   constructor(props) {
