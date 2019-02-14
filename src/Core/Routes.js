@@ -7,6 +7,7 @@ import Questions from '../Exams/Semester/Questions'
 import Ptm from '../Exams/Ptm/Ptm'
 import Strengths from '../Strengths/Strengths'
 import Stations from '../Exams/Stations/Stations'
+import Consulting from '../consulting/Consulting'
 
 const Routes = [
   {
@@ -23,6 +24,14 @@ const Routes = [
     exact: true,
     private: true,
   },
+  {
+    path: '/consulting',
+    component: Consulting,
+    breadcrumb: () => <Link to="/consulting">Beratung</Link>,
+    exact: true,
+    private: true,
+  },
+
   {
     path: '/exams/semester/:test',
     component: Semester,

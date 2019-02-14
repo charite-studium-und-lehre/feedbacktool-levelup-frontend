@@ -1,34 +1,37 @@
 
-.beratung {
+.consulting {
     border: 1px solid #ccc;
     padding: 20px 0;
 
 }
 
-.beratung-foto {
+.consulting-foto {
     background:url(../images/beratung.jpg) no-repeat center center;
     -webkit-background-size: cover;
     -o-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     height: 400px;
-    width: 800px
+    width:100%
   
 }
-.beratund-text {
+.consulting-text {
     /* border: 2px solid black */
 }
-.beratug-card {
+.consulting-link .extern-link {
+    display: block;
+    padding: .5em 0 ;
+    border-bottom: 1px solid black
+}
+.consulting-card {
     margin-top: 60px
 }
-.beratug-card .col-md-4 {
+.consulting-card .col-md-4 {
     margin-bottom: 20px;
    
 }
-h2 {
-    /* text-align: center */
-}
-.beratug-card .card-body {
+
+.consulting-card .card-body {
     background: rgb(236, 234, 234);
    
 }
