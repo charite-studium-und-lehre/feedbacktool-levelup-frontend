@@ -13,7 +13,7 @@ export default function Dashboard() {
     return (
         <div className="container-fluid">
           <div className="row">
-            <div className="col-lg-8">
+            <div className="col-lg-12">
                 <div className="row mt-2">
                     <div className="col-12">
                         <Progress />
@@ -24,9 +24,6 @@ export default function Dashboard() {
                         <Timeline data={graphs.data} />
                     </div>
                 </div>
-            </div>
-            <div className="col-lg-4 mt-2">
-                <Achievements></Achievements>
             </div>
           </div>
             <div className="row">
