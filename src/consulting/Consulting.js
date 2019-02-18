@@ -15,7 +15,7 @@ export default function Consulting (props) {
                     </div>
                 </div>
                 <div className="col-md-5 consulting-text">
-                    <h2 className="text-center">Beratung</h2>
+                    <h1>Beratung</h1>
                     <p>Im Laufe des Studiums wirst du sicherlich schon einige
                          Situationen erlebt haben in denen du einen professionellen Rat zu den
                          diversen Themen des Studienalltags gebraucht hättest.  Damit du immer gut informiert bist, wer dir in der jeweiligen
@@ -27,27 +27,29 @@ export default function Consulting (props) {
                         vertrauensvollen  Ansprechpartner für eventuelle Probleme im Studium benötigst, dann wende dich direkt per Mail an:
                             medicoach@charite.de
                           </p>
-             <button type="button" className="btn btn-primary">Mehr erfahren</button>
+                     <button type="button" className="btn btn-primary">Mehr erfahren</button>
                 </div>
                 <div className="col-md-2">
                     <div className="consulting-link">
-                    <ul className="list-group ">
-                    <h3 className="text-center">Externe Beratung</h3>
-                    <Link className="extern-link text-center list-group-item" to="">Link</Link>
-                    <Link className="extern-link text-center list-group-item" to="">Link</Link>
-                    <Link className="extern-link text-center list-group-item" to="">Link</Link>
-                    <Link className="extern-link text-center list-group-item" to="">Link</Link>
-                    <Link className="extern-link text-center list-group-item" to="">Link</Link>
-                    <Link className="extern-link text-center list-group-item" to="">Link</Link>
-                    <Link className="extern-link text-center list-group-item" to="">Link</Link>
-                    <Link className="extern-link text-center list-group-item" to="">Link</Link>
-                    <Link className="extern-link text-center list-group-item" to="">Link</Link>
-
+                    <ul className="list-group list-group-flush ">
+                    <h4 className="text-center">Externe Beratung</h4>
+                    <Link className="extern-link text-center list-group-item" to="">Externe Beratung</Link>
+                    <Link className="extern-link text-center list-group-item" to="">Externe Beratung</Link>
+                    <Link className="extern-link text-center list-group-item" to="">Externe Beratung</Link>
+                    <Link className="extern-link text-center list-group-item" to="">Externe Beratung</Link>
+                    <Link className="extern-link text-center list-group-item" to="">Externe Beratung</Link>
+                    <Link className="extern-link text-center list-group-item" to="">Externe Beratung</Link>
+                    <Link className="extern-link text-center list-group-item" to="">Externe Beratung</Link>
+                    <Link className="extern-link text-center list-group-item" to="">Externe Beratung</Link>
+                    <Link className="extern-link text-center list-group-item" to="">Externe Beratung</Link>
+                 
+                   
                     </ul>
                     </div>
                 </div>
             </div>
-            <h2 className="text-center">Charitè Beratung</h2>
+            <div  className=" consulting-card">
+            <h1 className="text-center">Charitè Beratung</h1>
             <div className="row consulting-card">
                 <ConsultingCard h2="MediCoach" />
                 <ConsultingCard h2="FamilienBüro" />
@@ -55,10 +57,11 @@ export default function Consulting (props) {
                 <ConsultingCard h2="Peer Mentoring" />
                 <ConsultingCard h2="Student Mentoring" />
                 <ConsultingCard h2="Fachschaft" />
-                <ConsultingCard h2="Referat für Referat für Studienangelegenheiten" />
+                <ConsultingCard h2="Referat für Studienangelegenheiten" />
                 <ConsultingCard h2="Frauen-und Gleichstellungsbeauftragte" />
                 <ConsultingCard h2="Geschäftsstelle für gute wissenschaftliche Praxis" />
 
+            </div>
             </div>
         </div>
     )

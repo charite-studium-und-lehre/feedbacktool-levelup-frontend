@@ -1,7 +1,7 @@
 
 .consulting {
-    border: 1px solid #ccc;
-    padding: 20px 0;
+    border: 2px solid #ccc;
+    padding: 1.5em 0;
 
 }
 
@@ -11,27 +11,52 @@
     -o-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
-    height: 400px;
+    margin-top: 6.8em;
+    height: 24em;
     width:100%
   
 }
 .consulting-text {
-    /* border: 2px solid black */
+    /* border: solid 2px black  */
 }
+.consulting-text h1 {
+   margin: .4em 0 1em 0;
+}
+.consulting-link h4 {
+    margin: 2.2em 0 1em 0;
+    
+}
+
+.consulting-card {
+    margin-top: 3em
+}
+ .consulting-link .list-group {
+
+ }
 .consulting-link .extern-link {
-    display: block;
+  color: blue;
     padding: .5em 0 ;
     border-bottom: 1px solid black
+    
 }
-.consulting-card {
-    margin-top: 60px
-}
+
 .consulting-card .col-md-4 {
     margin-bottom: 20px;
    
 }
 
 .consulting-card .card-body {
-    background: rgb(236, 234, 234);
-   
+    background: white;
+      
+}
+.consulting-card .consulting-icon h4 {
+    margin: 1em 0 
+}
+.consulting-card .consulting-icon > div {
+    margin-bottom: 1em
+}
+.consulting-card .consulting-icon  svg {
+    margin-right: 1.3em;
+    font-size: 1.3em
+
 }
