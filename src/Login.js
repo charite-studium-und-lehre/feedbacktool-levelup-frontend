@@ -3,7 +3,7 @@ import React from 'react';
 import "./login.css";
 import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faLock, faEnvelope, faSignInAlt } from '@fortawesome/free-solid-svg-icons'
+import { faLock, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 
 
