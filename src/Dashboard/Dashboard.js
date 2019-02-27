@@ -28,7 +28,7 @@ export default function Dashboard() {
           </div>
             <div className="row">
                 <div className="col-lg-4 mt-2">
-                    <Link to="/exams/stations">
+                    <Link to="/exams/stations/all">
                         <DashboardCard 
                         header={Math.round(Math.random() * 100) + ' %'} 
                         title="Stationsprüfungen" 
