@@ -1,5 +1,5 @@
 import React from 'react'
-import { XAxis, YAxis } from './Axis'
+import { XAxis } from './Axis'
 import { asChart, withHorizontalOrdinalScales } from './Chart'
 import AnimatedText from './AnimatedText'
 import { Bar } from './BarGraph'

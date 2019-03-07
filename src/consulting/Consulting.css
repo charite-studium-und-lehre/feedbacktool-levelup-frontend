@@ -39,7 +39,9 @@
     border-bottom: 1px solid black
     
 }
-
+.consulting-card h2 {
+    margin: .4em 0 .7em 0
+}
 .consulting-card .col-md-4 {
     margin-bottom: 20px;
    
@@ -52,11 +54,17 @@
 .consulting-card .consulting-icon h4 {
     margin: 1em 0 
 }
-.consulting-card .consulting-icon > div {
-    margin-bottom: 1em
+.consulting-card .consulting-icon .row {
+    padding: 1.5em 0;
+  
+}
+.consulting-card .consulting-icon .row > div {
+    margin-bottom: 2.5em;
+    
+   
 }
 .consulting-card .consulting-icon  svg {
-    margin-right: 1.3em;
+    margin-right: 1em;
     font-size: 1.3em
 
 }

@@ -8,6 +8,7 @@ import Ptm from '../Exams/Ptm/Ptm'
 import Strengths from '../Strengths/Strengths'
 import Stations from '../Exams/Stations/Stations'
 import Consulting from '../consulting/Consulting'
+import Practicals from '../Practicals/Practicals'
 
 const Routes = [
   {
@@ -18,12 +19,20 @@ const Routes = [
     private: true,
   },
   {
+    path: '/practicals',
+    component: Practicals,
+    breadcrumb: () => <Link to="/practicals">Ärtzliche Tätigkeiten</Link>,
+    exact: true,
+    private: true,
+  },
+  {
     path: '/exams/:graphs?',
     component: Exams,
     breadcrumb: () => <Link to="/exams">Prüfungen</Link>,
     exact: true,
     private: true,
   },
+
   {
     path: '/consulting',
     component: Consulting,
