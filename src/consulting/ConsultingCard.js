@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPhoneVolume, faAt, faUser, faDoorOpen } from '@fortawesome/free-solid-svg-icons'
+import { faPhoneVolume, faAt, faUser, faComments, faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons'
 
 
 class ConsultingCard extends Component {
+
     render() {
         return (
 
@@ -11,28 +12,33 @@ class ConsultingCard extends Component {
                 <div className="card ">
                     <div className="card-body">
                         <h2 className="card-title text-center ">{this.props.title}</h2>
-                        <p className="card-text">Im Laufe des Studiums wirst du sicherlich schon einige Situationen erlebt haben in denen du einen professionellen Rat zu den
-                 diversen Themen des Studienalltags gebraucht hättest.  Damit du immer gut informiert bist, wer dir in der jeweiligen
-                      Situation weiterhelfen kann, haben wir auf dieser Seite einige hilfreiche Beratungsangebote der Charitè zusammengefasst</p>
+                        <p className="card-text">{this.props.paragraph}</p>
                         <div className="consulting-icon">
                         <h4>Ansprechpartner</h4>
                         <div className="row">
-                            <div className="col-md-5">
+                            <div className="col-md-12">
                                 <FontAwesomeIcon icon={faUser} />
-                                <span>{this.props.name}</span>
+                                <span className="name1">{this.props.name1}</span>
+                                <br/>
+                                <span className="name2">{this.props.name2}</span>
                             </div>
-                            <div  className="col-md-7" >
+                            <div  className="col-md-12" >
                                 <FontAwesomeIcon icon={faAt} />
-                                <span>{this.props.email}</span>
+                                <span className="email1">{this.props.email1}</span><br/>
+                                <span  className="email2">{this.props.email2}</span><br/>
+                                <span  className="email3">{this.props.email3}</span>
                             </div>
-                            <div  className="col-md-5">
+                            <div  className="col-md-12">
                                 <FontAwesomeIcon icon={faPhoneVolume} />
                                 <span>{this.props.tel}</span>
                             </div>
-                          
-                            <div  className="col-md-7">
-                                <FontAwesomeIcon icon={faDoorOpen} />
-                                <span>{this.props.open}</span>
+                            <div  className="col-md-12">
+                                <FontAwesomeIcon icon={faMapMarkedAlt} />
+                                <span>{this.props.address}</span>
+                            </div>
+                            <div  className="col-md-12">
+                                <FontAwesomeIcon icon={faComments} />
+                                <span>{this.props.talk}</span>
                             </div>
                             </div>
                         {/* <div>

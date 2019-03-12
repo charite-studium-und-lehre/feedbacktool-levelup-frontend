@@ -59,12 +59,16 @@
   
 }
 .consulting-card .consulting-icon .row > div {
-    margin-bottom: 2.5em;
-    
-   
+    margin-bottom: 1.5em;
+}
+.consulting-card .consulting-icon .row > div > .name2,
+.consulting-card .consulting-icon .row > div > .email2,
+.consulting-card .consulting-icon .row > div > .email3{
+    padding-left: 1.9em;
+    position: absolute
 }
 .consulting-card .consulting-icon  svg {
-    margin-right: 1em;
-    font-size: 1.3em
+    margin-right: .6em;
+    font-size: 1.3em;
 
 }
