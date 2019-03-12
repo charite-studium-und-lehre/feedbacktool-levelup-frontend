@@ -4,9 +4,18 @@ import { faPhoneVolume, faAt, faUser, faComments, faMapMarkedAlt } from '@fortaw
 
 
 class ConsultingCard extends Component {
-
-    
     render() {
+let Email1 = ( 
+    this.props.email1 ? <span className="email1">{this.props.email1}</span> : null
+)
+let  Email2 = ( 
+    this.props.email2 ? <span className="email2">{this.props.email2}</span> : null
+)
+
+let  name2 = ( 
+    this.props.name2 ? <span className="name2">{this.props.name2}</span> : null
+)
+
         return (
 
             <div className="col-md-4">
@@ -21,13 +30,14 @@ class ConsultingCard extends Component {
                                 <FontAwesomeIcon icon={faUser} />
                                 <span className="name1">{this.props.name1}</span>
                                 <br/>
-                                <span className="name2">{this.props.name2}</span>
+                                {name2}
+                                
                             </div>
                             <div  className="col-md-12" >
                                 <FontAwesomeIcon icon={faAt} />
-                                <span className="email1">{this.props.email1}</span><br/>
-                                <span  className="email2">{this.props.email2}</span><br/>
-                                <span  className="email3">{this.props.email3}</span>
+                                <span className="email">{this.props.email}</span><br/>
+                                {Email1} <br/>
+                                {Email2}
                             </div>
                             <div  className="col-md-12">
                                 <FontAwesomeIcon icon={faPhoneVolume} />

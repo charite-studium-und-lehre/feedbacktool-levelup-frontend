@@ -57,9 +57,7 @@ export default function Consulting (props) {
                     name1="Dipl.-Soz. Silke Boehm"
                     name2="Dipl.-Soz. Sylvie Tappert"
                     tel=" +49 30 450 529189"
-                    email1="medicoach@charite.de" 
-                    email2={null} 
-                    email23={null} 
+                    email="medicoach@charite.de" 
                     address="Luisenstr 57 CCM "
                     talk=" Gespräch nach Terminvereinbarung"
                    
@@ -70,9 +68,9 @@ export default function Consulting (props) {
                     name1="Sabine Barleben(Leitung)"
                     name2="Stefanie Schmidt(Sekretariat)"
                     tel="+49 030 450 577 257"
-                    email1="familienbuero@charite.de"
-                    email2=" Betriebliche Sozialberatung:  über cindy.stoklossa@charite.de"
-                    email3="Väterbeauftragte:  vaeterbeauftragte@charite.de"
+                    email="familienbuero@charite.de"
+                    email1=" Betriebliche Sozialberatung:  über cindy.stoklossa@charite.de"
+                    email2="Väterbeauftragte:  vaeterbeauftragte@charite.de"
                     address="Westring 1, 1. Etage, R1.1011 CVK"
                     talk="CVK: dienstags von 11:00 bis 13:00 Uhr, Gästehaus R.0.0120
                     CCM: mittwochs von 11:00 bis 13:00 Uhr, Hufelandweg 2, EG, Raum 56|57 
@@ -84,7 +82,7 @@ export default function Consulting (props) {
                     name1="Lutz Steiner(Leitung)"
                     name2="Marta Gogluska-Obirek(Erasmus outgoing)  Angelika Cernitori(Programmstudierende aus d. Ausland, international grundständige Studierende)"
                     tel="+49 30 450 576 088 (Lutz Steiner, Leitung)"
-                    email1="erasmixpaten@charite.de" 
+                    email="erasmixpaten@charite.de" 
                     address="Reinhardtstr. 58, CCM"
                     talk=""
                 />
@@ -94,7 +92,7 @@ export default function Consulting (props) {
                    name1="Pinkus Tober-Lau"
                    name2=""
                    tel="+49 30 450 577 259"
-                   email1="XXXX@charite.de " 
+                   email="XXXX@charite.de " 
                    address="Virchowweg 24, Aufgang B, 2. Etage, R02.002, CCM"
                    talk=""
                 />
@@ -104,7 +102,7 @@ export default function Consulting (props) {
                     name1="Petra Meinhardt(Leitung)"
                     name2=""
                     tel="+49 30 450 576 091"
-                    email1="studentmentoring@charite.de Petra Meinhardt(Leitung)" 
+                    email="studentmentoring@charite.de Petra Meinhardt(Leitung)" 
                     address="Hannoversche Straße 19, 3. Etage, CCM"
                     talk=""
                 />
@@ -114,7 +112,7 @@ export default function Consulting (props) {
                     name1="Stella Berboth, Theodor Kempe (beide Sprecher)"
                     name2=""
                     tel="+49 30 450 576050"
-                    email1="sprecher@fsi-charite.de" 
+                    email="sprecher@fsi-charite.de" 
                     address="Philippstraße 12, “Hexenhaus”, CCM"
                     talk=""
                 />
@@ -124,7 +122,7 @@ export default function Consulting (props) {
                     name1="Petra Meinhardt(Leitung)"
                     name2=""
                     tel="+49 30 450 576 042 "
-                    email1="petra.meinhardt@charite.de" 
+                    email="petra.meinhardt@charite.de" 
                     address="Hannoversche Str. 19, 3.OG"
                     talk="Mo-Fr 09:00-12:00, Mo-Do 13:00-16:00(Telefonisch)
                           Di, Do, Fr: 9:30-12:30, Di 13:30-16:00(Sprechzeiten)"
@@ -135,7 +133,7 @@ export default function Consulting (props) {
                     name1="Dr. Christine Kurmeyer"
                     name2=""
                     tel="+49 30 450 577 252"
-                    email1="" 
+                    email="" 
                     address="Westring 1, CVK"
                     talk=""
                    
@@ -146,7 +144,7 @@ export default function Consulting (props) {
                     name1="Claudia Mathan"
                     name2=""
                     tel="+49 30 450 576 056"
-                    email1="gwp@charite.de" 
+                    email="gwp@charite.de" 
                     address=""
                     talk=""
                 />
