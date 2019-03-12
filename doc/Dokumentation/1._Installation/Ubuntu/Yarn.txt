@@ -18,6 +18,7 @@ sudo apt install yarn
 '''
 yarn config set https-proxy http://proxy.charite.de:8080
 yarn config set http-proxy http://proxy.charite.de:8080
+yarn config set proxy http://proxy.charite.de:8080
 '''
 
 
