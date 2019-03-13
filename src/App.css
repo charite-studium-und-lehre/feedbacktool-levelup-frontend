@@ -133,6 +133,17 @@ span.input-group-text {
   font-size: .7rem;
   height: .8rem;
   width: 100%;
+  position: relative;
+}
+
+.question-bar > div.dot {
+  position: absolute;
+  top: .15rem;
+  height: .5rem;
+  width: .5rem;
+  background-color: rgba(168, 57, 57, 0.386);
+  border-radius: .25rem;
+  border: 1px solid rgba(0,0,0,.2)
 }
 
 .nav-link {
@@ -150,16 +161,16 @@ span.input-group-text {
   border-top: 2px solid #007bff;
 }
 
-
-/* ***********Achievements Seit********** */
-
-svg.svg-inline--fa.fa-heartbeat.fa-w-16,
-svg.svg-inline--fa.fa-hospital.fa-w-14,
-svg.svg-inline--fa.fa-medkit.fa-w-16 {
-  opacity: .2;
+.with-shadow {
+  box-shadow: 1px 1px 5px rgba(0,0,0,.2);
 }
- /* text {
-  fill: black;
- 
-} */
 
+.checklist {
+  white-space: nowrap;
+  overflow: auto;
+  margin: 0 -2.5rem;
+}
+
+.checklist > div {
+  margin: 0 2.5rem;
+}

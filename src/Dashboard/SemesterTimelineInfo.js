@@ -2,14 +2,16 @@ import React from 'react'
 import _ from 'lodash'
 import { Link } from 'react-router-dom'
 import { HorizontalBarChart } from '../Charting/HorizontalBarGraph'
+const bars = ['Durchschnitt', 'Dein Ergebnis']
 
 const SemesterInfo = props => {
-    const data = new Array(4).fill(0).map((d,i) => ({y: `Modul 0${i+1}`, x: _.random(5,100)}))
+    const data = bars.map((d, i) => ({y: d, x: i ? props.data.mean : props.data.result }))
 
     return (<div>
-        <div>Dein Ergebnis:<span className="font-italic"> {props.data.result} %</span></div>
-        <div>Durchschnitt:<span className="font-italic"> {props.data.mean} %</span></div>
-        <span className="text-primary float-right" onClick={() => props.onClose()}>schließen</span>
+        <div className="mt-1" style={{height: '4.3rem'}}>
+            <HorizontalBarChart noaxis yDomain={bars} data={data} />
+        </div>
+        <span className="text-primary float-right" style={{cursor: 'pointer'}} onClick={() => props.onClose()}>schließen</span>
         <Link to={`/exams/semester/${props.data.label}`}>
             <span className="text-primary">Details</span>
         </Link>

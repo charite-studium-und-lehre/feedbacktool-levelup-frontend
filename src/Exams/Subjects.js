@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 const Subjects = [
     {
         title: "Vorklinische Fächer",
@@ -42,5 +44,5 @@ const Subjects = [
     }
 ]
 
-const SubjectsWithNumbers = () => Subjects.map( cat => ({ ...cat, subjects: cat.subjects.map( s => ({ title: s, questions: Math.floor(Math.random() * 20) }))}))
+const SubjectsWithNumbers = () => Subjects.map( cat => ({ ...cat, subjects: cat.subjects.map( s => ({ title: s, questions: _.random(1,20) }))}))
 export default SubjectsWithNumbers
