@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import PracticalsItem from './PracticalsItem'
-import BarChart from "./scaleLine"
-import {select} from "d3"
-
+import D3chart from "./scaleLine"
+// import {select} from "d3"
 
 
 class Practicals extends Component {
@@ -16,7 +15,7 @@ class Practicals extends Component {
             <div className="practicals" >
                 <div className="row">
                     <div className="col-md-8"  >
-                    <BarChart/>
+                    <D3chart/>
                     </div>
                     <div className="col-md-4">
                      <PracticalsItem/>
