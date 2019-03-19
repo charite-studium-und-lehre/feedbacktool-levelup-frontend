@@ -1,0 +1,73 @@
+
+.consulting {
+    border: 2px solid #ccc;
+    padding: 1.5em 0;
+
+}
+
+.consulting-foto {
+    background:url(../images/beratung.jpg) no-repeat center center;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    margin-top: 6.8em;
+    height: 24em;
+    width:100%
+  
+}
+.consulting-text {
+    /* border: solid 2px black  */
+}
+.consulting-text h1 {
+   margin: .4em 0 1em 0;
+}
+.consulting-link h4 {
+    margin: 2.2em 0 1em 0;
+    
+}
+
+.consulting-card {
+    margin-top: 3em
+}
+ .consulting-link .list-group {
+
+ }
+.consulting-link .extern-link {
+  color: blue;
+    padding: .5em 0 ;
+    border-bottom: 1px solid black
+    
+}
+.consulting-card h2 {
+    margin: .4em 0 .7em 0
+}
+.consulting-card .col-md-4 {
+    margin-bottom: 20px;
+   
+}
+
+.consulting-card .card-body {
+    background: white;
+      
+}
+.consulting-card .consulting-icon h4 {
+    margin: 1em 0 
+}
+.consulting-card .consulting-icon .row {
+    padding: 1.5em 0;
+  
+}
+.consulting-card .consulting-icon .row > div {
+    margin-bottom: 1.5em;
+}
+.consulting-card .consulting-icon .row > div > .name2,
+.consulting-card .consulting-icon .row > div > .email1,
+.consulting-card .consulting-icon .row > div > .email2{
+    padding-left: 1.9em;
+}
+.consulting-card .consulting-icon  svg {
+    margin-right: .6em;
+    font-size: 1.3em;
+
+}

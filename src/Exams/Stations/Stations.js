@@ -18,7 +18,7 @@ class Stations extends Component {
         const exams = _.uniq(_.flatMap(data, e => e.stations).map(d => d.exam))
         this.categoryColors = c => colors(categories.indexOf(c))
         const categoryFilters = categories.map(c => ({label: c, pred: d => d.category === c , selected: true, color: this.categoryColors(c) }))
-        const examFilters = exams.map(e => ({ label: e, pred: d => d.exam === e, selected: e === match.params.test }))
+        const examFilters = exams.map(e => ({ label: e, pred: d => d.exam === e, selected: e === match.params.test || match.params.test === 'all'}))
         this.state = { categoryFilters, examFilters }
         this.selectItem = this.selectItem.bind(this)
     }

@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
 import { scaleBand } from 'd3-scale'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowCircleRight, faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons'
 import { asChart } from '../../Charting/Chart'
 import Tile from './Tile'
+import Checklist from './Checklist'
 import tree from './tree'
 
 const Hex = asChart(props => {
@@ -43,14 +46,16 @@ class Progress extends Component {
 
     render() {
         return (
-            <div className="card progress-card with-border" style={{overflow: 'hidden'}}>
+            <div className="card progress-card with-border">
                 <div className="card-body">
                     <h5 className="card-title">Dein Studienfortschritt</h5>
                     <div className="card-text">
                     Hier siehst Du deinen Studienfortschritt und deine bereits erreichten Meilensteinen.
                     </div>
-                    <div style={{height: '15rem'}}>
-                        <Hex scale={this.state.scale} offset={this.state.offset} data={tree} onClick={this.zoom} />
+                    <div className="checklist">
+                        <div>
+                        {tree.entries.map(d => <Checklist key={d.label} className="d-inline-block" data={d} onClick={this.zoom} /> )}
+                        </div>
                     </div>
                     <div className="mt-3">
                         <a className="text-primary" style={{fontSize: '.8rem', cursor:'pointer'}} onClick={() => this.zoomOut()}>zurück</a>
