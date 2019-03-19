@@ -1,0 +1,49 @@
+.practicals svg {
+    width: 101%;
+    height: 100%;
+    padding-bottom: 100px
+}
+.practicals-path {
+    fill: none;
+    stroke: red;
+    stroke-width: 2
+}
+.x_axis .y_axis {
+    fill: black
+}
+.practicals .col-md-9 {
+    padding-bottom: 20px
+}
+.PracticalsItem {
+margin-right: auto
+}
+/* .react-slidedown.my-dropdown-slidedown {
+    transition-duration: 1.2s;
+    transition-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
+} */
+.react-slidedown {
+    transition-duration: .5s;
+    transition-timing-function: ease-in-out;
+    
+}
+
+.panel {
+    width: 200px;
+    height: 100px;
+    background: gray;
+    margin-top: 10px;
+}
+
+.example-enter {
+    height: 0px;
+}
+
+.example-enter.example-enter-active {
+    height: 100px;
+    -webkit-transition: height .3s ease;
+}
+
+.example-leave.example-leave-active {
+    height: 0px;
+    -webkit-transition: height .3s ease;
+}
