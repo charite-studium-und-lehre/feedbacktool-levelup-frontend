@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { Route, Redirect } from 'react-router'
 import 'd3-transition'
-
 import './App.css';
 import Navbar from './Core/navbar'
 import Login from './Login'
@@ -10,20 +9,26 @@ import Breadcrumbs from './Core/Breadcrumbs'
 import PrivateRoute from './Core/PrivateRoute'
 import Routes from './Core/Routes'
 
+
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {loggedIn: false};
+    this.state = {loggedIn: true};
   }
 
   render() {
     let navbar = (
       <Navbar isLoggedIn={this.state.loggedIn}></Navbar>
     )
+    let breadcrumbs =  (
+<Breadcrumbs />
+    )
+    
     let login
     if(!this.state.loggedIn) {
       login = () => (<Login handleLogin={() => this.setState({loggedIn: true})}></Login>);
-      navbar = null
+      navbar = false
+      breadcrumbs = false
     } else {
       login = () => (<Redirect to="/"></Redirect>);
     }
@@ -32,7 +37,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           {navbar}
-          <Breadcrumbs />
+          {breadcrumbs}
           <Route path="/login" component={login} />
           {Routes.map( route => ( route.private ?
             <PrivateRoute key={route.path} path={route.path} component={route.component} exact={route.exact} isLoggedIn={this.state.loggedIn} /> :
