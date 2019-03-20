@@ -2,7 +2,9 @@
 import React, { Component } from 'react'
 import PracticalsItem from './PracticalsItem'
 import D3chart from "./scaleLine"
-import Checkbox from '../Exams/Checkbox'
+import PracticalCheckbox from './PracticalCheckbox'
+import TätigkeitenList from './TätigkeitenList'
+import "./practicals.css"
 
 
 
@@ -15,30 +17,16 @@ class Practicals extends Component {
                     <div className="row">
                         <div className="col-md-9">
                             <D3chart />
+                            <PracticalCheckbox />
+                            <TätigkeitenList/>
                         </div>
                         <div className="col-md-3">
-                              <PracticalsItem/>
+                            <PracticalsItem />
                         </div>
 
                     </div>
                 </div>
-                <div className="row">
-                <div className=" row col-md-9">
-                <div className="col-md">
-                <Checkbox label="Ich habe"/>
-                        </div>
-                        <div className="col-md">
-                <Checkbox label="Ich Kann"/>
-                        </div>
-                        <div className="col-md">
-                <Checkbox label="Ich Kann"/>
-                        </div>
-                        <div className="col-md">
-                <Checkbox label="Ich Kann"/>
-                        </div>
-                        </div>
-                       
-                </div>
+
             </div>
 
 

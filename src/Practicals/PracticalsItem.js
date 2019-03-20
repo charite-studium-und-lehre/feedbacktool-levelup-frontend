@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { SlideDown } from 'react-slidedown'
 import MyDropdownItem from './MyDropdownItem'
 
-import "./practicals.css"
+
 
 
 
@@ -72,18 +72,22 @@ class PracticalsItem extends Component {
           <MyDropdown open={this.state.open1}>
           <MyDropdownItem/>
           </MyDropdown>
+
           <button type="button" className="btn btn-secondary" onClick={this.handleClick2} >2. Ärztliche Prozeduren 1</button>
           <MyDropdown open={this.state.open2}>
           <MyDropdownItem/>
           </MyDropdown>
+
           <button type="button" className="btn btn-secondary" onClick={this.handleClick3} >3. Kommunikation mit Patienten</button>
           <MyDropdown open={this.state.open3}>
           <MyDropdownItem/>
           </MyDropdown>
+
           <button type="button" className="btn btn-secondary" onClick={this.handleClick4} >4. Kommunikation und Zusammenarbeit mit Kollegen</button>
           <MyDropdown open={this.state.open4}>
           <MyDropdownItem/>
           </MyDropdown>
+
           <button type="button" className="btn btn-secondary" onClick={this.handleClick5} >5. Weitere ärztliche professionelle Tätigkeit</button>
           <MyDropdown open={this.state.open5}>
           <MyDropdownItem/>

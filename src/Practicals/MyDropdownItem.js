@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { SlideDown } from 'react-slidedown'
+import MyDropdownList from './MyDropdownList'
 
 
 
@@ -21,14 +22,13 @@ class MyDropdownItem extends Component {
           open2: false,
           open3: false,
           open4: false,
-          open5: false
     
         };
         this.handleClick1 = this.handleClick1.bind(this)
         this.handleClick2 = this.handleClick2.bind(this)
         this.handleClick3 = this.handleClick3.bind(this)
         this.handleClick4 = this.handleClick4.bind(this)
-        this.handleClick5 = this.handleClick5.bind(this)
+       
     
       }
 
@@ -54,26 +54,24 @@ class MyDropdownItem extends Component {
           open4: !this.state.open4,
         });
       }
-      handleClick5() {
-        this.setState({
-          open5: !this.state.open5,
     
-        });
-      }
+      
   render() {
     return (
       <div className="MyDropdownItem">
     <button type="button" className="btn btn-primary" onClick={this.handleClick1} >1.1 </button>
     <MyDropdown open={this.state.open1}>
-    <ul class="list-group">
-  <li className="list-group-item">Cras justo odio</li>
-  <li className="list-group-item">Dapibus ac facilisis in</li>
-  <li className="list-group-item">Morbi leo risus</li>
-  <li className="list-group-item">Porta ac consectetur ac</li>
-  <li className="list-group-item">Vestibulum at eros</li>
-</ul>
-          </MyDropdown>
+    <MyDropdownList/>
+    </MyDropdown>
    
+    <button type="button" className="btn btn-primary" onClick={this.handleClick2} >1.1 </button>
+    <MyDropdown open={this.state.open2}>
+    <MyDropdownList/>
+    </MyDropdown>
+    <button type="button" className="btn btn-primary" onClick={this.handleClick3} >1.1 </button>
+    <MyDropdown open={this.state.open3}>
+    <MyDropdownList/>
+    </MyDropdown>
         </div>
 
     )

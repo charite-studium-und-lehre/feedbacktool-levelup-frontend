@@ -11,15 +11,20 @@ import { curveMonotoneX } from 'd3-shape'
 
 
 
-const createData1 = () => _.range(1,11).map(i => ({Semester: `Semester${i}`, tatig: _.random(1,6)}))
-const createData2 = () => _.range(1,11).map(i => ({Semester: `Semester${i}`, tatig: _.random(1,6)}))
+const createData1 = () => _.range(1,7).map(i => ({Semester: `Semester${i}`, tatig: _.random(1,6)}))
+const createData2 = () => _.range(1,7).map(i => ({Semester: `Semester${i}`, tatig: _.random(1,6)}))
+const createData3 = () => _.range(1,7).map(i => ({Semester: `Semester${i}`, tatig: _.random(1,6)}))
+const createData4 = () => _.range(1,7).map(i => ({Semester: `Semester${i}`, tatig: _.random(1,6)}))
+
 
 class D3chart extends Component{
     constructor(props){
         super(props)
     this.state = {
         data1 :createData1(),
-        data2 :createData2()
+        data2 :createData2(),
+        data3 :createData1(),
+        data4 :createData2()
          }
        
         
@@ -29,27 +34,44 @@ class D3chart extends Component{
    
         this.setState({
           data1 : createData1(),
-          data2 :createData2()
+          data2 :createData2(),
+          data3 : createData1(),
+          data4 :createData2()
         })
         // console.log(createData())
     }
        
-    debugger;
+  
 
     render(){
-      
+      let LineGraph1 = (
+        <LineGraph data={this.state.data1.map(d => ({x: d.Semester, y: d.tatig}))} color="rgba(64,64,64,.3)"></LineGraph>
+      )
+      let LineGraph2 = (
+        <LineGraph data={this.state.data2.map(d => ({x: d.Semester, y: d.tatig}))} color="rgba(64,64,64,.3)"></LineGraph>
+      )
+      let LineGraph3 = (
+        <LineGraph data={this.state.data3.map(d => ({x: d.Semester, y: d.tatig}))} color="rgba(64,64,64,.3)"></LineGraph>
+      )
+      let LineGraph4 = (
+        <LineGraph data={this.state.data4.map(d => ({x: d.Semester, y: d.tatig}))} color="rgba(64,64,64,.3)"></LineGraph>
+      )
         return (
             <div className="chart" >
                 <h3>Deine Ärztliche Tätigkeiten</h3>
                 <button onClick={this.Change}> change</button> 
               
                
-                <div className="">
-                <OrdinalChart yDomain={[1,6]} xDomain={this.state.data1.map((Semester1)=> Semester1.Semester)}>
+                <div className="Practicals-line">
+                <OrdinalChart yDomain={[0,6]} xDomain={this.state.data1.map((Semester1)=> Semester1.Semester)}>
                                 <XAxis />
-                                <YAxis label="jij" />
-                                <LineGraph data={this.state.data1.map(d => ({x: d.Semester, y: d.tatig}))} color="rgba(64,64,64,.3)"></LineGraph>
-                                <LineGraph data={this.state.data2.map(d => ({x: d.Semester, y: d.tatig}))} color="rgba(64,64,64,.3)"></LineGraph>
+                                <YAxis />
+                                   {LineGraph1}
+                                   {LineGraph2}
+                                   {LineGraph3}
+                                   {LineGraph4}
+
+                                
                 </OrdinalChart>
                  </div>
             </div>

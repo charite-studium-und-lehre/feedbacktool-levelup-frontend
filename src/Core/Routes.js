@@ -18,13 +18,7 @@ const Routes = [
     exact: true,
     private: true,
   },
-  {
-    path: '/practicals',
-    component: Practicals,
-    breadcrumb: () => <Link to="/practicals">Ärtzliche Tätigkeiten</Link>,
-    exact: true,
-    private: true,
-  },
+  
   {
     path: '/exams/:graphs?',
     component: Exams,

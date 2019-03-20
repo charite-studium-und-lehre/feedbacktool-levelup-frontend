@@ -1,21 +1,13 @@
-.practicals svg {
-    width: 101%;
-    height: 100%;
-    padding-bottom: 100px
+.Practicals-line {
+height: 20em;
 }
-.practicals-path {
-    fill: none;
-    stroke: red;
-    stroke-width: 2
+
+.Practicals .chart {
+    margin-bottom: 2em;
 }
-.x_axis .y_axis {
-    fill: black
-}
-.practicals .col-md-9 {
-    padding-bottom: 20px
-}
-.PracticalsItem {
-margin-right: auto
+
+.TätigkeitenList {
+    margin-top: 3em
 }
 
 .my-dropdown-slidedown {
@@ -23,25 +15,4 @@ margin-right: auto
     transition-timing-function: ease
     ;
     
-}
-
-.panel {
-    width: 200px;
-    height: 100px;
-    background: gray;
-    margin-top: 10px;
-}
-
-.example-enter {
-    height: 0px;
-}
-
-.example-enter.example-enter-active {
-    height: 100px;
-    -webkit-transition: height .3s ease;
-}
-
-.example-leave.example-leave-active {
-    height: 0px;
-    -webkit-transition: height .3s ease;
 }
