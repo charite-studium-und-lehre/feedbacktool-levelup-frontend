@@ -36,28 +36,33 @@ class PracticalsItem extends Component {
 
 
   handleClick1() {
+    this.props.selectGraph(1)
     this.setState({
       open1: !this.state.open1,
 
     });
   }
   handleClick2() {
+    this.props.selectGraph(2)
     this.setState({
       open2: !this.state.open2,
 
     });
   }
   handleClick3() {
+    this.props.selectGraph(3)
     this.setState({
       open3: !this.state.open3
     });
   }
   handleClick4() {
+    this.props.selectGraph(0)
     this.setState({
       open4: !this.state.open4,
     });
   }
   handleClick5() {
+    this.props.selectGraph(0)
     this.setState({
       open5: !this.state.open5,
 

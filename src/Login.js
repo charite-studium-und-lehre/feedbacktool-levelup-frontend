@@ -1,7 +1,6 @@
 
 import React from 'react';
 import "./login.css";
-import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLock, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 

@@ -21,13 +21,7 @@ class D3chart extends Component{
     constructor(props){
         super(props)
     this.state = {
-        data1 : createData1(),
-        data2 : createData2(),
-        data3 : createData3(),
-        data4 : createData4(),
-
-    
-
+        data : [createData1(), createData2(), createData3(), createData4()]
          }
        
         
@@ -36,10 +30,7 @@ class D3chart extends Component{
     Change = () => {
    
         this.setState({
-          data1 : createData1(),
-          data2 : createData2(),
-          data3 : createData3(),
-          data4 : createData4()
+            data : [createData1(), createData2(), createData3(), createData4()]
         })
        
     }
@@ -47,18 +38,7 @@ class D3chart extends Component{
   
 
     render(){
-      let LineGraph1 = (
-        <LineGraph data={this.state.data1.map(d => ({x: d.Semester, y: d.tatig}))} color="rgba(64,64,64,.3)"></LineGraph>
-      )
-      let LineGraph2 = (
-        <LineGraph data={this.state.data2.map(d => ({x: d.Semester, y: d.tatig}))} color="rgba(64,64,64,.3)"></LineGraph>
-      )
-      let LineGraph3 = (
-        <LineGraph data={this.state.data3.map(d => ({x: d.Semester, y: d.tatig}))} color="rgba(64,64,64,.3)"></LineGraph>
-      )
-      let LineGraph4 = (
-        <LineGraph data={this.state.data4.map(d => ({x: d.Semester, y: d.tatig}))} color="rgba(64,64,64,.3)"></LineGraph>
-      )
+      let LineGraphs = this.state.data.filter((d,i) => this.props.graphs.indexOf(i) >= 0).map(d => <LineGraph data={d.map(d => ({x: d.Semester, y: d.tatig}))} color="rgba(64,64,64,.3)"></LineGraph>)
         return (
             <div className="chart" >
                 <h3>Deine Ärztliche Tätigkeiten</h3>
@@ -66,15 +46,10 @@ class D3chart extends Component{
               
                
                 <div className="Practicals-line">
-                <OrdinalChart yDomain={[0,7]} xDomain={this.state.data1.map((Semester1)=> Semester1.Semester)}>
+                <OrdinalChart yDomain={[0,7]} xDomain={this.state.data[0].map((Semester1)=> Semester1.Semester)}>
                                 <XAxis />
                                 <YAxis />
-                                   {LineGraph1}
-                                   {LineGraph2}
-                                   {LineGraph3}
-                                   {LineGraph4}
-
-                                
+                                   {LineGraphs}
                 </OrdinalChart>
                  </div>
             </div>

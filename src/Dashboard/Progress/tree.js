@@ -8,13 +8,13 @@ const tree = {
             entries: [
                 {
                     label: 'Semesterprüfung',
-                    entries: [
+                    entries: _.range(1,_.random(2,4)).map(d => (
                         {
-                            label: 'foo',
+                            label: 'foo' + d,
                             isLeaf: true,
                             done: _.random(1)
                         }
-                    ]
+                    ))
                 },
                 {
                     label: 'PTM',
