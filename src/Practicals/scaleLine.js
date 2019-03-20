@@ -11,20 +11,23 @@ import { curveMonotoneX } from 'd3-shape'
 
 
 
-const createData1 = () => _.range(1,7).map(i => ({Semester: `Semester${i}`, tatig: _.random(1,6)}))
-const createData2 = () => _.range(1,7).map(i => ({Semester: `Semester${i}`, tatig: _.random(1,6)}))
-const createData3 = () => _.range(1,7).map(i => ({Semester: `Semester${i}`, tatig: _.random(1,6)}))
-const createData4 = () => _.range(1,7).map(i => ({Semester: `Semester${i}`, tatig: _.random(1,6)}))
+const createData1 = () => _.range(1,8).map(i => ({Semester: `Semester${i}`, tatig: _.random(1,7)}))
+const createData2 = () => _.range(1,8).map(i => ({Semester: `Semester${i}`, tatig: _.random(1,7)}))
+const createData3 = () => _.range(1,8).map(i => ({Semester: `Semester${i}`, tatig: _.random(1,7)}))
+const createData4 = () => _.range(1,8).map(i => ({Semester: `Semester${i}`, tatig: _.random(1,7)}))
 
 
 class D3chart extends Component{
     constructor(props){
         super(props)
     this.state = {
-        data1 :createData1(),
-        data2 :createData2(),
-        data3 :createData1(),
-        data4 :createData2()
+        data1 : createData1(),
+        data2 : createData2(),
+        data3 : createData3(),
+        data4 : createData4(),
+
+    
+
          }
        
         
@@ -34,11 +37,11 @@ class D3chart extends Component{
    
         this.setState({
           data1 : createData1(),
-          data2 :createData2(),
-          data3 : createData1(),
-          data4 :createData2()
+          data2 : createData2(),
+          data3 : createData3(),
+          data4 : createData4()
         })
-        // console.log(createData())
+       
     }
        
   
@@ -63,7 +66,7 @@ class D3chart extends Component{
               
                
                 <div className="Practicals-line">
-                <OrdinalChart yDomain={[0,6]} xDomain={this.state.data1.map((Semester1)=> Semester1.Semester)}>
+                <OrdinalChart yDomain={[0,7]} xDomain={this.state.data1.map((Semester1)=> Semester1.Semester)}>
                                 <XAxis />
                                 <YAxis />
                                    {LineGraph1}

@@ -64,15 +64,21 @@ class MyDropdownItem extends Component {
     <MyDropdownList/>
     </MyDropdown>
    
-    <button type="button" className="btn btn-primary" onClick={this.handleClick2} >1.1 </button>
+    <button type="button" className="btn btn-primary" onClick={this.handleClick2} >1.2 </button>
     <MyDropdown open={this.state.open2}>
     <MyDropdownList/>
     </MyDropdown>
-    <button type="button" className="btn btn-primary" onClick={this.handleClick3} >1.1 </button>
+    <button type="button" className="btn btn-primary" onClick={this.handleClick3} >1.3 </button>
+    <MyDropdown open={this.state.open3}>
+    <MyDropdownList/>
+    </MyDropdown>
+
+    <button type="button" className="btn btn-primary" onClick={this.handleClick3} >1.4 </button>
     <MyDropdown open={this.state.open3}>
     <MyDropdownList/>
     </MyDropdown>
         </div>
+        
 
     )
   }
