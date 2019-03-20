@@ -1,80 +1,105 @@
 import React, { Component } from 'react'
-import Dropdown from 'react-bootstrap/Dropdown'
-import {SlideDown} from 'react-slidedown'
+import { SlideDown } from 'react-slidedown'
+import MyDropdownItem from './MyDropdownItem'
+
 import "./practicals.css"
-import Button from 'react-bootstrap/Button';
+
 
 
 export function MyDropdown(props) {
-    return (
-      <SlideDown className={'my-dropdown-slidedown'}>
-        {props.open ? props.children : null}
-      </SlideDown>
-    )
-  }
+  return (
+    <SlideDown className={'my-dropdown-slidedown'}>
+      {props.open ? props.children : null}
+    </SlideDown>
+  )
+}
 
 
 class PracticalsItem extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       open1: false,
       open2: false,
-      open3:false,
+      open3: false,
       open4: false,
       open5: false
 
-     };
-    this.handleClick = this.handleClick.bind(this)
-}
+    };
+    this.handleClick1 = this.handleClick1.bind(this)
+    this.handleClick2 = this.handleClick2.bind(this)
+    this.handleClick3 = this.handleClick3.bind(this)
+    this.handleClick4 = this.handleClick4.bind(this)
+    this.handleClick5 = this.handleClick5.bind(this)
 
-handleClick() {
-  this.setState({
-     open1: ! this.state.open1,
-     open2: ! this.state.open2,
-     open3: ! this.state.open3,
-     open4: ! this.state.open4,
-     open5: ! this.state.open5,
-    
+  }
+
+
+  handleClick1() {
+    this.setState({
+      open1: !this.state.open1,
+
     });
-}
+  }
+  handleClick2() {
+    this.setState({
+      open2: !this.state.open2,
 
-    render() {
-        return ( 
-        <div className="PracticalsItem">
-       <div class="btn-group-vertical">
-       <button  type="button" className="btn btn-secondary" onClick={this.handleClick} >1. Betreuung von Patienten </button>
-       <MyDropdown  open={this.state.open1}>
-            <h4>Hallo</h4>
+    });
+  }
+  handleClick3() {
+    this.setState({
+      open3: !this.state.open3
+    });
+  }
+  handleClick4() {
+    this.setState({
+      open4: !this.state.open4,
+    });
+  }
+  handleClick5() {
+    this.setState({
+      open5: !this.state.open5,
+
+    });
+  }
+
+  render() {
+    return (
+      <div className="PracticalsItem">
+        <div class="btn-group-vertical">
+          <button type="button" className="btn btn-secondary" onClick={this.handleClick1} >1. Betreuung von Patienten </button>
+          <MyDropdown open={this.state.open1}>
+          <MyDropdownItem/>
           </MyDropdown>
-       <button type="button" className="btn btn-secondary">2. Ärztliche Prozeduren 1</button>
-       <MyDropdown open={this.state.open2}>
-            <h4>Hallo</h4>
+          <button type="button" className="btn btn-secondary" onClick={this.handleClick2} >2. Ärztliche Prozeduren 1</button>
+          <MyDropdown open={this.state.open2}>
+          <MyDropdownItem/>
           </MyDropdown>
-          <button type="button" className="btn btn-secondary">3. Kommunikation mit Patienten</button>
-       <MyDropdown open={this.state.open3}>
-            <h4>Hallo</h4>
+          <button type="button" className="btn btn-secondary" onClick={this.handleClick3} >3. Kommunikation mit Patienten</button>
+          <MyDropdown open={this.state.open3}>
+          <MyDropdownItem/>
           </MyDropdown>
-          <button type="button" className="btn btn-secondary">4. Kommunikation und Zusammenarbeit mit Kollegen</button>
-       <MyDropdown open={this.state.open4}>
-            <h4>Hallo</h4>
+          <button type="button" className="btn btn-secondary" onClick={this.handleClick4} >4. Kommunikation und Zusammenarbeit mit Kollegen</button>
+          <MyDropdown open={this.state.open4}>
+          <MyDropdownItem/>
           </MyDropdown>
-          <button type="button" className="btn btn-secondary">5. Weitere ärztliche professionelle Tätigkeit</button>
-       <MyDropdown open={this.state.open5}>
-            <h4>Hallo</h4>
+          <button type="button" className="btn btn-secondary" onClick={this.handleClick5} >5. Weitere ärztliche professionelle Tätigkeit</button>
+          <MyDropdown open={this.state.open5}>
+          <MyDropdownItem/>
           </MyDropdown>
 
-         </div>
-             
-                  
-
-     
-                   
-               
-               
         </div>
-        )
-    }
+
+
+
+
+
+
+
+      </div>
+    )
+  }
 }
 export default PracticalsItem;
 
