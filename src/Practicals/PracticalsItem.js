@@ -1,111 +1,108 @@
 import React, { Component } from 'react'
-import { SlideDown } from 'react-slidedown'
 import MyDropdownItem from './MyDropdownItem'
+import makeExtendable from '../Core/makeExtendable'
 
+const praticalsTree ={
+  entries: [
+      {
+          label: 'Betreuung von Patienten',
+          entries: [
+              {
+                label: 'Anamnese erheben, körperliche Untersuchung durchführen und Ergebnisse strukturiert zusammenfassen',
+                entries: [
+                    {
+                      label: 'Vollständige oder fokussierte Anamnese erheben und körperliche Untersuchung  durchführen (entsprechend Situationsanforderung)'
+                    },
+                    {
+                      label: 'Zusammenstellen von Vorbefunden, Dokumenten, Medikation, ggf. Rücksprache mit behandelnden Ärzten oder Familienangehörigen'
+                    },
+                    {
+                      label: 'Strukturierte Dokumentation in Patientenakte, einschließlich Synthese von Diagnosen/Arbeitsdiagnosen und  wesentlicher Differentialdiagnosen'
+                    },
 
+                ]
+              },
+              {
+                label: 'Diagnostischen Arbeitsplan erstellen und Umsetzung einleiten',
+                entries: [
+                  {
+                    label: 'Eintrag für die Basisdiagnostik in Patientenkurve vorschreiben (Gegenzeichnung Arzt)'
+                  },
+                  {
+                    label: 'Plan für die patientenspezifische Diagnostik entwerfen (Abstimmung mit Arzt)'
+                  },
+                  {
+                    label: 'Plan in Patientenkurve eintragen und diagnostische Anforderungsformulare ausfüllen (Gegenzeichnung Arzt)'
+                  },
+                ]
+              },
+              {
+                label: 'Untersuchungsergebnisse interpretieren und weiterführende Schritte einleiten',
+                entries: [
+                  {
+                    label: 'Ergebnisse der Basisdiagnostik und häufiger Untersuchungen sichten und interpretieren'
+                  },
+                  {
+                    label: 'Änderungen in Diagnostik und Therapie vorschlagen (Abstimmung mit Arzt)'
+                  },
+                  {
+                    label: 'Ergebnisse in Patientenkurve eintragen und ggf. Anforderungsformulare ausfüllen (Gegenzeichnung Arzt)'
+                  },
+                ]
+              },          
+              {
+                label: 'Behandlungsplan erstellen und die Umsetzung einleite',
+                entries: [
+                  {
+                    label: 'Eintrag für die allgemeine Therapie in Patientenkurve vorschreiben (Gegenzeichnung Arzt)'
+                  },
+                  {
+                    label: 'Plan für die patientenspezifische Therapie entwerfen (Abstimmung mit Arzt)'
+                  },
+                  {
+                    label: '   Plan in Patientenkurve eintragen und therapeutische Anforderungsformulare ausfüllen (Gegenzeichnung Arzt)'
+                  },
+                ]
+              },
 
-
-
-export function MyDropdown(props) {
-  return (
-    <SlideDown className={'my-dropdown-slidedown'}>
-      {props.open ? props.children : null}
-    </SlideDown>
-  )
+          ]
+      },
+      {
+          label: 'Ärztliche Prozeduren 1',
+      },
+      {
+          label: 'Kommunikation mit Patienten',
+      },
+      {
+          label: 'Kommunikation und Zusammenarbeit mit Kollegen',
+      },
+      {
+          label: 'Weitere ärztliche professionelle Tätigkeit',
+      },
+  ]
 }
 
 
+const MyDropdown = makeExtendable(props =>
+    <div className="card p-2 m-2 align-self-start flex-grow-1">
+      <span className="font-weight-bold" style={{fontSize: '.8rem'}} onClick={() => props.toggleExtended()}>{props.title}</span>
+      <div ref={props.extendableElement} className={'animated fast'} >
+        <hr />
+        {props.children}
+      </div>
+    </div>
+)
+
+
 class PracticalsItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open1: false,
-      open2: false,
-      open3: false,
-      open4: false,
-      open5: false
-
-    };
-    this.handleClick1 = this.handleClick1.bind(this)
-    this.handleClick2 = this.handleClick2.bind(this)
-    this.handleClick3 = this.handleClick3.bind(this)
-    this.handleClick4 = this.handleClick4.bind(this)
-    this.handleClick5 = this.handleClick5.bind(this)
-
-  }
-
-
-  handleClick1() {
-    this.props.selectGraph(1)
-    this.setState({
-      open1: !this.state.open1,
-
-    });
-  }
-  handleClick2() {
-    this.props.selectGraph(2)
-    this.setState({
-      open2: !this.state.open2,
-
-    });
-  }
-  handleClick3() {
-    this.props.selectGraph(3)
-    this.setState({
-      open3: !this.state.open3
-    });
-  }
-  handleClick4() {
-    this.props.selectGraph(0)
-    this.setState({
-      open4: !this.state.open4,
-    });
-  }
-  handleClick5() {
-    this.props.selectGraph(0)
-    this.setState({
-      open5: !this.state.open5,
-
-    });
-  }
-
   render() {
     return (
-      <div className="PracticalsItem">
-        <div class="btn-group-vertical">
-          <button type="button" className="btn btn-secondary" onClick={this.handleClick1} >1. Betreuung von Patienten </button>
-          <MyDropdown open={this.state.open1}>
-          <MyDropdownItem/>
-          </MyDropdown>
-
-          <button type="button" className="btn btn-secondary" onClick={this.handleClick2} >2. Ärztliche Prozeduren 1</button>
-          <MyDropdown open={this.state.open2}>
-          <MyDropdownItem/>
-          </MyDropdown>
-
-          <button type="button" className="btn btn-secondary" onClick={this.handleClick3} >3. Kommunikation mit Patienten</button>
-          <MyDropdown open={this.state.open3}>
-          <MyDropdownItem/>
-          </MyDropdown>
-
-          <button type="button" className="btn btn-secondary" onClick={this.handleClick4} >4. Kommunikation und Zusammenarbeit mit Kollegen</button>
-          <MyDropdown open={this.state.open4}>
-          <MyDropdownItem/>
-          </MyDropdown>
-
-          <button type="button" className="btn btn-secondary" onClick={this.handleClick5} >5. Weitere ärztliche professionelle Tätigkeit</button>
-          <MyDropdown open={this.state.open5}>
-          <MyDropdownItem/>
-          </MyDropdown>
-
-        </div>
-
-
-
-
-
-
-
+      <div className="PracticalsItem d-flex flex-wrap">
+          {praticalsTree.entries.map(e => 
+            <MyDropdown extended={false} title={e.label}>
+              {e.entries && e.entries.map(f => <MyDropdown extended={false} title={f.label} /> )}
+            </MyDropdown>
+          )}
       </div>
     )
   }

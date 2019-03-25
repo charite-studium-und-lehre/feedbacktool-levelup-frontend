@@ -17,7 +17,7 @@ const TätigkeitenList = props => (
 
             </ul>
         </div>
-        <div className="col-md">
+        {/* <div className="col-md">
             <h4>Ich kann diese Tätigkeit.</h4>
             <ul class="list-group">
                 <li className="list-group-item">1.Ich kann diese Tätigkeit nicht ausführen.</li>
@@ -41,7 +41,7 @@ const TätigkeitenList = props => (
                 <li className="list-group-item"> 7.eigenständig ausführen, Wichtiges wird im Nachhinein besprochen (Arzt nicht im Haus).
 </li>
             </ul>
-        </div>
+        </div> */}
     </div>
 )
 
