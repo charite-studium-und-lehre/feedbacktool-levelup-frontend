@@ -1,0 +1,35 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-03-26T12:25:37+01:00
+
+====== 2. Deployment ======
+Deplayment auf Server.
+
+Linux/Max: SSH-Konfiguration empfohlen
+
+1. == Verbinden zum Server: ==
+
+''ssh s-mfal-feed-ext''
+
+== 2a. Deployment Produktiv ==
+
+'''
+cd /var/www/levelup/master/
+./build.sh
+'''
+
+
+-> erreichbar unter 
+http://s-mfal-feed-ext.charite.de
+
+
+== 2b. Deployment Test ==
+'''
+cd /var/www/levelup/<develop|test1|test2|test3>
+# <eventuell Branch wecheln mit "git checkout <branch>"
+./build.sh
+'''
+
+
+== 3. Nach Deployment ==
+* Browser muss Seite neu laden, z.B. über Strg-Shift-R
