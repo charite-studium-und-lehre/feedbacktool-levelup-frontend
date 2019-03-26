@@ -16,11 +16,28 @@
     width:100%
   
 }
-.consulting-text {
-    /* border: solid 2px black  */
-}
+
 .consulting-text h1 {
    margin: .4em 0 1em 0;
+}
+.consulting button {
+    position: relative;
+    bottom: 2em;
+    left: 0;
+    width: 12em;
+    margin-left: 1.9em;
+    background: rgb(34, 71, 104)
+}
+
+
+.consulting-paragraph {
+    height: 10em;
+}
+.consulting-card .card {
+    height: 47em;
+    /* border: 1px solid black; */
+    box-shadow: 10px 10px 30px rgb(1, 17, 31)
+
 }
 .consulting-link h4 {
     margin: 2.2em 0 1em 0;
@@ -30,9 +47,6 @@
 .consulting-card {
     margin-top: 3em
 }
- .consulting-link .list-group {
-
- }
 .consulting-link .extern-link {
   color: blue;
     padding: .5em 0 ;
@@ -40,10 +54,12 @@
     
 }
 .consulting-card h2 {
-    margin: .4em 0 .7em 0
+    margin: .4em 0 .7em 0;
+    color: rgb(34, 71, 104);
+    font-weight: bold
 }
 .consulting-card .col-md-4 {
-    margin-bottom: 20px;
+    margin-bottom: 2em;
    
 }
 
@@ -52,22 +68,40 @@
       
 }
 .consulting-card .consulting-icon h4 {
-    margin: 1em 0 
+    margin: 1em 0;
+    color: rgb(34, 71, 104);
+    font-weight: bold
 }
 .consulting-card .consulting-icon .row {
     padding: 1.5em 0;
   
 }
 .consulting-card .consulting-icon .row > div {
-    margin-bottom: 1.5em;
+    margin-bottom: 1.2em;
 }
-.consulting-card .consulting-icon .row > div > .name2,
-.consulting-card .consulting-icon .row > div > .email1,
-.consulting-card .consulting-icon .row > div > .email2{
+.consulting-card .consulting-icon .row > div  .name2,
+.consulting-card .consulting-icon .row > div  .name3,
+.consulting-card .consulting-icon .row > div  .email2,
+.consulting-card .consulting-icon .row > div  .email3,
+.consulting-card .consulting-icon .row > div  .talk1{
     padding-left: 1.9em;
 }
 .consulting-card .consulting-icon  svg {
     margin-right: .6em;
     font-size: 1.3em;
+    color: rgb(34, 71, 104);
 
+}
+.consulting-butten {
+    position: relative;
+    bottom: 2em;
+    left: 0;
+    width: 12em;
+    margin-left: 1.9em;
+    background: rgb(34, 71, 104)
+    
+}
+.consulting-link   .extern-link {
+    color: rgb(34, 71, 104);
+    font-weight: bold
 }

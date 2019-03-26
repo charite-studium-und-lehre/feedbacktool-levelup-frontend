@@ -42,13 +42,6 @@ const Routes = [
     exact: true,
     private: true,
   },
-  {
-    path: '/consulting',
-    component: Consulting,
-    breadcrumb: () => <Link to="/consulting">Beratung</Link>,
-    exact: true,
-    private: true,
-  },
 
   {
     path: '/exams/semester/:test',

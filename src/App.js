@@ -8,7 +8,7 @@ import Login from './Login'
 import Breadcrumbs from './Core/Breadcrumbs'
 import PrivateRoute from './Core/PrivateRoute'
 import Routes from './Core/Routes'
-import Consulting from './consulting/Consulting'
+
 
 const getBasename = () => "/" + (window.location.pathname.split( '/' )[1] || "")
 

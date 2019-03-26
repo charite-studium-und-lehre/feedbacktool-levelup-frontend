@@ -5,16 +5,32 @@ import { faPhoneVolume, faAt, faUser, faComments, faMapMarkedAlt } from '@fortaw
 
 class ConsultingCard extends Component {
     render() {
-let Email1 = ( 
-    this.props.email1 ? <span className="email1">{this.props.email1}</span> : null
-)
-let  Email2 = ( 
-    this.props.email2 ? <span className="email2">{this.props.email2}</span> : null
-)
+        let email1 = (
+            this.props.email1 ?
+            <div className="col-md-12" >
+            <FontAwesomeIcon icon={faAt} />
+            <span className="email1">{this.props.email1}</span>
+            {email2}
+            {email3}
+            </div>
+             : null
+        )
+        let email2 = (
+            this.props.email2 ? <span><br /><span className="email2">{this.props.email2}</span></span> : null
+        )
+        let email3 = (
+            this.props.email3 ? <span><br /><span className="email3">{this.props.email3}</span></span> : null
+        )
 
-let  name2 = ( 
-    this.props.name2 ? <span className="name2">{this.props.name2}</span> : null
-)
+        let name2 = (
+            this.props.name2 ? <span><br /> <span className="name2">{this.props.name2}</span></span> : null
+        )
+        let name3 = (
+            this.props.name3 ? <span><br /><span className="name3">{this.props.name3}</span> </span> : null
+        )
+        let talk1 = (
+            this.props.talk1 ? <span><br /><span className="talk1">{this.props.talk1}</span> </span> : null
+        )
 
         return (
 
@@ -22,62 +38,42 @@ let  name2 = (
                 <div className="card ">
                     <div className="card-body">
                         <h2 className="card-title text-center ">{this.props.title}</h2>
-                        <p className="card-text">{this.props.paragraph}</p>
-                        <div className="consulting-icon">
-                        <h4>Ansprechpartner</h4>
-                        <div className="row">
-                            <div className="col-md-12">
-                                <FontAwesomeIcon icon={faUser} />
-                                <span className="name1">{this.props.name1}</span>
-                                <br/>
-                                {name2}
-                                
-                            </div>
-                            <div  className="col-md-12" >
-                                <FontAwesomeIcon icon={faAt} />
-                                <span className="email">{this.props.email}</span><br/>
-                                {Email1} <br/>
-                                {Email2}
-                            </div>
-                            <div  className="col-md-12">
-                                <FontAwesomeIcon icon={faPhoneVolume} />
-                                <span>{this.props.tel}</span>
-                            </div>
-                            <div  className="col-md-12">
-                                <FontAwesomeIcon icon={faMapMarkedAlt} />
-                                <span>{this.props.address}</span>
-                            </div>
-                            <div  className="col-md-12">
-                                <FontAwesomeIcon icon={faComments} />
-                                <span>{this.props.talk}</span>
-                            </div>
-                            </div>
-                        {/* <div>
-                            <div>
-                                <FontAwesomeIcon icon={faUser} />
-                                <span>{this.props.name}</span>
-                            </div>
-                            <div>
-                                <FontAwesomeIcon icon={faPhoneVolume} />
-                                <span>{this.props.tel}</span>
-                            </div>
-                            <div>
-                                <FontAwesomeIcon icon={faAt} />
-                                <span>{this.props.email}</span>
-                            </div>
-                            <div>
-                                <FontAwesomeIcon icon={faDoorOpen} />
-                                <span>{this.props.open}</span>
-                            </div>
-                            </div> */}
+                        <div className="consulting-paragraph">
+                            <p className="card-text">{this.props.paragraph}</p>
                         </div>
-                        <button type="button" className="btn btn-primary">Mehr erfahren</button>
+                        
+                        
+                        <div className="consulting-icon">
+                            <h4>Ansprechpartnerin / Ansprechpartner </h4>
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <FontAwesomeIcon icon={faUser} />
+                                    <span className="name1">{this.props.name1}</span>
+                                    {name2}
+                                    {name3}
+                                </div>
+                                    {email1}
+                                <div className="col-md-12">
+                                    <FontAwesomeIcon icon={faPhoneVolume} />
+                                    <span>{this.props.tel}</span>
+                                </div>
+                                <div className="col-md-12">
+                                    <FontAwesomeIcon icon={faMapMarkedAlt} />
+                                    <span>{this.props.address}</span>
+                                </div>
+                                <div className="col-md-12">
+                                    <FontAwesomeIcon icon={faComments} />
+                                    <span>{this.props.talk}</span>
+                                    {talk1}
+                                </div>
+                            </div>
 
-
-
+                        </div>
+                        
                     </div>
-
+                    <button type="button" className="btn btn-primary consulting-butten ">Mehr erfahren</button>
                 </div>
+                
             </div>
         )
     }

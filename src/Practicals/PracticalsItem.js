@@ -60,7 +60,7 @@ const praticalsTree ={
                     label: 'Plan für die patientenspezifische Therapie entwerfen (Abstimmung mit Arzt)'
                   },
                   {
-                    label: '   Plan in Patientenkurve eintragen und therapeutische Anforderungsformulare ausfüllen (Gegenzeichnung Arzt)'
+                    label: ' Plan in Patientenkurve eintragen und therapeutische Anforderungsformulare ausfüllen (Gegenzeichnung Arzt)'
                   },
                 ]
               },
