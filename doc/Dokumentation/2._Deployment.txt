@@ -32,4 +32,11 @@ cd /var/www/levelup/<develop|test1|test2|test3>
 
 
 == 3. Nach Deployment ==
-* Browser muss Seite neu laden, z.B. über Strg-Shift-R
+Browser muss Seite neu laden, z.B. über Strg-Shift-R
+
+->erreichbar unter 
+http://s-mfal-feed-ext.charite.de/develop
+http://s-mfal-feed-ext.charite.de/test1
+http://s-mfal-feed-ext.charite.de/test2
+http://s-mfal-feed-ext.charite.de/test3
+
