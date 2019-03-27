@@ -1,4 +1,9 @@
-
+.consulting h1,
+.consulting  h2,
+.consulting h4 {
+font-weight: bold;
+/* color: rgb(34, 71, 104); */
+}
 .consulting {
     border: 2px solid #ccc;
     padding: 1.5em 0;
@@ -21,11 +26,7 @@
    margin: .4em 0 1em 0;
 }
 .consulting button {
-    position: relative;
-    bottom: 2em;
-    left: 0;
     width: 12em;
-    margin-left: 1.9em;
     background: rgb(34, 71, 104)
 }
 
@@ -47,10 +48,15 @@
 .consulting-card {
     margin-top: 3em
 }
+.consulting .list-group-flush a {
+    text-align: left
+}
 .consulting-link .extern-link {
-  color: blue;
     padding: .5em 0 ;
-    border-bottom: 1px solid black
+    border-bottom: 1px solid black;
+    color: rgb(34, 71, 104);
+    font-weight: bold;
+    
     
 }
 .consulting-card h2 {
@@ -100,8 +106,4 @@
     margin-left: 1.9em;
     background: rgb(34, 71, 104)
     
-}
-.consulting-link   .extern-link {
-    color: rgb(34, 71, 104);
-    font-weight: bold
 }

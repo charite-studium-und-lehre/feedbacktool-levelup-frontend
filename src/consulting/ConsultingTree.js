@@ -2,29 +2,38 @@
 export const ConsultingTree = {
     ExternConsulting : [
         {
-            title : 'Finanzierung des Studiums'
+            title : 'Finanzierung des Studiums',
+            href: 'https://www.stw.berlin/finanzierung.html'
         },
         {
-            title : 'Finanzielle Hilfen '
+            title : 'Stipendienmöglichkeiten ',
+            href : 'https://www.stipendienlotse.de/datenbank.php?A%5B%5D=2&H=&B%5B%5D=4&F=57&S=&job=search'
         },
         {
-            title : 'Stipendienmöglichkeiten '
+            title : 'Finanzielle Hilfen ',
+            href : 'https://www.stw.berlin/beratung/themen/finanzelle-hilfen.html'
         },
+       
         
         {
-            title : 'Wohnungssuche'
+            title : 'Wohnungssuche',
+            href:'https://www.stw.berlin/wohnen.html#jump_wohnraumb%C3%B6rsen'
         },
         {
-            title : ' Studierenden-Jobs'
+            title : ' Studierenden-Jobs',
+            href:'https://www.stw.berlin/jobben.html#jump_jobs_&_trainings_f%C3%BCr_studierende'
         },
         {
-            title : 'Hilfe bei Zweifel am Studium '
+            title : 'Hilfe bei Zweifel am Studium ',
+            href:'https://www.studienabbruch-und-dann.de/de/fragen-und-antworten-60.html'
         },
         {
-            title : 'Hilfe bei Studienabbruch '
+            title : 'Hilfe bei Studienabbruch ',
+            href:'https://www.queraufstieg-berlin.de'
         },
         {
-            title : 'Video '
+            title : 'Navigation Beratung (video) ',
+            href:'https://www.youtube.com/watch?time_continue=20&v=2nea4zUSkTY'
         },
     ],
     ConsultingCard : [
