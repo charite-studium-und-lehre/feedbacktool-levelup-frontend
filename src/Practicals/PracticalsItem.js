@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import MyDropdownItem from './MyDropdownItem'
 import makeExtendable from '../Core/makeExtendable'
 
 const praticalsTree ={
