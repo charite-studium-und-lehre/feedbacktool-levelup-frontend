@@ -8,32 +8,16 @@ const makeExtendable = WrappedComponent => {
 
         constructor(props) {
             super(props)
-            this.state = { extended: !props.extended || window.innerWidth < 768 }
-            this.element = React.createRef()
-        }
-
-        componentDidMount() {
-            this.originalHeight = this.element.current.offsetHeight
-            this.element.current.style.overflow = 'hidden'
-            this.toggleExtended()
+            this.state = { extended: props.extended && window.innerWidth > 768 }
         }
     
-        toggleExtended() {
-            if(!this.state.extended) setTimeout(() => { this.element.current.style.height = 'auto' }, getComputedStyle(this.element.current).transitionDuration)
-            else {
-                this.originalHeight = this.element.current.offsetHeight
-                this.element.current.style.height = `${this.originalHeight}px`
-            }
-            setTimeout(() => { 
-                this.element.current.style.height = !this.state.extended ? `${this.originalHeight}px` : 0
-                this.setState({ extended: !this.state.extended })
-            })
-            
+        toggleExtended() { 
+            this.setState({ extended: !this.state.extended })
         }
     
         render() {
             return (
-                <WrappedComponent toggleExtended={() => this.toggleExtended()} extendableElement={this.element} {...this.props} extended={this.state.extended} />
+                <WrappedComponent toggleExtended={() => this.toggleExtended()} {...this.props} extended={this.state.extended} />
             )
         }
     }

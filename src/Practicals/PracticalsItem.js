@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { SlideDown } from 'react-slidedown'
 import makeExtendable from '../Core/makeExtendable'
 
 const praticalsTree ={
@@ -67,7 +68,7 @@ const praticalsTree ={
           ]
       },
       {
-          label: 'Ärztliche Prozeduren 1',
+          label: 'Ärztliche Prozeduren',
       },
       {
           label: 'Kommunikation mit Patienten',
@@ -81,14 +82,17 @@ const praticalsTree ={
   ]
 }
 
-
-const MyDropdown = makeExtendable(props =>
+const PracticalsTreeItem = makeExtendable(props =>
     <div className="card p-2 m-2 align-self-start flex-grow-1">
       <span className="font-weight-bold" style={{fontSize: '.8rem'}} onClick={() => props.toggleExtended()}>{props.title}</span>
-      <div ref={props.extendableElement} className={'animated fast'} >
-        <hr />
-        {props.children}
-      </div>
+      <SlideDown className="animated fast" >
+        {props.extended && 
+        <div>
+          <hr />
+          {props.children}
+        </div>
+        }
+      </SlideDown>
     </div>
 )
 
@@ -98,9 +102,9 @@ class PracticalsItem extends Component {
     return (
       <div className="PracticalsItem d-flex flex-wrap">
           {praticalsTree.entries.map(e => 
-            <MyDropdown extended={false} title={e.label}>
-              {e.entries && e.entries.map(f => <MyDropdown extended={false} title={f.label} /> )}
-            </MyDropdown>
+            <PracticalsTreeItem extended={false} title={e.label}>
+              {e.entries && e.entries.map(f => <PracticalsTreeItem extended={false} title={f.label} /> )}
+            </PracticalsTreeItem>
           )}
       </div>
     )

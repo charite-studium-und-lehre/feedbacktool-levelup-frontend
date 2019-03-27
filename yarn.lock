@@ -2096,6 +2096,11 @@ caseless@~0.12.0:
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
 
+chain-function@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/chain-function/-/chain-function-1.0.1.tgz#c63045e5b4b663fb86f1c6e186adaf1de402a1cc"
+  integrity sha512-SxltgMwL9uCko5/ZCLiyG2B7R9fY4pDZUw7hJ4MhirdjBLosoDqkWABi3XMucddHdLiFJMb7PD2MZifZriuMTg==
+
 chalk@2.4.1, chalk@^2.0.0, chalk@^2.0.1, chalk@^2.1.0, chalk@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.1.tgz#18c49ab16a037b6eb0152cc83e3471338215b66e"
@@ -8048,6 +8053,14 @@ react-scripts@^2.0.5:
     workbox-webpack-plugin "3.6.2"
   optionalDependencies:
     fsevents "1.2.4"
+
+react-slidedown@^2.0.9:
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/react-slidedown/-/react-slidedown-2.0.9.tgz#8494696bd981df86765f8b2d79ab6d018adc2715"
+  integrity sha512-S+5ou9JD9F8Z4N9Y16uOB5jeMswu1tkYKSSdbdlpwZ7pX0RnFZKQfcQAopKAFSRIB6R0fu1U/vugdWteWmOveg==
+  dependencies:
+    chain-function "^1.0.1"
+    tslib "^1.9.0"
 
 react@^16.4.2:
   version "16.4.2"
