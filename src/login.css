@@ -11,15 +11,7 @@
     overflow: hidden;
     position: absolute;
 }
-.overlay {
-  background-image: linear-gradient( to right, rgba(236, 240, 243, 0.4), rgb(2, 28, 49, .8));
-  /* background: rgba(14, 14, 14, 0.3); */
-  height: 100%; 
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+
 
 .navbar h2 {
   color: white;
@@ -28,21 +20,18 @@
   border-radius: 33px 0;
   letter-spacing: 2px;
   background-image: linear-gradient( to right, rgba(236, 240, 243, 0.4), rgb(2, 28, 49, 1));
+  -webkit-box-shadow: 10px 10px 10px  rgb(2, 28, 49, 1);
+  -o-box-shadow: 10px 10px 10px  rgb(2, 28, 49, 1);
+  -moz-box-shadow: 10px 10px 10px  rgb(2, 28, 49, 1);
   box-shadow: 10px 10px 10px  rgb(2, 28, 49, 1);
   border: 2px solid  black; 
 }
 .container-form {
+  background-image: linear-gradient( to right, rgba(236, 240, 243, 0.4), rgb(2, 28, 49, 1));
     width: 30%;
     height: 55%;
     margin: 80px auto;
-    /* background-color: rgb(204, 227, 247, .8); */
-    /* background-color:rgba(12, 36, 56, .8); */
-    
-  background-image: linear-gradient( to right, rgba(236, 240, 243, 0.4), rgb(2, 28, 49, 1));
-
-    /* background-image: linear-gradient( rgb(204, 227, 247, .4), rgb(2, 28, 49), rgb(204, 227, 247, .4)); */
     padding: 50px 55px;
-    /* height: 419px; */
     border-radius: 68px 0;
     font-size: 18px;
     border: 2px solid  black; 
@@ -61,7 +50,7 @@
     float: right;
   
   }
-  
+
   .container-form .form-control {
     margin-bottom: 10px;
     border-radius: 24px 0;

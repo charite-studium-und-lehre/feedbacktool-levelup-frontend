@@ -63,7 +63,7 @@ class XAxis extends Axis {
 }
 
 class YAxis extends Axis {
-    count = 2
+    count = 7
 
     createAxis() {
         return axisLeft(this.props.yScale)

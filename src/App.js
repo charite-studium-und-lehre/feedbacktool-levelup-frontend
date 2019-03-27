@@ -2,14 +2,16 @@ import React, { Component } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { Route, Redirect } from 'react-router'
 import 'd3-transition'
-
 import './App.css';
 import Navbar from './Core/navbar'
 import Login from './Login'
 import Breadcrumbs from './Core/Breadcrumbs'
 import PrivateRoute from './Core/PrivateRoute'
 import Routes from './Core/Routes'
+
+
 const getBasename = () => "/" + (window.location.pathname.split( '/' )[1] || "")
+
 
 class App extends Component {
   constructor(props) {

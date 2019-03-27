@@ -54,7 +54,7 @@ class Progress extends Component {
                     </div>
                     <div className="checklist">
                         <div>
-                        {tree.entries.map(d => <Checklist key={d.label} className="d-inline-block" data={d} onClick={this.zoom} /> )}
+                        {tree.entries.map(d => <Checklist key={d.label} className="d-inline-block align-top" data={d} onClick={this.zoom} /> )}
                         </div>
                     </div>
                     <div className="mt-3">
