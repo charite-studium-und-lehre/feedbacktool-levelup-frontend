@@ -9,10 +9,3 @@ height: 20em;
 .TätigkeitenList {
     margin-top: 3em
 }
-
-.my-dropdown-slidedown {
-    transition-duration: .3s;
-    transition-timing-function: ease
-    ;
-    
-}

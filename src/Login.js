@@ -4,10 +4,6 @@ import "./login.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLock, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
-
-
-
-
 const Login = props => (
     <div className="login-image">
         <div className="overlay"></div>
@@ -29,6 +25,6 @@ const Login = props => (
             </form>
         </div>
     </div>
-);
+)
 
 export default Login
