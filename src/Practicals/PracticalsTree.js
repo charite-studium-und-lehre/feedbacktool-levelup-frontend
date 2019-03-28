@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'lodash'
 import PracticalsItem from './PracticalsItem'
 import tree from './tree'
 import PracticalsScore from './PracticalsScore';
@@ -12,13 +11,14 @@ const PracticalsTree = props => (
               <h5>Mein Level</h5>
             </div>
             <div className="col-4 p-0">
-              <PracticalsScore entry={tree} />
+              
             </div>
           </div>
+          <PracticalsScore headings={true} entry={tree} />
     </div>
     <div className="row">
         {tree.entries.map(e =>
-          <div className="col-md-12">
+          <div key={e.label} className="col-md-12">
             <PracticalsItem extended={false} entry={e} level={1} />
           </div>
         )}

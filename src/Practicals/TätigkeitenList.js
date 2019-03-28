@@ -5,7 +5,7 @@ const TätigkeitenList = props => (
     <div className="row TätigkeitenList">
         <div className="col-md">
             <h4>Level der Tätigkeiten</h4>
-            <ul class="list-group">
+            <ul className="list-group">
                 <li className="list-group-item">0: keine Ausführung</li>
                 <li className="list-group-item">1: gemeinsame Ausführung mit dem Arzt</li>
                 <li className="list-group-item">2: Ausführung unter Beobachtung des Arztes </li>
