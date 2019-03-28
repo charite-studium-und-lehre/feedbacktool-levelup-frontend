@@ -8,6 +8,7 @@ const praticalsTree = {
                 entries: [
                     {
                       label: 'Vollständige oder fokussierte Anamnese erheben und körperliche Untersuchung  durchführen (entsprechend Situationsanforderung)',
+                      done: 2
                     },
                     {
                       label: 'Zusammenstellen von Vorbefunden, Dokumenten, Medikation, ggf. Rücksprache mit behandelnden Ärzten oder Familienangehörigen',
