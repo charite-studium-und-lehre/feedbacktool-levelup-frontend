@@ -1,81 +1,48 @@
-const praticalsTree = {
-  entries: [
-      {
-          label: 'Betreuung von Patienten',
-          entries: [
-              {
-                label: 'Anamnese erheben, körperliche Untersuchung durchführen und Ergebnisse strukturiert zusammenfassen',
-                entries: [
-                    {
-                      label: 'Vollständige oder fokussierte Anamnese erheben und körperliche Untersuchung  durchführen (entsprechend Situationsanforderung)',
-                    },
-                    {
-                      label: 'Zusammenstellen von Vorbefunden, Dokumenten, Medikation, ggf. Rücksprache mit behandelnden Ärzten oder Familienangehörigen'
-                    },
-                    {
-                      label: 'Strukturierte Dokumentation in Patientenakte, einschließlich Synthese von Diagnosen/Arbeitsdiagnosen und  wesentlicher Differentialdiagnosen'
-                    },
+import React, { Component } from 'react'
+import _ from 'lodash'
+import { SlideDown } from 'react-slidedown'
+import makeExtendable from '../Core/makeExtendable'
+import tree from './tree'
 
-                ]
-              },
-              {
-                label: 'Diagnostischen Arbeitsplan erstellen und Umsetzung einleiten',
-                entries: [
-                  {
-                    label: 'Eintrag für die Basisdiagnostik in Patientenkurve vorschreiben (Gegenzeichnung Arzt)'
-                  },
-                  {
-                    label: 'Plan für die patientenspezifische Diagnostik entwerfen (Abstimmung mit Arzt)'
-                  },
-                  {
-                    label: 'Plan in Patientenkurve eintragen und diagnostische Anforderungsformulare ausfüllen (Gegenzeichnung Arzt)'
-                  },
-                ]
-              },
-              {
-                label: 'Untersuchungsergebnisse interpretieren und weiterführende Schritte einleiten',
-                entries: [
-                  {
-                    label: 'Ergebnisse der Basisdiagnostik und häufiger Untersuchungen sichten und interpretieren'
-                  },
-                  {
-                    label: 'Änderungen in Diagnostik und Therapie vorschlagen (Abstimmung mit Arzt)'
-                  },
-                  {
-                    label: 'Ergebnisse in Patientenkurve eintragen und ggf. Anforderungsformulare ausfüllen (Gegenzeichnung Arzt)'
-                  },
-                ]
-              },          
-              {
-                label: 'Behandlungsplan erstellen und die Umsetzung einleite',
-                entries: [
-                  {
-                    label: 'Eintrag für die allgemeine Therapie in Patientenkurve vorschreiben (Gegenzeichnung Arzt)'
-                  },
-                  {
-                    label: 'Plan für die patientenspezifische Therapie entwerfen (Abstimmung mit Arzt)'
-                  },
-                  {
-                    label: ' Plan in Patientenkurve eintragen und therapeutische Anforderungsformulare ausfüllen (Gegenzeichnung Arzt)'
-                  },
-                ]
-              },
+const flattenTree = entry => entry.entries ? _.flatMap(entry.entries, e => flattenTree(e)) : [entry]
+const getScore = (entry, p) => _.sumBy(flattenTree(entry), e => _.property(p)(e) || 0)
+const getMaxScore = entry => flattenTree(entry).length * 6
 
-          ]
-      },
-      {
-          label: 'Ärztliche Prozeduren',
-      },
-      {
-          label: 'Kommunikation mit Patienten',
-      },
-      {
-          label: 'Kommunikation und Zusammenarbeit mit Kollegen',
-      },
-      {
-          label: 'Weitere ärztliche professionelle Tätigkeit',
-      },
-  ]
+const PracticalsTreeItem = makeExtendable(props =>
+    <div className="card p-2 m-2">
+      <div onClick={() => props.toggleExtended()}>
+        <span className="font-weight-bold" style={{fontSize: '.8rem'}}>{props.entry.label}</span>
+        <div>
+          <span className="text-danger mr-2">{getScore(props.entry, 'done')} / {getMaxScore(props.entry)}</span>
+          <span className="text-info">{getScore(props.entry, 'confident')} / {getMaxScore(props.entry)}</span>
+        </div>
+      </div>
+      {props.entry.entries && <SlideDown className="animated fast" >
+        {props.extended && 
+        <div>
+          <hr />
+          {props.entry.entries.map(f => <PracticalsTreeItem extended={false} entry={f} /> )}
+        </div>
+        }
+      </SlideDown>
+      }
+    </div>
+)
+
+
+class PracticalsTree extends Component {
+  render() {
+    return (
+      <div className="row">
+          {tree.entries.map(e =>
+            <div className="col-md-6">
+              <PracticalsTreeItem extended={false} entry={e} />
+            </div>
+          )}
+      </div>
+    )
+  }
 }
+export default PracticalsTree
 
-export default praticalsTree
+

@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import PracticalsItem from './PracticalsItem'
+import PracticalsTree from './PracticalsTree'
 import TätigkeitenList from './TätigkeitenList'
 import "./practicals.css"
 
@@ -15,7 +15,7 @@ class Practicals extends Component {
                 <div className="Practicals">
                     <div className="row">
                         <div className="col-md-9">
-                            <PracticalsItem />
+                            <PracticalsTree />
                         </div>
                         <div className="col-md-3">
                             {/* <PracticalsChart graphs={this.state.selectedGraphs} /> */}
