@@ -33,12 +33,20 @@ const PracticalsTreeItem = makeExtendable(props =>
 class PracticalsTree extends Component {
   render() {
     return (
-      <div className="row">
-          {tree.entries.map(e =>
-            <div className="col-md-6">
-              <PracticalsTreeItem extended={false} entry={e} />
-            </div>
-          )}
+      <div>
+        <div className="row">
+          <div className="card w-100 p-2 m-4">
+            <span className="text-danger mr-2">{getScore(tree, 'done')} / {getMaxScore(tree)}</span>
+            <span className="text-info">{getScore(tree, 'confident')} / {getMaxScore(tree)}</span>
+          </div>
+        </div>
+        <div className="row">
+            {tree.entries.map(e =>
+              <div className="col-md-6">
+                <PracticalsTreeItem extended={false} entry={e} />
+              </div>
+            )}
+        </div>
       </div>
     )
   }
