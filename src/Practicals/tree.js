@@ -8,19 +8,16 @@ const praticalsTree = {
                 entries: [
                     {
                       label: 'Vollständige oder fokussierte Anamnese erheben und körperliche Untersuchung  durchführen (entsprechend Situationsanforderung)',
-                      done: 3,
-                      confident: 4,
                     },
                     {
                       label: 'Zusammenstellen von Vorbefunden, Dokumenten, Medikation, ggf. Rücksprache mit behandelnden Ärzten oder Familienangehörigen',
-                      done: 5,
-                      confident: 5,
                     },
                     {
                       label: 'Strukturierte Dokumentation in Patientenakte, einschließlich Synthese von Diagnosen/Arbeitsdiagnosen und  wesentlicher Differentialdiagnosen'
                     },
 
-                ]
+                ],
+                hasGraph: true
               },
               {
                 label: 'Diagnostischen Arbeitsplan erstellen und Umsetzung einleiten',
