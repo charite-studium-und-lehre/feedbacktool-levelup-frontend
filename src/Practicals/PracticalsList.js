@@ -1,8 +1,8 @@
 import React from 'react'
 
-const TätigkeitenList = props => (
+const PracticalsList = props => (
 
-    <div className="row TätigkeitenList">
+    <div className="row">
         <div className="col-md">
             <h4>Level der Tätigkeiten</h4>
             <ul className="list-group">
@@ -19,7 +19,7 @@ const TätigkeitenList = props => (
     </div>
 )
 
-export default TätigkeitenList
+export default PracticalsList
  
 
 

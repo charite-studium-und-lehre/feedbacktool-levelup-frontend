@@ -1,7 +1,6 @@
-
-import React, { Component } from 'react'
+import React from 'react'
 import PracticalsTree from './PracticalsTree'
-import TätigkeitenList from './TätigkeitenList'
+import PracticalsList from './PracticalsList'
 
 const Practicals = props => (
     <div className="container-fluid">
@@ -11,7 +10,7 @@ const Practicals = props => (
                     <PracticalsTree />
                 </div>
                 <div className="col-md-3">
-                    <TätigkeitenList/>
+                    <PracticalsList/>
                 </div>
             </div>
         </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import _ from 'lodash'
 
 const flattenTree = entry => entry.entries ? _.flatMap(entry.entries, e => flattenTree(e)) : [entry]
-const getScore = (entry, p) => _.sumBy(flattenTree(entry), e => _.property(p)(e) || 0)
+const getScore = (entry, p) => _.sumBy(flattenTree(entry), e => _.property(p)(e) || _.random(0,6))
 const getMaxScore = entry => flattenTree(entry).length * 6
 
 const PracticalsScore = props => (
