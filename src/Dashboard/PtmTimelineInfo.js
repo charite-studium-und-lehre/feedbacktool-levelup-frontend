@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'lodash'
 import { HorizontalBarChart } from '../Charting/HorizontalBarGraph'
 
 const labels = ['nicht beantwortet', 'falsch', 'richtig']

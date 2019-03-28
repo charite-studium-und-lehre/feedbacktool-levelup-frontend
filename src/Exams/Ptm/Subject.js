@@ -7,7 +7,7 @@ const labels = ['richtig', 'falsch', 'nicht beantwortet']
 const Subject = props => (
     <div className="card m-2 flex-grow-1" style={{width: '20rem'}}>
         <div className="card-body">
-            <h4>{props.title}</h4>
+            <span className="font-weight-bold">{props.title}</span>
             <div className="p-2 pl-5" style={{height: '6rem'}} >
                 <HorizontalBarChart yDomain={labels} data={new Array(3).fill(0).map((d,i) => ({y: labels[i], x: _.random(5,100)}))} />
             </div>

@@ -3,6 +3,7 @@ import _ from 'lodash'
 import Subjects from '../Exams/Subjects'
 import Subject from './Subject'
 import Ranking from './Ranking'
+import PTMResults from './PTMResults'
 import SubjectsTabs from '../Core/Tabs'
 import Legend from '../Charting/Legend'
 import LegendTexts from '../Core/LegendTexts'
@@ -21,13 +22,17 @@ const Strengths = ({ match }) => {
             </div>
         </div>
         <div className="row mt-3">
-            <div className="col-md-6">
-                <Ranking subjects={_.flatMap(mcSample, c => c.subjects)} />
+            <div className="col-md-4 mt-2">
+                <Ranking title={LegendText.Semester.title} text={LegendText.Semester.text} subjects={_.flatMap(mcSample, c => c.subjects)} />
             </div>
-            <div className="col-md-6">
-                <Ranking subjects={_.flatMap(ptmSample, c => c.subjects).map(s => ({...s, mean: _.random(1, s.questions)}))} />
+            <div className="col-md-4 mt-2">
+                <Ranking title={LegendText.PTM.title} text={LegendText.PTM.text} subjects={_.flatMap(ptmSample, c => c.subjects).map(s => ({...s, mean: _.random(1, s.questions)}))} />
+            </div>
+            <div className="col-md-4 mt-2">
+                <PTMResults />
             </div>
         </div>
+        
         <div className="row mt-3">
             <div className="col">
                 <div className="card p-3">
@@ -36,7 +41,7 @@ const Strengths = ({ match }) => {
                         tabTitles={mcSample.map(c => c.title)}
                         tabContents={mcSample.map(c => 
                             <div className="d-flex flex-wrap">
-                                {c.subjects.map(s => <Subject key={s.title} {...s} flash={s.title === match.params.subject} />)}
+                                {_.sortBy(c.subjects, 'title').map(s => <Subject key={s.title} {...s} flash={s.title === match.params.subject} />)}
                             </div>
                         )}
                         active={mcSample.reduce((r, c) => c.subjects.some(s => s.title === match.params.subject) ? c.title : r, "")}

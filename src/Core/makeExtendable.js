@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
-const makeExtendable = WrappedComponent => {
+const makeExtendable = (WrappedComponent, def = false) => {
     return class Extendable extends Component {
         static defaultProps = {
-            extended: true
+            extended: def
         }
 
         constructor(props) {

@@ -26,14 +26,14 @@ class Subject extends Component {
         return (
             <div className="card m-2 flex-grow-1 with-shadow" style={{width: '20rem'}}>
                 <div ref={this.node} className={`card-body ${this.state.flash ? 'bg-primary' : ''}`} style={{transition: '5s'}}>
-                    <h4>{this.props.title}</h4>
+                    <span className="font-weight-bold">{this.props.title}</span>
                     {/* <div style={{textAlign: 'right'}}>
                         <label className="m-0 mr-2"><input type="radio" name={`subject-${this.props.title}-mode`} checked={this.state.mode === 'current'} onChange={() => this.setMode('current')} className="mx-2" />aktuell</label>
                         <label><input type="radio" name={`subject-${this.props.title}-mode`} checked={this.state.mode === 'timeline'} onChange={() => this.setMode('timeline')} className="mx-2" />zeitl. Verlauf</label>
                     </div> */}
                     <div className="p-4">
                         <OrdinalChart style={{height:'15rem'}} xDomain={exams} yDomain={[0,30]}>
-                            <YAxis label="gestellte vs. richtige" ticks={{count: 4}} />
+                            <YAxis label="Anzahl gestellte vs. richtige Fragen" ticks={{count: 4}} />
                             <XAxis />
                             <BarGraph labels data={ data } color="hsla(250, 100%, 50%, .6)" />
                         </OrdinalChart>

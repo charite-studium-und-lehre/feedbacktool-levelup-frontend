@@ -24,6 +24,5 @@ const Legend = props =>
             </div>
         </div>
     </div>
-        
 
-export default makeExtendable(Legend)
+export default makeExtendable(Legend, true)
