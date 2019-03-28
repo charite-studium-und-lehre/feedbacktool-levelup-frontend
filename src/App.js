@@ -48,7 +48,7 @@ class App extends Component {
                     <PrivateRoute key={route.path} path={route.path} component={route.component} exact={route.exact} isLoggedIn={this.state.loggedIn} /> :
                     <Route key={route.path} path={route.path} component={route.component} exact={route.exact} />
             ))}
-            <Route path="/" render={() => (
+            <Route exact path="/" render={() => (
                 <Redirect to="/dashboard" />
             )}/>
           </div>
