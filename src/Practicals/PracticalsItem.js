@@ -7,14 +7,18 @@ import PracticalsScore from './PracticalsScore'
 import PracticalsChart from './PracticalsChart'
 
 const Chart = makeExtendable(props => 
-    <div className="float-right">
-        <FontAwesomeIcon 
-            onClick={e => {props.toggleExtended(); e.stopPropagation(); } }
-            className={props.extended ? 'text-primary' : 'text-muted'}
-            style={{fontSize: '1.3rem'}}
-            icon={faChartLine} />
-        {/* <PracticalsChart graphs={[1,2]}/> */}
+  <div>
+    <div className="text-right">
+      <FontAwesomeIcon onClick={() => props.toggleExtended()} className={props.extended ? 'text-primary' : 'text-muted'} style={{fontSize: '.8rem'}} icon={faChartLine} />
     </div>
+    <SlideDown className="animated fast">
+    {props.extended &&
+    <div style={{height: '6rem', overflow: 'hidden'}}>
+        <PracticalsChart graphs={[1]} />
+    </div>
+    }
+    </SlideDown>
+  </div>
 )
 
 const PracticalsItem = makeExtendable(props =>
@@ -26,7 +30,6 @@ const PracticalsItem = makeExtendable(props =>
               {props.entry.label}
             </div>
           </div>
-          {props.entry.hasGraph && false && <Chart extended={false} />}
           <div className="col-4 p-0">
             <PracticalsScore entry={props.entry} />
           </div>
@@ -34,8 +37,10 @@ const PracticalsItem = makeExtendable(props =>
             {props.entry.entries && <FontAwesomeIcon style={{fontSize: '.8rem'}} icon={props.extended ? faChevronDown : faChevronRight} /> }
           </div>
         </div>
+        {props.entry.hasGraph && <Chart extended={false} />}
       </div>
-      {props.entry.entries && <SlideDown className="animated fast" >
+      {props.entry.entries && 
+      <SlideDown className="animated fast" >
         {props.extended && 
         <div className="pl-2">
           {props.entry.entries.map(f => <PracticalsItem key={f.label} extended={false} entry={f} level={props.level + 1} /> )}
