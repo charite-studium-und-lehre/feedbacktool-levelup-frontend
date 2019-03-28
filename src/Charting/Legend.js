@@ -2,6 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../Core/makeExtendable'
+import { SlideDown } from 'react-slidedown'
 
 const Legend = props => 
     <div>
@@ -15,9 +16,11 @@ const Legend = props =>
                     icon={faInfoCircle} />
             </div>
         </div>
-        <div ref={props.extendableElement} className="animated fast row" style={{ overflow: 'hidden' }}>
+        <div className="animated fast row" style={{ overflow: 'hidden' }}>
             <div className="col my-2" style={{fontSize: '.8rem'}}>
-                {props.children}
+                <SlideDown className="animated fast">
+                    {props.extended && props.children}
+                </SlideDown>
             </div>
         </div>
     </div>

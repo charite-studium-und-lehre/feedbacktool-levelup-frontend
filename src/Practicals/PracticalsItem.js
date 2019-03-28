@@ -1,111 +1,54 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { SlideDown } from 'react-slidedown'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChartLine, faChevronRight, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../Core/makeExtendable'
+import PracticalsScore from './PracticalsScore'
+import PracticalsChart from './PracticalsChart'
 
-const praticalsTree ={
-  entries: [
-      {
-          label: 'Betreuung von Patienten',
-          entries: [
-              {
-                label: 'Anamnese erheben, körperliche Untersuchung durchführen und Ergebnisse strukturiert zusammenfassen',
-                entries: [
-                    {
-                      label: 'Vollständige oder fokussierte Anamnese erheben und körperliche Untersuchung  durchführen (entsprechend Situationsanforderung)'
-                    },
-                    {
-                      label: 'Zusammenstellen von Vorbefunden, Dokumenten, Medikation, ggf. Rücksprache mit behandelnden Ärzten oder Familienangehörigen'
-                    },
-                    {
-                      label: 'Strukturierte Dokumentation in Patientenakte, einschließlich Synthese von Diagnosen/Arbeitsdiagnosen und  wesentlicher Differentialdiagnosen'
-                    },
+const Chart = makeExtendable(props => 
+  <div>
+    <div className="text-right">
+      <FontAwesomeIcon onClick={() => props.toggleExtended()} className={props.extended ? 'text-primary' : 'text-muted'} style={{fontSize: '.8rem'}} icon={faChartLine} />
+    </div>
+    <SlideDown className="animated fast">
+    {props.extended &&
+    <div style={{height: '6rem', overflow: 'hidden'}}>
+        <PracticalsChart graphs={[1]} />
+    </div>
+    }
+    </SlideDown>
+  </div>
+)
 
-                ]
-              },
-              {
-                label: 'Diagnostischen Arbeitsplan erstellen und Umsetzung einleiten',
-                entries: [
-                  {
-                    label: 'Eintrag für die Basisdiagnostik in Patientenkurve vorschreiben (Gegenzeichnung Arzt)'
-                  },
-                  {
-                    label: 'Plan für die patientenspezifische Diagnostik entwerfen (Abstimmung mit Arzt)'
-                  },
-                  {
-                    label: 'Plan in Patientenkurve eintragen und diagnostische Anforderungsformulare ausfüllen (Gegenzeichnung Arzt)'
-                  },
-                ]
-              },
-              {
-                label: 'Untersuchungsergebnisse interpretieren und weiterführende Schritte einleiten',
-                entries: [
-                  {
-                    label: 'Ergebnisse der Basisdiagnostik und häufiger Untersuchungen sichten und interpretieren'
-                  },
-                  {
-                    label: 'Änderungen in Diagnostik und Therapie vorschlagen (Abstimmung mit Arzt)'
-                  },
-                  {
-                    label: 'Ergebnisse in Patientenkurve eintragen und ggf. Anforderungsformulare ausfüllen (Gegenzeichnung Arzt)'
-                  },
-                ]
-              },          
-              {
-                label: 'Behandlungsplan erstellen und die Umsetzung einleite',
-                entries: [
-                  {
-                    label: 'Eintrag für die allgemeine Therapie in Patientenkurve vorschreiben (Gegenzeichnung Arzt)'
-                  },
-                  {
-                    label: 'Plan für die patientenspezifische Therapie entwerfen (Abstimmung mit Arzt)'
-                  },
-                  {
-                    label: ' Plan in Patientenkurve eintragen und therapeutische Anforderungsformulare ausfüllen (Gegenzeichnung Arzt)'
-                  },
-                ]
-              },
-
-          ]
-      },
-      {
-          label: 'Ärztliche Prozeduren 1',
-      },
-      {
-          label: 'Kommunikation mit Patienten',
-      },
-      {
-          label: 'Kommunikation und Zusammenarbeit mit Kollegen',
-      },
-      {
-          label: 'Weitere ärztliche professionelle Tätigkeit',
-      },
-  ]
-}
-
-
-const MyDropdown = makeExtendable(props =>
-    <div className="card p-2 m-2 align-self-start flex-grow-1">
-      <span className="font-weight-bold" style={{fontSize: '.8rem'}} onClick={() => props.toggleExtended()}>{props.title}</span>
-      <div ref={props.extendableElement} className={'animated fast'} >
-        <hr />
-        {props.children}
+const PracticalsItem = makeExtendable(props =>
+    <div className="mt-2">
+      <div className="p-2" style={{backgroundColor: `hsla(83, 35%, ${(props.level + 3) / 7 * 100}%,.7)`}}>
+        <div onClick={() => props.toggleExtended()} className="row">
+          <div className="col-7 pr-0">
+            <div className="font-weight-bold" style={{fontSize: '.8rem'}}>
+              {props.entry.label}
+            </div>
+          </div>
+          <div className="col-4 p-0">
+            <PracticalsScore entry={props.entry} />
+          </div>
+          <div className="col-1 pl-0 text-right" style={{color: 'rgba(0,0,0,.6)'}}>
+            {props.entry.entries && <FontAwesomeIcon style={{fontSize: '.8rem'}} icon={props.extended ? faChevronDown : faChevronRight} /> }
+          </div>
+        </div>
+        {props.entry.hasGraph && <Chart extended={false} />}
       </div>
+      {props.entry.entries && 
+      <SlideDown className="animated fast" >
+        {props.extended && 
+        <div className="pl-2">
+          {props.entry.entries.map(f => <PracticalsItem key={f.label} extended={false} entry={f} level={props.level + 1} /> )}
+        </div>
+        }
+      </SlideDown>
+      }
     </div>
 )
 
-
-class PracticalsItem extends Component {
-  render() {
-    return (
-      <div className="PracticalsItem d-flex flex-wrap">
-          {praticalsTree.entries.map(e => 
-            <MyDropdown extended={false} title={e.label}>
-              {e.entries && e.entries.map(f => <MyDropdown extended={false} title={f.label} /> )}
-            </MyDropdown>
-          )}
-      </div>
-    )
-  }
-}
-export default PracticalsItem;
-
-
+export default PracticalsItem
