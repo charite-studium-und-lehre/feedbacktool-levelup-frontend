@@ -46,8 +46,8 @@ export default {
         },
         Stations: {
             Main: {
-                title: 'Stationsprüfungen',
-                text: 'Hier siehst du deine Ergebnisse in den bis jetzt absolvierten Stationsprüfungen. Klicke auf die Flächen über dem Diagramm um deine Ergebnisse zu filtern. Wenn du auf die Balken im Diagramm klickst, bekommst du genauere Informationen zu der jeweiligen Station.'
+                title: 'Praktische Prüfungen',
+                text: 'Hier siehst du deine Ergebnisse in den bis jetzt absolvierten praktischen Prüfungen. Klicke auf die Flächen über dem Diagramm um deine Ergebnisse zu filtern. Wenn du auf die Balken im Diagramm klickst, bekommst du genauere Informationen zu der jeweiligen Station.'
             },
         },
     },

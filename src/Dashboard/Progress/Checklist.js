@@ -30,11 +30,7 @@ class Checklist extends Component {
                     <div style={{fontSize: '.75rem'}} className="flex-fill mr-2 mb-1 font-weight-bold">{this.props.data.label}</div>
                     <div><FontAwesomeIcon style={{color: percentDone(this.props.data) === 1 ? 'rgba(0,128,0,.6)' : 'lightgray'}} icon={percentDone(this.props.data) === 1 ? faCheckCircle : faTimesCircle} /></div>
                 </div>
-                {this.props.data.entries && this.props.data.entries.map((e,i) =>
-                    <Checklist
-                        data={e}
-                    />
-                )}
+                {this.props.data.entries && this.props.data.entries.map((e,i) => <Checklist key={i} data={e} /> )}
             </div>
     }
 }

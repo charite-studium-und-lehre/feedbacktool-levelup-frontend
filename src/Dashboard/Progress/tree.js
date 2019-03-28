@@ -27,7 +27,7 @@ const tree = {
                     done: _.random(1),
                 },
                 {
-                    label: 'Stationsprüfung',
+                    label: 'Praktische Prüfung',
                     isLeaf: true,
                     done: _.random(1),
                 },

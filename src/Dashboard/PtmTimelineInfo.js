@@ -1,19 +1,19 @@
 import React from 'react'
 import _ from 'lodash'
-import { Link } from 'react-router-dom'
 import { HorizontalBarChart } from '../Charting/HorizontalBarGraph'
 
 const labels = ['nicht beantwortet', 'falsch', 'richtig']
+const results = [47, 10, 143]
 const PtmInfo = props =>
     (<div>
         <div>Deine Antworten:</div>
         <div className="mt-1" style={{height: '5.3rem'}}>
-            <HorizontalBarChart noaxis yDomain={labels} data={new Array(3).fill(0).map((d,i) => ({y: labels[i], x: _.random(5,100) }))} />
+            <HorizontalBarChart noaxis xDomain={[0,200]} yDomain={labels} data={labels.map((d, i) => ({y: d, x: results[i] }))} />
         </div>
         <span className="text-primary float-right" onClick={() => props.onClose()}>schließen</span>
-        <Link to={`/exams/ptm/${props.data.label}`}>
+        <a href="https://progresstesting.safeserver.de/">
             <span className="text-primary">Details</span>
-        </Link>
+        </a>
     </div>)
 
 export default PtmInfo

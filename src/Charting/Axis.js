@@ -6,6 +6,12 @@ import { animationTime } from './Utils'
 class Axis extends Component {
     count = null
 
+    static defaultProps = {
+        labelStyle: { 
+            fontSize: '.9rem',
+            textAnchor: 'end',
+        }
+    }
     constructor(props) {
         super(props)
         this.node = React.createRef()
@@ -54,7 +60,7 @@ class XAxis extends Axis {
                     dy="-2"
                     x={this.props.xScale.range()[1]}
                     fontSize=".7rem" fill="rgba(1,1,1,.4)"
-                    style={{textAnchor: "end"}}>
+                    style={this.props.labelStyle}>
                     {this.props.label}
                 </text>
             </g>
@@ -79,7 +85,7 @@ class YAxis extends Axis {
                     dy=".71rem"
                     fontSize=".7rem"
                     fill="rgba(1,1,1,.4)"
-                    style={{textAnchor: "end"}}>
+                    style={this.props.labelStyle}>
                     {this.props.label}
                 </text>
                 <g ref={this.node} className={`y axis ${this.props.horizontal ? 'horizontal' : ''}`} />

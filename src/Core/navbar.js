@@ -6,9 +6,9 @@ export default function Navbar(props) {
     let button;
 
     if (isLoggedIn) {
-        button = <NavLink className="nav-link pull-right" to="/logout">logout</NavLink>;
+        button = <NavLink className="nav-link pull-right" to="/logout">Logout</NavLink>;
     } else {
-        button = <NavLink className="nav-link pull-right" to="/login">login</NavLink>
+        button = <NavLink className="nav-link pull-right" to="/login">Login</NavLink>
     }
 
     return (

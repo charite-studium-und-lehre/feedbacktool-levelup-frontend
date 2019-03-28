@@ -82,7 +82,7 @@ const Routes = [
   {
     path: '/exams/stations/:test',
     component: Stations,
-    breadcrumb: params => <Link to="/exams/stations">Stationsprüfungen</Link>,
+    breadcrumb: params => <Link to="/exams/stations">Praktische Prüfungen</Link>,
     exact: true,
     private: true,
   },

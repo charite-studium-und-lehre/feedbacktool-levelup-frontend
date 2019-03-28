@@ -4,7 +4,6 @@ import DashboardCard from './DashboardCard';
 import { LinearChart } from '../Charting/Chart';
 import BarGraph from '../Charting/BarGraph';
 import Progress from './Progress/Progress'
-import Achievements from './Achievements'
 import { XAxis, YAxis } from '../Charting/Axis'
 import Timeline from './Timeline'
 import graphs from '../Exams/Graphs'
@@ -27,12 +26,23 @@ export default function Dashboard() {
             </div>
           </div>
             <div className="row">
+                <div className="col-lg-4">
+                    <div className="mt-2">
+                        <Link to="/practicals">
+                            <DashboardCard 
+                            header={Math.round(Math.random() * 100) + ' p'} 
+                            title="Ärztliche Tätigkeiten" 
+                            text="Dein Überblick zur Entwicklung deiner praktischen Fähigkeiten im Studienverlauf.">
+                            </DashboardCard>
+                        </Link>
+                    </div>
+                </div>
                 <div className="col-lg-4 mt-2">
                     <Link to="/exams/stations/all">
                         <DashboardCard 
                         header={Math.round(Math.random() * 100) + ' %'} 
-                        title="Stationsprüfungen" 
-                        text="Deine Stärken und Schwächen">
+                        title="Praktische Prüfungen" 
+                        text="Dein Überblick zu den praktischen Prüfungen im Studium.">
                             <div className="m-3" style={{height: '6rem'}}>
                                 <LinearChart yDomain={[0,100]} xDomain={[0,11]}>
                                     <XAxis />
@@ -45,22 +55,11 @@ export default function Dashboard() {
                 </div>
                 <div className="col-lg-4">
                     <div className="mt-2">
-                        <Link to="/practicals">
-                            <DashboardCard 
-                            header={Math.round(Math.random() * 100) + ' p'} 
-                            title="Ärztliche Tätigkeiten" 
-                            text="Dein Fortschritt in praktischen Fähigkeiten auf dem Weg zum Healthcare Professional.">
-                            </DashboardCard>
-                        </Link>
-                    </div>
-                </div>
-                <div className="col-lg-4">
-                    <div className="mt-2">
                         <Link to="/strengths">
                             <DashboardCard 
                             header={Math.round(Math.random() * 100) + ' p'} 
                             title="Deine Stärken" 
-                            text="Deine Entwicklung in allen Fächern im gesamten Studium.">
+                            text="Dein Überblick zu deinen Stärken und deiner Entwicklung im PTM und den Semesterprüfungen über das gesamte Studium.">
                             </DashboardCard>
                         </Link>
                     </div>
