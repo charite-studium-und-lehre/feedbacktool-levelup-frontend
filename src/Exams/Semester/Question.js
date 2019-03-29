@@ -1,5 +1,5 @@
 import React from 'react'
-
+import SimpleBar from '../../Charting/SimpleBar'
 const Answer = props => (
     <div className="m-1">
         <span>{props.label}) </span>
@@ -23,9 +23,9 @@ const Question = props => {
                         { props.answers.map(answer => 
                             <Answer key={answer.label} {...answer}>{answer.text}</Answer>) }
                     </div>
-                    <div className="my-1 text-center text-white question-bar" style={{backgroundImage: `linear-gradient(to right, rgba(51, 137, 51, 0.8) ${percentage}%, rgba(51, 137, 51, 0.4) ${percentage}%)`}}>
+                    <SimpleBar value={percentage}>
                         {percentage} % haben diese Frage richtig beantwortet
-                    </div>
+                    </SimpleBar>
                     <div className="text-right">
                         { (props.tags || []).map(tag => <span className="badge badge-primary mr-1 bg-info" key={tag.label}>{ tag.label }</span> )}
                     </div>
