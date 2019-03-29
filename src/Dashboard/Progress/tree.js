@@ -2,20 +2,225 @@ import _ from 'lodash'
 
 const tree = {
     label: 'root',
-    entries: _.range(1,11).map(i =>
-        ({
-            label: `${i}. Fachsemester`,
+    entries: [
+        {
+            label: `1. Fachsemester`,
             entries: [
                 {
-                    label: 'Semesterprüfung',
-                    entries: _.range(1,_.random(2,4)).map(d => (
-                        {
-                            label: 'foo' + d,
-                            isLeaf: true,
-                            done: _.random(1)
-                        }
-                    ))
+                    label: 'PTM',
+                    isLeaf: true,
+                    done: _.random(1),
                 },
+                {
+                    label: 'Semesterprüfung',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Anwesenheit',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+            ]
+        },
+        {
+            label: `2. Fachsemester`,
+            entries: [
+                {
+                    label: 'PTM',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Semesterprüfung',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Praktische Prüfung',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Anwesenheit',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+            ]
+        },
+        {
+            label: `3. Fachsemester`,
+            entries: [
+                {
+                    label: 'PTM',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Semesterprüfung',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Anwesenheit',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Erste Hilfe',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Krankenpflegedienst',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+            ]
+        },
+        {
+            label: `4. Fachsemester`,
+            entries: [
+                {
+                    label: 'PTM',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Semesterprüfung',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Praktische Prüfung',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Anwesenheit',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Famulaturreife',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+            ]
+        },
+        {
+            label: `5. Fachsemester`,
+            entries: [
+                {
+                    label: 'PTM',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Semesterprüfung',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Anwesenheit',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+            ]
+        },
+        {
+            label: `6. Fachsemester`,
+            entries: [
+                {
+                    label: 'PTM',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Semesterprüfung',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Anwesenheit',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'M1-Äquivalenz',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+            ]
+        },
+        {
+            label: `7. Fachsemester`,
+            entries: [
+                {
+                    label: 'PTM',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Semesterprüfung',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Anwesenheit',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+            ]
+        },
+        {
+            label: `8. Fachsemester`,
+            entries: [
+                {
+                    label: 'PTM',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Semesterprüfung',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Anwesenheit',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+            ]
+        },
+        {
+            label: `9. Fachsemester`,
+            entries: [
+                {
+                    label: 'PTM',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Semesterprüfung',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'OSCE',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Anwesenheit',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+            ]
+        },
+        {
+            label: `10. Fachsemester`,
+            entries: [
                 {
                     label: 'PTM',
                     isLeaf: true,
@@ -27,13 +232,33 @@ const tree = {
                     done: _.random(1),
                 },
                 {
-                    label: 'Praktische Prüfung',
+                    label: 'Schriftliches Staatsexamen (M2)',
                     isLeaf: true,
                     done: _.random(1),
                 },
             ]
-        })
-    )
+        },
+        {
+            label: `11.-12. Fachsemester`,
+            entries: [
+                {
+                    label: 'PTM',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'PJ',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+                {
+                    label: 'Mündlich-Praktisches Staatsexamen (M4)',
+                    isLeaf: true,
+                    done: _.random(1),
+                },
+            ]
+        },
+    ]
 }
 
 export default tree

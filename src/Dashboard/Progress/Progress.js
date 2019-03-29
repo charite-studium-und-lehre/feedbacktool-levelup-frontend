@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Checklist from './Checklist'
 import tree from './tree'
+import Legends from '../../Core/LegendTexts'
+import Legend from '../../Charting/Legend'
 
 class Progress extends Component {
     constructor(props) {
@@ -21,10 +23,7 @@ class Progress extends Component {
         return (
             <div className="card progress-card with-border">
                 <div className="card-body">
-                    <h5 className="card-title">Dein Studienfortschritt</h5>
-                    <div className="card-text">
-                    Hier siehst Du deinen Studienfortschritt und deine bereits erreichten Meilensteinen.
-                    </div>
+                    <Legend title={Legends.Dashboard.Progress.title}>{Legends.Dashboard.Progress.text}</Legend>
                     <div className="checklist">
                         <div>
                         {tree.entries.map(d => <Checklist key={d.label} className="d-inline-block align-top" data={d} onClick={this.zoom} /> )}
