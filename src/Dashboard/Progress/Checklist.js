@@ -9,7 +9,7 @@ const percentDone = t => _.mean(getDone(t))
 
 const Checklist = props => {
     return props.data.isLeaf ? 
-        <ChecklistItem label={props.data.label} done={props.data.done} /> :
+        <ChecklistItem label={props.data.label} done={props.data.done} link={props.data.link} /> :
         <div className={`card m-2 p-2 with-shadow animated ${props.className}`} >
             <div className="d-flex">
                 <div style={{fontSize: '.75rem'}} className="flex-fill mr-2 mb-1 font-weight-bold">{props.data.label}</div>

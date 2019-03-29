@@ -15,6 +15,7 @@ const tree = {
                     label: 'Semesterprüfung',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/semester/1. Fachsemester',
                 },
                 {
                     label: 'Anwesenheit',
@@ -35,11 +36,13 @@ const tree = {
                     label: 'Semesterprüfung',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/semester/2. Fachsemester',
                 },
                 {
                     label: 'Praktische Prüfung',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/stations/2. Semester',
                 },
                 {
                     label: 'Anwesenheit',
@@ -60,6 +63,7 @@ const tree = {
                     label: 'Semesterprüfung',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/semester/3. Fachsemester',
                 },
                 {
                     label: 'Anwesenheit',
@@ -90,11 +94,13 @@ const tree = {
                     label: 'Semesterprüfung',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/semester/4. Fachsemester',
                 },
                 {
                     label: 'Praktische Prüfung',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/stations/4. Semester',
                 },
                 {
                     label: 'Anwesenheit',
@@ -120,6 +126,7 @@ const tree = {
                     label: 'Semesterprüfung',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/semester/5. Fachsemester',
                 },
                 {
                     label: 'Anwesenheit',
@@ -140,6 +147,7 @@ const tree = {
                     label: 'Semesterprüfung',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/semester/6. Fachsemester',
                 },
                 {
                     label: 'Anwesenheit',
@@ -165,6 +173,7 @@ const tree = {
                     label: 'Semesterprüfung',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/semester/7. Fachsemester',
                 },
                 {
                     label: 'Anwesenheit',
@@ -185,6 +194,7 @@ const tree = {
                     label: 'Semesterprüfung',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/semester/8. Fachsemester',
                 },
                 {
                     label: 'Anwesenheit',
@@ -205,11 +215,13 @@ const tree = {
                     label: 'Semesterprüfung',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/semester/9. Fachsemester',
                 },
                 {
                     label: 'OSCE',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/stations/9. Semester',
                 },
                 {
                     label: 'Anwesenheit',
