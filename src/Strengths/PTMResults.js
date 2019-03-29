@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import { scaleOrdinal } from 'd3-scale'
-import { schemeGreens } from 'd3-scale-chromatic'
+import { schemeBlues } from 'd3-scale-chromatic'
 import { OrdinalChart } from '../Charting/Chart'
 import { XAxis, YAxis } from '../Charting/Axis'
 import BarGraph from '../Charting/BarGraph'
@@ -10,19 +10,14 @@ import Legend from '../Charting/Legend'
 import LegendTexts from '../Core/LegendTexts'
 const LegendText = LegendTexts.Strengths
 
-const colors = scaleOrdinal(schemeGreens[3])
+const colors = scaleOrdinal(schemeBlues[3])
 const labels = ['richtig', 'falsch', 'nicht beantwortet']
-const confidence = ['sicher', 'wahrscheinlich', 'geraten']
+const confidence = ['geraten', 'wahrscheinlich', 'sicher']
 
 const results = [
-    _.sampleSize(_.range(10, 100), 3).sort(),
-    _.sampleSize(_.range(10, 100), 3).sort(),
-    [_.random(100)]
-]
-const data = [
-    _.range(2).map((d, i) => ({x: labels[i], result: results[i][2], color: colors(2)})),
-    _.range(2).map((d, i) => ({x: labels[i], result: results[i][1], color: colors(1)})),
-    _.range(3).map((d, i) => ({x: labels[i], result: results[i][0], color: colors(0)})),
+    [[89, 76, 43] , [13, 24, 43]],
+    [[33, 15, 3], [18, 12, 3]],
+    [78, 78] 
 ]
 
 const PTMResults = props => (
@@ -43,8 +38,8 @@ const PTMResults = props => (
             <div className="p-2">
                 <OrdinalChart xDomain={labels} yDomain={[0,100]}>
                     <XAxis />
-                    <YAxis />
-                    {data.map((d, i) => <BarGraph labels key={i} data={d.map(s => ({...s, y: s.result}))} />)}
+                    <YAxis ticks={{count: 4}} />
+                    <BarGraph labels data={labels.map((l,i) => ({x: l, y: results[i][0], label: results[i][1], color: _.range(0,3).map(i => colors(i))}))} />
                     <PointGraph color="rgba(0, 0, 0, .6)" data={labels.map(l => ({x: l, y: _.random(30, 85)}))} />
                 </OrdinalChart>
             </div>

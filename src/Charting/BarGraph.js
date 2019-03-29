@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import { select } from 'd3-selection'
 import AnimatedText from './AnimatedText'
 import { animationTime } from './Utils'
@@ -43,10 +44,10 @@ const BarGraph = props => {
 	return (
 	<g className={`bar-graph ${props.className || ''}`}>
 	{props.data.map((d, i) => 
-		[].concat(d.y).map((y,i) => 
-		<g key={"bar" + d.x + i} className="bar animated" style={props.style}>
+		[].concat(d.y).map((y,j) => 
+		<g key={"bar" + d.x + j} className="bar animated" style={props.style}>
 			<Bar
-				style={{fill: d.highlight ? (props.highlightColor || '#fe99f2') : (d.color || props.color || '#fe9922')}} 
+				style={{fill: d.highlight ? (props.highlightColor || '#fe99f2') : (_.isArray(d.color) ? d.color[j] : d.color || props.color || '#fe9922')}} 
 				x={props.xScale(d.x) + dx}
 				y={props.yScale(y)}
 				height={props.yScale.range()[0] - props.yScale(y)}
@@ -57,7 +58,7 @@ const BarGraph = props => {
 				<AnimatedText 
 					x={props.xScale(d.x) + (props.xScale.bandwidth ? (width/2) : offset)} 
 					y={props.yScale(y) - 3}>
-					{d.label || y}
+					{_.isArray(d.label) ? d.label[j] : d.label || y}
 				</AnimatedText>
 			}
 		</g>
