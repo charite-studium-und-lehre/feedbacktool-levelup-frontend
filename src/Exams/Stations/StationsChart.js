@@ -9,7 +9,7 @@ const Chart = asChart(withHorizontalOrdinalScales(props => {
     return (
         <g>
         {props.data.filter(e => e.stations.length > 0).map(e =>
-            <StationsExam label={e.exam} stations={e.stations} scales={{xScale, yScale}} {...otherProps} />
+            <StationsExam key={e.exam} label={e.exam} stations={e.stations} scales={{xScale, yScale}} {...otherProps} />
         )}
             <XAxis horizontal label="% richtig" xScale={xScale} yScale={yScale} />
         </g>

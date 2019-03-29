@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { scaleBand, scaleOrdinal, scaleLinear } from 'd3-scale'
+import { scaleBand, scaleOrdinal } from 'd3-scale'
 import { schemeBlues } from 'd3-scale-chromatic'
 import StationDetails from './StationDetails'
 import AnimatedPoint from '../../Charting/AnimatedPoint'

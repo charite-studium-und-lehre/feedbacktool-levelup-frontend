@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'lodash'
 import AnimatedRect from '../../Charting/AnimatedRect'
 import Station from './Station'
 import AnimatedText from '../../Charting/AnimatedText'
@@ -12,7 +11,7 @@ const StationsExam = props => {
         rectWidth = props.scales.xScale.range()[1] + 20
     return (
     <g>
-        <AnimatedText y={rectY + 15} x={rectWidth + rectX - 10} textAnchor="end" style={{fontSize: '.75rem'}} color="rgba(80,80,80, .3)">
+        <AnimatedText y={rectY + 15} x={rectWidth + rectX - 10} textAnchor="end" style={{fontSize: '.75rem'}} color="rgba(0,0,0, .5)">
             {props.label}
         </AnimatedText>
         <AnimatedRect 
@@ -21,9 +20,9 @@ const StationsExam = props => {
             height={rectHeight}
             width={rectWidth}
             strokeDasharray="6"
-            color={`rgba(80,80,80, .3)`}/>
+            color={`rgba(0,0,0, .5)`}/>
         {props.stations.map((station, i) => 
-            <Station key={station.name} color={props.colors(station.category)} data={station} onClick={ item => props.selectItem(item, i)} {...props.scales} />
+            <Station key={station.name + i} color={props.colors(station.category)} data={station} onClick={ item => props.selectItem(item, i)} {...props.scales} />
         )}
     </g>
     )
