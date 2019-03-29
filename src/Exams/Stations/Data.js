@@ -1,109 +1,439 @@
 import _ from 'lodash'
 
-const characters = "abcdefghijklmnopqrstuvwxyz"
-function createDetails() {
-    return _.range(5).map(d => ({
-        label: _.sampleSize(characters.split(''), _.random(4,12)).join(''),
-        value: _.random(25,100)
-    }))
-}
 const data = [
     {
         exam: '2. Semester',
+        group: '2. Semester',
         stations: [
             {
                 name:'Notfall', 
-                exam: '2. Semester', 
                 category: 'Klinisch', 
-                result: _.random(25, 95),
-                details: createDetails()
+                details: [
+                    {
+                        label: 'Eigenschutz',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Bewusstseinsprüfung',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Atmungsprüfung',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Beatmung',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Reanimation',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Reihenfolge',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Notruf',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                ]
             },
             {
                 name:'Abdomen', 
-                exam: '2. Semester', 
                 category: 'Klinisch', 
-                result: _.random(25, 95),
-                details: createDetails()
+                details: [
+                    {
+                        label: 'Begrüßung',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Händedesinfektion',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Anamnese',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Untersuchung',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Gesamteindruck',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                ]
             },
             {
                 name:'Biochemie', 
-                exam: '2. Semester', 
                 category: 'Vorklinisch', 
-                result: _.random(25, 95),
-                details: createDetails()
+                details: [
+                    {
+                        label: 'Thema',
+                        value: 'Funktion und Eigenschaften von Enzymen',
+                    },
+                    {
+                        label: 'Fakentwissen',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Zusammenhangswissen',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                ]
             },
             {
-                name:_.sample(['Anatomie / Biologie', 'Med. Soziologie / Sozialmedizin, Med. Psychologie']), 
-                exam: '2. Semester', 
+                name: 'Anatomie / Biologie', 
                 category: 'Vorklinisch', 
-                result: _.random(25, 95),
-                details: createDetails()
+                details: [
+                    {
+                        label: 'Thema',
+                        value: 'Grundlagen der Anatomie von Herz und Kreislauf',
+                    },
+                    {
+                        label: 'Fakentwissen',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Zusammenhangswissen',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                ]
             },
         ]
     },
     {
         exam: '4. Semester 2. Teil',
+        group: '4. Semester',
         stations: [
             {
                 name:'COPD', 
-                exam: '4. Semester', 
                 category: 'Klinisch', 
-                result: _.random(25, 95),
-                details: createDetails()
+                details: [
+                    {
+                        label: 'Anamnese',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Pulsoxymetrie',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                ]
             },
             {
                 name:'Aphasie', 
-                exam: '4. Semester', 
                 category: 'Klinisch', 
-                result: _.random(25, 95),
-                details: createDetails()
+                details: [
+                    {
+                        label: 'Anamnese',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Untersuchung',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Zusammenfassung',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Sprachverhalten',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                ]
             },
             {
-                name:'Ohren', 
-                exam: '4. Semester', 
+                name:'Ohrenuntersuchung', 
                 category: 'Klinisch', 
-                result: _.random(25, 95),
-                details: createDetails()
+                details: [
+                    {
+                        label: 'Anamnese',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Untersuchung Ohr',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Rinne-Weber-Test',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Verdachtsdiagnose',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                ]
             },
             {
                 name:'akutes Nierenversagen', 
-                exam: '4. Semester', 
                 category: 'Klinisch', 
-                result: _.random(25, 95),
-                details: createDetails()
+                details: [
+                    {
+                        label: 'Anamnese',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Arbeitsdiagnose',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Durchführung',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                ]
             },
         ]
     },
     {
         exam: '4. Semester 1. Teil',
+        group: '4. Semester',
         stations: [
             {
                 name: 'Physiologie 1', 
-                exam: '4. Semester', 
                 category: 'Vorklinisch', 
-                result: _.random(25, 95),
-                details: createDetails()
+                details: [
+                    {
+                        label: 'Thema',
+                        value: 'Säure-Basen-Haushalt',
+                    },
+                    {
+                        label: 'Fakentwissen',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Zusammenhangswissen',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                ]
             },
             {
                 name: 'Physiologie 2', 
-                exam: '4. Semester', 
                 category: 'Vorklinisch', 
-                result: _.random(25, 95),
-                details: createDetails()
+                details: [
+                    {
+                        label: 'Thema',
+                        value: 'Motorik',
+                    },
+                    {
+                        label: 'Fakentwissen',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Zusammenhangswissen',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                ]
             },
             {
                 name: 'Anatomie', 
-                exam: '4. Semester', 
                 category: 'Vorklinisch', 
-                result: _.random(25, 95),
-                details: createDetails()
+                details: [
+                    {
+                        label: 'Thema',
+                        value: 'Handgelenke',
+                    },
+                    {
+                        label: 'Fakentwissen',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Zusammenhangswissen',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                ]
             },
             {
-                name: _.sample(['Anatomie 2', 'Biologie']), 
-                exam: '4. Semester', 
+                name: 'Anatomie 2', 
                 category: 'Vorklinisch', 
-                result: _.random(25, 95),
-                details: createDetails()
+                details: [
+                    {
+                        label: 'Thema',
+                        value: 'Muskeln der unteren Extremitäten',
+                    },
+                    {
+                        label: 'Fakentwissen',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Zusammenhangswissen',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                ]
+            },
+        ]
+    },
+    {
+        exam: '9. Semester - OSCE',
+        group: '9. Semester',
+        stations: [
+            {
+                name: 'Schulterverband', 
+                category: 'Klinisch', 
+                details: [
+                    {
+                        label: 'Übernahme des Patienten',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Konzept und Vorgehen',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Versorgung',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Überprüfung',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                ]
+            },
+            {
+                name: 'Trigeminusneuralgie', 
+                category: 'Klinisch', 
+                details: [
+                    {
+                        label: 'Anamnese',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Untersuchung',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Arbeitsdiagnose',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Weiterführende Untersuchungen',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                ]
+            },
+            {
+                name: 'Bandscheibenvorfall', 
+                category: 'Klinisch', 
+                details: [
+                    {
+                        label: 'Befund/Verdachtsdiagnose',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Weitere bildgebende Diagnostik',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                ]
+            },
+            {
+                name: 'Schizophrenie', 
+                category: 'Klinisch', 
+                details: [
+                    {
+                        label: 'Anamnese',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Differentialdiagnosen/Verdachtsdiagnose',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Weiteres Vorgehen',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                ]
+            },
+            {
+                name: 'U2', 
+                category: 'Klinisch', 
+                details: [
+                    {
+                        label: 'Vorsorgeuntersuchungsheft',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Reflexe/Untersuchung',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'präventionsdiagnostische Maßnahmen',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                ]
+            },
+            {
+                name: 'Leichenschau', 
+                category: 'Klinisch', 
+                details: [
+                    {
+                        label: 'Leichenschau',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Leichenschauschein',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                    {
+                        label: 'Viktimologie',
+                        value: _.random(25,100),
+                        mean: _.random(5,90),
+                    },
+                ]
             },
         ]
     }
@@ -111,6 +441,11 @@ const data = [
 
 export default data.map( e => ({
     exam: e.exam,
-    result: _.mean( e.stations.map(s => s.result) ),
-    stations: e.stations.map(s => ({...s, mean: _.mean(s.details.map(d => d.value )) }))
+    group: e.group,
+    result: _.meanBy( e.stations, 'result'),
+    stations: e.stations.map(s => ({
+        ...s, 
+        result: _.round(_.meanBy(s.details.filter( d => _.isNumber(d.value) ), 'value') ),
+        mean: _.round(_.meanBy(s.details, 'mean')),
+    }))
 }))

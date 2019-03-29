@@ -2,6 +2,7 @@ import React from 'react'
 import _ from 'lodash'
 import Legend from '../Charting/Legend'
 import makeExtendable from '../Core/makeExtendable'
+import SimpleBar from '../Charting/SimpleBar'
 
 const minQuestions = 4
 const Ranking = props =>
@@ -12,10 +13,9 @@ const Ranking = props =>
                 {_.take(props.subjects.filter(s => s.questions >= minQuestions).sort((a,b) => -a.correct / a.questions + b.correct / b.questions), props.extended ? props.subjects.length : 3).map((s, i) =>
                     <div key={s.title} className="py-2">
                         <h5><span className="text-primary">#{i+1}</span> {s.title}</h5>
-                        <div className="my-1 text-center text-white question-bar" style={{backgroundImage: `linear-gradient(to right, rgba(51, 137, 51, 0.8) ${s.correct / s.questions * 100}%, rgba(51, 137, 51, 0.4) ${s.correct / s.questions * 100}%)`}}>
-                        {s.correct} von {s.questions} richtig
-                            {s.mean && <div className="dot" style={{left: `calc(${s.mean / s.questions * 100}% - .4rem)`}}/>}
-                        </div>
+                        <SimpleBar value={s.correct} total={s.questions} mean={s.mean}>
+                            {s.correct} von {s.questions} richtig
+                        </SimpleBar>
                     </div>
                 )}
             </div>

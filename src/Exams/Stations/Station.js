@@ -1,46 +1,31 @@
 import React, { Component } from 'react'
-import { scaleBand, scaleOrdinal } from 'd3-scale'
-import { schemeBlues } from 'd3-scale-chromatic'
 import StationDetails from './StationDetails'
-import AnimatedPoint from '../../Charting/AnimatedPoint'
-import HorizontalBarGraph from '../../Charting/HorizontalBarGraph';
+import SimpleBar from '../../Charting/SimpleBar'
+import makeExtendable from '../../Core/makeExtendable'
+import SlideDown from 'react-slidedown';
 
-const colors = scaleOrdinal(schemeBlues[5])
-class Station extends Component {
-    constructor(props) {
-        super(props)
-        this.state = { selected: false }
-    }
-
-    select() {
-        this.props.onClick(this.state.selected ? null : this.props.data)
-        this.setState({ selected: !this.state.selected })
-    }
-
-    render() {
-        const detailsYScale = scaleBand()
-            .domain(this.props.data.details.map( d => d.label ))
-            .rangeRound([this.props.yScale(this.props.data.name) + this.props.yScale.bandwidth(), this.props.yScale(this.props.data.name)])
-            .paddingInner(0.2)
-            .paddingOuter(0.1)
-        return <g onClick={() => this.select()}>
-            <g style={{opacity: !this.state.selected ? 1 : 0}} className="bar animated">
-                <HorizontalBarGraph labels
-                    color={this.props.color}
-                    xScale={this.props.xScale} 
-                    yScale={this.props.yScale} 
-                    data={[{x: this.props.data.result, y: this.props.data.name}]} />
-                <AnimatedPoint
-                    cy={this.props.yScale(this.props.data.name) + this.props.yScale.bandwidth() / 2 + 1} 
-                    cx={this.props.xScale(this.props.data.mean)} />
-            </g>
-            <StationDetails 
-                style={{opacity: this.state.selected ? 1 : 0}}
-                xScale={this.props.xScale} 
-                yScale={detailsYScale} 
-                data={this.props.data.details.map((d, i) => ({y:d.label, x:d.value, color: colors(i)}))} />
-        </g>
-    }
+const Station = props => {
+    return <div onClick={() => props.toggleExtended()}>
+        <div className="animated mb-2">
+            <div style={{fontSize: '.9rem', marginBottom: '-.3rem', color: 'rgba(0,0,0,.75)'}}>{props.data.name}</div>
+            <div style={{position: 'relative', minHeight: '1.5rem'}}>
+                <div style={{opacity: props.extended ? 0 : 1}} className="animated w-100 h-100 position-absolute">
+                    <SimpleBar height='100%' value={props.data.result} mean={props.data.mean} color={props.color}>
+                        {props.data.result} %
+                    </SimpleBar>
+                </div>
+                <div style={{opacity: props.extended ? 1 : 0}} className="animated">
+                    <SlideDown >
+                        {props.extended && <StationDetails 
+                            style={{opacity: props.extended ? 1 : 0}}
+                            data={props.data.details} />
+                        }
+                    </SlideDown>
+                </div>
+            </div>
+        </div>
+        
+    </div>
 }
 
-export default Station
+export default makeExtendable(Station)

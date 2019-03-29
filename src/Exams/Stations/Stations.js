@@ -7,6 +7,7 @@ import Filter from '../../Utils/Filter'
 import data from './Data'
 import StationsChart from './StationsChart'
 import Legends from '../../Core/LegendTexts'
+import SimpleDot from '../../Charting/SimpleDot'
 const LegendText = Legends.Exams.Stations.Main
 const colors = scaleOrdinal(schemeSpectral[6])
 
@@ -15,50 +16,44 @@ class Stations extends Component {
         super(props)
 
         const categories = _.uniq(_.flatMap(data, e => e.stations).map(d => d.category))
-        const exams = _.uniq(_.flatMap(data, e => e.stations).map(d => d.exam))
+        const groups = _.uniq(data.map(d => d.group))
         this.categoryColors = c => colors(categories.indexOf(c))
         const categoryFilters = categories.map(c => ({label: c, pred: d => d.category === c , selected: true, color: this.categoryColors(c) }))
-        const examFilters = exams.map(e => ({ label: e, pred: d => d.exam === e, selected: e === match.params.test || match.params.test === 'all'}))
-        this.state = { categoryFilters, examFilters }
-        this.selectItem = this.selectItem.bind(this)
-    }
-
-    selectItem(item, index) {
-        this.setState({ selectedItem: item, index: item ? index : null })
+        const groupFilters = groups.map(g => ({ label: g, pred: e => e.group === g, selected: g === match.params.test || match.params.test === 'all'}))
+        this.state = { categoryFilters, groupFilters }
     }
 
     render() {
-        const detailsScale = 4
-        const filteredData = data.map(e => ({...e, stations: e.stations
-            .filter(_.overSome(this.state.categoryFilters.filter(f => f.selected).map(f => f.pred)))
-            .filter(_.overSome(this.state.examFilters.filter(f => f.selected).map(f => f.pred)))
+        const filteredData = data
+            .filter(_.overSome(this.state.groupFilters.filter(f => f.selected).map(f => f.pred)))
+            .map(e => ({...e, stations: e.stations
+                .filter(_.overSome(this.state.categoryFilters.filter(f => f.selected).map(f => f.pred)))
         }))
-        const numStations = filteredData.reduce((acc, cur) => acc + cur.stations.length, 0)
-        const offset = this.state.selectedItem ? -detailsScale/numStations*(Math.min(Math.max(numStations - 1 - this.state.index - (numStations-1)/2/detailsScale, 0), numStations-1)) : 0
         return (
         <div className="container-fluid">
             <div className="row ">
                 <div className="col ">
-                    <Legend title={LegendText.title}>{LegendText.text}</Legend>
+                    <Legend title={LegendText.title}>
+                        {LegendText.text}
+                        <div className="position-relative">
+                            Der <SimpleDot style={{position: 'relative', display: 'inline-block', marginLeft: '.75rem'}} value={0} /> kennzeichnet den Kohortenmittelwert.
+                        </div>
+                    </Legend>
                     <div className="row col " style={{minHeight: '25rem'}}>
                         <div className="card px-4 pb-4 w-100" style={{overflow: 'hidden'}}>
                             <div className="mt-2 mb-3 d-flex flex-wrap">
                                 <div style={{fontSize: '.9rem'}}>
                                     Bereich: <Filter
                                         style={{display: 'inline-block'}}
-                                        disabled={!!this.state.selectedItem}
                                         filters={ this.state.categoryFilters } 
                                         onUpdate={ categoryFilters => this.setState({ categoryFilters }) } />
                                 </div>
                                 <div style={{fontSize: '.9rem', width: '17rem'}} className="flex-grow-1">
-                                    Prüfungen: <Filter style={{display: 'inline-block'}} disabled={!!this.state.selectedItem} filters={ this.state.examFilters } onUpdate={ examFilters => this.setState({ examFilters }) } />
+                                    Prüfungen: <Filter style={{display: 'inline-block'}} disabled={!!this.state.selectedItem} filters={ this.state.groupFilters } onUpdate={ groupFilters => this.setState({ groupFilters }) } />
                                 </div>
                             </div>
                             <StationsChart
                                 colors={this.categoryColors}
-                                offset={offset} 
-                                scale={this.state.selectedItem ? detailsScale : 1} 
-                                selectItem={this.selectItem} 
                                 data={filteredData} />
                         </div>
                     </div>

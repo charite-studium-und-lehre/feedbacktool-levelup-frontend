@@ -1,31 +1,15 @@
 import React from 'react'
-import AnimatedRect from '../../Charting/AnimatedRect'
 import Station from './Station'
-import AnimatedText from '../../Charting/AnimatedText'
 
-const StationsExam = props => {
-    
-    const rectY = props.scales.yScale(props.stations[props.stations.length-1].name) - 10,
-        rectHeight = props.scales.yScale(props.stations[0].name) + props.scales.yScale.bandwidth() - rectY,
-        rectX = -10,
-        rectWidth = props.scales.xScale.range()[1] + 20
-    return (
-    <g>
-        <AnimatedText y={rectY + 15} x={rectWidth + rectX - 10} textAnchor="end" style={{fontSize: '.75rem'}} color="rgba(0,0,0, .5)">
+const borderColor = 'rgba(0,0,0,.35)'
+const StationsExam = props => (
+    <div className="mb-1 p-1" style={{border: `1px dashed ${borderColor}`}}>
+        <div className="text-right" style={{fontSize: '.75rem', color: borderColor}} >
             {props.label}
-        </AnimatedText>
-        <AnimatedRect 
-            x={rectX} 
-            y={rectY} 
-            height={rectHeight}
-            width={rectWidth}
-            strokeDasharray="6"
-            color={`rgba(0,0,0, .5)`}/>
-        {props.stations.map((station, i) => 
-            <Station key={station.name + i} color={props.colors(station.category)} data={station} onClick={ item => props.selectItem(item, i)} {...props.scales} />
+        </div>
+        {props.stations.map(station => 
+            <Station key={station.name} color={props.colors(station.category)} data={station} {...props.scales} />
         )}
-    </g>
-    )
-}
+    </div>)
 
 export default StationsExam

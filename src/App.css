@@ -128,24 +128,6 @@ span.input-group-text {
   display: block;
 }
 
-.question-bar {
-  line-height: .8rem; 
-  font-size: .7rem;
-  height: .8rem;
-  width: 100%;
-  position: relative;
-}
-
-.question-bar > div.dot {
-  position: absolute;
-  top: .15rem;
-  height: .5rem;
-  width: .5rem;
-  background-color: rgba(168, 57, 57, 0.386);
-  border-radius: .25rem;
-  border: 1px solid rgba(0,0,0,.2)
-}
-
 .nav-link {
   cursor: pointer;
 }
