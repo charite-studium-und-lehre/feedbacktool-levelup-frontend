@@ -22,18 +22,18 @@ const Strengths = ({ match }) => {
             </div>
         </div>
         <div className="row mt-3">
-            <div className="col-md-4 mt-2">
+            <div className="col-md-4 mb-2">
                 <Ranking title={LegendText.Semester.title} text={LegendText.Semester.text} subjects={_.flatMap(mcSample, c => c.subjects)} />
             </div>
-            <div className="col-md-4 mt-2">
+            <div className="col-md-4 mb-2">
                 <Ranking title={LegendText.PTM.title} text={LegendText.PTM.text} subjects={_.flatMap(ptmSample, c => c.subjects).map(s => ({...s, mean: _.random(1, s.questions)}))} />
             </div>
-            <div className="col-md-4 mt-2">
+            <div className="col-md-4 mb-2">
                 <PTMResults />
             </div>
         </div>
         
-        <div className="row mt-3">
+        <div className="row">
             <div className="col">
                 <div className="card p-3">
                     <Legend title={LegendText.Subjects.title}>{LegendText.Subjects.text}</Legend>

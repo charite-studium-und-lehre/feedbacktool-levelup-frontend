@@ -30,7 +30,7 @@ const PTMResults = props => (
         <div className="card-body">
             <Legend title={LegendText.PTMResults.title}>{LegendText.PTMResults.text}
                 <div className="mt-2">{confidence.map((c, i) => 
-                    <span className="d-inline-block mr-2" style={{height: '1.2rem', lineHeight: '1.2rem'}}>
+                    <span key={i} className="d-inline-block mr-2" style={{height: '1.2rem', lineHeight: '1.2rem'}}>
                         <span className="d-inline-block mr-1" style={{width: '2rem', height: '100%', backgroundColor: colors(i)}}>&nbsp;</span>
                         {c}
                     </span>)}
@@ -44,7 +44,7 @@ const PTMResults = props => (
                 <OrdinalChart xDomain={labels} yDomain={[0,100]}>
                     <XAxis />
                     <YAxis />
-                    {data.map(d => <BarGraph labels data={d.map(s => ({...s, y: s.result}))} />)}
+                    {data.map((d, i) => <BarGraph labels key={i} data={d.map(s => ({...s, y: s.result}))} />)}
                     <PointGraph color="rgba(0, 0, 0, .6)" data={labels.map(l => ({x: l, y: _.random(30, 85)}))} />
                 </OrdinalChart>
             </div>

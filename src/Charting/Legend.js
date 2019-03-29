@@ -6,8 +6,8 @@ import { SlideDown } from 'react-slidedown'
 
 const Legend = props => 
     <div>
-        <div className="d-flex flex-wrap">
-            {props.title && <h4>{props.title}</h4>}
+        <div className="d-flex">
+            <div>{props.title && <h4>{props.title}</h4>}</div>
             <div className="ml-auto">
                 <FontAwesomeIcon 
                     onClick={() => props.toggleExtended()}
@@ -17,11 +17,13 @@ const Legend = props =>
             </div>
         </div>
         <div className="animated fast row" style={{ overflow: 'hidden' }}>
-            <div className="col my-2" style={{fontSize: '.8rem'}}>
-                <SlideDown className="animated fast">
-                    {props.extended && props.children}
-                </SlideDown>
-            </div>
+            <SlideDown className="animated fast">
+            {props.extended &&
+                <div className="col my-2" style={{fontSize: '.8rem'}}>
+                    {props.children}
+                </div>
+            }
+            </SlideDown>
         </div>
     </div>
 
