@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import StationDetails from './StationDetails'
 import SimpleBar from '../../Charting/SimpleBar'
 import makeExtendable from '../../Core/makeExtendable'
