@@ -4,6 +4,12 @@ import tree from './tree'
 import Legends from '../../Core/LegendTexts'
 import Legend from '../../Charting/Legend'
 
+const checklistStyle = {
+    whiteSpace: 'nowrap',
+    overflow: 'auto',
+    margin: '0 -2.5rem',
+}
+
 class Progress extends Component {
     constructor(props) {
         super(props)
@@ -24,8 +30,8 @@ class Progress extends Component {
             <div className="card progress-card with-border">
                 <div className="card-body">
                     <Legend title={Legends.Dashboard.Progress.title}>{Legends.Dashboard.Progress.text}</Legend>
-                    <div className="checklist">
-                        <div>
+                    <div style={checklistStyle}>
+                        <div style={{margin: '0 2.5rem'}}>
                         {tree.entries.map(d => <Checklist key={d.label} className="d-inline-block align-top" data={d} onClick={this.zoom} /> )}
                         </div>
                     </div>
