@@ -25,15 +25,15 @@ const PracticalsItem = makeExtendable(props =>
     <div className="mt-2">
       <div className="p-2" style={{backgroundColor: `hsla(83, 35%, ${(props.level + 3) / 7 * 100}%,.7)`}}>
         <div onClick={() => props.toggleExtended()} className="row">
-          <div className="col-7 pr-0">
+          <div className="col-7 pr-0 m-auto">
             <div className="font-weight-bold" style={{fontSize: '.8rem'}}>
               {props.entry.label}
             </div>
           </div>
-          <div className="col-4 p-0">
+          <div className="col-4 p-0 m-auto">
             <PracticalsScore entry={props.entry} />
           </div>
-          <div className="col-1 pl-0 text-right" style={{color: 'rgba(0,0,0,.6)'}}>
+          <div className="col-1 pl-0 text-right m-auto" style={{color: 'rgba(0,0,0,.6)'}}>
             {props.entry.entries && <FontAwesomeIcon style={{fontSize: '.8rem'}} icon={props.extended ? faChevronDown : faChevronRight} /> }
           </div>
         </div>
