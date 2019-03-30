@@ -1,10 +1,5 @@
 import React, { Component } from 'react'
-
-const tabStyle = {
-    width: '100%',
-    display: 'inline-block',
-    whiteSpace: 'normal'
-}
+import { animationTime } from '../Charting/Utils'
 
 const asTabs = WrappedComponent => {
     return class Tabs extends Component {
@@ -12,8 +7,6 @@ const asTabs = WrappedComponent => {
             super(props)
             this.state = { tab: this.props.active }
             this.activeTab = React.createRef()
-            this.tabContainer = React.createRef()
-            this.selectTab.bind(this)
         }
 
         static defaultProps = {
@@ -28,8 +21,12 @@ const asTabs = WrappedComponent => {
             this.updateContainerHeight()
         }
         
+        componentWillUpdate() {
+            this.activeTab.current.style.height = 0
+        }
+
         updateContainerHeight() {
-            this.tabContainer.current.style.height = this.activeTab.current.offsetHeight + 'px'
+            this.activeTab.current.style.height = 'auto'
         }
 
         selectTab( tab ) {
@@ -40,10 +37,10 @@ const asTabs = WrappedComponent => {
             return (
                 <div>
                     <WrappedComponent selectTab={tab => this.selectTab(tab)} selectedTab={this.state.tab} {...this.props} />
-                    <div className="text-nowrap animated" style={{overflow: 'hidden'}} ref={this.tabContainer}>
+                    <div className="text-nowrap animated" style={{overflow: 'hidden'}} >
                         <div className="animated position-relative" style={{left: `-${this.state.tab * 100}%`}}>
                         {React.Children.map(this.props.children, (tc, i) =>
-                            <div key={i} style={tabStyle} ref={i === this.state.tab ? this.activeTab : null}>{tc}</div>
+                            <div className="align-top w-100 d-inline-block" key={i} style={{whiteSpace: 'normal', height: 0}} ref={i === this.state.tab ? this.activeTab : null}>{tc}</div>
                         )}
                         </div>
                     </div>
