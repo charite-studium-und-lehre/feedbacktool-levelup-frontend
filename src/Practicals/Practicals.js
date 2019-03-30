@@ -9,9 +9,9 @@ const Practicals = props => (
                 <div className="col-md-9 mb-2">
                     <PracticalsTree />
                 </div>
-                <div className="col-md-3">
+                {/* <div className="col-md-3">
                     <PracticalsList/>
-                </div>
+                </div> */}
             </div>
         </div>
     </div>
