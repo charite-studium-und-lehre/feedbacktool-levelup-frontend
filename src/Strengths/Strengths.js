@@ -14,7 +14,7 @@ const Strengths = ({ match }) => {
         .map(c => ({...c, subjects: c.subjects.map(s => ({ ...s, correct: _.random(1, s.questions)})).sort((a,b) => - a.correct / (a.questions+.1) + b.correct / (b.questions + .1)) }))
     const ptmSample = Subjects()
         .map(c => ({...c, subjects: c.subjects.map(s => ({ ...s, correct: Math.floor(Math.random() * s.questions)})).sort((a,b) => - a.correct / (a.questions+.1) + b.correct / (b.questions + .1)) }))
-    const active = _.findIndex(mcSample.map(c => c.subjects.map(s => s.title).indexOf(match.params.subject)), i => i >= 0)
+    const active = Math.max(_.findIndex(mcSample.map(c => c.subjects.map(s => s.title).indexOf(match.params.subject)), i => i >= 0), 0)
     return (
     <div className="container-fluid">
         <div className="row">
