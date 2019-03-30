@@ -22,32 +22,10 @@ const Chart = makeExtendable(props =>
 )
 
 const PracticalsItem = makeExtendable(props =>
-    <div className="mt-2">
-      <div className="p-2" style={{backgroundColor: `hsla(83, 35%, ${(props.level + 3) / 7 * 100}%,.7)`}}>
-        <div onClick={() => props.toggleExtended()} className="row">
-          <div className="col-7 pr-0 m-auto">
-            <div className="font-weight-bold" style={{fontSize: '.8rem'}}>
-              {props.entry.label}
-            </div>
-          </div>
-          <div className="col-4 p-0 m-auto">
-            <PracticalsScore entry={props.entry} />
-          </div>
-          <div className="col-1 pl-0 text-right m-auto" style={{color: 'rgba(0,0,0,.6)'}}>
-            {props.entry.entries && <FontAwesomeIcon style={{fontSize: '.8rem'}} icon={props.extended ? faChevronDown : faChevronRight} /> }
-          </div>
-        </div>
-        {props.entry.hasGraph && <Chart extended={false} />}
+    <div className="mt-2 p-1">
+      <div className="text-center">
+        <span>{props.entry.label}</span>
       </div>
-      {props.entry.entries && 
-      <SlideDown className="animated fast" >
-        {props.extended && 
-        <div className="pl-2">
-          {props.entry.entries.map(f => <PracticalsItem key={f.label} extended={false} entry={f} level={props.level + 1} /> )}
-        </div>
-        }
-      </SlideDown>
-      }
     </div>
 )
 
