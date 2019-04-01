@@ -7,7 +7,7 @@ import tree from './tree'
 import PracticalsScore from './PracticalsScore'
 
 const Tabs = asTabs(props => (
-    <div className="position-absolute w-100 h-100" style={{zIndex: 1}}>
+    <div className="w-100 position-absolute" style={{zIndex: 1}}>
         <div className="row">
             <div className="col-6" onClick={() => props.selectTab(Math.max(props.selectedTab - 1, 0))}>
                 {props.selectedTab > 0 && <FontAwesomeIcon className="ml-2" icon={faChevronLeft} />}
@@ -24,14 +24,13 @@ class PracticalsTree extends React.Component {
         return (
         <div style={{fontSize: '.9rem'}}>
             <div className="card p-2">
-                <h5>Mein Level</h5>
                 <PracticalsScore headings={true} entry={tree} />
             </div>
             <div className="row mt-2">
                 <div className="position-relative mt-2 w-100">
                     <Tabs>
                     {tree.entries.map(e =>
-                        <PracticalsItem key={e.label} title={e.label} extended={false} entry={e} level={1} />
+                        <PracticalsItem key={e.label} entry={e} />
                     )}
                     </Tabs>
                 </div>
