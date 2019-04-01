@@ -73,7 +73,8 @@ confident: _.random(1,6),
 			done: _.random(1,6),
 confident: _.random(1,6),
                   },
-                ]
+                ],
+                hasGraph: true
               },          
               {
                 label: 'Behandlungsplan erstellen und die Umsetzung einleite',
@@ -95,7 +96,8 @@ confident: _.random(1,6),
 			done: _.random(1,6),
 confident: _.random(1,6),
                   },
-                ]
+                ],
+                hasGraph: true
               },
 
           ]
@@ -167,7 +169,8 @@ confident: _.random(1,6),
 			done: _.random(1,6),
 confident: _.random(1,6),
                 },
-              ]
+              ],
+              hasGraph: true
             },
             {
               label: 'Patienten informieren und beraten (häufige Beratungsanlässe und Krankheitsbilder)',
@@ -184,7 +187,8 @@ confident: _.random(1,6),
 			done: _.random(1,6),
 confident: _.random(1,6),
                 },
-              ]
+              ],
+              hasGraph: true
             },
           ]
       },
@@ -208,7 +212,8 @@ confident: _.random(1,6),
 			done: _.random(1,6),
 confident: _.random(1,6),
                 },
-              ]
+              ],
+              hasGraph: true
             },
             {
               label: 'Patientenübergabe vornehmen oder entgegennehmen (strukturiert, entsprechend Zielpersonen und Situationserfordernissen)',
@@ -225,7 +230,8 @@ confident: _.random(1,6),
 			done: _.random(1,6),
 confident: _.random(1,6),
                 },
-              ]
+              ],
+              hasGraph: true
             },
             {
               label: 'Patientenbericht verfassen und übermitteln (strukturiert, entsprechend der Abstimmung mit dem supervidierenden Arzt zur medizinischen Versorgung des Patienten)',
@@ -247,7 +253,8 @@ confident: _.random(1,6),
 			done: _.random(1,6),
 confident: _.random(1,6),
                 },
-              ]
+              ],
+              hasGraph: true
             },
           ]
       },
@@ -271,7 +278,8 @@ confident: _.random(1,6),
 			done: _.random(1,6),
 confident: _.random(1,6),
                 },
-              ]
+              ],
+              hasGraph: true
             },
             {
               label: 'Fallvorstellung evidenz-basiert vornehmen und patientenbezogene Umsetzung einleiten (für PJ´ler bearbeitbare medizinische Problemstellungen)',

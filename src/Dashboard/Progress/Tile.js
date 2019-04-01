@@ -2,7 +2,6 @@ import React,  { Component } from 'react'
 import _ from 'lodash'
 import { scaleBand } from 'd3-scale'
 import AnimatedHex from '../../Charting/AnimatedHex'
-import AnimatedText from '../../Charting/AnimatedText'
 
 const getDone = entry => entry.isLeaf ? [entry.done] : _.flatMap(entry.entries, e => getDone(e))
 const percentDone = t => _.mean(getDone(t))

@@ -4,12 +4,13 @@ import Dashboard from '../Dashboard/Dashboard'
 import Exams from '../Exams/Exams'
 import Semester from '../Exams/Semester/Semester'
 import Questions from '../Exams/Semester/Questions'
-import Ptm from '../Exams/Ptm/Ptm'
+//import Ptm from '../Exams/Ptm/Ptm'
 import Strengths from '../Strengths/Strengths'
 import Stations from '../Exams/Stations/Stations'
 import Consulting from '../consulting/Consulting'
 import Practicals from '../Practicals/Practicals'
 
+const Ptm = () => { window.location = 'https://progresstesting.safeserver.de'; return null;}
 const Routes = [
   {
     path: '/dashboard',

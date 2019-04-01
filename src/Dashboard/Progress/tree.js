@@ -10,6 +10,7 @@ const tree = {
                     label: 'PTM',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/ptm/1. Fachsemester',
                 },
                 {
                     label: 'Semesterprüfung',
@@ -31,6 +32,7 @@ const tree = {
                     label: 'PTM',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/ptm/ext',
                 },
                 {
                     label: 'Semesterprüfung',
@@ -58,6 +60,7 @@ const tree = {
                     label: 'PTM',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/ptm/ext',
                 },
                 {
                     label: 'Semesterprüfung',
@@ -89,6 +92,7 @@ const tree = {
                     label: 'PTM',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/ptm/ext',
                 },
                 {
                     label: 'Semesterprüfung',
@@ -121,6 +125,7 @@ const tree = {
                     label: 'PTM',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/ptm/ext',
                 },
                 {
                     label: 'Semesterprüfung',
@@ -142,6 +147,7 @@ const tree = {
                     label: 'PTM',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/ptm/ext',
                 },
                 {
                     label: 'Semesterprüfung',
@@ -168,6 +174,7 @@ const tree = {
                     label: 'PTM',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/ptm/ext',
                 },
                 {
                     label: 'Semesterprüfung',
@@ -189,6 +196,7 @@ const tree = {
                     label: 'PTM',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/ptm/ext',
                 },
                 {
                     label: 'Semesterprüfung',
@@ -210,6 +218,7 @@ const tree = {
                     label: 'PTM',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/ptm/ext',
                 },
                 {
                     label: 'Semesterprüfung',
@@ -237,6 +246,7 @@ const tree = {
                     label: 'PTM',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/ptm/ext',
                 },
                 {
                     label: 'Anwesenheit',
@@ -257,6 +267,7 @@ const tree = {
                     label: 'PTM',
                     isLeaf: true,
                     done: _.random(1),
+                    link: '/exams/ptm/ext',
                 },
                 {
                     label: 'PJ',
