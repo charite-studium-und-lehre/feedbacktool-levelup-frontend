@@ -18,7 +18,7 @@ const Routes = [
     exact: true,
     private: true,
   },
-  
+
   {
     path: '/exams/:graphs?',
     component: Exams,

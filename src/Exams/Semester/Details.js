@@ -8,6 +8,17 @@ import LineGraph from '../../Charting/LineGraph'
 import Legend from '../../Charting/Legend'
 import { XAxis, YAxis } from '../../Charting/Axis'
 import Legends from '../../Core/LegendTexts'
+import SemesterFächer from './SemesterFächer'
+import {Subjects} from '../Subjects'
+
+
+const flatMap = 
+    _.flatMap(Subjects, d => d.subjects)
+
+const sampleSize = 
+    _.sampleSize(flatMap, 5 )
+
+
 const LegendText = Legends.Exams.Semester.Details
 
 class Details extends Component {
@@ -15,7 +26,7 @@ class Details extends Component {
         super(props)
         this.state = {
             selectedModule: null,
-            mode: 'modules'
+            mode: 'subjects'
         }
         this.histo = props.data.map((module, index) => _.map(_.groupBy(module.data, d => Math.floor(d / 5)), (d, i) => ({x: +i*0.05, y: d.length, highlight: +i === Math.floor(props.result[index] / 5)})))
     }
@@ -69,13 +80,15 @@ class Details extends Component {
                         <LineMarker value={this.props.totalMean} label="Durchschnitt" />
                     </OrdinalChart>
                     : 
-                    <LinearChart 
-                        xDomain={[0, 100]}
-                        yDomain={[0, 100]}>
-                        <XAxis />
-                        <YAxis />
-                    </LinearChart>
-                    }
+                    sampleSize.map(d => 
+                        <SemesterFächer 
+                        name={d}
+                        result={_.random(1,15)}
+                        />
+                        )
+                        }
+                
+                    
                 </div>
             </div>
             </div>

@@ -20,6 +20,7 @@ const SimpleBar = props => {
     const style = _.defaults({
         backgroundImage: `linear-gradient(to right, ${color.setAlpha(1).toString()} ${props.value / total * 100}%, ${color.setAlpha(.6).toString()} ${props.value / total * 100}%)`,
         height: props.height,
+        width: props.width
     }, defaultSytle)
     
     return (
