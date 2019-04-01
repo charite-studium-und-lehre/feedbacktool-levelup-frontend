@@ -1,34 +1,44 @@
 
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 import _ from 'lodash'
-
-import { OrdinalChart } from '../Charting/Chart'
-import LineGraph from '../Charting/LineGraph'
+import { scaleLinear } from 'd3-scale'
+import { areaRadial, pie, curveCatmullRomClosed } from 'd3-shape'
+import { asChart } from '../Charting/Chart'
 import { XAxis, YAxis } from '../Charting/Axis'
-
-const createData = () => _.range(1,8).map(i => ({Semester: `Semester${i}`, tatig: _.random(0,6)}))
 
 class PracticalsChart extends Component{
     constructor(props){
         super(props)
-        this.state = { data : [createData(), createData()] }
+        this.state = { angle: 0}
     }
 
-    render(){
-        let LineGraphs = this.state.data.filter((d,i) => this.props.graphs.indexOf(i) >= 0).map((d, i) => <LineGraph key={i} data={d.map(d => ({x: d.Semester, y: d.tatig}))} color="rgba(64,64,64,.3)"></LineGraph>)
+    selectPoint(a) {
+        this.setState({ angle: a.startAngle })
+    }
+
+    render() {
+        const data = _.range(0,12,1).map(() => _.random(0,6))
+        const scale = scaleLinear().range([0, Math.min(this.props.width, this.props.height) / 2]).domain([0,6])
+        const area = areaRadial().angle(d => d.startAngle).outerRadius(d => scale(d.data)).curve(curveCatmullRomClosed.alpha(.5))
+        const angles = pie().value(1)(data)
         return (
-            <div className="card p-3 h-100">
-                <OrdinalChart yDomain={[0,6]} xDomain={this.state.data[0].map(s => s.Semester)}>
-                    <XAxis />
-                    <YAxis ticks={{count: 3}} />
-                    {LineGraphs}
-                </OrdinalChart>
-            </div>
+        <g transform={`translate(${this.props.width/2}, ${this.props.height/2})`} onClick={() => console.log("ij")}>
+            <g style={{transform: `rotate(${this.state.angle}rad)`}}>
+                { _.range(0,6,1).map(d => <circle key={d} r={scale(d)} stroke="rgba(0,0,0,.2)" fill="none" /> )}
+                <path d={area(angles)} fill="rgba(255,0,0,.3)" stroke="red" />
+                {angles.map( (a, i) => 
+                <g key={i} style={{transform: `rotate(${a.startAngle}rad)`}} onClick={() => this.selectPoint(a)}>
+                    <line x0="0" y0="0" x1="0" y1={-scale(6)} stroke="rgba(0,0,255,.4)" />
+                    <circle r="4" cy={-scale(a.data)} stroke="blue" fill="rgba(0,0,255,.4)" />
+                </g> 
+                )}
+            </g>
+        </g>
         )
     }
 }
 
-export default PracticalsChart
+export default asChart(PracticalsChart)
 
 
 

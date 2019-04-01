@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { animationTime } from '../Charting/Utils'
 
 const asTabs = WrappedComponent => {
     return class Tabs extends Component {
