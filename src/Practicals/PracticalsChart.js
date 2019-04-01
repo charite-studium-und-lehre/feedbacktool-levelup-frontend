@@ -14,6 +14,7 @@ class PracticalsChart extends Component{
     }
     
     selectPoint(a) {
+        this.props.selectEntry(a.data)
         select(this.rotEl.current)
             .transition()
             .duration(700)
@@ -22,10 +23,10 @@ class PracticalsChart extends Component{
     
     render() {
         const scale = scaleLinear().range([0, Math.min(this.props.width, this.props.height) / 2]).domain([0,6])
-        const areaRad = areaRadial().angle(d => d.angle).outerRadius(d => scale(d.v)).curve(curveCatmullRomClosed.alpha(.5))
+        const areaRad = areaRadial().angle(d => d.angle).outerRadius(d => scale(d.value)).curve(curveCatmullRomClosed.alpha(.5))
         const arcs = arc().outerRadius(scale(6)).innerRadius(0)
         const fields = pie().padAngle(.05).value(d => d.entries ? d.entries.length : 1)(this.props.data)
-        const angles = _.flatMap(fields, f => (f.data.entries || [0]).map((d,i) => ({v: d.done || _.random(1,6), angle: scalePoint().padding(.5).domain(_.range(0,f.data.entries ? f.data.entries.length : 1)).range([f.startAngle, f.endAngle])(i)}) ))
+        const angles = _.flatMap(fields, f => (f.data.entries || [0]).map((d,i) => ({data: d, value: d.done || _.random(1,6), angle: scalePoint().padding(.5).domain(_.range(0,f.data.entries ? f.data.entries.length : 1)).range([f.startAngle, f.endAngle])(i)}) ))
 
         return (
         <g transform={`translate(${this.props.width/2}, ${this.props.height/2})`}>
@@ -36,7 +37,7 @@ class PracticalsChart extends Component{
                 {fields.map((f, i) => <path key={i} d={arcs(f)} style={{filter: 'url(#glow)'}} fill={`hsla(${(i+1)/fields.length*255},50%,50%,.3)`} stroke="none" /> )}
                 {angles.map( (a, i) => 
                 <g key={i} style={{transform: `rotate(${a.angle}rad)`}} onClick={() => this.selectPoint(a)}>
-                    <circle r="4" cy={-scale(a.v)} stroke="blue" fill="rgba(0,0,255,.4)" />
+                    <circle r="4" cy={-scale(a.value)} stroke="blue" fill="rgba(0,0,255,.4)" />
                 </g>
                 )}
             </g>
