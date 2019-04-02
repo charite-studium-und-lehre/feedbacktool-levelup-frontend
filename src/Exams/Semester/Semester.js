@@ -5,9 +5,9 @@ import Totals from './Totals'
 import Details from './Details'
 import { randomNormal } from 'd3-random'
 
-const moduleDists = _.range(4).map(() => randomNormal(50, 30)).map(d => d > 80 ? 80 : d)
+const moduleDists = _.range(4).map(() => randomNormal(50, 30))
 const result = [64, 72, 89, 61]
-const data = _.range(100).map(() => _.range(4).map(i => Math.floor(moduleDists[i]()))).concat([ result ]).sort((a,b) => _.mean(b)-_.mean(a))
+const data = _.range(100).map(() => _.range(4).map(i => Math.min(Math.floor(moduleDists[i]()), 80))).concat([ result ]).sort((a,b) => _.mean(b)-_.mean(a))
 
 const Semester = ({ match }) => {
         return (
