@@ -24,7 +24,7 @@ const Semester = ({ match }) => {
             </div>
             <div className="row mt-3">
                 <div className="col">
-                    {/* <Details result={result} data={_.zip(...data).map((d, i) => ({module: i+1, data: d, mean: _.mean(d)}))} totalMean={_.round(_.mean(data.map(d => _.mean(d))))} /> */}
+                    <Details result={result} data={_.zip(...data).map((d, i) => ({module: i+1, data: d, mean: _.mean(d)}))} totalMean={_.round(_.mean(data.map(d => _.mean(d))))} />
                 </div>
             </div>
             <div className="row mt-3">
