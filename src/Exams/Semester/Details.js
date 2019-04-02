@@ -38,10 +38,10 @@ class Details extends Component {
                 </div>
                 <div className="mt-3">
                     {this.state.mode === 'modules' ?
-                    modulesSample.map(d => 
+                    modulesSample.map((d, i) => 
                         <BarWithHeader
                             key={d.name}
-                            name={d.name}
+                            name={"Modul " + (this.props.semester * 4 - 3 + i)}
                             result={d.result}
                             mean={_.random(1, d.total)}
                         >{d.result} %</BarWithHeader>
