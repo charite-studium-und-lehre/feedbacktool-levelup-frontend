@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { HorizontalBarChart } from '../Charting/HorizontalBarGraph'
 
 const SemesterInfo = props => {
-    const data = new Array(4).fill(0).map((d,i) => ({y: `Modul 0${i+1}`, x: _.random(5,100)}))
+    const data = _.range(4).map(i => ({y: `Modul 0${i+1}`, x: _.random(5,100)}))
 
     return (<div>
         <div>Dein Ergebnis:<span className="font-italic"> {props.data.result} %</span></div>

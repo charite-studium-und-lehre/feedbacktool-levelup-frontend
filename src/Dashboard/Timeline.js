@@ -14,8 +14,8 @@ class Timeline extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            timerange: [new Date(Date.now() - year * 3), new Date()],
-            oldest: new Date(Date.now() - year * 3), 
+            timerange: [new Date(Date.now() - year * 6), new Date()],
+            oldest: new Date(Date.now() - year * 6), 
             newest: new Date(), 
             selectedPoint: null 
         }

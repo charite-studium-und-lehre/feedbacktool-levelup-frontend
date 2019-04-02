@@ -8,10 +8,11 @@ class Axis extends Component {
 
     static defaultProps = {
         labelStyle: { 
-            fontSize: '.9rem',
+            fontSize: '.7rem',
             textAnchor: 'end',
         }
     }
+
     constructor(props) {
         super(props)
         this.node = React.createRef()
@@ -24,6 +25,7 @@ class Axis extends Component {
             .tickFormat( ticks.format )
         
         const el = select(this.node.current)
+            //.style("color", "black")
             .transition()
             .duration(transition ? animationTime : 0)
             .call(axis)
@@ -59,7 +61,7 @@ class XAxis extends Axis {
                     className="label" 
                     dy="-2"
                     x={this.props.xScale.range()[1]}
-                    fontSize=".7rem" fill="rgba(1,1,1,.4)"
+                    fontSize=".7rem" fill="rgba(1,1,1,.7)"
                     style={this.props.labelStyle}>
                     {this.props.label}
                 </text>
@@ -70,6 +72,12 @@ class XAxis extends Axis {
 
 class YAxis extends Axis {
     count = 2
+    static defaultProps = {
+        labelStyle: { 
+            fontSize: '.7rem',
+            textAnchor: 'start',
+        }
+    }
 
     createAxis() {
         return axisLeft(this.props.yScale)
@@ -80,11 +88,9 @@ class YAxis extends Axis {
         return (
             <g>
                 <text 
-                    transform="rotate(-90)"
-                    y={6}
-                    dy=".71rem"
+                    dy="-5"
                     fontSize=".7rem"
-                    fill="rgba(1,1,1,.4)"
+                    fill="rgba(1,1,1,.7)"
                     style={this.props.labelStyle}>
                     {this.props.label}
                 </text>

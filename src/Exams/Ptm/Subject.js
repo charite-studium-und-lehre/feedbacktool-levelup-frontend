@@ -9,7 +9,7 @@ const Subject = props => (
         <div className="card-body">
             <span className="font-weight-bold">{props.title}</span>
             <div className="p-2 pl-5" style={{height: '6rem'}} >
-                <HorizontalBarChart yDomain={labels} data={new Array(3).fill(0).map((d,i) => ({y: labels[i], x: _.random(5,100)}))} />
+                <HorizontalBarChart yDomain={labels} data={_.range(0,3).map(i => ({y: labels[i], x: _.random(5,100)}))} />
             </div>
             <Link to={`/strengths/${(props.title)}`} className="mt-2 float-right text-primary" style={{fontSize:".8rem", textDecoration:"underline"}}>zu deiner Entwicklung in diesem Fach</Link>
         </div>

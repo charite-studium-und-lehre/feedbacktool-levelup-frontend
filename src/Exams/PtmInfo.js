@@ -8,7 +8,7 @@ const PtmInfo = props =>
     (<div>
         <div>Dein Antworten:</div>
         <div className="my-2" style={{height: '10rem'}}>
-            <HorizontalBarChart yDomain={labels} data={new Array(3).fill(0).map((d,i) => ({y: labels[i], x: _.random(5,100) }))} />
+            <HorizontalBarChart yDomain={labels} data={_.range(0,3).map(i => ({y: labels[i], x: _.random(5,100) }))} />
         </div>
         <Link to={`/exams/ptm/${props.data.label}`}>
             <button type="button" className="btn btn-outline-primary my-2 w-100">Details</button>

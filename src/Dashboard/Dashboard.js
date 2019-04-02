@@ -1,8 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import DashboardCard from './DashboardCard';
-import { LinearChart } from '../Charting/Chart';
-import BarGraph from '../Charting/BarGraph';
+import React from 'react'
+import _ from 'lodash'
+import { Link } from 'react-router-dom'
+import DashboardCard from './DashboardCard'
+import { LinearChart } from '../Charting/Chart'
+import BarGraph from '../Charting/BarGraph'
 import Progress from './Progress/Progress'
 import { XAxis, YAxis } from '../Charting/Axis'
 import Timeline from './Timeline'
@@ -47,7 +48,7 @@ export default function Dashboard() {
                                 <LinearChart yDomain={[0,100]} xDomain={[0,11]}>
                                     <XAxis />
                                     <YAxis />
-                                    <BarGraph data={new Array(10).fill(0).map((d,i) => ({x: i+1, y: Math.random() * 100}))} color="rgba(64,64,64,.3)" width={.8}></BarGraph>
+                                    <BarGraph data={_.range(0,10).map((d,i) => ({x: i+1, y: Math.random() * 100}))} color="rgba(64,64,64,.3)" width={.8}></BarGraph>
                                 </LinearChart>
                             </div>
                         </DashboardCard>

@@ -105,6 +105,7 @@ confident: _.random(0,6),
       },
       {
           label: 'Ärztliche Prozeduren',
+          hasGraph: true,
           entries: [
             {
               label: 'Venös Blut entnehmen',

@@ -42,6 +42,10 @@
   stroke-dasharray: 2,2;
 }
 
+.axis > .tick text {
+  color: rgba(1,1,1,.7)
+}
+
 .y.axis > .tick:first-of-type {
   display: none;
 }

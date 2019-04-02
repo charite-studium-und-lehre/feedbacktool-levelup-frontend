@@ -31,7 +31,7 @@ const PracticalsItem = makeExtendable(props =>
             </div>
           </div>
           <div className="col-4 p-0">
-            <PracticalsScore entry={props.entry} />
+            <PracticalsScore edit={!props.entry.entries && props.edit} entry={props.entry} />
           </div>
           <div className="col-1 pl-0 text-right" style={{color: 'rgba(0,0,0,.6)'}}>
             {props.entry.entries && <FontAwesomeIcon style={{fontSize: '.8rem'}} icon={props.extended ? faChevronDown : faChevronRight} /> }
@@ -43,7 +43,7 @@ const PracticalsItem = makeExtendable(props =>
       <SlideDown className="animated fast" >
         {props.extended && 
         <div className="pl-2">
-          {props.entry.entries.map(f => <PracticalsItem key={f.label} extended={false} entry={f} level={props.level + 1} /> )}
+          {props.entry.entries.map(f => <PracticalsItem key={f.label} edit={props.edit} extended={false} entry={f} level={props.level + 1} /> )}
         </div>
         }
       </SlideDown>
