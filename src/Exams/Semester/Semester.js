@@ -6,7 +6,7 @@ import Details from './Details'
 import { randomNormal } from 'd3-random'
 
 const moduleDists = _.range(4).map(() => randomNormal(50, 30))
-const result = [64, 72, 89, 61]
+const result = [64, 72, 73, 51]
 const data = _.range(100).map(() => _.range(4).map(i => Math.min(Math.floor(moduleDists[i]()), 80))).concat([ result ]).sort((a,b) => _.mean(b)-_.mean(a))
 
 const Semester = ({ match }) => {
