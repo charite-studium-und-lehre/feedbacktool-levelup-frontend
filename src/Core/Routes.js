@@ -39,7 +39,7 @@ const Routes = [
   {
     path: '/practicals',
     component: Practicals,
-    breadcrumb: () => <Link to="/practicals">Arzliche Tatigkeiten</Link>,
+    breadcrumb: () => <Link to="/practicals">Ärzliche Tätigkeiten</Link>,
     exact: true,
     private: true,
   },
