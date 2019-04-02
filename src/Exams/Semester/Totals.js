@@ -60,8 +60,8 @@ class Totals extends Component {
                         </LinearChart>
                         ) : (
                         <LinearChart xDomain={[Math.min(...this.histo.map(d => d.x)) - 5, Math.max(...this.histo.map(d => d.x)) + 5]} yDomain={[0,Math.max(...this.histo.map(d => d.y))]}>
-                            <XAxis />
-                            <YAxis />
+                            <XAxis label="erreichte Punkte" />
+                            <YAxis label="Anzahl" />
                             <BarGraph labels width={.75} data={this.histo} color="hsla(33, 100%, 20%, .5)" highlightColor="hsla(33, 100%, 20%, .8)" />
                         </LinearChart>
                         )}
