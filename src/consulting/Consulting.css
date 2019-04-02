@@ -35,13 +35,13 @@ font-weight: bold;
     height: 10em;
 }
 .consulting-card .card {
-    height: 47em;
+    height: 49em;
     /* border: 1px solid black; */
     box-shadow: 10px 10px 30px rgb(1, 17, 31)
 
 }
 .consulting-link h4 {
-    margin: 2.2em 0 1em 0;
+    margin: 2em 0 1em 0;
     
 }
 

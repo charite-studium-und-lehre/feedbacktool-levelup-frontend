@@ -71,7 +71,7 @@ class ConsultingCard extends Component {
                         </div>
                         
                     </div>
-                    <button type="button" className="btn btn-primary consulting-butten ">Mehr erfahren</button>
+                    <a href={this.props.href}><button type="button" className="btn btn-primary consulting-butten "> Mehr erfahren</button></a>
                 </div>
                 
             </div>
