@@ -26,7 +26,7 @@ class Totals extends Component {
     }
     
     toAreaData(_data) {
-        return _data.map(d => ({x: d.x, y0: Math.min(...this.props.data.map(d => d.y)), y1: d.y}))
+        return _data.map(d => ({x: d.x, y0: 0, y1: d.y}))
     }
     
     percentileArea(from, to) {
@@ -45,18 +45,18 @@ class Totals extends Component {
                     </div>
                     <div className="mt-3">
                         {this.state.mode === 'graph' ? (
-                        <LinearChart xDomain={[0, Math.max(...this.props.data.map(d => d.x))]} yDomain={[Math.min(...this.props.data.map(d => d.y)), Math.max(...this.props.data.map(d => d.y))]}>
-                            <XAxis />
-                            <YAxis ticks={{ count: 4 }} />
+                        <LinearChart xDomain={[Math.max(...this.props.data.map(d => d.x)), 0]} yDomain={[0,80]}>
+                            <YAxis ticks={{ count: 4 }} label="Mind. erreichte Punkte"/>
                             <AreaGraph curve={curveStep} data={this.percentileArea(90, 100)} color="hsla(120, 100%, 80%, .2)"></AreaGraph>
                             <AreaGraph curve={curveStep} data={this.percentileArea(75, 90)} color="hsla(120, 100%, 60%, .2)"></AreaGraph>
                             <AreaGraph curve={curveStep} data={this.percentileArea(50, 75)} color="hsla(120, 100%, 40%, .2)"></AreaGraph>
                             <AreaGraph curve={curveStep} data={this.percentileArea(0, 50)} color="hsla(120, 100%, 20%, .2)"></AreaGraph>
-                            <LineGraph data={this.props.data} color="hsla(181, 100%, 41%, .6)" noPoints curve={curveStep}>
+                            <LineGraph data={this.props.data} color="hsla(181, 100%, 41%, .9)" noPoints curve={curveStep}>
                                 {/* <Tracker getY={ x => this.getY(x) } /> */}
                             </LineGraph>
-                            <Marker x={_.findLastIndex(this.props.data, d => d.y === this.props.ownMean)} y={this.props.ownMean} label='Du' color="hsla(0, 100%, 30%, .6)" />
-                            <LineMarker value={this.props.totalMean} label='Durchschnitt' color="hsla(0, 100%, 30%, .6)" />
+                            <Marker selected x={_.findLastIndex(this.props.data, d => d.y === this.props.ownMean)} y={_.round(this.props.ownMean)} label='Du' color="hsla(0, 100%, 30%, .6)" />
+                            <LineMarker value={_.round(this.props.totalMean)} label='Durchschnitt' color="hsla(0, 100%, 30%, .6)" />
+                            <XAxis label="% der Studierenden" />
                         </LinearChart>
                         ) : (
                         <LinearChart xDomain={[Math.min(...this.histo.map(d => d.x)) - 5, Math.max(...this.histo.map(d => d.x)) + 5]} yDomain={[0,Math.max(...this.histo.map(d => d.y))]}>

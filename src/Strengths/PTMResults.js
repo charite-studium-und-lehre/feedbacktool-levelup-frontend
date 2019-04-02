@@ -15,9 +15,9 @@ const labels = ['richtig', 'falsch', 'nicht beantwortet']
 const confidence = ['geraten', 'wahrscheinlich', 'sicher']
 
 const results = [
-    [[89, 76, 43] , [13, 24, 43]],
-    [[33, 15, 3], [18, 12, 3]],
-    [78, 78] 
+    [[80, 67, 43] , [13, 24, 43]],
+    [[30, 15, 3], [18, 12, 3]],
+    [90, 90] 
 ]
 
 const PTMResults = props => (

@@ -27,7 +27,7 @@ export default function LineGraph(props) {
     </circle>)
 
     return (<g className={`animated ${props.className}`} style={props.style}>
-        <path d={_line(props.data)} className="line animated" style={{stroke: props.color || "black"}}></path>
+        <path d={_line(props.data)} className="line animated" style={{strokeWidth: 2, stroke: props.color || "black"}}></path>
         {circles}
         {texts}
     </g>)
