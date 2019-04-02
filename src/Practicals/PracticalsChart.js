@@ -2,27 +2,22 @@
 import React, {Component} from 'react';
 import _ from 'lodash'
 
-import { OrdinalChart } from '../Charting/Chart'
+import { TimeChart } from '../Charting/Chart'
 import LineGraph from '../Charting/LineGraph'
 import { XAxis, YAxis } from '../Charting/Axis'
 
-const createData = () => _.range(1,8).map(i => ({Semester: `Semester${i}`, tatig: _.random(0,6)}))
+const createData = () => _.range(1,8).map(() => _.random(0,6)).sort().map((d, i) => ({Semester: new Date(2012 + i, 6 + _.random(-1, 2), 15 + _.random(-10, 20)), tatig: d}))
 
 class PracticalsChart extends Component{
-    constructor(props){
-        super(props)
-        this.state = { data : [createData(), createData()] }
-    }
-
-    render(){
-        let LineGraphs = this.state.data.filter((d,i) => this.props.graphs.indexOf(i) >= 0).map((d, i) => <LineGraph key={i} data={d.map(d => ({x: d.Semester, y: d.tatig}))} color="rgba(64,64,64,.3)"></LineGraph>)
+    render() {
         return (
             <div className="card p-3 h-100">
-                <OrdinalChart yDomain={[0,6]} xDomain={this.state.data[0].map(s => s.Semester)}>
+                <TimeChart yDomain={[0,6]} xDomain={[new Date(2012, 3, 1), new Date(2019, 1, 1)]}>
                     <XAxis />
                     <YAxis ticks={{count: 3}} />
-                    {LineGraphs}
-                </OrdinalChart>
+                    <LineGraph data={createData().map(d => ({x: d.Semester, y: d.tatig}))} color="rgba(255,0,0,.5)"></LineGraph>
+                    <LineGraph data={createData().map(d => ({x: d.Semester, y: d.tatig}))} color="rgba(0,128,0,.5)"></LineGraph>
+                </TimeChart>
             </div>
         )
     }

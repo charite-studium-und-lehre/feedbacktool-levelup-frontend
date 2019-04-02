@@ -5,13 +5,9 @@ import Totals from './Totals'
 import Details from './Details'
 import { randomNormal } from 'd3-random'
 
-function mean(x) {
-    return Math.round(x.reduce((s, d) => s+d, 0) / x.length)
-}
-
-const moduleDists = new Array(4).fill(0).map(() => randomNormal(Math.floor(Math.random() * 10) + 50, 13))
-const result = new Array(4).fill(0).map(() => Math.floor(Math.random() * 60 + 25))
-const data = new Array(100).fill(0).map(() => new Array(4).fill(0).map((d,i) => Math.floor(moduleDists[i]()))).concat([ result ]).sort((a,b) => mean(a)-mean(b))
+const moduleDists = _.range(4).map(() => randomNormal(50, 30))
+const result = [64, 72, 89, 61]
+const data = _.range(100).map(() => _.range(4).map(i => Math.floor(moduleDists[i]()))).concat([ result ]).sort((a,b) => _.mean(b)-_.mean(a))
 
 const Semester = ({ match }) => {
         return (
@@ -23,12 +19,12 @@ const Semester = ({ match }) => {
             </div>
             <div className="row">
                 <div className="col">
-                    <Totals data={data.map((d,i) => ({x: (i+1)/data.length*100, y: mean(d)}))} totalMean={mean(data.map(d => mean(d)))} ownMean={mean(result)} />
+                    <Totals data={data.map((d,i) => ({x: (i+1)/data.length*100, y: _.mean(d)}))} totalMean={_.mean(data.map(d => _.mean(d)))} ownMean={_.mean(result)} />
                 </div>
             </div>
             <div className="row mt-3">
                 <div className="col">
-                    <Details result={result} data={_.zip(...data).map((d, i) => ({module: i+1, data: d, mean: mean(d)}))} totalMean={mean(data.map(d => mean(d)))} />
+                    {/* <Details result={result} data={_.zip(...data).map((d, i) => ({module: i+1, data: d, mean: _.mean(d)}))} totalMean={_.round(_.mean(data.map(d => _.mean(d))))} /> */}
                 </div>
             </div>
             <div className="row mt-3">

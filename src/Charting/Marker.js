@@ -3,10 +3,14 @@ import Label from './Label'
 import { line } from 'd3-shape'
 
 class Marker extends Component {
+    static defaultProps = {
+        selected: false,
+    }
+
     constructor(props) {
         super(props)
         this.state = {
-            selected: false
+            selected: props.selected
         }
     } 
 
@@ -28,7 +32,7 @@ class Marker extends Component {
                 <path d={line()([[this.props.xScale(this.props.x), this.props.yScale(this.props.y)],[this.props.xScale(this.props.x), this.props.yScale(this.props.yScale.domain()[0])]])} className="line" style={{stroke: this.props.color || "black"}} />
                 <text dominantBaseline="central" x={this.props.xScale(this.props.xScale.domain()[0]) - 2} y={this.props.yScale(this.props.y)} textAnchor="end">{this.props.y}</text>
                 <path d={line()([[this.props.xScale(this.props.xScale.domain()[0]), this.props.yScale(this.props.y)],[this.props.xScale(this.props.x), this.props.yScale(this.props.y)]])} className="line" style={{stroke: this.props.color || "black"}} />
-                <text dominantBaseline="before-edge" x={this.props.xScale(this.props.x)} y={this.props.yScale(this.props.yScale.domain()[0])} textAnchor="middle">{this.props.x}</text>
+                <text dominantBaseline="hanging" x={this.props.xScale(this.props.x)} y={this.props.yScale.range()[0]+3} textAnchor="middle">{this.props.x}</text>
                 <Label onClick={() => this.toggleSelected()} x={this.props.xScale(this.props.x)} y={this.props.yScale(this.props.y) + (this.props.offset || -20)}>{this.props.label}</Label>
             </g>
         )

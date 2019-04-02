@@ -1,5 +1,3 @@
-import _ from 'lodash'
-
 const tree = {
     label: 'root',
     entries: [
@@ -9,18 +7,19 @@ const tree = {
                 {
                     label: 'PTM',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: true,
+                    link: '/exams/ptm/1. Fachsemester',
                 },
                 {
                     label: 'Semesterprüfung',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: true,
                     link: '/exams/semester/1. Fachsemester',
                 },
                 {
                     label: 'Anwesenheit',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: true,
                 },
             ]
         },
@@ -30,24 +29,25 @@ const tree = {
                 {
                     label: 'PTM',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: true,
+                    link: '/exams/ptm/ext',
                 },
                 {
                     label: 'Semesterprüfung',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: true,
                     link: '/exams/semester/2. Fachsemester',
                 },
                 {
                     label: 'Praktische Prüfung',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: true,
                     link: '/exams/stations/2. Semester',
                 },
                 {
                     label: 'Anwesenheit',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: true,
                 },
             ]
         },
@@ -57,28 +57,29 @@ const tree = {
                 {
                     label: 'PTM',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: true,
+                    link: '/exams/ptm/ext',
                 },
                 {
                     label: 'Semesterprüfung',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: true,
                     link: '/exams/semester/3. Fachsemester',
                 },
                 {
                     label: 'Anwesenheit',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: true,
                 },
                 {
                     label: 'Erste Hilfe',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: true,
                 },
                 {
                     label: 'Krankenpflegedienst',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: true,
                 },
             ]
         },
@@ -88,29 +89,30 @@ const tree = {
                 {
                     label: 'PTM',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: true,
+                    link: '/exams/ptm/ext',
                 },
                 {
                     label: 'Semesterprüfung',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
                     link: '/exams/semester/4. Fachsemester',
                 },
                 {
                     label: 'Praktische Prüfung',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: true,
                     link: '/exams/stations/4. Semester',
                 },
                 {
                     label: 'Anwesenheit',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
                 },
                 {
                     label: 'Famulaturreife',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: true,
                 },
             ]
         },
@@ -120,18 +122,19 @@ const tree = {
                 {
                     label: 'PTM',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: true,
+                    link: '/exams/ptm/ext',
                 },
                 {
                     label: 'Semesterprüfung',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: true,
                     link: '/exams/semester/5. Fachsemester',
                 },
                 {
                     label: 'Anwesenheit',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
                 },
             ]
         },
@@ -141,23 +144,24 @@ const tree = {
                 {
                     label: 'PTM',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
+                    link: '/exams/ptm/ext',
                 },
                 {
                     label: 'Semesterprüfung',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
                     link: '/exams/semester/6. Fachsemester',
                 },
                 {
                     label: 'Anwesenheit',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
                 },
                 {
                     label: 'M1-Äquivalenz',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
                 },
             ]
         },
@@ -167,18 +171,19 @@ const tree = {
                 {
                     label: 'PTM',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
+                    link: '/exams/ptm/ext',
                 },
                 {
                     label: 'Semesterprüfung',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
                     link: '/exams/semester/7. Fachsemester',
                 },
                 {
                     label: 'Anwesenheit',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
                 },
             ]
         },
@@ -188,18 +193,19 @@ const tree = {
                 {
                     label: 'PTM',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
+                    link: '/exams/ptm/ext',
                 },
                 {
                     label: 'Semesterprüfung',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
                     link: '/exams/semester/8. Fachsemester',
                 },
                 {
                     label: 'Anwesenheit',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
                 },
             ]
         },
@@ -209,24 +215,25 @@ const tree = {
                 {
                     label: 'PTM',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
+                    link: '/exams/ptm/ext',
                 },
                 {
                     label: 'Semesterprüfung',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
                     link: '/exams/semester/9. Fachsemester',
                 },
                 {
                     label: 'OSCE',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
                     link: '/exams/stations/9. Semester',
                 },
                 {
                     label: 'Anwesenheit',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
                 },
             ]
         },
@@ -236,17 +243,18 @@ const tree = {
                 {
                     label: 'PTM',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
+                    link: '/exams/ptm/ext',
                 },
                 {
                     label: 'Anwesenheit',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
                 },
                 {
                     label: 'Schriftliches Staatsexamen (M2)',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
                 },
             ]
         },
@@ -256,17 +264,18 @@ const tree = {
                 {
                     label: 'PTM',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
+                    link: '/exams/ptm/ext',
                 },
                 {
                     label: 'PJ',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
                 },
                 {
                     label: 'Mündlich-Praktisches Staatsexamen (M4)',
                     isLeaf: true,
-                    done: _.random(1),
+                    done: false,
                 },
             ]
         },
