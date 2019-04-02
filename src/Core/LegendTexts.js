@@ -3,7 +3,7 @@ import React from 'react'
 export default {
     Dashboard: {
         Progress: {
-            title: 'Deine Studienfortschritte',
+            title: 'Dein Studienfortschritt',
             text: 'Hier siehst Du deinen Studienfortschritt und deine bereits erreichten Meilensteinen.',
         },
         Timeline: {
