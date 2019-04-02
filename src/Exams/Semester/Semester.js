@@ -9,9 +9,9 @@ function mean(x) {
     return Math.round(x.reduce((s, d) => s+d, 0) / x.length)
 }
 
-const moduleDists = new Array(4).fill(0).map(() => randomNormal(Math.floor(Math.random() * 10) + 50, 13))
-const result = new Array(4).fill(0).map(() => Math.floor(Math.random() * 60 + 25))
-const data = new Array(100).fill(0).map(() => new Array(4).fill(0).map((d,i) => Math.floor(moduleDists[i]()))).concat([ result ]).sort((a,b) => mean(a)-mean(b))
+const moduleDists = _.range(4).map(() => randomNormal(Math.floor(Math.random() * 10) + 50, 13))
+const result = _.range(4).map(() => Math.floor(Math.random() * 60 + 25))
+const data = _.range(100).map(() => _.range(4).map(i => Math.floor(moduleDists[i]()))).concat([ result ]).sort((a,b) => mean(a)-mean(b))
 
 const Semester = ({ match }) => {
         return (
