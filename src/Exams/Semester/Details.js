@@ -9,14 +9,11 @@ import Legend from '../../Charting/Legend'
 import { XAxis, YAxis } from '../../Charting/Axis'
 import Legends from '../../Core/LegendTexts'
 import SemesterFächer from './SemesterFächer'
+import SemesterModule from './SemesterModule'
 import {Subjects} from '../Subjects'
 
-
-const flatMap = 
-    _.flatMap(Subjects, d => d.subjects)
-
 const sampleSize = 
-    _.sampleSize(flatMap, 5 )
+    _.sampleSize(_.flatMap(Subjects, d => d.subjects), 5 ).map(s => ({name: s, result: _.random(0,10), total: _.random(10,20), mena: _.random(0,18) }))
 
 
 const LegendText = Legends.Exams.Semester.Details
@@ -52,38 +49,23 @@ class Details extends Component {
                 </div>
                 <div className="mt-3">
                     {this.state.mode === 'modules' ?
-                    <OrdinalChart
-                        // xDomain={[this.state.selectedModule ? this.state.selectedModule.x - .5 : 0, this.state.selectedModule ? this.state.selectedModule.x + .5 : 5]} 
-                        xDomain={['Modul 01', 'Modul 02', 'Modul 03', 'Modul 04']} 
-                        yDomain={[0, Math.max(...this.props.result, ...this.props.data.map(d => d.mean))]}>
-                        <XAxis label={this.state.selectedModule ? `Modul ${this.state.selectedModule.x}` : '' }/>
-                        <YAxis />
-                        <BarGraph labels offset={-.5} width={width} data={this.props.result.map((d, i) => ({x: `Modul 0${i+1}`, y: d, label: `${d} %`}))} color="hsla(180, 100%, 20%, .5)" highlightColor="hsla(180, 100%, 20%, .8)" onClick={this.showDetail.bind(this)} />
-                        <BarGraph labels offset={.5} width={width} data={this.props.data.map(d => ({x: `Modul 0${d.module}`, y: d.mean, label: `${d.mean} %`}))} color="hsla(180, 100%, 40%, .5)" highlightColor="hsla(180, 100%, 40%, .8)" onClick={this.showDetail.bind(this)} />
-                        {this.histo.map((h, i) =>
-                            <LineGraph
-                                className={this.state.selectedModule ? "" : "d-none d-md-block"}
-                                key={`density${i}`} noPoints curve={curveBasis} width={.8} 
-                                data={h.map(d => ({x: i + 1 - width + d.x * 2 * width, y: d.y * histoScale, highlight: d.highlight}))} 
-                                color="hsla(180, 100%, 20%, .2)" 
-                                highlightColor="hsla(180, 100%, 20%, .8)" 
-                                style={{opacity: this.state.selectedModule ? 0.7 : 1}}/>
-                        )}
-                        {this.histo.map((h, i) =>
-                            <BarGraph
-                                key={`histo${i}`} noPoints curve={curveBasis} width={.8} 
-                                data={h.map(d => ({x: i + 1 - width + d.x * 2 * width, y: d.y * histoScale, highlight: d.highlight}))} 
-                                color="hsla(180, 100%, 20%, .5)" 
-                                highlightColor="hsla(180, 100%, 20%, .8)" 
-                                style={{opacity: this.state.selectedModule && this.state.selectedModule.x === i+1 ? 1 : 0}}/>
-                        )}
-                        <LineMarker value={this.props.totalMean} label="Durchschnitt" />
-                    </OrdinalChart>
+                  Subjects.map(d => 
+                    <SemesterModule 
+                    name={d.module}
+                    result={_.random(5,90)}
+                
+                    />
+                    )
                     : 
                     sampleSize.map(d => 
                         <SemesterFächer 
-                        name={d}
-                        result={_.random(1,15)}
+                        name={d.name}
+                        result={d.result}
+                        total={d.total}
+                        mean={d.mean}
+                    
+    
+                    
                         />
                         )
                         }

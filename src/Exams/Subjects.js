@@ -41,6 +41,12 @@ const Subjects = [
             "Rechtsmedizin",
             "Urologie"
         ]
+    },
+    {
+    module :
+     [
+         "Module1","Module2","Module3","Module4",
+     ]
     }
 ]
 
