@@ -3,8 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { asTabs } from '../Core/Tabs'
 import PracticalsItem from './PracticalsItem'
-import tree from './tree'
-import PracticalsScore from './PracticalsScore'
 
 const Tabs = asTabs(props => (
     <div className="w-100 position-absolute" style={{zIndex: 1}}>
@@ -23,14 +21,11 @@ class PracticalsTree extends React.Component {
     render() {
         return (
         <div style={{fontSize: '.9rem'}}>
-            <div className="card p-2">
-                <PracticalsScore headings={true} entry={tree} />
-            </div>
             <div className="row mt-2">
-                <div className="position-relative mt-2 w-100">
+                <div className="position-relative w-100">
                     <Tabs>
-                    {tree.entries.map(e =>
-                        <PracticalsItem key={e.label} entry={e} />
+                    {this.props.tree.entries.map(e =>
+                        <PracticalsItem edit={this.props.edit} key={e.label} entry={e} />
                     )}
                     </Tabs>
                 </div>

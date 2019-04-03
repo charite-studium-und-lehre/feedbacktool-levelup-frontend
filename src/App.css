@@ -26,7 +26,7 @@
 }
 
 .dot:hover, .dot.selected {
-  stroke: rgba(0,0,0,.2);
+  stroke-opacity: .3;
   stroke-width: 11;
 }
 
@@ -145,4 +145,8 @@ span.input-group-text {
 
 .with-shadow {
   box-shadow: 1px 1px 5px rgba(0,0,0,.2);
+}
+
+ol.breadcrumb {
+  margin-bottom: .5rem;
 }

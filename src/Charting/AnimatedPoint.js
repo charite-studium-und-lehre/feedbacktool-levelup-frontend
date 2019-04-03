@@ -5,6 +5,7 @@ import { animationTime } from './Utils'
 class AnimatedPoint extends Component {
     static defaultProps = {
         color: 'rgba(0,0,0,.6)',
+        fill: 'rgba(0,0,0,.6)',
         className: '',
         r: 5,
         onClick: () => {},
@@ -29,7 +30,7 @@ class AnimatedPoint extends Component {
         return <circle 
             ref={this.node}
             r={this.props.r}
-            style={{fill: this.props.color}}
+            style={{stroke: this.props.color, fill: this.props.fill}}
             cx={this.state.cx} 
             cy={this.state.cy} 
             className={`animated dot ${this.props.className}`} 
