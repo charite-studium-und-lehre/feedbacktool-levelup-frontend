@@ -7,7 +7,8 @@ const year = day * 365
 
 class Chart extends React.Component {
     componentDidMount() {
-        !this.props.oldest && this.props.initTimerange(new Date(Date.now() - year * this.props.width / 100))
+        const years = this.props.width * 3 / 650 + 8 / 13
+        !this.props.oldest && this.props.initTimerange(new Date(Date.now() - year * years))
     }
 
     render() {
