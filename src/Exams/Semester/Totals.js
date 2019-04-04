@@ -54,7 +54,7 @@ class Totals extends Component {
                             <LineGraph data={this.props.data} color="hsla(181, 100%, 41%, .9)" noPoints curve={curveStep}>
                                 {/* <Tracker getY={ x => this.getY(x) } /> */}
                             </LineGraph>
-                            <Marker selected x={_.findLastIndex(this.props.data, d => d.y === this.props.ownMean)} y={_.round(this.props.ownMean)} label='Du' color="hsla(0, 100%, 30%, .6)" />
+                            <Marker extended={true} x={_.findLastIndex(this.props.data, d => d.y === this.props.ownMean)} y={_.round(this.props.ownMean)} label='Du' color="hsla(0, 100%, 30%, .6)" />
                             <LineMarker value={_.round(this.props.totalMean)} label='Durchschnitt' color="hsla(0, 100%, 30%, .6)" />
                             <XAxis label="% der Studierenden" />
                         </LinearChart>

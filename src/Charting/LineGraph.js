@@ -1,6 +1,7 @@
 import React from 'react'
 import { line } from 'd3-shape'
 import { curveMonotoneX } from 'd3-shape'
+import AnimatedPoint from './AnimatedPoint'
 
 export default function LineGraph(props) {
     const onClick = props.onClick || (() => {})
@@ -16,15 +17,15 @@ export default function LineGraph(props) {
         fontFamily="sans-serif" 
         fontSize=".6rem">{d.label}</text>))
 
-    const circles = props.noPoints || props.data.map((d, i) => <circle 
+    const circles = props.noPoints || props.data.map((d, i) => <AnimatedPoint 
         key={i} 
-        className={`dot ${props.selectedPoint === d.x ? 'selected' : ''} animated`}
+        selected={props.selectedPoint === d.x}
         cx={props.xScale(d.x)} 
         cy={props.yScale(d.y)} 
         r="5" 
-        style={{fill: props.color || "black"}}
-        onClick={() => onClick(d.x)}>
-    </circle>)
+        color={props.color || "black"}
+        onClick={props.onClick}>
+    </AnimatedPoint>)
 
     return (<g className={`animated ${props.className}`} style={props.style}>
         <path d={_line(props.data)} className="line animated" style={{strokeWidth: 2, stroke: props.color || "black"}}></path>

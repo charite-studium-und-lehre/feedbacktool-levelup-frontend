@@ -30,7 +30,7 @@ class Filter extends Component {
                     {this.props.showAll && <button className="btn btn-outline-primary btn-sm mr-1 mt-1" onClick={ () => this.selectNone() }>alle anzeigen</button>}
                     {this.state.filters.map(filter => (
                         <span className="d-inline-block mr-1 mt-1 " key={filter.label} style={filter.color ? {borderRight: `10px solid ${filter.color}`} : {}}>
-                            <button key={filter.label} 
+                            <button key={filter.label}
                                 className={`btn ${filter.selected ? 'btn-primary' : 'btn-outline-primary'} btn-sm`}
                                 style={{borderRadius: 0}}
                                 disabled={filter.disabled || this.props.disabled}

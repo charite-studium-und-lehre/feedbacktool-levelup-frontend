@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { select } from 'd3-selection'
 import { animationTime } from './Utils'
+import css from './AnimatedPoint.module.css'
 
 class AnimatedPoint extends Component {
     static defaultProps = {
@@ -32,7 +33,7 @@ class AnimatedPoint extends Component {
             style={{fill: this.props.color}}
             cx={this.state.cx} 
             cy={this.state.cy} 
-            className={`animated dot ${this.props.className}`} 
+            className={`animated ${css.dot} ${this.props.selected && css.selected}`} 
             onClick={() => this.props.onClick(this.props.x)} />
     }
 }

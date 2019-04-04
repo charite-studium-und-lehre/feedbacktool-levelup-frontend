@@ -1,32 +1,27 @@
 import React, { Component } from 'react'
-import { TimeChart, asChart, TimeScales } from '../Charting/Chart'
-import PointGraph from '../Charting/PointGraph'
-import Legend from '../Charting/Legend'
-import { XAxis, YAxis } from '../Charting/Axis'
-import Legends from '../Core/LegendTexts'
+import PointGraph from '../../Charting/PointGraph'
+import Legend from '../../Charting/Legend'
+import Legends from '../../Core/LegendTexts'
 import InfoOverlay from './InfoOverlay'
+import Chart from './Chart'
 
 const LegendText = Legends.Dashboard.Timeline
 const day= 1000 * 60 * 60 * 24
 const year = day * 365
 
-const Chart = asChart(props => 
-    <TimeScales {...props} xDomain={[props.oldest || new Date(Date.now() - year * props.width / 100), props.newest]} yDomain={[0,100]}>
-        <YAxis label="% richtig" />
-        <XAxis ticks={{count: 5}} />
-        {props.children}
-    </TimeScales>
-)
-
 class Timeline extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            timerange: [new Date(Date.now() - year * 3), new Date()],
+            timerange: [null, new Date()],
             oldest: null, 
             newest: new Date(), 
             selectedPoint: null 
         }       
+    }
+
+    initTimerange(oldest) {
+        this.setState({ oldest, timerange: [oldest, this.state.timerange[1]] })
     }
 
     zoomIn(point, graph) {
@@ -52,7 +47,7 @@ class Timeline extends Component {
                 <div className="card-body">
                     <Legend title={LegendText.title}>{LegendText.text}</Legend>
                     <div className="p-3 pl-4 position-relative">
-                        <Chart oldest={this.state.oldest} newest={this.state.newest}>
+                        <Chart oldest={this.state.oldest} newest={this.state.newest} initTimerange={d => this.initTimerange(d)}>
                         {this.props.data.map((g, i) => (
                             <PointGraph 
                                 selectedPoint={this.state.selectedPoint ? this.state.selectedPoint.x : 0} 

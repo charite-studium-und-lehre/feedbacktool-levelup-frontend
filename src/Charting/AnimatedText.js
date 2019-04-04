@@ -9,7 +9,7 @@ class AnimatedText extends Component {
         className: '',
         transform: '',
         dominantBaseline: "baseline",
-        style: {},
+        style: {fontSize: '0.7rem'},
     }
 
     constructor(props) {

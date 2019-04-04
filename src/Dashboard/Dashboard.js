@@ -6,7 +6,7 @@ import { LinearChart } from '../Charting/Chart'
 import BarGraph from '../Charting/BarGraph'
 import Progress from './Progress/Progress'
 import { XAxis, YAxis } from '../Charting/Axis'
-import Timeline from './Timeline'
+import Timeline from './Timeline/Timeline'
 import graphs from '../Exams/Graphs'
 import PracticalsScore from '../Practicals/PracticalsScore'
 import PracticalsTree from '../Practicals/tree'
@@ -15,18 +15,12 @@ export default function Dashboard() {
     return (
         <div className="container-fluid">
           <div className="row">
-            <div className="col-lg-12">
-                <div className="row mt-2">
-                    <div className="col-12">
-                        <Progress />
-                    </div>
+                <div className="col-lg-6 mt-2">
+                    <Progress />
                 </div>
-                <div className="row mt-2">
-                    <div className="col-12">
-                        <Timeline data={graphs.data} />
-                    </div>
+                <div className="col-lg-6 mt-2">
+                    <Timeline data={graphs.data} />
                 </div>
-            </div>
           </div>
             <div className="row">
                 <div className="col-lg-4">

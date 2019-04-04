@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { HorizontalBarChart } from '../Charting/HorizontalBarGraph'
+import { HorizontalBarChart } from '../../Charting/HorizontalBarGraph'
 const bars = ['Durchschnitt', 'Dein Ergebnis']
 
 const StationsInfo = props => {

@@ -27,7 +27,7 @@ class Progress extends Component {
 
     render() {
         return (
-            <div className="card progress-card with-border">
+            <div className="card progress-card with-border" style={{overflow: 'hidden'}}>
                 <div className="card-body">
                     <Legend title={Legends.Dashboard.Progress.title}>{Legends.Dashboard.Progress.text}</Legend>
                     <div style={checklistStyle}>

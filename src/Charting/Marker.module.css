@@ -1,0 +1,7 @@
+.lines {
+    display: none;
+}
+
+.marker:hover .lines, .marker.selected .lines {
+    display: block;
+}
