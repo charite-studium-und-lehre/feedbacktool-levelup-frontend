@@ -8,6 +8,8 @@ import Progress from './Progress/Progress'
 import { XAxis, YAxis } from '../Charting/Axis'
 import Timeline from './Timeline'
 import graphs from '../Exams/Graphs'
+import PracticalsScore from '../Practicals/PracticalsScore'
+import PracticalsTree from '../Practicals/tree'
 
 export default function Dashboard() {
     return (
@@ -34,6 +36,9 @@ export default function Dashboard() {
                             header={Math.round(Math.random() * 100) + ' p'} 
                             title="Ärztliche Tätigkeiten" 
                             text="Dein Überblick zur Entwicklung deiner praktischen Fähigkeiten im Studienverlauf.">
+                            <div className="m-2">
+                                <PracticalsScore headings entry={PracticalsTree} />
+                            </div>
                             </DashboardCard>
                         </Link>
                     </div>

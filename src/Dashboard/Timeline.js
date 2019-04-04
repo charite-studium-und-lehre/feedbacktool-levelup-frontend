@@ -14,8 +14,8 @@ class Timeline extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            timerange: [new Date(Date.now() - year * 6), new Date()],
-            oldest: new Date(Date.now() - year * 6), 
+            timerange: [new Date(Date.now() - year * 3), new Date()],
+            oldest: new Date(Date.now() - year * 3), 
             newest: new Date(), 
             selectedPoint: null 
         }
@@ -40,10 +40,10 @@ class Timeline extends Component {
 
     render() {
         return (
-            <div className="card with-border">
+            <div className="card with-border" style={{overflow: 'hidden'}}>
                 <div className="card-body">
                     <Legend title={LegendText.title}>{LegendText.text}</Legend>
-                    <div className="p-3 pl-4 position-relative" style={{overflow: 'hidden'}}>
+                    <div className="p-3 pl-4 position-relative">
                         <TimeChart xDomain={[this.state.oldest, this.state.newest]} yDomain={[0,100]}>
                             <YAxis label="% richtig" />
                             <XAxis ticks={{count: 5}} />
@@ -62,13 +62,13 @@ class Timeline extends Component {
                             selectedPoint={this.state.selectedPoint || {label: ''}}>
                         </InfoOverlay>
                     </div>
-                    <div className="mt-2">
-                        {this.props.data.map(g => (
-                            <span key={g.label} className="m-2 d-inline-block" style={{fontSize: '.9rem', color: `hsl(${g.color}, 50%, 50%)`}} >{g.label}</span>
-                        ))}
-                    </div>
                     <div className="">
                         <span className="text-primary" style={{fontSize: '.8rem', cursor:'pointer'}} onClick={() => this.zoomOut()}>Mehr anzeigen</span>
+                    </div>
+                    <div className="mt-2">
+                        {this.props.data.map(g => (
+                            <span key={g.label} className="m-2 d-inline-block" style={{fontSize: '.8rem', color: `hsl(${g.color}, 50%, 50%)`}} >{g.label}</span>
+                        ))}
                     </div>
                 </div>
             </div>

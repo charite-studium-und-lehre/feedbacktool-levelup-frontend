@@ -15,12 +15,12 @@ class PracticalsTree extends React.Component {
             <div className="card p-2">
                 <h5>Mein Level</h5>
                 <div className="row">
-                    <div className="col-8">
+                    <div className="col-sm-9">
                         <PracticalsScore headings={true} entry={tree} />
                     </div>
-                    <div className="col-4 text-right">
+                    <div className="col-sm-3 text-right">
                         <button 
-                            className={`btn btn-sm btn-primary ${this.state.edit ? 'active' : ''}`} 
+                            className={`btn btn-sm ${this.state.edit ? 'btn-success' : 'btn-primary'} ${this.state.edit ? 'active' : ''}`} 
                             data-toggle="button" 
                             aria-pressed={this.state.edit} 
                             autoComplete="off"
@@ -37,10 +37,7 @@ class PracticalsTree extends React.Component {
                 )}
             </div>
             <div className="text-right mt-2">
-                <button 
-                    className="btn btn-sm btn-primary ml-2"
-                    onClick={() => this.setState({edit: !this.state.edit})}>exportieren
-                </button>
+                <button className="btn btn-sm btn-primary ml-2">exportieren</button>
             </div>
         </div>)
     }
