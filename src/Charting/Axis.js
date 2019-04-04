@@ -2,17 +2,11 @@ import React, { Component } from 'react'
 import { axisBottom, axisLeft } from 'd3-axis'
 import { select } from 'd3-selection'
 import { animationTime } from './Utils'
+import AnimatedText from './AnimatedText'
 import css from './Axis.module.css'
 
 class Axis extends Component {
     count = null
-
-    static defaultProps = {
-        labelStyle: { 
-            fontSize: '.7rem',
-            textAnchor: 'end',
-        }
-    }
 
     constructor(props) {
         super(props)
@@ -56,14 +50,13 @@ class XAxis extends Axis {
         return (
             <g transform={`translate(0,${this.props.yScale.range()[0]})`}>
                 <g ref={this.node} className={`${css.x} ${css.axis} ${this.props.horizontal && css.horizontal}`} />
-                <text 
-                    className="label" 
-                    dy="-2"
+                <AnimatedText
+                    y="-2"
                     x={this.props.xScale.range()[1]}
-                    fontSize=".7rem" fill="rgba(1,1,1,.7)"
-                    style={this.props.labelStyle}>
+                    color="rgba(1,1,1,.7)"
+                    textAnchor="end">
                     {this.props.label}
-                </text>
+                </AnimatedText>
             </g>
         )
     }
@@ -71,12 +64,6 @@ class XAxis extends Axis {
 
 class YAxis extends Axis {
     count = 2
-    static defaultProps = {
-        labelStyle: { 
-            fontSize: '.7rem',
-            textAnchor: 'start',
-        }
-    }
 
     createAxis() {
         return axisLeft(this.props.yScale)
@@ -86,13 +73,12 @@ class YAxis extends Axis {
     render() {
         return (
             <g>
-                <text 
-                    dy="-5"
-                    fontSize=".7rem"
-                    fill="rgba(1,1,1,.7)"
-                    style={this.props.labelStyle}>
+                <AnimatedText 
+                    textAnchor="start"
+                    y="-5"
+                    color="rgba(1,1,1,.7)">
                     {this.props.label}
-                </text>
+                </AnimatedText>
                 <g ref={this.node} className={`${css.y} ${css.axis} ${this.props.horizontal && css.horizontal}`} />
             </g>
         )

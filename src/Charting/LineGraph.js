@@ -3,6 +3,7 @@ import { line } from 'd3-shape'
 import { curveMonotoneX } from 'd3-shape'
 import AnimatedPoint from './AnimatedPoint'
 import AnimatedPath from './AnimatedPath'
+import AnimatedText from './AnimatedText'
 
 export default function LineGraph(props) {
     const _line = line()
@@ -10,12 +11,11 @@ export default function LineGraph(props) {
         .y(d => props.yScale(d.y))
         .curve(props.curve || curveMonotoneX)
         
-    const texts = !props.withLabels || props.data.map((d, i) => (<text
+    const texts = !props.withLabels || props.data.map((d, i) => (<AnimatedText
         key={i}
         x={props.xScale(d.x) - 10}
-        y={props.yScale(d.y) + 15}
-        fontFamily="sans-serif" 
-        fontSize=".6rem">{d.label}</text>))
+        y={props.yScale(d.y) + 15}>
+        {d.label}</AnimatedText>))
 
     const circles = props.noPoints || props.data.map((d, i) => <AnimatedPoint 
         key={i} 
