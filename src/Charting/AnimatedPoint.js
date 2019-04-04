@@ -34,7 +34,7 @@ class AnimatedPoint extends Component {
             style={{stroke: this.props.color, fill: this.props.fill}}
             cx={this.state.cx} 
             cy={this.state.cy} 
-            className={`animated ${css.dot} ${this.props.selected && css.selected}`} 
+            className={`${css.dot} ${this.props.selected && css.selected}`} 
             onClick={() => this.props.onClick(this.props.x)} />
     }
 }

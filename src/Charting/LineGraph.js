@@ -11,7 +11,7 @@ export default function LineGraph(props) {
         .y(d => props.yScale(d.y))
         .curve(props.curve || curveMonotoneX)
         
-    const texts = !props.withLabels || props.data.map((d, i) => (<AnimatedText
+    const texts = !props.labels || props.data.map((d, i) => (<AnimatedText
         key={i}
         x={props.xScale(d.x) - 10}
         y={props.yScale(d.y) + 15}>

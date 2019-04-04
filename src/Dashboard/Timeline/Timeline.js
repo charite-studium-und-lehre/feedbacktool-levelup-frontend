@@ -49,7 +49,7 @@ class Timeline extends Component {
                     <div className="p-3 pl-4 position-relative">
                         <Chart oldest={this.state.oldest} newest={this.state.newest} initTimerange={d => this.initTimerange(d)}>
                         {this.props.data.map((g, i) => (
-                            <PointGraph 
+                            <PointGraph
                                 selectedPoint={this.state.selectedPoint ? this.state.selectedPoint.x : 0} 
                                 onClick={ point => this.zoomIn(point, g) } 
                                 key={i} data={g.data.map(d => ({ ...d, y: d.result }))} 

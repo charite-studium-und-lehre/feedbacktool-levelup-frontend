@@ -5,7 +5,7 @@ import AnimatedPoint from './AnimatedPoint'
 export default function PointGraph(props) {
     const onClick = props.onClick || (() => {})
 
-    const texts = !props.withLabels || props.data.map((d, i) => (<Label
+    const texts = !props.labels || props.data.map((d, i) => (<Label
         key={i}
         x={props.xScale(d.x)}
         y={props.yScale(d.y) + 20}
