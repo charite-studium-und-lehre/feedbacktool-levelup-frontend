@@ -1,0 +1,31 @@
+.axis {
+  color: rgba(1, 1, 1, 0.6); 
+}
+
+.axis path {
+  shape-rendering: crispEdges;
+}
+
+.axis > :global(.tick) {
+  stroke-dasharray: 2,2;
+}
+
+.y.axis > :global(.tick):first-of-type {
+  display: none;
+}
+
+.y.axis.horizontal > :global(.tick):first-of-type {
+  display: block;
+}
+
+.axis.x.horizontal > :global(.tick):first-of-type {
+  display: none;
+}
+
+.axis.y > path {
+  display: none;
+}
+
+.axis.x.horizontal > path {
+  display: none;
+}

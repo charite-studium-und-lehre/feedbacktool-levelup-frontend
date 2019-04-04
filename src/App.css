@@ -7,38 +7,6 @@
   box-shadow: rgba(0,0,0,.4) 0 0 15px;
 }
 
-.axis {
-  color: rgba(1, 1, 1, 0.6); 
-}
-
-.axis path {
-  shape-rendering: crispEdges;
-}
-
-.axis > .tick {
-  stroke-dasharray: 2,2;
-}
-
-.y.axis > .tick:first-of-type {
-  display: none;
-}
-
-.y.axis.horizontal > .tick:first-of-type {
-  display: block;
-}
-
-.axis.x.horizontal > .tick:first-of-type {
-  display: none;
-}
-
-.axis.y > path {
-  display: none;
-}
-
-.axis.x.horizontal > path {
-  display: none;
-}
-
 svg {
   overflow: visible;
 }

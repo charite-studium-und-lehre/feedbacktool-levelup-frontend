@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { axisBottom, axisLeft } from 'd3-axis'
 import { select } from 'd3-selection'
 import { animationTime } from './Utils'
+import css from './Axis.module.css'
 
 class Axis extends Component {
     count = null
@@ -25,12 +26,10 @@ class Axis extends Component {
             .tickFormat( ticks.format )
         
         const el = select(this.node.current)
-            //.style("color", "black")
             .transition()
             .duration(transition ? animationTime : 0)
             .call(axis)
         
-        // el.selectAll("text").attr("text-anchor", "start")
         this.props.rotateLabels && el.selectAll("text")	
             .style("text-anchor", "start")
             .attr("dx", ".8em")
@@ -56,7 +55,7 @@ class XAxis extends Axis {
     render() {
         return (
             <g transform={`translate(0,${this.props.yScale.range()[0]})`}>
-                <g ref={this.node} className={`x axis ${this.props.horizontal ? 'horizontal' : ''}`} />
+                <g ref={this.node} className={`${css.x} ${css.axis} ${this.props.horizontal && css.horizontal}`} />
                 <text 
                     className="label" 
                     dy="-2"
@@ -94,7 +93,7 @@ class YAxis extends Axis {
                     style={this.props.labelStyle}>
                     {this.props.label}
                 </text>
-                <g ref={this.node} className={`y axis ${this.props.horizontal ? 'horizontal' : ''}`} />
+                <g ref={this.node} className={`${css.y} ${css.axis} ${this.props.horizontal && css.horizontal}`} />
             </g>
         )
     }
