@@ -7,16 +7,6 @@
   box-shadow: rgba(0,0,0,.4) 0 0 15px;
 }
 
-.line {
-  fill: none;
-  stroke-width: 3;
-}
-
-.bar > text {
-  font-size: .8rem;
-  fill: rgba(0, 0, 0, .6);
-}
-
 .axis {
   color: rgba(1, 1, 1, 0.6); 
 }

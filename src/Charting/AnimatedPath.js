@@ -10,7 +10,7 @@ class AnimatedPath extends Component {
         fill: 'none',
         className: '',
         animationTime: animationTime,
-        line: line(),
+        shape: line(),
     }
 
     constructor(props) {
@@ -24,13 +24,13 @@ class AnimatedPath extends Component {
 			.datum(this.props.d)
             .transition()
 			.duration(this.props.animationTime)
-			.attr('d', this.props.line)
+			.attr('d', this.props.shape)
     }
 
     render() {
         return <path 
             ref={this.node} 
-            d={this.props.line(this.state.d)} 
+            d={this.props.shape(this.state.d)} 
             className={`animated ${this.props.className}`}
             style={this.props.style} 
             fill={this.props.fill}

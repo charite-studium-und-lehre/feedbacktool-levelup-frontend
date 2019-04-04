@@ -17,6 +17,7 @@ export default function PointGraph(props) {
         cx={props.xScale(d.x) + (props.xScale.bandwidth ? props.xScale.bandwidth() / 2 : 0)} 
         cy={props.yScale(d.y)} 
         r={props.size || "5"}
+        fill={props.color || 'black'}
         color={props.color || 'black'}
         onClick={() => onClick(d)}>
     </AnimatedPoint>)

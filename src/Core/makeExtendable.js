@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import _ from 'lodash'
 
 const makeExtendable = (WrappedComponent, def = false) => {
     return class Extendable extends Component {

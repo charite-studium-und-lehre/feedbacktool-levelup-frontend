@@ -17,7 +17,7 @@ class AreaRadial extends React.Component {
     render() {
         return (
         <g>
-            <AnimatedPath line={this.areaRad.outerRadius(this.props.value)} d={this.props.angles} fill={tinycolor(this.props.color).setAlpha(.1).toString()} stroke={this.props.color} style={{filter: 'url(#glow)'}} />
+            <AnimatedPath shape={this.areaRad.outerRadius(this.props.value)} d={this.props.angles} fill={tinycolor(this.props.color).setAlpha(.1).toString()} stroke={this.props.color} style={{filter: 'url(#glow)'}} />
             {this.props.angles.map( (a, i) => 
             <g key={i} style={{transform: `rotate(${a.angle}rad)`}} onClick={() => this.props.selectPoint(a)}>
                 <AnimatedPoint r="4" cy={-this.props.value(a)} color={this.props.color} fill={tinycolor(this.props.color).setAlpha(.4).toString()} />
