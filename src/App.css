@@ -12,7 +12,7 @@ svg {
 }
 
 .animated {
-  transition: .55s;
+  transition: all .55s, cx 0s, cy 0s, d 0s;
   transform-origin: 50%;
 }
 

@@ -22,7 +22,7 @@ export default function PointGraph(props) {
         onClick={() => onClick(d)}>
     </AnimatedPoint>)
 	return (
-        <g className={`point animated ${props.className || ''}`}>
+        <g className={props.className || ''}>
             {circles}
             {texts}
         </g>

@@ -20,11 +20,10 @@ class AnimatedPoint extends Component {
 
     componentDidUpdate() {
 		select(this.node.current)
-			.datum({cx: this.props.cx, cy: this.props.cy })
             .transition()
 			.duration(animationTime)
-			.attr('cx', p => p.cx)
-			.attr('cy', p => p.cy)
+			.attr('cx', this.props.cx)
+			.attr('cy',  this.props.cy)
     }
 
     render() {
@@ -34,7 +33,7 @@ class AnimatedPoint extends Component {
             style={{stroke: this.props.color, fill: this.props.fill}}
             cx={this.state.cx} 
             cy={this.state.cy} 
-            className={`${css.dot} ${this.props.selected && css.selected}`} 
+            className={`animated ${css.dot} ${this.props.selected && css.selected}`} 
             onClick={() => this.props.onClick(this.props.x)} />
     }
 }
