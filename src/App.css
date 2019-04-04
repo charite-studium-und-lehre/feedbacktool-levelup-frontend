@@ -29,10 +29,6 @@
   stroke-dasharray: 2,2;
 }
 
-.axis > .tick text {
-  color: rgba(1,1,1,.7)
-}
-
 .y.axis > .tick:first-of-type {
   display: none;
 }
@@ -101,4 +97,8 @@ span.input-group-text {
 
 .with-shadow {
   box-shadow: 1px 1px 5px rgba(0,0,0,.2);
+}
+
+ol.breadcrumb {
+  margin-bottom: .5rem;
 }

@@ -3,10 +3,14 @@ import { line } from 'd3-shape'
 import { select } from 'd3-selection'
 import { animationTime } from './Utils'
 
-class AnimatedLine extends Component {
+class AnimatedPath extends Component {
     static defaultProps = {
-        color: 'rgba(0,0,0,.6)',
+        stroke: 'rgba(0,0,0,.6)',
+        style: {},
+        fill: 'none',
         className: '',
+        animationTime: animationTime,
+        line: line(),
     }
 
     constructor(props) {
@@ -19,17 +23,19 @@ class AnimatedLine extends Component {
 		select(this.node.current)
 			.datum(this.props.d)
             .transition()
-			.duration(animationTime)
-			.attr('d', line())
+			.duration(this.props.animationTime)
+			.attr('d', this.props.line)
     }
 
     render() {
         return <path 
             ref={this.node} 
-            d={line()(this.state.d)} 
+            d={this.props.line(this.state.d)} 
             className={`animated ${this.props.className}`}
-            style={{stroke: this.props.color}} />
+            style={this.props.style} 
+            fill={this.props.fill}
+            stroke={this.props.stroke} />
     }
 }
 
-export default AnimatedLine
+export default AnimatedPath
