@@ -1,9 +1,9 @@
 import React from 'react'
-import PracticalsItem from './PracticalsItem'
+import Item from './Item'
 import tree from './tree'
-import PracticalsScore from './PracticalsScore';
+import Score from './Score';
 
-class PracticalsTree extends React.Component {
+class Container extends React.Component {
     constructor(props) {
         super(props)
         this.state = { edit: false }
@@ -16,7 +16,7 @@ class PracticalsTree extends React.Component {
                 <h5>Mein Level</h5>
                 <div className="row">
                     <div className="col-sm-9">
-                        <PracticalsScore headings={true} entry={tree} />
+                        <Score headings={true} entry={tree} />
                     </div>
                     <div className="col-sm-3 text-right">
                         <button 
@@ -32,7 +32,7 @@ class PracticalsTree extends React.Component {
             <div className="row">
                 {tree.entries.map(e =>
                     <div key={e.label} className="col-md-12">
-                    <PracticalsItem edit={this.state.edit} extended={false} entry={e} level={1} />
+                    <Item edit={this.state.edit} extended={false} entry={e} level={1} />
                     </div>
                 )}
             </div>
@@ -43,4 +43,4 @@ class PracticalsTree extends React.Component {
     }
 }
 
-export default PracticalsTree
+export default Container

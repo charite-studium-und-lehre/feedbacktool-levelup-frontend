@@ -8,7 +8,7 @@ import Progress from './Progress/Progress'
 import { XAxis, YAxis } from '../Charting/Axis'
 import Timeline from './Timeline/Timeline'
 import graphs from '../Exams/Graphs'
-import PracticalsScore from '../Practicals/PracticalsScore'
+import PracticalsScore from '../Practicals/Score'
 import PracticalsTree from '../Practicals/tree'
 
 export default function Dashboard() {

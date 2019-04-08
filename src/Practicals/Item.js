@@ -3,8 +3,8 @@ import { SlideDown } from 'react-slidedown'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChartLine, faChevronRight, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../Core/makeExtendable'
-import PracticalsScore from './PracticalsScore'
-import PracticalsChart from './PracticalsChart'
+import Score from './Score'
+import ProgressChart from './ProgressChart'
 
 const Chart = makeExtendable(props => 
   <div>
@@ -14,14 +14,14 @@ const Chart = makeExtendable(props =>
     <SlideDown className="animated fast">
     {props.extended &&
     <div style={{height: '6rem', overflow: 'hidden'}}>
-        <PracticalsChart graphs={[1]} />
+        <ProgressChart graphs={[1]} />
     </div>
     }
     </SlideDown>
   </div>
 )
 
-const PracticalsItem = makeExtendable(props =>
+const Item = makeExtendable(props =>
     <div className="mt-2">
       <div className="p-2" style={{backgroundColor: `hsla(83, 35%, ${(props.level + 3) / 7 * 100}%,.7)`}}>
         <div onClick={() => props.toggleExtended()} className="row">
@@ -31,7 +31,7 @@ const PracticalsItem = makeExtendable(props =>
             </div>
           </div>
           <div className="col-4 p-0">
-            <PracticalsScore edit={!props.entry.entries && props.edit} entry={props.entry} />
+            <Score edit={!props.entry.entries && props.edit} entry={props.entry} />
           </div>
           <div className="col-1 pl-0 text-right" style={{color: 'rgba(0,0,0,.6)'}}>
             {props.entry.entries && <FontAwesomeIcon style={{fontSize: '.8rem'}} icon={props.extended ? faChevronDown : faChevronRight} /> }
@@ -43,7 +43,7 @@ const PracticalsItem = makeExtendable(props =>
       <SlideDown className="animated fast" >
         {props.extended && 
         <div className="pl-2">
-          {props.entry.entries.map(f => <PracticalsItem key={f.label} edit={props.edit} extended={false} entry={f} level={props.level + 1} /> )}
+          {props.entry.entries.map(f => <Item key={f.label} edit={props.edit} extended={false} entry={f} level={props.level + 1} /> )}
         </div>
         }
       </SlideDown>
@@ -51,4 +51,4 @@ const PracticalsItem = makeExtendable(props =>
     </div>
 )
 
-export default PracticalsItem
+export default Item

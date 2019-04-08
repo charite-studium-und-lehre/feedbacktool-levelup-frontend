@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PracticalsList = props => (
+const List = props => (
 
     <div className="row">
         <div className="col-md">
@@ -19,7 +19,7 @@ const PracticalsList = props => (
     </div>
 )
 
-export default PracticalsList
+export default List
  
 
 
