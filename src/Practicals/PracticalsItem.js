@@ -37,7 +37,7 @@ const PracticalsItem = makeExtendable(props =>
             {props.entry.entries && <FontAwesomeIcon style={{fontSize: '.8rem'}} icon={props.extended ? faChevronDown : faChevronRight} /> }
           </div>
         </div>
-        {props.entry.hasGraph && <Chart extended={false} />}
+        {props.entry.hasGraph && <Chart />}
       </div>
       {props.entry.entries && 
       <SlideDown className="animated fast" >

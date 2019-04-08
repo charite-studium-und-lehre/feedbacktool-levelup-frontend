@@ -21,16 +21,16 @@ const Score = props => (
 const PracticalsScore = props => (
     <div className="row text-center">
         <div className="col-6 pr-0 text-danger">
-            {props.headings && 
-            <span >Habe ich gemacht: </span>
-            }
             <Score edit={props.edit} value="done" entry={props.entry} />
+            {props.headings && 
+            <div >Habe ich gemacht</div>
+            }
         </div>
         <div className="col-6 pl-0 text-success">
-            {props.headings && 
-            <span >Traue ich mir zu: </span>
-            }
             <Score edit={props.edit} value="confident" className="" entry={props.entry} />
+            {props.headings && 
+            <div >Traue ich mir zu</div>
+            }
         </div>
     </div>
 )
