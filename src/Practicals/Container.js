@@ -1,7 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import Item from './Item'
-import tree from './tree'
-import Score from './Score';
+import Score from './Score'
+import { selectors } from './Store'
 
 class Container extends React.Component {
     constructor(props) {
@@ -16,7 +17,7 @@ class Container extends React.Component {
                 <h5>Mein Level</h5>
                 <div className="row">
                     <div className="col-sm-9">
-                        <Score headings={true} entry={tree} />
+                        <Score headings={true} entry={this.props.root} />
                     </div>
                     <div className="col-sm-3 text-right">
                         <button 
@@ -30,9 +31,9 @@ class Container extends React.Component {
                 </div>
             </div>
             <div className="row">
-                {tree.entries.map(e =>
-                    <div key={e.label} className="col-md-12">
-                    <Item edit={this.state.edit} extended={false} entry={e} level={1} />
+                {this.props.root.entries.map(e =>
+                    <div key={e} className="col-12">
+                        <Item edit={this.state.edit} entryId={e} level={1} />
                     </div>
                 )}
             </div>
@@ -43,4 +44,4 @@ class Container extends React.Component {
     }
 }
 
-export default Container
+export default connect(state => ({ root: selectors.getItemByLabel(state, 'root') }))(Container)
