@@ -8,8 +8,8 @@ import List from './List'
 const Button = props => 
     <div className={`d-inline-block ${props.className || ''}`}>
         <button className={`btn btn-sm mr-2 ${props.active ? 'btn-success' : 'btn-primary'}`} onClick={props.onClick}>
-            <span className="d-none d-lg-inline">{props.children}</span>
-            <span className="d-inline d-lg-none"><FontAwesomeIcon icon={props.icon} /></span>
+            <span className="d-none d-lg-inline mr-2">{props.children}</span>
+            <FontAwesomeIcon icon={props.icon} />
         </button>
     </div>
 
