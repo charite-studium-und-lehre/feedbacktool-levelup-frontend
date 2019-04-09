@@ -31,12 +31,8 @@ font-weight: bold;
 }
 
 
-.consulting-paragraph {
-    height: 10em;
-}
+
 .consulting-card .card {
-    height: 47em;
-    /* border: 1px solid black; */
     box-shadow: 10px 10px 30px rgb(1, 17, 31)
 
 }
@@ -48,9 +44,10 @@ font-weight: bold;
 .consulting-card {
     margin-top: 3em
 }
-.consulting .list-group-flush a {
-    text-align: left
+.consulting-card h1 {
+    margin-bottom: 1em
 }
+
 .consulting-link .extern-link {
     padding: .5em 0 ;
     border-bottom: 1px solid black;
@@ -64,17 +61,12 @@ font-weight: bold;
     color: rgb(34, 71, 104);
     font-weight: bold
 }
-.consulting-card .col-md-4 {
-    margin-bottom: 2em;
-   
-}
-
 .consulting-card .card-body {
     background: white;
       
 }
 .consulting-card .consulting-icon h4 {
-    margin: 1em 0;
+    margin: .6em 0;
     color: rgb(34, 71, 104);
     font-weight: bold
 }
@@ -99,11 +91,6 @@ font-weight: bold;
 
 }
 .consulting-butten {
-    position: relative;
-    bottom: 2em;
-    left: 0;
     width: 12em;
-    margin-left: 1.9em;
     background: rgb(34, 71, 104)
-    
 }

@@ -6,7 +6,7 @@ export const ConsultingTree = {
             href: 'https://www.stw.berlin/finanzierung.html'
         },
         {
-            title : 'Stipendienmöglichkeiten ',
+            title : 'Stipendien-möglichkeiten ',
             href : 'https://www.stipendienlotse.de/datenbank.php?A%5B%5D=2&H=&B%5B%5D=4&F=57&S=&job=search'
         },
         {
