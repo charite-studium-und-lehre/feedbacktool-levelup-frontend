@@ -7,7 +7,12 @@ class Container extends React.Component {
     constructor(props) {
         super(props)
         this.state = { edit: false }
-    } 
+    }
+
+    updateValue = (entry, prop, value) => {
+        entry[prop] = Math.min(Math.max(entry[prop] + value, 0), 5)
+        this.setState({ })
+    }
     
     render() {
         return (
@@ -32,7 +37,7 @@ class Container extends React.Component {
             <div className="row">
                 {tree.entries.map(e =>
                     <div key={e.label} className="col-md-12">
-                    <Item edit={this.state.edit} extended={false} entry={e} level={1} />
+                    <Item edit={this.state.edit} updateValue={this.updateValue} entry={e} level={1} />
                     </div>
                 )}
             </div>
