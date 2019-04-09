@@ -1,7 +1,10 @@
 import React from 'react'
 import Item from './Item'
 import tree from './tree'
-import Score from './Score';
+import Score from './Score'
+import Legend from '../Charting/Legend'
+import LegendTexts from '../Core/LegendTexts'
+const legend = LegendTexts.Practicals.Main
 
 class Container extends React.Component {
     constructor(props) {
@@ -16,21 +19,12 @@ class Container extends React.Component {
     
     render() {
         return (
-        <div style={{fontSize: '.9rem'}}>
+        <div style={{fontSize: '.9rem', marginBottom: '2.5rem'}}>
             <div className="card p-2">
-                <h5>Mein Level</h5>
+                <Legend title={legend.title}>{legend.text}</Legend>
                 <div className="row">
-                    <div className="col-sm-9">
+                    <div className="col-12">
                         <Score headings={true} entry={tree} />
-                    </div>
-                    <div className="col-sm-3 text-right">
-                        <button 
-                            className={`btn btn-sm ${this.state.edit ? 'btn-success' : 'btn-primary'} ${this.state.edit ? 'active' : ''}`} 
-                            data-toggle="button" 
-                            aria-pressed={this.state.edit} 
-                            autoComplete="off"
-                            onClick={() => this.setState({edit: !this.state.edit})}>{this.state.edit ? 'speichern' : 'bearbeiten'}
-                        </button>
                     </div>
                 </div>
             </div>
@@ -41,8 +35,19 @@ class Container extends React.Component {
                     </div>
                 )}
             </div>
-            <div className="text-right mt-2">
-                <button className="btn btn-sm btn-primary ml-2">exportieren</button>
+            <div className="position-fixed animated w-100 bg-white text-right with-shadow p-1" style={{zIndex: 1, minHeight: '2.5rem', bottom: 0, left: 0}}>
+                <div className="d-inline-block">
+                    <button className="btn btn-sm btn-primary mr-2">exportieren</button>
+                </div>
+                <div className="d-inline-block">
+                    <button 
+                        className={`btn btn-sm ${this.state.edit ? 'btn-success' : 'btn-primary'} ${this.state.edit ? 'active' : ''}`} 
+                        data-toggle="button" 
+                        aria-pressed={this.state.edit} 
+                        autoComplete="off"
+                        onClick={() => this.setState({edit: !this.state.edit})}>{this.state.edit ? 'speichern' : 'bearbeiten'}
+                    </button>
+                </div>
             </div>
         </div>)
     }
