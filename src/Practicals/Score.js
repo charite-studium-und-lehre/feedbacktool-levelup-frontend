@@ -8,11 +8,11 @@ import { selectors, actions } from './Store'
 const Numbers = props => (
     <span>
         {props.edit &&
-        <FontAwesomeIcon icon={faMinusCircle} className="text-muted mx-1" onClick={ props.decrement }/>
+        <FontAwesomeIcon icon={faMinusCircle} className="text-muted mr-1" onClick={ props.decrement }/>
         }
         <span className="font-weight-bold">{props.value} / {props.maxValue}</span>
         {props.edit &&
-        <FontAwesomeIcon icon={faPlusCircle} className="text-muted mx-1" onClick={ props.increment }/>
+        <FontAwesomeIcon icon={faPlusCircle} className="text-muted ml-1" onClick={ props.increment }/>
         }
     </span>
 )
