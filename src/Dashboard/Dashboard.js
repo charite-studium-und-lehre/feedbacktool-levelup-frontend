@@ -58,7 +58,7 @@ export default function Dashboard() {
                             <DashboardCard 
                             header={Math.round(Math.random() * 100) + ' p'} 
                             title="Deine Stärken" 
-                            text="Dein Überblick zu deinen Stärken und deiner Entwicklung im PTM und den Semesterprüfungen über das gesamte Studium.">
+                            text="Dein Überblick zu deinen fächerorientierten Stärken im PTM und den Semesterprüfungen über das gesamte Studium.">
                             <div className="mb-3">
                                 <div style={{fontSize: '.8rem'}} className="text-secondary">Stärkstes Fach in den MCs</div>
                                 {mcStrongestSubject.title}
