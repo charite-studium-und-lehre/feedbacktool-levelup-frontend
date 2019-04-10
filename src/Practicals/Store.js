@@ -2,7 +2,7 @@ import _ from 'lodash'
 import initialState from './tree'
 
 const getStore = state => state.practicals
-const getItemById = (state, id) => getStore(state).find(e => e.id == id)
+const getItemById = (state, id) => getStore(state)[id]
 const flattenTree = (selector, entry) => entry.entries.length ? _.flatMap(entry.entries, e => flattenTree(selector, selector(e))) : [entry]
 
 const getScore = (state, id, prop) => {
@@ -20,7 +20,7 @@ const getMaxScore = (state, id) => {
 export const selectors = {
   getStore,
   getItemById,
-  getItemByLabel: (state, label) => getStore(state).find(e => e.label == label),
+  getItemByLabel: (state, label) => _.find(getStore(state), e => e.label === label),
   getScore,
   getMaxScore,
 }
@@ -33,14 +33,11 @@ export const actions = {
 }
 
 const level = (state, id, p, val) => {
-  const entry = _.clone(state.find(e => e.id === id))
-  entry[p] = Math.min(Math.max(entry[p] + val, 0), 6)
-  return [
-    ...state.slice(0,state.findIndex(e => e.id === id)),
-    entry,
-    ...state.slice(state.findIndex(e => e.id === id) + 1)
-  ]
+  const entry = _.clone(state[id])
+  entry[p] = Math.min(Math.max(entry[p] + val, 0), 5)
+  return _.extend({}, state, { [id]: entry })
 }
+
 export function reducer(state = initialState, action) {
   switch (action.type) {
     case 'LEVEL_UP_DONE':

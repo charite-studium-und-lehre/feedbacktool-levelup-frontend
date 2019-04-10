@@ -304,5 +304,5 @@ id: _.uniqueId(),
   ]
 }
 
-const normalize = e => [{...e, done: _.random(1,6), confident: _.random(1,6), entries: (e.entries || []).map(e => e.id) }, _.flatMap(e.entries || [], normalize)]
-export default _.flatMapDeep([praticalsTree], normalize)
+const normalize = e => [{...e, done: _.random(1,5), confident: _.random(1,5), entries: (e.entries || []).map(e => e.id) }, _.flatMap(e.entries || [], normalize)]
+export default _.keyBy(_.flatMapDeep([praticalsTree], normalize), e => e.id)
