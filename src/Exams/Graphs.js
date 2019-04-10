@@ -8,7 +8,7 @@ import StationsTimelineInfo from '../Dashboard/Timeline/StationsInfo'
 import SemesterSummary from './SemesterSummary'
 import PtmSummary from './PtmSummary'
 
-function randomData(n = 10, name) {
+function randomData(n = 11, name) {
     return _.range(n).map(i => ({
         x: new Date(2018 - i, 6 + _.random(2, -1), 15 + _.random(20, -10)),
         result: _.random(75, 20),
@@ -17,11 +17,11 @@ function randomData(n = 10, name) {
         q75: _.random(15, 55), 
         q100: _.random(15, 80),
         mean: _.random(25, 40),
-        label: `${n-i+1}. Semester`
+        label: `${n-i}. Semester`
     }))
 }
 
-const n = 8;
+const n = 10;
 const graphs = {
     pointCount: n,
     data: [{
@@ -46,9 +46,9 @@ const graphs = {
         name: 'stations',
         label: 'Praktische Prüfung',
         data: [
-            {result: _.random(75, 20), mean: _.random(25, 40), x: new Date(2011, 6, 15), y: Math.random() * 100, label: `2. Semester`},
-            {result: _.random(75, 20), mean: _.random(25, 40), x: new Date(2013, 6, 15), y: Math.random() * 100, label: `4. Semester`},
-            {result: _.random(75, 20), mean: _.random(25, 40), x: new Date(2018, 6, 15), y: Math.random() * 100, label: `9. Semester`},
+            {result: _.random(75, 20), mean: _.random(25, 40), x: new Date(2010, 6, 15), y: Math.random() * 100, label: `2. Semester`},
+            {result: _.random(75, 20), mean: _.random(25, 40), x: new Date(2012, 6, 15), y: Math.random() * 100, label: `4. Semester`},
+            {result: _.random(75, 20), mean: _.random(25, 40), x: new Date(2017, 6, 15), y: Math.random() * 100, label: `9. Semester`},
         ],
         color: 0,
         info: StationsInfo,

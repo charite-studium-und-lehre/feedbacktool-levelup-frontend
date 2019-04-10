@@ -2,43 +2,38 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Item from './Item'
 import Score from './Score'
+import Legend from '../Charting/Legend'
+import LegendTexts from '../Core/LegendTexts'
+import Toolbar from './Toolbar'
 import { selectors } from './Store'
+const legend = LegendTexts.Practicals.Main
 
 class Container extends React.Component {
     constructor(props) {
         super(props)
         this.state = { edit: false }
-    } 
-    
+    }
+
+    toggleEdit = () => this.setState({edit: !this.state.edit})
+
     render() {
         return (
         <div style={{fontSize: '.9rem'}}>
             <div className="card p-2">
-                <h5>Mein Level</h5>
+                <Legend title={legend.title}>{legend.text}</Legend>
                 <div className="row">
-                    <div className="col-sm-9">
+                    <div className="col-12">
                         <Score headings={true} entry={this.props.root} />
-                    </div>
-                    <div className="col-sm-3 text-right">
-                        <button 
-                            className={`btn btn-sm ${this.state.edit ? 'btn-success' : 'btn-primary'} ${this.state.edit ? 'active' : ''}`} 
-                            data-toggle="button" 
-                            aria-pressed={this.state.edit} 
-                            autoComplete="off"
-                            onClick={() => this.setState({edit: !this.state.edit})}>{this.state.edit ? 'speichern' : 'bearbeiten'}
-                        </button>
                     </div>
                 </div>
             </div>
+            <Toolbar toggleEdit={this.toggleEdit} edit={this.state.edit} />
             <div className="row">
                 {this.props.root.entries.map(e =>
                     <div key={e} className="col-12">
                         <Item edit={this.state.edit} entryId={e} level={1} />
                     </div>
                 )}
-            </div>
-            <div className="text-right mt-2">
-                <button className="btn btn-sm btn-primary ml-2">exportieren</button>
             </div>
         </div>)
     }
