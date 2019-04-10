@@ -1,6 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
-import Subjects from '../Exams/Subjects'
+import Subjects, { ranking } from '../Exams/Subjects'
 import Subject from './Subject'
 import Ranking from './Ranking'
 import PTMResults from './PTMResults'
@@ -9,12 +9,10 @@ import Legend from '../Charting/Legend'
 import LegendTexts from '../Core/LegendTexts'
 const LegendText = LegendTexts.Strengths
 
+const mcSample = Subjects()    
+const ptmSample = Subjects()
 const Strengths = ({ match }) => {
-    const mcSample = Subjects()
-        .map(c => ({...c, subjects: c.subjects.map(s => ({ ...s, correct: _.random(1, s.questions)})).sort((a,b) => - a.correct / (a.questions+.1) + b.correct / (b.questions + .1)) }))
-    const ptmSample = Subjects()
-        .map(c => ({...c, subjects: c.subjects.map(s => ({ ...s, correct: Math.floor(Math.random() * s.questions)})).sort((a,b) => - a.correct / (a.questions+.1) + b.correct / (b.questions + .1)) }))
-    const active = Math.max(_.findIndex(mcSample.map(c => c.subjects.map(s => s.title).indexOf(match.params.subject)), i => i >= 0), 0)
+    const active = Math.max(...mcSample.map((c,i) => _.includes(c.subjects.map(s => s.title), match.params.subject) ? i : -1), 0)
     return (
     <div className="container-fluid">
         <div className="row">
@@ -24,10 +22,10 @@ const Strengths = ({ match }) => {
         </div>
         <div className="row mt-3">
             <div className="col-md-4 mb-2">
-                <Ranking title={LegendText.Semester.title} text={LegendText.Semester.text} subjects={_.flatMap(mcSample, c => c.subjects)} />
+                <Ranking title={LegendText.Semester.title} text={LegendText.Semester.text} subjects={ranking(mcSample)} />
             </div>
             <div className="col-md-4 mb-2">
-                <Ranking title={LegendText.PTM.title} text={LegendText.PTM.text} subjects={_.flatMap(ptmSample, c => c.subjects).map(s => ({...s, mean: _.random(1, s.questions)}))} />
+                <Ranking title={LegendText.PTM.title} text={LegendText.PTM.text} subjects={ranking(ptmSample)} mean />
             </div>
             <div className="col-md-4 mb-2">
                 <PTMResults />
@@ -40,7 +38,7 @@ const Strengths = ({ match }) => {
                     <Legend title={LegendText.Subjects.title}>{LegendText.Subjects.text}</Legend>
                     <SubjectsTabs active={active}>
                         {mcSample.map(c => 
-                            <div title={c.title} className="d-flex flex-wrap">
+                            <div key={c.title} title={c.title} className="d-flex flex-wrap">
                                 {_.sortBy(c.subjects, 'title').map(s => <Subject key={s.title} {...s} flash={s.title === match.params.subject} />)}
                             </div>
                         )}
