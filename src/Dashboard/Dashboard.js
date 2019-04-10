@@ -1,17 +1,14 @@
 import React from 'react'
-import _ from 'lodash'
 import { Link } from 'react-router-dom'
 import DashboardCard from './DashboardCard'
-import { LinearChart } from '../Charting/Chart'
-import BarGraph from '../Charting/BarGraph'
 import Progress from './Progress/Progress'
-import { XAxis, YAxis } from '../Charting/Axis'
 import Timeline from './Timeline/Timeline'
 import graphs from '../Exams/Graphs'
 import PracticalsScore from '../Practicals/Score'
 import PracticalsTree from '../Practicals/tree'
 import SimpleBar from '../Charting/SimpleBar'
 import Subjects, { strongestSubject } from '../Exams/Subjects'
+import StationsData from '../Exams/Stations/Data'
 
 const mcStrongestSubject = strongestSubject(Subjects())
 const ptmStrongestSubject = strongestSubject(Subjects())
@@ -47,13 +44,11 @@ export default function Dashboard() {
                         header={Math.round(Math.random() * 100) + ' %'} 
                         title="Praktische Prüfungen" 
                         text="Dein Überblick zu den praktischen Prüfungen im Studium.">
-                            <div className="m-3" style={{height: '6rem'}}>
-                                <LinearChart yDomain={[0,100]} xDomain={[0,11]}>
-                                    <XAxis />
-                                    <YAxis />
-                                    <BarGraph data={_.range(0,10).map((d,i) => ({x: i+1, y: Math.random() * 100}))} color="rgba(64,64,64,.3)" width={.8}></BarGraph>
-                                </LinearChart>
-                            </div>
+                            {StationsData.map(e => 
+                            <div key={e.exam}>
+                                <span className="text-secondary" style={{fontSize: '.8rem'}}>{e.exam}</span>
+                                <SimpleBar value={e.result} >{e.result} %</SimpleBar>
+                            </div>)}
                         </DashboardCard>
                     </Link>
                 </div>

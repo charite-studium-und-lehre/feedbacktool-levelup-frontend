@@ -442,10 +442,12 @@ const data = [
 export default data.map( e => ({
     exam: e.exam,
     group: e.group,
-    result: _.meanBy( e.stations, 'result'),
     stations: e.stations.map(s => ({
         ...s, 
         result: _.round(_.meanBy(s.details.filter( d => _.isNumber(d.value) ), 'value') ),
         mean: _.round(_.meanBy(s.details, 'mean')),
-    }))
+    })),
+})).map(e => ({
+    ...e,
+    result: _.round(_.meanBy( e.stations, 'result')),
 }))
