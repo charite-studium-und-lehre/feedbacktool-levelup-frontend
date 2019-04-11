@@ -1,38 +1,28 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Label from './Label'
-import { line } from 'd3-shape'
+import css from './Marker.module.css'
+import AnimatedPoint from './AnimatedPoint'
+import AnimatedPath from './AnimatedPath'
+import AnimatedText from './AnimatedText'
+import makeExtendable from '../Core/makeExtendable'
 
-class Marker extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            selected: false
-        }
-    } 
+const Marker = props =>
+    <g className={`${css.marker} ${props.extended ? css.selected : ''}`}>
+        <AnimatedPoint 
+            selected={props.extended}
+            cx={props.xScale(props.x)} 
+            cy={props.yScale(props.y)} 
+            fill={props.color || 'black'}
+            r={props.size || "5"}
+            onClick={() => props.toggleExtended()}
+        />
+        <Label onClick={() => props.toggleExtended()} x={props.xScale(props.x)} y={props.yScale(props.y) + (props.offset || -20)}>{props.label}</Label>
+        <g className={css.lines}>
+            <AnimatedPath d={[[props.xScale(props.x), props.yScale(props.y)],[props.xScale(props.x), props.yScale(props.yScale.domain()[0])]]} stroke={props.color || "black"} />
+            <AnimatedText dominantBaseline="central" x={props.xScale(props.xScale.domain()[0]) - 2} y={props.yScale(props.y)} textAnchor="end">{props.y}</AnimatedText>
+            <AnimatedPath d={[[props.xScale(props.xScale.domain()[0]), props.yScale(props.y)],[props.xScale(props.x), props.yScale(props.y)]]} stroke={props.color || "black"} />
+            <AnimatedText dominantBaseline="hanging" x={props.xScale(props.x)} y={props.yScale.range()[0]+3}>{props.x}</AnimatedText>
+        </g>
+    </g>
 
-    toggleSelected() {
-        this.setState({ selected: !this.state.selected })
-    }
-
-    render() {
-        return (
-            <g className={`marker ${this.state.selected ? 'selected' : ''}`}>
-                <circle 
-                    className={`dot ${this.state.selected ? 'selected' : ''}`}
-                    cx={this.props.xScale(this.props.x)} 
-                    cy={this.props.yScale(this.props.y)} 
-                    fill={this.props.color || 'black'}
-                    r={this.props.size || "5"}
-                    onClick={() => this.toggleSelected()}
-                />
-                <path d={line()([[this.props.xScale(this.props.x), this.props.yScale(this.props.y)],[this.props.xScale(this.props.x), this.props.yScale(this.props.yScale.domain()[0])]])} className="line" style={{stroke: this.props.color || "black"}} />
-                <text dominantBaseline="central" x={this.props.xScale(this.props.xScale.domain()[0]) - 2} y={this.props.yScale(this.props.y)} textAnchor="end">{this.props.y}</text>
-                <path d={line()([[this.props.xScale(this.props.xScale.domain()[0]), this.props.yScale(this.props.y)],[this.props.xScale(this.props.x), this.props.yScale(this.props.y)]])} className="line" style={{stroke: this.props.color || "black"}} />
-                <text dominantBaseline="before-edge" x={this.props.xScale(this.props.x)} y={this.props.yScale(this.props.yScale.domain()[0])} textAnchor="middle">{this.props.x}</text>
-                <Label onClick={() => this.toggleSelected()} x={this.props.xScale(this.props.x)} y={this.props.yScale(this.props.y) + (this.props.offset || -20)}>{this.props.label}</Label>
-            </g>
-        )
-    }
-}
-
-export default Marker
+export default makeExtendable(Marker)

@@ -48,6 +48,7 @@ export default function Consulting(props) {
                             address={d.address}
                             talk={d.talk}
                             talk1={d.talk1}
+                            href={d.href}
                         />
                     )}
                 </div>

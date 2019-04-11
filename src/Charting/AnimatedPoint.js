@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { select } from 'd3-selection'
 import { animationTime } from './Utils'
+import css from './AnimatedPoint.module.css'
 
 class AnimatedPoint extends Component {
     static defaultProps = {
         color: 'rgba(0,0,0,.6)',
+        fill: 'rgba(0,0,0,.6)',
         className: '',
         r: 5,
         onClick: () => {},
@@ -18,21 +20,20 @@ class AnimatedPoint extends Component {
 
     componentDidUpdate() {
 		select(this.node.current)
-			.datum({cx: this.props.cx, cy: this.props.cy })
             .transition()
 			.duration(animationTime)
-			.attr('cx', p => p.cx)
-			.attr('cy', p => p.cy)
+			.attr('cx', this.props.cx)
+			.attr('cy',  this.props.cy)
     }
 
     render() {
         return <circle 
             ref={this.node}
             r={this.props.r}
-            style={{fill: this.props.color}}
+            style={{stroke: this.props.color, fill: this.props.fill}}
             cx={this.state.cx} 
             cy={this.state.cy} 
-            className={`animated dot ${this.props.className}`} 
+            className={`animated ${css.dot} ${this.props.selected && css.selected}`} 
             onClick={() => this.props.onClick(this.props.x)} />
     }
 }

@@ -7,86 +7,18 @@
   box-shadow: rgba(0,0,0,.4) 0 0 15px;
 }
 
-.line {
-  fill: none;
-  stroke-width: 3;
-}
-
-.bar > text {
-  font-size: .8rem;
-  fill: rgba(0, 0, 0, .6);
-}
-
-.bar-graph.collapsed .bar:not(:first-child) {
-  opacity: 0;
-}
-
-.dot {
-  stroke: rgba(255, 255, 255, .4);
-}
-
-.dot:hover, .dot.selected {
-  stroke: rgba(0,0,0,.2);
-  stroke-width: 11;
-}
-
-.axis {
-  color: rgba(1,1,1,.6); 
-}
-
-.axis path {
-  shape-rendering: crispEdges;
-}
-
-.axis > .tick {
-  stroke-dasharray: 2,2;
-}
-
-.y.axis > .tick:first-of-type {
-  display: none;
-}
-
-.y.axis.horizontal > .tick:first-of-type {
-  display: block;
-}
-
-.axis.x.horizontal > .tick:first-of-type {
-  display: none;
-}
-
-.axis.y > path {
-  display: none;
-}
-
-.axis.x.horizontal > path {
-  display: none;
-}
-
-.dashboard-card .axis.x > .tick {
-  display: none;
-}
-
 svg {
   overflow: visible;
 }
 
 .animated {
-  transition: .55s;
+  transition: all .55s, cx 0s, cy 0s, d 0s;
   transform-origin: 50%;
 }
 
 .animated.fast {
   transition-timing-function: linear;
   transition: .15s;
-}
-
-g.show {
-  transform: scaleY(1);
-}
-
-g.hidden {
-  transform: scaleY(0);
-  visibility: hidden;
 }
 
 a {
@@ -106,28 +38,6 @@ span.input-group-text {
   border: none;
 }
 
-.point-details {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  margin-left: 1rem;
-  max-width: 20rem;
-  right: 1rem;
-  z-index: 1;
-}
-
-.point-details.hidden {
-  right: -25rem;
-}
-
-.marker > path, .marker > text {
-  stroke-width: 1;
-  display: none;
-  font-size: 0.7rem;
-}
-
-.marker circle:hover ~ path, .marker circle:hover ~ text, .marker.selected > path, .marker.selected > text {
-  display: block;
-}
-
 .nav-link {
   cursor: pointer;
 }
@@ -145,4 +55,8 @@ span.input-group-text {
 
 .with-shadow {
   box-shadow: 1px 1px 5px rgba(0,0,0,.2);
+}
+
+ol.breadcrumb {
+  margin-bottom: .5rem;
 }

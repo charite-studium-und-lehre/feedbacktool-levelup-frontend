@@ -14,6 +14,7 @@ const Strengths = ({ match }) => {
         .map(c => ({...c, subjects: c.subjects.map(s => ({ ...s, correct: _.random(1, s.questions)})).sort((a,b) => - a.correct / (a.questions+.1) + b.correct / (b.questions + .1)) }))
     const ptmSample = Subjects()
         .map(c => ({...c, subjects: c.subjects.map(s => ({ ...s, correct: Math.floor(Math.random() * s.questions)})).sort((a,b) => - a.correct / (a.questions+.1) + b.correct / (b.questions + .1)) }))
+    const active = Math.max(_.findIndex(mcSample.map(c => c.subjects.map(s => s.title).indexOf(match.params.subject)), i => i >= 0), 0)
     return (
     <div className="container-fluid">
         <div className="row">
@@ -37,15 +38,13 @@ const Strengths = ({ match }) => {
             <div className="col">
                 <div className="card p-3">
                     <Legend title={LegendText.Subjects.title}>{LegendText.Subjects.text}</Legend>
-                    <SubjectsTabs 
-                        tabTitles={mcSample.map(c => c.title)}
-                        tabContents={mcSample.map(c => 
-                            <div className="d-flex flex-wrap">
+                    <SubjectsTabs active={active}>
+                        {mcSample.map(c => 
+                            <div title={c.title} className="d-flex flex-wrap">
                                 {_.sortBy(c.subjects, 'title').map(s => <Subject key={s.title} {...s} flash={s.title === match.params.subject} />)}
                             </div>
                         )}
-                        active={mcSample.reduce((r, c) => c.subjects.some(s => s.title === match.params.subject) ? c.title : r, "")}
-                    />
+                    </SubjectsTabs>
                 </div>
             </div>
         </div>

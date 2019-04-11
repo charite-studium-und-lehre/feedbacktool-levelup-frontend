@@ -41,8 +41,11 @@ const Subjects = [
             "Rechtsmedizin",
             "Urologie"
         ]
-    }
+    },
 ]
+
+const ModuleNames = [ "Modul 1","Modul 2","Modul 3","Modul 4" ]
 
 const SubjectsWithNumbers = () => Subjects.map( cat => ({ ...cat, subjects: cat.subjects.map( s => ({ title: s, questions: _.random(1,20) }))}))
 export default SubjectsWithNumbers
+export { Subjects, ModuleNames }

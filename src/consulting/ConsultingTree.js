@@ -46,7 +46,8 @@ export const ConsultingTree = {
         tel:" +49 30 450 529189",
         email1:"medicoach@charite.de",
         address:"Luisenstr 57 CCM ",
-        talk:" Gespräch nach Terminvereinbarung"   
+        talk:" Gespräch nach Terminvereinbarung",
+        href: 'https://medicoach.charite.de/fuer_studierende' 
     }, 
     {
         title:"Familienbüro",
@@ -58,7 +59,8 @@ export const ConsultingTree = {
         email2:"Väterbeauftragte:  vaeterbeauftragte@charite.de",
         address: "Westring 1, 1. Etage, R1.1011 CVK",
         talk:"CVK: dienstags von 11:00 bis 13:00 Uhr, Gästehaus R.0.0120",          
-        talk1:"CCM: mittwochs von 11:00 bis 13:00 Uhr, Hufelandweg 2, EG, Raum 56|57" 
+        talk1:"CCM: mittwochs von 11:00 bis 13:00 Uhr, Hufelandweg 2, EG, Raum 56|57",
+        href: 'https://familienbuero.charite.de/charite_mit_kind/studieren_mit_familie/kinderbetreuung' 
     },
    {
         title:"ChiC",
@@ -70,6 +72,7 @@ export const ConsultingTree = {
         email1:"erasmixpaten@charite.de" ,
         address:"Reinhardtstr. 58, CCM",
         talk:"Sprechzeiten nach Terminvereinbarung",
+        href: 'https://www.charite.de/international/fuer_studierende/' 
     
    },
    {
@@ -79,6 +82,7 @@ export const ConsultingTree = {
         tel:"+49 30 450 577 259",
         address:"Virchowweg 24, Aufgang B, 2. Etage, R02.002, CCM",
         talk:"Sprechzeiten nach Terminvereinbarung",
+        href: 'https://mentoring.charite.de/fuer_studienanfaenger/' 
    },
    {
         title:"Student Mentoring",
@@ -89,6 +93,7 @@ export const ConsultingTree = {
         email1:"studentmentoring@charite.de" ,
         address:"Hannoversche Straße 19, 3. Etage, CCM",
         talk:"Sprechzeiten nach Terminvereinbarung",
+        href: 'https://studentmentoring.charite.de' 
    },
    {
         title:"Referat für Studienangelegenheiten",
@@ -98,7 +103,8 @@ export const ConsultingTree = {
         email1:"petra.meinhardt@charite.de" ,
         address:"Hannoversche Str. 19, 3.OG",
         talk:"Mo-Fr 09:00-12:00, Mo-Do 13:00-16:00(Telefonisch)",
-        talk1:"Di, Do, Fr: 9:30-12:30, Di 13:30-16:00(Sprechzeiten)"
+        talk1:"Di, Do, Fr: 9:30-12:30, Di 13:30-16:00(Sprechzeiten)",
+        href: 'https://www.charite.de/studium_lehre/struktur_einrichtungen/referat_fuer_studienangelegenheiten/' 
    },
    {
         title:"Frauen- und Gleichstellungsbeauftragte",
@@ -108,6 +114,7 @@ export const ConsultingTree = {
         tel:"+49 30 450 577 252",
         address:"Westring 1, CVK",
         talk:"Sprechzeiten nach Terminvereinbarung",
+        href: 'https://frauenbeauftragte.charite.de/' 
    },
    {
         title:"Geschäftsstelle für gute wissenschaftliche Praxis",
@@ -117,6 +124,7 @@ export const ConsultingTree = {
         email1:"gwp@charite.de", 
         address:"",
         talk:"Sprechzeiten nach Terminvereinbarung",
+        href: 'https://promotion.charite.de/fuer_promovierende/#c30201158' 
    },
    {
     title:"Fachschaft Initiative Medizin(FSI Medizin)",
@@ -126,6 +134,7 @@ export const ConsultingTree = {
     email1:"sprecher@fsi-charite.de" ,
     address:"Philippstraße 12, “Hexenhaus”, CCM",
     talk:"Sprechzeiten nach Terminvereinbarung",
+    href: 'http://fsi-charite.de' 
 }
     ]
 }

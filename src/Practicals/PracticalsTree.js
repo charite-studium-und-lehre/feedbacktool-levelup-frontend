@@ -3,20 +3,44 @@ import PracticalsItem from './PracticalsItem'
 import tree from './tree'
 import PracticalsScore from './PracticalsScore';
 
-const PracticalsTree = props => (
-    <div style={{fontSize: '.9rem'}}>
-        <div className="card p-2">
-            <h5>Mein Level</h5>
-            <PracticalsScore headings={true} entry={tree} />
-        </div>
-        <div className="row">
-            {tree.entries.map(e =>
-                <div key={e.label} className="col-md-12">
-                <PracticalsItem extended={false} entry={e} level={1} />
+class PracticalsTree extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = { edit: false }
+    } 
+    
+    render() {
+        return (
+        <div style={{fontSize: '.9rem'}}>
+            <div className="card p-2">
+                <h5>Mein Level</h5>
+                <div className="row">
+                    <div className="col-sm-9">
+                        <PracticalsScore headings={true} entry={tree} />
+                    </div>
+                    <div className="col-sm-3 text-right">
+                        <button 
+                            className={`btn btn-sm ${this.state.edit ? 'btn-success' : 'btn-primary'} ${this.state.edit ? 'active' : ''}`} 
+                            data-toggle="button" 
+                            aria-pressed={this.state.edit} 
+                            autoComplete="off"
+                            onClick={() => this.setState({edit: !this.state.edit})}>{this.state.edit ? 'speichern' : 'bearbeiten'}
+                        </button>
+                    </div>
                 </div>
-            )}
-        </div>
-    </div>
-)
+            </div>
+            <div className="row">
+                {tree.entries.map(e =>
+                    <div key={e.label} className="col-md-12">
+                    <PracticalsItem edit={this.state.edit} extended={false} entry={e} level={1} />
+                    </div>
+                )}
+            </div>
+            <div className="text-right mt-2">
+                <button className="btn btn-sm btn-primary ml-2">exportieren</button>
+            </div>
+        </div>)
+    }
+}
 
 export default PracticalsTree

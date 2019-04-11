@@ -1,5 +1,5 @@
 import React from 'react'
-import { HorizontalBarChart } from '../Charting/HorizontalBarGraph'
+import { HorizontalBarChart } from '../../Charting/HorizontalBarGraph'
 
 const labels = ['nicht beantwortet', 'falsch', 'richtig']
 const results = [47, 10, 143]

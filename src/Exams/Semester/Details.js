@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
-import { curveBasis } from 'd3-shape'
 import _ from 'lodash'
-import { LinearChart, OrdinalChart } from '../../Charting/Chart'
-import BarGraph from '../../Charting/BarGraph'
-import LineMarker from '../../Charting/LineMarker'
-import LineGraph from '../../Charting/LineGraph'
 import Legend from '../../Charting/Legend'
-import { XAxis, YAxis } from '../../Charting/Axis'
 import Legends from '../../Core/LegendTexts'
+import BarWithHeader from './BarWithHeader'
+import { Subjects, ModuleNames } from '../Subjects'
+
+const subjectsSample = _.sampleSize(_.flatMap(Subjects, d => d.subjects), 5 ).map(s => ({name: s, result: _.random(0,10), total: _.random(10,20)}))
+const modulesSample = ModuleNames.map(s => ({name: s, result: _.random(0,100), total: 100}))
 const LegendText = Legends.Exams.Semester.Details
 
 class Details extends Component {
@@ -15,7 +14,7 @@ class Details extends Component {
         super(props)
         this.state = {
             selectedModule: null,
-            mode: 'modules'
+            mode: 'subjects'
         }
         this.histo = props.data.map((module, index) => _.map(_.groupBy(module.data, d => Math.floor(d / 5)), (d, i) => ({x: +i*0.05, y: d.length, highlight: +i === Math.floor(props.result[index] / 5)})))
     }
@@ -29,8 +28,6 @@ class Details extends Component {
     }
 
     render() {
-        const width = .4
-        const histoScale = Math.min(...this.props.data.map(d => d.mean)) / Math.max(...this.histo.map(d => Math.max(...d.map(d => d.y))))
         return (
             <div>
             <div className="card p-4" style={{overflow: 'hidden'}}>
@@ -41,41 +38,26 @@ class Details extends Component {
                 </div>
                 <div className="mt-3">
                     {this.state.mode === 'modules' ?
-                    <OrdinalChart
-                        // xDomain={[this.state.selectedModule ? this.state.selectedModule.x - .5 : 0, this.state.selectedModule ? this.state.selectedModule.x + .5 : 5]} 
-                        xDomain={['Modul 01', 'Modul 02', 'Modul 03', 'Modul 04']} 
-                        yDomain={[0, Math.max(...this.props.result, ...this.props.data.map(d => d.mean))]}>
-                        <XAxis label={this.state.selectedModule ? `Modul ${this.state.selectedModule.x}` : '' }/>
-                        <YAxis />
-                        <BarGraph labels offset={-.5} width={width} data={this.props.result.map((d, i) => ({x: `Modul 0${i+1}`, y: d, label: `${d} %`}))} color="hsla(180, 100%, 20%, .5)" highlightColor="hsla(180, 100%, 20%, .8)" onClick={this.showDetail.bind(this)} />
-                        <BarGraph labels offset={.5} width={width} data={this.props.data.map(d => ({x: `Modul 0${d.module}`, y: d.mean, label: `${d.mean} %`}))} color="hsla(180, 100%, 40%, .5)" highlightColor="hsla(180, 100%, 40%, .8)" onClick={this.showDetail.bind(this)} />
-                        {this.histo.map((h, i) =>
-                            <LineGraph
-                                className={this.state.selectedModule ? "" : "d-none d-md-block"}
-                                key={`density${i}`} noPoints curve={curveBasis} width={.8} 
-                                data={h.map(d => ({x: i + 1 - width + d.x * 2 * width, y: d.y * histoScale, highlight: d.highlight}))} 
-                                color="hsla(180, 100%, 20%, .2)" 
-                                highlightColor="hsla(180, 100%, 20%, .8)" 
-                                style={{opacity: this.state.selectedModule ? 0.7 : 1}}/>
-                        )}
-                        {this.histo.map((h, i) =>
-                            <BarGraph
-                                key={`histo${i}`} noPoints curve={curveBasis} width={.8} 
-                                data={h.map(d => ({x: i + 1 - width + d.x * 2 * width, y: d.y * histoScale, highlight: d.highlight}))} 
-                                color="hsla(180, 100%, 20%, .5)" 
-                                highlightColor="hsla(180, 100%, 20%, .8)" 
-                                style={{opacity: this.state.selectedModule && this.state.selectedModule.x === i+1 ? 1 : 0}}/>
-                        )}
-                        <LineMarker value={this.props.totalMean} label="Durchschnitt" />
-                    </OrdinalChart>
+                    modulesSample.map((d, i) => 
+                        <BarWithHeader
+                            key={d.name}
+                            name={"Modul " + (this.props.semester * 4 - 3 + i)}
+                            result={d.result}
+                            mean={_.random(1, d.total)}
+                        >{d.result} %</BarWithHeader>
+                    )
                     : 
-                    <LinearChart 
-                        xDomain={[0, 100]}
-                        yDomain={[0, 100]}>
-                        <XAxis />
-                        <YAxis />
-                    </LinearChart>
-                    }
+                    subjectsSample.map(d => 
+                        <BarWithHeader 
+                            key={d.name}
+                            name={d.name}
+                            result={d.result}
+                            total={d.total}
+                            width={d.total * 100 / _.max(subjectsSample.map(s => s.total)) + "%"}
+                            mean={_.random(1, d.total)}
+                        >{d.result} von {d.total}</BarWithHeader>
+                        )
+                        }
                 </div>
             </div>
             </div>

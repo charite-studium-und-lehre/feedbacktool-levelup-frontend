@@ -1,29 +1,26 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import DashboardCard from './DashboardCard';
-import { LinearChart } from '../Charting/Chart';
-import BarGraph from '../Charting/BarGraph';
+import React from 'react'
+import _ from 'lodash'
+import { Link } from 'react-router-dom'
+import DashboardCard from './DashboardCard'
+import { LinearChart } from '../Charting/Chart'
+import BarGraph from '../Charting/BarGraph'
 import Progress from './Progress/Progress'
 import { XAxis, YAxis } from '../Charting/Axis'
-import Timeline from './Timeline'
+import Timeline from './Timeline/Timeline'
 import graphs from '../Exams/Graphs'
+import PracticalsScore from '../Practicals/PracticalsScore'
+import PracticalsTree from '../Practicals/tree'
 
 export default function Dashboard() {
     return (
         <div className="container-fluid">
           <div className="row">
-            <div className="col-lg-12">
-                <div className="row mt-2">
-                    <div className="col-12">
-                        <Progress />
-                    </div>
+                <div className="col-lg-6 mt-2">
+                    <Progress />
                 </div>
-                <div className="row mt-2">
-                    <div className="col-12">
-                        <Timeline data={graphs.data} />
-                    </div>
+                <div className="col-lg-6 mt-2">
+                    <Timeline data={graphs.data} />
                 </div>
-            </div>
           </div>
             <div className="row">
                 <div className="col-lg-4">
@@ -33,6 +30,9 @@ export default function Dashboard() {
                             header={Math.round(Math.random() * 100) + ' p'} 
                             title="Ärztliche Tätigkeiten" 
                             text="Dein Überblick zur Entwicklung deiner praktischen Fähigkeiten im Studienverlauf.">
+                            <div className="m-2">
+                                <PracticalsScore headings entry={PracticalsTree} />
+                            </div>
                             </DashboardCard>
                         </Link>
                     </div>
@@ -47,7 +47,7 @@ export default function Dashboard() {
                                 <LinearChart yDomain={[0,100]} xDomain={[0,11]}>
                                     <XAxis />
                                     <YAxis />
-                                    <BarGraph data={new Array(10).fill(0).map((d,i) => ({x: i+1, y: Math.random() * 100}))} color="rgba(64,64,64,.3)" width={.8}></BarGraph>
+                                    <BarGraph data={_.range(0,10).map((d,i) => ({x: i+1, y: Math.random() * 100}))} color="rgba(64,64,64,.3)" width={.8}></BarGraph>
                                 </LinearChart>
                             </div>
                         </DashboardCard>

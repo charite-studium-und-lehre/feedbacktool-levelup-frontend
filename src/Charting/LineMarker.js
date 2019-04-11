@@ -1,6 +1,6 @@
 import React from 'react'
 import AnimatedText from './AnimatedText'
-import AnimatedLine from './AnimatedLine'
+import AnimatedPath from './AnimatedPath'
 
 const LineMarker = props => {
     let _line = props.vertical ? 
@@ -28,8 +28,8 @@ const LineMarker = props => {
     const yLabel = props.vertical ? -props.xScale(props.value) - 2 : (props.yScale(props.value) - 2)
     const xValue=props.vertical ? props.xScale(props.value) : (props.xScale.range()[0] - 2)
     const yValue=props.vertical ? (props.yScale.range()[0] + 2) : props.yScale(props.value)
-	return (<g className="marker selected">
-        <AnimatedLine d={_line} />
+	return (<g>
+        <AnimatedPath d={_line} />
         <AnimatedText  
             x={xLabel}
             y={yLabel}

@@ -8,7 +8,7 @@ const makeExtendable = (WrappedComponent, def = false) => {
 
         constructor(props) {
             super(props)
-            this.state = { extended: props.extended && window.innerWidth > 768 }
+            this.state = { extended: props.extended && (!def || window.innerWidth > 768) }
         }
     
         toggleExtended() { 

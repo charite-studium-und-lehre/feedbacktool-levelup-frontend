@@ -2,16 +2,12 @@ import React, { Component } from 'react'
 import { axisBottom, axisLeft } from 'd3-axis'
 import { select } from 'd3-selection'
 import { animationTime } from './Utils'
+import AnimatedText from './AnimatedText'
+import css from './Axis.module.css'
 
 class Axis extends Component {
     count = null
 
-    static defaultProps = {
-        labelStyle: { 
-            fontSize: '.9rem',
-            textAnchor: 'end',
-        }
-    }
     constructor(props) {
         super(props)
         this.node = React.createRef()
@@ -28,7 +24,6 @@ class Axis extends Component {
             .duration(transition ? animationTime : 0)
             .call(axis)
         
-        // el.selectAll("text").attr("text-anchor", "start")
         this.props.rotateLabels && el.selectAll("text")	
             .style("text-anchor", "start")
             .attr("dx", ".8em")
@@ -54,15 +49,14 @@ class XAxis extends Axis {
     render() {
         return (
             <g transform={`translate(0,${this.props.yScale.range()[0]})`}>
-                <g ref={this.node} className={`x axis ${this.props.horizontal ? 'horizontal' : ''}`} />
-                <text 
-                    className="label" 
-                    dy="-2"
+                <g ref={this.node} className={`${css.x} ${css.axis} ${this.props.horizontal && css.horizontal}`} />
+                <AnimatedText
+                    y="-2"
                     x={this.props.xScale.range()[1]}
-                    fontSize=".7rem" fill="rgba(1,1,1,.4)"
-                    style={this.props.labelStyle}>
+                    color="rgba(1,1,1,.7)"
+                    textAnchor="end">
                     {this.props.label}
-                </text>
+                </AnimatedText>
             </g>
         )
     }
@@ -79,16 +73,13 @@ class YAxis extends Axis {
     render() {
         return (
             <g>
-                <text 
-                    transform="rotate(-90)"
-                    y={6}
-                    dy=".71rem"
-                    fontSize=".7rem"
-                    fill="rgba(1,1,1,.4)"
-                    style={this.props.labelStyle}>
+                <AnimatedText 
+                    textAnchor="start"
+                    y="-5"
+                    color="rgba(1,1,1,.7)">
                     {this.props.label}
-                </text>
-                <g ref={this.node} className={`y axis ${this.props.horizontal ? 'horizontal' : ''}`} />
+                </AnimatedText>
+                <g ref={this.node} className={`${css.y} ${css.axis} ${this.props.horizontal && css.horizontal}`} />
             </g>
         )
     }
