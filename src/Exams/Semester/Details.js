@@ -14,14 +14,8 @@ class Details extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            selectedModule: null,
             mode: 'subjects'
         }
-        this.histo = props.data.map((module, index) => _.map(_.groupBy(module.data, d => Math.floor(d / 5)), (d, i) => ({x: +i*0.05, y: d.length, highlight: +i === Math.floor(props.result[index] / 5)})))
-    }
-
-    showDetail(selectedModule) {
-        this.setState({ selectedModule: selectedModule && this.state.selectedModule && this.state.selectedModule.x === selectedModule.x ? null : selectedModule })
     }
 
     setMode(mode) {

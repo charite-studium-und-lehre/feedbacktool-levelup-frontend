@@ -13,6 +13,7 @@ import { TotalsData as Data } from './Data'
 import Legends from '../../Core/LegendTexts'
 const LegendText = Legends.Exams.Semester.Totals
 
+const respSwitch = (large, small) => <span><span className="d-none d-md-inline-block">{large}</span><span className="d-inline-block d-md-none">{small}</span></span>
 class Totals extends Component {
     constructor(props) {
         super(props)
@@ -36,35 +37,39 @@ class Totals extends Component {
     render () {
         return (
             <div className="card p-4">
-                <div className="p-2 mb-2">
-                    <Legend title={LegendText.title}>{LegendText.text}</Legend>
-                    <div style={{textAlign: 'right'}}>
-                        <label className="m-0 mr-2"><input type="radio" name="totals.mode" checked={this.state.mode === 'graph'} onChange={() => this.setMode('graph')} className="mx-2" />Graph</label>
-                        <label><input type="radio" name="totals.mode" checked={this.state.mode === 'histo'} onChange={() => this.setMode('histo')} className="mx-2" />Histogramm</label>
-                    </div>
-                    <div className="mt-3">
-                        {this.state.mode === 'graph' ? (
-                        <LinearChart xDomain={[100, 0]} yDomain={[0,80]}>
-                            <YAxis ticks={{ count: 4 }} label="Mind. erreichte Punkte"/>
-                            <AreaGraph curve={curveStep} data={this.percentileArea(10, 0)} color="hsla(120, 100%, 80%, .2)"></AreaGraph>
-                            <AreaGraph curve={curveStep} data={this.percentileArea(25, 10)} color="hsla(120, 100%, 60%, .2)"></AreaGraph>
-                            <AreaGraph curve={curveStep} data={this.percentileArea(50, 25)} color="hsla(120, 100%, 40%, .2)"></AreaGraph>
-                            <AreaGraph curve={curveStep} data={this.percentileArea(100, 50)} color="hsla(120, 100%, 20%, .2)"></AreaGraph>
-                            <LineGraph data={Data.dist} color="hsla(181, 100%, 41%, .9)" noPoints curve={curveStep}>
-                                {/* <Tracker getY={ x => this.getY(x) } /> */}
-                            </LineGraph>
-                            <Marker extended={true} x={Data.resultPercent} y={Data.resultMean} label='Du' color="hsla(0, 100%, 30%, .6)" />
-                            <LineMarker value={Data.distMean} label='Durchschnitt' color="hsla(0, 100%, 30%, .6)" />
-                            <XAxis label="% der Studierenden" />
-                        </LinearChart>
-                        ) : (
+                <Legend title={LegendText.title}>{LegendText.text}</Legend>
+                <div style={{textAlign: 'right'}}>
+                    <label className="m-0 mr-2"><input type="radio" name="totals.mode" checked={this.state.mode === 'graph'} onChange={() => this.setMode('graph')} className="mx-2" />Graph</label>
+                    <label><input type="radio" name="totals.mode" checked={this.state.mode === 'histo'} onChange={() => this.setMode('histo')} className="mx-2" />Histogramm</label>
+                </div>
+                <div className="mt-3">
+                    {this.state.mode === 'graph' ? (
+                    <LinearChart xDomain={[100, 0]} yDomain={[0,80]}>
+                        <YAxis ticks={{ count: 4 }} label="Mind. erreichte Punkte"/>
+                        <AreaGraph curve={curveStep} data={this.percentileArea(10, 0)} color="hsla(120, 100%, 80%, .2)"></AreaGraph>
+                        <AreaGraph curve={curveStep} data={this.percentileArea(25, 10)} color="hsla(120, 100%, 60%, .2)"></AreaGraph>
+                        <AreaGraph curve={curveStep} data={this.percentileArea(50, 25)} color="hsla(120, 100%, 40%, .2)"></AreaGraph>
+                        <AreaGraph curve={curveStep} data={this.percentileArea(100, 50)} color="hsla(120, 100%, 20%, .2)"></AreaGraph>
+                        <LineGraph data={Data.dist} color="hsla(181, 100%, 41%, .9)" noPoints curve={curveStep}>
+                            {/* <Tracker getY={ x => this.getY(x) } /> */}
+                        </LineGraph>
+                        <Marker extended={true} x={Data.resultPercent} y={Data.resultMean} label='Du' color="hsla(0, 100%, 30%, .6)" />
+                        <LineMarker value={Data.distMean} label='Durchschnitt' color="hsla(0, 100%, 30%, .6)" />
+                        <XAxis label="% der Studierenden" />
+                    </LinearChart>
+                    ) : (
+                    <div className="position-relative text-right">
+                        <div className="position-absolute" style={{right:0, fontSize: '.75rem'}}>
+                            <div><span className="font-weight-bold">{respSwitch('Dein Ergebnis', 'Du')}: </span>{Data.resultMean} Pkte</div>
+                            <div><span className="font-weight-bold">{respSwitch('Durchschnitt', '∅')}: </span>{Data.distMean} Pkte</div>
+                        </div>
                         <LinearChart xDomain={[Math.min(...this.histo.map(d => d.x)) - 5, Math.max(...this.histo.map(d => d.x)) + 5]} yDomain={[0,Math.max(...this.histo.map(d => d.y))]}>
                             <XAxis label="erreichte Punkte" />
                             <YAxis label="Anzahl Studierender" />
                             <BarGraph labels width={.75} data={this.histo} color="hsla(33, 100%, 20%, .5)" highlightColor="hsla(33, 100%, 20%, .8)" />
                         </LinearChart>
-                        )}
                     </div>
+                    )}
                 </div>
             </div>
         )
