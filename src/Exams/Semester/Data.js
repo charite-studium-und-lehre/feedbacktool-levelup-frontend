@@ -16,6 +16,8 @@ const createDist = _.flow([
     
 const distMean = d => _.round(_.meanBy(d, d => _.mean(d)))
 
+const concatResult = arr => ({ result: arr[0], dist: arr[1].concat([ arr[0] ]).sort((a,b) => _.mean(a)-_.mean(b)) })
+
 const createTotalsData = data => {
     const scale = scaleLinear().domain([0,data.dist.length - 1]).range([100, 0])
     return {
@@ -27,8 +29,6 @@ const createTotalsData = data => {
     }
 }
 
-const concatResult = arr => ({ result: arr[0], dist: arr[1].concat([ arr[0] ]).sort((a,b) => _.mean(a)-_.mean(b)) })
-
 const TotalsData = _.flow([seedrandom, _.over(result, createDist), concatResult, createTotalsData])
 
 const createDetailsData = data => ({
@@ -39,4 +39,15 @@ const createDetailsData = data => ({
 
 const DetailsData = _.flow([ seedrandom, _.over(result, createDist), concatResult, createDetailsData ])
 
-export { TotalsData, DetailsData }
+const n = 5
+const random = randomUniform.source(seedrandom('dfghsgresg'))
+const createTimelineData = (i, data) => ({
+    x: new Date(2018 - i, 6 + random(2, -1)(), 15 + random(20, -10)()),
+    result: _.round(_.mean(data.result)),
+    mean: distMean(data.dist),
+    label: `${n-i}. Semester`
+})
+
+const TimelineData = _.range(n).map( i => _.flow([ seedrandom, _.over(result, createDist), concatResult, _.partial(createTimelineData, i) ])(`${n-i}. Semester`) )
+
+export { TotalsData, DetailsData, TimelineData }

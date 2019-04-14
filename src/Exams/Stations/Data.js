@@ -457,10 +457,8 @@ const StationsData = data.map( e => ({
 
 export default StationsData
 
-//{result: _.random(75, 20), mean: _.random(25, 40), x: new Date(2010, 6, 15), y: Math.random() * 100, label: `2. Semester`},
-
 const TimelineData = _(StationsData)
     .groupBy(e => e.group)
-    .map((exams, group) => ({ result: _.meanBy(exams, 'result'), mean: _.meanBy(exams, 'mean'), date: exams[0].date, exam: group }))
+    .map((exams, group) => ({ result: _.meanBy(exams, 'result'), mean: _.meanBy(exams, 'mean'), x: exams[0].date, label: group }))
     .value()
 export { TimelineData }
