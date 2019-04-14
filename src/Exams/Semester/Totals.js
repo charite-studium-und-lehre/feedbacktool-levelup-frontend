@@ -9,6 +9,7 @@ import Marker from '../../Charting/Marker'
 import LineMarker from '../../Charting/LineMarker'
 import Legend from '../../Charting/Legend'
 import { XAxis, YAxis } from '../../Charting/Axis'
+import { TotalsData as Data } from './Data'
 import Legends from '../../Core/LegendTexts'
 const LegendText = Legends.Exams.Semester.Totals
 
@@ -18,20 +19,18 @@ class Totals extends Component {
         this.state = {
             mode: 'graph',
         }
-        this.histo = _.map(_.groupBy(props.data.map(d => d.y), d => Math.floor(d / 5)), (d, i) => ({x: +i*5, y: d.length, highlight: +i === Math.floor(props.ownMean / 5)}))
+        this.histo = _.map(_.groupBy(Data.dist.map(d => d.y), d => Math.floor(d / 5)), (d, i) => ({x: +i*5, y: d.length, highlight: +i === Math.floor(Data.resultMean / 5)}))
     }
     
     setMode(mode) {
         this.setState({ mode })
     }
     
-    toAreaData(_data) {
-        return _data.map(d => ({x: d.x, y0: 0, y1: d.y}))
-    }
-    
     percentileArea(from, to) {
-        return this.toAreaData([{x: from, y: this.props.data.find(d => d.x >= from).y}]
-                .concat(this.props.data.filter(d => d.x >= from && d.x <= to), [{x: to, y: this.props.data.find(d => d.x >= to).y}]))
+        const toAreaData = _data => _data.map(d => ({x: d.x, y0: 0, y1: d.y}))
+
+        return toAreaData([{x: from, y: Data.dist.find(d => d.x <= from).y}]
+                .concat(Data.dist.filter(d => d.x < from && d.x > to), [{x: to, y: Data.dist.find(d => d.x <= to).y}]))
     }
 
     render () {
@@ -45,17 +44,17 @@ class Totals extends Component {
                     </div>
                     <div className="mt-3">
                         {this.state.mode === 'graph' ? (
-                        <LinearChart xDomain={[Math.max(...this.props.data.map(d => d.x)), 0]} yDomain={[0,80]}>
+                        <LinearChart xDomain={[100, 0]} yDomain={[0,80]}>
                             <YAxis ticks={{ count: 4 }} label="Mind. erreichte Punkte"/>
-                            <AreaGraph curve={curveStep} data={this.percentileArea(90, 100)} color="hsla(120, 100%, 80%, .2)"></AreaGraph>
-                            <AreaGraph curve={curveStep} data={this.percentileArea(75, 90)} color="hsla(120, 100%, 60%, .2)"></AreaGraph>
-                            <AreaGraph curve={curveStep} data={this.percentileArea(50, 75)} color="hsla(120, 100%, 40%, .2)"></AreaGraph>
-                            <AreaGraph curve={curveStep} data={this.percentileArea(0, 50)} color="hsla(120, 100%, 20%, .2)"></AreaGraph>
-                            <LineGraph data={this.props.data} color="hsla(181, 100%, 41%, .9)" noPoints curve={curveStep}>
+                            <AreaGraph curve={curveStep} data={this.percentileArea(10, 0)} color="hsla(120, 100%, 80%, .2)"></AreaGraph>
+                            <AreaGraph curve={curveStep} data={this.percentileArea(25, 10)} color="hsla(120, 100%, 60%, .2)"></AreaGraph>
+                            <AreaGraph curve={curveStep} data={this.percentileArea(50, 25)} color="hsla(120, 100%, 40%, .2)"></AreaGraph>
+                            <AreaGraph curve={curveStep} data={this.percentileArea(100, 50)} color="hsla(120, 100%, 20%, .2)"></AreaGraph>
+                            <LineGraph data={Data.dist} color="hsla(181, 100%, 41%, .9)" noPoints curve={curveStep}>
                                 {/* <Tracker getY={ x => this.getY(x) } /> */}
                             </LineGraph>
-                            <Marker extended={true} x={_.findLastIndex(this.props.data, d => d.y === this.props.ownMean)} y={_.round(this.props.ownMean)} label='Du' color="hsla(0, 100%, 30%, .6)" />
-                            <LineMarker value={_.round(this.props.totalMean)} label='Durchschnitt' color="hsla(0, 100%, 30%, .6)" />
+                            <Marker extended={true} x={Data.resultPercent} y={Data.resultMean} label='Du' color="hsla(0, 100%, 30%, .6)" />
+                            <LineMarker value={Data.distMean} label='Durchschnitt' color="hsla(0, 100%, 30%, .6)" />
                             <XAxis label="% der Studierenden" />
                         </LinearChart>
                         ) : (
