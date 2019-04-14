@@ -5,16 +5,16 @@ import SimpleDot from '../../Charting/SimpleDot'
 import Legends from '../../Core/LegendTexts'
 import BarWithHeader from './BarWithHeader'
 import { Subjects } from '../Subjects'
+import { DetailsData } from './Data'
 
 const subjectsSample = _.sampleSize(_.flatMap(Subjects, d => d.subjects), 5 ).map(s => ({name: s, result: _.random(0,10), total: _.random(10,20)}))
-const modulesSample = _.range(4).map(s => ({name: s, result: _.random(0,100), total: 100}))
 const LegendText = Legends.Exams.Semester.Details
 
 class Details extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            mode: 'subjects'
+            mode: 'modules'
         }
     }
 
@@ -38,12 +38,12 @@ class Details extends Component {
                 </div>
                 <div className="mt-3">
                     {this.state.mode === 'modules' ?
-                    modulesSample.map((d, i) => 
+                    this.props.modules.map((d, i) => 
                         <BarWithHeader
-                            key={d.name}
-                            name={"Modul " + (this.props.semester * 4 - 3 + i)}
+                            key={d.label}
+                            name={d.label}
                             result={d.result}
-                            mean={_.random(1, d.total)}
+                            mean={d.mean}
                         >{d.result} %</BarWithHeader>
                     )
                     : 
@@ -65,4 +65,4 @@ class Details extends Component {
     }
 }
 
-export default Details
+export default props => <Details {...DetailsData(props.semester)} />

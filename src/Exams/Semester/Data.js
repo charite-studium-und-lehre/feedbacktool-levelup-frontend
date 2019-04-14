@@ -31,13 +31,15 @@ const createTotalsData = data => {
 
 const TotalsData = _.flow([seedrandom, _.over(result, createDist), concatResult, createTotalsData])
 
-const createDetailsData = data => ({
-    data: _.zip(...data.dist).map((d, i) => ({module: i+1, data: d, mean: _.mean(d)})),
-    result: data.result,
-    distMean: distMean(data.dist),
+const createDetailsData = (semester, data) => ({
+    modules: _.zip(...data.dist).map( (d, i) => ({
+        mean:  _.mean(d),
+        result: _.round(data.result[i]),
+        label: `Modul ${semester * 4 - 3 + i}`
+    })),
 })
 
-const DetailsData = _.flow([ seedrandom, _.over(result, createDist), concatResult, createDetailsData ])
+const DetailsData = semester => _.flow([ seedrandom, _.over(result, createDist), concatResult, _.partial(createDetailsData, semester.split(".")[0]) ])(semester)
 
 const n = 5
 const random = randomUniform.source(seedrandom('dfghsgresg'))

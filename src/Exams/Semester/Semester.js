@@ -18,7 +18,7 @@ const Semester = ({ match }) => {
             </div>
             <div className="row mt-3">
                 <div className="col">
-                    <Details semester={match.params.test.split(".")[0]} />
+                    <Details semester={match.params.test} />
                 </div>
             </div>
             <div className="row mt-3">
