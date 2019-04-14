@@ -20,6 +20,8 @@ const results = [
     [90, 90] 
 ]
 
+const means = [77, 22, 101]
+
 const PTMResults = props => (
     <div className="card">
         <div className="card-body">
@@ -40,7 +42,7 @@ const PTMResults = props => (
                     <XAxis />
                     <YAxis ticks={{count: 4}} />
                     <BarGraph labels data={labels.map((l,i) => ({x: l, y: results[i][0], label: results[i][1], color: _.range(0,3).map(i => colors(i))}))} />
-                    <PointGraph color="rgba(0, 0, 0, .6)" data={labels.map(l => ({x: l, y: _.random(30, 85)}))} />
+                    <PointGraph color="rgba(0, 0, 0, .6)" data={labels.map((l, i) => ({x: l, y: means[i]}))} />
                 </OrdinalChart>
             </div>
         </div>
