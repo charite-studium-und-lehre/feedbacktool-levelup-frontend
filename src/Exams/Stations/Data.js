@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import Stations from './Stations';
 
 const data = [
     {

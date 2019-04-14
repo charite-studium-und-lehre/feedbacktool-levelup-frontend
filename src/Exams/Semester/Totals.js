@@ -20,7 +20,7 @@ class Totals extends Component {
         this.state = {
             mode: 'graph',
         }
-        this.histo = _.map(_.groupBy(Data.dist.map(d => d.y), d => Math.floor(d / 5)), (d, i) => ({x: +i*5, y: d.length, highlight: +i === Math.floor(Data.resultMean / 5)}))
+        this.histo = _.map(_.groupBy(this.props.dist.map(d => d.y), d => Math.floor(d / 5)), (d, i) => ({x: +i*5, y: d.length, highlight: +i === Math.floor(this.props.resultMean / 5)}))
     }
     
     setMode(mode) {
@@ -30,8 +30,8 @@ class Totals extends Component {
     percentileArea(from, to) {
         const toAreaData = _data => _data.map(d => ({x: d.x, y0: 0, y1: d.y}))
 
-        return toAreaData([{x: from, y: Data.dist.find(d => d.x <= from).y}]
-                .concat(Data.dist.filter(d => d.x < from && d.x > to), [{x: to, y: Data.dist.find(d => d.x <= to).y}]))
+        return toAreaData([{x: from, y: this.props.dist.find(d => d.x <= from).y}]
+                .concat(this.props.dist.filter(d => d.x < from && d.x > to), [{x: to, y: this.props.dist.find(d => d.x <= to).y}]))
     }
 
     render () {
@@ -50,18 +50,18 @@ class Totals extends Component {
                         <AreaGraph curve={curveStep} data={this.percentileArea(25, 10)} color="hsla(120, 100%, 60%, .2)"></AreaGraph>
                         <AreaGraph curve={curveStep} data={this.percentileArea(50, 25)} color="hsla(120, 100%, 40%, .2)"></AreaGraph>
                         <AreaGraph curve={curveStep} data={this.percentileArea(100, 50)} color="hsla(120, 100%, 20%, .2)"></AreaGraph>
-                        <LineGraph data={Data.dist} color="hsla(181, 100%, 41%, .9)" noPoints curve={curveStep}>
+                        <LineGraph data={this.props.dist} color="hsla(181, 100%, 41%, .9)" noPoints curve={curveStep}>
                             {/* <Tracker getY={ x => this.getY(x) } /> */}
                         </LineGraph>
-                        <Marker extended={true} x={Data.resultPercent} y={Data.resultMean} label='Du' color="hsla(0, 100%, 30%, .6)" />
-                        <LineMarker value={Data.distMean} label='Durchschnitt' color="hsla(0, 100%, 30%, .6)" />
+                        <Marker extended={true} x={this.props.resultPercent} y={this.props.resultMean} label='Du' color="hsla(0, 100%, 30%, .6)" />
+                        <LineMarker value={this.props.distMean} label='Durchschnitt' color="hsla(0, 100%, 30%, .6)" />
                         <XAxis label="% der Studierenden" />
                     </LinearChart>
                     ) : (
                     <div className="position-relative text-right">
                         <div className="position-absolute" style={{right:0, fontSize: '.75rem'}}>
-                            <div><span className="font-weight-bold">{respSwitch('Dein Ergebnis', 'Du')}: </span>{Data.resultMean} Pkte</div>
-                            <div><span className="font-weight-bold">{respSwitch('Durchschnitt', '∅')}: </span>{Data.distMean} Pkte</div>
+                            <div><span className="font-weight-bold">{respSwitch('Dein Ergebnis', 'Du')}: </span>{this.props.resultMean} Pkte</div>
+                            <div><span className="font-weight-bold">{respSwitch('Durchschnitt', '∅')}: </span>{this.props.distMean} Pkte</div>
                         </div>
                         <LinearChart xDomain={[Math.min(...this.histo.map(d => d.x)) - 5, Math.max(...this.histo.map(d => d.x)) + 5]} yDomain={[0,Math.max(...this.histo.map(d => d.y))]}>
                             <XAxis label="erreichte Punkte" />
@@ -76,4 +76,4 @@ class Totals extends Component {
     }
 }
 
-export default Totals
+export default props => <Totals {...Data(props.semester)} />

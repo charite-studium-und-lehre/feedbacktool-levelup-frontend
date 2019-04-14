@@ -1,28 +1,42 @@
 import _ from 'lodash'
 import { scaleLinear } from 'd3-scale'
-import { randomNormal } from 'd3-random'
+import { randomNormal, randomUniform } from 'd3-random'
+import seedrandom from 'seedrandom'
 
-const moduleDists = randomNormal(50, 30)
-const result = [64, 72, 73, 51]
-const data = _.range(100)
-        .map(() => _.range(4).map(() => Math.min(Math.floor(moduleDists()), 80)))
-        .concat([ result ])
-        .sort((a,b) => _.mean(a)-_.mean(b))
+const result = _.flow([
+    seedrnd => randomUniform.source(seedrnd)(50, 75), 
+    rng => _.range(4).map(rng)
+])
 
-const scale = scaleLinear().domain([0,data.length - 1]).range([100, 0])
+const createDist = _.flow([
+    seedrnd => randomNormal.source(seedrnd)(50, 30),
+    rng => _.range(100)
+        .map(() => _.range(4).map(() => Math.min(Math.floor(rng()), 80)))
+])
+    
+const distMean = d => _.round(_.meanBy(d, d => _.mean(d)))
 
-const TotalsData = {
-    dist: data.map( (d, i) => ({ x: scale(i), y: _.mean(d) })),
-    result,
-    resultMean: _.mean(result),
-    resultPercent: scale(data.indexOf(result)),
-    distMean: _.round(_.meanBy(data, d => _.mean(d))),
+const createTotalsData = data => {
+    const scale = scaleLinear().domain([0,data.dist.length - 1]).range([100, 0])
+    return {
+        dist: data.dist.map( (d, i) => ({ x: scale(i), y: _.mean(d) })),
+        result: data.result,
+        resultMean: _.round(_.mean(data.result)),
+        resultPercent: scale(data.dist.indexOf(data.result)),
+        distMean: distMean(data.dist),
+    }
 }
 
-const DetailsData = {
-    data,
-    result,
-    distMean: _.meanBy(d => _.mean(d)),
-}
+const concatResult = arr => ({ result: arr[0], dist: arr[1].concat([ arr[0] ]).sort((a,b) => _.mean(a)-_.mean(b)) })
+
+const TotalsData = _.flow([seedrandom, _.over(result, createDist), concatResult, createTotalsData])
+
+const createDetailsData = data => ({
+    data: _.zip(...data.dist).map((d, i) => ({module: i+1, data: d, mean: _.mean(d)})),
+    result: data.result,
+    distMean: distMean(data.dist),
+})
+
+const DetailsData = _.flow([ seedrandom, _.over(result, createDist), concatResult, createDetailsData ])
 
 export { TotalsData, DetailsData }
