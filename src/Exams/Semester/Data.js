@@ -16,7 +16,7 @@ const createDist = _.flow([
     
 const distMean = d => _.round(_.meanBy(d, d => _.mean(d)))
 
-const concatResult = arr => ({ result: arr[0], dist: arr[1].concat([ arr[0] ]).sort((a,b) => _.mean(a)-_.mean(b)) })
+const concatResult = ([result, data]) => ({ result, dist: data.concat([ result ]).sort((a,b) => _.mean(a)-_.mean(b)) })
 
 const createTotalsData = data => {
     const scale = scaleLinear().domain([0,data.dist.length - 1]).range([100, 0])
