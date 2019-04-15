@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom'
+import makeExtendable from './makeExtendable'
 
-export default function Navbar(props) {
+export default makeExtendable(function Navbar(props) {
     const isLoggedIn = props.isLoggedIn;
     let button;
 
@@ -15,9 +16,9 @@ export default function Navbar(props) {
         <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top">
             <Link className="navbar-brand" to="/">LevelUp</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
+                <span className="navbar-toggler-icon" onClick={props.toggleExtended}></span>
             </button>
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <div className={`collapse navbar-collapse ${props.extended && 'show'}`} id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/dashboard">Dashboard <span className="sr-only">(current)</span></NavLink>
@@ -37,4 +38,4 @@ export default function Navbar(props) {
             </div>
         </nav>
     );
-}
+})
