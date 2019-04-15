@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
+import seedrandom from 'seedrandom'
+import { randomUniform } from 'd3-random'
 import { OrdinalChart } from '../Charting/Chart'
 import { XAxis, YAxis } from '../Charting/Axis'
 import BarGraph from '../Charting/BarGraph'
 const exams = ['alle MCs', 'letzter PTM']
 
+const random = d => randomUniform.source(seedrandom(d))
 class Subject extends Component {
     constructor(props) {
         super(props)
@@ -22,15 +25,11 @@ class Subject extends Component {
     }
 
     render() {
-        const data = exams.map(d => ({ x:d, y: _.range(2).map(() => _.random(0,20) )}))
+        const data = exams.map(d => ({ x:d, y: _.range(2).map(i => _.round(random(this.props.title + i + d)(0,20)()) )}))
         return (
             <div className="card m-2 flex-grow-1 with-shadow" style={{width: '20rem'}}>
                 <div ref={this.node} className={`card-body ${this.state.flash ? 'bg-primary' : ''}`} style={{transition: '5s'}}>
                     <span className="font-weight-bold">{this.props.title}</span>
-                    {/* <div style={{textAlign: 'right'}}>
-                        <label className="m-0 mr-2"><input type="radio" name={`subject-${this.props.title}-mode`} checked={this.state.mode === 'current'} onChange={() => this.setMode('current')} className="mx-2" />aktuell</label>
-                        <label><input type="radio" name={`subject-${this.props.title}-mode`} checked={this.state.mode === 'timeline'} onChange={() => this.setMode('timeline')} className="mx-2" />zeitl. Verlauf</label>
-                    </div> */}
                     <div className="p-4">
                         <OrdinalChart style={{height:'15rem'}} xDomain={exams} yDomain={[0,30]}>
                             <YAxis label="gestellte vs. richtige Fragen" ticks={{count: 4}} />

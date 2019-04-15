@@ -1,37 +1,35 @@
 import _ from 'lodash'
+import { randomUniform } from 'd3-random'
+import seedrandom from 'seedrandom'
 import SemesterInfo from './SemesterInfo'
 import PtmInfo from './PtmInfo'
 import StationsInfo from './StationsInfo'
 import SemesterTimelineInfo from '../Dashboard/Timeline/SemesterInfo'
 import PtmTimelineInfo from '../Dashboard/Timeline/PtmInfo'
 import StationsTimelineInfo from '../Dashboard/Timeline/StationsInfo'
-import SemesterSummary from './SemesterSummary'
-import PtmSummary from './PtmSummary'
+import { TimelineData as StationsTimelineData } from './Stations/Data'
+import { TimelineData as SemesterTimelineData } from './Semester/Data'
 
-function randomData(n = 11, name) {
+const random = randomUniform.source(seedrandom('foo'))
+function randomData(n = 5) {
     return _.range(n).map(i => ({
-        x: new Date(2018 - i, 6 + _.random(2, -1), 15 + _.random(20, -10)),
-        result: _.random(75, 20),
-        q0: _.random(15, 10),
-        q25: _.random(15, 30), 
-        q75: _.random(15, 55), 
-        q100: _.random(15, 80),
-        mean: _.random(25, 40),
+        x: new Date(2018 - i, 6 + random(2, -1)(), 15 + random(20, -10)()),
+        result: (n-i+1)/6*50,
+        mean: random(25, 40),
         label: `${n-i}. Semester`
     }))
 }
 
-const n = 10;
+const n = 5
 const graphs = {
     pointCount: n,
     data: [{
         name: 'semester',
         label: 'Semesterprüfung',
-        data: randomData(n, 'Semesterprüfung'),
+        data: SemesterTimelineData,
         color: 120,
         info: SemesterInfo,
         timelineinfo: SemesterTimelineInfo,
-        summary: SemesterSummary,
     },
     {
         name: 'ptm',
@@ -40,16 +38,11 @@ const graphs = {
         color: 240,
         info: PtmInfo,
         timelineinfo: PtmTimelineInfo,
-        summary: PtmSummary,
     },
     {
         name: 'stations',
         label: 'Praktische Prüfung',
-        data: [
-            {result: _.random(75, 20), mean: _.random(25, 40), x: new Date(2010, 6, 15), y: Math.random() * 100, label: `2. Semester`},
-            {result: _.random(75, 20), mean: _.random(25, 40), x: new Date(2012, 6, 15), y: Math.random() * 100, label: `4. Semester`},
-            {result: _.random(75, 20), mean: _.random(25, 40), x: new Date(2017, 6, 15), y: Math.random() * 100, label: `9. Semester`},
-        ],
+        data: StationsTimelineData,
         color: 0,
         info: StationsInfo,
         timelineinfo: StationsTimelineInfo,

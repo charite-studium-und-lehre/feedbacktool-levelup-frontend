@@ -2,108 +2,88 @@
 .consulting  h2,
 .consulting h4 {
 font-weight: bold;
-/* color: rgb(34, 71, 104); */
 }
 .consulting {
     border: 2px solid #ccc;
     padding: 1.5em 0;
-
 }
-
+.consulting .row {
+    margin-top: 2.5em
+}
 .consulting-foto {
     background:url(../images/beratung.jpg) no-repeat center center;
     -webkit-background-size: cover;
     -o-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
-    margin-top: 6.8em;
     height: 24em;
-    width:100%
-  
 }
-
-.consulting-text h1 {
-   margin: .4em 0 1em 0;
+.consulting-text span {
+font-weight: bold;
+color: rgb(34, 71, 104);
+font-size: 1.3em
 }
 .consulting button {
     width: 12em;
-    background: rgb(34, 71, 104)
+    background: rgb(34, 71, 104);
+    margin-top: 2em
 }
+.consulting-link h3 {
 
-
-.consulting-paragraph {
-    height: 10em;
-}
-.consulting-card .card {
-    height: 49em;
-    /* border: 1px solid black; */
-    box-shadow: 10px 10px 30px rgb(1, 17, 31)
-
-}
-.consulting-link h4 {
-    margin: 2em 0 1em 0;
-    
-}
-
-.consulting-card {
-    margin-top: 3em
-}
-.consulting .list-group-flush a {
-    text-align: left
 }
 .consulting-link .extern-link {
     padding: .5em 0 ;
     border-bottom: 1px solid black;
     color: rgb(34, 71, 104);
     font-weight: bold;
-    
-    
+}
+.consulting-card {
+    margin-top: 3em;
+}
+ .consulting-card .card  {
+    border: none;
+    padding: 0;
+} 
+.consulting-card .card-body {
+    margin: .8em;
+    box-shadow: 2px 2px  30px rgb(3, 31, 56),
+               -2px -2px  30px rgb(1, 17, 31) 
+}
+.consulting-card h1 {
+    margin-bottom: 1em;
+    font-weight: bold
 }
 .consulting-card h2 {
     margin: .4em 0 .7em 0;
     color: rgb(34, 71, 104);
     font-weight: bold
 }
-.consulting-card .col-md-4 {
-    margin-bottom: 2em;
-   
-}
-
-.consulting-card .card-body {
-    background: white;
-      
-}
-.consulting-card .consulting-icon h4 {
-    margin: 1em 0;
+.consulting-info h4 {
+    margin: .6em 0;
     color: rgb(34, 71, 104);
     font-weight: bold
 }
-.consulting-card .consulting-icon .row {
-    padding: 1.5em 0;
-  
+ .consulting-info .row {
+    padding: 1.5em 0; 
 }
-.consulting-card .consulting-icon .row > div {
+.consulting-info .row > div {
     margin-bottom: 1.2em;
 }
-.consulting-card .consulting-icon .row > div  .name2,
-.consulting-card .consulting-icon .row > div  .name3,
-.consulting-card .consulting-icon .row > div  .email2,
-.consulting-card .consulting-icon .row > div  .email3,
-.consulting-card .consulting-icon .row > div  .talk1{
-    padding-left: 1.9em;
+ .consulting-info .icon{
+    float: left;
 }
-.consulting-card .consulting-icon  svg {
+.consulting-info .info {
+    overflow: hidden;
+}
+ .consulting-info  svg {
     margin-right: .6em;
     font-size: 1.3em;
     color: rgb(34, 71, 104);
-
 }
 .consulting-butten {
-    position: relative;
-    bottom: 2em;
-    left: 0;
     width: 12em;
-    margin-left: 1.9em;
-    background: rgb(34, 71, 104)
-    
+    background: rgb(34, 71, 104);
+    position: absolute;
+    bottom: 2em;
+    left: 2em;
 }

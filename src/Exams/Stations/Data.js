@@ -4,6 +4,7 @@ const data = [
     {
         exam: '2. Semester',
         group: '2. Semester',
+        date: new Date(2015, 6, 15),
         stations: [
             {
                 name:'Notfall', 
@@ -11,38 +12,38 @@ const data = [
                 details: [
                     {
                         label: 'Eigenschutz',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 89,
+                        mean: 73,
                     },
                     {
                         label: 'Bewusstseinsprüfung',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 74,
+                        mean: 86,
                     },
                     {
                         label: 'Atmungsprüfung',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 66,
+                        mean: 69,
                     },
                     {
                         label: 'Beatmung',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 90,
+                        mean: 74,
                     },
                     {
                         label: 'Reanimation',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 61,
+                        mean: 65,
                     },
                     {
                         label: 'Reihenfolge',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 96,
+                        mean: 84,
                     },
                     {
                         label: 'Notruf',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 45,
+                        mean: 80,
                     },
                 ]
             },
@@ -52,28 +53,28 @@ const data = [
                 details: [
                     {
                         label: 'Begrüßung',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 92,
+                        mean: 86,
                     },
                     {
                         label: 'Händedesinfektion',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 95,
+                        mean: 91,
                     },
                     {
                         label: 'Anamnese',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 75,
+                        mean: 79,
                     },
                     {
                         label: 'Untersuchung',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 86,
+                        mean: 71,
                     },
                     {
                         label: 'Gesamteindruck',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 86,
+                        mean: 81,
                     },
                 ]
             },
@@ -87,13 +88,13 @@ const data = [
                     },
                     {
                         label: 'Fakentwissen',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 67,
+                        mean: 78,
                     },
                     {
                         label: 'Zusammenhangswissen',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 76,
+                        mean: 81,
                     },
                 ]
             },
@@ -107,13 +108,13 @@ const data = [
                     },
                     {
                         label: 'Fakentwissen',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 87,
+                        mean: 78,
                     },
                     {
                         label: 'Zusammenhangswissen',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 82,
+                        mean: 71,
                     },
                 ]
             },
@@ -122,6 +123,7 @@ const data = [
     {
         exam: '4. Semester 2. Teil',
         group: '4. Semester',
+        date: new Date(2017, 6, 15),
         stations: [
             {
                 name:'COPD', 
@@ -129,13 +131,13 @@ const data = [
                 details: [
                     {
                         label: 'Anamnese',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 76,
+                        mean: 81,
                     },
                     {
                         label: 'Pulsoxymetrie',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 86,
+                        mean: 85,
                     },
                 ]
             },
@@ -145,23 +147,23 @@ const data = [
                 details: [
                     {
                         label: 'Anamnese',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 71,
+                        mean: 75,
                     },
                     {
                         label: 'Untersuchung',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 55,
+                        mean: 64,
                     },
                     {
                         label: 'Zusammenfassung',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 61,
+                        mean: 74,
                     },
                     {
                         label: 'Sprachverhalten',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 43,
+                        mean: 75,
                     },
                 ]
             },
@@ -171,23 +173,23 @@ const data = [
                 details: [
                     {
                         label: 'Anamnese',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 75,
+                        mean: 71,
                     },
                     {
                         label: 'Untersuchung Ohr',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 84,
+                        mean: 72,
                     },
                     {
                         label: 'Rinne-Weber-Test',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 86,
+                        mean: 86,
                     },
                     {
                         label: 'Verdachtsdiagnose',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 95,
+                        mean: 91,
                     },
                 ]
             },
@@ -197,18 +199,18 @@ const data = [
                 details: [
                     {
                         label: 'Anamnese',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 61,
+                        mean: 78,
                     },
                     {
                         label: 'Arbeitsdiagnose',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 71,
+                        mean: 75,
                     },
                     {
                         label: 'Durchführung',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 64,
+                        mean: 75,
                     },
                 ]
             },
@@ -217,6 +219,7 @@ const data = [
     {
         exam: '4. Semester 1. Teil',
         group: '4. Semester',
+        date: new Date(2017, 6, 15),
         stations: [
             {
                 name: 'Physiologie 1', 
@@ -228,13 +231,13 @@ const data = [
                     },
                     {
                         label: 'Fakentwissen',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 87,
+                        mean: 67,
                     },
                     {
                         label: 'Zusammenhangswissen',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 78,
+                        mean: 71,
                     },
                 ]
             },
@@ -248,13 +251,13 @@ const data = [
                     },
                     {
                         label: 'Fakentwissen',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 78,
+                        mean: 71,
                     },
                     {
                         label: 'Zusammenhangswissen',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 86,
+                        mean: 75,
                     },
                 ]
             },
@@ -268,13 +271,13 @@ const data = [
                     },
                     {
                         label: 'Fakentwissen',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 61,
+                        mean: 74,
                     },
                     {
                         label: 'Zusammenhangswissen',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 71,
+                        mean: 79,
                     },
                 ]
             },
@@ -288,164 +291,174 @@ const data = [
                     },
                     {
                         label: 'Fakentwissen',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 57,
+                        mean: 78,
                     },
                     {
                         label: 'Zusammenhangswissen',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
+                        value: 68,
+                        mean: 75,
                     },
                 ]
             },
         ]
     },
-    {
-        exam: '9. Semester - OSCE',
-        group: '9. Semester',
-        stations: [
-            {
-                name: 'Schulterverband', 
-                category: 'Klinisch', 
-                details: [
-                    {
-                        label: 'Übernahme des Patienten',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
-                    },
-                    {
-                        label: 'Konzept und Vorgehen',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
-                    },
-                    {
-                        label: 'Versorgung',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
-                    },
-                    {
-                        label: 'Überprüfung',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
-                    },
-                ]
-            },
-            {
-                name: 'Trigeminusneuralgie', 
-                category: 'Klinisch', 
-                details: [
-                    {
-                        label: 'Anamnese',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
-                    },
-                    {
-                        label: 'Untersuchung',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
-                    },
-                    {
-                        label: 'Arbeitsdiagnose',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
-                    },
-                    {
-                        label: 'Weiterführende Untersuchungen',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
-                    },
-                ]
-            },
-            {
-                name: 'Bandscheibenvorfall', 
-                category: 'Klinisch', 
-                details: [
-                    {
-                        label: 'Befund/Verdachtsdiagnose',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
-                    },
-                    {
-                        label: 'Weitere bildgebende Diagnostik',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
-                    },
-                ]
-            },
-            {
-                name: 'Schizophrenie', 
-                category: 'Klinisch', 
-                details: [
-                    {
-                        label: 'Anamnese',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
-                    },
-                    {
-                        label: 'Differentialdiagnosen/Verdachtsdiagnose',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
-                    },
-                    {
-                        label: 'Weiteres Vorgehen',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
-                    },
-                ]
-            },
-            {
-                name: 'U2', 
-                category: 'Klinisch', 
-                details: [
-                    {
-                        label: 'Vorsorgeuntersuchungsheft',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
-                    },
-                    {
-                        label: 'Reflexe/Untersuchung',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
-                    },
-                    {
-                        label: 'präventionsdiagnostische Maßnahmen',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
-                    },
-                ]
-            },
-            {
-                name: 'Leichenschau', 
-                category: 'Klinisch', 
-                details: [
-                    {
-                        label: 'Leichenschau',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
-                    },
-                    {
-                        label: 'Leichenschauschein',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
-                    },
-                    {
-                        label: 'Viktimologie',
-                        value: _.random(25,100),
-                        mean: _.random(5,90),
-                    },
-                ]
-            },
-        ]
-    }
+    // {
+    //     exam: '9. Semester - OSCE',
+    //     group: '9. Semester',
+    //     stations: [
+    //         {
+    //             name: 'Schulterverband', 
+    //             category: 'Klinisch', 
+    //             details: [
+    //                 {
+    //                     label: 'Übernahme des Patienten',
+    //                     value: _.random(25,100),
+    //                     mean: _.random(5,90),
+    //                 },
+    //                 {
+    //                     label: 'Konzept und Vorgehen',
+    //                     value: _.random(25,100),
+    //                     mean: _.random(5,90),
+    //                 },
+    //                 {
+    //                     label: 'Versorgung',
+    //                     value: _.random(25,100),
+    //                     mean: _.random(5,90),
+    //                 },
+    //                 {
+    //                     label: 'Überprüfung',
+    //                     value: _.random(25,100),
+    //                     mean: _.random(5,90),
+    //                 },
+    //             ]
+    //         },
+    //         {
+    //             name: 'Trigeminusneuralgie', 
+    //             category: 'Klinisch', 
+    //             details: [
+    //                 {
+    //                     label: 'Anamnese',
+    //                     value: _.random(25,100),
+    //                     mean: _.random(5,90),
+    //                 },
+    //                 {
+    //                     label: 'Untersuchung',
+    //                     value: _.random(25,100),
+    //                     mean: _.random(5,90),
+    //                 },
+    //                 {
+    //                     label: 'Arbeitsdiagnose',
+    //                     value: _.random(25,100),
+    //                     mean: _.random(5,90),
+    //                 },
+    //                 {
+    //                     label: 'Weiterführende Untersuchungen',
+    //                     value: _.random(25,100),
+    //                     mean: _.random(5,90),
+    //                 },
+    //             ]
+    //         },
+    //         {
+    //             name: 'Bandscheibenvorfall', 
+    //             category: 'Klinisch', 
+    //             details: [
+    //                 {
+    //                     label: 'Befund/Verdachtsdiagnose',
+    //                     value: _.random(25,100),
+    //                     mean: _.random(5,90),
+    //                 },
+    //                 {
+    //                     label: 'Weitere bildgebende Diagnostik',
+    //                     value: _.random(25,100),
+    //                     mean: _.random(5,90),
+    //                 },
+    //             ]
+    //         },
+    //         {
+    //             name: 'Schizophrenie', 
+    //             category: 'Klinisch', 
+    //             details: [
+    //                 {
+    //                     label: 'Anamnese',
+    //                     value: _.random(25,100),
+    //                     mean: _.random(5,90),
+    //                 },
+    //                 {
+    //                     label: 'Differentialdiagnosen/Verdachtsdiagnose',
+    //                     value: _.random(25,100),
+    //                     mean: _.random(5,90),
+    //                 },
+    //                 {
+    //                     label: 'Weiteres Vorgehen',
+    //                     value: _.random(25,100),
+    //                     mean: _.random(5,90),
+    //                 },
+    //             ]
+    //         },
+    //         {
+    //             name: 'U2', 
+    //             category: 'Klinisch', 
+    //             details: [
+    //                 {
+    //                     label: 'Vorsorgeuntersuchungsheft',
+    //                     value: _.random(25,100),
+    //                     mean: _.random(5,90),
+    //                 },
+    //                 {
+    //                     label: 'Reflexe/Untersuchung',
+    //                     value: _.random(25,100),
+    //                     mean: _.random(5,90),
+    //                 },
+    //                 {
+    //                     label: 'präventionsdiagnostische Maßnahmen',
+    //                     value: _.random(25,100),
+    //                     mean: _.random(5,90),
+    //                 },
+    //             ]
+    //         },
+    //         {
+    //             name: 'Leichenschau', 
+    //             category: 'Klinisch', 
+    //             details: [
+    //                 {
+    //                     label: 'Leichenschau',
+    //                     value: _.random(25,100),
+    //                     mean: _.random(5,90),
+    //                 },
+    //                 {
+    //                     label: 'Leichenschauschein',
+    //                     value: _.random(25,100),
+    //                     mean: _.random(5,90),
+    //                 },
+    //                 {
+    //                     label: 'Viktimologie',
+    //                     value: _.random(25,100),
+    //                     mean: _.random(5,90),
+    //                 },
+    //             ]
+    //         },
+    //     ]
+    // }
 ]
 
-export default data.map( e => ({
-    exam: e.exam,
-    group: e.group,
-    result: _.meanBy( e.stations, 'result'),
+const StationsData = data.map( e => ({
+    ...e,
     stations: e.stations.map(s => ({
         ...s, 
         result: _.round(_.meanBy(s.details.filter( d => _.isNumber(d.value) ), 'value') ),
-        mean: _.round(_.meanBy(s.details, 'mean')),
-    }))
+        mean: _.round(_.meanBy(s.details.filter( d => _.isNumber(d.mean) ), 'mean')),
+    })),
+})).map(e => ({
+    ...e,
+    result: _.round(_.meanBy( e.stations, 'result')),
+    mean: _.round(_.meanBy( e.stations, 'mean')),
 }))
+
+export default StationsData
+
+const TimelineData = _(StationsData)
+    .groupBy(e => e.group)
+    .map((exams, group) => ({ result: _.meanBy(exams, 'result'), mean: _.meanBy(exams, 'mean'), x: exams[0].date, label: group }))
+    .value()
+export { TimelineData }

@@ -25,6 +25,7 @@
     "react-scripts": "^2.0.5",
     "react-slidedown": "^2.0.9",
     "redux": "^4.0.1",
+    "seedrandom": "^3.0.1",
     "tinycolor2": "^1.4.1"
   },
   "scripts": {

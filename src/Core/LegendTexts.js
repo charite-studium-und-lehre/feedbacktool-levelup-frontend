@@ -27,7 +27,7 @@ export default {
             },
             Details: {
                 title: 'Detaillierte Ergebnisse',
-                text: 'Hier kannst du sehen, wie du in den zu dieser Semesterprüfung dazugehörigen Modulen und Fächern in Vergleich zu der Kohorte abgeschnitten hast. Du kannst auf die jeweiligen Module klicken, um die Verteilung der Prüfungsergebnisse zu sehen.  Die Fächer sind in vorklinische, klinische und Querschnittsfächer eingeteilt. Du kannst auf eine Kategorie klicken, um detaillierte Informationen zu den dazugehörigen Fächern zu erhalten.',
+                text: 'Hier kannst du sehen, wie du in den zu dieser Semesterprüfung dazugehörigen Modulen und Fächern in Vergleich zu der Kohorte abgeschnitten hast.',
             },
             Questions: {
                 title: 'Fragen und Antworten',
@@ -35,6 +35,7 @@ export default {
                     <p>Hier kannst du dir alle Fragen der Semesterprüfung mit den dazugehörigen Antworten ansehen.</p> 
                     <p>Jede Frage wurde mit verschiedenen Tags versehen, mit deren Hilfe du die Fragen filtern kannst.</p>
                     <p>So kannst du dir z.B. nur die Fragen anzeigen lassen, die du falsch beantwortest hast.</p>
+                    <p>Die Filter schwer und leicht, zeigen dir wieviel deiner Mitstudierenden diese Frage beantworten konnten. Schwere Fragen sind Fragen, die weniger als 50% deiner Mitstudierenden beantworten konnten. Leichte Fragen hingegen konnten mehr als 70% deiner Kommilitonen beantworten.</p>
                 </div>
             }
         },
@@ -66,11 +67,11 @@ export default {
         },
         Semester: {
             title: 'Starke Fächer in den Semesterprüfungen',
-            text: 'Hier findest du eine Übersicht zu deinen besten Fächern basierend auf allen deinen Semesterprüfungen. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen. Hier findest du eine Übersicht zu deinen besten Fächern basierend auf allen deinen Semesterprüfungen. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen. Achtung: Nur Fächer mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.'
+            text: 'Hier findest du eine Übersicht zu deinen besten Fächern basierend auf allen deinen Semesterprüfungen. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen. Achtung: Nur Fächer mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.'
         },
         PTM: {
             title: 'Starke Fächer im PTM',
-            text: 'Hier findest du eine Übersicht zu deinen besten Fächern in dem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen. Der Mittelwert der Kohorte ist durch einen roten Kreis gekennzeichnet. Hier findest du eine Übersicht zu deinen besten Fächern basierend auf allen deinen Semesterprüfungen. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen. Achtung: Nur Fächer mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.'
+            text: 'Hier findest du eine Übersicht zu deinen besten Fächern in dem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen. Der Mittelwert der Kohorte ist durch einen roten Kreis gekennzeichnet. Achtung: Nur Fächer mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.'
         },
         PTMResults: {
             title: 'Gesamtes Ergebnis im PTM',

@@ -1,14 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { HorizontalBarChart } from '../../Charting/HorizontalBarGraph'
-const bars = ['Durchschnitt', 'Dein Ergebnis']
 
 const SemesterInfo = props => {
-    const data = bars.map((d, i) => ({y: d, x: i ? props.data.mean : props.data.result, label: i ? `${props.data.mean} %` : `${props.data.result} %` }))
+    const data = [
+        { y: 'Durchschnitt', x: props.data.mean, label: `${props.data.mean} %` },
+        { y: 'Dein Ergebnis', x: props.data.result, label: `${props.data.result} %` },
+    ]
 
     return (<div>
         <div className="mt-1" style={{height: '4.3rem'}}>
-            <HorizontalBarChart noaxis yDomain={bars} data={data} />
+            <HorizontalBarChart noaxis yDomain={data.map(d => d.y)} data={data} />
         </div>
         <div className="row">
             <div className="col-4 pr-0">
