@@ -6,7 +6,7 @@ import { faLock, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 const Login = props => (
     <div className="login-image">
-        {/* <div className="overlay"></div> */}
+        <div className="overlay"></div>
         <nav className="navbar ">
             <h2 >Level<span>UP</span></h2>
         </nav>

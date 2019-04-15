@@ -28,10 +28,10 @@
 }
 .container-form {
   background-image: linear-gradient( to right, rgba(236, 240, 243, 0.4), rgb(2, 28, 49, 1));
-    
-    height: 26em;
-    margin: 6em auto;
-    padding: 3em;
+    width: 30%;
+    height: 55%;
+    margin: 80px auto;
+    padding: 50px 55px;
     border-radius: 68px 0;
     font-size: 18px;
     border: 2px solid  black; 
@@ -41,15 +41,20 @@
   }
   .container-form .h2-login {
     color: white;
-    margin-bottom: 1.5em;
+    margin-bottom: 40px;
     letter-spacing: 1px;
   
   }
+  .form-group .right {
+    color: white;
+    float: right;
+  
+  }
+
   .container-form .form-control {
-    height: 2.6em;
-    margin-bottom: .7em;
+    margin-bottom: 10px;
     border-radius: 24px 0;
-    
+    height: 40px;
   }
   ::-webkit-input-placeholder {
     font-weight: bold
