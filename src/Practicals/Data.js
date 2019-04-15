@@ -333,7 +333,8 @@ id: _.uniqueId(),
                   confident: 1,
 id: _.uniqueId(),
                 },
-              ]
+              ],
+              hasGraph: true
             },
           ]
       },

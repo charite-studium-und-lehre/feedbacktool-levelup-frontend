@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import seedrandom from 'seedrandom'
 import { randomUniform } from 'd3-random'
-import initialState from './tree'
+import initialState from './Data'
 
 const getStore = state => state.practicals
 const getItemById = (state, id) => getStore(state)[id]
