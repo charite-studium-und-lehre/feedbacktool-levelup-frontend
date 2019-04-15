@@ -1,33 +1,41 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import _ from 'lodash'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons'
-
-const flattenTree = entry => entry.entries ? _.flatMap(entry.entries, e => flattenTree(e)) : [entry]
-const getScore = (entry, p) => _.sumBy(flattenTree(entry), e => _.property(p)(e) || 0)
-const getMaxScore = entry => flattenTree(entry).length * 5
+import { selectors, actions } from './Store'
 
 const Numbers = props => (
     <span>
         {props.edit &&
-        <FontAwesomeIcon icon={faMinusCircle} className="text-muted mr-1" onClick={() => props.updateValue(props.entry, props.value, -1) }/>
+        <FontAwesomeIcon icon={faMinusCircle} className="text-muted mr-1" onClick={ props.decrement }/>
         }
-        <span className="font-weight-bold">{getScore(props.entry, props.value)} / {getMaxScore(props.entry)}</span>
+        <span className="font-weight-bold">{props.value} / {props.maxValue}</span>
         {props.edit &&
-        <FontAwesomeIcon icon={faPlusCircle} className="text-muted ml-1" onClick={() => props.updateValue(props.entry, props.value, 1) }/>
+        <FontAwesomeIcon icon={faPlusCircle} className="text-muted ml-1" onClick={ props.increment }/>
         }
     </span>
 )
 const Score = props => (
     <div className="row text-center">
-        <div className="col-6 p-0 text-danger">
-            <Numbers edit={props.edit} value="done" updateValue={props.updateValue} entry={props.entry} />
+        <div className="col-6 pr-0 text-danger">
+            <Numbers 
+                edit={props.edit}
+                value={props.score('done')}
+                maxValue={props.maxScore}
+                increment={props.levelUpDone.bind(this, props.entryId)}
+                decrement={props.levelDownDone.bind(this, props.entryId)} />
             {props.headings && 
             <div >Habe ich gemacht</div>
             }
         </div>
-        <div className="col-6 p-0 text-success">
-            <Numbers edit={props.edit} value="confident" updateValue={props.updateValue} entry={props.entry} />
+        <div className="col-6 pl-0 text-success">
+            <Numbers
+                edit={props.edit}
+                value={props.score('confident')}
+                maxValue={props.maxScore} 
+                increment={props.levelUpConfident.bind(this, props.entryId)}
+                decrement={props.levelDownConfident.bind(this, props.entryId)} />
             {props.headings && 
             <div >Traue ich mir zu</div>
             }
@@ -35,4 +43,9 @@ const Score = props => (
     </div>
 )
 
-export default Score
+const stateToProps = (state, ownProps) => ({
+    score: _.curry(selectors.getScore)(state, ownProps.entryId),
+    maxScore: selectors.getMaxScore(state, ownProps.entryId),
+})
+
+export default connect(stateToProps, actions)(Score)
