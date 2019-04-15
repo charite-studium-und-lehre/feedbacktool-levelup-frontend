@@ -16,7 +16,7 @@ const Chart = makeExtendable(props =>
     <SlideDown className="animated fast">
     {props.extended &&
     <div style={{height: '6rem', overflow: 'hidden'}}>
-        <ProgressChart seed={props.seed} />
+        <ProgressChart entryId={props.entryId} />
     </div>
     }
     </SlideDown>
@@ -41,7 +41,7 @@ const Item = connect(stateToProps)(makeExtendable(props =>
             {props.entry.entries.length ? <FontAwesomeIcon style={{fontSize: '.8rem'}} icon={props.extended ? faChevronDown : faChevronRight} /> : null}
           </div>
         </div>
-        {props.entry.hasGraph && <Chart seed={props.entry.label} />}
+        {props.entry.hasGraph && <Chart entryId={props.entryId} />}
       </div>
       {props.entry.entries && 
       <SlideDown className="animated fast" >

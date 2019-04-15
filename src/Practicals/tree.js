@@ -118,7 +118,7 @@ id: _.uniqueId(),
       },
       {
           label: 'Ärztliche Prozeduren',
-			
+          hasGraph: true,
 id: _.uniqueId(),
           entries: [
             {

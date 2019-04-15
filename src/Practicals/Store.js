@@ -1,4 +1,6 @@
 import _ from 'lodash'
+import seedrandom from 'seedrandom'
+import { randomUniform } from 'd3-random'
 import initialState from './tree'
 
 const getStore = state => state.practicals
@@ -11,17 +13,25 @@ const getScore = (state, id, prop) => {
   const selectProp = _.curryRight(_.map)(e => e[prop])
   return _.flow([selectById, getEntries, selectProp, _.sum])(id)
 }
+
 const getMaxScore = (state, id) => {
   const selectById = _.curry(getItemById)(state)
   const getEntries = _.curry(flattenTree)(selectById)
   return _.flow([selectById, getEntries])(id).length * 5
 }
 
+const getHistoricalScore = _.flow([getScore, score => {
+    const random = randomUniform.source(seedrandom(Math.random()))
+    return _.range(1,8).map(() => random(0,score)()).sort().map((d, i) => ({semester: new Date(2012 + i, 6 + random(-1, 2)(), 15 + random(-10, 20)()), level: d}))
+  }
+])
+
 export const selectors = {
   getStore,
   getItemById,
   getItemByLabel: (state, label) => _.find(getStore(state), e => e.label === label),
   getScore,
+  getHistoricalScore,
   getMaxScore,
 }
 
