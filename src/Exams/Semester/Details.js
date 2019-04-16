@@ -4,10 +4,8 @@ import Legend from '../../Charting/Legend'
 import SimpleDot from '../../Charting/SimpleDot'
 import Legends from '../../Core/LegendTexts'
 import BarWithHeader from './BarWithHeader'
-import { Subjects } from '../Subjects'
 import { DetailsData } from './Data'
 
-const subjectsSample = _.sampleSize(_.flatMap(Subjects, d => d.subjects), 5 ).map(s => ({name: s, result: _.random(0,10), total: _.random(10,20)}))
 const LegendText = Legends.Exams.Semester.Details
 
 class Details extends Component {
@@ -38,23 +36,24 @@ class Details extends Component {
                 </div>
                 <div className="mt-3">
                     {this.state.mode === 'modules' ?
-                    this.props.modules.map((d, i) => 
+                    this.props.modules.map(d => 
                         <BarWithHeader
                             key={d.label}
                             name={d.label}
                             result={d.result}
-                            mean={d.mean}
-                        >{d.result} %</BarWithHeader>
+                            total={80}
+                            mean={_.round(d.mean / 0.8)}
+                        >{_.round(d.result / 0.8)} %</BarWithHeader>
                     )
                     : 
-                    subjectsSample.map(d => 
+                    this.props.subjects.map(d => 
                         <BarWithHeader 
                             key={d.name}
                             name={d.name}
                             result={d.result}
                             total={d.total}
-                            width={d.total * 100 / _.max(subjectsSample.map(s => s.total)) + "%"}
-                            mean={_.random(1, d.total)}
+                            width={d.total * 100 / _.max(this.props.subjects.map(s => s.total)) + "%"}
+                            mean={d.mean}
                         >{d.result} von {d.total}</BarWithHeader>
                         )
                         }
