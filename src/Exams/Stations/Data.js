@@ -2,7 +2,7 @@ import _ from 'lodash'
 
 const data = [
     {
-        exam: '2. Semester',
+        exam: '2. Semester Teil 1',
         group: '2. Semester',
         date: new Date(2015, 6, 15),
         stations: [
@@ -121,7 +121,7 @@ const data = [
         ]
     },
     {
-        exam: '4. Semester 2. Teil',
+        exam: '4. Semester Teil 2',
         group: '4. Semester',
         date: new Date(2017, 6, 15),
         stations: [
@@ -217,7 +217,7 @@ const data = [
         ]
     },
     {
-        exam: '4. Semester 1. Teil',
+        exam: '4. Semester Teil 3',
         group: '4. Semester',
         date: new Date(2017, 6, 15),
         stations: [
