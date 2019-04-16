@@ -38,19 +38,7 @@ export default function Consulting(props) {
                 
                     {ConsultingTree.ConsultingCard.map(d =>
                         <ConsultingCard
-                            title={d.title}
-                            paragraph={d.paragraph}
-                            name1={d.name1}
-                            name2={d.name2}
-                            name3={d.name3}
-                            email1={d.email1}
-                            email2={d.email2}
-                            email3={d.email3}
-                            tel={d.tel}
-                            address={d.address}
-                            talk={d.talk}
-                            talk1={d.talk1}
-                            href={d.href}
+                           {...d}
                         />
                     )}
                     
