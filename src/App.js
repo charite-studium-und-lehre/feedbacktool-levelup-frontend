@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { Route, Redirect } from 'react-router'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import rootReducer from './reducer'
 import 'd3-transition'
 import 'react-slidedown/lib/slidedown.css'
-import './App.css';
+import './App.css'
 import Navbar from './Core/navbar'
 import Login from './Login'
 import Breadcrumbs from './Core/Breadcrumbs'
 import PrivateRoute from './Core/PrivateRoute'
 import Routes from './Core/Routes'
 
-
 const getBasename = () => "/" + (window.location.pathname.split( '/' )[1] || "")
-
 
 class App extends Component {
   constructor(props) {
@@ -38,6 +39,7 @@ class App extends Component {
     }
 
     return (
+      <Provider store={createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
         <BrowserRouter basename={getBasename()}>
           <div className="App">
 
@@ -54,7 +56,7 @@ class App extends Component {
             )}/>
           </div>
         </BrowserRouter>
-
+      </Provider>
     );
   }
 
