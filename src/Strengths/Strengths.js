@@ -9,8 +9,8 @@ import Legend from '../Charting/Legend'
 import LegendTexts from '../Core/LegendTexts'
 const LegendText = LegendTexts.Strengths
 
-const mcSample = Subjects()    
-const ptmSample = Subjects()
+const mcSample = Subjects('mc')    
+const ptmSample = Subjects('ptm')
 const Strengths = ({ match }) => {
     const active = Math.max(...mcSample.map((c,i) => _.includes(c.subjects.map(s => s.title), match.params.subject) ? i : -1), 0)
     return (

@@ -1,4 +1,6 @@
 import fp from 'lodash/fp'
+import seedrandom from 'seedrandom'
+import { randomUniform } from 'd3-random'
 
 const Subjects = [
     {
@@ -44,19 +46,19 @@ const Subjects = [
     },
 ]
 
-const SubjectsWithNumbers = () => Subjects.map( 
+const SubjectsWithNumbers = fp.flow([seed => randomUniform.source(seedrandom(seed)), random => (a,b) => fp.round(random(a,b)()), random => Subjects.map( 
     cat => ({ 
         ...cat, 
         subjects: cat.subjects.map( s => ({ 
             title: s,
-            questions: fp.random(1,20),
+            questions: random(1,20),
         })).map(s => ({ 
             ...s, 
-            correct: fp.random(1, s.questions),
-            mean: fp.random(1, s.questions)
+            correct: random(1, s.questions),
+            mean: random(1, s.questions)
         }))
     }
-))
+))])
 
 const flattenCategories = fp.flatMap(c => c.subjects)
 

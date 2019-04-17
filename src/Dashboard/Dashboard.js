@@ -10,8 +10,8 @@ import SimpleBar from '../Charting/SimpleBar'
 import Subjects, { strongestSubject } from '../Exams/Subjects'
 import StationsData from '../Exams/Stations/Data'
 
-const mcStrongestSubject = strongestSubject(Subjects())
-const ptmStrongestSubject = strongestSubject(Subjects())
+const mcStrongestSubject = strongestSubject(Subjects('mc'))
+const ptmStrongestSubject = strongestSubject(Subjects('ptm'))
 export default function Dashboard() {
     return (
         <div className="container-fluid">
