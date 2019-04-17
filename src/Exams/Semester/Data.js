@@ -200,10 +200,10 @@ const DetailsData = semester => _.flow([ seedrandom, _.over(result, createDist),
 
 const n = 5
 const random = randomUniform.source(seedrandom('dfghsgresg'))
-const createTimelineData = (i, data) => ({
+const createTimelineData = (i, [result, dist]) => ({
     x: new Date(2018 - i, 6 + random(2, -1)(), 15 + random(20, -10)()),
-    result: _.round(_.mean(data.result)),
-    mean: distMean(data.dist),
+    result: _.round(_.mean(result)),
+    mean: distMean(dist),
     label: `${n-i}. Semester`
 })
 
