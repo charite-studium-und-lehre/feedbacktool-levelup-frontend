@@ -7,7 +7,7 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
 const ChecklistItem = props => 
     <div className="my-2 p-1 card text-info d-flex flex-row">
         <div className="flex-fill m-auto mr-2">
-            {props.link ? 
+            {props.link && props.done ? 
             <Link to={props.link}>
                 <div style={{fontSize: '.75rem'}} >{props.label}
                     <FontAwesomeIcon style={{fontSize: '.5rem'}} className="text-info ml-1" icon={faExternalLinkAlt} />

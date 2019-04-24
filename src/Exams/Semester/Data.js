@@ -202,11 +202,11 @@ const n = 5
 const random = randomUniform.source(seedrandom('dfghsgresg'))
 const createTimelineData = (i, [result, dist]) => ({
     x: new Date(2018 - i, 6 + random(2, -1)(), 15 + random(20, -10)()),
-    result: _.round(_.mean(result)),
-    mean: distMean(dist),
+    result: _.round(_.mean(result) / 80 * 100),
+    mean: _.round(distMean(dist) / 80 * 100),
     label: `${n-i}. Semester`
 })
 
-const TimelineData = _.range(n).map( i => _.flow([ seedrandom, _.over(result, createDist), concatResult, _.partial(createTimelineData, i) ])(`${n-i}. Semester`) )
+const TimelineData = _.range(n).map( i => _.flow([ seedrandom, _.over(result, createDist), concatResult, _.partial(createTimelineData, i) ])(`${n-i}. Semester`)).filter(p => p.label !== '4. Semester')
 
 export { TotalsData, DetailsData, TimelineData }
