@@ -37,9 +37,9 @@ const Strengths = ({ match }) => {
                 <div className="card p-3">
                     <Legend title={LegendText.Subjects.title}>{LegendText.Subjects.text}</Legend>
                     <SubjectsTabs active={active}>
-                        {mcSample.map(c => 
+                        {_.zip(mcSample, ptmSample).map(([c, ptm]) => 
                             <div key={c.title} title={c.title} className="d-flex flex-wrap">
-                                {_.sortBy(c.subjects, 'title').map(s => <Subject key={s.title} {...s} flash={s.title === match.params.subject} />)}
+                                {_.sortBy(_.zip(c.subjects, ptm.subjects), d => d[0].title).map(([s, p]) => <Subject data={[s,p]} key={s.title} {...s} flash={s.title === match.params.subject} />)}
                             </div>
                         )}
                     </SubjectsTabs>

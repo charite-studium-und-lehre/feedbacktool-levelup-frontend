@@ -25,7 +25,7 @@ class Subject extends Component {
     }
 
     render() {
-        const data = exams.map(d => ({ x:d, y: _.range(2).map(i => _.round(random(this.props.title + i + d)(0,20)()) )}))
+        const data = exams.map((d, i) => ({ x:d, y: [this.props.data[i].correct, this.props.data[i].questions]}))
         return (
             <div className="card m-2 flex-grow-1 with-shadow" style={{width: '20rem'}}>
                 <div ref={this.node} className={`card-body ${this.state.flash ? 'bg-primary' : ''}`} style={{transition: '5s'}}>
