@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
-import _ from 'lodash'
-import seedrandom from 'seedrandom'
-import { randomUniform } from 'd3-random'
 import { OrdinalChart } from '../Charting/Chart'
 import { XAxis, YAxis } from '../Charting/Axis'
 import BarGraph from '../Charting/BarGraph'
 const exams = ['alle MCs', 'letzter PTM']
 
-const random = d => randomUniform.source(seedrandom(d))
 class Subject extends Component {
     constructor(props) {
         super(props)
