@@ -32,7 +32,7 @@ export default function Dashboard() {
                             title="Ärztliche Tätigkeiten" 
                             text="Dein Überblick zur Entwicklung deiner praktischen Fähigkeiten im Studienverlauf.">
                             <div className="m-2">
-                                <PracticalsScore headings entry={PracticalsTree} />
+                                <PracticalsScore headings />
                             </div>
                             </DashboardCard>
                         </Link>

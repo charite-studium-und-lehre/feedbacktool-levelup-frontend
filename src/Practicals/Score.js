@@ -23,8 +23,8 @@ const Score = props => (
                 edit={props.edit}
                 value={props.score('done')}
                 maxValue={props.maxScore}
-                increment={props.levelUpDone.bind(this, props.entryId)}
-                decrement={props.levelDownDone.bind(this, props.entryId)} />
+                increment={_.partial(props.levelUpDone, props.entryId)}
+                decrement={_.partial(props.levelDownDone, props.entryId)} />
             {props.headings && 
             <div >Habe ich gemacht</div>
             }
@@ -34,8 +34,8 @@ const Score = props => (
                 edit={props.edit}
                 value={props.score('confident')}
                 maxValue={props.maxScore} 
-                increment={props.levelUpConfident.bind(this, props.entryId)}
-                decrement={props.levelDownConfident.bind(this, props.entryId)} />
+                increment={_.partial(props.levelUpConfident, props.entryId)}
+                decrement={_.partial(props.levelUpConfident, props.entryId)} />
             {props.headings && 
             <div >Traue ich mir zu</div>
             }
