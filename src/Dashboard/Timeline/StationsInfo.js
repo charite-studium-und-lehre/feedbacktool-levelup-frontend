@@ -4,7 +4,7 @@ import { HorizontalBarChart } from '../../Charting/HorizontalBarGraph'
 const bars = ['Durchschnitt', 'Dein Ergebnis']
 
 const StationsInfo = props => {
-    const data = bars.map((d, i) => ({y: d, x: i ? props.data.mean : props.data.result, label: i ? `${props.data.mean} %` : `${props.data.result} %` }))
+    const data = bars.map((d, i) => ({y: d, x: i ? props.data.result : props.data.mean, label: i ? `${props.data.result} %` : `${props.data.mean} %` }))
     return (<div>
         <div className="mt-1" style={{height: '4.3rem'}}>
             <HorizontalBarChart noaxis yDomain={bars} data={data} />
