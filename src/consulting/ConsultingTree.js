@@ -51,7 +51,7 @@ export const ConsultingTree = {
     {
         title:"Familienbüro",
         paragraph:"Sie studieren an der Charité und betreuen Kinder? Sie suchen einen Kitaplatz? Sie pflegen Angehörige? Sie haben Fragen und benötigen Informationen rund um das Thema Vereinbarkeit von Studium und Familie?",
-        names:["Sabine Barleben(Leitung)","Stefanie Schmidt(Sekretariat)"],
+        names:["Sabine Barleben (Leitung)","Stefanie Schmidt (Sekretariat)"],
         tel:"+49 030 450 577 257",
         emails:["familienbuero@charite.de","Väterbeauftragte:  vaeterbeauftragte@charite.de"],
         address: "Westring 1, 1. Etage, R1.1011 CVK",
@@ -61,7 +61,7 @@ export const ConsultingTree = {
    {
         title:"ChiC",
         paragraph:"ChiC bietet Informationen und Unterstützung rund um die Themen Studieren im Ausland bzw. aus dem Ausland und Unterstützung von internationalen Studierenden in Berlin.",
-        names:["Lutz Steiner(Leitung)","Marta Gogluska-Obirek(Erasmus outgoing Students)","Angelika Cernitori (Eramus incoming students)" ],
+        names:["Lutz Steiner (Leitung)","Marta Gogluska-Obirek (Erasmus outgoing Students)","Angelika Cernitori (Eramus incoming students)" ],
         tel:"+49 30 450 576 088 (Lutz Steiner, Leitung)",
         emails:["erasmixpaten@charite.de" ,"Reinhardtstr. 58, CCM"],
         talk:"Sprechzeiten nach Terminvereinbarung",
@@ -79,7 +79,7 @@ export const ConsultingTree = {
    {
         title:"Student Mentoring",
         paragraph:"Das Team des Mentoringprogramms unterstützt Studierende der Charité – Universitätsmedizin Berlin, ihr Studium erfolgreich und zielstrebig zu absolvieren. Im Mentoringprogramm werden Studierenden engagierte Ärztinnen und Ärzte als Mentor*innen vermittelt.",
-        names:["Petra Meinhardt(Leitung)","Leonie Kühn und Emma Kula (Organisation)"],
+        names:["Petra Meinhardt (Leitung)","Leonie Kühn und Emma Kula (Organisation)"],
         tel:"+49 30 450 576 091",
         emails:["studentmentoring@charite.de" ],
         address:"Hannoversche Straße 19, 3. Etage, CCM",
@@ -89,7 +89,7 @@ export const ConsultingTree = {
    {
         title:"Referat für Studienangelegenheiten",
         paragraph:"Hier erhalten Sie Informationen und Beratung zu allen allgemeinen und organisatorischen Fragen in puncto Studium.",
-        names:["Petra Meinhardt(Leitung)"],
+        names:["Petra Meinhardt (Leitung)"],
         tel:"+49 30 450 576 042 ",
         emails:["petra.meinhardt@charite.de" ],
         address:"Hannoversche Str. 19, 3.OG",
