@@ -1,0 +1,33 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-05-07T13:38:14+02:00
+
+====== Abhängigkeiten ======
+Die Folgenden Bibliothek wurden benutzt 
+
+1-** Bootstrap**
+für responsives Design 
+Install  : npm i --save bootstrap
+oder :   yarn add bootstrap
+
+2**- D3**d3 [[+d3]]
+für Diagramme bauen 
+Install  : npm i --save  D3 
+oder :   yarn add D3 
+
+
+3**- FontAwesomeIcon**
+für icon und svg 
+  npm i --save @fortawesome/fontawesome-svg-core \
+  npm i --save @fortawesome/free-solid-svg-icons \
+  npm i --save @fortawesome/react-fontawesome
+
+4**- SlideDown **
+für SlideDown
+Install  : npm i --save react-slidedown
+oder :   yarn add react-slidedown
+
+5**- lodash **
+Sie bittet viel möglichkeiten mit Arrays umzughen 
+Install  : npm i --save lodash
+oder :   yarn add lodash
