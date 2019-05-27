@@ -57,8 +57,8 @@ const ConsultingCard = props => (
                         <div className="icon">
                             <FontAwesomeIcon icon={faComments} />
                         </div>
-                        <div className="info">{ConsultingTree.ConsultingCard.map(d => <span>{d.talk}</span>)}
-
+                        <div className="info">
+                            {props.talk.map(d => <div>{d}</div>)}
                         </div>
                     </div>
 
@@ -67,7 +67,7 @@ const ConsultingCard = props => (
             </div>
 
         </div>
-        <button type="button" className="btn btn-primary consulting-butten ">Mehr erfahren</button>
+        <a  className="btn btn-primary consulting-butten " href={props.href}>Mehr erfahren</a>
     </div>
 )
 export default ConsultingCard;

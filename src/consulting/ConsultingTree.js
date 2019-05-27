@@ -45,7 +45,7 @@ export const ConsultingTree = {
         tel:" +49 30 450 529189",
         emails:["medicoach@charite.de"],
         address:"Luisenstr 57 CCM ",
-        talk:" Gespräch nach Terminvereinbarung",
+        talk:[" Gespräch nach Terminvereinbarung"],
         href: 'https://medicoach.charite.de/fuer_studierende' 
     }, 
     {
@@ -64,7 +64,7 @@ export const ConsultingTree = {
         names:["Lutz Steiner (Leitung)","Marta Gogluska-Obirek (Erasmus outgoing Students)","Angelika Cernitori (Eramus incoming students)" ],
         tel:"+49 30 450 576 088 (Lutz Steiner, Leitung)",
         emails:["erasmixpaten@charite.de" ,"Reinhardtstr. 58, CCM"],
-        talk:"Sprechzeiten nach Terminvereinbarung",
+        talk:["Sprechzeiten nach Terminvereinbarung"],
         href: 'https://www.charite.de/international/fuer_studierende/' 
    },
    {
@@ -73,7 +73,7 @@ export const ConsultingTree = {
         names:["Pinkus Tober-Lau"],
         tel:"+49 30 450 577 259",
         address:"Virchowweg 24, Aufgang B, 2. Etage, R02.002, CCM",
-        talk:"Sprechzeiten nach Terminvereinbarung",
+        talk:["Sprechzeiten nach Terminvereinbarung"],
         href: 'https://mentoring.charite.de/fuer_studienanfaenger/' 
    },
    {
@@ -83,7 +83,7 @@ export const ConsultingTree = {
         tel:"+49 30 450 576 091",
         emails:["studentmentoring@charite.de" ],
         address:"Hannoversche Straße 19, 3. Etage, CCM",
-        talk:"Sprechzeiten nach Terminvereinbarung",
+        talk:["Sprechzeiten nach Terminvereinbarung"],
         href: 'https://studentmentoring.charite.de' 
    },
    {
@@ -102,7 +102,7 @@ export const ConsultingTree = {
         names:["Dr. Christine Kurmeyer","Sekretariat: Stefanie Schmidt "],
         tel:"+49 30 450 577 252",
         address:"Westring 1, CVK",
-        talk:"Sprechzeiten nach Terminvereinbarung",
+        talk:["Sprechzeiten nach Terminvereinbarung"],
         href: 'https://frauenbeauftragte.charite.de/' 
    },
    {
@@ -111,8 +111,7 @@ export const ConsultingTree = {
         names:["Claudia Mathan"],
         tel:"+49 30 450 576 056",
         emails:["gwp@charite.de", ],
-        address:"",
-        talk:"Sprechzeiten nach Terminvereinbarung",
+        talk:["Sprechzeiten nach Terminvereinbarung"],
         href: 'https://promotion.charite.de/fuer_promovierende/#c30201158' 
    },
    {
@@ -122,7 +121,7 @@ export const ConsultingTree = {
     tel:"+49 30 450 576050",
     emails:["sprecher@fsi-charite.de" ],
     address:"Philippstraße 12, “Hexenhaus”, CCM",
-    talk:"Sprechzeiten nach Terminvereinbarung",
+    talk:["Sprechzeiten nach Terminvereinbarung"],
     href: 'http://fsi-charite.de' 
 }
     ]
