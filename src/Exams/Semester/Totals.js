@@ -45,7 +45,7 @@ class Totals extends Component {
                 <div className="mt-3">
                     {this.state.mode === 'graph' ? (
                     <LinearChart xDomain={[100, 0]} yDomain={[0,80]}>
-                        <YAxis ticks={{ count: 4 }} label="Mind. erreichte Punkte"/>
+                        <YAxis ticks={{ count: 4 }} label=" Erreichte Punkte"/>
                         <AreaGraph curve={curveStep} data={this.percentileArea(10, 0)} color="hsla(120, 100%, 80%, .2)"></AreaGraph>
                         <AreaGraph curve={curveStep} data={this.percentileArea(25, 10)} color="hsla(120, 100%, 60%, .2)"></AreaGraph>
                         <AreaGraph curve={curveStep} data={this.percentileArea(50, 25)} color="hsla(120, 100%, 40%, .2)"></AreaGraph>
