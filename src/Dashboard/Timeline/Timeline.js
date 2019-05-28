@@ -4,6 +4,8 @@ import Legend from '../../Charting/Legend'
 import Legends from '../../Core/LegendTexts'
 import InfoOverlay from './InfoOverlay'
 import Chart from './Chart'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {   faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
 const LegendText = Legends.Dashboard.Timeline
 const day= 1000 * 60 * 60 * 24
@@ -64,7 +66,7 @@ class Timeline extends Component {
                         </InfoOverlay>
                     </div>
                     <div className="">
-                        <span className="text-primary" style={{fontSize: '.8rem', cursor:'pointer'}} onClick={() => this.zoomOut()}>Mehr anzeigen</span>
+                        <span className="text-primary ml-3" style={{fontSize: '.8rem', cursor:'pointer', fontSize:'16px'}} onClick={() => this.zoomOut()}><FontAwesomeIcon icon={ faChevronLeft} /><FontAwesomeIcon icon={ faChevronLeft} /></span>
                     </div>
                     <div className="mt-2">
                         {this.props.data.map(g => (
