@@ -42,7 +42,8 @@ export default function Dashboard() {
                         <DashboardCard 
                         header={Math.round(Math.random() * 100) + ' %'} 
                         title="Praktische Prüfungen" 
-                        text="Dein Überblick zu den praktischen Prüfungen im Studium.">
+                        text="Dein Überblick zu den praktischen Prüfungen im Studium."
+                        result="2/5" >
                             {StationsData.map(e => 
                             <div key={e.exam}>
                                 <span className="text-secondary" style={{fontSize: '.8rem'}}>{e.exam}</span>
