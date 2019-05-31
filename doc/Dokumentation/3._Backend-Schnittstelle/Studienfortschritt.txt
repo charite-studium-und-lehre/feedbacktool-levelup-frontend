@@ -1,0 +1,32 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-05-31T14:04:02+02:00
+
+====== Studienfortschritt ======
+
+
+== GET-Aufruf: ==
+[[/api/studienfortschritt]]
+
+=== Erfolg: ===
+success: HTTP-Code 200
+
+Rückgabe:
+'''
+{
+	"abschnitte": [
+		{
+			"name": "<Bezeichnung>",
+			"meilensteine": [
+				{
+					"name": "<Name>",
+					"erledigt": <true|false>,
+					"typ": "<ptm|station|mc|null>",
+					"studiPruefungsId": "<ID>"
+				}
+			],
+		},
+	]
+
+}
+'''

@@ -1,0 +1,32 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-05-31T13:38:29+02:00
+
+====== Erster Login ======
+
+Formular:
+* Matrikelnummer
+* Vorname (wird nur dargestellt aus Antwort vom Server)
+* Nachname (wird nur dargestellt aus Antwort vom Server)
+* Geburtsdatum
+
+Schnittstelle:
+
+/api/stammdaten
+
+== POST-Aufruf: ==
+
+{
+	"matrikelnummer" : <matrikelnummer>,
+	"geburtsdatum" : <geburtsdatum im Format ISO-Format "YYYY-MM-DD">,
+}
+
+== Erfolg: ==
+HTTP-Code 200
+-> Backend: dem richtigen Hash wird ein Login-hash hinzugefügt, damit der Benutzer diese Seite nur einmal ausfüllen.
+
+== Fail: ==
+HTTP-Code: 404
+
+== Aufruf, wenn nicht vorher eingeloggt: ==
+HPPT-Code 401 Unauthorized
