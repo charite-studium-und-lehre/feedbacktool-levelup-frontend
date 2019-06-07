@@ -1,15 +1,14 @@
 import React from 'react';
+import { withTranslation } from 'react-i18next'
 import ConsultingCard from "./ConsultingCard"
 import "./Consulting.css";
 import { ConsultingTree } from './ConsultingTree'
 
-
-
-export default function Consulting(props) {
+export default withTranslation()(function Consulting({ t }) {
     return (
         <div className="container-fluid">
             <div className="consulting">
-            <h1 className="text-center my-4">Charitè Beratung</h1>
+            <h1 className="text-center my-4">{t('Charitè Beratung')}</h1>
                 <div className="row  " >
                     <div className="col-lg-5 col-sm-6">
                         <div className="consulting-foto">
@@ -26,7 +25,7 @@ export default function Consulting(props) {
                         <div className="consulting-link">
                             <ul className="list-group list-group-flush ">
                                 <h4 className="text-center mb-4">Externe Beratung</h4>
-                                {ConsultingTree.ExternConsulting.map(d => <a className="extern-link text-center list-group-item" href={d.href}>{d.title}</a>)}
+                                {ConsultingTree(t).ExternConsulting.map(d => <a className="extern-link text-center list-group-item" href={d.href}>{d.title}</a>)}
                             </ul>
                         </div>
                     </div>
@@ -36,7 +35,7 @@ export default function Consulting(props) {
                 <h1 className="text-center">Beratung</h1>
                 <div className="row">
                 
-                    {ConsultingTree.ConsultingCard.map(d =>
+                    {ConsultingTree(t).ConsultingCard.map(d =>
                         <ConsultingCard
                            {...d}
                         />
@@ -45,11 +44,8 @@ export default function Consulting(props) {
                 </div>
             </div>
         </div>
-
-
     )
-
-}
+})
 
 
 

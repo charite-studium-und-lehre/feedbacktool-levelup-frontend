@@ -1,13 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPhoneVolume, faAt, faUser, faComments, faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons'
-import { ConsultingTree } from './ConsultingTree'
-
-
-
 
 const ConsultingCard = props => (
-
     <div className="card col-lg-4 col-sm-6  ">
         <div className="card-body">
             <h2 className="card-title text-center ">{props.title}</h2>

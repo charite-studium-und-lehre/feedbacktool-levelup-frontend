@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+import { withTranslation } from 'react-i18next'
 import Checklist from './Checklist'
 import tree from './tree'
-import Legends from '../../Core/LegendTexts'
 import Legend from '../../Charting/Legend'
 
 const checklistStyle = {
@@ -11,8 +11,9 @@ const checklistStyle = {
 }
 
 class Progress extends Component {
-    constructor(props) {
+    constructor({ props, t }) {
         super(props)
+        this.t = t
         this.state = { scale: 1, offset: 0 }
         this.zoom = this.zoom.bind(this)
     }
@@ -29,7 +30,7 @@ class Progress extends Component {
         return (
             <div className="card progress-card with-border" style={{overflow: 'hidden'}}>
                 <div className="card-body">
-                    <Legend title={Legends.Dashboard.Progress.title}>{Legends.Dashboard.Progress.text}</Legend>
+                    <Legend title={this.t('Dein Studienfortschritt')}>{this.t('Hier siehst Du deinen Studienfortschritt und deine bereits erreichten Meilensteinen.')}</Legend>
                     <div style={checklistStyle}>
                         <div style={{margin: '0 2.5rem'}}>
                         {tree.entries.map(d => <Checklist key={d.label} className="d-inline-block align-top" data={d} onClick={this.zoom} /> )}
@@ -41,4 +42,4 @@ class Progress extends Component {
     }
 }
 
-export default Progress
+export default withTranslation()(Progress)

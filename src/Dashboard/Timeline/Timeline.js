@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withTranslation } from 'react-i18next'
 import PointGraph from '../../Charting/PointGraph'
 import Legend from '../../Charting/Legend'
 import Legends from '../../Core/LegendTexts'
@@ -10,8 +11,9 @@ const day= 1000 * 60 * 60 * 24
 const year = day * 365
 
 class Timeline extends Component {
-    constructor(props) {
+    constructor({props, t}) {
         super(props)
+        this.t = t
         this.state = {
             timerange: [null, new Date()],
             oldest: null, 
@@ -45,7 +47,7 @@ class Timeline extends Component {
         return (
             <div className="card with-border" style={{overflow: 'hidden'}}>
                 <div className="card-body">
-                    <Legend title={LegendText.title}>{LegendText.text}</Legend>
+                    <Legend title={this.t('Timeline')}>{this.t('Hier siehst du die Prüfungen, die du in letzter Zeit abgelegt hast.')}</Legend>
                     <div className="p-3 pl-4 position-relative">
                         <Chart oldest={this.state.oldest} newest={this.state.newest} initTimerange={d => this.initTimerange(d)}>
                         {this.props.data.map((g, i) => (
@@ -77,4 +79,4 @@ class Timeline extends Component {
     }
 }
 
-export default Timeline
+export default withTranslation()(Timeline)

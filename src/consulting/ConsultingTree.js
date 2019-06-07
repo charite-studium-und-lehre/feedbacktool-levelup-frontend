@@ -1,8 +1,8 @@
 
-export const ConsultingTree = {
+export const ConsultingTree = t => ({
     ExternConsulting : [
         {
-            title : 'Finanzierung des Studiums',
+            title : t('Finanzierung des Studiums'),
             href: 'https://www.stw.berlin/finanzierung.html'
         },
         {
@@ -125,5 +125,5 @@ export const ConsultingTree = {
     href: 'http://fsi-charite.de' 
 }
     ]
-}
+})
  
