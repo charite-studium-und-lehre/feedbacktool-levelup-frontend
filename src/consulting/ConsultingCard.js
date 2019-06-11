@@ -1,8 +1,9 @@
 import React from 'react';
+import { withTranslation } from 'react-i18next'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPhoneVolume, faAt, faUser, faComments, faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons'
 
-const ConsultingCard = props => (
+const ConsultingCard = props  => (
     <div className="card col-lg-4 col-sm-6  ">
         <div className="card-body">
             <h2 className="card-title text-center ">{props.title}</h2>

@@ -11,9 +11,8 @@ const checklistStyle = {
 }
 
 class Progress extends Component {
-    constructor({ props, t }) {
+    constructor({ props}) {
         super(props)
-        this.t = t
         this.state = { scale: 1, offset: 0 }
         this.zoom = this.zoom.bind(this)
     }
@@ -27,13 +26,14 @@ class Progress extends Component {
     }
 
     render() {
+        const { t } = this.props;
         return (
             <div className="card progress-card with-border" style={{overflow: 'hidden'}}>
                 <div className="card-body">
-                    <Legend title={this.t('Dein Studienfortschritt')}>{this.t('Hier siehst Du deinen Studienfortschritt und deine bereits erreichten Meilensteinen.')}</Legend>
+                    <Legend title={t(`Dein Studienfortschritt`)}>{t(`Hier siehst Du deinen Studienfortschritt und deine bereits erreichten Meilensteinen.`)}</Legend>
                     <div style={checklistStyle}>
                         <div style={{margin: '0 2.5rem'}}>
-                        {tree.entries.map(d => <Checklist key={d.label} className="d-inline-block align-top" data={d} onClick={this.zoom} /> )}
+                        {tree(t).entries.map(d => <Checklist key={d.label} className="d-inline-block align-top" data={d} onClick={this.zoom} /> )}
                         </div>
                     </div>
                 </div>
@@ -42,4 +42,4 @@ class Progress extends Component {
     }
 }
 
-export default withTranslation()(Progress)
+export default withTranslation() (Progress)
