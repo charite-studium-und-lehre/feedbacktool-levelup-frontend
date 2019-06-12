@@ -4,8 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faFileExport, faEnvelopeOpenText, faListOl } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../Core/makeExtendable'
 import List from './List'
+import { withTranslation } from 'react-i18next'
 
-const Button = props => 
+const Button = (props, {t}) => 
     <div className={`d-inline-block ${props.className || ''}`}>
         <button className={`btn btn-sm mr-2 ${props.active ? 'btn-success' : 'btn-primary'}`} onClick={props.onClick}>
             <span className="d-none d-lg-inline mr-2">{props.children}</span>
@@ -20,12 +21,13 @@ class Toolbar extends React.Component {
      }
      
      render () {
+         const {t} = this.props
         return (
         <div className="p-2 mt-2 card text-right sticky-top" style={{top: '3.7rem'}}>
             <div>
                 <Button className="d-lg-none" icon={faListOl} active={this.state.list} onClick={() => this.setState({ list: !this.state.list })} />
                 <Button icon={faFileExport}>Export</Button>
-                <Button icon={faEnvelopeOpenText} active={this.props.extended} onClick={this.props.toggleExtended}>Fremdeinschätzung</Button>
+                <Button icon={faEnvelopeOpenText} active={this.props.extended} onClick={this.props.toggleExtended}>{t(`Fremdeinschätzung</B`)}</Button>
                 <Button icon={faEdit} active={this.props.edit} onClick={this.props.toggleEdit}>{this.props.edit ? 'speichern' : 'bearbeiten'}</Button>
                 <SlideDown className="animated fast">
                     {this.state.list &&
@@ -44,7 +46,7 @@ class Toolbar extends React.Component {
                                 <button className="btn btn-sm btn-success" onClick={this.props.toggleExtended}>senden</button>
                             </div>
                         </div>
-                        <div className="text-secondary text-left" style={{fontSize: '.7rem'}}>Wir senden einen Link an diese Email-Adresse, über den eine Fremdeinschätzung abgegeben werden kann.</div>
+                        <div className="text-secondary text-left" style={{fontSize: '.7rem'}}>{t(`Wir senden einen Link an diese Email-Adresse, über den eine Fremdeinschätzung abgegeben werden kann.`)}</div>
                     </div>}
                 </SlideDown>
             </div>
@@ -52,4 +54,4 @@ class Toolbar extends React.Component {
         )}
     }
 
-export default makeExtendable(Toolbar)
+export default withTranslation() (makeExtendable(Toolbar))

@@ -8,6 +8,7 @@ import data from './Data'
 import StationsChart from './StationsChart'
 import Legends from '../../Core/LegendTexts'
 import SimpleDot from '../../Charting/SimpleDot'
+import { withTranslation } from 'react-i18next'
 const LegendText = Legends.Exams.Stations.Main
 const colors = scaleOrdinal(schemeSpectral[6])
 
@@ -24,6 +25,7 @@ class Stations extends Component {
     }
 
     render() {
+        const {t} = this.props
         const filteredData = data
             .filter(_.overSome(this.state.groupFilters.filter(f => f.selected).map(f => f.pred)))
             .map(e => ({...e, stations: e.stations
@@ -36,20 +38,20 @@ class Stations extends Component {
                     <Legend title={LegendText.title}>
                         {LegendText.text}
                         <div className="position-relative">
-                            Der <SimpleDot style={{position: 'relative', display: 'inline-block', marginLeft: '.75rem'}} value={0} /> kennzeichnet den Kohortenmittelwert.
+                            {t(`Der`)} <SimpleDot style={{position: 'relative', display: 'inline-block', marginLeft: '.75rem'}} value={0} />{t(` kennzeichnet den Kohortenmittelwert.`)}
                         </div>
                     </Legend>
                     <div className="row col " style={{minHeight: '25rem'}}>
                         <div className="card px-4 pb-4 w-100" style={{overflow: 'hidden'}}>
                             <div className="mt-2 mb-3 d-flex flex-wrap">
                                 <div style={{fontSize: '.9rem'}}>
-                                    Bereich: <Filter
+                                  {t(`Bereich`)}: <Filter
                                         style={{display: 'inline-block'}}
                                         filters={ this.state.categoryFilters } 
                                         onUpdate={ categoryFilters => this.setState({ categoryFilters }) } />
                                 </div>
                                 <div style={{fontSize: '.9rem', width: '17rem'}} className="flex-grow-1">
-                                    Prüfungen: <Filter style={{display: 'inline-block'}} disabled={!!this.state.selectedItem} filters={ this.state.groupFilters } onUpdate={ groupFilters => this.setState({ groupFilters }) } />
+                                   {t(`Prüfungen`)}: <Filter style={{display: 'inline-block'}} disabled={!!this.state.selectedItem} filters={ this.state.groupFilters } onUpdate={ groupFilters => this.setState({ groupFilters }) } />
                                 </div>
                             </div>
                             <StationsChart
@@ -63,4 +65,4 @@ class Stations extends Component {
     }
 }
 
-export default Stations
+export default withTranslation()(Stations)

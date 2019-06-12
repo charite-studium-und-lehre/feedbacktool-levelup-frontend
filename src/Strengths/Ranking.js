@@ -3,8 +3,9 @@ import _ from 'lodash'
 import Legend from '../Charting/Legend'
 import makeExtendable from '../Core/makeExtendable'
 import SimpleBar from '../Charting/SimpleBar'
+import { withTranslation } from 'react-i18next'
 
-const Ranking = props =>
+const Ranking = (props, {t}) =>
     <div className="card">
         <div className="card-body">
             <Legend title={props.title}>{props.text}</Legend>
@@ -13,7 +14,7 @@ const Ranking = props =>
                     <div key={s.title} className="py-2">
                         <h5><span className="text-primary">#{i+1}</span> {s.title}</h5>
                         <SimpleBar value={s.correct} total={s.questions} mean={props.mean && s.mean}>
-                            {s.correct} von {s.questions} richtig
+                            {s.correct} von {s.questions} {t(`richtig`)}
                         </SimpleBar>
                     </div>
                 )}
@@ -26,4 +27,4 @@ const Ranking = props =>
         </div>
     </div>
 
-export default makeExtendable(Ranking)
+export default withTranslation() (makeExtendable(Ranking))

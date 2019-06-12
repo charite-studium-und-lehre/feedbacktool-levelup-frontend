@@ -8,6 +8,7 @@ import BarGraph from '../Charting/BarGraph'
 import PointGraph from '../Charting/PointGraph'
 import Legend from '../Charting/Legend'
 import LegendTexts from '../Core/LegendTexts'
+import { withTranslation } from 'react-i18next'
 const LegendText = LegendTexts.Strengths
 
 const colors = scaleOrdinal(schemeBlues[3])
@@ -22,7 +23,7 @@ const results = [
 
 const means = [77, 22, 101]
 
-const PTMResults = props => (
+const PTMResults =( props, {t}) => (
     <div className="card">
         <div className="card-body">
             <Legend title={LegendText.PTMResults.title}>{LegendText.PTMResults.text}
@@ -33,7 +34,7 @@ const PTMResults = props => (
                     </span>)}
                     <span className="d-inline-block mr-2" style={{height: '1.2rem', lineHeight: '1.2rem'}}>
                         <span className="d-inline-block mr-1" style={{borderRadius: '.6rem', width: '.6rem', height: '.6rem', backgroundColor: 'rgba(0,0,0,.6)'}}></span>
-                        Durchschnitt in der Kohorte
+                        {t(`Durchschnitt in der Kohorte`)}
                     </span>
                 </div>
             </Legend>
@@ -49,4 +50,4 @@ const PTMResults = props => (
     </div>
 )
 
-export default PTMResults
+export default withTranslation() (PTMResults)

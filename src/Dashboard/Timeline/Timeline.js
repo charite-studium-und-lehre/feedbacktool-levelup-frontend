@@ -43,7 +43,7 @@ class Timeline extends Component {
     }
 
     render() {
-        const { t } = this.props;
+        const {t} = this.props;
         return (
             <div className="card with-border" style={{overflow: 'hidden'}}>
                 <div className="card-body">
@@ -66,7 +66,7 @@ class Timeline extends Component {
                         </InfoOverlay>
                     </div>
                     <div className="">
-                        <span className="text-primary" style={{fontSize: '.8rem', cursor:'pointer'}} onClick={() => this.zoomOut()}>Mehr anzeigen</span>
+                        <span className="text-primary" style={{fontSize: '.8rem', cursor:'pointer'}} onClick={() => this.zoomOut()}>{t(`Mehr anzeigen`)}</span>
                     </div>
                     <div className="mt-2">
                         {this.props.data.map(g => (

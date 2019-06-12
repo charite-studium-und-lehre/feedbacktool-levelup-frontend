@@ -1,16 +1,17 @@
 import React from 'react'
 import SimpleBar from '../../Charting/SimpleBar'
-const Answer = props => (
+import { withTranslation } from 'react-i18next'
+const Answer = (props, {t}) => (
     <div className="m-1">
         <span>{props.label}) </span>
         <span>{props.children}</span>
-        {props.correct ? (<span className='ml-1 badge badge-success'>richtige Antwort</span>) : ''}
-        {props.selected ? (<span className='ml-1 badge badge-danger'>deine Antwort</span>) : ''}
+        {props.correct ? (<span className='ml-1 badge badge-success'>{t(`richtige Antwort`)}</span>) : ''}
+        {props.selected ? (<span className='ml-1 badge badge-danger'>{t(`deine Antwort`)}</span>) : ''}
         <div className="bg-success" style={{width:props.percentage}}></div>
     </div>
 )
 
-const Question = props => {
+const Question = (props, {t}) => {
     const percentage = props.answers.find(a => a.correct).percentage
     return (
         <div className="row">
@@ -24,7 +25,7 @@ const Question = props => {
                             <Answer key={answer.label} {...answer}>{answer.text}</Answer>) }
                     </div>
                     <SimpleBar value={percentage}>
-                        {percentage} % haben diese Frage richtig beantwortet
+                        {percentage} {t(`% haben diese Frage richtig beantwortet`)}
                     </SimpleBar>
                     <div className="text-right">
                         { (props.tags || []).map(tag => <span className="badge badge-primary mr-1 bg-info" key={tag.label}>{ tag.label }</span> )}
@@ -35,4 +36,4 @@ const Question = props => {
     )
 }
 
-export default Question
+export default withTranslation() (Question)

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { OrdinalChart } from '../Charting/Chart'
 import { XAxis, YAxis } from '../Charting/Axis'
 import BarGraph from '../Charting/BarGraph'
+import { withTranslation } from 'react-i18next'
 const exams = ['alle MCs', 'letzter PTM']
 
 class Subject extends Component {
@@ -21,6 +22,7 @@ class Subject extends Component {
     }
 
     render() {
+        const {t} = this.props
         const data = exams.map((d, i) => ({ x:d, y: [this.props.data[i].correct, this.props.data[i].questions]}))
         return (
             <div className="card m-2 flex-grow-1 with-shadow" style={{width: '20rem'}}>
@@ -28,7 +30,7 @@ class Subject extends Component {
                     <span className="font-weight-bold">{this.props.title}</span>
                     <div className="p-4">
                         <OrdinalChart style={{height:'15rem'}} xDomain={exams} yDomain={[0,30]}>
-                            <YAxis label="gestellte vs. richtige Fragen" ticks={{count: 4}} />
+                            <YAxis label={t(`gestellte vs. richtige Fragen`)} ticks={{count: 4}} />
                             <XAxis />
                             <BarGraph labels data={ data } color="hsla(250, 100%, 50%, .6)" />
                         </OrdinalChart>
@@ -39,4 +41,4 @@ class Subject extends Component {
     }
 }
 
-export default Subject
+export default withTranslation()(Subject)

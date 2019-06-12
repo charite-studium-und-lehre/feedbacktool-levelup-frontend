@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom'
 import makeExtendable from './makeExtendable'
+import { withTranslation } from 'react-i18next'
 
-export default makeExtendable(function Navbar(props) {
+export default withTranslation() (makeExtendable(function Navbar(props, {t}) {
     const isLoggedIn = props.isLoggedIn;
     let button;
 
@@ -21,13 +22,13 @@ export default makeExtendable(function Navbar(props) {
             <div className={`collapse navbar-collapse ${props.extended && 'show'}`} id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/dashboard">Dashboard <span className="sr-only">(current)</span></NavLink>
+                        <NavLink className="nav-link" to="/dashboard">{t(`Dashboard`)}<span className="sr-only">(current)</span></NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/practicals">Ärztliche Tätigkeiten</NavLink>
+                        <NavLink className="nav-link" to="/practicals">{t(`Ärztliche Tätigkeiten`)}</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/consulting">Beratung</NavLink>
+                        <NavLink className="nav-link" to="/consulting">{t(`Beratung`)}</NavLink>
                     </li>
                 </ul>
                 <ul className="navbar-nav">
@@ -39,3 +40,4 @@ export default makeExtendable(function Navbar(props) {
         </nav>
     );
 })
+)

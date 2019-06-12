@@ -4,8 +4,9 @@ import _ from 'lodash'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons'
 import { selectors, actions } from './Store'
+import { withTranslation } from 'react-i18next'
 
-const Numbers = props => (
+const Numbers = (props, {t}) => (
     <span>
         {props.edit &&
         <FontAwesomeIcon icon={faMinusCircle} className="text-muted mr-1" onClick={ props.decrement }/>
@@ -16,7 +17,7 @@ const Numbers = props => (
         }
     </span>
 )
-const Score = props => (
+const Score = (props, {t}) => (
     <div className="row text-center">
         <div className="col-6 pr-0 text-danger">
             <Numbers 
@@ -26,7 +27,7 @@ const Score = props => (
                 increment={_.partial(props.levelUpDone, props.entryId)}
                 decrement={_.partial(props.levelDownDone, props.entryId)} />
             {props.headings && 
-            <div >Habe ich gemacht</div>
+            <div >{t(`Habe ich gemacht`)}</div>
             }
         </div>
         <div className="col-6 pl-0 text-success">
@@ -37,7 +38,7 @@ const Score = props => (
                 increment={_.partial(props.levelUpConfident, props.entryId)}
                 decrement={_.partial(props.levelUpConfident, props.entryId)} />
             {props.headings && 
-            <div >Traue ich mir zu</div>
+            <div >{t(`Traue ich mir zu`)}</div>
             }
         </div>
     </div>
@@ -48,4 +49,4 @@ const stateToProps = (state, ownProps) => ({
     maxScore: selectors.getMaxScore(state, ownProps.entryId),
 })
 
-export default connect(stateToProps, actions)(Score)
+export default withTranslation() (connect(stateToProps, actions)(Score))
