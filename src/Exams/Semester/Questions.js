@@ -7,7 +7,7 @@ import Legend from '../../Charting/Legend'
 import Legends from '../../Core/LegendTexts'
 import Filter from '../../Utils/Filter'
 import { withTranslation } from 'react-i18next'
-const LegendText = Legends.Exams.Semester.Questions
+// const LegendText = Legends.Exams.Semester.Questions
 
 let filters = _.uniq(_.flatMap(DummyQuestions, q => q.tags)).map(t => ({label: t.label, pred: q => _.includes(q.tags, t)})).concat([
     { label: 'richtig beantwortet', pred: q => q.answers.some( a => a.correct && a.selected )},
@@ -31,7 +31,7 @@ class Questions extends Component {
                 <div className="row">
                     <div className="col">
                         {/* <h4 className="mr-auto">Semesterprüfung - {match.params.test}</h4> */}
-                        <Legend title={LegendText.title}>{LegendText.text}</Legend>
+                        <Legend title={Legends.Exams.Semester.Questions.title}>{Legends.Exams.Semester.Questions.text}</Legend>
                     </div>
                 </div>
                 <Filter showAll filters={ filters } onUpdate={ filters => this.setState( { filters } )} />

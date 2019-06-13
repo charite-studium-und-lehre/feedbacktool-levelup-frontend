@@ -6,7 +6,8 @@ import Legends from '../../Core/LegendTexts'
 import InfoOverlay from './InfoOverlay'
 import Chart from './Chart'
 
-const LegendText = Legends.Dashboard.Timeline
+
+// const LegendText = Legends.Dashboard.Timeline
 const day= 1000 * 60 * 60 * 24
 const year = day * 365
 
@@ -43,11 +44,12 @@ class Timeline extends Component {
     }
 
     render() {
+    
         const {t} = this.props;
         return (
             <div className="card with-border" style={{overflow: 'hidden'}}>
                 <div className="card-body">
-                    <Legend title={t(`imeline`)}>{t(`Hier siehst du die Prüfungen, die du in letzter Zeit abgelegt hast.`)}</Legend>
+                    <Legend title={t(`Timeline`)}>{t(`Hier siehst du die Prüfungen, die du in letzter Zeit abgelegt hast.`)}</Legend>
                     <div className="p-3 pl-4 position-relative">
                         <Chart oldest={this.state.oldest} newest={this.state.newest} initTimerange={d => this.initTimerange(d)}>
                         {this.props.data.map((g, i) => (

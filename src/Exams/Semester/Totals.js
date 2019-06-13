@@ -11,7 +11,7 @@ import Legend from '../../Charting/Legend'
 import { XAxis, YAxis } from '../../Charting/Axis'
 import { TotalsData as Data } from './Data'
 import Legends from '../../Core/LegendTexts'
-const LegendText = Legends.Exams.Semester.Totals
+// const LegendText = Legends.Exams.Semester.Totals
 
 const respSwitch = (large, small) => <span><span className="d-none d-md-inline-block">{large}</span><span className="d-inline-block d-md-none">{small}</span></span>
 class Totals extends Component {
@@ -37,7 +37,7 @@ class Totals extends Component {
     render () {
         return (
             <div className="card p-4">
-                <Legend title={LegendText.title}>{LegendText.text}</Legend>
+                <Legend title={Legends.Exams.Semester.Totals.title}>{Legends.Exams.Semester.Totals.text}</Legend>
                 <div style={{textAlign: 'right'}}>
                     <label className="m-0 mr-2"><input type="radio" name="totals.mode" checked={this.state.mode === 'graph'} onChange={() => this.setMode('graph')} className="mx-2" />Graph</label>
                     <label><input type="radio" name="totals.mode" checked={this.state.mode === 'histo'} onChange={() => this.setMode('histo')} className="mx-2" />Histogramm</label>

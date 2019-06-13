@@ -1,6 +1,7 @@
 import React from 'react'
 
-export default ({t}) =>  ({
+
+const Legends =  t  =>  ({
     Dashboard: {
         Progress: {
             title: t(`Dein Studienfortschritt`),
@@ -22,11 +23,11 @@ export default ({t}) =>  ({
                 text: t(`Hier siehst du eine Aufstellung nach Fächern der von dir beantworteten Fragen in deinen Semesterprüfungen.`),
             },
             Totals: {
-                title: t(`Gesamtes Ergebnis'`),
+                title: t(`Gesamtes Ergebnis`),
                 text: t(`Dies ist eine Darstellung deines Prüfungsergebnisses. Das kumulative Histogramm stellt dar, in welchem Verhältnis du zu deiner Kohorte abgeschnitten hast. Durch das einfache Histogramm lässt sich die Verteilung der Prüfungsergebnisse einsehen.`),
             },
             Details: {
-                title: t(`Detaillierte Ergebnisse'`),
+                title: t(`Detaillierte Ergebnisse`),
                 text: t(`Hier kannst du sehen, wie du in den zu dieser Semesterprüfung dazugehörigen Modulen und Fächern in Vergleich zu der Kohorte abgeschnitten hast.`),
             },
             Questions: {
@@ -94,3 +95,4 @@ export default ({t}) =>  ({
         }
     }
 })
+export default Legends

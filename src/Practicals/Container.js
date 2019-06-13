@@ -3,11 +3,12 @@ import { connect } from 'react-redux'
 import Item from './Item'
 import Score from './Score'
 import Legend from '../Charting/Legend'
-import LegendTexts from '../Core/LegendTexts'
+import Legends from '../Core/LegendTexts'
 import Toolbar from './Toolbar'
 import { selectors } from './Store'
-const legend = LegendTexts.Practicals.Main
-
+import { useTranslation } from 'react-i18next';
+// const legend = LegendTexts.Practicals.Main
+const { t } = useTranslation();
 class Container extends React.Component {
     constructor(props) {
         super(props)
@@ -17,10 +18,11 @@ class Container extends React.Component {
     toggleEdit = () => this.setState({edit: !this.state.edit})
 
     render() {
+        
         return (
         <div style={{fontSize: '.9rem'}}>
             <div className="card p-2">
-                <Legend title={legend.title}>{legend.text}</Legend>
+                <Legend title={Legends.Practicals.Main.title}>{Legends.Practicals.Main.text}</Legend>
                 <div className="row">
                     <div className="col-12">
                         <Score headings={true} entry={this.props.root} />

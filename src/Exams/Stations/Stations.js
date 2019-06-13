@@ -9,11 +9,11 @@ import StationsChart from './StationsChart'
 import Legends from '../../Core/LegendTexts'
 import SimpleDot from '../../Charting/SimpleDot'
 import { withTranslation } from 'react-i18next'
-const LegendText = Legends.Exams.Stations.Main
+// const LegendText = Legends.Exams.Stations.Main
 const colors = scaleOrdinal(schemeSpectral[6])
 
 class Stations extends Component {
-    constructor({ props, match }) {
+    constructor({ props, match}) {
         super(props)
 
         const categories = _.uniq(_.flatMap(data, e => e.stations).map(d => d.category))
@@ -35,8 +35,8 @@ class Stations extends Component {
         <div className="container-fluid">
             <div className="row ">
                 <div className="col ">
-                    <Legend title={LegendText.title}>
-                        {LegendText.text}
+                    <Legend title={Legends.Exams.Stations.Main.title}>
+                        {Legends.Exams.Stations.Main.text}
                         <div className="position-relative">
                             {t(`Der`)} <SimpleDot style={{position: 'relative', display: 'inline-block', marginLeft: '.75rem'}} value={0} />{t(` kennzeichnet den Kohortenmittelwert.`)}
                         </div>

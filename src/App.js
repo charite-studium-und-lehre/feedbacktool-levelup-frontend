@@ -42,10 +42,8 @@ class App extends Component {
       <Provider store={createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
         <BrowserRouter basename={getBasename()}>
           <div className="App">
-
             {navbar}
             {breadcrumbs}
-
             <Route path="/login" component={login} />
             {Routes.map( route => ( route.private ?
                     <PrivateRoute key={route.path} path={route.path} component={route.component} exact={route.exact} isLoggedIn={this.state.loggedIn} /> :

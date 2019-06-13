@@ -9,9 +9,10 @@ import Strengths from '../Strengths/Strengths'
 import Stations from '../Exams/Stations/Stations'
 import Consulting from '../consulting/Consulting'
 import Practicals from '../Practicals/Practicals'
+import { withTranslation } from 'react-i18next'
 
 const Ptm = () => { window.location = 'https://progresstesting.safeserver.de'; return null;}
-const Routes = (t) => ([
+const Routes = ({t}) => ([
   {
     path: '/dashboard',
     component: Dashboard,
@@ -89,4 +90,4 @@ const Routes = (t) => ([
   },
 ])
 
-export default Routes
+export default withTranslation()(Routes)
