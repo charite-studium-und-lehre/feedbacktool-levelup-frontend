@@ -4,7 +4,7 @@ import ConsultingCard from "./ConsultingCard"
 import "./Consulting.css";
 import { ConsultingTree } from './ConsultingTree'
 
-export default withTranslation()(function Consulting({ t }) {
+ function Consulting({t}) {
     return (
         <div className="container-fluid">
             <div className="consulting">
@@ -45,7 +45,8 @@ export default withTranslation()(function Consulting({ t }) {
             </div>
         </div>
     )
-})
+}
+export default withTranslation() (Consulting)
 
 
 

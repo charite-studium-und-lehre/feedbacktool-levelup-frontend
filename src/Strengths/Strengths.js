@@ -10,17 +10,18 @@ import Legends from '../Core/LegendTexts'
 import { withTranslation } from 'react-i18next'
 import { useTranslation } from 'react-i18next';
 // const LegendText = LegendTexts.Strengths
-
+const {t} = useTranslation();
 const mcSample = Subjects('mc')    
 const ptmSample = Subjects('ptm')
-const Strengths = ({ match, t}) => {
-    // const {t} = useTranslation();
+
+const Strengths = ({ match }) => {
+    
     const active = Math.max(...mcSample.map((c,i) => _.includes(c.subjects.map(s => s.title), match.params.subject) ? i : -1), 0)
     return (
     <div className="container-fluid">
         <div className="row">
             <div className="col">
-                <Legend title={Legends.LegendsTree.Strengths.Main.map(e => e.title)}>{Legends.LegendsTree.Strengths.Main.map(e => e.text)}</Legend>
+                <Legend title={Legends(t).Strengths.Main.title}>{Legends(t).Strengths.Main.text}</Legend>
             </div>
         </div>
         <div className="row mt-3">
@@ -52,4 +53,4 @@ const Strengths = ({ match, t}) => {
     </div>
 )}
 
-export default withTranslation() (Strengths)
+export default Strengths

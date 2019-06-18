@@ -14,6 +14,7 @@ import PrivateRoute from './Core/PrivateRoute'
 import Routes from './Core/Routes'
 import { withTranslation } from 'react-i18next'
 // import { useTranslation } from 'react-i18next';
+import Consulting from './consulting/Consulting'
 
 // const {t} = useTranslation()
 
@@ -26,7 +27,6 @@ class App extends Component {
   }
 
   render() {
-    debugger;
 const {t} = this.props
     let navbar = (
       <Navbar isLoggedIn={this.state.loggedIn}></Navbar>
@@ -49,6 +49,7 @@ const {t} = this.props
         <BrowserRouter basename={getBasename()}>
           <div className="App">
             {navbar}
+            <Consulting/>
             {breadcrumbs}
             <Route path="/login" component={login} />
             {Routes(t).map( route => ( route.private ?

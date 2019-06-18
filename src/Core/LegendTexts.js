@@ -2,7 +2,6 @@ import React from 'react'
 
 
 const Legends =  t  =>  ({
-
     Dashboard: {
         Progress: {
             title: t(`Dein Studienfortschritt`),

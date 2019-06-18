@@ -8,7 +8,8 @@ import BarGraph from '../Charting/BarGraph'
 import PointGraph from '../Charting/PointGraph'
 import Legend from '../Charting/Legend'
 import Legends from '../Core/LegendTexts'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
+
 // const LegendText = LegendTexts.Strengths
 
 const colors = scaleOrdinal(schemeBlues[3])
@@ -22,8 +23,9 @@ const results = [
 ]
 
 const means = [77, 22, 101]
+const {t} = useTranslation();
 
-const PTMResults =( props, {t}) => (
+const PTMResults =( props ) => (
     <div className="card">
         <div className="card-body">
             <Legend title={Legends(t).Strengths.PTMResults.title}>{Legends(t).Strengths.PTMResults.text}
@@ -50,4 +52,4 @@ const PTMResults =( props, {t}) => (
     </div>
 )
 
-export default withTranslation() (PTMResults)
+export default PTMResults

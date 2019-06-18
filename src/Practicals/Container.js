@@ -6,20 +6,24 @@ import Legend from '../Charting/Legend'
 import Legends from '../Core/LegendTexts'
 import Toolbar from './Toolbar'
 import { selectors } from './Store'
+import { withTranslation } from 'react-i18next'
+
 import { useTranslation } from 'react-i18next';
 // const legend = LegendTexts.Practicals.Main
-const { t } = useTranslation();
+
 
 class Container extends React.Component {
-    constructor(props ) {
+    constructor(t, props  ) {
         super(props)
         this.state = { edit: false }
+        this.t = t
     }
 
     toggleEdit = () => this.setState({edit: !this.state.edit})
 
     render() {
-        const {t} = this.props
+        // const { t } = useTranslation();
+        const {t} = this.t 
         return (
         <div style={{fontSize: '.9rem'}}>
             <div className="card p-2">
@@ -42,4 +46,4 @@ class Container extends React.Component {
     }
 }
 // var a = selectors.getItemByLabel(state, 'root')
-export default connect(state => ({ root: selectors.getItemByLabel(state, 'root') }))(Container)
+export default connect(state => ({ root: selectors.getItemByLabel(state, 'root') }))( withTranslation()(Container))
