@@ -7,7 +7,7 @@ import Legends from '../../Core/LegendTexts'
 import BarWithHeader from './BarWithHeader'
 import { DetailsData } from './Data'
 
-const LegendText = Legends.Exams.Semester.Details
+// const LegendText = Legends.Exams.Semester.Details
 
 class Details extends Component {
     constructor(props) {
@@ -22,13 +22,14 @@ class Details extends Component {
     }
 
     render() {
+        const {t} = this.props
         return (
             <div>
                 <div className="card p-4" style={{ overflow: 'hidden' }}>
                     <Legend title={LegendText.title}>
                         {LegendText.text}
                         <div className="position-relative">
-                            Der <SimpleDot style={{ position: 'relative', display: 'inline-block', marginLeft: '.75rem' }} value={0} /> kennzeichnet den Kohortenmittelwert.
+                            Der <SimpleDot style={{ position: 'relative', display: 'inline-block', marginLeft: '.75rem' }} value={0} />  {t(`kennzeichnet den Kohortenmittelwert.`)}
                     </div>
                     </Legend>
 

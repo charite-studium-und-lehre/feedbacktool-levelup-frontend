@@ -1,0 +1,71 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-05-31T14:34:10+02:00
+
+====== Details einer Prüfung ======
+
+
+== GET-Aufruf: ==
+[[/api/pruefung/<id]]>
+
+success: HTTP-Code 200
+
+Rückgabe:
+'''
+
+{
+	"typ": "<ptm|mc|station>",
+	"studiPruefungsId": "<ID">,
+	"name": "<Bezeichnung>",
+	"datum": "<ISO-Datum>",
+	"ergebnis": <PTM-Ergebnis|MC-Ergebnis|Stations-Ergebnis>
+},
+'''
+
+MC-Ergebnis:
+'''
+{
+'''
+	'''
+	"kohortePunkte": [<Ergebnis1, Ergebnis2, ...>],
+	"ergebnisPunkte": <Ergebnis>,
+	"module": [
+	'''
+		'''
+		{
+		'''
+			'''
+			"code": "<Nummer, z.B. 'Modul 10'>",
+			"titel": "<Name>",
+			"ergebnisPunkte": <Punkte>,
+			"durchschnittPunkte": <Kohortendurchschnitt>,
+			"maximalpunktzahl": <Anzahl Fragen>,
+			'''
+		'''
+		},
+		'''
+	'''
+	],
+	"faecher": [
+	'''
+		'''
+		{
+		'''
+
+			'''
+			"titel": "<Name>",
+			"ergebnisPunkte": <Punkte>,
+			"durchschnittPunkte": <Kohortendurchschnitt>,
+			"maximalpunktzahl": <Anzahl Fragen>,
+			'''
+		'''
+		},
+		'''
+
+'']''
+'''
+}
+'''
+
+	
+

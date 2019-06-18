@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withTranslation } from 'react-i18next'
 import PointGraph from '../../Charting/PointGraph'
 import Legend from '../../Charting/Legend'
 import Legends from '../../Core/LegendTexts'
@@ -7,12 +8,13 @@ import Chart from './Chart'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {   faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
-const LegendText = Legends.Dashboard.Timeline
+
+// const LegendText = Legends.Dashboard.Timeline
 const day= 1000 * 60 * 60 * 24
 const year = day * 365
 
 class Timeline extends Component {
-    constructor(props) {
+    constructor({props}) {
         super(props)
         this.state = {
             timerange: [null, new Date()],
@@ -44,10 +46,12 @@ class Timeline extends Component {
     }
 
     render() {
+        const {t} = this.props;
+        
         return (
             <div className="card with-border" style={{overflow: 'hidden'}}>
                 <div className="card-body">
-                    <Legend title={LegendText.title}>{LegendText.text}</Legend>
+                    <Legend title={t(`Timeline`)}>{t(`Hier siehst du die Prüfungen, die du in letzter Zeit abgelegt hast.`)}</Legend>
                     <div className="p-3 pl-4 position-relative">
                         <Chart oldest={this.state.oldest} newest={this.state.newest} initTimerange={d => this.initTimerange(d)}>
                         {this.props.data.map((g, i) => (
@@ -67,6 +71,7 @@ class Timeline extends Component {
                     </div>
                     <div className="">
                         <span className="text-primary ml-3" style={{fontSize: '.8rem', cursor:'pointer', fontSize:'16px'}} onClick={() => this.zoomOut()}><FontAwesomeIcon icon={ faChevronLeft} /><FontAwesomeIcon icon={ faChevronLeft} /></span>
+
                     </div>
                     <div className="mt-2">
                         {this.props.data.map(g => (
@@ -79,4 +84,4 @@ class Timeline extends Component {
     }
 }
 
-export default Timeline
+export default withTranslation()(Timeline)

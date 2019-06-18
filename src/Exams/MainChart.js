@@ -7,7 +7,9 @@ import InfoOverlay from './InfoOverlay'
 import Legend from '../Charting/Legend'
 import { XAxis, YAxis } from '../Charting/Axis'
 import Legends from '../Core/LegendTexts'
-const LegendText = Legends.Exams.MainChart
+
+// const LegendText = Legends.Exams.MainChart
+
 
 class MainChart extends Component {
     constructor(props) {
@@ -42,7 +44,7 @@ class MainChart extends Component {
                 <div className="card-body">
                     <div className="d-flex ">
                         <div className="flex-grow-1">
-                            <Legend title={LegendText.title}>{LegendText.text}</Legend>
+                            <Legend title={Legends.Exams.MainChart.title}>{Legends.Exams.MainChart.text}</Legend>
                             <div className="m-3" style={{height: '12rem'}}>
                                 <TimeChart xDomain={[new Date(2011, 6, 15),new Date(2018, 6, 15)]} yDomain={[0,100]}>
                                     <XAxis ticks={{count: this.props.pointCount}} label="Semester"/>

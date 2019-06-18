@@ -2,8 +2,9 @@ import React from 'react'
 import _ from 'lodash'
 import { Link } from 'react-router-dom'
 import { HorizontalBarChart } from '../Charting/HorizontalBarGraph'
+import { withTranslation } from 'react-i18next'
 
-const SemesterInfo = props => {
+const SemesterInfo =( props, {t}) => {
     const data = _.range(4).map(i => ({y: `Modul 0${i+1}`, x: _.random(5,100)}))
 
     return (<div>
@@ -23,4 +24,4 @@ const SemesterInfo = props => {
     </div>)
 }
 
-export default SemesterInfo
+export default withTranslation() (SemesterInfo)

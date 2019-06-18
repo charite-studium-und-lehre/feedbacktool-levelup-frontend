@@ -4,7 +4,8 @@ import _ from 'lodash'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons'
 import { selectors, actions } from './Store'
-
+import { useTranslation } from 'react-i18next';
+const { t } = useTranslation();
 const Numbers = props => (
     <span>
         {props.edit &&
@@ -16,7 +17,8 @@ const Numbers = props => (
         }
     </span>
 )
-const Score = props => (
+const Score = (props ) => (
+    
     <div className="row text-center">
         <div className="col-6 pr-0 text-danger">
             <Numbers 
@@ -26,7 +28,7 @@ const Score = props => (
                 increment={_.partial(props.levelUpDone, props.entryId)}
                 decrement={_.partial(props.levelDownDone, props.entryId)} />
             {props.headings && 
-            <div >Habe ich gemacht</div>
+            <div >{t(`Habe ich gemacht`)}</div>
             }
         </div>
         <div className="col-6 pl-0 text-success">
@@ -37,7 +39,7 @@ const Score = props => (
                 increment={_.partial(props.levelUpConfident, props.entryId)}
                 decrement={_.partial(props.levelUpConfident, props.entryId)} />
             {props.headings && 
-            <div >Traue ich mir zu</div>
+            <div >{t(`Traue ich mir zu`)}</div>
             }
         </div>
     </div>

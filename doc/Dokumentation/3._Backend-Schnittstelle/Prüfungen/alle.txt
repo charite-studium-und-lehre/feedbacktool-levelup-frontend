@@ -1,0 +1,47 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-05-31T14:33:58+02:00
+
+====== alle ======
+
+
+== GET-Aufruf: ==
+[[/api/pruefung]]
+
+success: HTTP-Code 200
+
+GET-Aufruf ohne Parameter:
+
+Rückgabe:
+'''
+{
+	"pruefungen": [
+		{
+			"typ": "<ptm|mc|station>",
+			"studiPruefungsId": "<ID">,
+			"name": "<Bezeichnung>",
+			"datum": "<ISO-Datum>",
+			"ergebnis": <PTM-Ergebnis|MC-Ergebnis|Stations-Ergebnis>
+		},
+	]
+
+}
+
+PTM-Ergebnis:
+{
+'''
+		''"antwortenRichtig": <>,''
+''	"antwortenFalsch": <>,''
+''	"antwortenWeißNicht": <>,''
+'''
+}
+
+MC-Ergebnis/Stations-Ergebnis:
+{
+'''
+		''"ergebnisProzent": <>,''
+''	"durchschnitt": <>,''
+'''
+}
+
+'''

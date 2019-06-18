@@ -1,0 +1,50 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-05-31T13:27:26+02:00
+
+====== Login ======
+
+Maske:
+Benutzername, Passwort
+
+(evtl. später Shibolleth extern)
+
+
+== Schnittstelle: ==
+Aufruf an Server:
+
+/api/login
+
+== POST-Aufruf: ==
+
+'''
+{
+'''
+	'''
+	"username" : <username>,
+	 "password" : <pwe>
+	}
+	'''
+
+
+=== Erfolg: ===
+success: HTTP-Code 200
+
+Rückgabe:
+'''
+{
+	"vorname": <vorname>,
+	"nachname": <nachname>,
+	"stammdatenVorhanden": <true|false>
+'''
+
+'''
+}
+'''
+
+
+== Ergebnis: ==
+Cookie wird serverseitig vom Backend gesetzt (als "angemeldet")
+
+=== fail: ===
+HTTP-Code 404 (Falscher Benutzer)

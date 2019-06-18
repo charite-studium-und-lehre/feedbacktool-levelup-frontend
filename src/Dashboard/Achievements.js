@@ -2,7 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeartbeat, faHeart, faSyringe, faHospital, faBandAid, faBookOpen, faMedkit } from '@fortawesome/free-solid-svg-icons'
 
-export default function Achievements() {
+export default  function Achievements() {
     const achievements = [
         {name: 'Basic Life Support', done: true, icon: faHeart}, 
         {name: 'Advanced Life Support',  done: true, icon: faHeartbeat}, 
