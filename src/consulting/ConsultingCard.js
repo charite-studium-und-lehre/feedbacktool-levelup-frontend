@@ -2,10 +2,10 @@ import React from 'react';
 import { withTranslation } from 'react-i18next'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPhoneVolume, faAt, faUser, faComments, faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons'
+import { useTranslation } from 'react-i18next'
+const { t } = useTranslation();
 
-
-export default withTranslation()(function ConsultingCard (props, { t } )  {
-        return (
+const ConsultingCard = props =>  (
     <div className="card col-lg-4 col-sm-6  ">
         <div className="card-body">
             <h2 className="card-title text-center ">{props.title}</h2>
@@ -67,8 +67,8 @@ export default withTranslation()(function ConsultingCard (props, { t } )  {
         </div>
         <a className="btn btn-primary consulting-butten " href={props.href}>{t`Mehr erfahren`}</a>
     </div>
-    )
-  })
+)
+  export default ConsultingCard
 
 
 

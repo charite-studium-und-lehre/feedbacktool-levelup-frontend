@@ -7,9 +7,9 @@ import { XAxis, YAxis } from '../Charting/Axis'
 import BarGraph from '../Charting/BarGraph'
 import PointGraph from '../Charting/PointGraph'
 import Legend from '../Charting/Legend'
-import LegendTexts from '../Core/LegendTexts'
+import Legends from '../Core/LegendTexts'
 import { withTranslation } from 'react-i18next'
-const LegendText = LegendTexts.Strengths
+// const LegendText = LegendTexts.Strengths
 
 const colors = scaleOrdinal(schemeBlues[3])
 const labels = ['richtig', 'falsch', 'nicht beantwortet']
@@ -26,7 +26,7 @@ const means = [77, 22, 101]
 const PTMResults =( props, {t}) => (
     <div className="card">
         <div className="card-body">
-            <Legend title={LegendText.PTMResults.title}>{LegendText.PTMResults.text}
+            <Legend title={Legends(t).Strengths.PTMResults.title}>{Legends(t).Strengths.PTMResults.text}
                 <div className="mt-2">{confidence.map((c, i) => 
                     <span key={i} className="d-inline-block mr-2" style={{height: '1.2rem', lineHeight: '1.2rem'}}>
                         <span className="d-inline-block mr-1" style={{width: '2rem', height: '100%', backgroundColor: colors(i)}}>&nbsp;</span>

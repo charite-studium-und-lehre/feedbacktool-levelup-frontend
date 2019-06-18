@@ -6,27 +6,29 @@ import Ranking from './Ranking'
 import PTMResults from './PTMResults'
 import SubjectsTabs from '../Core/Tabs'
 import Legend from '../Charting/Legend'
-import LegendTexts from '../Core/LegendTexts'
+import Legends from '../Core/LegendTexts'
 import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 // const LegendText = LegendTexts.Strengths
 
 const mcSample = Subjects('mc')    
 const ptmSample = Subjects('ptm')
-const Strengths = ({ match, t }) => {
+const Strengths = ({ match, t}) => {
+    // const {t} = useTranslation();
     const active = Math.max(...mcSample.map((c,i) => _.includes(c.subjects.map(s => s.title), match.params.subject) ? i : -1), 0)
     return (
     <div className="container-fluid">
         <div className="row">
             <div className="col">
-                <Legend title={LegendTexts.Strengths.Main.title}>{LegendTexts.Strengths.Main.text}</Legend>
+                <Legend title={Legends.LegendsTree.Strengths.Main.map(e => e.title)}>{Legends.LegendsTree.Strengths.Main.map(e => e.text)}</Legend>
             </div>
         </div>
         <div className="row mt-3">
             <div className="col-md-4 mb-2">
-                <Ranking title={LegendTexts.Strengths.Semester.title} text={LegendTexts.Strengths.Semester.text} subjects={ranking(mcSample)} />
+                <Ranking title={Legends(t).Strengths.Semester.title} text={Legends(t).Strengths.Semester.text} subjects={ranking(mcSample)} />
             </div>
             <div className="col-md-4 mb-2">
-                <Ranking title={LegendTexts.Strengths.PTM.title} text={LegendTexts.Strengths.PTM.text} subjects={ranking(ptmSample)} mean />
+                <Ranking title={Legends(t).Strengths.PTM.title} text={Legends(t).Strengths.PTM.text} subjects={ranking(ptmSample)} mean />
             </div>
             <div className="col-md-4 mb-2">
                 <PTMResults />
@@ -36,7 +38,7 @@ const Strengths = ({ match, t }) => {
         <div className="row">
             <div className="col">
                 <div className="card p-3">
-                    <Legend title={LegendTexts.Strengths.Subjects.title}>{LegendTexts.Strengths.Subjects.text}</Legend>
+                    <Legend title={Legends(t).Strengths.Subjects.title}>{Legends(t).Strengths.Subjects.text}</Legend>
                     <SubjectsTabs active={active}>
                         {_.zip(mcSample, ptmSample).map(([mcCat, ptmCat]) => 
                             <div key={mcCat.title} title={mcCat.title} className="d-flex flex-wrap">

@@ -9,8 +9,9 @@ import { selectors } from './Store'
 import { useTranslation } from 'react-i18next';
 // const legend = LegendTexts.Practicals.Main
 const { t } = useTranslation();
+
 class Container extends React.Component {
-    constructor(props) {
+    constructor(props ) {
         super(props)
         this.state = { edit: false }
     }
@@ -18,11 +19,11 @@ class Container extends React.Component {
     toggleEdit = () => this.setState({edit: !this.state.edit})
 
     render() {
-        
+        const {t} = this.props
         return (
         <div style={{fontSize: '.9rem'}}>
             <div className="card p-2">
-                <Legend title={Legends.Practicals.Main.title}>{Legends.Practicals.Main.text}</Legend>
+                <Legend title={Legends(t).Practicals.Main.title}>{Legends(t).Practicals.Main.text}</Legend>
                 <div className="row">
                     <div className="col-12">
                         <Score headings={true} entry={this.props.root} />
@@ -40,5 +41,5 @@ class Container extends React.Component {
         </div>)
     }
 }
-
+// var a = selectors.getItemByLabel(state, 'root')
 export default connect(state => ({ root: selectors.getItemByLabel(state, 'root') }))(Container)

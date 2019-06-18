@@ -4,8 +4,11 @@ import Legend from '../Charting/Legend'
 import makeExtendable from '../Core/makeExtendable'
 import SimpleBar from '../Charting/SimpleBar'
 import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 
-const Ranking = (props, {t}) =>
+const Ranking = (props ) =>{
+const {t} = useTranslation();
+return (
     <div className="card">
         <div className="card-body">
             <Legend title={props.title}>{props.text}</Legend>
@@ -26,5 +29,7 @@ const Ranking = (props, {t}) =>
             </div>
         </div>
     </div>
+)
+}
 
-export default withTranslation() (makeExtendable(Ranking))
+export default  makeExtendable(Ranking) 

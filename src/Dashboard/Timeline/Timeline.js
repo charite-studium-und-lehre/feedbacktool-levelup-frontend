@@ -44,8 +44,8 @@ class Timeline extends Component {
     }
 
     render() {
-    
         const {t} = this.props;
+        
         return (
             <div className="card with-border" style={{overflow: 'hidden'}}>
                 <div className="card-body">

@@ -2,6 +2,7 @@ import React from 'react'
 
 
 const Legends =  t  =>  ({
+
     Dashboard: {
         Progress: {
             title: t(`Dein Studienfortschritt`),
@@ -94,5 +95,7 @@ const Legends =  t  =>  ({
             </div>
         }
     }
+    
 })
+
 export default Legends

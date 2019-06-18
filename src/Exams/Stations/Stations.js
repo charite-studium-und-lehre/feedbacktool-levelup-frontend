@@ -35,8 +35,8 @@ class Stations extends Component {
         <div className="container-fluid">
             <div className="row ">
                 <div className="col ">
-                    <Legend title={Legends.Exams.Stations.Main.title}>
-                        {Legends.Exams.Stations.Main.text}
+                    <Legend title={Legends(t).Exams.Stations.Main.title}>
+                        {Legends(t).Exams.Stations.Main.text}
                         <div className="position-relative">
                             {t(`Der`)} <SimpleDot style={{position: 'relative', display: 'inline-block', marginLeft: '.75rem'}} value={0} />{t(` kennzeichnet den Kohortenmittelwert.`)}
                         </div>
