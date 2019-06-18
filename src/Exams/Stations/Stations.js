@@ -9,13 +9,12 @@ import StationsChart from './StationsChart'
 import Legends from '../../Core/LegendTexts'
 import SimpleDot from '../../Charting/SimpleDot'
 import { withTranslation } from 'react-i18next'
-// const LegendText = Legends.Exams.Stations.Main
 const colors = scaleOrdinal(schemeSpectral[6])
 
 class Stations extends Component {
     constructor({ props, match}) {
         super(props)
-
+        
         const categories = _.uniq(_.flatMap(data, e => e.stations).map(d => d.category))
         const groups = _.uniq(data.map(d => d.group))
         this.categoryColors = c => colors(categories.indexOf(c))
@@ -23,11 +22,12 @@ class Stations extends Component {
         const groupFilters = groups.map(g => ({ label: g, pred: e => e.group === g, selected: g === match.params.test || match.params.test === 'all'}))
         this.state = { categoryFilters, groupFilters }
     }
-
+    
     render() {
         const {t} = this.props
+        const LegendText = Legends(t).Exams.Stations.Main
         const filteredData = data
-            .filter(_.overSome(this.state.groupFilters.filter(f => f.selected).map(f => f.pred)))
+        .filter(_.overSome(this.state.groupFilters.filter(f => f.selected).map(f => f.pred)))
             .map(e => ({...e, stations: e.stations
                 .filter(_.overSome(this.state.categoryFilters.filter(f => f.selected).map(f => f.pred)))
         }))
@@ -35,8 +35,8 @@ class Stations extends Component {
         <div className="container-fluid">
             <div className="row ">
                 <div className="col ">
-                    <Legend title={Legends(t).Exams.Stations.Main.title}>
-                        {Legends(t).Exams.Stations.Main.text}
+                    <Legend title={LegendText.title}>
+                        {LegendText.text}
                         <div className="position-relative">
                             {t(`Der`)} <SimpleDot style={{position: 'relative', display: 'inline-block', marginLeft: '.75rem'}} value={0} />{t(` kennzeichnet den Kohortenmittelwert.`)}
                         </div>

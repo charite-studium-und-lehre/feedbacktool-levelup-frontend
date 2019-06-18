@@ -1,8 +1,8 @@
 import _ from 'lodash'
-import { useTranslation } from 'react-i18next';
-const {t} = useTranslation();
+import { useTranslation } from 'react-i18next'
+const { t } = useTranslation()
 
-const praticalsTree = (t) => ({
+const praticalsTree = t => ({
   label: 'root',
   entries: [
       {

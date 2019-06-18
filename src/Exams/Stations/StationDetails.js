@@ -3,7 +3,7 @@ import _ from 'lodash'
 import { withTranslation } from 'react-i18next'
 import SimpleBar from '../../Charting/SimpleBar'
 
-const StationDetails = (props, {t}) => (
+const StationDetails = props => (
     <div className="mt-2">
         {props.data.map((d, i) => 
             <div>
@@ -16,7 +16,7 @@ const StationDetails = (props, {t}) => (
                 }
             </div>
         )}
-        <div style={{fontSize: '.8rem'}} className="text-primary text-right">{t(`schließen`)}</div>
+        <div style={{fontSize: '.8rem'}} className="text-primary text-right">{props.t(`schließen`)}</div>
     </div>
 )
 

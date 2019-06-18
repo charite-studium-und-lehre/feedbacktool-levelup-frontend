@@ -30,14 +30,9 @@ export default withTranslation()(({ t }) =>
                         header={Math.round(Math.random() * 100) + ' %'} 
                         title={t('Ärztliche Tätigkeiten')} 
                         text={t('Dein Überblick zur Entwicklung deiner praktischen Fähigkeiten im Studienverlauf.')}>
-                        result="2/5"
-                        >
-                            {StationsData.map(e => 
-                            <div key={e.exam}>
-                                <span className="text-secondary" style={{fontSize: '.8rem'}}>{e.exam}</span>
-                                <SimpleBar value={e.result} >{e.result} %</SimpleBar>
-                            </div>)}
-
+                        <div className="m-2">
+                            <PracticalsScore headings />
+                        </div>
                         </DashboardCard>
                     </Link>
                 </div>
@@ -64,7 +59,7 @@ export default withTranslation()(({ t }) =>
                         title={t(`Deine Stärken`)} 
                         text={t(`Dein Überblick zu deinen fächerorientierten Stärken im PTM und den Semesterprüfungen über das gesamte Studium.`)}>
                         <div className="mb-3">
-                            <div style={{fontSize: '.8rem'}} className="text-secondary">t{`Stärkstes Fach in den MCs`}</div>
+                            <div style={{fontSize: '.8rem'}} className="text-secondary">{t`Stärkstes Fach in den MCs`}</div>
                             {mcStrongestSubject.title}
                             <SimpleBar value={mcStrongestSubject.correct} total={mcStrongestSubject.questions}>{mcStrongestSubject.correct} von {mcStrongestSubject.questions}</SimpleBar>
                         </div>

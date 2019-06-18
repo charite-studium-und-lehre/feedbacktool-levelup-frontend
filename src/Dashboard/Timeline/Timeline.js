@@ -8,8 +8,6 @@ import Chart from './Chart'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {   faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
-
-// const LegendText = Legends.Dashboard.Timeline
 const day= 1000 * 60 * 60 * 24
 const year = day * 365
 
@@ -23,18 +21,18 @@ class Timeline extends Component {
             selectedPoint: null 
         }       
     }
-
+    
     initTimerange(oldest) {
         this.setState({ oldest, timerange: [oldest, this.state.timerange[1]] })
     }
-
+    
     zoomIn(point, graph) {
         const newState = this.state.selectedPoint ? 
-            { oldest: this.state.timerange[0], newest: this.state.timerange[1], selectedPoint: null, graph: null } :
-            { selectedPoint: point, oldest: new Date(point.x.getTime() - day * 1), newest: new Date(point.x.getTime() + day * 7 * 2), graph }
+        { oldest: this.state.timerange[0], newest: this.state.timerange[1], selectedPoint: null, graph: null } :
+        { selectedPoint: point, oldest: new Date(point.x.getTime() - day * 1), newest: new Date(point.x.getTime() + day * 7 * 2), graph }
         this.setState(newState)
     }
-
+    
     zoomOut() {
         const t = new Date(this.state.timerange[0].getTime() - year)
         this.setState( { 
@@ -44,14 +42,14 @@ class Timeline extends Component {
             selectedPoint: null 
         })
     }
-
+    
     render() {
-        const {t} = this.props;
-        
+        const {t} = this.props
+        const LegendText = Legends(t).Dashboard.Timeline
         return (
             <div className="card with-border" style={{overflow: 'hidden'}}>
                 <div className="card-body">
-                    <Legend title={t(`Timeline`)}>{t(`Hier siehst du die Prüfungen, die du in letzter Zeit abgelegt hast.`)}</Legend>
+                    <Legend title={LegendText.title}>{LegendText.text}</Legend>
                     <div className="p-3 pl-4 position-relative">
                         <Chart oldest={this.state.oldest} newest={this.state.newest} initTimerange={d => this.initTimerange(d)}>
                         {this.props.data.map((g, i) => (

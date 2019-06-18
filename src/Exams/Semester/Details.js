@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { withTranslation } from 'react-i18next'
 import _ from 'lodash'
 import Legend from '../../Charting/Legend'
 import SimpleDot from '../../Charting/SimpleDot'
@@ -7,27 +8,26 @@ import Legends from '../../Core/LegendTexts'
 import BarWithHeader from './BarWithHeader'
 import { DetailsData } from './Data'
 
-// const LegendText = Legends.Exams.Semester.Details
-
-class Details extends Component {
+const Details = withTranslation() ( class extends Component {
     constructor(props) {
         super(props)
         this.state = {
             mode: 'modules'
         }
     }
-
+    
     setMode(mode) {
         this.setState({ mode })
     }
-
+    
     render() {
         const {t} = this.props
+        const LegendText = Legends(t).Exams.Semester.Details
         return (
             <div>
                 <div className="card p-4" style={{ overflow: 'hidden' }}>
-                    <Legend title={Legends.Exams.Semester.Details.title}>
-                        {Legends.Exams.Semester.Details.text}
+                    <Legend title={LegendText.title}>
+                        {LegendText.text}
                         <div className="position-relative">
                             Der <SimpleDot style={{ position: 'relative', display: 'inline-block', marginLeft: '.75rem' }} value={0} />  {t(`kennzeichnet den Kohortenmittelwert.`)}
                     </div>
@@ -72,6 +72,6 @@ class Details extends Component {
             </div>
         )
     }
-}
+})
 
 export default props => <Details {...DetailsData(props.semester)} />

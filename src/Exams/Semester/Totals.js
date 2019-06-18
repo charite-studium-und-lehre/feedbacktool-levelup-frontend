@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withTranslation } from 'react-i18next'
 import _ from 'lodash'
 import { curveStep } from 'd3-shape'
 import { LinearChart } from '../../Charting/Chart'
@@ -11,10 +12,9 @@ import Legend from '../../Charting/Legend'
 import { XAxis, YAxis } from '../../Charting/Axis'
 import { TotalsData as Data } from './Data'
 import Legends from '../../Core/LegendTexts'
-// const LegendText = Legends.Exams.Semester.Totals
 
 const respSwitch = (large, small) => <span><span className="d-none d-md-inline-block">{large}</span><span className="d-inline-block d-md-none">{small}</span></span>
-class Totals extends Component {
+const Totals = withTranslation() (class extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -29,15 +29,16 @@ class Totals extends Component {
     
     percentileArea(from, to) {
         const toAreaData = _data => _data.map(d => ({x: d.x, y0: 0, y1: d.y}))
-
+        
         return toAreaData([{x: from, y: this.props.dist.find(d => d.x <= from).y}]
-                .concat(this.props.dist.filter(d => d.x < from && d.x > to), [{x: to, y: this.props.dist.find(d => d.x <= to).y}]))
+        .concat(this.props.dist.filter(d => d.x < from && d.x > to), [{x: to, y: this.props.dist.find(d => d.x <= to).y}]))
     }
-
+    
     render () {
+        const LegendText = Legends(this.props.t).Exams.Semester.Totals
         return (
             <div className="card p-4">
-                <Legend title={Legends.Exams.Semester.Totals.title}>{Legends.Exams.Semester.Totals.text}</Legend>
+                <Legend title={LegendText.title}>{LegendText.text}</Legend>
                 <div style={{textAlign: 'right'}}>
                     <label className="m-0 mr-2"><input type="radio" name="totals.mode" checked={this.state.mode === 'graph'} onChange={() => this.setMode('graph')} className="mx-2" />Graph</label>
                     <label><input type="radio" name="totals.mode" checked={this.state.mode === 'histo'} onChange={() => this.setMode('histo')} className="mx-2" />Histogramm</label>
@@ -74,6 +75,6 @@ class Totals extends Component {
             </div>
         )
     }
-}
+})
 
 export default props => <Totals {...Data(props.semester)} />
