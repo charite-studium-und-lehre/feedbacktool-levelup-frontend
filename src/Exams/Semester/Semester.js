@@ -22,13 +22,13 @@ const Semester = ({ match, t }) => {
                 </div>
             </div>
 
-            <div className="row mt-3">
+            {/* <div className="row mt-3">
                 <div className="col">
                     <Link to={`${match.url}/questions`}>
                         <button type="button" className="btn btn-outline-primary">{t(`Fragen und Antworten`)}</button>
                     </Link>
                 </div>
-            </div>
+            </div> */}
 
         </div>
     )

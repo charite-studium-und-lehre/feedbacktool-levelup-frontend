@@ -1,6 +1,8 @@
 import _ from 'lodash'
+import { useTranslation } from 'react-i18next';
+const {t} = useTranslation();
 
-const praticalsTree = t => ({
+const praticalsTree = (t) => ({
   label: 'root',
   entries: [
       {
@@ -342,4 +344,4 @@ id: _.uniqueId(),
 })
 
 const normalize = e => [{...e, entries: (e.entries || []).map(e => e.id) }, _.flatMap(e.entries || [], normalize)]
-export default  _.keyBy(_.flatMapDeep([praticalsTree], normalize), e => e.id)
+export default  _.keyBy(_.flatMapDeep([praticalsTree(t)], normalize), e => e.id)

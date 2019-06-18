@@ -49,7 +49,6 @@ const {t} = this.props
         <BrowserRouter basename={getBasename()}>
           <div className="App">
             {navbar}
-            <Consulting/>
             {breadcrumbs}
             <Route path="/login" component={login} />
             {Routes(t).map( route => ( route.private ?

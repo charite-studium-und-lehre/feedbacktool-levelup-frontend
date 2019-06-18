@@ -13,7 +13,7 @@ const List = ( t )=> (
     </div>
 )
 
-export default List
+export default withTranslation (List)
  
 
 
