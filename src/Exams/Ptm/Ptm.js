@@ -12,7 +12,6 @@ import Subject from './Subject'
 import Legend from '../../Charting/Legend'
 import LegendTexts from '../../Core/LegendTexts'
 import { withTranslation } from 'react-i18next'
-const LegendText = LegendTexts.Exams.Ptm
 const colors = scaleOrdinal(schemeGreens[3])
 
 const labels = ['richtig', 'falsch', 'nicht beantwortet']
@@ -28,6 +27,7 @@ const data = [
     _.range(3).map((d, i) => ({x: labels[i], result: results[i][0], color: colors(0)})),
 ]
 const Ptm = ({ match, t }) => {
+        const LegendText = LegendTexts(t).Exams.Ptm
         const sample = Subjects()
             .map(c => ({...c, subjects: c.subjects.map(s => ({ ...s, correct: Math.floor(Math.random() * s.questions)})).sort((a,b) => - a.correct / (a.questions+.1) + b.correct / (b.questions + .1)) }))
         return (
@@ -85,14 +85,14 @@ const Ptm = ({ match, t }) => {
             <div className="row mt-3">
                 <div className="col">
                     <div className="card p-3">
-                        <SubjectsTabs 
+                        {/* <SubjectsTabs 
                             tabTitles={sample.map(c => c.title)}
                             tabContents={sample.map(c => 
                                 <div className="d-flex flex-wrap">
                                     {c.subjects.map(s => <Subject key={s.title} {...s} />)}
                                 </div>
                             )}
-                        />
+                        /> */}
                     </div>
                 </div>
             </div>
