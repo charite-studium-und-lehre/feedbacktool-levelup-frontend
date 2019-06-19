@@ -10,8 +10,6 @@ import Legend from '../Charting/Legend'
 import Legends from '../Core/LegendTexts'
 import { useTranslation } from 'react-i18next';
 
-// const LegendText = LegendTexts.Strengths
-
 const colors = scaleOrdinal(schemeBlues[3])
 const labels = ['richtig', 'falsch', 'nicht beantwortet']
 const confidence = ['geraten', 'wahrscheinlich', 'sicher']
@@ -31,7 +29,7 @@ const PTMResults =( props ) => (
             <Legend title={Legends(t).Strengths.PTMResults.title}>{Legends(t).Strengths.PTMResults.text}
                 <div className="mt-2">{confidence.map((c, i) => 
                     <span key={i} className="d-inline-block mr-2" style={{height: '1.2rem', lineHeight: '1.2rem'}}>
-                        <span className="d-inline-block mr-1" style={{width: '2rem', height: '100%', backgroundColor: colors(i)}}>&nbsp;</span>
+                        <span className="d-inline-block mr-1" style={{width: '2rem', height: '100%', backgroundColor: [colors(i)]}}>&nbsp;</span>
                         {c}
                     </span>)}
                     <span className="d-inline-block mr-2" style={{height: '1.2rem', lineHeight: '1.2rem'}}>
