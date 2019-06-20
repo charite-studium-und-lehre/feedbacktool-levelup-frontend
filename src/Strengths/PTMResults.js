@@ -1,14 +1,14 @@
 import React from 'react'
 import _ from 'lodash'
 import { scaleOrdinal } from 'd3-scale'
-import { schemeGreens } from 'd3-scale-chromatic'
+import { schemeBlues } from 'd3-scale-chromatic'
 import { OrdinalChart } from '../Charting/Chart'
 import { XAxis, YAxis } from '../Charting/Axis'
 import BarGraph from '../Charting/BarGraph'
 import PointGraph from '../Charting/PointGraph'
 import Legend from '../Charting/Legend'
 import Legends from '../Core/LegendTexts'
-import { useTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next'
 
 const labels = ['richtig', 'falsch', 'nicht beantwortet']
 const confidence = ['geraten', 'wahrscheinlich', 'sicher']
@@ -19,12 +19,11 @@ const results = [
 ]
 
 const means = [77, 22, 101]
-const {t} = useTranslation();
 
-const PTMResults =( props ) => {
-const colors = props.colors 
-    return (
-<div className="card">
+const colors = scaleOrdinal(schemeBlues[3])
+
+const PTMResults = ({ t }) =>
+    <div className="card">
         <div className="card-body">
             <Legend title={Legends(t).Strengths.PTMResults.title}>{Legends(t).Strengths.PTMResults.text}
                 <div className="mt-2">{confidence.map((c, i) => 
@@ -48,6 +47,5 @@ const colors = props.colors
             </div>
         </div>
     </div>
-)}
 
-export default PTMResults
+export default withTranslation() (PTMResults)

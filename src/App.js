@@ -13,17 +13,13 @@ import Breadcrumbs from './Core/Breadcrumbs'
 import PrivateRoute from './Core/PrivateRoute'
 import Routes from './Core/Routes'
 import { withTranslation } from 'react-i18next'
-// import { useTranslation } from 'react-i18next';
-import Consulting from './consulting/Consulting'
-
-// const {t} = useTranslation()
 
 const getBasename = () => "/" + (window.location.pathname.split( '/' )[1] || "")
 
 class App extends Component {
   constructor(props) {
-    super(props);
-    this.state = {loggedIn: true};
+    super(props)
+    this.state = {loggedIn: true}
   }
 
   render() {
@@ -41,7 +37,7 @@ const {t} = this.props
       navbar = false
       breadcrumbs = false
     } else {
-      login = () => (<Redirect to="/dashboard"></Redirect>);
+      login = () => (<Redirect to="/dashboard"></Redirect>)
     }
 
     return (
@@ -61,11 +57,8 @@ const {t} = this.props
           </div>
         </BrowserRouter>
       </Provider>
-    );
+    )
   }
-
-
-
 }
 
 export default withTranslation() (App);
