@@ -1,10 +1,17 @@
 import React from 'react'
 import _ from 'lodash'
-import Subjects from '../Subjects'
+import Subjects, { ranking } from '../Subjects'
 import Legend from '../../Charting/Legend'
 import LegendTexts from '../../Core/LegendTexts'
 import { withTranslation } from 'react-i18next'
 import PTMResults from '../../Strengths/PTMResults'
+import { schemeGreens } from 'd3-scale-chromatic'
+import { scaleOrdinal } from 'd3-scale'
+import Ranking from '../../Strengths/Ranking'
+
+const ptmSample = Subjects('ptm')
+
+const colors = scaleOrdinal(schemeGreens[3])
 
 const Ptm = ({ match, t }) => {
         const LegendText = LegendTexts(t).Exams.Ptm
@@ -17,12 +24,13 @@ const Ptm = ({ match, t }) => {
                     <div className="d-flex flex-wrap">
                         <div className="card m-2 flex-grow-1" style={{width: '60rem'}}>
                             <div className="card-body">
-                            <PTMResults />
+                            <PTMResults  colors={colors}/>
                             </div>
                         </div>
                         <div className="card m-2 flex-grow-1" style={{width: '20rem'}}>
                                 <div className="card-body">
-                                <Legend title={LegendText.Strengths.title}>{LegendText.Strengths.text}</Legend>
+                                {/* <Ranking title={LegendText.Strengths.title} text={LegendText.Strengths.text} subjects={ranking(ptmSample)} mean /> */}
+                                 <Legend title={LegendText.Strengths.title}>{LegendText.Strengths.text}</Legend>
                                 <div>
                                     {_.take(_.flatMap(sample, c => c.subjects).sort((a,b) => -a.correct / a.questions + b.correct / b.questions), 3).map(s =>
                                         <div key={s.title} className="py-2">
@@ -32,7 +40,7 @@ const Ptm = ({ match, t }) => {
                                             </div>
                                         </div>
                                     )}
-                                </div>
+                                </div> 
                                </div>
                         </div>
                     </div>

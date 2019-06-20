@@ -8,8 +8,12 @@ import SubjectsTabs from '../Core/Tabs'
 import Legend from '../Charting/Legend'
 import Legends from '../Core/LegendTexts'
 import { withTranslation } from 'react-i18next'
+import { schemeBlues } from 'd3-scale-chromatic'
+import { scaleOrdinal } from 'd3-scale'
+
 const mcSample = Subjects('mc')    
 const ptmSample = Subjects('ptm')
+const colors = scaleOrdinal(schemeBlues[3])
 
 const Strengths = ({ match, t }) => {
     const LegendText = Legends(t).Strengths
@@ -29,7 +33,7 @@ const Strengths = ({ match, t }) => {
                 <Ranking title={LegendText.PTM.title} text={LegendText.PTM.text} subjects={ranking(ptmSample)} mean />
             </div>
             <div className="col-md-4 mb-2">
-                <PTMResults />
+                <PTMResults colors={colors} />
             </div>
         </div>
         
