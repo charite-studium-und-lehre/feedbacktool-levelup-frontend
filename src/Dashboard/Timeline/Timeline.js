@@ -6,7 +6,7 @@ import Legends from '../../Core/LegendTexts'
 import InfoOverlay from './InfoOverlay'
 import Chart from './Chart'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {   faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import {   faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 const day= 1000 * 60 * 60 * 24
 const year = day * 365
@@ -33,8 +33,17 @@ class Timeline extends Component {
         this.setState(newState)
     }
     
-    zoomOut() {
+    zoomBack() {
         const t = new Date(this.state.timerange[0].getTime() - year)
+        this.setState( { 
+            timerange: [t, new Date()],
+            oldest: t, 
+            newest: new Date(), 
+            selectedPoint: null 
+        })
+    }
+    zoomFront() {
+        const t = new Date(this.state.timerange[0].getTime() + year)
         this.setState( { 
             timerange: [t, new Date()],
             oldest: t, 
@@ -68,7 +77,8 @@ class Timeline extends Component {
                         </InfoOverlay>
                     </div>
                     <div className="">
-                        <span className="text-primary ml-3" style={{fontSize: '.8rem', cursor:'pointer', fontSize:'16px'}} onClick={() => this.zoomOut()}><FontAwesomeIcon icon={ faChevronLeft} /><FontAwesomeIcon icon={ faChevronLeft} /></span>
+                    <span className="text-primary mr-3" style={{fontSize: '.8rem', cursor:'pointer'}} onClick={() => this.zoomBack()}><FontAwesomeIcon icon={ faChevronLeft} /><FontAwesomeIcon icon={ faChevronLeft} /></span>
+                        <span className="text-primary ml-3" style={{fontSize: '.8rem', cursor:'pointer'}} onClick={() => this.zoomFront()}><FontAwesomeIcon icon={ faChevronRight} /><FontAwesomeIcon icon={ faChevronRight} /></span>
 
                     </div>
                     <div className="mt-2">
