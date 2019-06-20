@@ -8,17 +8,13 @@ const exams = ['alle MCs', 'letzter PTM']
 class Subject extends Component {
     constructor(props) {
         super(props)
-        this.state = { mode: "current", flash: props.flash }
+        this.state = { flash: props.flash }
         this.node = React.createRef()
     }
     
     componentDidMount() {
-        if(this.state.flash) window.scrollTo(0, this.node.current.getBoundingClientRect().y + 70)
+        if(this.state.flash) setTimeout(() => document.querySelector('div.App').scrollTo(0, this.node.current.getBoundingClientRect().y - 70), 500)
         this.setState({ flash: false })
-    }
-
-    setMode(mode) {
-        this.setState({ mode })
     }
 
     render() {
