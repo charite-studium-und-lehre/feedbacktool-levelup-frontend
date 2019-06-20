@@ -1,6 +1,8 @@
 import React from 'react'
 import _ from 'lodash'
 import Subjects, { ranking } from '../Subjects'
+import SubjectsTabs from '../../Core/Tabs'
+import Subject from './Subject'
 import Legend from '../../Charting/Legend'
 import LegendTexts from '../../Core/LegendTexts'
 import { withTranslation } from 'react-i18next'
@@ -29,20 +31,20 @@ const Ptm = ({ match, t }) => {
                     </div>
                 </div>
             </div>
-            {/* <div className="row mt-3">
+            <div className="row">
                 <div className="col">
                     <div className="card p-3">
-                        <SubjectsTabs 
-                            tabTitles={sample.map(c => c.title)}
-                            tabContents={sample.map(c => 
-                                <div className="d-flex flex-wrap">
-                                    {c.subjects.map(s => <Subject key={s.title} {...s} />)}
+                        <Legend title={LegendText.Subjects.title}>{LegendText.Subjects.text}</Legend>
+                        <SubjectsTabs>
+                            {ptmSample.map(c => 
+                                <div key={c.title} title={c.title} className="d-flex flex-wrap">
+                                    {_.sortBy(c.subjects, d => d.title).map(s => <Subject data={[s]} key={s.title} {...s} />)}
                                 </div>
                             )}
-                        />
+                        </SubjectsTabs>
                     </div>
                 </div>
-            </div> */}
+            </div>
         </div>
     )
 }
