@@ -23,7 +23,7 @@ const Ptm = ({ match, t }) => {
                 <div className="col">
                     <div className="d-flex flex-wrap">
                         <div className="m-2 flex-grow-1" style={{width: '60rem'}}>
-                            <PTMResults />
+                            <PTMResults semester={match.params.test} />
                         </div>
                         <div className="m-2 flex-grow-1" style={{width: '20rem'}}>
                             <Ranking title={LegendText.Strengths.title} text={LegendText.Strengths.text} subjects={ranking(ptmSample)} mean /> 
