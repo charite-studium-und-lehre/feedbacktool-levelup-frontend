@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { HorizontalBarChart } from '../../Charting/HorizontalBarGraph'
 import { withTranslation } from 'react-i18next'
 
-export default withTranslation() (function SemesterInfo (props, {t}) {
+export default withTranslation() (function SemesterInfo ({ t, ...props }) {
     const data = [
         { y: 'Durchschnitt', x: props.data.mean, label: `${props.data.mean} %` },
         { y: 'Dein Ergebnis', x: props.data.result, label: `${props.data.result} %` },

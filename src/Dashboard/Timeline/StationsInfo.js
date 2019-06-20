@@ -4,8 +4,7 @@ import { HorizontalBarChart } from '../../Charting/HorizontalBarGraph'
 import { withTranslation } from 'react-i18next'
 const bars = ['Durchschnitt', 'Dein Ergebnis']
 
-
-const StationsInfo = (props, {t}) => {
+const StationsInfo = ({t, ...props}) => {
     const data = bars.map((d, i) => ({y: d, x: i ? props.data.result : props.data.mean, label: i ? `${props.data.result} %` : `${props.data.mean} %` }))
     return (<div>
         <div className="mt-1" style={{height: '4.3rem'}}>

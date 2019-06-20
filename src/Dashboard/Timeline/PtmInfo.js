@@ -4,7 +4,7 @@ import { withTranslation } from 'react-i18next'
 
 const labels = ['nicht beantwortet', 'falsch', 'richtig']
 const results = [47, 10, 143]
-const PtmInfo = (props, {t} ) =>
+const PtmInfo = ({t, ...props} ) =>
     (<div>
         <div>{t(`Deine Antworten:`)}</div>
         <div className="mt-1" style={{height: '5.3rem'}}>
