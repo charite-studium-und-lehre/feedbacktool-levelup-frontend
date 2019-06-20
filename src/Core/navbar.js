@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom'
 import makeExtendable from './makeExtendable'
 import { useTranslation } from 'react-i18next';
+import LanguageSymbol from './languageSymbol'
 
 export default makeExtendable(function Navbar(props) {
     const { t } = useTranslation();
@@ -9,7 +10,9 @@ export default makeExtendable(function Navbar(props) {
     let button;
 
     if (isLoggedIn) {
-        button = <NavLink className="nav-link pull-right" to="/logout">Logout</NavLink>;
+        button = <NavLink className="nav-link pull-right" to="/logout"
+        style={{ fontSize: '1.2em'}}
+        >Logout</NavLink>;
     } else {
         button = <NavLink className="nav-link pull-right" to="/login">Login</NavLink>
     }
@@ -33,6 +36,14 @@ export default makeExtendable(function Navbar(props) {
                     </li>
                 </ul>
                 <ul className="navbar-nav">
+                <li className="nav-item">
+                      <div className="mt-2 mr-4"  style={{ fontSize: '1.2em', cursor: 'pointer' }}>
+                          Willcomen Sabine 
+                      </div>
+                    </li>
+                    <li className="nav-item">
+                        <LanguageSymbol />
+                    </li>
                     <li className="nav-item">
                         {button}
                     </li>
