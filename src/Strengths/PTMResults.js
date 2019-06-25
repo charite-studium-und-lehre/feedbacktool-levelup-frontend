@@ -9,14 +9,13 @@ import PointGraph from '../Charting/PointGraph'
 import Legend from '../Charting/Legend'
 import Legends from '../Core/LegendTexts'
 import { withTranslation } from 'react-i18next'
-import { Results as PtmResults } from '../Exams/Ptm/Data'
 
 const labels = ['richtig', 'falsch', 'nicht beantwortet']
 const confidence = ['geraten', 'wahrscheinlich', 'sicher']
 
 const colors = scaleOrdinal(schemeBlues[3])
 
-const PTMResults = ({ t, ...props }) =>
+const PTMResults = ({ t, data }) =>
     <div className="card">
         <div className="card-body">
             <Legend title={Legends(t).Strengths.PTMResults.title}>{Legends(t).Strengths.PTMResults.text}
@@ -35,11 +34,11 @@ const PTMResults = ({ t, ...props }) =>
                 <OrdinalChart xDomain={labels} yDomain={[0,100]}>
                     <XAxis />
                     <YAxis ticks={{count: 4}} />
-                    <BarGraph labels data={labels.map((l,i) => ({x: l, y: props.results[i][0], label: props.results[i][1], color: _.range(0,3).map(i => colors(i))}))} />
-                    <PointGraph color="rgba(0, 0, 0, .6)" data={labels.map((l, i) => ({x: l, y: props.means[i]}))} />
+                    <BarGraph labels data={labels.map((l,i) => ({x: l, y: data.results[i][0], label: data.results[i][1], color: _.range(0,3).map(i => colors(i))}))} />
+                    <PointGraph color="rgba(0, 0, 0, .6)" data={labels.map((l, i) => ({x: l, y: data.means[i]}))} />
                 </OrdinalChart>
             </div>
         </div>
     </div>
 
-export default withTranslation() (props => <PTMResults {...PtmResults(props.semester)} {...props} />)
+export default withTranslation() (PTMResults)

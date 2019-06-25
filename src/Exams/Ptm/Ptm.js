@@ -10,8 +10,9 @@ import PTMResults from '../../Strengths/PTMResults'
 import Ranking from '../../Strengths/Ranking'
 import PtmResultsAlt from './ptmResultsAlt'
 import SubjectAlt from './SubjectAlt'
+import { Results as PtmResults } from './Data'
 
-const Ptm = ({ match, t }) => {
+const Ptm = ({ match, t, ...props }) => {
     const ptmSample = Subjects(match.params.test)
     const LegendText = LegendTexts(t).Exams.Ptm
    
@@ -26,7 +27,7 @@ const Ptm = ({ match, t }) => {
                 <div className="col">
                     <div className="d-flex flex-wrap">
                         <div className="m-2 flex-grow-1" style={{width: '60rem'}}>
-                      { match.params.test === 'ext' ? <PTMResults semester={match.params.test} />: <PtmResultsAlt/>}
+                      { !props.data.alt ? <PTMResults data={props.data} />: <PtmResultsAlt/>}
                         </div>
                         <div className="m-2 flex-grow-1" style={{width: '20rem'}}>
                             <Ranking title={LegendText.Strengths.title} text={LegendText.Strengths.text} subjects={ranking(ptmSample)} mean /> 
@@ -38,7 +39,7 @@ const Ptm = ({ match, t }) => {
                 <div className="col">
                     <div className="card p-3">
                         <Legend title={LegendText.Subjects.title}>{LegendText.Subjects.text}</Legend>
-                        { match.params.test === 'ext' ?
+                        { !props.data.alt ?
                         <SubjectsTabs>
                             {ptmSample.map(c => 
                                 <div key={c.title} title={c.title} className="d-flex flex-wrap">
@@ -62,4 +63,4 @@ const Ptm = ({ match, t }) => {
     )
 }
 
-export default withTranslation() (Ptm)
+export default withTranslation() (props => <Ptm data={PtmResults(props.match.params.test)} {...props} />)
