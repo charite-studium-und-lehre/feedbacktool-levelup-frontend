@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import SemesterInfo from './SemesterInfo'
 import PtmInfo from './PtmInfo'
 import StationsInfo from './StationsInfo'
