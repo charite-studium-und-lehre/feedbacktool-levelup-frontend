@@ -8,10 +8,13 @@ import LegendTexts from '../../Core/LegendTexts'
 import { withTranslation } from 'react-i18next'
 import PTMResults from '../../Strengths/PTMResults'
 import Ranking from '../../Strengths/Ranking'
+import PtmResultsAlt from './ptmResultsAlt'
+import SubjectAlt from './SubjectAlt'
 
 const Ptm = ({ match, t }) => {
     const ptmSample = Subjects(match.params.test)
     const LegendText = LegendTexts(t).Exams.Ptm
+   
     return (
         <div className="container-fluid">
             <div className="row">
@@ -23,7 +26,7 @@ const Ptm = ({ match, t }) => {
                 <div className="col">
                     <div className="d-flex flex-wrap">
                         <div className="m-2 flex-grow-1" style={{width: '60rem'}}>
-                            <PTMResults semester={match.params.test} />
+                      { match.params.test === 'ext' ? <PTMResults semester={match.params.test} />: <PtmResultsAlt/>}
                         </div>
                         <div className="m-2 flex-grow-1" style={{width: '20rem'}}>
                             <Ranking title={LegendText.Strengths.title} text={LegendText.Strengths.text} subjects={ranking(ptmSample)} mean /> 
@@ -35,6 +38,7 @@ const Ptm = ({ match, t }) => {
                 <div className="col">
                     <div className="card p-3">
                         <Legend title={LegendText.Subjects.title}>{LegendText.Subjects.text}</Legend>
+                        { match.params.test === 'ext' ?
                         <SubjectsTabs>
                             {ptmSample.map(c => 
                                 <div key={c.title} title={c.title} className="d-flex flex-wrap">
@@ -42,6 +46,15 @@ const Ptm = ({ match, t }) => {
                                 </div>
                             )}
                         </SubjectsTabs>
+                        : 
+                        <SubjectsTabs>
+                        {ptmSample.map(c => 
+                            <div key={c.title} title={c.title} className="d-flex flex-wrap">
+                                {_.sortBy(c.subjects, d => d.title).map(s => <SubjectAlt data={[s]} key={s.title} {...s} />)}
+                            </div>
+                        )}
+                    </SubjectsTabs>
+                            }
                     </div>
                 </div>
             </div>

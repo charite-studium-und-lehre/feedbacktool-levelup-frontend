@@ -20,7 +20,7 @@ const HorizontalBarGraph = props => {
 					y={props.yScale(d.y) + dy} 
 					x={0}
 					width={props.xScale(d.x)}
-					height={height - 17} 
+					height={height - 13} 
 					onClick={() => clickHandler(d, i)} />
 				{props.labels && 
 					<AnimatedText
@@ -51,7 +51,7 @@ export default HorizontalBarGraph
 
 const HorizontalBarChart = asChart(withHorizontalOrdinalScales(props => {
     return <g>
-        <HorizontalBarGraph labels xScale={props.xScale} yScale={props.yScale} data={props.data} />
+        <HorizontalBarGraph labels xScale={props.xScale} yScale={props.yScale} data={props.data}  />
         {/* <YAxis horizontal xScale={props.xScale} yScale={props.yScale} /> */}
         {props.noaxis || <XAxis horizontal xScale={props.xScale} yScale={props.yScale} ticks={{count:4}} />}
     </g>

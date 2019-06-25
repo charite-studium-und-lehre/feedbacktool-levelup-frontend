@@ -30,6 +30,14 @@ const Results = semester => ({
     ],
     means: [77, 22, 101]
 })
+const ResultsAlt = semester => ({
+    results: [
+        [ 83],
+        [30],
+        [90] 
+    ],
+    means: [77, 22, 101]
+})
 
 const random = randomUniform.source(seedrandom('foo'))
 function randomData(n = 5) {
@@ -42,4 +50,4 @@ function randomData(n = 5) {
 }
 
 const TimelineData = randomData()
-export { TimelineData, Results }
+export { TimelineData, Results , ResultsAlt }
