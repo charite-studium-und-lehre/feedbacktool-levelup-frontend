@@ -1,0 +1,37 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-25T17:48:48+02:00
+
+====== Details- MC-Fragen und Antworten ======
+
+==== GET-Aufruf: ====
+[[/api/pruefungsFrage/<pruefungsItemId]]>
+
+success: HTTP-Code 200
+
+=== Rückgabe: ===
+'''
+
+{
+	"pruefungsItemId": <pruefungsItemId>
+	"Frage": "<Fragentext als Reintext>",
+'''
+		'''
+		       "Antworten": 
+		'''
+				'''
+				[ Array aus 
+				'''
+					'''
+					{
+					'''
+						'''
+						"antwort": <Antwort-Text>,
+						"richtig": <true|false>
+						'''
+					'''
+					}
+					},
+					'''
+
+
