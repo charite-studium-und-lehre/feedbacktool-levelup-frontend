@@ -55,10 +55,7 @@ const Routes = (t) => ([
   {
     path: '/exams/semester/:test/questions',
     component: Questions,
-    breadcrumb: params => [
-      <Link to={`/exams/semester/${params.test}`}>{params.test}</Link>,
-      <Link to={`/exams/semester/${params.test}/questions`}>{t(`Fragen und Antworten`)}</Link>,
-    ],
+    breadcrumb: params => <Link to={`/exams/semester/${params.test}/questions`}>{t(`Fragen und Antworten`)}</Link>,
     exact: true,
     private: true,
   },
