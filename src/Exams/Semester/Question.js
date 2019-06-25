@@ -1,7 +1,7 @@
 import React from 'react'
 import SimpleBar from '../../Charting/SimpleBar'
 import { withTranslation } from 'react-i18next'
-const Answer = (props, {t}) => (
+const Answer = withTranslation()(({t, ...props}) => (
     <div className="m-1">
         <span>{props.label}) </span>
         <span>{props.children}</span>
@@ -9,9 +9,9 @@ const Answer = (props, {t}) => (
         {props.selected ? (<span className='ml-1 badge badge-danger'>{t(`deine Antwort`)}</span>) : ''}
         <div className="bg-success" style={{width:props.percentage}}></div>
     </div>
-)
+))
 
-const Question = (props, {t}) => {
+const Question = ({t, ...props}) => {
     const percentage = props.answers.find(a => a.correct).percentage
     return (
         <div className="row">

@@ -7,7 +7,6 @@ import Legend from '../../Charting/Legend'
 import Legends from '../../Core/LegendTexts'
 import Filter from '../../Utils/Filter'
 import { withTranslation } from 'react-i18next'
-// const LegendText = Legends.Exams.Semester.Questions
 
 let filters = _.uniq(_.flatMap(DummyQuestions, q => q.tags)).map(t => ({label: t.label, pred: q => _.includes(q.tags, t)})).concat([
     { label: 'richtig beantwortet', pred: q => q.answers.some( a => a.correct && a.selected )},
@@ -17,21 +16,21 @@ let filters = _.uniq(_.flatMap(DummyQuestions, q => q.tags)).map(t => ({label: t
 ])
 
 class Questions extends Component {
-    constructor({ props, match }) {
+    constructor(props) {
         super(props)
-        this.match = match
         this.state = { filters }
     }
     
     render() {
-        const {t} = this.props
+        const { t } = this.props
+        const LegendText = Legends(t).Exams.Semester.Questions
         const questions = DummyQuestions.filter(_.overEvery(this.state.filters.filter(f => f.selected).map(f => f.pred)))
         return (
             <div className="container-fluid">
                 <div className="row">
                     <div className="col">
                         {/* <h4 className="mr-auto">Semesterprüfung - {match.params.test}</h4> */}
-                        <Legend title={Legends.Exams.Semester.Questions.title}>{Legends.Exams.Semester.Questions.text}</Legend>
+                        <Legend title={LegendText.title}>{LegendText.text}</Legend>
                     </div>
                 </div>
                 <Filter showAll filters={ filters } onUpdate={ filters => this.setState( { filters } )} />
@@ -43,7 +42,7 @@ class Questions extends Component {
                 {questions.map((question, i) => <Question {...question } key={i} />)}
                 <div className="row mt-3">
                     <div className="col">
-                        <Link to={`${this.match.url.replace('/questions', '')}`}>
+                        <Link to={`${this.props.match.url.replace('/questions', '')}`}>
                             <button type="button" className="btn btn-outline-primary mt-2">{t(`Details zur Prüfung`)}</button>
                         </Link>
                     </div>
