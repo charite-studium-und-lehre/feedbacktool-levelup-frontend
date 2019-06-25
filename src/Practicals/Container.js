@@ -8,22 +8,16 @@ import Toolbar from './Toolbar'
 import { selectors } from './Store'
 import { withTranslation } from 'react-i18next'
 
-import { useTranslation } from 'react-i18next';
-// const legend = LegendTexts.Practicals.Main
-
-
 class Container extends React.Component {
-    constructor(t, props  ) {
+    constructor(props) {
         super(props)
         this.state = { edit: false }
-        this.t = t
     }
 
     toggleEdit = () => this.setState({edit: !this.state.edit})
 
     render() {
-        // const { t } = useTranslation();
-        const {t} = this.t 
+        const {t} = this.props
         return (
         <div style={{fontSize: '.9rem'}}>
             <div className="card p-2">

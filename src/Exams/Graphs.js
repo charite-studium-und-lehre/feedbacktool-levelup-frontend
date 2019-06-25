@@ -1,6 +1,3 @@
-import _ from 'lodash'
-import { randomUniform } from 'd3-random'
-import seedrandom from 'seedrandom'
 import SemesterInfo from './SemesterInfo'
 import PtmInfo from './PtmInfo'
 import StationsInfo from './StationsInfo'
@@ -9,16 +6,7 @@ import PtmTimelineInfo from '../Dashboard/Timeline/PtmInfo'
 import StationsTimelineInfo from '../Dashboard/Timeline/StationsInfo'
 import { TimelineData as StationsTimelineData } from './Stations/Data'
 import { TimelineData as SemesterTimelineData } from './Semester/Data'
-
-const random = randomUniform.source(seedrandom('foo'))
-function randomData(n = 5) {
-    return _.range(n).map(i => ({
-        x: new Date(2018 - i, 6 + random(2, -1)(), 15 + random(20, -10)()),
-        result: (n-i+1)/6*50,
-        mean: random(25, 40),
-        label: `${n-i}. Semester`
-    }))
-}
+import { TimelineData as PtmTimelineData } from './Ptm/Data'
 
 const n = 5
 const graphs = {
@@ -34,7 +22,7 @@ const graphs = {
     {
         name: 'ptm',
         label: 'PTM',
-        data: randomData(n, 'PTM'),
+        data: PtmTimelineData,
         color: 240,
         info: PtmInfo,
         timelineinfo: PtmTimelineInfo,

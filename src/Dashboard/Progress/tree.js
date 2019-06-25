@@ -30,7 +30,7 @@ const tree = t => ({
                     label: 'PTM',
                     isLeaf: true,
                     done: true,
-                    link: '/exams/ptm/ext',
+                    link: '/exams/ptm/2. Semester',
                 },
                 {
                     label: t('Semesterprüfung'),
@@ -58,7 +58,7 @@ const tree = t => ({
                     label: 'PTM',
                     isLeaf: true,
                     done: true,
-                    link: '/exams/ptm/ext',
+                    link: '/exams/ptm/3. Semester',
                 },
                 {
                     label: t('Semesterprüfung'),
@@ -90,7 +90,7 @@ const tree = t => ({
                     label: 'PTM',
                     isLeaf: true,
                     done: true,
-                    link: '/exams/ptm/ext',
+                    link: '/exams/ptm/4. Semester',
                 },
                 {
                     label: t('Semesterprüfung'),
@@ -123,7 +123,7 @@ const tree = t => ({
                     label: 'PTM',
                     isLeaf: true,
                     done: true,
-                    link: '/exams/ptm/ext',
+                    link: '/exams/ptm/5. Semester',
                 },
                 {
                     label: t('Semesterprüfung'),
@@ -145,7 +145,7 @@ const tree = t => ({
                     label: 'PTM',
                     isLeaf: true,
                     done: false,
-                    link: '/exams/ptm/ext',
+                    link: '/exams/ptm/6. Semester',
                 },
                 {
                     label: t('Semesterprüfung'),
@@ -172,7 +172,7 @@ const tree = t => ({
                     label: 'PTM',
                     isLeaf: true,
                     done: false,
-                    link: '/exams/ptm/ext',
+                    link: '/exams/ptm/7. Semester',
                 },
                 {
                     label: t('Semesterprüfung'),
@@ -194,7 +194,7 @@ const tree = t => ({
                     label: 'PTM',
                     isLeaf: true,
                     done: false,
-                    link: '/exams/ptm/ext',
+                    link: '/exams/ptm/8. Semester',
                 },
                 {
                     label: t('Semesterprüfung'),
@@ -216,7 +216,7 @@ const tree = t => ({
                     label: 'PTM',
                     isLeaf: true,
                     done: false,
-                    link: '/exams/ptm/ext',
+                    link: '/exams/ptm/9. Semester',
                 },
                 {
                     label: t('Semesterprüfung'),
@@ -244,7 +244,7 @@ const tree = t => ({
                     label: 'PTM',
                     isLeaf: true,
                     done: false,
-                    link: '/exams/ptm/ext',
+                    link: '/exams/ptm/10. Semester',
                 },
                 {
                     label: t('Anwesenheit'),
@@ -265,7 +265,7 @@ const tree = t => ({
                     label: 'PTM',
                     isLeaf: true,
                     done: false,
-                    link: '/exams/ptm/ext',
+                    link: '/exams/ptm/PJ',
                 },
                 {
                     label: 'PJ',

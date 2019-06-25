@@ -8,12 +8,12 @@ import SubjectsTabs from '../Core/Tabs'
 import Legend from '../Charting/Legend'
 import Legends from '../Core/LegendTexts'
 import { withTranslation } from 'react-i18next'
+
 const mcSample = Subjects('mc')    
 const ptmSample = Subjects('ptm')
 
 const Strengths = ({ match, t }) => {
     const LegendText = Legends(t).Strengths
-    
     const active = Math.max(...mcSample.map((c,i) => _.includes(c.subjects.map(s => s.title), match.params.subject) ? i : -1), 0)
     return (
     <div className="container-fluid">

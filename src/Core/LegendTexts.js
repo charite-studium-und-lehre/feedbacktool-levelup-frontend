@@ -48,7 +48,11 @@ const Legends =  t  =>  ({
             Strengths: {
                 title: t(`Starke Fächer in diesem PTM`),
                 text: t(`Hier findest du eine Übersicht zu deinen besten vorklinischen, klinischen und Querschnittsfächern im PTM diesen Semesters. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen beantworteten Fragen.`),
-            }
+            },
+            Subjects: {
+                title: t(`Alle Fächer`),
+                text: t(`Hier findest du eine Übersicht zu deinen Leistungen in den vorklinischen, klinischen und Querschnittsfächern. Die Ergebnisse basieren auf deinem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.`),
+            },
         },
         Stations: {
             Main: {
