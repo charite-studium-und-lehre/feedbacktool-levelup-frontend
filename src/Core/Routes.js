@@ -19,13 +19,13 @@ const Routes = (t) => ([
     private: true,
   },
 
-  {
-    path: '/exams/:graphs?',
-    component: Exams,
-    breadcrumb: () => <Link to="/exams">{t(`Prüfungen`)}</Link>,
-    exact: true,
-    private: true,
-  },
+  // {
+  //   path: '/exams/:graphs?',
+  //   component: Exams,
+  //   breadcrumb: () => <Link to="/exams">{t(`Prüfungen`)}</Link>,
+  //   exact: true,
+  //   private: true,
+  // },
 
   {
     path: '/consulting',
@@ -47,7 +47,6 @@ const Routes = (t) => ([
     path: '/exams/semester/:test',
     component: Semester,
     breadcrumb: params => [
-      <Link to="/exams/semester">{t(`Semesterprüfungen`)}</Link>,
       <Link to={`/exams/semester/${params.test}`}>{params.test}</Link>
     ],
     exact: true,
@@ -56,7 +55,10 @@ const Routes = (t) => ([
   {
     path: '/exams/semester/:test/questions',
     component: Questions,
-    breadcrumb: params => <Link to="/dashboard">{t(`Fragen und Antworten`)}</Link>,
+    breadcrumb: params => [
+      <Link to={`/exams/semester/${params.test}`}>{params.test}</Link>,
+      <Link to={`/exams/semester/${params.test}/questions`}>{t(`Fragen und Antworten`)}</Link>,
+    ],
     exact: true,
     private: true,
   },
@@ -64,7 +66,6 @@ const Routes = (t) => ([
     path: '/exams/ptm/:test',
     component: Ptm,
     breadcrumb: params => [
-      <Link to="/exams/ptm">PTM</Link>,
       <Link to={`/exams/ptm/${params.test}`}>{params.test}</Link>
     ],
     exact: true,
