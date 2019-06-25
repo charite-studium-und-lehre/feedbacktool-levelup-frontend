@@ -11,11 +11,11 @@ import Consulting from '../consulting/Consulting'
 import Practicals from '../Practicals/Practicals'
 
 const Ptm = () => { window.location = 'https://progresstesting.safeserver.de'; return null;}
-const Routes = [
+const Routes = (t) => ([
   {
     path: '/dashboard',
     component: Dashboard,
-    breadcrumb: () => <Link to="/dashboard">Dashboard</Link>,
+    breadcrumb: () => <Link to="/dashboard">{t(`Dashboard`)}</Link>,
     exact: true,
     private: true,
   },
@@ -23,7 +23,7 @@ const Routes = [
   {
     path: '/exams/:graphs?',
     component: Exams,
-    breadcrumb: () => <Link to="/exams">Prüfungen</Link>,
+    breadcrumb: () => <Link to="/exams">{t(`Prüfungen`)}</Link>,
     exact: true,
     private: true,
   },
@@ -31,7 +31,7 @@ const Routes = [
   {
     path: '/consulting',
     component: Consulting,
-    breadcrumb: () => <Link to="/consulting">Beratung</Link>,
+    breadcrumb: () => <Link to="/consulting">{t(`Beratung`)}</Link>,
     exact: true,
     private: true,
   },
@@ -39,7 +39,7 @@ const Routes = [
   {
     path: '/practicals',
     component: Practicals,
-    breadcrumb: () => <Link to="/practicals">Ärzliche Tätigkeiten</Link>,
+    breadcrumb: () => <Link to="/practicals">{t(`Ärzliche Tätigkeiten`)}</Link>,
     exact: true,
     private: true,
   },
@@ -48,7 +48,7 @@ const Routes = [
     path: '/exams/semester/:test',
     component: Semester,
     breadcrumb: params => [
-      <Link to="/exams/semester">Semesterprüfungen</Link>,
+      <Link to="/exams/semester">{t(`Semesterprüfungen`)}</Link>,
       <Link to={`/exams/semester/${params.test}`}>{params.test}</Link>
     ],
     exact: true,
@@ -57,7 +57,7 @@ const Routes = [
   {
     path: '/exams/semester/:test/questions',
     component: Questions,
-    breadcrumb: params => <Link to="/dashboard">Fragen und Antworten</Link>,
+    breadcrumb: params => <Link to="/dashboard">{t(`Fragen und Antworten`)}</Link>,
     exact: true,
     private: true,
   },
@@ -75,7 +75,7 @@ const Routes = [
     path: '/strengths/:subject?',
     component: Strengths,
     breadcrumb: params => [
-      <Link to="/strengths">Stärken und Schwächen</Link>,
+      <Link to="/strengths">{t(`Stärken und Schwächen`)}</Link>,
     ],
     exact: true,
     private: true,
@@ -83,10 +83,10 @@ const Routes = [
   {
     path: '/exams/stations/:test',
     component: Stations,
-    breadcrumb: params => <Link to="/exams/stations">Praktische Prüfungen</Link>,
+    breadcrumb: params => <Link to="/exams/stations">{t(`Praktische Prüfungen`)}</Link>,
     exact: true,
     private: true,
   },
-]
+])
 
 export default Routes

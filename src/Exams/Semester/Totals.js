@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withTranslation } from 'react-i18next'
 import _ from 'lodash'
 import { curveStep } from 'd3-shape'
 import { LinearChart } from '../../Charting/Chart'
@@ -11,10 +12,9 @@ import Legend from '../../Charting/Legend'
 import { XAxis, YAxis } from '../../Charting/Axis'
 import { TotalsData as Data } from './Data'
 import Legends from '../../Core/LegendTexts'
-const LegendText = Legends.Exams.Semester.Totals
 
 const respSwitch = (large, small) => <span><span className="d-none d-md-inline-block">{large}</span><span className="d-inline-block d-md-none">{small}</span></span>
-class Totals extends Component {
+const Totals = withTranslation() (class extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -29,12 +29,13 @@ class Totals extends Component {
     
     percentileArea(from, to) {
         const toAreaData = _data => _data.map(d => ({x: d.x, y0: 0, y1: d.y}))
-
+        
         return toAreaData([{x: from, y: this.props.dist.find(d => d.x <= from).y}]
-                .concat(this.props.dist.filter(d => d.x < from && d.x > to), [{x: to, y: this.props.dist.find(d => d.x <= to).y}]))
+        .concat(this.props.dist.filter(d => d.x < from && d.x > to), [{x: to, y: this.props.dist.find(d => d.x <= to).y}]))
     }
-
+    
     render () {
+        const LegendText = Legends(this.props.t).Exams.Semester.Totals
         return (
             <div className="card p-4">
                 <Legend title={LegendText.title}>{LegendText.text}</Legend>
@@ -45,7 +46,7 @@ class Totals extends Component {
                 <div className="mt-3">
                     {this.state.mode === 'graph' ? (
                     <LinearChart xDomain={[100, 0]} yDomain={[0,80]}>
-                        <YAxis ticks={{ count: 4 }} label="Mind. erreichte Punkte"/>
+                        <YAxis ticks={{ count: 4 }} label=" Erreichte Punkte"/>
                         <AreaGraph curve={curveStep} data={this.percentileArea(10, 0)} color="hsla(120, 100%, 80%, .2)"></AreaGraph>
                         <AreaGraph curve={curveStep} data={this.percentileArea(25, 10)} color="hsla(120, 100%, 60%, .2)"></AreaGraph>
                         <AreaGraph curve={curveStep} data={this.percentileArea(50, 25)} color="hsla(120, 100%, 40%, .2)"></AreaGraph>
@@ -74,6 +75,6 @@ class Totals extends Component {
             </div>
         )
     }
-}
+})
 
 export default props => <Totals {...Data(props.semester)} />

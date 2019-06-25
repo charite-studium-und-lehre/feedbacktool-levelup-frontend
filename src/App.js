@@ -12,6 +12,11 @@ import Login from './Login'
 import Breadcrumbs from './Core/Breadcrumbs'
 import PrivateRoute from './Core/PrivateRoute'
 import Routes from './Core/Routes'
+import { withTranslation } from 'react-i18next'
+// import { useTranslation } from 'react-i18next';
+import Consulting from './consulting/Consulting'
+
+// const {t} = useTranslation()
 
 const getBasename = () => "/" + (window.location.pathname.split( '/' )[1] || "")
 
@@ -22,6 +27,7 @@ class App extends Component {
   }
 
   render() {
+const {t} = this.props
     let navbar = (
       <Navbar isLoggedIn={this.state.loggedIn}></Navbar>
     )
@@ -42,12 +48,10 @@ class App extends Component {
       <Provider store={createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
         <BrowserRouter basename={getBasename()}>
           <div className="App">
-
             {navbar}
             {breadcrumbs}
-
             <Route path="/login" component={login} />
-            {Routes.map( route => ( route.private ?
+            {Routes(t).map( route => ( route.private ?
                     <PrivateRoute key={route.path} path={route.path} component={route.component} exact={route.exact} isLoggedIn={this.state.loggedIn} /> :
                     <Route key={route.path} path={route.path} component={route.component} exact={route.exact} />
             ))}
@@ -64,4 +68,4 @@ class App extends Component {
 
 }
 
-export default App;
+export default withTranslation() (App);

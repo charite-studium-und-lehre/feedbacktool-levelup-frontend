@@ -30,6 +30,7 @@ class Summary extends Component {
     }
 
     render() {
+        const {t} = this.props
         const data = this.state.extended ? 
             this.getExtended().subjects.map( s => ({ x: s.title, y: s.questions })) :
             this.Samples.map((cat, i) => ({ x: cat.title, y: _.sumBy(cat.subjects, s => s.questions), color: `hsla(${32 + i/this.Samples.length*360}, 100%, 56%, .4)`}))
@@ -45,7 +46,7 @@ class Summary extends Component {
         return (
             <div className="card">
                 <div className="card-body">
-                    <Legend title="Von dir beantwortete Fragen im letzten PTM">Legende</Legend>
+                    <Legend title="Von dir beantwortete Fragen im letzten PTM">{t(`Legende`)}</Legend>
                     <div className="m-3" style={{paddingBottom: '12rem'}}>
                         <Chart>
                             <OrdinalScales xDomain={domain} yDomain={[0,Math.max(...data.map( d => d.y ))]}>
@@ -58,7 +59,7 @@ class Summary extends Component {
                     </div>
                     <div className="d-flex justify-content-end flex-wrap">
                         <Link to="/exams/ptm/latest">
-                            <button className="btn btn-outline-primary">Dein Ergebnis im Detail</button>
+                            <button className="btn btn-outline-primary">{t(`Dein Ergebnis im Detail`)}</button>
                         </Link>
                     </div>
                 </div>

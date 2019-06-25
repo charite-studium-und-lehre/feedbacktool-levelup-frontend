@@ -7,6 +7,7 @@ import { XAxis, YAxis } from '../Charting/Axis'
 import BarGraph from '../Charting/BarGraph'
 import Subjects from './Subjects'
 import Legends from '../Core/LegendTexts'
+import { withTranslation } from 'react-i18next'
 const LegendText = Legends.Exams.Semester.Summary
 
 class Summary extends Component {
@@ -32,6 +33,7 @@ class Summary extends Component {
     }
 
     render() {
+        const {t} = this.props
         const data = this.state.extended ? 
             this.getExtended().subjects.map( s => ({ x: s.title, y: s.questions })) :
             this.Samples.map((cat, i) => ({ x: cat.title, y: _.sumBy(cat.subjects, s => s.questions), color: `hsla(${32 + i/this.Samples.length*360}, 100%, 56%, .4)`}))
@@ -59,7 +61,7 @@ class Summary extends Component {
                        </Chart>
                     </div>
                     <div className="d-flex justify-content-end flex-wrap">
-                        <Link to="/strengths"><button className="btn btn-outline-primary">Mehr zu deiner Entwicklung</button></Link>
+                        <Link to="/strengths"><button className="btn btn-outline-primary">{t(`Mehr zu deiner Entwicklung`)}</button></Link>
                     </div>
                 </div>
             </div>
@@ -67,4 +69,4 @@ class Summary extends Component {
     }
 }
 
-export default Summary
+export default withTranslation()(Summary)

@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
+import { withTranslation } from 'react-i18next'
 import PointGraph from '../../Charting/PointGraph'
 import Legend from '../../Charting/Legend'
 import Legends from '../../Core/LegendTexts'
 import InfoOverlay from './InfoOverlay'
 import Chart from './Chart'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {   faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
-const LegendText = Legends.Dashboard.Timeline
 const day= 1000 * 60 * 60 * 24
 const year = day * 365
 
 class Timeline extends Component {
-    constructor(props) {
+    constructor({props}) {
         super(props)
         this.state = {
             timerange: [null, new Date()],
@@ -19,18 +21,18 @@ class Timeline extends Component {
             selectedPoint: null 
         }       
     }
-
+    
     initTimerange(oldest) {
         this.setState({ oldest, timerange: [oldest, this.state.timerange[1]] })
     }
-
+    
     zoomIn(point, graph) {
         const newState = this.state.selectedPoint ? 
-            { oldest: this.state.timerange[0], newest: this.state.timerange[1], selectedPoint: null, graph: null } :
-            { selectedPoint: point, oldest: new Date(point.x.getTime() - day * 1), newest: new Date(point.x.getTime() + day * 7 * 2), graph }
+        { oldest: this.state.timerange[0], newest: this.state.timerange[1], selectedPoint: null, graph: null } :
+        { selectedPoint: point, oldest: new Date(point.x.getTime() - day * 1), newest: new Date(point.x.getTime() + day * 7 * 2), graph }
         this.setState(newState)
     }
-
+    
     zoomOut() {
         const t = new Date(this.state.timerange[0].getTime() - year)
         this.setState( { 
@@ -40,8 +42,10 @@ class Timeline extends Component {
             selectedPoint: null 
         })
     }
-
+    
     render() {
+        const {t} = this.props
+        const LegendText = Legends(t).Dashboard.Timeline
         return (
             <div className="card with-border" style={{overflow: 'hidden'}}>
                 <div className="card-body">
@@ -64,7 +68,8 @@ class Timeline extends Component {
                         </InfoOverlay>
                     </div>
                     <div className="">
-                        <span className="text-primary" style={{fontSize: '.8rem', cursor:'pointer'}} onClick={() => this.zoomOut()}>Mehr anzeigen</span>
+                        <span className="text-primary ml-3" style={{fontSize: '.8rem', cursor:'pointer', fontSize:'16px'}} onClick={() => this.zoomOut()}><FontAwesomeIcon icon={ faChevronLeft} /><FontAwesomeIcon icon={ faChevronLeft} /></span>
+
                     </div>
                     <div className="mt-2">
                         {this.props.data.map(g => (
@@ -77,4 +82,4 @@ class Timeline extends Component {
     }
 }
 
-export default Timeline
+export default withTranslation()(Timeline)
