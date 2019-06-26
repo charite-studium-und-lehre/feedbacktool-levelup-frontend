@@ -5,7 +5,7 @@ import { HorizontalBarChart } from '../Charting/HorizontalBarGraph'
 import { withTranslation } from 'react-i18next'
 
 const categories = ['Klinisch', 'Vorklinisch']
-const StationsInfo = (props, {t}) =>
+const StationsInfo = (t , ...props ) =>
     (<div>
         <div>{t(`Dein Ergebnis:`)}<span className="font-weight-bold"> {props.data.result} %</span></div>
         <div>{t(`Durchschnitt:`)}<span className="font-weight-bold"> {props.data.mean} %</span></div>
