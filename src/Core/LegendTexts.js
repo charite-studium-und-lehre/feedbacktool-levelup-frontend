@@ -53,6 +53,10 @@ const Legends =  t  =>  ({
                 title: t(`Alle Fächer`),
                 text: t(`Hier findest du eine Übersicht zu deinen Leistungen in den vorklinischen, klinischen und Querschnittsfächern. Die Ergebnisse basieren auf deinem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.`),
             },
+            Organsystem : {
+                title: t(`Alle Organsystem`),
+                text: t(`Hier findest du eine Übersicht zu deinen Leistungen in den vorklinischen, klinischen und Querschnittsfächern. Die Ergebnisse basieren auf deinem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.`),
+            },
         },
         Stations: {
             Main: {

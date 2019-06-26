@@ -59,6 +59,30 @@ const Ptm = ({ match, t, ...props }) => {
                     </div>
                 </div>
             </div>
+            <div className="row">
+                <div className="col">
+                    <div className="card p-3">
+                        <Legend title={LegendText.Organsystem.title}>{LegendText.Organsystem.text}</Legend>
+                        { !props.data.alt ?
+                        <SubjectsTabs>
+                            {ptmSample.map(c => 
+                                <div key={c.title} title={c.title} className="d-flex flex-wrap">
+                                    {_.sortBy(c.subjects, d => d.title).map(s => <Subject data={[s]} key={s.title} {...s} />)}
+                                </div>
+                            )}
+                        </SubjectsTabs>
+                        : 
+                        <SubjectsTabs>
+                        {ptmSample.map(c => 
+                            <div key={c.title} title={c.title} className="d-flex flex-wrap">
+                                {_.sortBy(c.subjects, d => d.title).map(s => <SubjectAlt data={[s]} key={s.title} {...s} />)}
+                            </div>
+                        )}
+                    </SubjectsTabs>
+                            }
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
