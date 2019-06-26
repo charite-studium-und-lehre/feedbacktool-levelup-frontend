@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { SlideDown } from 'react-slidedown'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChartLine, faChevronRight, faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { faChartLine, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../Core/makeExtendable'
 import Score from './Score'
 import ProgressChart from './ProgressChart'
@@ -11,7 +11,7 @@ import { selectors } from './Store'
 const Chart = makeExtendable(props => 
   <div>
     <div className="text-right">
-      <FontAwesomeIcon onClick={() => props.toggleExtended()} className={props.extended ? 'text-primary' : 'text-muted'} style={{fontSize: '.8rem'}} icon={faChartLine} />
+      <FontAwesomeIcon onClick={() => props.toggleExtended()} className={props.extended ? 'text-primary' : 'text-muted'} style={{fontSize: '.9rem'}} icon={faChartLine} />
     </div>
     <SlideDown className="animated fast">
     {props.extended &&
@@ -38,7 +38,7 @@ const Item = connect(stateToProps)(makeExtendable(props =>
             <Score edit={!props.entry.entries.length && props.edit} entryId={props.entryId} />
           </div>
           <div className="col-1 pl-0 text-right" style={{color: 'rgba(0,0,0,.6)'}}>
-            {props.entry.entries.length ? <FontAwesomeIcon style={{fontSize: '.8rem'}} icon={props.extended ? faChevronDown : faChevronRight} /> : null}
+            {props.entry.entries.length ? <FontAwesomeIcon style={{fontSize: '.9rem'}} icon={props.extended ? faMinus : faPlus} /> : null}
           </div>
         </div>
         {props.entry.hasGraph && <Chart entryId={props.entryId} />}
