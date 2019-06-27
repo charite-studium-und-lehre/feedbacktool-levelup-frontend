@@ -19,7 +19,11 @@ const Strengths = ({ match, t }) => {
     <div className="container-fluid">
         <div className="row">
             <div className="col">
-                <Legend title={LegendText.Main.title}>{LegendText.Main.text}</Legend>
+                <Legend title={LegendText.Main.title}>
+                <div style={{fontSize:'1em'}}>{LegendText.Main.text[0]}</div>
+                <div style={{fontWeight:'bold', fontSize:'1.2em'}}>{t`Wichtig:`}</div>
+                <div style={{fontSize:'1em'}}>{LegendText.Main.text[1]}</div>
+                </Legend>
             </div>
         </div>
         <div className="row mt-3">
