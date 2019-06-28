@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Dashboard from '../Dashboard/Dashboard'
-import Exams from '../Exams/Exams'
+//import Exams from '../Exams/Exams'
 import Semester from '../Exams/Semester/Semester'
 import Questions from '../Exams/Semester/Questions'
 import Ptm from '../Exams/Ptm/Ptm'

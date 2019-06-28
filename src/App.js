@@ -23,7 +23,6 @@ class App extends Component {
   }
 
   render() {
-const {t} = this.props
     let navbar = (
       <Navbar isLoggedIn={this.state.loggedIn}></Navbar>
     )
