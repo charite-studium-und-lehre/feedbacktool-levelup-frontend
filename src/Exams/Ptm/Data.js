@@ -36,7 +36,6 @@ const selectors = {
         _.map(_.mergeAll)
     ])(semesters),
     getBySemester: (state, semester) => getResult(semester)
-    //.[{x: 'WS 15', y0: 0, y1: 10}, {x: 'SS 16', y0: 0, y1: 15}]
 }
 
 const random = randomUniform.source(seedrandom('foo'))
