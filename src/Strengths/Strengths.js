@@ -21,9 +21,7 @@ const Strengths = ({ match, t, ...props }) => {
         <div className="row">
             <div className="col">
                 <Legend title={LegendText.Main.title}>
-                <div style={{fontSize:'1em'}}>{LegendText.Main.text[0]}</div>
-                <div style={{fontWeight:'bold', fontSize:'1.2em'}}>{t`Wichtig:`}</div>
-                <div style={{fontSize:'1em'}}>{LegendText.Main.text[1]}</div>
+                {LegendText.Main.text}
                 </Legend>
             </div>
         </div>

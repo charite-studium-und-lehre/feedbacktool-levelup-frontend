@@ -1,17 +1,16 @@
-import React, {Component} from 'react'
+import React, { useState } from 'react'
+import i18next from 'i18next'
 
-class LanguageSymbol extends Component {
-    state = { languasge : true}
-render() {
+const LanguageSymbol = () => {
+    const [language, setLanguage] = useState(false)
     return (
             <div className="mt-2 mr-2"
             style={{ fontSize: '1.2em' , cursor: 'pointer' }}
-             onClick={()=> { this.setState({languasge: !this.state.languasge})}}
+             onClick={() => { i18next.changeLanguage(!language? 'en' : 'de'); setLanguage(!language) } }
             >
-            {this.state.languasge? 'EN' : 'DE'}
+            {language? 'en' : 'de'}
             </div>
     )
 }
-   
-}
+
 export default LanguageSymbol
