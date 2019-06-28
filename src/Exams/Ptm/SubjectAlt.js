@@ -6,7 +6,7 @@ import { OrdinalChart } from '../../Charting/Chart'
 import AreaGraph from '../../Charting/AreaGraph'
 import LineGraph from '../../Charting/LineGraph'
 import { XAxis, YAxis } from '../../Charting/Axis'
-import { selectors } from './Data'
+import { selectors } from './Store'
 import SimpleBar from '../../Charting/SimpleBar'
 
 const SubjectAlt = props => (

@@ -8,7 +8,7 @@ import PTMResults from '../Exams/Ptm/ptmResultsAlt'
 import SubjectsTabs from '../Core/Tabs'
 import Legend from '../Charting/Legend'
 import Legends from '../Core/LegendTexts'
-import { selectors as ptmSelectors } from '../Exams/Ptm/Data'
+import { selectors as ptmSelectors } from '../Exams/Ptm/Store'
 
 const mcSample = Subjects('mc')
 

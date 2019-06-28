@@ -8,7 +8,7 @@ import LegendTexts from '../../Core/LegendTexts'
 import Ranking from '../../Strengths/Ranking'
 import PtmResultsAlt from './ptmResultsAlt'
 import SubjectAlt from './SubjectAlt'
-import { selectors } from './Data'
+import { selectors } from './Store'
 
 const Ptm = ({ match, ...props }) => {
     const LegendText = LegendTexts.Exams.Ptm

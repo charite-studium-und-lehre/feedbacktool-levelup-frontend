@@ -6,7 +6,7 @@ import PtmTimelineInfo from '../Dashboard/Timeline/PtmInfo'
 import StationsTimelineInfo from '../Dashboard/Timeline/StationsInfo'
 import { TimelineData as StationsTimelineData } from './Stations/Data'
 import { TimelineData as SemesterTimelineData } from './Semester/Data'
-import { TimelineData as PtmTimelineData } from './Ptm/Data'
+import { TimelineData as PtmTimelineData } from './Ptm/Store'
 
 const n = 5
 const graphs = {
