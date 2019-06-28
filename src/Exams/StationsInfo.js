@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { HorizontalBarChart } from '../Charting/HorizontalBarGraph'
 import { withTranslation } from 'react-i18next'
 
-const categories = ['Klinisch', 'Vorklinisch']
+const categories = ['Klinisch', 'Theoretisch']
 const StationsInfo = (t , ...props ) =>
     (<div>
         <div>{t(`Dein Ergebnis:`)}<span className="font-weight-bold"> {props.data.result} %</span></div>

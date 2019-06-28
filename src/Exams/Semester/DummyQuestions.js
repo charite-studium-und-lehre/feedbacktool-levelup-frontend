@@ -662,7 +662,7 @@ const questions = [{"text": "Welches der Medikamente ist ein Kalziumkanalblocker
 "Atemwegshyperreagibilität - irreversible Obstruktion der Atemwege - verminderte Mukus-Sekretion in den Atemwegen -Emphysem"]}]
 
 const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
-const tags = [{label: 'Altfrage', color: 'hsl(49, 100%, 20%)'}, {label: 'Klinisch', color: 'hsl(49, 100%, 30%)'}, {label: 'Vorklinisch', color: 'hsl(49, 100%, 50%)'}, {label: 'Querschnittsfach', color: 'hsl(49, 100%, 70%)'}]
+const tags = [{label: 'Altfrage', color: 'hsl(49, 100%, 20%)'}, {label: 'Klinisch', color: 'hsl(49, 100%, 30%)'}, {label: 'Theoretisch', color: 'hsl(49, 100%, 50%)'}, {label: 'Querschnittsfach', color: 'hsl(49, 100%, 70%)'}]
 function convertQuestion(q) {
     const correctAnswer = _.random(q.answers.length-1)
     const selectedAnswer = _.random(q.answers.length-1)

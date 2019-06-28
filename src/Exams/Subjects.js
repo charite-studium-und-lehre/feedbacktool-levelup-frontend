@@ -4,7 +4,7 @@ import { randomUniform } from 'd3-random'
 
 const Subjects = [
     {
-        title: "Vorklinische Fächer",
+        title: "Theoretische Fächer",
         subjects: ["Anatomie, Biologie",
             "Biochemie, Chemie, Molekularbiologie",
             "Med. Psychologie/Soziologie",
