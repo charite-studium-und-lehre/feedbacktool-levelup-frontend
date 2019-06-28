@@ -23,7 +23,7 @@ const Ptm = ({ match, ...props }) => {
                 <div className="col">
                     <div className="d-flex flex-wrap">
                         <div className="m-2 flex-grow-1" style={{width: '60rem'}}>
-                            <PtmResultsAlt/>
+                            <PtmResultsAlt results={props.data.results} means={props.data.means} />
                         </div>
                         <div className="m-2 flex-grow-1" style={{width: '20rem'}}>
                             <Ranking title={LegendText.Strengths.title} text={LegendText.Strengths.text} subjects={ranking(props.data.fächer)} mean /> 
@@ -63,5 +63,5 @@ const Ptm = ({ match, ...props }) => {
     )
 }
 
-const stateToProps = (state, ownProps) => ({ data: selectors.getBySemester(state, ownProps.semester) })
-export default props => <Ptm {...stateToProps(null, props.match.params.test)} {...props} />
+const stateToProps = (state, ownProps) => ({ data: selectors.getBySemester(state, ownProps.match.params.test) })
+export default props => <Ptm {...stateToProps(null, props)} {...props} />

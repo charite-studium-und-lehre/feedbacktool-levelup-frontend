@@ -5,7 +5,6 @@ import BarGraph from '../../Charting/BarGraph'
 import PointGraph from '../../Charting/PointGraph'
 import Legend from '../../Charting/Legend'
 import Legends from '../../Core/LegendTexts'
-import { Results} from './Data'
 
 const labels = ['richtig', 'falsch', 'nicht beantwortet']
 const color = 'rgb(49, 130, 189)'
@@ -26,4 +25,4 @@ const PtmResultsAlt = props =>
         </div>
     </div>
 
-export default props => <PtmResultsAlt {...Results(props.semester)} {...props} />
+export default PtmResultsAlt

@@ -46,15 +46,16 @@ const Subjects = [
     },
 ]
 
-const SubjectsWithNumbers = fp.flow([seed => randomUniform.source(seedrandom(seed)), random => (a,b) => fp.round(random(a,b)()), random => Subjects.map( 
+const rnd = fp.flow([seedrandom, randomUniform.source, rnd => (a,b) => fp.round(rnd(a,b)())])
+const SubjectsWithNumbers = fp.flow([rnd, random => Subjects.map( 
     cat => ({ 
         ...cat, 
         subjects: cat.subjects.map( s => ({ 
             name: s,
-            gesamt: random(1,20),
+            gesamt: Math.max(0, rnd(s)(3,20) + random(0,4)),
         })).map(s => ({ 
             ...s, 
-            richtig: random(1, s.gesamt),
+            richtig: random(0, s.gesamt),
             durchschnitt: random(1, s.gesamt)
         }))
     }

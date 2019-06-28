@@ -30,7 +30,7 @@ const tree = t => ({
                     label: 'PTM',
                     isLeaf: true,
                     done: true,
-                    link: '/exams/ptm/2. Semester',
+                    link: '/exams/ptm/2. Fachsemester',
                 },
                 {
                     label: t('Semesterprüfung'),
@@ -42,7 +42,7 @@ const tree = t => ({
                     label: t('Praktische Prüfung'),
                     isLeaf: true,
                     done: true,
-                    link: '/exams/stations/2. Semester',
+                    link: '/exams/stations/2. Fachsemester',
                 },
                 {
                     label: t('Anwesenheit'),
@@ -58,7 +58,7 @@ const tree = t => ({
                     label: 'PTM',
                     isLeaf: true,
                     done: true,
-                    link: '/exams/ptm/3. Semester',
+                    link: '/exams/ptm/3. Fachsemester',
                 },
                 {
                     label: t('Semesterprüfung'),
@@ -90,7 +90,7 @@ const tree = t => ({
                     label: 'PTM',
                     isLeaf: true,
                     done: true,
-                    link: '/exams/ptm/4. Semester',
+                    link: '/exams/ptm/4. Fachsemester',
                 },
                 {
                     label: t('Semesterprüfung'),
@@ -102,7 +102,7 @@ const tree = t => ({
                     label: t('Praktische Prüfung'),
                     isLeaf: true,
                     done: true,
-                    link: '/exams/stations/4. Semester',
+                    link: '/exams/stations/4. Fachsemester',
                 },
                 {
                     label: t('Anwesenheit'),
@@ -123,7 +123,7 @@ const tree = t => ({
                     label: 'PTM',
                     isLeaf: true,
                     done: true,
-                    link: '/exams/ptm/5. Semester',
+                    link: '/exams/ptm/5. Fachsemester',
                 },
                 {
                     label: t('Semesterprüfung'),
@@ -145,7 +145,7 @@ const tree = t => ({
                     label: 'PTM',
                     isLeaf: true,
                     done: false,
-                    link: '/exams/ptm/6. Semester',
+                    link: '/exams/ptm/6. Fachsemester',
                 },
                 {
                     label: t('Semesterprüfung'),
@@ -172,7 +172,7 @@ const tree = t => ({
                     label: 'PTM',
                     isLeaf: true,
                     done: false,
-                    link: '/exams/ptm/7. Semester',
+                    link: '/exams/ptm/7. Fachsemester',
                 },
                 {
                     label: t('Semesterprüfung'),
@@ -194,7 +194,7 @@ const tree = t => ({
                     label: 'PTM',
                     isLeaf: true,
                     done: false,
-                    link: '/exams/ptm/8. Semester',
+                    link: '/exams/ptm/8. Fachsemester',
                 },
                 {
                     label: t('Semesterprüfung'),
@@ -216,7 +216,7 @@ const tree = t => ({
                     label: 'PTM',
                     isLeaf: true,
                     done: false,
-                    link: '/exams/ptm/9. Semester',
+                    link: '/exams/ptm/9. Fachsemester',
                 },
                 {
                     label: t('Semesterprüfung'),
@@ -228,7 +228,7 @@ const tree = t => ({
                     label: 'OSCE',
                     isLeaf: true,
                     done: false,
-                    link: '/exams/stations/9. Semester',
+                    link: '/exams/stations/9. Fachsemester',
                 },
                 {
                     label: t('Anwesenheit'),
@@ -244,7 +244,7 @@ const tree = t => ({
                     label: 'PTM',
                     isLeaf: true,
                     done: false,
-                    link: '/exams/ptm/10. Semester',
+                    link: '/exams/ptm/10. Fachsemester',
                 },
                 {
                     label: t('Anwesenheit'),

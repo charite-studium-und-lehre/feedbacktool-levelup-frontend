@@ -22,13 +22,14 @@ const SubjectAlt = props => (
                     {props.data.richtig} von {props.data.gesamt} richtig
                 </SimpleBar>
             </div>
-            <div className="p-2 pl-5" style={{height: '6rem'}} >
-                {/* <HorizontalBarChart yDomain={labels} data={_.range(0,3).map(i => ({y: labels[i], x: _.random(20,100)}))} />  */}
-                <OrdinalChart xDomain={props.timeline.map(d => d.semester)} yDomain={[0,20]}>
+            <div className="p-3 mt-2" style={{height: '6rem'}} >
+                <OrdinalChart xDomain={props.timeline.map(d => d.semester)} yDomain={[0, Math.max(...props.timeline.map(d => d.gesamt))]}>
                     <XAxis />
-                    <YAxis ticks={{count: 4}} />
+                    <YAxis label="# Fragen" ticks={{count: 3}} />
                     <AreaGraph data={props.timeline.map(d => ({ x: d.semester, y0: 0, y1: d.gesamt }))} color="hsla(120, 50%, 50%, .4)" />
-                    <LineGraph data={props.timeline.map(d => ({ x: d.semester, y: d.gesamt }))} />
+                    <LineGraph data={props.timeline.map(d => ({ x: d.semester, y: d.gesamt }))} color="hsla(120, 50%, 20%, .4)" />
+                    <AreaGraph data={props.timeline.map(d => ({ x: d.semester, y0: 0, y1: d.richtig }))} color="hsla(0, 50%, 50%, .4)" />
+                    <LineGraph data={props.timeline.map(d => ({ x: d.semester, y: d.richtig }))} color="hsla(0, 50%, 20%, .4)" />
                 </OrdinalChart>
             </div>
            

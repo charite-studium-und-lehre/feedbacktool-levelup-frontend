@@ -7,7 +7,7 @@ import PTMResults from './PTMResults'
 import SubjectsTabs from '../Core/Tabs'
 import Legend from '../Charting/Legend'
 import Legends from '../Core/LegendTexts'
-import { Results as PtmResults } from '../Exams/Ptm/Data'
+import { selectors as ptmSelectors } from '../Exams/Ptm/Data'
 
 const mcSample = Subjects('mc')    
 const ptmSample = Subjects('ptm')
@@ -53,4 +53,5 @@ const Strengths = ({ match, ...props }) => {
     </div>
 )}
 
-export default props => <Strengths ptmData={PtmResults('latest')} {...props} />
+const stateToProps = state => ({ ptmData: ptmSelectors.getBySemester(state, '5. Fachsemester') })
+export default props => <Strengths {...stateToProps('latest')} {...props} />
