@@ -50,28 +50,28 @@ const SubjectsWithNumbers = fp.flow([seed => randomUniform.source(seedrandom(see
     cat => ({ 
         ...cat, 
         subjects: cat.subjects.map( s => ({ 
-            title: s,
-            questions: random(1,20),
+            name: s,
+            gesamt: random(1,20),
         })).map(s => ({ 
             ...s, 
-            correct: random(1, s.questions),
-            mean: random(1, s.questions)
+            richtig: random(1, s.gesamt),
+            durchschnitt: random(1, s.gesamt)
         }))
     }
 ))])
 
 const flattenCategories = fp.flatMap(c => c.subjects)
 
-const percentCorrect = s => s.correct / s.questions
+const percentCorrect = s => s.richtig / s.gesamt
 
-const minQuestions = fp.filter(s => s.questions >= 4)
+const minQuestions = fp.filter(s => s.gesamt >= 4)
 
 const findMax = fp.reduce((max, s) => 
 !max ? s :
 percentCorrect(s) > percentCorrect(max) 
 ? s 
 : percentCorrect(s) === percentCorrect(max) 
-? s.questions > max.questions 
+? s.gesamt > max.gesamt 
 ? s 
 : max 
 : max, null)

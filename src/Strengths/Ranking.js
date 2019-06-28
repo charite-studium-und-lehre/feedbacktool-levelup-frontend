@@ -8,13 +8,13 @@ import { withTranslation } from 'react-i18next'
 const Ranking = ({t, ...props}) => (
     <div className="card">
         <div className="card-body">
-            <Legend title={props.title}>{props.text}</Legend>
+            <Legend title={props.name}>{props.text}</Legend>
             <div>
                 {_.take(props.subjects, props.extended ? props.subjects.length : 3).map((s, i) =>
-                    <div key={s.title} className="py-2">
-                        <h5><span className="text-primary">#{i+1}</span> {s.title}</h5>
-                        <SimpleBar value={s.correct} total={s.questions} mean={props.mean && s.mean}>
-                            {s.correct} von {s.questions} {t(`richtig`)}
+                    <div key={s.name} className="py-2">
+                        <h5><span className="text-primary">#{i+1}</span> {s.name}</h5>
+                        <SimpleBar value={s.richtig} total={s.gesamt} mean={props.mean && s.durchschnitt}>
+                            {s.richtig} von {s.gesamt} {t(`richtig`)}
                         </SimpleBar>
                     </div>
                 )}

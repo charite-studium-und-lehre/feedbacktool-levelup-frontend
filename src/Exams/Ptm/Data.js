@@ -1,54 +1,51 @@
-import _ from 'lodash'
+import _ from 'lodash/fp'
 import { randomUniform } from 'd3-random'
 import seedrandom from 'seedrandom'
+import Subjects from '../Subjects'
 
-// {
-//     richtig: 80,
-//     falsch: 33,
-//     nichtbeantwortet: 90,
-//     fächer: [
-//         {
-//             name: "Urologie"
-//         }
-//     ]
-// }
-// {
-//     richtig: [43, 24, 13],
-//     falsch: [3, 12, 18],
-//     nichtbeantwortet: 90,
-//     fächer: [
-//         {
-//             name: "Urologie"
-//         }
-//     ]
-// }
-const Results = _.flow([seedrandom, randomUniform.source, rng => ({
-    alt: !_.round(rng(0,2)()),
-    results: [
-        [[80, 67, 43] , [13, 24, 43]],
-        [[30, 15, 3], [18, 12, 3]],
-        [90, 90] 
-    ],
-    means: [rng(50,120), 22, 101]
-})])
-const ResultsAlt = semester => ({
-    results: [
-        [ 83],
-        [30],
-        [90] 
-    ],
-    means: [77, 22, 101]
-})
+const semesters = ['WS 15', 'SS 16', 'WS 16', 'SS 17', 'WS 17' ]
+const Results = _.flow([
+        _.over([
+            _.flow([seedrandom, randomUniform.source, rnd => (a,b) => _.round(rnd(a,b)())]),
+            _.identity
+        ]), 
+        ([rng, semester]) => ({
+            alt: true,
+            results: [
+                [ 83],
+                [30],
+                [90] 
+            ],
+            means: [77, 22, 101],
+            semester,
+            fächer: Subjects(semester)
+        })
+    ])
 
 const random = randomUniform.source(seedrandom('foo'))
 function randomData(n = 5) {
-    return _.range(n).map(i => ({
+    return _.range(0, n).map(i => ({
         x: new Date(2018 - i, 6 + random(2, -1)(), 15 + random(20, -10)()),
         result: (n-i+1)/6*50,
         mean: random(25, 40)(),
         label: `${n-i}. Semester`
     }))
 }
-
 const TimelineData = randomData()
-export { TimelineData, Results , ResultsAlt }
+
+const flattenCategories = _.flatMap(c => c.subjects)
+const getSubject = subject => _.flow([_.find({'name': subject}), _.defaultTo({})])
+const getFächer = ptm => ptm.fächer
+const selectors = {
+    getSubjectByName: (state, semester, subject) => _.flow([Results, getFächer, flattenCategories, getSubject(subject)])(semester),
+    getAllForSubject: (state, subject) => 
+        _.flow([
+            _.map(Results), _.map(getFächer), _.map(flattenCategories), _.map(getSubject(subject)),
+            _.zip(semesters.map(s => ({semester: s}))),
+            _.map(_.mergeAll)
+        ])(semesters),
+    getBySemester: (state, semester) => Results(semester)
+    //.[{x: 'WS 15', y0: 0, y1: 10}, {x: 'SS 16', y0: 0, y1: 15}]
+}
+
+export { TimelineData, Results, selectors }

@@ -1,14 +1,11 @@
 import React from 'react'
-import _ from 'lodash'
-import { scaleOrdinal } from 'd3-scale'
-import { schemeBlues } from 'd3-scale-chromatic'
 import { OrdinalChart } from '../../Charting/Chart'
 import { XAxis, YAxis } from '../../Charting/Axis'
 import BarGraph from '../../Charting/BarGraph'
 import PointGraph from '../../Charting/PointGraph'
 import Legend from '../../Charting/Legend'
 import Legends from '../../Core/LegendTexts'
-import { ResultsAlt} from './Data'
+import { Results} from './Data'
 
 const labels = ['richtig', 'falsch', 'nicht beantwortet']
 const color = 'rgb(49, 130, 189)'
@@ -29,4 +26,4 @@ const PtmResultsAlt = props =>
         </div>
     </div>
 
-export default props => <PtmResultsAlt {...ResultsAlt(props.semester)} {...props} />
+export default props => <PtmResultsAlt {...Results(props.semester)} {...props} />
