@@ -8,8 +8,8 @@ import Score from './Score'
 import { withTranslation } from 'react-i18next'
 
 const Button = (props) =>
-    <div className={`d-inline-block ${props.className || ''}`}>
-        <button className={`btn btn-sm mr-2 ${props.active ? 'btn-success' : 'btn-primary'}`} onClick={props.onClick}>
+    <div className={`d-inline-block float-left ${props.className || ''}`}>
+        <button className={`btn btn-sm mr-2 mb-2 ${props.active ? 'btn-success' : 'btn-primary'}`} onClick={props.onClick}>
             <span className="d-none d-lg-inline mr-2">{props.children}</span>
             <FontAwesomeIcon icon={props.icon} />
         </button>
@@ -26,15 +26,16 @@ class Toolbar extends React.Component {
             <div className="p-2 mt-2 card text-right sticky-top" style={{ top: '3.7rem' }}>
                 <div>
                     <div className="row">
-                        <div className="col-7">
-                            <Score headings={true} entry={this.props.root} />
-                        </div>
-                        <div className="col-5">
+                    <div className="col-5">
                             <Button className="d-lg-none" icon={faListOl} active={this.state.list} onClick={() => this.setState({ list: !this.state.list })} />
                             <Button icon={faFileExport}>{t(`Export`)}</Button>
                             <Button icon={faEnvelopeOpenText} active={this.props.extended} onClick={this.props.toggleExtended}>{t(`Fremdeinschätzung</B`)}</Button>
                             <Button icon={faEdit} active={this.props.edit} onClick={this.props.toggleEdit}>{this.props.edit ? t(`speichern`): t(`bearbeiten`)}</Button>
                         </div>
+                        <div className="col-7">
+                            <Score headings={true} entry={this.props.root} />
+                        </div>
+                      
                     </div>
                     <SlideDown className="animated fast">
                         {this.state.list &&
