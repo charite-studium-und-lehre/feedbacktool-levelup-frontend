@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
-import { reducer as practicalsReducer } from './Practicals/Store'
+import { reducer as practicals } from './Practicals/Store'
+import { reducer as exams } from './Exams/reducer'
 
-export default combineReducers({ practicals: practicalsReducer })
+export default combineReducers({ practicals, exams })

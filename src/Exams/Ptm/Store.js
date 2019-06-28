@@ -21,21 +21,22 @@ const createResult = _.flow([
         fächer: Subjects(semester)
     })
 ])
-const Results = _.fromPairs(_.zip(semesters, _.map(createResult)(semesters)))
+const Results = _.keyBy(r => r.semester, _.map(createResult)(semesters))
 
-const getResult = semester => Results[semester]
+const getStore = state => {return state.exams.ptms}
+const getBySemester = (state, semester) => getStore(state)[semester]
 const flattenCategories = _.flatMap(c => c.subjects)
 const getSubject = subject => _.flow([_.find({'name': subject}), _.defaultTo({})])
 const getFächer = ptm => ptm.fächer
-const selectors = {
-    getSubjectByName: (state, semester, subject) => _.flow([getResult, getFächer, flattenCategories, getSubject(subject)])(semester),
+export const selectors = {
+    getSubjectByName: (state, semester, subject) => _.flow([getBySemester, getFächer, flattenCategories, getSubject(subject)])(state, semester),
     getAllForSubject: (state, subject) => 
     _.flow([
-        _.map(getResult), _.map(getFächer), _.map(flattenCategories), _.map(getSubject(subject)),
+        getStore, _.map(getFächer), _.map(flattenCategories), _.map(getSubject(subject)),
         _.zip(semesters.map(s => ({semester: s}))),
         _.map(_.mergeAll)
-    ])(semesters),
-    getBySemester: (state, semester) => getResult(semester)
+    ])(state),
+    getBySemester
 }
 
 const random = randomUniform.source(seedrandom('foo'))
@@ -47,5 +48,13 @@ function randomData(n = 5) {
         label: `${n-i}. Semester`
     }))
 }
-const TimelineData = randomData()
-export { TimelineData, selectors }
+export const TimelineData = randomData()
+
+export const actions = {}
+  
+export function reducer(state = Results, action) {
+    switch (action.type) {
+        default:
+        return state
+    }
+}
