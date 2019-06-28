@@ -6,21 +6,22 @@ import AnimatedPath from './AnimatedPath'
 import AnimatedText from './AnimatedText'
 
 export default function LineGraph(props) {
+    const x = d => props.xScale(d.x) + (props.xScale.bandwidth ? props.xScale.bandwidth() / 2 : 0)
     const _line = line()
-        .x(d => props.xScale(d.x))
+        .x(x)
         .y(d => props.yScale(d.y))
         .curve(props.curve || curveMonotoneX)
         
     const texts = !props.labels || props.data.map((d, i) => (<AnimatedText
         key={i}
-        x={props.xScale(d.x) - 10}
+        x={x(d) - 10}
         y={props.yScale(d.y) + 15}>
         {d.label}</AnimatedText>))
 
     const circles = props.noPoints || props.data.map((d, i) => <AnimatedPoint 
         key={i} 
         selected={props.selectedPoint === d.x}
-        cx={props.xScale(d.x)} 
+        cx={x(d)} 
         cy={props.yScale(d.y)} 
         r="5" 
         fill={props.color || "black"}
