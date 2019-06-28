@@ -9,12 +9,13 @@ import Strengths from '../Strengths/Strengths'
 import Stations from '../Exams/Stations/Stations'
 import Consulting from '../consulting/Consulting'
 import Practicals from '../Practicals/Practicals'
+import i18next from 'i18next'
 
-const Routes = (t) => ([
+const Routes = [
   {
     path: '/dashboard',
     component: Dashboard,
-    breadcrumb: () => <Link to="/dashboard">{t(`Dashboard`)}</Link>,
+    breadcrumb: () => <Link to="/dashboard">{i18next.t(`Dashboard`)}</Link>,
     exact: true,
     private: true,
   },
@@ -22,7 +23,7 @@ const Routes = (t) => ([
   // {
   //   path: '/exams/:graphs?',
   //   component: Exams,
-  //   breadcrumb: () => <Link to="/exams">{t(`Prüfungen`)}</Link>,
+  //   breadcrumb: () => <Link to="/exams">{i18next.t(`Prüfungen`)}</Link>,
   //   exact: true,
   //   private: true,
   // },
@@ -30,7 +31,7 @@ const Routes = (t) => ([
   {
     path: '/consulting',
     component: Consulting,
-    breadcrumb: () => <Link to="/consulting">{t(`Beratung`)}</Link>,
+    breadcrumb: () => <Link to="/consulting">{i18next.t(`Beratung`)}</Link>,
     exact: true,
     private: true,
   },
@@ -38,7 +39,7 @@ const Routes = (t) => ([
   {
     path: '/practicals',
     component: Practicals,
-    breadcrumb: () => <Link to="/practicals">{t(`Ärzliche Tätigkeiten`)}</Link>,
+    breadcrumb: () => <Link to="/practicals">{i18next.t(`Ärzliche Tätigkeiten`)}</Link>,
     exact: true,
     private: true,
   },
@@ -55,7 +56,7 @@ const Routes = (t) => ([
   {
     path: '/exams/semester/:test/questions',
     component: Questions,
-    breadcrumb: params => <Link to={`/exams/semester/${params.test}/questions`}>{t(`Fragen und Antworten`)}</Link>,
+    breadcrumb: params => <Link to={`/exams/semester/${params.test}/questions`}>{i18next.t(`Fragen und Antworten`)}</Link>,
     exact: true,
     private: true,
   },
@@ -72,7 +73,7 @@ const Routes = (t) => ([
     path: '/strengths/:subject?',
     component: Strengths,
     breadcrumb: params => [
-      <Link to="/strengths">{t(`Stärken und Schwächen`)}</Link>,
+      <Link to="/strengths">{i18next.t(`Stärken und Schwächen`)}</Link>,
     ],
     exact: true,
     private: true,
@@ -80,10 +81,10 @@ const Routes = (t) => ([
   {
     path: '/exams/stations/:test',
     component: Stations,
-    breadcrumb: params => <Link to="/exams/stations">{t(`Praktische Prüfungen`)}</Link>,
+    breadcrumb: params => <Link to="/exams/stations">{i18next.t(`Praktische Prüfungen`)}</Link>,
     exact: true,
     private: true,
   },
-])
+]
 
 export default Routes

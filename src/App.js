@@ -47,7 +47,7 @@ const {t} = this.props
             {navbar}
             {breadcrumbs}
             <Route path="/login" component={login} />
-            {Routes(t).map( route => ( route.private ?
+            {Routes.map( route => ( route.private ?
                     <PrivateRoute key={route.path} path={route.path} component={route.component} exact={route.exact} isLoggedIn={this.state.loggedIn} /> :
                     <Route key={route.path} path={route.path} component={route.component} exact={route.exact} />
             ))}

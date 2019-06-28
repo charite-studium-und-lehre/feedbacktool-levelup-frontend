@@ -2,10 +2,8 @@ import React from 'react';
 import { withTranslation } from 'react-i18next'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPhoneVolume, faAt, faUser, faComments, faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons'
-import { useTranslation } from 'react-i18next'
-const { t } = useTranslation();
 
-const ConsultingCard = props =>  (
+const ConsultingCard = ({t, ...props}) =>  (
     <div className="card col-lg-4 col-sm-6  ">
         <div className="card-body">
             <h2 className="card-title text-center ">{props.title}</h2>
@@ -68,7 +66,7 @@ const ConsultingCard = props =>  (
         <a className="btn btn-primary consulting-butten " href={props.href}>{t`Mehr erfahren`}</a>
     </div>
 )
-  export default ConsultingCard
+  export default withTranslation()(ConsultingCard)
 
 
 

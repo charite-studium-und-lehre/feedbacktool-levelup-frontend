@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom'
 import makeExtendable from './makeExtendable'
-import { useTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next'
 import LanguageSymbol from './languageSymbol'
 
-export default makeExtendable(function Navbar(props) {
-    const { t } = useTranslation();
+export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
     const isLoggedIn = props.isLoggedIn;
     let button;
 
@@ -50,5 +49,5 @@ export default makeExtendable(function Navbar(props) {
                 </ul>
             </div>
         </nav>
-    );
-})
+    )
+}))

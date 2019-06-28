@@ -4,21 +4,20 @@ import _ from 'lodash'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons'
 import { selectors, actions } from './Store'
-import { useTranslation } from 'react-i18next';
-const { t } = useTranslation();
+import { withTranslation } from 'react-i18next'
+
 const Numbers = props => (
     <span>
         {props.edit &&
         <FontAwesomeIcon icon={faMinusCircle} className="text-muted mr-1" onClick={ props.decrement }/>
-        }
+    }
         <span className="font-weight-bold">{props.value} / {props.maxValue}</span>
         {props.edit &&
         <FontAwesomeIcon icon={faPlusCircle} className="text-muted ml-1" onClick={ props.increment }/>
-        }
+    }
     </span>
 )
-const Score = (props ) => (
-    
+const Score = ({t, ...props}) => (
     <div className="row text-center">
         <div className="col-6 pr-0 text-danger">
             <Numbers 
@@ -50,4 +49,4 @@ const stateToProps = (state, ownProps) => ({
     maxScore: selectors.getMaxScore(state, ownProps.entryId),
 })
 
-export default connect(stateToProps, actions)(Score)
+export default withTranslation()(connect(stateToProps, actions)(Score))
