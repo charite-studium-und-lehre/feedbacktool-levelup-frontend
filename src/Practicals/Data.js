@@ -1,33 +1,34 @@
 import _ from 'lodash'
-import i18next from 'i18next'
+import React from 'react'
+import { Trans } from 'react-i18next'
 
 const praticalsTree = {
   label: 'root',
   entries: [
       {
-          label: i18next.t(`Betreuung von Patienten`),
+          label: <Trans>Betreuung von Patienten</Trans>,
 			
 id: _.uniqueId(),
           entries: [
               {
-                label: i18next.t(`Anamnese erheben, körperliche Untersuchung durchführen und Ergebnisse strukturiert zusammenfassen`),
+                label: <Trans>Anamnese erheben, körperliche Untersuchung durchführen und Ergebnisse strukturiert zusammenfassen</Trans>,
 			
 id: _.uniqueId(),
                 entries: [
                     {
-                      label: i18next.t(`Vollständige oder fokussierte Anamnese erheben und körperliche Untersuchung  durchführen (entsprechend Situationsanforderung)`),
+                      label: <Trans>Vollständige oder fokussierte Anamnese erheben und körperliche Untersuchung  durchführen (entsprechend Situationsanforderung)</Trans>,
 			                done: 3,
                       confident: 3,
 id: _.uniqueId(),
                     },
                     {
-                      label: i18next.t(`Zusammenstellen von Vorbefunden, Dokumenten, Medikation, ggf. Rücksprache mit behandelnden Ärzten oder Familienangehörigen`),
+                      label: <Trans>Zusammenstellen von Vorbefunden, Dokumenten, Medikation, ggf. Rücksprache mit behandelnden Ärzten oder Familienangehörigen</Trans>,
 			                done: 2,
                       confident: 3,
 id: _.uniqueId(),
                     },
                     {
-                      label: i18next.t(`Strukturierte Dokumentation in Patientenakte, einschließlich Synthese von Diagnosen/Arbeitsdiagnosen und  wesentlicher Differentialdiagnosen`),
+                      label: <Trans>Strukturierte Dokumentation in Patientenakte, einschließlich Synthese von Diagnosen/Arbeitsdiagnosen und  wesentlicher Differentialdiagnosen</Trans>,
 			                done: 1,
                       confident: 2,
 id: _.uniqueId(),
@@ -37,24 +38,24 @@ id: _.uniqueId(),
                 hasGraph: true
               },
               {
-                label: i18next.t(`Diagnostischen Arbeitsplan erstellen und Umsetzung einleiten`),
+                label: <Trans>Diagnostischen Arbeitsplan erstellen und Umsetzung einleiten</Trans>,
 			
 id: _.uniqueId(),
                 entries: [
                   {
-                    label: i18next.t(`Eintrag für die Basisdiagnostik in Patientenkurve vorschreiben (Gegenzeichnung Arzt)`),
+                    label: <Trans>Eintrag für die Basisdiagnostik in Patientenkurve vorschreiben (Gegenzeichnung Arzt)</Trans>,
 			              done: 1,
                     confident: 1,
 id: _.uniqueId(),
                   },
                   {
-                    label: i18next.t(`Plan für die patientenspezifische Diagnostik entwerfen (Abstimmung mit Arzt)`),
+                    label: <Trans>Plan für die patientenspezifische Diagnostik entwerfen (Abstimmung mit Arzt)</Trans>,
 		  	            done: 0,
                     confident: 0,
 id: _.uniqueId(),
                   },
                   {
-                    label: i18next.t(`Plan in Patientenkurve eintragen und diagnostische Anforderungsformulare ausfüllen (Gegenzeichnung Arzt)`),
+                    label: <Trans>Plan in Patientenkurve eintragen und diagnostische Anforderungsformulare ausfüllen (Gegenzeichnung Arzt)</Trans>,
 			              done: 0,
                     confident: 0,
 id: _.uniqueId(),
@@ -63,24 +64,24 @@ id: _.uniqueId(),
                 hasGraph: true
               },
               {
-                label: i18next.t(`Untersuchungsergebnisse interpretieren und weiterführende Schritte einleiten`),
+                label: <Trans>Untersuchungsergebnisse interpretieren und weiterführende Schritte einleiten</Trans>,
 			
 id: _.uniqueId(),
                 entries: [
                   {
-                    label: i18next.t(`Ergebnisse der Basisdiagnostik und häufiger Untersuchungen sichten und interpretieren`),
+                    label: <Trans>Ergebnisse der Basisdiagnostik und häufiger Untersuchungen sichten und interpretieren</Trans>,
 			              done: 1,
                     confident: 2,
 id: _.uniqueId(),
                   },
                   {
-                    label: i18next.t(`Änderungen in Diagnostik und Therapie vorschlagen (Abstimmung mit Arzt)`),
+                    label: <Trans>Änderungen in Diagnostik und Therapie vorschlagen (Abstimmung mit Arzt)</Trans>,
 			              done: 1,
                     confident: 2,
 id: _.uniqueId(),
                   },
                   {
-                    label: i18next.t(`Ergebnisse in Patientenkurve eintragen und ggf. Anforderungsformulare ausfüllen (Gegenzeichnung Arzt)`),
+                    label: <Trans>Ergebnisse in Patientenkurve eintragen und ggf. Anforderungsformulare ausfüllen (Gegenzeichnung Arzt)</Trans>,
 			              done: 0,
                     confident: 2,
 id: _.uniqueId(),
@@ -89,24 +90,24 @@ id: _.uniqueId(),
                 hasGraph: true
               },          
               {
-                label: i18next.t(`Behandlungsplan erstellen und die Umsetzung einleite`),
+                label: <Trans>Behandlungsplan erstellen und die Umsetzung einleite</Trans>,
 			
 id: _.uniqueId(),
                 entries: [
                   {
-                    label: i18next.t(`Eintrag für die allgemeine Therapie in Patientenkurve vorschreiben (Gegenzeichnung Arzt)`),
+                    label: <Trans>Eintrag für die allgemeine Therapie in Patientenkurve vorschreiben (Gegenzeichnung Arzt)</Trans>,
 			              done: 0,
                     confident: 2,
 id: _.uniqueId(),
                   },
                   {
-                    label: i18next.t(`Plan für die patientenspezifische Therapie entwerfen (Abstimmung mit Arzt)`),
+                    label: <Trans>Plan für die patientenspezifische Therapie entwerfen (Abstimmung mit Arzt)</Trans>,
 			              done: 0,
                     confident: 2,
 id: _.uniqueId(),
                   },
                   {
-                    label: i18next.t(`Plan in Patientenkurve eintragen und therapeutische Anforderungsformulare ausfüllen (Gegenzeichnung Arzt)`),
+                    label: <Trans>Plan in Patientenkurve eintragen und therapeutische Anforderungsformulare ausfüllen (Gegenzeichnung Arzt)</Trans>,
 			              done: 0,
                     confident: 2,
 id: _.uniqueId(),
@@ -118,54 +119,54 @@ id: _.uniqueId(),
           ]
       },
       {
-          label: i18next.t(`Ärztliche Prozeduren`),
+          label: <Trans>Ärztliche Prozeduren</Trans>,
           hasGraph: true,
 id: _.uniqueId(),
           entries: [
             {
-              label: i18next.t(`Venös Blut entnehmen`),
+              label: <Trans>Venös Blut entnehmen</Trans>,
 			        done: 4,
               confident: 4,
 id: _.uniqueId(),
             },
             {
-              label:i18next.t(`'Venenverweilkanüle legen `),
+              label:<Trans>'Venenverweilkanüle legen </Trans>,
 			        done:1,
               confident: 3,
 id: _.uniqueId(),
             },
             {
-              label: i18next.t(`Blutkultur entnehmen`),
+              label: <Trans>Blutkultur entnehmen</Trans>,
 			        done: 2,
               confident: 2,
 id: _.uniqueId(),
             },
             {
-              label: i18next.t(`Abstriche (Mund, Nase, Wunde, anal oder urogenital) vornehmen`),
+              label: <Trans>Abstriche (Mund, Nase, Wunde, anal oder urogenital) vornehmen</Trans>,
 			        done: 0,
               confident: 1,
 id: _.uniqueId(),
             },
             {
-              label: i18next.t(`Infusion anlegen`),
+              label: <Trans>Infusion anlegen</Trans>,
 			        done: 2,
               confident: 2,
 id: _.uniqueId(),
             },
             {
-              label: i18next.t(`12-Kanal EKG schreiben`),
+              label: <Trans>12-Kanal EKG schreiben</Trans>,
 			        done: 2,
               confident: 2,
 id: _.uniqueId(),
             },
             {
-              label: i18next.t(`Einfachen Verband anlegen oder wechseln `),
+              label: <Trans>Einfachen Verband anlegen oder wechseln </Trans>,
 			        done: 3,
               confident: 3,
 id: _.uniqueId(),
             },
             {
-              label: i18next.t(`Rezept vorschreiben (Gegenzeichnung Arzt) `),
+              label: <Trans>Rezept vorschreiben (Gegenzeichnung Arzt) </Trans>,
 			        done: 0,
               confident: 1,
 id: _.uniqueId(),
@@ -173,23 +174,23 @@ id: _.uniqueId(),
           ]
       },
       {
-          label: i18next.t(`Kommunikation mit Patienten`),
+          label: <Trans>Kommunikation mit Patienten</Trans>,
 			
 id: _.uniqueId(),
           entries: [
             {
-              label: i18next.t(`Einverständnis für Untersuchungen und Prozeduren einholen (Patienten über Ablauf, Nutzen, Risiken, Alternativen informieren)`),
+              label: <Trans>Einverständnis für Untersuchungen und Prozeduren einholen (Patienten über Ablauf, Nutzen, Risiken, Alternativen informieren)</Trans>,
 			
 id: _.uniqueId(),
               entries: [
                 {
-                  label: i18next.t(`Nicht-unterschreibungspflichtige Untersuchungen/Prozeduren (z.B. Blutentnahmen, Blasenkatheter, Magensonde, Röntgen-Untersuchungen)`),
+                  label: <Trans>Nicht-unterschreibungspflichtige Untersuchungen/Prozeduren (z.B. Blutentnahmen, Blasenkatheter, Magensonde, Röntgen-Untersuchungen)</Trans>,
                   done: 1,
                   confident: 1,
 id: _.uniqueId(),
                 },
                 {
-                  label: i18next.t(`Unterschriftspflichtige Prozeduren mit Gegenzeichung des Arztes (Gabe von Erythrozyten, Thrombozyten oder Plasmapräparaten)`),
+                  label: <Trans>Unterschriftspflichtige Prozeduren mit Gegenzeichung des Arztes (Gabe von Erythrozyten, Thrombozyten oder Plasmapräparaten)</Trans>,
                   done: 1,
                   confident: 1,
 id: _.uniqueId(),
@@ -198,18 +199,18 @@ id: _.uniqueId(),
               hasGraph: true
             },
             {
-              label: i18next.t(`Patienten informieren und beraten (häufige Beratungsanlässe und Krankheitsbilder)`),
+              label: <Trans>Patienten informieren und beraten (häufige Beratungsanlässe und Krankheitsbilder)</Trans>,
 			
 id: _.uniqueId(),
               entries: [
                 {
-                  label: i18next.t(`Informieren des Patienten (allgemeine Information zu Art der Beschwerden, dem Krankheitsbild und der Diagnostik und Therapie`),
+                  label: <Trans>Informieren des Patienten (allgemeine Information zu Art der Beschwerden, dem Krankheitsbild und der Diagnostik und Therapie</Trans>,
                   done: 1,
                   confident: 2,
 id: _.uniqueId(),
                 },
                 {
-                  label: i18next.t(`Informieren des Patienten (allgemeine Information zu Art der Beschwerden, dem Krankheitsbild und der Diagnostik und Therapie; spezifische Informationen zum Patienten hierzu wie mit dem Arzt abgestimmt)`),
+                  label: <Trans>Informieren des Patienten (allgemeine Information zu Art der Beschwerden, dem Krankheitsbild und der Diagnostik und Therapie; spezifische Informationen zum Patienten hierzu wie mit dem Arzt abgestimmt)</Trans>,
                   done: 1,
                   confident: 2,
 id: _.uniqueId(),
@@ -220,23 +221,23 @@ id: _.uniqueId(),
           ]
       },
       {
-          label: i18next.t(`Kommunikation und Zusammenarbeit mit Kollegen`),
+          label: <Trans>Kommunikation und Zusammenarbeit mit Kollegen</Trans>,
 			
 id: _.uniqueId(),
           entries: [
             {
-              label: i18next.t(`Krankengeschichte eines Patienten vorstellen (strukturiert, entsprechend Zielpersonen und Situationserfordernissen)`),
+              label: <Trans>Krankengeschichte eines Patienten vorstellen (strukturiert, entsprechend Zielpersonen und Situationserfordernissen)</Trans>,
 			
 id: _.uniqueId(),
               entries: [
                 {
-                  label: i18next.t(`Krankengeschichte in Visite vorstellen  `),
+                  label: <Trans>Krankengeschichte in Visite vorstellen  </Trans>,
                   done: 0,
                   confident: 1,
 id: _.uniqueId(),
                 },
                 {
-                  label: i18next.t(`Krankengeschichte in Besprechungen vorstellen (z.B. Röntgen-Demo, Pathokonferenz, Teambesprechungen)`),
+                  label: <Trans>Krankengeschichte in Besprechungen vorstellen (z.B. Röntgen-Demo, Pathokonferenz, Teambesprechungen)</Trans>,
                   done: 0,
                   confident: 1,
 id: _.uniqueId(),
@@ -245,18 +246,18 @@ id: _.uniqueId(),
               hasGraph: true
             },
             {
-              label: i18next.t(`Patientenübergabe vornehmen oder entgegennehmen (strukturiert, entsprechend Zielpersonen und Situationserfordernissen)`),
+              label: <Trans>Patientenübergabe vornehmen oder entgegennehmen (strukturiert, entsprechend Zielpersonen und Situationserfordernissen)</Trans>,
 			
 id: _.uniqueId(),
               entries: [
                 {
-                  label: i18next.t(`Patientenübergabe an/von Ärzte(n) durchführen (z.B. Dienstübergaben)`),
+                  label: <Trans>Patientenübergabe an/von Ärzte(n) durchführen (z.B. Dienstübergaben)</Trans>,
                   done: 0,
                   confident: 0,
 id: _.uniqueId(),
                 },
                 {
-                  label: i18next.t(`Patientenübergabe an/von nicht-ärztliche(n) Mitarbeiter(n) durchführen`),
+                  label: <Trans>Patientenübergabe an/von nicht-ärztliche(n) Mitarbeiter(n) durchführen</Trans>,
                   done: 0,
                   confident: 0,
 id: _.uniqueId(),
@@ -265,24 +266,24 @@ id: _.uniqueId(),
               hasGraph: true
             },
             {
-              label: i18next.t(`Patientenbericht verfassen und übermitteln (strukturiert, entsprechend der Abstimmung mit dem supervidierenden Arzt zur medizinischen Versorgung des Patienten)`),
+              label: <Trans>Patientenbericht verfassen und übermitteln (strukturiert, entsprechend der Abstimmung mit dem supervidierenden Arzt zur medizinischen Versorgung des Patienten)</Trans>,
 			
 id: _.uniqueId(),
               entries: [
                 {
-                  label: i18next.t(`Vorläufigen Patientenbericht vorschreiben und fertigstellen (Abstimmung und Gegenzeichnung Arzt)`),
+                  label: <Trans>Vorläufigen Patientenbericht vorschreiben und fertigstellen (Abstimmung und Gegenzeichnung Arzt)</Trans>,
                   done: 0,
                   confident: 2,
 id: _.uniqueId(),
                 },
                 {
-                  label: i18next.t(`Abschließenden Patientenbericht vorschreiben und fertigstellen (Abstimmung und Gegenzeichnung  Arzt)`),
+                  label: <Trans>Abschließenden Patientenbericht vorschreiben und fertigstellen (Abstimmung und Gegenzeichnung  Arzt)</Trans>,
                   done: 0,
                   confident: 2,
 id: _.uniqueId(),
                 },
                 {
-                  label: i18next.t(`Übermittelung von Patientenbericht an Zielbereich bzw. dessen Veranlassung`),
+                  label: <Trans>Übermittelung von Patientenbericht an Zielbereich bzw. dessen Veranlassung</Trans>,
                   done: 0,
                   confident: 2,
 id: _.uniqueId(),
@@ -293,23 +294,23 @@ id: _.uniqueId(),
           ]
       },
       {
-          label: i18next.t(`Weitere ärztliche professionelle Tätigkeit`),
+          label: <Trans>Weitere ärztliche professionelle Tätigkeit</Trans>,
 			
 id: _.uniqueId(),
           entries: [
             {
-              label: i18next.t(`Notfallsituationen erkennen und handeln (Ausmaß grob abschätzen, Soforthilfe leisten, Hilfe herbeirufen)`),
+              label: <Trans>Notfallsituationen erkennen und handeln (Ausmaß grob abschätzen, Soforthilfe leisten, Hilfe herbeirufen)</Trans>,
 			
 id: _.uniqueId(),
               entries: [
                 {
-                  label: i18next.t(`Basic-Life-Support mit und ohne technische Hilfsmittel bei Ausfall von Vitalfunktionen`),
+                  label: <Trans>Basic-Life-Support mit und ohne technische Hilfsmittel bei Ausfall von Vitalfunktionen</Trans>,
                   done: 1,
                   confident: 2,
 id: _.uniqueId(),
                 },
                 {
-                  label: i18next.t(`Zustände mit drohender vitaler Gefährdung erkennen und ggf. überbrückend versorgen (Zeichen der Atemnot oder Hypoxie, Thoraxschmerz, zunehmender Bewusstseinseinschränkung, hohes Fieber, arterielle Hypo- und Hypertension, Tachy- und Bradykardie, Hypo- und Hyperglykämie, Anurie, innere und äußere Blutung, Trauma und Verletzungen)`),
+                  label: <Trans>Zustände mit drohender vitaler Gefährdung erkennen und ggf. überbrückend versorgen (Zeichen der Atemnot oder Hypoxie, Thoraxschmerz, zunehmender Bewusstseinseinschränkung, hohes Fieber, arterielle Hypo- und Hypertension, Tachy- und Bradykardie, Hypo- und Hyperglykämie, Anurie, innere und äußere Blutung, Trauma und Verletzungen)</Trans>,
                   done: 2,
                   confident: 2,
 id: _.uniqueId(),
@@ -318,18 +319,18 @@ id: _.uniqueId(),
               hasGraph: true
             },
             {
-              label: i18next.t(`Fallvorstellung evidenz-basiert vornehmen und patientenbezogene Umsetzung einleiten (für PJ´ler bearbeitbare medizinische Problemstellungen)`),
+              label: <Trans>Fallvorstellung evidenz-basiert vornehmen und patientenbezogene Umsetzung einleiten (für PJ´ler bearbeitbare medizinische Problemstellungen)</Trans>,
 			
 id: _.uniqueId(),
               entries: [
                 {
-                  label: i18next.t(`Vorbereitung der Fallvorstellung (Suche nach bester verfügbarer Evidenz, Überprüfung der klinischen Relevanz und Anwendbarkeit für den einzelnen Patienten)`),
+                  label: <Trans>Vorbereitung der Fallvorstellung (Suche nach bester verfügbarer Evidenz, Überprüfung der klinischen Relevanz und Anwendbarkeit für den einzelnen Patienten)</Trans>,
                   done: 0,
                   confident: 1,
 id: _.uniqueId(),
                 },
                 {
-                  label: i18next.t(`Durchführung der Fallvorstellung (Strukturierte Vorstellung (z. B. Abteilungsbesprechungen, interne Fortbildungen); Anordnung der Änderungen entsprechend 1.2 „Diagnostikplan“ und 1.4 „Behandlungsplan“`),
+                  label: <Trans>Durchführung der Fallvorstellung (Strukturierte Vorstellung (z. B. Abteilungsbesprechungen, interne Fortbildungen); Anordnung der Änderungen entsprechend 1.2 „Diagnostikplan“ und 1.4 „Behandlungsplan“</Trans>,
                   done: 0,
                   confident: 1,
 id: _.uniqueId(),

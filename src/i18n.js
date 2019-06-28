@@ -7,7 +7,8 @@ const resources = {
       "exams.semester.questions.text" : "<strong>Nö</strong>",
       "Beratung": "counselling",
       "Alle Fächer": "All Subjects",
-      "Starke Fächer in den Semesterprüfungen": "Strong subjects in your semester exams"
+      "Starke Fächer in den Semesterprüfungen": "Strong subjects in your semester exams",
+      "Betreuung von Patienten": "Caring for patients"
     }
   }
 }
