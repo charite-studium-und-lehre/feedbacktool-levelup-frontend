@@ -1,38 +1,37 @@
 import React from 'react'
 import { Trans } from 'react-i18next'
-import i18next from 'i18next'
 
 const Legends = {
     Dashboard: {
         Progress: {
-            title: i18next.t(`Dein Studienfortschritt`),
-            text: i18next.t(`Hier siehst Du deinen Studienfortschritt und deine bereits erreichten Meilensteinen.`),
+            title: <Trans>Dein Studienfortschritt</Trans>,
+            text: <Trans>Hier siehst Du deinen Studienfortschritt und deine bereits erreichten Meilensteinen.</Trans>,
         },
         Timeline: {
-            title: i18next.t(`Timeline`),
-            text: i18next.t(`Hier siehst du die Prüfungen, die du in letzter Zeit abgelegt hast.`),
+            title: <Trans>Timeline</Trans>,
+            text: <Trans>Hier siehst du die Prüfungen, die du in letzter Zeit abgelegt hast.</Trans>,
         },
     },
     Exams: {
         MainChart: {
-            title: i18next.t(`Deine Prüfungsergebnisse`),
-            text: i18next.t(`Hier siehst du einen Überblick über deine bisherigen Prüfungsergebnisse. Über die Checkboxen kannst du selber auswählen, welche Prüfungsergebnisse du angezeigt bekommen möchtest. Du kannst auf die jeweiligen Ergebnisse klicken, um detaillierte Informationen zu erhalten (z.B. Ergebnisse der einzelnen Module).`),
+            title: <Trans>Deine Prüfungsergebnisse</Trans>,
+            text: <Trans>Hier siehst du einen Überblick über deine bisherigen Prüfungsergebnisse. Über die Checkboxen kannst du selber auswählen, welche Prüfungsergebnisse du angezeigt bekommen möchtest. Du kannst auf die jeweiligen Ergebnisse klicken, um detaillierte Informationen zu erhalten (z.B. Ergebnisse der einzelnen Module).</Trans>,
         },
         Semester: {
             Summary: {
-                title: i18next.t(`Zusammenfassung deiner Antworten in den Semesterprüfungen`),
-                text: i18next.t(`Hier siehst du eine Aufstellung nach Fächern der von dir beantworteten Fragen in deinen Semesterprüfungen.`),
+                title: <Trans>Zusammenfassung deiner Antworten in den Semesterprüfungen</Trans>,
+                text: <Trans>Hier siehst du eine Aufstellung nach Fächern der von dir beantworteten Fragen in deinen Semesterprüfungen.</Trans>,
             },
             Totals: {
-                title: i18next.t(`Gesamtes Ergebnis`),
-                text: i18next.t(`Dies ist eine Darstellung deines Prüfungsergebnisses. Das kumulative Histogramm stellt dar, in welchem Verhältnis du zu deiner Kohorte abgeschnitten hast. Durch das einfache Histogramm lässt sich die Verteilung der Prüfungsergebnisse einsehen.`),
+                title: <Trans>Gesamtes Ergebnis</Trans>,
+                text: <Trans>Dies ist eine Darstellung deines Prüfungsergebnisses. Das kumulative Histogramm stellt dar, in welchem Verhältnis du zu deiner Kohorte abgeschnitten hast. Durch das einfache Histogramm lässt sich die Verteilung der Prüfungsergebnisse einsehen.</Trans>,
             },
             Details: {
-                title: i18next.t(`Detaillierte Ergebnisse`),
-                text: i18next.t(`Hier kannst du sehen, wie du in den zu dieser Semesterprüfung dazugehörigen Modulen und Fächern in Vergleich zu der Kohorte abgeschnitten hast.`),
+                title: <Trans>Detaillierte Ergebnisse</Trans>,
+                text: <Trans>Hier kannst du sehen, wie du in den zu dieser Semesterprüfung dazugehörigen Modulen und Fächern in Vergleich zu der Kohorte abgeschnitten hast.</Trans>,
             },
             Questions: {
-                title: i18next.t(`Fragen und Antworten`),
+                title: <Trans>Fragen und Antworten</Trans>,
                 text: <Trans i18nKey="exams.semester.questions.text">
                     <p>Hier kannst du dir alle Fragen der Semesterprüfung mit den dazugehörigen Antworten ansehen.</p> 
                     <p>Jede Frage wurde mit verschiedenen Tags versehen, mit deren Hilfe du die Fragen filtern kannst.</p>
@@ -43,62 +42,58 @@ const Legends = {
         },
         Ptm: {
             Totals: {
-                title: i18next.t(`Gesamtes Ergebnis`),
-                text: i18next.t(`Hier findest du eine generelle Auswertung deines PTMs im Vergleich mit der Kohorte.`)
+                title: <Trans>Gesamtes Ergebnis</Trans>,
+                text: <Trans>Hier findest du eine generelle Auswertung deines PTMs im Vergleich mit der Kohorte.</Trans>
             },
             Strengths: {
-                title: i18next.t(`Starke Fächer in diesem PTM`),
-                text: i18next.t(`Hier findest du eine Übersicht zu deinen besten vorklinischen, klinischen und Querschnittsfächern im PTM diesen Semesters. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen beantworteten Fragen.`),
+                title: <Trans>Starke Fächer in diesem PTM</Trans>,
+                text: <Trans>Hier findest du eine Übersicht zu deinen besten vorklinischen, klinischen und Querschnittsfächern im PTM diesen Semesters. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen beantworteten Fragen.</Trans>,
             },
             Subjects: {
-                title: i18next.t(`Alle Fächer`),
-                text: i18next.t(`Hier findest du eine Übersicht zu deinen Leistungen in den vorklinischen, klinischen und Querschnittsfächern. Die Ergebnisse basieren auf deinem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.`),
+                title: <Trans>Alle Fächer</Trans>,
+                text: <Trans>Hier findest du eine Übersicht zu deinen Leistungen in den vorklinischen, klinischen und Querschnittsfächern. Die Ergebnisse basieren auf deinem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.</Trans>,
             },
             Organsystem : {
-                title: i18next.t(`Alle Organsystem`),
-                text: i18next.t(`Hier findest du eine Übersicht zu deinen Leistungen in den vorklinischen, klinischen und Querschnittsfächern. Die Ergebnisse basieren auf deinem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.`),
+                title: <Trans>Alle Organsystem</Trans>,
+                text: <Trans>Hier findest du eine Übersicht zu deinen Leistungen in den vorklinischen, klinischen und Querschnittsfächern. Die Ergebnisse basieren auf deinem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.</Trans>,
             },
         },
         Stations: {
             Main: {
-                title: i18next.t(`Praktische Prüfungen`),
-                text: i18next.t(`Hier siehst du deine Ergebnisse in den bis jetzt absolvierten praktischen Prüfungen. Klicke auf die Flächen über dem Diagramm um deine Ergebnisse zu filtern. Wenn du auf die Balken im Diagramm klickst, bekommst du genauere Informationen zu der jeweiligen Station.`),
+                title: <Trans>Praktische Prüfungen</Trans>,
+                text: <Trans>Hier siehst du deine Ergebnisse in den bis jetzt absolvierten praktischen Prüfungen. Klicke auf die Flächen über dem Diagramm um deine Ergebnisse zu filtern. Wenn du auf die Balken im Diagramm klickst, bekommst du genauere Informationen zu der jeweiligen Station.</Trans>,
             },
         },
     },
     Strengths: {
         Main: {
-            title: i18next.t(`Deine Stärken und Schwächen`),
+            title: <Trans>Deine Stärken und Schwächen</Trans>,
             text: <Trans i18nKey="strengths.main.text">
                 <p>Auf dieser Seite findest du eine Übersicht zu deinen stärkeren und schwächeren Fächern in den Semesterprüfungen und dem PTM. Die Auswertung basiert auf den Ergebnissen aller zurückliegenden Semesterprüfungen und dem Ergebnis des aktuellen PTMs.</p>
                 <strong>Wichtig:</strong>
                 <p>Die Anzahl der gestellten Fragen pro Fach kann sich durch die Verteilung der Fächer im Curriculum und bei der Auswahl der MC-Fragen in den Klausuren stark unterscheiden. Weiterhin findet keine Gewichtung des Rankings der Fächer nach schweren und leichten Fragen statt.</p>
             </Trans>
         },
-        Totals: {
-            title: i18next.t(`Gesamte Ergebnisse`),
-            text: i18next.t(`Hier findest du eine Übersicht über deine Ergebnisse in allen Semesterprüfungen.`),
-        },
         Semester: {
-            title: i18next.t(`Starke Fächer in den Semesterprüfungen`),
-            text: i18next.t(`Hier findest du eine Übersicht zu deinen besten Fächern basierend auf allen deinen Semesterprüfungen. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen. Achtung: Nur Fächer mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.`),
+            title: <Trans>Starke Fächer in den Semesterprüfungen</Trans>,
+            text: <Trans>Hier findest du eine Übersicht zu deinen besten Fächern basierend auf allen deinen Semesterprüfungen. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen. Achtung: Nur Fächer mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.</Trans>,
         },
         PTM: {
-            title: i18next.t(`Starke Fächer im PTM`),
-            text: i18next.t(`Hier findest du eine Übersicht zu deinen besten Fächern in dem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen. Der Mittelwert der Kohorte ist durch einen roten Kreis gekennzeichnet. Achtung: Nur Fächer mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.`),
+            title: <Trans>Starke Fächer im PTM</Trans>,
+            text: <Trans>Hier findest du eine Übersicht zu deinen besten Fächern in dem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen. Der Mittelwert der Kohorte ist durch einen roten Kreis gekennzeichnet. Achtung: Nur Fächer mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.</Trans>,
         },
         PTMResults: {
-            title: i18next.t(`Gesamtes Ergebnis im PTM`),
-            text: i18next.t(`Hier findest du eine generelle Auswertung deines PTMs im Vergleich mit der Kohorte.`),
+            title: <Trans>Gesamtes Ergebnis im PTM</Trans>,
+            text: <Trans>Hier findest du eine generelle Auswertung deines PTMs im Vergleich mit der Kohorte.</Trans>,
         },
         Subjects: {
-            title: i18next.t(`Alle Fächer`),
-            text: i18next.t(`Hier findest du eine Übersicht zu deinen Leistungen in den vorklinischen, klinischen und Querschnittsfächern. Die Ergebnisse basieren zum einen auf allen deinen Semesterprüfungen (MCs) und zum anderen auf deinem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.`),
+            title: <Trans>Alle Fächer</Trans>,
+            text: <Trans>Hier findest du eine Übersicht zu deinen Leistungen in den vorklinischen, klinischen und Querschnittsfächern. Die Ergebnisse basieren zum einen auf allen deinen Semesterprüfungen (MCs) und zum anderen auf deinem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.</Trans>,
         },
     },
     Practicals: {
         Main: {
-            title: i18next.t(`Mein Level`),
+            title: <Trans>Mein Level</Trans>,
             text: <Trans><p>Hier siehst du eine Übersicht zu den ärztlichen Tätigkeiten, die du im Laufe des Studiums kennenlernen und praktisch üben wirst. Das Ziel ist, dass du als Absolvent*in des Medizinstudiums dazu in der Lage bist, die hier aufgeführten Tätigkeiten zu Berufsbeginn eigenständig durchzuführen und nur Wichtiges nachgeprüft wird (Level 5).</p>
             <p>Bitte gib mindestens einmal im Halbjahr an, unter welchem Level du die jeweilige Tätigkeit bislang ausgeführt hast und unter welchem Level du dir die Tätigkeit zutraust. Hierdurch kannst du permanent einen Überblick über die Entwicklung deiner praktischen Fertigkeiten erhalten. Es ist zudem möglich Fremdeinschätzungen von Ärzten*innen einzuholen. </p>
             <p>Insgesamt sind 11 ärztliche Tätigkeiten und 8 Prozeduren gelistet. Die 11 Tätigkeiten werden wiederum in kleinere Tätigkeiten (35) aufgeteilt, die du im Laufe des Studiums ausführen wir.</p>

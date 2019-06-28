@@ -5,7 +5,9 @@ const resources = {
   en: {
     translation: {
       "exams.semester.questions.text" : "<strong>Nö</strong>",
-      "Beratung": "counselling"
+      "Beratung": "counselling",
+      "Alle Fächer": "All Subjects",
+      "Starke Fächer in den Semesterprüfungen": "Strong subjects in your semester exams"
     }
   }
 }
