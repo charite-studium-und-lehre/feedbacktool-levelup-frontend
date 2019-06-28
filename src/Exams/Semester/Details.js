@@ -22,7 +22,7 @@ const Details = withTranslation() ( class extends Component {
     
     render() {
         const {t} = this.props
-        const LegendText = Legends(t).Exams.Semester.Details
+        const LegendText = Legends.Exams.Semester.Details
         return (
             <div>
                 <div className="card p-4" style={{ overflow: 'hidden' }}>

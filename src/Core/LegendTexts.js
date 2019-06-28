@@ -104,4 +104,4 @@ const Legends = {
     }   
 }
 
-export default  t => Legends
+export default Legends

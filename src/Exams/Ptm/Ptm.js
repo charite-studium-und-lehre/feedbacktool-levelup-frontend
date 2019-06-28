@@ -5,16 +5,15 @@ import SubjectsTabs from '../../Core/Tabs'
 import Subject from './Subject'
 import Legend from '../../Charting/Legend'
 import LegendTexts from '../../Core/LegendTexts'
-import { withTranslation } from 'react-i18next'
 import PTMResults from '../../Strengths/PTMResults'
 import Ranking from '../../Strengths/Ranking'
 import PtmResultsAlt from './ptmResultsAlt'
 import SubjectAlt from './SubjectAlt'
 import { Results as PtmResults } from './Data'
 
-const Ptm = ({ match, t, ...props }) => {
+const Ptm = ({ match, ...props }) => {
     const ptmSample = Subjects(match.params.test)
-    const LegendText = LegendTexts(t).Exams.Ptm
+    const LegendText = LegendTexts.Exams.Ptm
    
     return (
         <div className="container-fluid">
@@ -87,4 +86,4 @@ const Ptm = ({ match, t, ...props }) => {
     )
 }
 
-export default withTranslation() (props => <Ptm data={PtmResults(props.match.params.test)} {...props} />)
+export default props => <Ptm data={PtmResults(props.match.params.test)} {...props} />

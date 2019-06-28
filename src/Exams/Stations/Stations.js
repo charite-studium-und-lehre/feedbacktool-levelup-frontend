@@ -25,7 +25,7 @@ class Stations extends Component {
     
     render() {
         const {t} = this.props
-        const LegendText = Legends(t).Exams.Stations.Main
+        const LegendText = Legends.Exams.Stations.Main
         const filteredData = data
         .filter(_.overSome(this.state.groupFilters.filter(f => f.selected).map(f => f.pred)))
             .map(e => ({...e, stations: e.stations

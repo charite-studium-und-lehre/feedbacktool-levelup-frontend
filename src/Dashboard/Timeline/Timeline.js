@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { withTranslation } from 'react-i18next'
 import PointGraph from '../../Charting/PointGraph'
 import Legend from '../../Charting/Legend'
 import Legends from '../../Core/LegendTexts'
@@ -53,8 +52,7 @@ class Timeline extends Component {
     }
     
     render() {
-        const {t} = this.props
-        const LegendText = Legends(t).Dashboard.Timeline
+        const LegendText = Legends.Dashboard.Timeline
         return (
             <div className="card with-border" style={{overflow: 'hidden'}}>
                 <div className="card-body">
@@ -92,4 +90,4 @@ class Timeline extends Component {
     }
 }
 
-export default withTranslation()(Timeline)
+export default Timeline

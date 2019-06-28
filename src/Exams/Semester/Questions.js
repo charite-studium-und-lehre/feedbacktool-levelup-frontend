@@ -23,7 +23,7 @@ class Questions extends Component {
     
     render() {
         const { t } = this.props
-        const LegendText = Legends(t).Exams.Semester.Questions
+        const LegendText = Legends.Exams.Semester.Questions
         const questions = DummyQuestions.filter(_.overEvery(this.state.filters.filter(f => f.selected).map(f => f.pred)))
         return (
             <div className="container-fluid">

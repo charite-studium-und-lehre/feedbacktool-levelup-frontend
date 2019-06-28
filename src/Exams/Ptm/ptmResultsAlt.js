@@ -8,16 +8,15 @@ import BarGraph from '../../Charting/BarGraph'
 import PointGraph from '../../Charting/PointGraph'
 import Legend from '../../Charting/Legend'
 import Legends from '../../Core/LegendTexts'
-import { withTranslation } from 'react-i18next'
 import { ResultsAlt} from './Data'
 
 const labels = ['richtig', 'falsch', 'nicht beantwortet']
 const color = 'rgb(49, 130, 189)'
-const PtmResultsAlt = ({ t, ...props }) =>
+const PtmResultsAlt = props =>
     <div className="card">
         <div className="card-body">
-            <Legend title={Legends(t).Strengths.PTMResults.title}>{Legends(t).Strengths.PTMResults.text}
-            
+            <Legend title={Legends.Strengths.PTMResults.title}>
+                {Legends.Strengths.PTMResults.text}
             </Legend>
             <div className="p-2">
                 <OrdinalChart xDomain={labels} yDomain={[0,100]}>
@@ -30,4 +29,4 @@ const PtmResultsAlt = ({ t, ...props }) =>
         </div>
     </div>
 
-export default withTranslation() (props => <PtmResultsAlt {...ResultsAlt(props.semester)} {...props} />)
+export default props => <PtmResultsAlt {...ResultsAlt(props.semester)} {...props} />

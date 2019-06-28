@@ -5,7 +5,6 @@ import Legend from '../Charting/Legend'
 import Legends from '../Core/LegendTexts'
 import Toolbar from './Toolbar'
 import { selectors } from './Store'
-import { withTranslation } from 'react-i18next'
 
 class Container extends React.Component {
     constructor(props) {
@@ -16,11 +15,10 @@ class Container extends React.Component {
     toggleEdit = () => this.setState({ edit: !this.state.edit })
 
     render() {
-        const { t } = this.props
         return (
             <div style={{ fontSize: '.9rem' }}>
                 <div className="card p-2">
-                    <Legend title={Legends(t).Practicals.Main.title}>{Legends(t).Practicals.Main.text}</Legend>
+                    <Legend title={Legends.Practicals.Main.title}>{Legends.Practicals.Main.text}</Legend>
                 </div>
                 <Toolbar toggleEdit={this.toggleEdit} edit={this.state.edit} />
                 <div className="row">
@@ -33,4 +31,4 @@ class Container extends React.Component {
             </div>)
     }
 }
-export default connect(state => ({ root: selectors.getItemByLabel(state, 'root') }))(withTranslation()(Container))
+export default connect(state => ({ root: selectors.getItemByLabel(state, 'root') }))(Container)

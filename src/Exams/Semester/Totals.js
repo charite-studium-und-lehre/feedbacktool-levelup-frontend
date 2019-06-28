@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { withTranslation } from 'react-i18next'
 import _ from 'lodash'
 import { curveStep } from 'd3-shape'
 import { LinearChart } from '../../Charting/Chart'
@@ -14,7 +13,7 @@ import { TotalsData as Data } from './Data'
 import Legends from '../../Core/LegendTexts'
 
 const respSwitch = (large, small) => <span><span className="d-none d-md-inline-block">{large}</span><span className="d-inline-block d-md-none">{small}</span></span>
-const Totals = withTranslation() (class extends Component {
+const Totals = class extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -35,7 +34,7 @@ const Totals = withTranslation() (class extends Component {
     }
     
     render () {
-        const LegendText = Legends(this.props.t).Exams.Semester.Totals
+        const LegendText = Legends.Exams.Semester.Totals
         return (
             <div className="card p-4">
                 <Legend title={LegendText.title}>{LegendText.text}</Legend>
@@ -75,6 +74,6 @@ const Totals = withTranslation() (class extends Component {
             </div>
         )
     }
-})
+}
 
 export default props => <Totals {...Data(props.semester)} />
