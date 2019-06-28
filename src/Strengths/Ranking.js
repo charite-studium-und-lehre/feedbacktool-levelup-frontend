@@ -8,7 +8,7 @@ import { withTranslation } from 'react-i18next'
 const Ranking = ({t, ...props}) => (
     <div className="card">
         <div className="card-body">
-            <Legend title={props.name}>{props.text}</Legend>
+            <Legend title={props.title}>{props.text}</Legend>
             <div>
                 {_.take(props.subjects, props.extended ? props.subjects.length : 3).map((s, i) =>
                     <div key={s.name} className="py-2">
@@ -21,7 +21,7 @@ const Ranking = ({t, ...props}) => (
             </div>
             <div className="text-right">
                 <span className="text-primary" style={{cursor: 'pointer'}} onClick={props.toggleExtended}>
-                    {props.extended ? 'weniger anzeigen' : 'mehr anzeigen'}
+                    {props.extended ? t('weniger anzeigen') : t('mehr anzeigen')}
                 </span>
             </div>
         </div>

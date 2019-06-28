@@ -60,13 +60,13 @@ export default withTranslation()(({ t }) =>
                         text={t(`Dein Überblick zu deinen fächerorientierten Stärken im PTM und den Semesterprüfungen über das gesamte Studium.`)}>
                         <div className="mb-3">
                             <div style={{fontSize: '.8rem'}} className="text-secondary">{t`Stärkstes Fach in den MCs`}</div>
-                            {mcStrongestSubject.title}
-                            <SimpleBar value={mcStrongestSubject.correct} total={mcStrongestSubject.questions}>{mcStrongestSubject.correct} von {mcStrongestSubject.questions}</SimpleBar>
+                            {mcStrongestSubject.name}
+                            <SimpleBar value={mcStrongestSubject.richtig} total={mcStrongestSubject.gesamt}>{mcStrongestSubject.richtig} von {mcStrongestSubject.gesamt}</SimpleBar>
                         </div>
                         <div className="">
                             <div style={{fontSize: '.8rem'}} className="text-secondary">{t(`Stärkstes Fach im letzten PTM`)}</div>
-                            {ptmStrongestSubject.title}
-                            <SimpleBar value={ptmStrongestSubject.correct} total={ptmStrongestSubject.questions}>{ptmStrongestSubject.correct} von {ptmStrongestSubject.questions}</SimpleBar>
+                            {ptmStrongestSubject.name}
+                            <SimpleBar value={ptmStrongestSubject.richtig} total={ptmStrongestSubject.gesamt}>{ptmStrongestSubject.richtig} von {ptmStrongestSubject.gesamt}</SimpleBar>
                         </div>
                         </DashboardCard>
                     </Link>

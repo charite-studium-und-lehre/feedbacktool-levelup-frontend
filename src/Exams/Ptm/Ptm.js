@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import _ from 'lodash'
 import { ranking } from '../Subjects'
 import SubjectsTabs from '../../Core/Tabs'
@@ -19,16 +20,12 @@ const Ptm = ({ match, ...props }) => {
                     <h4 className="mr-auto">PTM - {match.params.test}</h4>
                 </div>
             </div>
-            <div className="row mt-3">
-                <div className="col">
-                    <div className="d-flex flex-wrap">
-                        <div className="m-2 flex-grow-1" style={{width: '60rem'}}>
-                            <PtmResultsAlt results={props.data.results} means={props.data.means} />
-                        </div>
-                        <div className="m-2 flex-grow-1" style={{width: '20rem'}}>
-                            <Ranking title={LegendText.Strengths.title} text={LegendText.Strengths.text} subjects={ranking(props.data.fächer)} mean /> 
-                        </div>
-                    </div>
+            <div className="row">
+                <div className="col-lg-8 mb-2">
+                    <PtmResultsAlt results={props.data.results} means={props.data.means} />
+                </div>
+                <div className="col-lg-4 mb-2">
+                    <Ranking title={LegendText.Strengths.title} text={LegendText.Strengths.text} subjects={ranking(props.data.fächer)} mean /> 
                 </div>
             </div>
             <div className="row">
@@ -64,4 +61,4 @@ const Ptm = ({ match, ...props }) => {
 }
 
 const stateToProps = (state, ownProps) => ({ data: selectors.getBySemester(state, ownProps.match.params.test) })
-export default props => <Ptm {...stateToProps(null, props)} {...props} />
+export default connect(stateToProps)(Ptm)

@@ -1,20 +1,20 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import _ from 'lodash'
 import Subjects, { ranking } from '../Exams/Subjects'
 import Subject from './Subject'
 import Ranking from './Ranking'
-import PTMResults from './PTMResults'
+import PTMResults from '../Exams/Ptm/ptmResultsAlt'
 import SubjectsTabs from '../Core/Tabs'
 import Legend from '../Charting/Legend'
 import Legends from '../Core/LegendTexts'
 import { selectors as ptmSelectors } from '../Exams/Ptm/Data'
 
-const mcSample = Subjects('mc')    
-const ptmSample = Subjects('ptm')
+const mcSample = Subjects('mc')
 
 const Strengths = ({ match, ...props }) => {
     const LegendText = Legends.Strengths
-    const active = Math.max(...mcSample.map((c,i) => _.includes(c.subjects.map(s => s.title), match.params.subject) ? i : -1), 0)
+    const active = Math.max(...mcSample.map((c,i) => _.includes(c.subjects.map(s => s.name), match.params.subject) ? i : -1), 0)
     return (
     <div className="container-fluid">
         <div className="row">
@@ -29,10 +29,10 @@ const Strengths = ({ match, ...props }) => {
                 <Ranking title={LegendText.Semester.title} text={LegendText.Semester.text} subjects={ranking(mcSample)} />
             </div>
             <div className="col-md-4 mb-2">
-                <Ranking title={LegendText.PTM.title} text={LegendText.PTM.text} subjects={ranking(ptmSample)} mean />
+                <Ranking title={LegendText.PTM.title} text={LegendText.PTM.text} subjects={ranking(props.ptmData.fächer)} mean />
             </div>
             <div className="col-md-4 mb-2">
-                <PTMResults data={props.ptmData} />
+                <PTMResults results={props.ptmData.results} means={props.ptmData.means} />
             </div>
         </div>
         
@@ -41,9 +41,9 @@ const Strengths = ({ match, ...props }) => {
                 <div className="card p-3">
                     <Legend title={LegendText.Subjects.title}>{LegendText.Subjects.text}</Legend>
                     <SubjectsTabs active={active}>
-                        {_.zip(mcSample, ptmSample).map(([mcCat, ptmCat]) => 
+                        {_.zip(mcSample, props.ptmData.fächer).map(([mcCat, ptmCat]) => 
                             <div key={mcCat.title} title={mcCat.title} className="d-flex flex-wrap">
-                                {_.sortBy(_.zip(mcCat.subjects, ptmCat.subjects), d => d[0].title).map(([mcSub, ptmSub]) => <Subject data={[mcSub,ptmSub]} key={mcSub.title} {...mcSub} flash={mcSub.title === match.params.subject} />)}
+                                {_.sortBy(_.zip(mcCat.subjects, ptmCat.subjects), d => d[0].name).map(([mcSub, ptmSub]) => <Subject data={[mcSub,ptmSub]} key={mcSub.name} {...mcSub} flash={mcSub.name === match.params.subject} />)}
                             </div>
                         )}
                     </SubjectsTabs>
@@ -54,4 +54,4 @@ const Strengths = ({ match, ...props }) => {
 )}
 
 const stateToProps = state => ({ ptmData: ptmSelectors.getBySemester(state, '5. Fachsemester') })
-export default props => <Strengths {...stateToProps('latest')} {...props} />
+export default connect(stateToProps)(Strengths)

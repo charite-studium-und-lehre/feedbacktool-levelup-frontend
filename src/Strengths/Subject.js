@@ -19,11 +19,11 @@ class Subject extends Component {
 
     render() {
         const {t} = this.props
-        const data = exams.map((d, i) => ({ x:d, y: [this.props.data[i].correct, this.props.data[i].questions]}))
+        const data = exams.map((d, i) => ({ x:d, y: [this.props.data[i].richtig, this.props.data[i].gesamt]}))
         return (
             <div className="card m-2 flex-grow-1 with-shadow" style={{width: '20rem'}}>
                 <div ref={this.node} className={`card-body ${this.state.flash ? 'bg-primary' : ''}`} style={{transition: '5s'}}>
-                    <span className="font-weight-bold">{this.props.title}</span>
+                    <span className="font-weight-bold">{this.props.name}</span>
                     <div className="p-4">
                         <OrdinalChart style={{height:'15rem'}} xDomain={exams} yDomain={[0,30]}>
                             <YAxis label={t(`gestellte vs. richtige Fragen`)} ticks={{count: 4}} />
