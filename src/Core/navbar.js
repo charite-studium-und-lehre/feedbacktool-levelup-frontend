@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from './makeExtendable'
 import { withTranslation } from 'react-i18next'
 import LanguageSymbol from './languageSymbol'
@@ -20,7 +22,7 @@ export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
         <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top">
             <Link className="navbar-brand" to="/">LevelUp</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon" onClick={props.toggleExtended}></span>
+                <FontAwesomeIcon onClick={props.toggleExtended} icon={faBars} />
             </button>
             <div className={`collapse navbar-collapse ${props.extended && 'show'}`} id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">

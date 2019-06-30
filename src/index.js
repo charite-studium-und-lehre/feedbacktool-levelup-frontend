@@ -14,11 +14,11 @@ serviceWorker.register({
 
 		if (waitingServiceWorker) {
 			waitingServiceWorker.addEventListener("statechange", event => {
-            			if (event.target.state === "activated") {
+            	if (event.target.state === "activated") {
 					window.location.reload()
-            			}
-        		})
-        		waitingServiceWorker.postMessage({ type: "SKIP_WAITING" });
-      		}		
-    	}
+            	}
+        	})
+        	waitingServiceWorker.postMessage({ type: "SKIP_WAITING" })
+      	}		
+    }
 })
