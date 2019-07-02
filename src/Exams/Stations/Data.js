@@ -100,7 +100,7 @@ const data = [
             },
             {
                 name: 'Anatomie / Biologie', 
-                category: 'Theoretisch', 
+                category: 'theoretische', 
                 details: [
                     {
                         label: 'Thema',
@@ -223,7 +223,7 @@ const data = [
         stations: [
             {
                 name: 'Physiologie 1', 
-                category: 'Theoretisch', 
+                category: 'theoretische', 
                 details: [
                     {
                         label: 'Thema',
@@ -243,7 +243,7 @@ const data = [
             },
             {
                 name: 'Physiologie 2', 
-                category: 'Theoretisch', 
+                category: 'theoretische', 
                 details: [
                     {
                         label: 'Thema',
@@ -263,7 +263,7 @@ const data = [
             },
             {
                 name: 'Anatomie', 
-                category: 'Theoretisch', 
+                category: 'theoretische', 
                 details: [
                     {
                         label: 'Thema',
@@ -283,7 +283,7 @@ const data = [
             },
             {
                 name: 'Anatomie 2', 
-                category: 'Theoretisch', 
+                category: 'theoretische', 
                 details: [
                     {
                         label: 'Thema',
