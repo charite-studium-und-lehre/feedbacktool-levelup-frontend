@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { withTranslation } from 'react-i18next'
 import { OrdinalChart } from '../../Charting/Chart'
@@ -8,6 +8,7 @@ import LineGraph from '../../Charting/LineGraph'
 import { XAxis, YAxis } from '../../Charting/Axis'
 import { selectors } from './Store'
 import SimpleBar from '../../Charting/SimpleBar'
+import Legende from './Legende'
 
 const SubjectAlt = props => (
     <div className="card m-2 flex-grow-1" style={{width: '20rem'}}>
@@ -18,7 +19,9 @@ const SubjectAlt = props => (
                     {props.data.richtig} von {props.data.gesamt} richtig
                 </SimpleBar>
             </div>
-            <div className="p-3 mt-3" style={{height: '6rem'}} >
+            <Legende text='gestellte Anzahl Fragen' style={{backgroundColor : '#B3E5B3'}}/>
+            <Legende text='richtige Anzahl Fragen'  style={{backgroundColor : '#B8A385'}}/>
+            <div className="p-4 mt-3 mb-4" style={{height: '6rem'}} >
                 <OrdinalChart xDomain={props.timeline.map(d => d.semester)} yDomain={[0, Math.max(...props.timeline.map(d => d.gesamt))]}>
                     <XAxis />
                     <YAxis label="# Fragen" ticks={{count: 3}} />
@@ -29,9 +32,9 @@ const SubjectAlt = props => (
                 </OrdinalChart>
             </div>
            
-          <div>
+          {/* <div>
           <Link to={`/strengths/${(props.name)}`} className="mt-2 float-right text-primary" style={{fontSize:".8rem", textDecoration:"underline"}}>{props.t(`zu deiner Entwicklung in diesem Fach`)}</Link>
-          </div>
+          </div> */}
         </div>
     </div>
 )
