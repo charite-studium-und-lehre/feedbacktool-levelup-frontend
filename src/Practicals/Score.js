@@ -18,8 +18,8 @@ const Numbers = props => (
     </span>
 )
 const Score = ({t, ...props}) => (
-    <div className="row text-center">
-        <div className="col-6 pr-0 text-danger">
+    <div className="row text-center" style={{color:'#224768'}}> 
+        <div className="col-6 pr-0 ">
             <Numbers 
                 edit={props.edit}
                 value={props.score('done')}
