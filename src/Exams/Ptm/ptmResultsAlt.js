@@ -17,8 +17,7 @@ const PtmResultsAlt = props =>
             <div className="p-2">
                 <OrdinalChart xDomain={labels} yDomain={[0,100]}>
                     <XAxis />
-                    <YAxis label="# Anzahl Fragen" ticks={{count: 4}} />
-                    <YAxis ticks={{count: 4}} />
+                    <YAxis label="Anzahl Fragen" ticks={{count: 4}} />
                     <BarGraph labels data={labels.map((l,i) => ({x: l, y: props.results[i][0], label: props.results[i][1], color: color}))} />
                     <PointGraph color="rgba(0, 0, 0, .6)" data={labels.map((l, i) => ({x: l, y: props.means[i]}))} />
                 </OrdinalChart>
