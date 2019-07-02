@@ -28,7 +28,7 @@ const SimpleBar = props => {
         className="my-1 text-center text-white"
         style={style}>
         <span>{props.children}</span>
-        {props.mean && <SimpleDot value={props.mean / total * 100} style={{backgroundColor: 'rgba(0, 0, 0, 0.4)',}} />}
+        {props.mean && <SimpleDot value={props.mean / total * 100} />}
     </div>
 )}
 

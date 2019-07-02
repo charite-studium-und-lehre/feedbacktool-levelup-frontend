@@ -5,7 +5,7 @@ const defaultStyle = {
     position: 'absolute',
     height: '.5rem',
     width: '.5rem',
-    backgroundColor: 'rgba(168, 57, 57, 0.386)',
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
     borderRadius: '.25rem',
     border: '1px solid rgba(0,0,0,.2)',
 }
