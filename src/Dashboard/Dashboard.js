@@ -59,7 +59,7 @@ export default withTranslation()(({ t }) =>
                         title={t(`Deine Stärken`)} 
                         text={t(`Dein Überblick zu deinen fächerorientierten Stärken im PTM und den Semesterprüfungen über das gesamte Studium.`)}>
                         <div className="mb-3">
-                            <div style={{fontSize: '.8rem'}} className="text-secondary">{t`Stärkstes Fach in den MCs`}</div>
+                            <div style={{fontSize: '.8rem'}} className="text-secondary">{t`Stärkstes Fach in deinen gesamten MCsP`}</div>
                             {mcStrongestSubject.name}
                             <SimpleBar value={mcStrongestSubject.richtig} total={mcStrongestSubject.gesamt}>{mcStrongestSubject.richtig} von {mcStrongestSubject.gesamt}</SimpleBar>
                         </div>

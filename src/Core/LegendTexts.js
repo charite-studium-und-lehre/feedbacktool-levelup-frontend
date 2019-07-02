@@ -51,7 +51,7 @@ const Legends = {
             },
             Subjects: {
                 title: <Trans>Alle Fächer</Trans>,
-                text: <Trans>Hier findest du eine Übersicht zu deinen Leistungen in den vorklinischen, klinischen und Querschnittsfächern. Die Ergebnisse basieren auf deinem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.</Trans>,
+                text: <Trans>Hier findest du eine Übersicht zu deinen Leistungen in den theoretischen, klinischen und Querschnittsfächern. Die Ergebnisse dargestellt im grünen Balken basieren auf deinem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen. Deine Entwicklung im PTM innerhalb eines bestimmten Faches kannst du in der darunter stehenden Graphik erkennen.</Trans>,
             },
             Organsystem : {
                 title: <Trans>Alle Organsystem</Trans>,
@@ -76,15 +76,17 @@ const Legends = {
         },
         Semester: {
             title: <Trans>Starke Fächer in den Semesterprüfungen</Trans>,
-            text: <Trans>Hier findest du eine Übersicht zu deinen besten Fächern basierend auf allen deinen Semesterprüfungen. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen. Achtung: Nur Fächer mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.</Trans>,
+            text: <Trans>
+                    <p>Hier findest du eine Übersicht zu deinen besten Fächern basierend auf allen deinen Semesterprüfungen. Die Auswertung beruht auf dem Verhältnis der richtigbeantworteten im Vergleich zu allen gestellten Fragen.<br/><strong>Achtung: </strong>Nur Fächer mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.</p>
+                  </Trans>,
         },
         PTM: {
             title: <Trans>Starke Fächer im PTM</Trans>,
-            text: <Trans>Hier findest du eine Übersicht zu deinen besten Fächern in dem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen. Der Mittelwert der Kohorte ist durch einen roten Kreis gekennzeichnet. Achtung: Nur Fächer mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.</Trans>,
+            text: <Trans><p>Hier findest du eine Übersicht zu deinen besten Fächern in dem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen. Der Mittelwert der Kohorte ist durch einen Kreis gekennzeichnet.<br/><strong>Achtung: </strong> Nur Fächer mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.</p></Trans>,
         },
         PTMResults: {
             title: <Trans>Gesamtes Ergebnis im PTM</Trans>,
-            text: <Trans>Hier findest du eine generelle Auswertung deines PTMs im Vergleich mit der Kohorte.</Trans>,
+            text: <Trans><p>Hier findest du eine generelle Auswertung deines PTMs im Vergleich mit der Kohorte. Der Mittelwert der Kohorte ist durch einen Kreis gekennzeichnet.<br/> <strong>Achtung: </strong>Die angegebene Zahl bezieht sich immer auf dein Ergebnis.</p></Trans>,
         },
         Subjects: {
             title: <Trans>Alle Fächer</Trans>,
@@ -96,7 +98,7 @@ const Legends = {
             title: <Trans>Mein Level</Trans>,
             text: <Trans><p>Hier siehst du eine Übersicht zu den ärztlichen Tätigkeiten, die du im Laufe des Studiums kennenlernen und praktisch üben wirst. Das Ziel ist, dass du als Absolvent*in des Medizinstudiums dazu in der Lage bist, die hier aufgeführten Tätigkeiten zu Berufsbeginn eigenständig durchzuführen und nur Wichtiges nachgeprüft wird (Level 5).</p>
             <p>Bitte gib mindestens einmal im Halbjahr an, unter welchem Level du die jeweilige Tätigkeit bislang ausgeführt hast und unter welchem Level du dir die Tätigkeit zutraust. Hierdurch kannst du permanent einen Überblick über die Entwicklung deiner praktischen Fertigkeiten erhalten. Es ist zudem möglich Fremdeinschätzungen von Ärzten*innen einzuholen. </p>
-            <p>Insgesamt sind 11 ärztliche Tätigkeiten und 8 Prozeduren gelistet. Die 11 Tätigkeiten werden wiederum in kleinere Tätigkeiten (35) aufgeteilt, die du im Laufe des Studiums ausführen wir.</p>
+            <p>Insgesamt sind 11 ärztliche Tätigkeiten und 8 Prozeduren gelistet. Die 11 Tätigkeiten werden wiederum in kleinere Tätigkeiten (35) aufgeteilt, die du im Laufe des Studiums ausführen wirst.</p>
             <p>Da es das Ziel ist, dass du dir die ärztlichen Tätigkeiten zu Berufsbeginn unter Level 5 zutraust, kannst du maximal 175 „Level“ erreichen.</p>
             <p>In roter Schrift siehst du die Anzahl der Level, unter der du die Tätigkeiten ausgeführt hast. In grüner Schrift die Anzahl der Level, unter der du dir die Tätigkeiten zutraust.</p>
             </Trans>
