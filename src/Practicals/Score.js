@@ -6,6 +6,7 @@ import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons'
 import { selectors, actions } from './Store'
 import { withTranslation } from 'react-i18next'
 
+export const colors = ['hsla(208, 51%, 27%, 1)', 'hsla(120, 100%, 25%, 1']
 const Numbers = props => (
     <span>
         {props.edit &&
@@ -18,8 +19,8 @@ const Numbers = props => (
     </span>
 )
 const Score = ({t, ...props}) => (
-    <div className="row text-center" style={{color:'#224768'}}> 
-        <div className="col-6 pr-0 ">
+    <div className="row text-center"> 
+        <div className="col-6 pr-0 " style={{color: colors[0]}}>
             <Numbers 
                 edit={props.edit}
                 value={props.score('done')}
@@ -30,7 +31,7 @@ const Score = ({t, ...props}) => (
             <div >{t(`Habe ich gemacht`)}</div>
             }
         </div>
-        <div className="col-6 pl-0 text-success">
+        <div className="col-6 pl-0" style={{color: colors[1]}}>
             <Numbers
                 edit={props.edit}
                 value={props.score('confident')}
