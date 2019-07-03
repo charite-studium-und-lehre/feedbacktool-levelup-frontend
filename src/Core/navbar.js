@@ -39,7 +39,7 @@ export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
                 <ul className="navbar-nav">
                 <li className="nav-item">
                       <div className="mt-2 mr-4"  style={{ fontSize: '1.2em', cursor: 'pointer' }}>
-                          Willcomen Sabine 
+                          Willkommen Sabine 
                       </div>
                     </li>
                     <li className="nav-item">
