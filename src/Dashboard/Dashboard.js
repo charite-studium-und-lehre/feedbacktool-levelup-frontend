@@ -42,7 +42,8 @@ export default withTranslation()(({ t }) =>
                     <DashboardCard 
                     header={Math.round(Math.random() * 100) + ' %'} 
                     title={t(`Praktische Prüfungen`)} 
-                    text={t(`Dein Überblick zu den praktischen Prüfungen im Studium.`)} >
+                    text={t(`Dein Überblick zu den praktischen Prüfungen im Studium.`)}
+                    result="Gesamtnote 2,0">
                         {StationsData.map(e => 
                         <div key={e.exam}>
                             <span className="text-secondary" style={{fontSize: '.8rem'}}>{e.exam}</span>
