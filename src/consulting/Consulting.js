@@ -8,7 +8,7 @@ import { ConsultingTree } from './ConsultingTree'
     return (
         <div className="container-fluid">
             <div className="consulting">
-            <h1 className="text-center my-4">{t('Charitè Beratung')}</h1>
+            <h1 className="text-center my-4">{t('Charité Beratung')}</h1>
                 <div className="row  " >
                     <div className="col-lg-5 col-sm-6">
                         <div className="consulting-foto">
