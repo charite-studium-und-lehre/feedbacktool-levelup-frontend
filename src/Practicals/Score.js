@@ -10,17 +10,21 @@ export const colors = ['hsla(208, 51%, 27%, 1)', 'hsla(120, 100%, 25%, 1']
 const Numbers = props => (
     <span>
         {props.edit &&
-        <FontAwesomeIcon icon={faMinusCircle} className="text-muted mr-1" onClick={ props.decrement }/>
+        <span style={{cursor: 'pointer'}}>
+            <FontAwesomeIcon icon={faMinusCircle} className="text-muted mr-1" onClick={ props.decrement }/>
+        </span>
     }
         <span className="font-weight-bold">{props.value} / {props.maxValue}</span>
         {props.edit &&
-        <FontAwesomeIcon icon={faPlusCircle} className="text-muted ml-1" onClick={ props.increment }/>
+        <span style={{cursor: 'pointer'}}>
+            <FontAwesomeIcon icon={faPlusCircle} className="text-muted ml-1" onClick={ props.increment }/>
+        </span>
     }
     </span>
 )
 const Score = ({t, ...props}) => (
     <div className="row text-center"> 
-        <div className="col-6 pr-0 " style={{color: colors[0]}}>
+        <div className="col-6 pr-0" style={{color: colors[0]}}>
             <Numbers 
                 edit={props.edit}
                 value={props.score('done')}

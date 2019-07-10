@@ -7,11 +7,12 @@ import makeExtendable from '../Core/makeExtendable'
 import Score from './Score'
 import ProgressChart from './ProgressChart'
 import { selectors } from './Store'
+import { cursor } from 'sisteransi';
 
 const Chart = makeExtendable(props => 
   <div>
-    <div className="text-right">
-      <FontAwesomeIcon onClick={() => props.toggleExtended()} className={props.extended ? 'text-primary' : 'text-muted'} style={{fontSize: '.9rem'}} icon={faChartLine} />
+    <div style={{cursor: 'pointer'}}>
+      <FontAwesomeIcon onClick={() => props.toggleExtended()} className={props.extended ? 'text-primary' : 'text-muted'} style={{fontSize: '1rem'}} icon={faChartLine} />
     </div>
     <SlideDown className="animated fast">
     {props.extended &&
@@ -29,17 +30,18 @@ const Item = connect(stateToProps)(makeExtendable(props =>
     <div className="mt-2">
       <div className="p-2" style={{backgroundColor: `hsla(83, 35%, ${(props.level + 3) / 7 * 100}%,.7)`}}>
         <div onClick={() => props.toggleExtended()} className="row">
-          <div className="col-7 pr-0">
+          <div className="col-6 pr-0">
             <div className="font-weight-bold" style={{fontSize: '.8rem'}}>
               {props.entry.label}
+              <div style={{color: 'rgba(0,0,0,.6)', cursor: 'pointer'}}>
+              {props.entry.entries.length ? <FontAwesomeIcon style={{fontSize: '.9rem'}} icon={props.extended ? faMinus : faPlus} /> : null}
+          </div>
             </div>
           </div>
-          <div className="col-4 p-0">
+          <div className="col-6 p-0">
             <Score edit={!props.entry.entries.length && props.edit} entryId={props.entryId} />
           </div>
-          <div className="col-1 pl-0 text-right" style={{color: 'rgba(0,0,0,.6)'}}>
-            {props.entry.entries.length ? <FontAwesomeIcon style={{fontSize: '.9rem'}} icon={props.extended ? faMinus : faPlus} /> : null}
-          </div>
+       
         </div>
         {props.entry.hasGraph && <Chart entryId={props.entryId} />}
       </div>
