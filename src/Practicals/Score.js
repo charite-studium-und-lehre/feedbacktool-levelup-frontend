@@ -41,7 +41,7 @@ const Score = ({t, ...props}) => (
                 value={props.score('confident')}
                 maxValue={props.maxScore} 
                 increment={_.partial(props.levelUpConfident, props.entryId)}
-                decrement={_.partial(props.levelUpConfident, props.entryId)} />
+                decrement={_.partial(props.levelDownConfident, props.entryId)} />
             {props.headings && 
             <div >{t(`Traue ich mir zu`)}</div>
             }

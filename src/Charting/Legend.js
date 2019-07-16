@@ -19,7 +19,7 @@ const Legend = props =>
         <div className="animated fast row" style={{ overflow: 'hidden' }}>
             <SlideDown className="animated fast">
             {props.extended &&
-                <div className="col my-2" style={{fontSize: '.8rem'}}>
+                <div className="col my-2" style={{fontSize: '.9rem'}}>
                     {props.children}
                 </div>
             }

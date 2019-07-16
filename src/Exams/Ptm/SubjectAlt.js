@@ -23,13 +23,13 @@ const SubjectAlt = props => (
             <Legende text='Anzahl gestellte Fragen' style={{backgroundColor : colors[0]}}/>
             <Legende text='Anzahl richtige Fragen'  style={{backgroundColor : colors[1]}}/>
             <div className="p-4 mt-3 mb-4" style={{height: '6rem'}} >
-                <OrdinalChart xDomain={props.timeline.map(d => d.semester)} yDomain={[0, Math.max(...props.timeline.map(d => d.gesamt))]}>
+                <OrdinalChart xDomain={props.timeline.map(d => d.short)} yDomain={[0, Math.max(...props.timeline.map(d => d.gesamt))]}>
                     <XAxis />
                     <YAxis ticks={{count: 3}} />
-                    <AreaGraph data={props.timeline.map(d => ({ x: d.semester, y0: 0, y1: d.gesamt }))} color={colors[0]} />
-                    <LineGraph data={props.timeline.map(d => ({ x: d.semester, y: d.gesamt }))} color={tinycolor(colors[0]).darken(30).toString()} />
-                    <AreaGraph data={props.timeline.map(d => ({ x: d.semester, y0: 0, y1: d.richtig }))} color={colors[1]} />
-                    <LineGraph data={props.timeline.map(d => ({ x: d.semester, y: d.richtig }))} color={tinycolor(colors[1]).darken(30).toString()} />
+                    <AreaGraph data={props.timeline.map(d => ({ x: d.short, y0: d.richtig, y1: d.gesamt }))} color={colors[0]} />
+                    <LineGraph data={props.timeline.map(d => ({ x: d.short, y: d.gesamt }))} color={tinycolor(colors[0]).darken(30).toString()} />
+                    <AreaGraph data={props.timeline.map(d => ({ x: d.short, y0: 0, y1: d.richtig }))} color={colors[1]} />
+                    <LineGraph data={props.timeline.map(d => ({ x: d.short, y: d.richtig }))} color={tinycolor(colors[1]).darken(30).toString()} />
                 </OrdinalChart>
             </div>
            

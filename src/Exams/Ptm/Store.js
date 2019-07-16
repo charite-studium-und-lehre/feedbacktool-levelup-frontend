@@ -18,12 +18,13 @@ const createResult = _.flow([
         ],
         means: [77, 22, 101],
         semester,
+        short: semester.substr(0,4) + 'S',
         fächer: Subjects(semester)
     })
 ])
 const Results = _.keyBy(r => r.semester, _.map(createResult)(semesters))
 
-const getStore = state => {return state.exams.ptms}
+const getStore = state => state.exams.ptms
 const getBySemester = (state, semester) => getStore(state)[semester]
 const flattenCategories = _.flatMap(c => c.subjects)
 const getSubject = subject => _.flow([_.find({'name': subject}), _.defaultTo({})])
@@ -32,8 +33,7 @@ export const selectors = {
     getSubjectByName: (state, semester, subject) => _.flow([getBySemester, getFächer, flattenCategories, getSubject(subject)])(state, semester),
     getAllForSubject: (state, subject) => 
     _.flow([
-        getStore, _.map(getFächer), _.map(flattenCategories), _.map(getSubject(subject)),
-        _.zip(semesters.map(s => ({semester: s}))),
+        getStore, _.map(_.over([ptm => ({short: ptm.short}), _.flow([getFächer, flattenCategories, getSubject(subject)])])),
         _.map(_.mergeAll)
     ])(state),
     getBySemester

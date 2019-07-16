@@ -7,7 +7,6 @@ import makeExtendable from '../Core/makeExtendable'
 import Score from './Score'
 import ProgressChart from './ProgressChart'
 import { selectors } from './Store'
-import { cursor } from 'sisteransi';
 
 const Chart = makeExtendable(props => 
   <div>
