@@ -1,30 +1,6 @@
 import { combineReducers } from 'redux'
 import _ from 'lodash/fp'
-import { randomUniform } from 'd3-random'
-import seedrandom from 'seedrandom'
-import Subjects from '../Subjects'
-
-const semesters = ['1. Fachsemester', '2. Fachsemester', '3. Fachsemester', '4. Fachsemester', '5. Fachsemester']
-const createResult = _.flow([
-    _.over([
-        _.flow([seedrandom, randomUniform.source, rnd => (a,b) => _.round(rnd(a,b)())]),
-        _.identity
-    ]), 
-    ([random, semester]) => ({
-        alt: true,
-        results: [
-            [ 83],
-            [30],
-            [90] 
-        ],
-        means: [77, 22, 101],
-        semester,
-        short: semester.substr(0,4) + 'S',
-        fächer: Subjects(semester),
-        date: new Date(2013 + parseInt(semester.substr(0,1)), 6 + random(2, -1), 15 + random(20, -10)),
-    })
-])
-const Results = _.keyBy(r => r.semester, _.map(createResult)(semesters))
+import Results from './Data'
 
 const getPtms = state => state.exams.ptms.items
 const findBySemester = _.curry((semester, ptms) => ptms[semester])
@@ -51,16 +27,12 @@ export const selectors = {
 }
 
 export const actions = {
-    load: () => {
-        return dispatch => {
-          setTimeout(() => dispatch({ type: 'DATA_FETCHED', payload: Results}), 1000)
-        }
-    }
+    load: () => dispatch => setTimeout(() => dispatch({ type: 'PTM_DATA_FETCHED', payload: Results}), 1000)
 }
 
 const loaded = ( state = false, action ) => {
     switch (action.type) {
-        case 'DATA_FETCHED':
+        case 'PTM_DATA_FETCHED':
             return true
         default:
             return state
@@ -69,7 +41,7 @@ const loaded = ( state = false, action ) => {
   
 const items = (state = [], action) => {
     switch (action.type) {
-        case 'DATA_FETCHED':
+        case 'PTM_DATA_FETCHED':
             return action.payload
         default:
             return state

@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import fp from 'lodash/fp'
 import { scaleLinear } from 'd3-scale'
 import { randomNormal, randomUniform } from 'd3-random'
 import seedrandom from 'seedrandom'
@@ -144,6 +145,8 @@ const subjects = {
     ],
 }
 
+const semesters = ['1. Fachsemester', '2. Fachsemester', '3. Fachsemester', '4. Fachsemester', '5. Fachsemester']
+
 const result = _.flow([
     seedrnd => randomUniform.source(seedrnd)(50, 75), 
     rng => _.range(4).map(rng)
@@ -159,6 +162,8 @@ const distMean = d => _.round(_.meanBy(d, d => _.mean(d)))
 
 const concatResult = ([result, data]) => [ result, data.concat([ result ]).sort((a,b) => _.mean(a)-_.mean(b)) ]
 
+const createResult = _.flow([ seedrandom, _.over(result, createDist), concatResult ])
+
 const createTotalsData = ([result, dist]) => {
     const scale = scaleLinear().domain([0,dist.length - 1]).range([100, 0])
     return {
@@ -170,7 +175,7 @@ const createTotalsData = ([result, dist]) => {
     }
 }
 
-const TotalsData = _.flow([seedrandom, _.over(result, createDist), concatResult, createTotalsData])
+const TotalsData = _.flow([createResult, createTotalsData])
 
 const sampleSize = (a, n, rnd) => {
     const res = []
@@ -194,19 +199,12 @@ const createDetailsData = (semester, [result, dist]) => ({
         label: `Modul ${semester * 4 - 3 + i}`
     })),
     subjects: createSubjects(semester),
+    date: new Date(2013 + parseInt(semester), 6, 15),
 })
 
-const DetailsData = semester => _.flow([ seedrandom, _.over(result, createDist), concatResult, _.partial(createDetailsData, semester.split(".")[0]) ])(semester)
+const DetailsData = semester => _.flow([ createResult, _.partial(createDetailsData, semester.split(".")[0]) ])(semester)
 
-const n = 5
-const random = randomUniform.source(seedrandom('dfghsgresg'))
-const createTimelineData = (i, [result, dist]) => ({
-    x: new Date(2018 - i, 6 + random(2, -1)(), 15 + random(20, -10)()),
-    result: _.round(_.mean(result) / 80 * 100),
-    mean: _.round(distMean(dist) / 80 * 100),
-    label: `${n-i}. Semester`
-})
+const Results = fp.keyBy(r => r.semester, fp.map(semester => _.flow([createResult, _.over([ _.partial(createDetailsData, semester.split(".")[0]), createTotalsData, () => ({ semester })]), fp.mergeAll])(semester) )(semesters))
 
-const TimelineData = _.range(n).map( i => _.flow([ seedrandom, _.over(result, createDist), concatResult, _.partial(createTimelineData, i) ])(`${n-i}. Semester`)).filter(p => p.label !== '4. Semester')
-
-export { TotalsData, DetailsData, TimelineData }
+export { TotalsData, DetailsData }
+export default Results
