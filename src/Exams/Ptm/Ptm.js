@@ -2,13 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 import { ranking } from '../Subjects'
+import needsData from '../../Core/needsData'
 import SubjectsTabs from '../../Core/Tabs'
 import Legend from '../../Charting/Legend'
 import LegendTexts from '../../Core/LegendTexts'
 import Ranking from '../../Strengths/Ranking'
 import PtmResultsAlt from './ptmResultsAlt'
 import SubjectAlt from './SubjectAlt'
-import { selectors } from './Store'
+import { selectors, actions } from './Store'
 
 const Ptm = ({ match, ...props }) => {
     const LegendText = LegendTexts.Exams.Ptm
@@ -61,4 +62,4 @@ const Ptm = ({ match, ...props }) => {
 }
 
 const stateToProps = (state, ownProps) => ({ data: selectors.getBySemester(state, ownProps.match.params.test) })
-export default connect(stateToProps)(Ptm)
+export default needsData(connect(stateToProps)(Ptm), selectors.loaded, actions.load)

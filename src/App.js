@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { Route, Redirect } from 'react-router'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore, compose, applyMiddleware } from 'redux'
+import thunkMiddleware from 'redux-thunk'
 import rootReducer from './reducer'
 import 'd3-transition'
 import 'react-slidedown/lib/slidedown.css'
@@ -15,6 +16,8 @@ import Routes from './Core/Routes'
 import { withTranslation } from 'react-i18next'
 
 const getBasename = () => "/" + (window.location.pathname.split( '/' )[1] || "")
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 class App extends Component {
   constructor(props) {
@@ -40,7 +43,7 @@ class App extends Component {
     }
 
     return (
-      <Provider store={createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
+      <Provider store={createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)))}>
         <BrowserRouter basename={getBasename()}>
           <div className="App">
             {navbar}

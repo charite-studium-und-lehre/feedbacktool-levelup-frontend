@@ -27,6 +27,7 @@
     "react-scripts": "^3.0.1",
     "react-slidedown": "^2.0.9",
     "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
     "seedrandom": "^3.0.1",
     "tinycolor2": "^1.4.1"
   },

@@ -1,3 +1,4 @@
+import { combineReducers } from 'redux'
 import _ from 'lodash/fp'
 import { randomUniform } from 'd3-random'
 import seedrandom from 'seedrandom'
@@ -9,7 +10,7 @@ const createResult = _.flow([
         _.flow([seedrandom, randomUniform.source, rnd => (a,b) => _.round(rnd(a,b)())]),
         _.identity
     ]), 
-    ([rng, semester]) => ({
+    ([random, semester]) => ({
         alt: true,
         results: [
             [ 83],
@@ -19,42 +20,60 @@ const createResult = _.flow([
         means: [77, 22, 101],
         semester,
         short: semester.substr(0,4) + 'S',
-        fächer: Subjects(semester)
+        fächer: Subjects(semester),
+        date: new Date(2013 + parseInt(semester.substr(0,1)), 6 + random(2, -1), 15 + random(20, -10)),
     })
 ])
 const Results = _.keyBy(r => r.semester, _.map(createResult)(semesters))
 
-const getStore = state => state.exams.ptms
-const getBySemester = (state, semester) => getStore(state)[semester]
+const getPtms = state => state.exams.ptms.items
+const findBySemester = _.curry((semester, ptms) => ptms[semester])
 const flattenCategories = _.flatMap(c => c.subjects)
-const getSubject = subject => _.flow([_.find({'name': subject}), _.defaultTo({})])
+const findSubject = subject => _.flow([_.find({'name': subject}), _.defaultTo({})])
 const getFächer = ptm => ptm.fächer
+const getSubject = subject => _.flow([ getFächer, flattenCategories, findSubject(subject) ])
+
+const toTimeline = ptm => ({
+    x: ptm.date,
+    result: ptm.results[0],
+    mean: ptm.means[0],
+    label: ptm.semester,
+})
+const getTimeline = _.flow([ getPtms, _.map( toTimeline ) ])
+
 export const selectors = {
-    getSubjectByName: (state, semester, subject) => _.flow([getBySemester, getFächer, flattenCategories, getSubject(subject)])(state, semester),
+    getSubjectByName: (state, semester, subject) => _.flow([getPtms, findBySemester(semester), getSubject(subject)])(state, semester),
     getAllForSubject: (state, subject) => 
-    _.flow([
-        getStore, _.map(_.over([ptm => ({short: ptm.short}), _.flow([getFächer, flattenCategories, getSubject(subject)])])),
-        _.map(_.mergeAll)
-    ])(state),
-    getBySemester
+    _.flow([ getPtms, _.map(ptm => ({ ...getSubject(subject)(ptm), short: ptm.short })) ])(state),
+    getBySemester: (state, semester) => _.flow([getPtms, findBySemester(semester)])(state),
+    loaded: state => state.exams.ptms.loaded,
+    getTimeline,
 }
 
-const random = randomUniform.source(seedrandom('foo'))
-function randomData(n = 5) {
-    return _.range(0, n).map(i => ({
-        x: new Date(2018 - i, 6 + random(2, -1)(), 15 + random(20, -10)()),
-        result: (n-i+1)/6*50,
-        mean: random(25, 40)(),
-        label: `${n-i}. Semester`
-    }))
-}
-export const TimelineData = randomData()
-
-export const actions = {}
-  
-export function reducer(state = Results, action) {
-    switch (action.type) {
-        default:
-        return state
+export const actions = {
+    load: () => {
+        return dispatch => {
+          setTimeout(() => dispatch({ type: 'DATA_FETCHED', payload: Results}), 1000)
+        }
     }
 }
+
+const loaded = ( state = false, action ) => {
+    switch (action.type) {
+        case 'DATA_FETCHED':
+            return true
+        default:
+            return state
+    }
+}
+  
+const items = (state = [], action) => {
+    switch (action.type) {
+        case 'DATA_FETCHED':
+            return action.payload
+        default:
+            return state
+    }
+}
+
+export const reducer = combineReducers( { loaded, items } )
