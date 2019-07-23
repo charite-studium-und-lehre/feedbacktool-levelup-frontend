@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import needsData from '../../Core/needsData'
 import PointGraph from '../../Charting/PointGraph'
@@ -13,84 +13,75 @@ import {   faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-ico
 const day= 1000 * 60 * 60 * 24
 const year = day * 365
 
-class Timeline extends Component {
-    constructor({props}) {
-        super(props)
-        this.state = {
-            timerange: [null, new Date()],
-            oldest: null, 
-            newest: new Date(), 
-            selectedPoint: null 
-        }       
+const Timeline = props => {
+    const [timerange, setTimerange] = useState([null, new Date()]),
+    [oldest, setOldest] = useState(null),
+    [newest, setNewest] = useState(new Date()),
+    [selectedPoint, setSeletedPoint] = useState(null),
+    [graph, setGraph] = useState(null)
+    
+    function initTimerange(oldest) {
+        setOldest(oldest)
+        setTimerange([ oldest, timerange[1] ])
     }
     
-    initTimerange(oldest) {
-        this.setState({ oldest, timerange: [oldest, this.state.timerange[1]] })
+    function zoomOut() {
+        setOldest(timerange[0])
+        setNewest(timerange[1])
+        setSeletedPoint(null)
+        setGraph(null)
     }
-    
-    zoomIn(point, graph) {
-        const newState = this.state.selectedPoint ? 
-        { oldest: this.state.timerange[0], newest: this.state.timerange[1], selectedPoint: null, graph: null } :
-        { selectedPoint: point, oldest: new Date(point.x.getTime() - day * 1), newest: new Date(point.x.getTime() + day * 7 * 2), graph }
-        this.setState(newState)
-    }
-    
-    zoomBack() {
-        const t = new Date(this.state.timerange[0].getTime() - year)
-        this.setState( { 
-            timerange: [t, new Date()],
-            oldest: t, 
-            newest: new Date(), 
-            selectedPoint: null 
-        })
-    }
-    zoomFront() {
-        const t = new Date(this.state.timerange[0].getTime() + year)
-        this.setState( { 
-            timerange: [t, new Date()],
-            oldest: t, 
-            newest: new Date(), 
-            selectedPoint: null 
-        })
-    }
-    
-    render() {
-        const LegendText = Legends.Dashboard.Timeline
-        return (
-            <div className="card with-border" style={{overflow: 'hidden'}}>
-                <div className="card-body">
-                    <Legend title={LegendText.title}>{LegendText.text}</Legend>
-                    <div className="p-3 pl-4 position-relative">
-                        <Chart oldest={this.state.oldest} newest={this.state.newest} initTimerange={d => this.initTimerange(d)}>
-                        {this.props.graphs.map((g, i) => (
-                            <PointGraph
-                                selectedPoint={this.state.selectedPoint ? this.state.selectedPoint.x : 0} 
-                                onClick={ point => this.zoomIn(point, g) } 
-                                key={i} data={g.data.map(d => ({ ...d, y: d.result }))} 
-                                color={`hsla(${g.color}, 50%, 50%, .75)`} />
-                        ))}
-                        </Chart>
-                        <InfoOverlay 
-                            visible={!!this.state.selectedPoint}
-                            graph={this.state.graph || {}}
-                            onClose={() => this.zoomIn()}
-                            selectedPoint={this.state.selectedPoint || {label: ''}}>
-                        </InfoOverlay>
-                    </div>
-                    <div className="">
-                    <span className="text-primary mr-3" style={{fontSize: '.8rem', cursor:'pointer'}} onClick={() => this.zoomBack()}><FontAwesomeIcon icon={ faChevronLeft} /><FontAwesomeIcon icon={ faChevronLeft} /></span>
-                        <span className="text-primary ml-3" style={{fontSize: '.8rem', cursor:'pointer'}} onClick={() => this.zoomFront()}><FontAwesomeIcon icon={ faChevronRight} /><FontAwesomeIcon icon={ faChevronRight} /></span>
 
-                    </div>
-                    <div className="mt-2">
-                        {this.props.graphs.map(g => (
-                            <span key={g.label} className="m-2 d-inline-block" style={{fontSize: '.8rem', color: `hsl(${g.color}, 50%, 50%)`}} >{g.label}</span>
-                        ))}
-                    </div>
+    function zoomIn(point, graph) {
+        setSeletedPoint(point)
+        setOldest( new Date(point.x.getTime() - day * 1) )
+        setNewest( new Date(point.x.getTime() + day * 7 * 2) )
+        setGraph(graph)
+    }
+    
+    function pan(amount) {
+        const [ o, n ] = timerange.map(t => new Date(t.getTime() + amount))
+        setTimerange([ o, n ])
+        setOldest(o)
+        setNewest(n)
+        setSeletedPoint(null)
+        setGraph(null)
+    }
+
+    const LegendText = Legends.Dashboard.Timeline
+    return (
+        <div className="card with-border" style={{overflow: 'hidden'}}>
+            <div className="card-body">
+                <Legend title={LegendText.title}>{LegendText.text}</Legend>
+                <div className="p-3 pl-4 position-relative">
+                    <Chart oldest={oldest} newest={newest} initTimerange={initTimerange}>
+                    {props.graphs.map((g, i) => (
+                        <PointGraph
+                            selectedPoint={selectedPoint ? selectedPoint.x : 0} 
+                            onClick={ point => selectedPoint ? zoomOut() : zoomIn(point, g) } 
+                            key={i} data={g.data.map(d => ({ ...d, y: d.result }))} 
+                            color={`hsla(${g.color}, 50%, 50%, .75)`} />
+                    ))}
+                    </Chart>
+                    <InfoOverlay 
+                        visible={!!selectedPoint}
+                        graph={graph || {}}
+                        onClose={() => zoomOut()}
+                        selectedPoint={selectedPoint || {label: ''}}>
+                    </InfoOverlay>
+                </div>
+                <div className="w-100">
+                    <span className="text-primary" style={{fontSize: '.8rem', cursor:'pointer'}} onClick={() => pan(-year)}><FontAwesomeIcon icon={ faChevronLeft} /><FontAwesomeIcon icon={ faChevronLeft} /></span>
+                    <span className="text-primary float-right" style={{fontSize: '.8rem', cursor:'pointer'}} onClick={() => pan(year)}><FontAwesomeIcon icon={ faChevronRight} /><FontAwesomeIcon icon={ faChevronRight} /></span>
+                </div>
+                <div className="mt-2">
+                    {props.graphs.map(g => (
+                        <span key={g.label} className="m-2 d-inline-block" style={{fontSize: '.8rem', color: `hsl(${g.color}, 50%, 50%)`}} >{g.label}</span>
+                    ))}
                 </div>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 const stateToProps = state => ({ graphs: selectors.getGraphs(state) })
