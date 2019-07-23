@@ -4,7 +4,6 @@ import { withTranslation } from 'react-i18next'
 import DashboardCard from './DashboardCard'
 import Progress from './Progress/Progress'
 import Timeline from './Timeline/Timeline'
-import graphs from '../Exams/Graphs'
 import PracticalsScore from '../Practicals/Score'
 import SimpleBar from '../Charting/SimpleBar'
 import Subjects, { strongestSubject } from '../Exams/Subjects'
@@ -19,7 +18,7 @@ export default withTranslation()(({ t }) =>
                 <Progress />
             </div>
             <div className="col-lg-6 mt-2">
-                <Timeline data={graphs.data} />
+                <Timeline />
             </div>
         </div>
         <div className="row">

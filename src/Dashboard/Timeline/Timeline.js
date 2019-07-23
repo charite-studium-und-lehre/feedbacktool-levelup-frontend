@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import needsData from '../../Core/needsData'
 import PointGraph from '../../Charting/PointGraph'
 import Legend from '../../Charting/Legend'
 import Legends from '../../Core/LegendTexts'
 import InfoOverlay from './InfoOverlay'
+import { selectors, actions } from './Store'
 import Chart from './Chart'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {   faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
@@ -59,7 +62,7 @@ class Timeline extends Component {
                     <Legend title={LegendText.title}>{LegendText.text}</Legend>
                     <div className="p-3 pl-4 position-relative">
                         <Chart oldest={this.state.oldest} newest={this.state.newest} initTimerange={d => this.initTimerange(d)}>
-                        {this.props.data.map((g, i) => (
+                        {this.props.graphs.map((g, i) => (
                             <PointGraph
                                 selectedPoint={this.state.selectedPoint ? this.state.selectedPoint.x : 0} 
                                 onClick={ point => this.zoomIn(point, g) } 
@@ -80,7 +83,7 @@ class Timeline extends Component {
 
                     </div>
                     <div className="mt-2">
-                        {this.props.data.map(g => (
+                        {this.props.graphs.map(g => (
                             <span key={g.label} className="m-2 d-inline-block" style={{fontSize: '.8rem', color: `hsl(${g.color}, 50%, 50%)`}} >{g.label}</span>
                         ))}
                     </div>
@@ -90,4 +93,5 @@ class Timeline extends Component {
     }
 }
 
-export default Timeline
+const stateToProps = state => ({ graphs: selectors.getGraphs(state) })
+export default needsData(connect(stateToProps)(Timeline), selectors.loaded, actions.load)
