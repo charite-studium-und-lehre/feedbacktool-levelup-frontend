@@ -1,10 +1,12 @@
 import _ from 'lodash'
+import { combineReducers } from 'redux'
 import seedrandom from 'seedrandom'
 import { randomUniform } from 'd3-random'
 import initialState from './Data'
 
 const getStore = state => state.practicals
-const getItemById = (state, id) => getStore(state)[id]
+const getItems = store => store.items
+const getItemById = (state, id) => _.flow([getStore, getItems])(state)[id]
 const flattenTree = (selector, entry) => entry.entries.length ? _.flatMap(entry.entries, e => flattenTree(selector, selector(e))) : [entry]
 
 const getScore = (state, id, prop) => {
@@ -29,10 +31,11 @@ const getHistoricalScore = _.flow([getScore, score => {
 export const selectors = {
   getStore,
   getItemById,
-  getItemByLabel: (state, label) => _.find(getStore(state), e => e.label === label),
+  getItemByLabel: (state, label) => _.find(_.flow([getStore, getItems])(state), e => e.label === label),
   getScore,
   getHistoricalScore,
   getMaxScore,
+  loaded: state => getStore(state).loaded
 }
 
 export const actions = {
@@ -40,6 +43,7 @@ export const actions = {
   levelDownDone: id => ({ type: 'LEVEL_DOWN_DONE', payload: { id }}),
   levelUpConfident: id => ({ type: 'LEVEL_UP_CONFIDENT', payload: { id }}),
   levelDownConfident: id => ({ type: 'LEVEL_DOWN_CONFIDENT', payload: { id }}),
+  load: () => dispatch => setTimeout(() => dispatch({ type: 'PRACTICALS_DATA_FETCHED', payload: initialState }), 3000)
 }
 
 const level = (state, id, p, val) => {
@@ -48,7 +52,16 @@ const level = (state, id, p, val) => {
   return _.extend({}, state, { [id]: entry })
 }
 
-export function reducer(state = initialState, action) {
+const loaded = ( state = false, action ) => {
+  switch (action.type) {
+      case 'PRACTICALS_DATA_FETCHED':
+          return true
+      default:
+          return state
+  }
+}
+
+function items(state = {undefined: {label: 'root', entries: []}}, action) {
   switch (action.type) {
     case 'LEVEL_UP_DONE':
       return level(state, action.payload.id, 'done', 1)
@@ -58,7 +71,11 @@ export function reducer(state = initialState, action) {
       return level(state, action.payload.id, 'confident', 1)
     case 'LEVEL_DOWN_CONFIDENT':
       return level(state, action.payload.id, 'confident', -1)
+    case 'PRACTICALS_DATA_FETCHED':
+      return action.payload
     default:
       return state
   }
 }
+
+export const reducer = combineReducers({ items, loaded })

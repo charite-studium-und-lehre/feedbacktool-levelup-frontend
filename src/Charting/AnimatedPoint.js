@@ -9,6 +9,7 @@ const AnimatedPoint = ({
         fill = 'rgba(0,0,0,.6)',
         className = '',
         r = 5,
+        opacity = 0,
         onClick = () => {},
     }) => {
 
@@ -22,12 +23,13 @@ const AnimatedPoint = ({
 			.duration(animationTime)
 			.attr('cx', cx)
             .attr('cy',  cy)
+            .style('opacity', 1)
     })
 
     return <circle 
         ref={node}
         r={r}
-        style={{stroke: color, fill: fill}}
+        style={{stroke: color, fill, opacity}}
         cx={dcx}
         cy={dcy}
         className={`animated ${css.dot} ${className} ${selected && css.selected}`} 

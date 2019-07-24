@@ -1,34 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import Item from './Item'
 import Legend from '../Charting/Legend'
 import Legends from '../Core/LegendTexts'
+import needsData from '../Core/needsData'
 import Toolbar from './Toolbar'
-import { selectors } from './Store'
+import { selectors, actions } from './Store'
 
-class Container extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = { edit: false }
-    }
+const stateToProps = state => ({ root: selectors.getItemByLabel(state, 'root') })
 
-    toggleEdit = () => this.setState({ edit: !this.state.edit })
+const Container = needsData(connect(stateToProps)(({ root }) => {
+    const [ edit, setEdit ] = useState(false)
+    const toggleEdit = () => setEdit(!edit)
 
-    render() {
-        return (
-            <div style={{ fontSize: '.9rem' }}>
-                <div className="card p-2">
-                    <Legend title={Legends.Practicals.Main.title}>{Legends.Practicals.Main.text}</Legend>
-                </div>
-                <Toolbar toggleEdit={this.toggleEdit} edit={this.state.edit} />
-                <div className="row">
-                    {this.props.root.entries.map(e =>
-                        <div key={e} className="col-12">
-                            <Item edit={this.state.edit} entryId={e} level={1} />
-                        </div>
-                    )}
-                </div>
-            </div>)
-    }
-}
-export default connect(state => ({ root: selectors.getItemByLabel(state, 'root') }))(Container)
+    return (
+        <div>
+            <Toolbar toggleEdit={toggleEdit} edit={edit} />
+            <div className="row">
+                { root.entries.map(e =>
+                    <div key={e} className="col-12">
+                        <Item edit={edit} entryId={e} level={1} />
+                    </div>
+                )}
+            </div>
+        </div>)
+}), selectors.loaded, actions.load)
+
+const LegendWrapper = () =>
+    <div style={{ fontSize: '.9rem' }}>
+        <div className="card p-2">
+            <Legend title={Legends.Practicals.Main.title}>{Legends.Practicals.Main.text}</Legend>
+        </div>
+        <Container />
+    </div>
+
+export default LegendWrapper
