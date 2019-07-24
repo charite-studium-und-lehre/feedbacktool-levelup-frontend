@@ -6,7 +6,6 @@ import SemesterTimelineInfo from './SemesterInfo'
 import PtmTimelineInfo from './PtmInfo'
 import StationsTimelineInfo from './StationsInfo'
 import { TimelineData as StationsTimelineData } from '../../Exams/Stations/Data'
-import { TimelineData as SemesterTimelineData } from '../../Exams/Semester/Data'
 import { selectors as SemesterSelectors, actions as SemesterActions } from '../../Exams/Semester/Store'
 import { selectors as PtmSelectors, actions as PtmActions } from '../../Exams/Ptm/Store'
 
@@ -39,11 +38,11 @@ const graphs = state => [
 
 const selectors = {
     getGraphs: graphs,
-    loaded: _.overSome([PtmSelectors.loaded, SemesterSelectors.loaded])
+    loaded: () => true,
 }
 
 const actions = {
-    load: () => dispatch => { PtmActions.load()(dispatch); SemesterActions.load()(dispatch) }
+    load: () => _.over([PtmActions.load(), SemesterActions.load()])
 }
 
 export { selectors, actions }

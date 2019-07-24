@@ -1,8 +1,9 @@
 import _ from 'lodash'
-import { combineReducers } from 'redux'
 import seedrandom from 'seedrandom'
 import { randomUniform } from 'd3-random'
 import initialState from './Data'
+import BaseStore from '../Core/BaseStore'
+const baseStore = BaseStore('practicals')
 
 const getStore = state => state.practicals
 const getItems = store => store.items
@@ -28,23 +29,21 @@ const getHistoricalScore = _.flow([getScore, score => {
   }
 ])
 
-export const selectors = {
+export const selectors = baseStore.withLoadedSelector({
   getStore,
   getItemById,
   getItemByLabel: (state, label) => _.find(_.flow([getStore, getItems])(state), e => e.label === label),
   getScore,
   getHistoricalScore,
   getMaxScore,
-  loaded: state => getStore(state).loaded
-}
+})
 
-export const actions = {
+export const actions = baseStore.withLoadAction({
   levelUpDone: id => ({ type: 'LEVEL_UP_DONE', payload: { id }}),
   levelDownDone: id => ({ type: 'LEVEL_DOWN_DONE', payload: { id }}),
   levelUpConfident: id => ({ type: 'LEVEL_UP_CONFIDENT', payload: { id }}),
   levelDownConfident: id => ({ type: 'LEVEL_DOWN_CONFIDENT', payload: { id }}),
-  load: () => dispatch => setTimeout(() => dispatch({ type: 'PRACTICALS_DATA_FETCHED', payload: initialState }), 3000)
-}
+}, initialState)
 
 const level = (state, id, p, val) => {
   const entry = _.clone(state[id])
@@ -52,16 +51,7 @@ const level = (state, id, p, val) => {
   return _.extend({}, state, { [id]: entry })
 }
 
-const loaded = ( state = false, action ) => {
-  switch (action.type) {
-      case 'PRACTICALS_DATA_FETCHED':
-          return true
-      default:
-          return state
-  }
-}
-
-function items(state = {undefined: {label: 'root', entries: []}}, action) {
+export const reducer = baseStore.withLoadedReducer(function reducer(state = {undefined: {label: 'root', entries: []}}, action) {
   switch (action.type) {
     case 'LEVEL_UP_DONE':
       return level(state, action.payload.id, 'done', 1)
@@ -76,6 +66,4 @@ function items(state = {undefined: {label: 'root', entries: []}}, action) {
     default:
       return state
   }
-}
-
-export const reducer = combineReducers({ items, loaded })
+})
