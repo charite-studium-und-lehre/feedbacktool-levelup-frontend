@@ -1,9 +1,8 @@
 import _ from 'lodash/fp'
-import BaseStore from '../../Core/BaseStore'
+import BaseStore from '../Store'
 import Results from './Data'
 
-const getStore = state => state.exams.ptms
-const baseStore = BaseStore('ptms', getStore)
+const baseStore = BaseStore('ptms')
 
 const findBySemester = _.curry((semester, ptms) => ptms[semester])
 const flattenCategories = _.flatMap(c => c.subjects)

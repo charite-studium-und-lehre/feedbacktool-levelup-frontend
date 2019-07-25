@@ -1,9 +1,8 @@
 import _ from 'lodash/fp'
-import BaseStore from '../../Core/BaseStore'
+import BaseStore from '../Store'
 import Results from './Data'
 
-const getStore = state => state.exams.semester
-const baseStore = BaseStore('semester', getStore)
+const baseStore = BaseStore('semester')
 const findBySemester = _.curry((semester, exams) => exams[semester])
 
 const toTimeline = exam => ({
