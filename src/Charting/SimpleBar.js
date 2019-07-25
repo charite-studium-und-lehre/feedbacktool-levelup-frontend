@@ -17,15 +17,19 @@ const defaultStyle = {
 const SimpleBar = props => {
     const total = props.total || 100
     const color = tinycolor(props.color || 'rgb(51, 137, 51)')
+
     const style = _.defaults({
-        backgroundImage: `linear-gradient(to right, ${color.setAlpha(1).toString()} ${props.value / total * 100}%, ${color.setAlpha(.6).toString()} ${props.value / total * 100}%)`,
+        backgroundImage: `linear-gradient(to right, ${color.setAlpha(1).toString()} 100%,  transparent)`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: `${props.value / total * 100}%`,
+        backgroundColor: color.setAlpha(.6).toString(),
         height: props.height,
         width: props.width,
     }, defaultStyle)
     
     return (
     <div 
-        className="my-1 text-center text-white"
+        className="my-1 text-center text-white animated"
         style={style}>
         <span>{props.children}</span>
         {props.mean && <SimpleDot value={props.mean / total * 100} />}
