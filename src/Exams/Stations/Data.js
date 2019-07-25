@@ -2,8 +2,8 @@ import _ from 'lodash'
 
 const data = [
     {
-        exam: '2. Semester Teil 1',
-        group: '2. Semester',
+        exam: '2. Fachsemester Teil 1',
+        group: '2. Fachsemester',
         date: new Date(2015, 6, 15),
         stations: [
             {
@@ -121,8 +121,8 @@ const data = [
         ]
     },
     {
-        exam: '4. Semester Teil 2',
-        group: '4. Semester',
+        exam: '4. Fachsemester Teil 2',
+        group: '4. Fachsemester',
         date: new Date(2017, 6, 15),
         stations: [
             {
@@ -217,8 +217,8 @@ const data = [
         ]
     },
     {
-        exam: '4. Semester Teil 3',
-        group: '4. Semester',
+        exam: '4. Fachsemester Teil 3',
+        group: '4. Fachsemester',
         date: new Date(2017, 6, 15),
         stations: [
             {
@@ -304,8 +304,8 @@ const data = [
         ]
     },
     // {
-    //     exam: '9. Semester - OSCE',
-    //     group: '9. Semester',
+    //     exam: '9. Fachsemester - OSCE',
+    //     group: '9. Fachsemester',
     //     stations: [
     //         {
     //             name: 'Schulterverband', 
@@ -456,9 +456,3 @@ const StationsData = data.map( e => ({
 }))
 
 export default StationsData
-
-const TimelineData = _(StationsData)
-    .groupBy(e => e.group)
-    .map((exams, group) => ({ result: _.meanBy(exams, 'result'), mean: _.meanBy(exams, 'mean'), x: exams[0].date, label: group }))
-    .value()
-export { TimelineData }

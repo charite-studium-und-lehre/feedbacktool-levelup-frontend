@@ -5,7 +5,7 @@ import StationsInfo from '../../Exams/StationsInfo'
 import SemesterTimelineInfo from './SemesterInfo'
 import PtmTimelineInfo from './PtmInfo'
 import StationsTimelineInfo from './StationsInfo'
-import { TimelineData as StationsTimelineData } from '../../Exams/Stations/Data'
+import { selectors as StationsSelectors, actions as StationsActions } from '../../Exams/Stations/Store'
 import { selectors as SemesterSelectors, actions as SemesterActions } from '../../Exams/Semester/Store'
 import { selectors as PtmSelectors, actions as PtmActions } from '../../Exams/Ptm/Store'
 
@@ -29,7 +29,7 @@ const graphs = state => [
     {
         name: 'stations',
         label: 'Praktische Prüfung',
-        data: StationsTimelineData,
+        data: StationsSelectors.getTimeline(state),
         color: 0,
         info: StationsInfo,
         timelineinfo: StationsTimelineInfo,
@@ -42,7 +42,7 @@ const selectors = {
 }
 
 const actions = {
-    load: () => _.over([PtmActions.load(), SemesterActions.load()])
+    load: () => _.over([PtmActions.load(), SemesterActions.load(), StationsActions.load()])
 }
 
 export { selectors, actions }

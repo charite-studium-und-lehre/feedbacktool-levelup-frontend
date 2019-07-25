@@ -4,10 +4,10 @@ import { withTranslation } from 'react-i18next'
 import DashboardCard from './DashboardCard'
 import Progress from './Progress/Progress'
 import Timeline from './Timeline/Timeline'
-import PracticalsScore from '../Practicals/Score'
 import SimpleBar from '../Charting/SimpleBar'
 import Subjects, { strongestSubject } from '../Exams/Subjects'
-import StationsData from '../Exams/Stations/Data'
+import Stations from './Stations'
+import Practicals from './Practicals'
 
 const mcStrongestSubject = strongestSubject(Subjects('mc'))
 const ptmStrongestSubject = strongestSubject(Subjects('ptm'))
@@ -25,30 +25,13 @@ export default withTranslation()(({ t }) =>
             <div className="col-lg-4">
                 <div className="mt-2">
                     <Link to="/practicals">
-                        <DashboardCard 
-                        header={Math.round(Math.random() * 100) + ' %'} 
-                        title={t('Ärztliche Tätigkeiten')} 
-                        text={t('Dein Überblick zur Entwicklung deiner praktischen Fähigkeiten im Studienverlauf.')}>
-                        <div className="m-2">
-                            <PracticalsScore headings />
-                        </div>
-                        </DashboardCard>
+                        <Practicals />
                     </Link>
                 </div>
             </div>
             <div className="col-lg-4 mt-2">
                 <Link to="/exams/stations/all">
-                    <DashboardCard 
-                    header={Math.round(Math.random() * 100) + ' %'} 
-                    title={t(`Praktische Prüfungen`)} 
-                    text={t(`Dein Überblick zu den praktischen Prüfungen im Studium.`)}
-                    result="Gesamtnote 2,0">
-                        {StationsData.map(e => 
-                        <div key={e.exam}>
-                            <span className="text-secondary" style={{fontSize: '.8rem'}}>{e.exam}</span>
-                            <SimpleBar value={e.result} >{e.result} %</SimpleBar>
-                        </div>)}
-                    </DashboardCard>
+                    <Stations />
                 </Link>
             </div>
             <div className="col-lg-4">

@@ -7,8 +7,8 @@ import {faMinus } from '@fortawesome/free-solid-svg-icons'
 
 const StationDetails = props => (
     <div className="mt-2">
-        {props.data.map((d, i) => 
-            <div>
+        {props.data.map(d => 
+            <div key={d.label}>
                 <div style={{fontSize: '.7rem'}}>{d.label}</div>
                 {_.isNumber(d.value) ? 
                 <SimpleBar height='1rem' value={d.value} mean={d.mean} color="hsla(210, 100%, 50%, 1)">
