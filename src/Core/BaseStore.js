@@ -1,5 +1,4 @@
 import _ from 'lodash/fp'
-import { combineReducers } from 'redux'
 
 /*
 * Provides basic functions to stores which need to load data from an external source
@@ -50,7 +49,7 @@ export default (identifier, getStore) => {
             },
             ...actions 
         }),
-        withLoadedReducer: reducer => combineReducers({
+        withLoadedReducer: reducer => ({
             loaded,
             fetching,
             items: loadReducer(reducer)

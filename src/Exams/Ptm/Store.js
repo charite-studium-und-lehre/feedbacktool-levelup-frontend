@@ -1,4 +1,5 @@
 import _ from 'lodash/fp'
+import { combineReducers } from 'redux'
 import BaseStore from '../Store'
 import Results from './Data'
 
@@ -29,9 +30,9 @@ export const selectors = baseStore.withLoadedSelector({
 
 export const actions = baseStore.withLoadAction({}, Results)
 
-export const reducer = baseStore.withLoadedReducer(( state = [], action ) => {
+export const reducer = combineReducers(baseStore.withLoadedReducer(( state = [], action ) => {
     switch(action.type) {
         default:
             return state
     }
-})
+}))

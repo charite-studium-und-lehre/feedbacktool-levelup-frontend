@@ -1,4 +1,5 @@
 import _ from 'lodash/fp'
+import { combineReducers } from 'redux'
 import initialState from './Data'
 import BaseStore from '../Core/BaseStore'
 
@@ -47,7 +48,7 @@ const level = (state, id, p, val) => {
   return {...state, [id]: entry }
 }
 
-export const reducer = baseStore.withLoadedReducer(function reducer(state = {undefined: {label: 'root', entries: []}}, action) {
+export const reducer = combineReducers(baseStore.withLoadedReducer(function reducer(state = {undefined: {label: 'root', entries: []}}, action) {
   switch (action.type) {
     case 'LEVEL_UP_DONE':
       return level(state, action.payload.id, 'done', 1)
@@ -60,4 +61,4 @@ export const reducer = baseStore.withLoadedReducer(function reducer(state = {und
     default:
       return state
   }
-})
+}))
