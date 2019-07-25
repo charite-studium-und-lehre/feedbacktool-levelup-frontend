@@ -1,4 +1,6 @@
-import _ from 'lodash'
+import _ from 'lodash/fp'
+import seedrandom from 'seedrandom'
+import { randomUniform } from 'd3-random'
 import React from 'react'
 import { Trans } from 'react-i18next'
 
@@ -342,5 +344,14 @@ id: _.uniqueId(),
       },
   ]
 }
-const normalize = e => [{...e, entries: (e.entries || []).map(e => e.id) }, _.flatMap(e.entries || [], normalize)]
-export default  _.keyBy(_.flatMapDeep([praticalsTree], normalize), e => e.id)
+
+const addHistoricalScore = item => {
+  const random = (a,b) => () => _.round(randomUniform.source(seedrandom(Math.random()))(a,b)())
+  return { ...item, historical: {
+    done: _.range(1,8).map(() => random(0,item.done)()).sort().map((d, i) => ({semester: new Date(2012 + i, 6 + random(-1, 2)(), 15 + random(-10, 20)()), level: d})),
+    confident: _.range(1,8).map(() => random(0,item.confident)()).sort().map((d, i) => ({semester: new Date(2012 + i, 6 + random(-1, 2)(), 15 + random(-10, 20)()), level: d})),
+  }}
+}
+
+const normalize = e => [{...e, entries: (e.entries || []).map(e => e.id) }, _.flatMap(normalize, e.entries || [])]
+export default  _.flow([_.flatMapDeep(normalize), _.map(addHistoricalScore), _.keyBy(e => e.id)])([praticalsTree])
