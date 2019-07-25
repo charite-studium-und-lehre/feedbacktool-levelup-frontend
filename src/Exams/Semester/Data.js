@@ -175,8 +175,6 @@ const createTotalsData = ([result, dist]) => {
     }
 }
 
-const TotalsData = _.flow([createResult, createTotalsData])
-
 const sampleSize = (a, n, rnd) => {
     const res = []
     while(n--) res.push(_.pullAt(a, _.round(rnd(0,a.length - 1)()))[0])
@@ -202,9 +200,6 @@ const createDetailsData = (semester, [result, dist]) => ({
     date: new Date(2013 + parseInt(semester), 6, 15),
 })
 
-const DetailsData = semester => _.flow([ createResult, _.partial(createDetailsData, semester.split(".")[0]) ])(semester)
-
 const Results = fp.keyBy(r => r.semester, fp.map(semester => _.flow([createResult, _.over([ _.partial(createDetailsData, semester.split(".")[0]), createTotalsData, () => ({ semester })]), fp.mergeAll])(semester) )(semesters))
 
-export { TotalsData, DetailsData }
 export default Results

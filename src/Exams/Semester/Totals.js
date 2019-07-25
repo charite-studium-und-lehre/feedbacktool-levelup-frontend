@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import _ from 'lodash'
 import { curveStep } from 'd3-shape'
 import { LinearChart } from '../../Charting/Chart'
@@ -9,8 +10,9 @@ import Marker from '../../Charting/Marker'
 import LineMarker from '../../Charting/LineMarker'
 import Legend from '../../Charting/Legend'
 import { XAxis, YAxis } from '../../Charting/Axis'
-import { TotalsData as Data } from './Data'
+import { selectors, actions } from './Store'
 import Legends from '../../Core/LegendTexts'
+import needsData from '../../Core/needsData'
 
 const respSwitch = (large, small) => <span><span className="d-none d-md-inline-block">{large}</span><span className="d-inline-block d-md-none">{small}</span></span>
 const Totals = class extends Component {
@@ -76,4 +78,5 @@ const Totals = class extends Component {
     }
 }
 
-export default props => <Totals {...Data(props.semester)} />
+const stateToProps = (state, ownProps) => ( {...selectors.getBySemester(state, ownProps.semester)})
+export default needsData(connect(stateToProps)(Totals), selectors.loaded, actions.load)

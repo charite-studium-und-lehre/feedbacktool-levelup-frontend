@@ -17,11 +17,16 @@ const getTimeline = _.flow([ getStore, getExams, _.map( toTimeline ) ])
 export const selectors = {
     getBySemester: (state, semester) => _.flow([ getStore, getExams, findBySemester(semester)])(state),
     loaded: state => getStore(state).loaded,
+    fetching: state => getStore(state).fetching,
     getTimeline,
 }
 
 export const actions = {
-    load: () => dispatch => setTimeout(() => dispatch({ type: 'SEMESTER_DATA_FETCHED', payload: Results}), 3000)
+    load: () => (dispatch, getState) => {
+        if(selectors.fetching(getState())) return
+        setTimeout(() => dispatch({ type: 'SEMESTER_DATA_FETCHED', payload: Results}), 3000)
+        dispatch({ type: 'SEMESTER_DATA_FETCHING' })
+    }
 }
 
 const loaded = ( state = false, action ) => {
@@ -32,7 +37,16 @@ const loaded = ( state = false, action ) => {
             return state
     }
 }
-  
+ 
+const fetching = ( state = false, action ) => {
+    switch (action.type) {
+        case 'SEMESTER_DATA_FETCHING':
+            return true
+        default:
+            return state
+    }
+}
+
 const items = (state = [], action) => {
     switch (action.type) {
         case 'SEMESTER_DATA_FETCHED':
@@ -42,4 +56,4 @@ const items = (state = [], action) => {
     }
 }
 
-export const reducer = combineReducers( { loaded, items } )
+export const reducer = combineReducers( { loaded, fetching, items } )
