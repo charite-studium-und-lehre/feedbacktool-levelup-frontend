@@ -3,11 +3,9 @@ import seedrandom from 'seedrandom'
 import { randomUniform } from 'd3-random'
 import initialState from './Data'
 import BaseStore from '../Core/BaseStore'
-const baseStore = BaseStore('practicals')
 
-const getStore = state => state.practicals
-const getItems = store => store.items
-const getItemById = (state, id) => _.flow([getStore, getItems])(state)[id]
+const baseStore = BaseStore('practicals')
+const getItemById = (state, id) => _.flow([baseStore.getItems])(state)[id]
 const flattenTree = (selector, entry) => entry.entries.length ? _.flatMap(entry.entries, e => flattenTree(selector, selector(e))) : [entry]
 
 const getScore = (state, id, prop) => {
@@ -30,9 +28,8 @@ const getHistoricalScore = _.flow([getScore, score => {
 ])
 
 export const selectors = baseStore.withLoadedSelector({
-  getStore,
   getItemById,
-  getItemByLabel: (state, label) => _.find(_.flow([getStore, getItems])(state), e => e.label === label),
+  getItemByLabel: (state, label) => _.find(_.flow([baseStore.getItems])(state), e => e.label === label),
   getScore,
   getHistoricalScore,
   getMaxScore,
@@ -61,8 +58,6 @@ export const reducer = baseStore.withLoadedReducer(function reducer(state = {und
       return level(state, action.payload.id, 'confident', 1)
     case 'LEVEL_DOWN_CONFIDENT':
       return level(state, action.payload.id, 'confident', -1)
-    case 'PRACTICALS_DATA_FETCHED':
-      return action.payload
     default:
       return state
   }

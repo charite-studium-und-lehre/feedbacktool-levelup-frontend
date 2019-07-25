@@ -1,8 +1,10 @@
-import { combineReducers } from 'redux'
 import _ from 'lodash/fp'
+import BaseStore from '../../Core/BaseStore'
 import Results from './Data'
 
-const getPtms = state => state.exams.ptms.items
+const getStore = state => state.exams.ptms
+const baseStore = BaseStore('ptms', getStore)
+
 const findBySemester = _.curry((semester, ptms) => ptms[semester])
 const flattenCategories = _.flatMap(c => c.subjects)
 const findSubject = subject => _.flow([_.find({'name': subject}), _.defaultTo({})])
@@ -15,37 +17,21 @@ const toTimeline = ptm => ({
     mean: ptm.means[0],
     label: ptm.semester,
 })
-const getTimeline = _.flow([ getPtms, _.map( toTimeline ) ])
+const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 
-export const selectors = {
-    getSubjectByName: (state, semester, subject) => _.flow([getPtms, findBySemester(semester), getSubject(subject)])(state, semester),
+export const selectors = baseStore.withLoadedSelector({
+    getSubjectByName: (state, semester, subject) => _.flow([ baseStore.getItems, findBySemester(semester), getSubject(subject) ])(state, semester),
     getAllForSubject: (state, subject) => 
-    _.flow([ getPtms, _.map(ptm => ({ ...getSubject(subject)(ptm), short: ptm.short })) ])(state),
-    getBySemester: (state, semester) => _.flow([getPtms, findBySemester(semester)])(state),
-    loaded: state => state.exams.ptms.loaded,
+    _.flow([ baseStore.getItems, _.map(ptm => ({ ...getSubject(subject)(ptm), short: ptm.short })) ])(state),
+    getBySemester: (state, semester) => _.flow([ baseStore.getItems, findBySemester(semester) ])(state),
     getTimeline,
-}
+})
 
-export const actions = {
-    load: () => dispatch => setTimeout(() => dispatch({ type: 'PTM_DATA_FETCHED', payload: Results}), 1000)
-}
+export const actions = baseStore.withLoadAction({}, Results)
 
-const loaded = ( state = false, action ) => {
-    switch (action.type) {
-        case 'PTM_DATA_FETCHED':
-            return true
+export const reducer = baseStore.withLoadedReducer(( state = [], action ) => {
+    switch(action.type) {
         default:
             return state
     }
-}
-  
-const items = (state = [], action) => {
-    switch (action.type) {
-        case 'PTM_DATA_FETCHED':
-            return action.payload
-        default:
-            return state
-    }
-}
-
-export const reducer = combineReducers( { loaded, items } )
+})

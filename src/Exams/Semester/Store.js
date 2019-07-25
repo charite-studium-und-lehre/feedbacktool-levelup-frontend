@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux'
 import _ from 'lodash/fp'
+import BaseStore from '../../Core/BaseStore'
 import Results from './Data'
 
 const getStore = state => state.exams.semester
-const getExams = store => store.items
+const baseStore = BaseStore('semester', getStore)
 const findBySemester = _.curry((semester, exams) => exams[semester])
 
 const toTimeline = exam => ({
@@ -12,48 +12,18 @@ const toTimeline = exam => ({
     mean: exam.distMean,
     label: exam.semester,
 })
-const getTimeline = _.flow([ getStore, getExams, _.map( toTimeline ) ])
+const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 
-export const selectors = {
-    getBySemester: (state, semester) => _.flow([ getStore, getExams, findBySemester(semester)])(state),
-    loaded: state => getStore(state).loaded,
-    fetching: state => getStore(state).fetching,
+export const selectors = baseStore.withLoadedSelector({
+    getBySemester: (state, semester) => _.flow([ baseStore.getItems, findBySemester(semester)])(state),
     getTimeline,
-}
+})
 
-export const actions = {
-    load: () => (dispatch, getState) => {
-        if(selectors.fetching(getState())) return
-        setTimeout(() => dispatch({ type: 'SEMESTER_DATA_FETCHED', payload: Results}), 3000)
-        dispatch({ type: 'SEMESTER_DATA_FETCHING' })
-    }
-}
+export const actions = baseStore.withLoadAction({}, Results)
 
-const loaded = ( state = false, action ) => {
+export const reducer = baseStore.withLoadedReducer(( state = [], action ) => {
     switch (action.type) {
-        case 'SEMESTER_DATA_FETCHED':
-            return true
         default:
             return state
     }
-}
- 
-const fetching = ( state = false, action ) => {
-    switch (action.type) {
-        case 'SEMESTER_DATA_FETCHING':
-            return true
-        default:
-            return state
-    }
-}
-
-const items = (state = [], action) => {
-    switch (action.type) {
-        case 'SEMESTER_DATA_FETCHED':
-            return action.payload
-        default:
-            return state
-    }
-}
-
-export const reducer = combineReducers( { loaded, fetching, items } )
+})
