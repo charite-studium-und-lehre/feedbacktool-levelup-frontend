@@ -187,7 +187,7 @@ const createSubjects = semester => {
         .concat([0,80])
         .sort((a,b) => a-b)
         .map((d, i, a) => d - a[i-1])
-    return _.take(subjects[semester], 8).map((s, i) => ({...s, result: _.round(random(0,questions[i+1])()), total: questions[i+1]}))
+    return _.take(subjects[semester], 8).map((s, i) => ({...s, richtig: _.round(random(0,questions[i+1])()), gesamt: questions[i+1]}))
 }
 
 const createDetailsData = (semester, [result, dist]) => ({
@@ -196,7 +196,7 @@ const createDetailsData = (semester, [result, dist]) => ({
         result: _.round(result[i]),
         label: `Modul ${semester * 4 - 3 + i}`
     })),
-    subjects: createSubjects(semester),
+    fächer: createSubjects(semester),
     date: new Date(2013 + parseInt(semester), 6, 15),
 })
 

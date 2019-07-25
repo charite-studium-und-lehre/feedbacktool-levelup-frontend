@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import _ from 'lodash/fp'
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
@@ -15,4 +16,4 @@ const needsData = (WrappedComponent, loadedSelector, loadAction) => connect(stat
     }
 )
 
-export default needsData
+export default _.curryRight(needsData)

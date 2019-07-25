@@ -1,4 +1,4 @@
-import fp from 'lodash/fp'
+import _ from 'lodash/fp'
 import seedrandom from 'seedrandom'
 import { randomUniform } from 'd3-random'
 
@@ -46,8 +46,8 @@ const Subjects = [
     },
 ]
 
-const rnd = fp.flow([seedrandom, randomUniform.source, rnd => (a,b) => fp.round(rnd(a,b)())])
-const SubjectsWithNumbers = fp.flow([rnd, random => Subjects.map( 
+const rnd = _.flow([seedrandom, randomUniform.source, rnd => (a,b) => _.round(rnd(a,b)())])
+const SubjectsWithNumbers = _.flow([rnd, random => Subjects.map( 
     cat => ({ 
         ...cat, 
         subjects: cat.subjects.map( s => ({ 
@@ -61,13 +61,13 @@ const SubjectsWithNumbers = fp.flow([rnd, random => Subjects.map(
     }
 ))])
 
-const flattenCategories = fp.flatMap(c => c.subjects)
+const flattenCategories = _.flatMap(c => c.subjects)
 
 const percentCorrect = s => s.richtig / s.gesamt
 
-const minQuestions = fp.filter(s => s.gesamt >= 4)
+const minQuestions = _.filter(s => s.gesamt >= 4)
 
-const findMax = fp.reduce((max, s) => 
+const findMax = _.reduce((max, s) => 
 !max ? s :
 percentCorrect(s) > percentCorrect(max) 
 ? s 
@@ -77,10 +77,10 @@ percentCorrect(s) > percentCorrect(max)
 : max 
 : max, null)
 
-const sort = fp.sortBy(fp.flow(percentCorrect, s => s * -1))
+const sort = _.sortBy(_.flow(percentCorrect, s => s * -1))
 
-const strongestSubject = fp.flow(flattenCategories, minQuestions, findMax)
-const ranking = fp.flow(flattenCategories, minQuestions, sort)
+const strongestSubject = _.flow(flattenCategories, minQuestions, findMax)
+const ranking = _.flow(flattenCategories, minQuestions, sort)
 
 export default SubjectsWithNumbers
 export { Subjects, strongestSubject, ranking }

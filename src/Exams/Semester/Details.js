@@ -46,13 +46,13 @@ const Details = withTranslation()(({ t, ...props }) => {
                             >{_.round(d.result / 0.8)} %</BarWithHeader>
                         )
                         :
-                        props.subjects.map(d =>
+                        props.fächer.map(d =>
                             <BarWithHeader
                                 key={d.name}
                                 name={d.name}
                                 result={d.result}
                                 total={d.total}
-                                width={d.total * 100 / _.max(props.subjects.map(s => s.total)) + "%"}
+                                width={d.total * 100 / _.max(props.fächer.map(s => s.total)) + "%"}
                                 mean={d.mean}
                             >{d.result} von {d.total}</BarWithHeader>
                         )
