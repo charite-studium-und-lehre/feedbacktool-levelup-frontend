@@ -2,7 +2,8 @@ import _ from 'lodash/fp'
 import BaseStore from '../Store'
 import Results from './Data'
 
-const baseStore = BaseStore('ptms')
+export const identifier = 'ptms'
+const baseStore = BaseStore(identifier)
 
 const findBySemester = _.curry((semester, ptms) => ptms[semester])
 const flattenCategories = _.flatMap(c => c.subjects)

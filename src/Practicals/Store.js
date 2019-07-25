@@ -4,7 +4,8 @@ import { randomUniform } from 'd3-random'
 import initialState from './Data'
 import BaseStore from '../Core/BaseStore'
 
-const baseStore = BaseStore('practicals')
+export const identifier = 'practicals'
+const baseStore = BaseStore(identifier)
 const getItemById = (state, id) => _.flow([baseStore.getItems])(state)[id]
 const flattenTree = (selector, entry) => entry.entries.length ? _.flatMap(entry.entries, e => flattenTree(selector, selector(e))) : [entry]
 

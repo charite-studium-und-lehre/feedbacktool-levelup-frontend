@@ -2,7 +2,8 @@ import _ from 'lodash/fp'
 import BaseStore from '../Store'
 import Results from './Data'
 
-const baseStore = BaseStore('semester')
+export const identifier = 'semester'
+const baseStore = BaseStore(identifier)
 const findBySemester = _.curry((semester, exams) => exams[semester])
 
 const toTimeline = exam => ({

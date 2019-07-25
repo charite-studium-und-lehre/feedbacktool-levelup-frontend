@@ -1,3 +1,4 @@
 import BaseStore from '../Core/BaseStore'
 
-export default identifier => BaseStore(identifier, state => state.exams[identifier])
+export const identifier = 'exams'
+export default newIdentifier => BaseStore(newIdentifier, state => state[identifier][newIdentifier])
