@@ -1,0 +1,14 @@
+.input {
+    border: 1px solid rgba(180, 180, 180, .7);
+    font-size: .9rem;
+    width: 100%;
+    height: 100%;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.input::placeholder {
+    font-weight: normal;
+}
