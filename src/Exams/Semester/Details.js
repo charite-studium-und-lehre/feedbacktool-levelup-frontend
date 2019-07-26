@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { withTranslation } from 'react-i18next'
-import _ from 'lodash'
+import _ from 'lodash/fp'
 import Legend from '../../Charting/Legend'
 import SimpleDot from '../../Charting/SimpleDot'
 import Legends from '../../Core/LegendTexts'
@@ -10,7 +10,31 @@ import needsData from '../../Core/needsData'
 import BarWithHeader from './BarWithHeader'
 import { selectors, actions } from './Store'
 
-const Details = withTranslation()(({ t, ...props }) => {
+const stateToProps = (state, ownProps) => ( {...selectors.getBySemester(state, ownProps.semester)})
+const Chart = _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps))(({ mode, fächer, modules }) => { return mode === 'modules' ?
+modules.map(d =>
+    <BarWithHeader
+        key={d.label}
+        name={d.label}
+        result={d.result}
+        total={80}
+        mean={d.mean}
+    >{_.round(d.result / 0.8)} %</BarWithHeader>
+)
+:
+fächer.map(d =>
+    <BarWithHeader
+        key={d.name}
+        name={d.name}
+        result={d.richtig}
+        total={d.gesamt}
+        width={d.gesamt * 100 / _.max(fächer.map(s => s.gesamt)) + "%"}
+        mean={d.mean}
+    >{d.richtig} von {d.gesamt}</BarWithHeader>
+)
+})
+
+const Details = withTranslation()(({ t, semester }) => {
     const [ mode, setMode ] = useState('modules')
     const LegendText = Legends.Exams.Semester.Details
     return (
@@ -35,33 +59,11 @@ const Details = withTranslation()(({ t, ...props }) => {
                     </div>
                 </div>
                 <div className="mt-3">
-                    {mode === 'modules' ?
-                        props.modules.map(d =>
-                            <BarWithHeader
-                                key={d.label}
-                                name={d.label}
-                                result={d.result}
-                                total={80}
-                                mean={_.round(d.mean / 0.8)}
-                            >{_.round(d.result / 0.8)} %</BarWithHeader>
-                        )
-                        :
-                        props.fächer.map(d =>
-                            <BarWithHeader
-                                key={d.name}
-                                name={d.name}
-                                result={d.result}
-                                total={d.total}
-                                width={d.total * 100 / _.max(props.fächer.map(s => s.total)) + "%"}
-                                mean={d.mean}
-                            >{d.result} von {d.total}</BarWithHeader>
-                        )
-                    }
+                    <Chart mode={mode} semester={semester} />
                 </div>
             </div>
         </div>
     )
 })
 
-const stateToProps = (state, ownProps) => ( {...selectors.getBySemester(state, ownProps.semester)})
-export default needsData(connect(stateToProps)(Details), selectors.loaded, actions.load)
+export default Details
