@@ -1,17 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import _ from 'lodash'
+import _ from 'lodash/fp'
 import { ranking } from '../Subjects'
 import needsData from '../../Core/needsData'
-import SubjectsTabs from '../../Core/Tabs'
 import Legend from '../../Charting/Legend'
 import LegendTexts from '../../Core/LegendTexts'
 import Ranking from '../../Strengths/Ranking'
-import PtmResultsAlt from './ptmResultsAlt'
-import SubjectAlt from './SubjectAlt'
+import Subjects from './Subjects'
+import Results from './Results'
 import { selectors, actions } from './Store'
 
-const Ptm = ({ match, ...props }) => {
+const stateToProps = (state, ownProps) => ({ data: selectors.getBySemester(state, ownProps.semester) })
+const PtmRanking = _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps))
+    ( props => <Ranking subjects={ranking(props.data.fächer)} {...props} /> )
+
+const Ptm = ({ match }) => {
     const LegendText = LegendTexts.Exams.Ptm
     
     return (
@@ -23,23 +26,17 @@ const Ptm = ({ match, ...props }) => {
             </div>
             <div className="row">
                 <div className="col-lg-8 mb-2">
-                    <PtmResultsAlt results={props.data.results} means={props.data.means} />
+                    <Results semester={match.params.test} />
                 </div>
                 <div className="col-lg-4 mb-2">
-                    <Ranking title={LegendText.Strengths.title} text={LegendText.Strengths.text} subjects={ranking(props.data.fächer)} mean /> 
+                    <PtmRanking title={LegendText.Strengths.title} text={LegendText.Strengths.text} semester={match.params.test} mean />
                 </div>
             </div>
             <div className="row">
                 <div className="col">
                     <div className="card p-3">
                         <Legend title={LegendText.Subjects.title}>{LegendText.Subjects.text}</Legend>
-                        <SubjectsTabs>
-                        {props.data.fächer.map(c => 
-                            <div key={c.title} title={c.title} className="d-flex flex-wrap">
-                                {_.sortBy(c.subjects, s => s.title).map(s => <SubjectAlt key={s.name} name={s.name} semester={match.params.test} />)}
-                            </div>
-                        )}
-                        </SubjectsTabs>
+                        <Subjects semester={match.params.test} />
                     </div>
                 </div>
             </div>
@@ -61,5 +58,4 @@ const Ptm = ({ match, ...props }) => {
     )
 }
 
-const stateToProps = (state, ownProps) => ({ data: selectors.getBySemester(state, ownProps.match.params.test) })
-export default needsData(connect(stateToProps)(Ptm), selectors.loaded, actions.load)
+export default Ptm

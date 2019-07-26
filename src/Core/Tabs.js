@@ -21,11 +21,11 @@ const asTabs = WrappedComponent => {
         }
         
         componentWillUpdate() {
-            this.activeTab.current.style.height = 0
+            if(this.activeTab.current) this.activeTab.current.style.height = 0
         }
 
         updateContainerHeight() {
-            this.activeTab.current.style.height = 'auto'
+            if(this.activeTab.current) this.activeTab.current.style.height = 'auto'
         }
 
         selectTab( tab ) {
