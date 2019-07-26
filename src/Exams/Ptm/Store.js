@@ -1,5 +1,6 @@
 import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
+import { minQuestions } from '../../Utils/Constants'
 import BaseStore from '../Store'
 import Results from './Data'
 
@@ -10,7 +11,9 @@ const findBySemester = _.curry((semester, ptms) => ptms[semester])
 const flattenCategories = _.flatMap(c => c.subjects)
 const findSubject = subject => _.flow([_.find({'name': subject}), _.defaultTo({})])
 const getFächer = ptm => ptm.fächer
-const getSubject = subject => _.flow([ getFächer, flattenCategories, findSubject(subject) ])
+const getSubjects = _.flow([ getFächer, flattenCategories ])
+const getSubject = subject => _.flow([ getSubjects, findSubject(subject) ])
+const getRanking = _.flow([ getSubjects, _.filter(s => s.gesamt >= minQuestions), _.sortBy(s => s.richtig / s.gesamt), _.reverse])
 
 const toTimeline = ptm => ({
     x: ptm.date,
@@ -25,6 +28,10 @@ export const selectors = baseStore.withLoadedSelector({
     getAllForSubject: (state, subject) => 
     _.flow([ baseStore.getItems, _.map(ptm => ({ ...getSubject(subject)(ptm), short: ptm.short })) ])(state),
     getBySemester: (state, semester) => _.flow([ baseStore.getItems, findBySemester(semester) ])(state),
+    getLatest: _.flow([ baseStore.getItems, _.sortBy('semester'), _.last ]),
+    getSubjects,
+    getRanking,
+    strongestSubject: _.flow([ getRanking, _.first ]),
     getTimeline,
 })
 

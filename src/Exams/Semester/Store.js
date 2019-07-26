@@ -1,5 +1,6 @@
 import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
+import { minQuestions } from '../../Utils/Constants'
 import BaseStore from '../Store'
 import Results from './Data'
 
@@ -15,14 +16,16 @@ const toTimeline = exam => ({
 })
 const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 
-const ranking = _.flow([ baseStore.getItems, _.flatMap( i => i.fächer ), _.groupBy(f => f.code), 
-    _.map( g => ({ ...g[0], result: _.sumBy('richtig')(g), total: _.sumBy('gesamt')(g) })), 
-    _.filter(s => s.total > 4), 
-    _.sortBy(s => s.total ? s.result / s.total : 0) ])
+const getSubjectsTotals = _.flow([ baseStore.getItems, _.flatMap( i => i.fächer ), _.groupBy(f => f.code), 
+    _.map( g => ({ ...g[0], richtig: _.sumBy('richtig')(g), gesamt: _.sumBy('gesamt')(g) }))])
+
+const getRanking = _.flow([ getSubjectsTotals, _.filter(s => s.gesamt >= minQuestions), _.sortBy(s => s.richtig / s.gesamt), _.reverse ])
 
 export const selectors = baseStore.withLoadedSelector({
     getBySemester: (state, semester) => _.flow([ baseStore.getItems, findBySemester(semester)])(state),
-    strongestSubject: _.flow([ranking, _.last]),
+    strongestSubject: _.flow([getRanking, _.first]),
+    getRanking,
+    getSubjectsTotals,
     getTimeline,
 })
 
