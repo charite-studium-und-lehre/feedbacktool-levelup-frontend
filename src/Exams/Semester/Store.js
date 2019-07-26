@@ -19,7 +19,7 @@ const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 const getSubjectsTotals = _.flow([ baseStore.getItems, _.flatMap( i => i.fächer ), _.groupBy(f => f.code), 
     _.map( g => ({ ...g[0], richtig: _.sumBy('richtig')(g), gesamt: _.sumBy('gesamt')(g) }))])
 
-const getRanking = _.flow([ getSubjectsTotals, _.filter(s => s.gesamt >= minQuestions), _.sortBy(s => s.richtig / s.gesamt), _.reverse ])
+const getRanking = _.flow([ getSubjectsTotals, _.filter(s => s.gesamt >= minQuestions), _.sortBy(s => -s.richtig / s.gesamt) ])
 
 export const selectors = baseStore.withLoadedSelector({
     getBySemester: (state, semester) => _.flow([ baseStore.getItems, findBySemester(semester)])(state),

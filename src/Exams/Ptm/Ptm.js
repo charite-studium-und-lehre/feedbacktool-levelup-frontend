@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash/fp'
-import { ranking } from '../Subjects'
 import needsData from '../../Core/needsData'
 import Legend from '../../Charting/Legend'
 import LegendTexts from '../../Core/LegendTexts'
@@ -10,9 +9,10 @@ import Subjects from './Subjects'
 import Results from './Results'
 import { selectors, actions } from './Store'
 
-const stateToProps = (state, ownProps) => ({ data: selectors.getBySemester(state, ownProps.semester) })
-const PtmRanking = _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps))
-    ( props => <Ranking subjects={ranking(props.data.fächer)} {...props} /> )
+const stateToProps = (state, ownProps) => ({ fächer: _.flow(selectors.getBySemester, selectors.getRanking)(state, ownProps.semester) })
+const PtmRanking = _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps))(
+    ({ fächer, ...props}) => <Ranking subjects={fächer} {...props} /> 
+)
 
 const Ptm = ({ match }) => {
     const LegendText = LegendTexts.Exams.Ptm
