@@ -8,10 +8,9 @@ export const identifier = 'ptms'
 const baseStore = BaseStore(identifier)
 
 const findBySemester = _.curry((semester, ptms) => ptms[semester])
-const flattenCategories = _.flatMap(c => c.subjects)
 const findSubject = subject => _.flow([_.find({'name': subject}), _.defaultTo({})])
 const getFächer = ptm => ptm.fächer
-const getSubjects = _.flow([ getFächer, flattenCategories ])
+const getSubjects = _.flow([ getFächer ])
 const getSubject = subject => _.flow([ getSubjects, findSubject(subject) ])
 const getRanking = _.flow([ getSubjects, _.filter(s => s.gesamt >= minQuestions), _.sortBy(s => -s.richtig / s.gesamt) ])
 
@@ -33,6 +32,7 @@ export const selectors = baseStore.withLoadedSelector({
     getRanking,
     strongestSubject: _.flow([ getRanking, _.first ]),
     getTimeline,
+    getFächer,
 })
 
 export const actions = baseStore.withLoadAction({}, Results)
