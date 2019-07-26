@@ -58,7 +58,7 @@ const Timeline = props => {
                     {props.graphs.map((g, i) => (
                         <PointGraph
                             selectedPoint={selectedPoint ? selectedPoint.x : 0} 
-                            onClick={ point => selectedPoint ? zoomOut() : zoomIn(point, g) } 
+                            onClick={ point => zoomIn(point, g) } 
                             key={i} data={g.data.map(d => ({ ...d, y: d.result }))} 
                             color={`hsla(${g.color}, 50%, 50%, .75)`} />
                     ))}
