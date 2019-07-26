@@ -1,26 +1,10 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 
-const makeExtendable = (WrappedComponent, def = false) => {
-    return class Extendable extends Component {
-        static defaultProps = {
-            extended: def
-        }
-
-        constructor(props) {
-            super(props)
-            this.state = { extended: props.extended && (!def || window.innerWidth > 768) }
-        }
+const makeExtendable = (WrappedComponent, def = false) => 
+    props => {
+        const [ extended, setExtended ] = useState( def && (!def || window.innerWidth > 768) )
     
-        toggleExtended() { 
-            this.setState({ extended: !this.state.extended })
-        }
-    
-        render() {
-            return (
-                <WrappedComponent toggleExtended={() => this.toggleExtended()} {...this.props} extended={this.state.extended} />
-            )
-        }
+        return <WrappedComponent toggleExtended={() => setExtended(!extended)} {...props} extended={extended} />
     }
-}
 
 export default makeExtendable
