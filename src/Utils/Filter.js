@@ -23,19 +23,17 @@ const Filter = props => {
     }
 
     return (
-        <div className="row mb-2 mt-1" style={props.style}>
-            <div className="col">
-                {props.showAll && <button className="btn btn-outline-primary btn-sm mr-1 mt-1" onClick={ () => all(false) }>alle anzeigen</button>}
-                {filters.map(filter => (
-                    <span className="d-inline-block mr-1 mt-1" 
-                        key={filter.label} 
-                        style={{ fontSize: '.73rem', border: `1px solid ${filter.color || 'hsla(210, 50%, 55%, 1)'}`, backgroundColor: filter.color || 'hsla(210, 50%, 60%, 1)'}}>
-                        <label className="p-2 m-0 text-white" onClick={() => toggleFilter(filter)} >
-                            <FontAwesomeIcon className="mr-1" icon={filter.selected ? faCheckSquare : faSquare} />
-                        {filter.label}</label>
-                    </span>)
-                )}
-            </div>
+        <div className="d-inline-flex flex-row flex-wrap">
+        {props.showAll && <button className="btn btn-outline-primary btn-sm mr-1 mt-1" onClick={ () => all(false) }>alle anzeigen</button>}
+        {filters.map(filter => (
+            <span className="flex-fill d-inline-block mr-1 mt-1" 
+                key={filter.label} 
+                style={{ fontSize: '.73rem', border: `1px solid ${filter.color || 'hsla(210, 50%, 55%, 1)'}`, backgroundColor: filter.color || 'hsla(210, 50%, 60%, 1)'}}>
+                <label className="p-2 m-0 text-white" onClick={() => toggleFilter(filter)} >
+                    <FontAwesomeIcon className="mr-1" icon={filter.selected ? faCheckSquare : faSquare} />
+                {filter.label}</label>
+            </span>)
+        )}
         </div>
     )
 }

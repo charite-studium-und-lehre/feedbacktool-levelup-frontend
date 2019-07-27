@@ -12,3 +12,7 @@
 .input::placeholder {
     font-weight: normal;
 }
+
+.subjects > div:not(:last-child) {
+    border-bottom: 1px solid rgba(180, 180, 180, .7);
+}

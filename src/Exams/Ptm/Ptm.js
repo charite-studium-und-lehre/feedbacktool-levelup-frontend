@@ -33,7 +33,7 @@ const Ptm = ({ match }) => {
                 </div>
             </div>
             <div className="row">
-                <div className="col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
+                <div className="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
                     <div className="card p-3">
                         <Legend title={LegendText.Subjects.title}>{LegendText.Subjects.text}</Legend>
                         <Subjects semester={match.params.test} />
