@@ -1,4 +1,5 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
+import _ from 'lodash/fp'
 import { scaleLinear, scaleBand, scaleTime } from 'd3-scale'
 
 const copyPropsToChildren = props => {
@@ -9,10 +10,13 @@ const copyPropsToChildren = props => {
 const asChart = WrappedComponent =>
     props => {
         const [ size, setSize ] = useState(null)
-        const node = useCallback(node => {
-            if (node !== null) setSize(node.getBoundingClientRect())
-        }, [])
-
+        const node = useRef(null)
+        useEffect(() => {
+            const handler = _.debounce(200, () => { if (node.current !== null) setSize(node.current.getBoundingClientRect()) })
+            if(size === null) handler()
+            window.addEventListener('resize', handler)
+            return () => window.removeEventListener('resize', handler)
+        })
         const renderContent = () => <g><WrappedComponent {...props} width={size.width} height={size.height} /></g>
 
         return (
