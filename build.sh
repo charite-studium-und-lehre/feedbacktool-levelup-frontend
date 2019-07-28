@@ -18,3 +18,4 @@ echo Ausführen von:    PUBLIC_URL="/$DIR" REACT_APP_SITE_TITLE="Branch $GIT_BRA
 PUBLIC_URL="/$DIR" REACT_APP_SITE_TITLE="Branch $GIT_BRANCH, Deployment am $DATUM" yarn build
 
 cat htaccess-dist | sed s/RewriteBase/RewriteBase\ \\\/$DIR/g > build/.htaccess
+curl -X POST --data-urlencode "payload={\"text\": \"New deplpoyment for $GIT_BRANCH.\nGo to https://levelup.charite.de/$DIR to access it.\"}" $SLACK_URL
