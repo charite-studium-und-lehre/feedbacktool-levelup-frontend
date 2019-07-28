@@ -12,8 +12,9 @@ const asChart = WrappedComponent =>
         const [ size, setSize ] = useState(null)
         const node = useRef(null)
         useEffect(() => {
-            const handler = _.debounce(200, () => { if (node.current !== null) setSize(node.current.getBoundingClientRect()) })
+            let handler = () => { if (node.current !== null) setSize(node.current.getBoundingClientRect()) }
             if(size === null) handler()
+            handler = _.debounce(200, handler)
             window.addEventListener('resize', handler)
             return () => window.removeEventListener('resize', handler)
         })
