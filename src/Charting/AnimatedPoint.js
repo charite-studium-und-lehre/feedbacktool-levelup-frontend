@@ -9,7 +9,7 @@ const AnimatedPoint = ({
         fill = 'rgba(0,0,0,.6)',
         className = '',
         r = 5,
-        opacity = 0,
+        opacity = 1,
         onClick = () => {},
     }) => {
 

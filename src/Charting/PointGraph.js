@@ -19,6 +19,7 @@ export default function PointGraph(props) {
         r={props.size || "5"}
         fill={props.color || 'black'}
         color={props.color || 'black'}
+        opacity={props.fadeIn ? 0 : 1}
         onClick={() => onClick(d)}>
     </AnimatedPoint>)
 	return (
