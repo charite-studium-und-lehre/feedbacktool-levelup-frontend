@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { SlideDown } from 'react-slidedown'
 import { withTranslation } from 'react-i18next'
 import tinycolor from 'tinycolor2'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -48,9 +49,9 @@ const Subject = props => (
                 <FontAwesomeIcon icon={faChartLine} onClick={() => props.toggleExtended()} />
             </div>
         </div>
-        <div className="row">
+        <SlideDown className="row animated fast">
             {props.extended && <Timeline data={props.timeline} />}
-        </div>
+        </SlideDown>
             {/* <div>
             <Link to={`/strengths/${(props.name)}`} className="mt-2 float-right text-primary" style={{fontSize:".8rem", textDecoration:"underline"}}>{props.t(`zu deiner Entwicklung in diesem Fach`)}</Link>
             </div> */}

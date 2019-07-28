@@ -32,7 +32,7 @@ const Subjects = _.compose(needsData(selectors.loaded, actions.load), withTransl
                 <Filter filters={ filters } onUpdate={ setFilters } />
             </div>
             <div className="flex-grow-1 align-middle py-2">
-                <input type="text" placeholder="suchen..." onKeyUp={e => setSearch(e.target.value)} className={`p-1 ${css.input}`}></input>
+                <input type="text" placeholder={`${t('suchen')}...`} onKeyUp={e => setSearch(e.target.value)} className={`p-1 ${css.input}`}></input>
             </div>
         </div>
         <div className={css.subjects}>
