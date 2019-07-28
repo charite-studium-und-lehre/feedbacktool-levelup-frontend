@@ -1,39 +1,24 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import _ from 'lodash/fp'
-import needsData from '../../Core/needsData'
 import Legend from '../../Charting/Legend'
 import LegendTexts from '../../Core/LegendTexts'
-import Ranking from '../../Strengths/Ranking'
 import Subjects from './Subjects'
 import Results from './Results'
-import { selectors, actions } from './Store'
-
-const stateToProps = (state, ownProps) => ({ fächer: _.flow(selectors.getBySemester, selectors.getRanking)(state, ownProps.semester) })
-const PtmRanking = _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps))(
-    ({ fächer, ...props}) => <Ranking subjects={fächer} {...props} /> 
-)
 
 const Ptm = ({ match }) => {
     const LegendText = LegendTexts.Exams.Ptm
     
     return (
-        <div className="container-fluid">
+        <div className="container-fluid mb-2">
             <div className="row">
                 <div className="col">
                     <h4 className="mr-auto">PTM - {match.params.test}</h4>
                 </div>
             </div>
             <div className="row">
-                <div className="col-lg-8 mb-2">
+                <div className="col-xl-4 mb-2">
                     <Results semester={match.params.test} />
                 </div>
-                <div className="col-lg-4 mb-2">
-                    <PtmRanking title={LegendText.Strengths.title} text={LegendText.Strengths.text} semester={match.params.test} mean />
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
+                <div className="col-xl-8">
                     <div className="card p-3">
                         <Legend title={LegendText.Subjects.title}>{LegendText.Subjects.text}</Legend>
                         <Subjects semester={match.params.test} />
