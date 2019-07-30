@@ -9,6 +9,7 @@ import 'd3-transition'
 import 'react-slidedown/lib/slidedown.css'
 import './App.css'
 import Navbar from './Core/navbar'
+import Feedback from './Core/Feedback'
 import Login from './Login'
 import Breadcrumbs from './Core/Breadcrumbs'
 import PrivateRoute from './Core/PrivateRoute'
@@ -58,6 +59,7 @@ class App extends Component {
             )}/>
           </div>
         </BrowserRouter>
+        <Feedback />
       </Provider>
     )
   }
