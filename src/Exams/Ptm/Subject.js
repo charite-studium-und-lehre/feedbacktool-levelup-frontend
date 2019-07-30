@@ -33,7 +33,7 @@ const Timeline = withTranslation()(({ t, data }) =>
 const colors = ["hsla(120, 50%, 50%, .4)", "hsla(0, 50%, 50%, .4)"]
 const Subject = props => (
     <div>
-        <div className="row my-3">
+        <div className="row py-3" onClick={() => props.toggleExtended()} >
             <div className="col-7 col-sm-6">
                 <span className="text-primary">#{props.rank}</span><span className="ml-1 font-weight-bold">{props.name}</span>
             </div>
@@ -45,8 +45,8 @@ const Subject = props => (
                     {props.data.richtig} von {props.data.gesamt} richtig
                 </SimpleBar>
             </div>
-            <div className="col-2 col-sm-1 text-primary text-right">
-                <FontAwesomeIcon icon={faChartLine} onClick={() => props.toggleExtended()} />
+            <div className={`col-2 col-sm-1 ${props.extended ? 'text-secondary' : 'text-primary'} text-right`}>
+                <FontAwesomeIcon icon={faChartLine} />
             </div>
         </div>
         <SlideDown className="row animated fast">
