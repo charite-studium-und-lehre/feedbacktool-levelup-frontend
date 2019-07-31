@@ -3,7 +3,8 @@ import socketio from "socket.io-client"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle, faPaperPlane } from '@fortawesome/free-regular-svg-icons'
 
-const url = 'https://lu-feedback.herokuapp.com/'
+//const url = 'https://lu-feedback.herokuapp.com/'
+const url = 'http://localhost:8001'
 
 const socket = socketio(url)
 
@@ -49,6 +50,7 @@ const Feedback = () => {
 
     function postFeedback() {
         const message = input.current.value
+        if(message.trim() === '') return
         socket.emit('message', { message , ts })
         pushMessage({ text: message, sender: 'me' })
         input.current.value = ''
@@ -64,7 +66,9 @@ const Feedback = () => {
                 <FontAwesomeIcon style={{fontSize: '1rem'}} className="text-white" icon={faTimesCircle} />
             </div>
             <div ref={messageDiv} className="p-2" style={{maxHeight: '17rem', overflow: 'scroll'}}>
-                {messages.map((msg, i) => <div style={{borderRadius: '.3rem'}} className={`d-inline-block mt-2 p-2 text-white ${msg.sender === 'server' ? 'bg-info ml-3' : 'bg-secondary mr-3'}`} key={i}>{msg.text}</div>)}
+                {messages.map((msg, i) => <div className={'mt-1 text-white'} key={i}>
+                    <span style={{borderRadius: '.3rem'}} className={`d-inline-block p-2 ${msg.sender === 'server' ? 'bg-info ml-3' : 'bg-secondary mr-3'}`}>{msg.text}</span>
+                </div>)}
             </div>
             <div className="text-right p-2 d-flex">
                 <input style={{border: 'none', borderBottom: '1px solid lightgrey'}} className="flex-grow-1 no-outline" placeholder="Dein Feedback..." ref={input} onKeyUp={e => handleKeyPress(e)}></input>
