@@ -3,8 +3,7 @@ import socketio from "socket.io-client"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle, faPaperPlane } from '@fortawesome/free-regular-svg-icons'
 
-//const url = 'https://lu-feedback.herokuapp.com/'
-const url = 'http://localhost:8001'
+const url = 'https://lu-feedback.herokuapp.com/'
 
 const socket = socketio(url)
 
