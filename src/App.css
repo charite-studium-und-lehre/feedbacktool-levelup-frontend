@@ -75,3 +75,7 @@ span.input-group-text {
 ol.breadcrumb {
   margin-bottom: .5rem;
 }
+
+input.no-outline {
+  outline: none;
+}
