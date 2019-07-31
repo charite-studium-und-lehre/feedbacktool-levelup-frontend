@@ -13,7 +13,7 @@ const style = {
     bottom: 0,
     right: 0,
     fontSize: '.8rem',
-    zIndex: 100,
+    zIndex: 999999,
 }
 const Feedback = () => {
     const input = useRef(null)
