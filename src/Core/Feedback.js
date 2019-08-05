@@ -66,7 +66,7 @@ const Feedback = () => {
             </div>
             <div ref={messageDiv} className="p-2" style={{maxHeight: '17rem', overflow: 'scroll'}}>
                 {messages.map((msg, i) => <div className={`mt-1 text-white ${msg.sender === 'server' && 'text-right'}`} key={i}>
-                    <span style={{borderRadius: '.3rem'}} className={`d-inline-block p-2 ${msg.sender === 'server' ? 'bg-info ml-3' : 'bg-secondary mr-3'}`}>{msg.text}</span>
+                    <span style={{borderRadius: '.3rem'}} className={`text-left d-inline-block p-2 ${msg.sender === 'server' ? 'bg-info ml-3' : 'bg-secondary mr-3'}`}>{msg.text}</span>
                 </div>)}
             </div>
             <div className="text-right p-2 d-flex">
