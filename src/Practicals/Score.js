@@ -5,27 +5,48 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons'
 import { selectors, actions } from './Store'
 import { withTranslation } from 'react-i18next'
+import Square from './Square'
 
 export const colors = ['hsla(208, 51%, 27%, 1)', 'hsla(161, 100%, 25%, 1)', ' hsla(18, 100%, 25%, 1)']
-const Numbers = props => (
-    <span>
+const colorsRgb = ['hsla(208, 51%, 27%, .2)', 'hsla(161, 100%, 25%, .2)', ' hsla(18, 100%, 25%, .2)']
+
+const Numbers = props => {
+    const unit = (5 / props.maxValue) * props.value
+    const difference = unit - Math.floor(unit)
+    const dev = []
+    for (let i = 0; i < Math.floor(unit); i++) {
+        dev.push(<Square key={i + "10"} style={{backgroundColor:props.color}}/>)
+    }
+    for (let i = 0; i < difference; i++) {
+        dev.splice(unit, 0, <Square key={i} style={{backgroundColor:props.colorsRgb, display: 'inline-block', border: `1px solid ${props.color}`}}>
+                                 <div key={i + '2'} style={{ height: '100%', width:`${difference * 90}%`, background: props.color  }}></div>
+                            </Square>)
+    }
+    for (let i = Math.ceil(unit) + 1; i < 6; i++) {
+        dev.push(<Square key={i + "10"} style={{backgroundColor:props.colorsRgb,display: 'inline-block', border: `1px solid ${props.color}`}}/>)
+    }
+    return <div>
         {props.edit &&
             <span style={{ cursor: 'pointer' }}>
                 <FontAwesomeIcon icon={faMinusCircle} className="text-muted mr-1" onClick={props.decrement} />
             </span>
         }
-        <span className="font-weight-bold">{props.value} / {props.maxValue}</span>
+        {dev.map((e) => e)}
         {props.edit &&
             <span style={{ cursor: 'pointer' }}>
                 <FontAwesomeIcon icon={faPlusCircle} className="text-muted ml-1" onClick={props.increment} />
             </span>
         }
-    </span>
-)
+        <div>{props.value}/{props.maxValue}</div>
+    </div>
+}
+
 const Score = ({ t, ...props }) => (
     <div className="row text-center">
         <div className="col-6 p-0 m" style={{ color: colors[0] }}>
             <Numbers
+                colorsRgb={colorsRgb[0]}
+                color={colors[0]}
                 edit={props.edit}
                 value={props.score('done')}
                 maxValue={props.maxScore}
@@ -34,12 +55,13 @@ const Score = ({ t, ...props }) => (
             {props.headings &&
                 <div className="font-weight-bold">
                     <div >{t(`Habe ich gemacht`)}</div>
-                    <div >{t(`(Selbsteinschätzung)`)}</div>
                 </div>
             }
         </div>
         <div className="col-6 p-0" style={{ color: colors[1] }}>
             <Numbers
+                colorsRgb={colorsRgb[1]}
+                color={colors[1]}
                 edit={props.edit}
                 value={props.score('confident')}
                 maxValue={props.maxScore}
@@ -48,17 +70,15 @@ const Score = ({ t, ...props }) => (
             {props.headings &&
                 <div className="font-weight-bold">
                     <div >{t(`Traue ich mir zu`)}</div>
-                    <div >{t(`(Selbsteinschätzung)`)}</div>
                 </div>
             }
         </div>
         <div className="col-12 p-0 mt-3" style={{ color: colors[2] }}>
             <Numbers
-                edit={props.edit}
+                colorsRgb={colorsRgb[2]}
+                color={colors[2]}
                 value={props.score('confident')}
-                maxValue={props.maxScore}
-                increment={_.partial(props.levelUpConfident, props.entryId)}
-                decrement={_.partial(props.levelDownConfident, props.entryId)} />
+                maxValue={props.maxScore} />
             {props.headings &&
                 <div className="font-weight-bold">
                     <div >{t(`Traue ich dir zu`)}</div>
@@ -75,3 +95,6 @@ const stateToProps = (state, ownProps) => ({
 })
 
 export default withTranslation()(connect(stateToProps, actions)(Score))
+
+
+// `linear-gradient( to right, ${props.color} ${unit}% ,${props.colorsRgb} 100%`
