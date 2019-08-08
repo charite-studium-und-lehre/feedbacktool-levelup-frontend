@@ -27,7 +27,6 @@ const Subjects = _.compose(needsData(selectors.loaded, actions.load), withTransl
     return (
     <div className="w-100">
         <div className="d-flex flex-column flex-lg-row">
-            {/* {t('Filter')}:  */}
             <div className="">
                 <Filter filters={ filters } onUpdate={ setFilters } />
             </div>
@@ -38,7 +37,7 @@ const Subjects = _.compose(needsData(selectors.loaded, actions.load), withTransl
         <div className={css.subjects}>
         {filtered.map((s, rank) =>
             <div className={`w-100`} key={s.name}>
-                <Subject key={s.name} name={s.name} category={s.kategorie} rank={parseInt(rank) + 1} semester={semester} />
+                <Subject extended={parseInt(rank) < 1} key={s.name} name={s.name} category={s.kategorie} rank={parseInt(rank) + 1} semester={semester} />
             </div>
         )}
         </div>
