@@ -29,7 +29,7 @@ const Item = connect(stateToProps)(makeExtendable(props =>
     <div className="mt-2">
       <div className="p-2" style={{backgroundColor: `hsla(83, 35%, ${(props.level + 3) / 7 * 100}%,.7)`}}>
         <div onClick={() => props.toggleExtended()} className="row">
-          <div className="col-5 pr-0">
+          <div className="col-6 pr-0">
             <div className="font-weight-bold" style={{fontSize: '.8rem'}}>
               {props.entry.label}
               <div style={{color: 'rgba(0,0,0,.6)', cursor: 'pointer'}}>
@@ -37,7 +37,7 @@ const Item = connect(stateToProps)(makeExtendable(props =>
           </div>
             </div>
           </div>
-          <div className="col-7 p-0">
+          <div className="col-6 p-0">
             <Score edit={!props.entry.entries.length && props.edit} entryId={props.entryId} />
           </div>
        

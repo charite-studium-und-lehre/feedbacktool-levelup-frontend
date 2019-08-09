@@ -14,7 +14,6 @@ const Numbers = props => {
     const unit = (5 /  props.maxValue) * props.value
     const dev = _.range(0,5).map( i => {
         const cutoff = _.clamp(unit - i, 0, 1) * 100
-        console.log(i)
         return <Square key={i} style={{ backgroundImage :` linear-gradient(to right, ${props.color} ${cutoff}%, ${props.colorsRgb} ${cutoff}%)`, border: `1px solid ${props.color}`}}/>
     })
 
@@ -30,13 +29,12 @@ const Numbers = props => {
                 <FontAwesomeIcon icon={faPlusCircle} className="text-muted ml-1" onClick={props.increment} />
             </span>
         }
-        <div>{props.value}/{props.maxValue}</div>
     </div>
 }
 
 const Score = ({ t, ...props }) => (
     <div className="row text-center">
-        <div className="col-6 p-0 m" style={{ color: colors[0] }}>
+        <div className="col-4 p-0" style={{ color: colors[0] }}>
             <Numbers
                 colorsRgb={colorsRgb[0]}
                 color={colors[0]}
@@ -51,7 +49,7 @@ const Score = ({ t, ...props }) => (
                 </div>
             }
         </div>
-        <div className="col-6 p-0" style={{ color: colors[1] }}>
+        <div className="col-4 p-0" style={{ color: colors[1] }}>
             <Numbers
                 colorsRgb={colorsRgb[1]}
                 color={colors[1]}
@@ -66,7 +64,7 @@ const Score = ({ t, ...props }) => (
                 </div>
             }
         </div>
-        <div className="col-12 p-0 mt-3" style={{ color: colors[2] }}>
+        <div className="col-4 p-0" style={{ color: colors[2] }}>
             <Numbers
                 colorsRgb={colorsRgb[2]}
                 color={colors[2]}
@@ -75,7 +73,7 @@ const Score = ({ t, ...props }) => (
             {props.headings &&
                 <div className="font-weight-bold">
                     <div >{t(`Traue ich dir zu`)}</div>
-                    <div >{t(`(Fremdeinschätzung)`)}</div>
+                    {/* <div >{t(`(Fremdeinschätzung)`)}</div> */}
                 </div>
             }
         </div>
