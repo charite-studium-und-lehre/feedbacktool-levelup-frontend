@@ -350,8 +350,9 @@ const addHistoricalScore = item => {
   return { ...item, historical: {
     done: _.range(1,8).map(() => random(0,item.done)()).sort().map((d, i) => ({semester: new Date(2012 + i, 6 + random(-1, 2)(), 15 + random(-10, 20)()), level: d})),
     confident: _.range(1,8).map(() => random(0,item.confident)()).sort().map((d, i) => ({semester: new Date(2012 + i, 6 + random(-1, 2)(), 15 + random(-10, 20)()), level: d})),
+    external: _.range(1,8).map(() => random(0,item.external)()).sort().map((d, i) => ({semester: new Date(2012 + i, 6 + random(-1, 2)(), 15 + random(-10, 20)()), level: d})),
   }}
 }
 
 const normalize = e => [{...e, entries: (e.entries || []).map(e => e.id) }, _.flatMap(normalize, e.entries || [])]
-export default  _.flow([_.flatMapDeep(normalize), _.map(addHistoricalScore), _.keyBy(e => e.id)])([praticalsTree])
+export default  _.flow([_.flatMapDeep(normalize), _.map(e => ({ ...e, external: _.random(0, 6)})), _.map(addHistoricalScore), _.keyBy(e => e.id)])([praticalsTree])

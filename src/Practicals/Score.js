@@ -10,7 +10,7 @@ import Square from './Square'
 export const colors = ['hsla(208, 51%, 27%, 1)', 'hsla(161, 100%, 25%, 1)', ' hsla(18, 100%, 25%, 1)']
 const colorsRgb = ['hsla(208, 51%, 27%, .2)', 'hsla(161, 100%, 25%, .2)', ' hsla(18, 100%, 25%, .2)']
 
-const Numbers = props => {
+export const Numbers = props => {
     const unit = (5 /  props.maxValue) * props.value
     const dev = _.range(0,5).map( i => {
         const cutoff = _.clamp(unit - i, 0, 1) * 100
@@ -68,7 +68,7 @@ const Score = ({ t, ...props }) => (
             <Numbers
                 colorsRgb={colorsRgb[2]}
                 color={colors[2]}
-                value={props.score('confident')}
+                value={props.score('external')}
                 maxValue={props.maxScore} />
             {props.headings &&
                 <div className="font-weight-bold">
