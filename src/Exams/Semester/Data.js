@@ -4,7 +4,10 @@ import { scaleLinear } from 'd3-scale'
 import { randomNormal, randomUniform } from 'd3-random'
 import seedrandom from 'seedrandom'
 
-const subjects = { 
+import { Subjects } from '../Ptm/Data'
+
+const subjects = _.range(0,10).map(() => _.shuffle(fp.flatMap(c => c.subjects, Subjects)))
+/*{ 
     1: [ {code: 'S02b', name: 'Biochemie/ Molekularbiologie', count: 67},
     {code: 'FÜ', name: 'fächerübergreifend', count: 35},
     {code: 'S01b', name: 'Physiologie', count: 31},
@@ -143,7 +146,7 @@ const subjects = {
     {code: 'Q09', name: 'Klinische Pharmakologie/ Pharmakotherapie', count: 7},
     {code: 'F17', name: 'Pharmakologie, Toxikologie', count: 6},
     ],
-}
+}*/
 
 const semesters = ['1. Fachsemester', '2. Fachsemester', '3. Fachsemester', '4. Fachsemester', '5. Fachsemester']
 

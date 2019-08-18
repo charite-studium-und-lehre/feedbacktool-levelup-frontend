@@ -2,46 +2,47 @@ import { randomUniform } from 'd3-random'
 import _ from 'lodash/fp'
 import seedrandom from 'seedrandom'
 
-const Subjects = [
+export const Subjects = [
     {
         title: "Theoretische Fächer",
-        subjects: ["Anatomie, Biologie",
-            "Biochemie, Chemie, Molekularbiologie",
-            "Med. Psychologie/Soziologie",
-            "Physiologie, Physik"
+        subjects: [
+            { name: 'Biochemie, Chemie, Molekularbiologie', code: 'S02' },
+            { name: 'Anatomie, Biologie', code: 'S03' },
+            { name: 'Med. Psychologie/Soziologie', code: 'S04' },
+            { name: 'Physiologie, Physik', code: 'S01' },
         ]
     },
     {
         title: "Querschnittsfächer",
         subjects: [
-            "Epidemiologie, med. Biometrie",
-            "Hygiene, Mikrobiologie",
-            "Pathologie",
-            "Pharmakologie, Toxikologie",
-            "Radiologie, Nuklearmedizin"
+            { name: 'Epidemiologie, med. Biometrie', code: 'Q01' },
+            { name: 'Hygiene, Mikrobiologie', code: 'F10' },
+            { name: 'Pathologie', code: 'F16' },
+            { name: 'Pharmakologie, Toxikologie', code: 'F17' },
+            { name: 'Radiologie, Nuklearmedizin', code: 'Q11' },
         ]
     },
     {
         title: "Klinische Fächer",
         subjects: [
-            "Allgemeinmedizin",
-            "Anästhesiologie, Notfall- und Intensivmedizin",
-            "Arbeits- und Sozialmedizin, Gesundheitswesen",
-            "Augenheilkunde",
-            "Chirurgie",
-            "Dermatologie, Venerologie",
-            "Frauenheilkunde und Geburtshilfe",
-            "Hals-Nasen-Ohrenheilkunde",
-            "Humangenetik",
-            "Innere Medizin",
-            "Kinderheilkunde",
-            "Klinische Chemie, Labordiagnostik",
-            "Naturheilverfahren, Physikalische Medizin",
-            "Neurologie",
-            "Orthopädie",
-            "Psychiatrie, Psychosomatik",
-            "Rechtsmedizin",
-            "Urologie"
+            { name: 'Allgemeinmedizin', code: 'F01' },
+            { name: 'Anästhesiologie, Notfall- und Intensivmedizin', code: 'F02' },
+            { name: 'Arbeits- und Sozialmedizin, Gesundheitswesen', code: 'F03' },
+            { name: 'Augenheilkunde', code: 'F04' },
+            { name: 'Chirurgie', code: 'F05' },
+            { name: 'Dermatologie, Venerologie', code: 'F06' },
+            { name: 'Frauenheilkunde und Geburtshilfe', code: 'F07' },
+            { name: 'Hals-Nasen-Ohrenheilkunde', code: 'F08' },
+            { name: 'Humangenetik', code: 'F09' },
+            { name: 'Innere Medizin', code: 'F11' },
+            { name: 'Kinderheilkunde', code: 'F12' },
+            { name: 'Klinische Chemie, Labordiagnostik', code: 'F13' },
+            { name: 'Naturheilverfahren, Physikalische Medizin', code: 'Q12' },
+            { name: 'Neurologie', code: 'F14' },
+            { name: 'Orthopädie', code: 'F15' },
+            { name: 'Psychiatrie, Psychosomatik', code: 'F18' },
+            { name: 'Rechtsmedizin', code: 'F20' },
+            { name: 'Urologie', code: 'F21' },
         ]
     },
 ]
@@ -52,8 +53,8 @@ const SubjectsWithNumbers = _.flow([rnd, random => Subjects.map(
         ...cat, 
         subjects: cat.subjects.map( s => ({
             kategorie: cat.title,
-            name: s,
-            gesamt: Math.max(0, rnd(s)(3,20) + random(0,4)),
+            ...s,
+            gesamt: Math.max(0, rnd(s.name)(3,20) + random(0,4)),
         })).map(s => ({ 
             ...s, 
             richtig: random(0, s.gesamt),
