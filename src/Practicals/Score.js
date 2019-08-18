@@ -7,14 +7,14 @@ import { selectors, actions } from './Store'
 import { withTranslation } from 'react-i18next'
 import Square from './Square'
 
-export const colors = ['hsla(208, 51%, 27%, 1)', 'hsla(161, 100%, 25%, 1)', ' hsla(18, 100%, 25%, 1)']
+export const colors = ['hsla(208, 51%, 27%, 1)', '#33004d', ' #802000']
 const colorsRgb = ['hsla(208, 51%, 27%, .2)', 'hsla(161, 100%, 25%, .2)', ' hsla(18, 100%, 25%, .2)']
 
 export const Numbers = props => {
     const unit = (5 /  props.maxValue) * props.value
     const dev = _.range(0,5).map( i => {
         const cutoff = _.clamp(unit - i, 0, 1) * 100
-        return <Square key={i} style={{ backgroundImage :` linear-gradient(to right, ${props.color} ${cutoff}%, ${props.colorsRgb} ${cutoff}%)`, border: `1px solid ${props.color}`}}/>
+        return <Square key={i} style={{ backgroundImage :` linear-gradient(to right, ${props.color} ${cutoff}%, ${props.colorsRgb} ${cutoff}%)`, border: `1px solid ${props.color}`, width: props.width, height: props.height ,  borderRadius:props.borderRadius}}/>
     })
 
     return <div>
@@ -38,6 +38,9 @@ const Score = ({ t, ...props }) => (
             <Numbers
                 colorsRgb={colorsRgb[0]}
                 color={colors[0]}
+                width={props.width}
+                height={props.height}
+                borderRadius= {props.borderRadius}
                 edit={props.edit}
                 value={props.score('done')}
                 maxValue={props.maxScore}
@@ -53,6 +56,9 @@ const Score = ({ t, ...props }) => (
             <Numbers
                 colorsRgb={colorsRgb[1]}
                 color={colors[1]}
+                width={props.width}
+                height={props.height}
+                borderRadius= {props.borderRadius}
                 edit={props.edit}
                 value={props.score('confident')}
                 maxValue={props.maxScore}
@@ -68,6 +74,9 @@ const Score = ({ t, ...props }) => (
             <Numbers
                 colorsRgb={colorsRgb[2]}
                 color={colors[2]}
+                width={props.width}
+                height={props.height}
+                borderRadius= {props.borderRadius}
                 value={props.score('external')}
                 maxValue={props.maxScore} />
             {props.headings &&

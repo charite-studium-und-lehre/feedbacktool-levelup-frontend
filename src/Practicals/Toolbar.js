@@ -33,7 +33,7 @@ class Toolbar extends React.Component {
                             <Button icon={faEdit} active={this.props.edit} onClick={this.props.toggleEdit}>{this.props.edit ? t(`speichern`): t(`bearbeiten`)}</Button>
                         </div>
                         <div className="col-6">
-                            <Score headings={true} entry={this.props.root} />
+                            <Score headings={true} entry={this.props.root} width={'1.1rem'} height={'1.1rem'} borderRadius= {'50%'} />
                         </div>
                     </div>
                     <SlideDown className="animated fast">

@@ -11,7 +11,9 @@ import { selectors, actions } from './Store'
 const stateToProps = state => ({ root: selectors.getItemByLabel(state, 'root') })
 
 const Tab = connect((state, ownProps) => ({ entry: selectors.getItemById(state, ownProps.entryId) }))(props => 
-    <div onClick={props.onClick} key={props.entryId} className="mr-2"><h5>{props.entry.label}</h5></div>
+    <span className="btn-group btn-group-sm mr-1 mb-3" role="group" aria-label="Basic example" onClick={props.onClick} key={props.entryId}>
+       <button type="button" className="btn btn-secondary">{props.entry.label}</button>
+    </span>
 )
 const Tabs = asTabs(props => props.entries.map((e, i) => <Tab key={i} onClick={() => props.selectTab(i)} entryId={e}></Tab>))
 
@@ -22,7 +24,7 @@ const Container = needsData(connect(stateToProps)(({ root }) => {
     return (
         <div>
             <Toolbar toggleEdit={toggleEdit} edit={edit} />
-            <div className="card mt-2 p-2">
+            <div className="card mt-4 p-2">
                 <Tabs entries={root.entries}>
                 { root.entries.map(e =>
                     <div key={e}>
