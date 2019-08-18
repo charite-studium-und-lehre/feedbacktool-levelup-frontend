@@ -7,8 +7,8 @@ import { selectors, actions } from './Store'
 import { withTranslation } from 'react-i18next'
 import Square from './Square'
 
-export const colors = ['hsla(208, 51%, 27%, 1)', '#33004d', ' #802000']
-const colorsRgb = ['hsla(208, 51%, 27%, .2)', 'hsla(161, 100%, 25%, .2)', ' hsla(18, 100%, 25%, .2)']
+export const colors = ['hsla(208, 51%, 27%, 1)', '	hsl(280, 100%, 15%)', 'hsl(15, 100%, 25%)']
+const colorsRgb = ['hsla(208, 51%, 27%, .2)', '	hsl(280, 100%, 15%, .2)', ' hsl(15, 100%, 25%, .2)']
 
 export const Numbers = props => {
     const unit = (5 /  props.maxValue) * props.value

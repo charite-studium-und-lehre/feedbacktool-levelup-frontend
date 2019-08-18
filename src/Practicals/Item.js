@@ -35,7 +35,7 @@ const Item = connect(stateToProps)(makeExtendable(props =>
             </div>
           </div>
           { <div className="col-xl-6 p-0"> 
-         <Score edit={!props.entry.entries.length && props.edit} entryId={props.entryId} width={ props.level === 1 ? '1.1rem':props.level === 2 ? '.85rem': '.8rem'} height={ props.level === 1 ? '1.1rem': props.level === 2 ? '.85rem': '.6rem'} borderRadius= {props.level <= 2 ? '50%': '5%'}/>
+         <Score edit={!props.entry.entries.length && props.edit} entryId={props.entryId} width={ props.level === 1 ? '1rem':props.level === 2 ? '.85rem': '.8rem'} height={ props.level === 1 ? '1rem': props.level === 2 ? '.85rem': '.6rem'} borderRadius= {props.level <= 2 ? '50%': '5%'}/>
           </div>}
         </div>
         {props.entry.hasGraph && <Chart entryId={props.entryId} />}
