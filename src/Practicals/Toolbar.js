@@ -23,17 +23,17 @@ class Toolbar extends React.Component {
     render() {
         const { t } = this.props
         return (
-            <div className="p-2 mt-2 card text-right sticky-top" style={{ top: '3.7rem' }}>
+            <div className="pt-2 pb-2 mt-2 card text-right sticky-top" style={{ top: '3.7rem' }}>
                 <div>
                     <div className="row">
-                    <div className="col-5">
+                    <div className="col-6">
                             <Button className="d-lg-none" icon={faListOl} active={this.state.list} onClick={() => this.setState({ list: !this.state.list })} />
                             <Button icon={faFileExport}>{t(`Export`)}</Button>
                             <Button icon={faEnvelopeOpenText} active={this.props.extended} onClick={this.props.toggleExtended}>{t(`Fremdeinschätzung`)}</Button>
                             <Button icon={faEdit} active={this.props.edit} onClick={this.props.toggleEdit}>{this.props.edit ? t(`speichern`): t(`bearbeiten`)}</Button>
                         </div>
-                        <div className="col-7">
-                            <Score headings={true} entry={this.props.root} />
+                        <div className="col-6">
+                            <Score headings={true} entry={this.props.root} width={'1.1rem'} height={'1.1rem'} borderRadius= {'50%'} />
                         </div>
                     </div>
                     <SlideDown className="animated fast">

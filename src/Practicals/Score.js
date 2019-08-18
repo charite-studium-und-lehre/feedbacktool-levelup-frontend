@@ -7,24 +7,16 @@ import { selectors, actions } from './Store'
 import { withTranslation } from 'react-i18next'
 import Square from './Square'
 
-export const colors = ['hsla(208, 51%, 27%, 1)', 'hsla(161, 100%, 25%, 1)', ' hsla(18, 100%, 25%, 1)']
-const colorsRgb = ['hsla(208, 51%, 27%, .2)', 'hsla(161, 100%, 25%, .2)', ' hsla(18, 100%, 25%, .2)']
+export const colors = ['hsla(208, 51%, 27%, 1)', '	hsl(280, 100%, 15%)', 'hsl(15, 100%, 25%)']
+const colorsRgb = ['hsla(208, 51%, 27%, .2)', '	hsl(280, 100%, 15%, .2)', ' hsl(15, 100%, 25%, .2)']
 
-const Numbers = props => {
-    const unit = (5 / props.maxValue) * props.value
-    const difference = unit - Math.floor(unit)
-    const dev = []
-    for (let i = 0; i < Math.floor(unit); i++) {
-        dev.push(<Square key={i + "10"} style={{backgroundColor:props.color}}/>)
-    }
-    for (let i = 0; i < difference; i++) {
-        dev.splice(unit, 0, <Square key={i} style={{backgroundColor:props.colorsRgb, display: 'inline-block', border: `1px solid ${props.color}`}}>
-                                 <div key={i + '2'} style={{ height: '100%', width:`${difference * 90}%`, background: props.color  }}></div>
-                            </Square>)
-    }
-    for (let i = Math.ceil(unit) + 1; i < 6; i++) {
-        dev.push(<Square key={i + "10"} style={{backgroundColor:props.colorsRgb,display: 'inline-block', border: `1px solid ${props.color}`}}/>)
-    }
+export const Numbers = props => {
+    const unit = (5 /  props.maxValue) * props.value
+    const dev = _.range(0,5).map( i => {
+        const cutoff = _.clamp(unit - i, 0, 1) * 100
+        return <Square key={i} style={{ backgroundImage :` linear-gradient(to right, ${props.color} ${cutoff}%, ${props.colorsRgb} ${cutoff}%)`, border: `1px solid ${props.color}`, width: props.width, height: props.height ,  borderRadius:props.borderRadius}}/>
+    })
+
     return <div>
         {props.edit &&
             <span style={{ cursor: 'pointer' }}>
@@ -37,16 +29,18 @@ const Numbers = props => {
                 <FontAwesomeIcon icon={faPlusCircle} className="text-muted ml-1" onClick={props.increment} />
             </span>
         }
-        <div>{props.value}/{props.maxValue}</div>
     </div>
 }
 
 const Score = ({ t, ...props }) => (
     <div className="row text-center">
-        <div className="col-6 p-0 m" style={{ color: colors[0] }}>
+        <div className="col-4 p-0" style={{ color: colors[0] }}>
             <Numbers
                 colorsRgb={colorsRgb[0]}
                 color={colors[0]}
+                width={props.width}
+                height={props.height}
+                borderRadius= {props.borderRadius}
                 edit={props.edit}
                 value={props.score('done')}
                 maxValue={props.maxScore}
@@ -58,10 +52,13 @@ const Score = ({ t, ...props }) => (
                 </div>
             }
         </div>
-        <div className="col-6 p-0" style={{ color: colors[1] }}>
+        <div className="col-4 p-0" style={{ color: colors[1] }}>
             <Numbers
                 colorsRgb={colorsRgb[1]}
                 color={colors[1]}
+                width={props.width}
+                height={props.height}
+                borderRadius= {props.borderRadius}
                 edit={props.edit}
                 value={props.score('confident')}
                 maxValue={props.maxScore}
@@ -73,16 +70,19 @@ const Score = ({ t, ...props }) => (
                 </div>
             }
         </div>
-        <div className="col-12 p-0 mt-3" style={{ color: colors[2] }}>
+        <div className="col-4 p-0" style={{ color: colors[2] }}>
             <Numbers
                 colorsRgb={colorsRgb[2]}
                 color={colors[2]}
-                value={props.score('confident')}
+                width={props.width}
+                height={props.height}
+                borderRadius= {props.borderRadius}
+                value={props.score('external')}
                 maxValue={props.maxScore} />
             {props.headings &&
                 <div className="font-weight-bold">
                     <div >{t(`Traue ich dir zu`)}</div>
-                    <div >{t(`(Fremdeinschätzung)`)}</div>
+                    {/* <div >{t(`(Fremdeinschätzung)`)}</div> */}
                 </div>
             }
         </div>

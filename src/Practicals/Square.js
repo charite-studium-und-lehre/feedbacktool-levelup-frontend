@@ -1,9 +1,9 @@
 import React from 'react'
 import _ from 'lodash'
 
-const defaultStyle = {
-height: '.95rem',
-width: '.95rem',
+const defaultStyle =  {
+height: '.6rem',
+width: '.8rem',
 display: 'inline-block' 
 }
 

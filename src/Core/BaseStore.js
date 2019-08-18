@@ -44,7 +44,7 @@ export default (identifier, getStore) => {
         withLoadAction: (actions, result) => ({
             load: () => (dispatch, getState) => {
                 if(getStore(getState()).fetching || getStore(getState()).loaded) return
-                setTimeout(() => dispatch({ type: `${identifier.toUpperCase()}_DATA_FETCHED`, payload: result}), 1000)
+                setTimeout(() => dispatch({ type: `${identifier.toUpperCase()}_DATA_FETCHED`, payload: result}), 100)
                 dispatch({ type: `${identifier.toUpperCase()}_DATA_FETCHING` })
             },
             ...actions 
