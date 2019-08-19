@@ -8,7 +8,7 @@ import App from './App'
 import * as serviceWorker from "./serviceWorker"
 
 ReactDOM.render(<App />, document.getElementById('root'))
-serviceWorker.register({
+/*serviceWorker.register({
 	onUpdate: registration => {
 		const waitingServiceWorker = registration.waiting
 
@@ -21,4 +21,4 @@ serviceWorker.register({
         	waitingServiceWorker.postMessage({ type: "SKIP_WAITING" })
       	}		
     }
-})
+})*/
