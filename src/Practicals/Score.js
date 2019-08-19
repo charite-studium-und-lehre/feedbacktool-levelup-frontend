@@ -82,7 +82,6 @@ const Score = ({ t, ...props }) => (
             {props.headings &&
                 <div className="font-weight-bold">
                     <div >{t(`Traue ich dir zu`)}</div>
-                    {/* <div >{t(`(Fremdeinschätzung)`)}</div> */}
                 </div>
             }
         </div>
@@ -95,6 +94,3 @@ const stateToProps = (state, ownProps) => ({
 })
 
 export default withTranslation()(connect(stateToProps, actions)(Score))
-
-
-// `linear-gradient( to right, ${props.color} ${unit}% ,${props.colorsRgb} 100%`

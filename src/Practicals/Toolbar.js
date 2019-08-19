@@ -30,7 +30,6 @@ class Toolbar extends React.Component {
                             <Button className="d-lg-none" icon={faListOl} active={this.state.list} onClick={() => this.setState({ list: !this.state.list })} />
                             <Button icon={faFileExport}>{t(`Export`)}</Button>
                             <Button icon={faEnvelopeOpenText} active={this.props.extended} onClick={this.props.toggleExtended}>{t(`Fremdeinschätzung`)}</Button>
-                            <Button icon={faEdit} active={this.props.edit} onClick={this.props.toggleEdit}>{this.props.edit ? t(`speichern`): t(`bearbeiten`)}</Button>
                         </div>
                         <div className="col-6">
                             <Score headings={true} entry={this.props.root} width={'1.1rem'} height={'1.1rem'} borderRadius= {'50%'} />

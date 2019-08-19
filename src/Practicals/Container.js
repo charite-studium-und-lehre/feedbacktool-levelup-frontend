@@ -18,17 +18,14 @@ const Tab = connect((state, ownProps) => ({ entry: selectors.getItemById(state, 
 const Tabs = asTabs(props => props.entries.map((e, i) => <Tab key={i} onClick={() => props.selectTab(i)} entryId={e}></Tab>))
 
 const Container = needsData(connect(stateToProps)(({ root }) => {
-    const [ edit, setEdit ] = useState(false)
-    const toggleEdit = () => setEdit(!edit)
-
     return (
         <div>
-            <Toolbar toggleEdit={toggleEdit} edit={edit} />
+            <Toolbar/>
             <div className="card mt-4 p-2">
                 <Tabs entries={root.entries}>
                 { root.entries.map(e =>
                     <div key={e}>
-                        <Item edit={edit} entryId={e} level={1} />
+                        <Item  entryId={e} level={1} />
                     </div>
                 )}
                 </Tabs>
