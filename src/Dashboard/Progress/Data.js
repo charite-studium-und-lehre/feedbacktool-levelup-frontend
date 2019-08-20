@@ -1,8 +1,6 @@
-const tree = t => ({
-    label: 'root',
-    entries: [
+const tree = [
         {
-            label: t(`1. Fachsemester`),
+            label: `1. Fachsemester`,
             entries: [
                 {
                     label: 'PTM',
@@ -11,20 +9,20 @@ const tree = t => ({
                     link: '/exams/ptm/1. Fachsemester',
                 },
                 {
-                    label: t('Semesterprüfung'),
+                    label: 'Semesterprüfung',
                     isLeaf: true,
                     done: true,
                     link: '/exams/semester/1. Fachsemester',
                 },
                 {
-                    label: t('Anwesenheit'),
+                    label: 'Anwesenheit',
                     isLeaf: true,
                     done: true,
                 },
             ]
         },
         {
-            label: t(`2. Fachsemester`),
+            label: `2. Fachsemester`,
             entries: [
                 {
                     label: 'PTM',
@@ -33,26 +31,26 @@ const tree = t => ({
                     link: '/exams/ptm/2. Fachsemester',
                 },
                 {
-                    label: t('Semesterprüfung'),
+                    label: 'Semesterprüfung',
                     isLeaf: true,
                     done: true,
                     link: '/exams/semester/2. Fachsemester',
                 },
                 {
-                    label: t('Praktische Prüfung'),
+                    label: 'Praktische Prüfung',
                     isLeaf: true,
                     done: true,
                     link: '/exams/stations/2. Fachsemester',
                 },
                 {
-                    label: t('Anwesenheit'),
+                    label: 'Anwesenheit',
                     isLeaf: true,
                     done: true,
                 },
             ]
         },
         {
-            label: t(`3. Fachsemester`),
+            label: `3. Fachsemester`,
             entries: [
                 {
                     label: 'PTM',
@@ -61,30 +59,30 @@ const tree = t => ({
                     link: '/exams/ptm/3. Fachsemester',
                 },
                 {
-                    label: t('Semesterprüfung'),
+                    label: 'Semesterprüfung',
                     isLeaf: true,
                     done: true,
                     link: '/exams/semester/3. Fachsemester',
                 },
                 {
-                    label: t('Anwesenheit'),
+                    label: 'Anwesenheit',
                     isLeaf: true,
                     done: true,
                 },
                 {
-                    label: t('Erste Hilfe'),
+                    label: 'Erste Hilfe',
                     isLeaf: true,
                     done: true,
                 },
                 {
-                    label: t('Krankenpflegedienst'),
+                    label: 'Krankenpflegedienst',
                     isLeaf: true,
                     done: true,
                 },
             ]
         },
         {
-            label: t(`4. Fachsemester`),
+            label: `4. Fachsemester`,
             entries: [
                 {
                     label: 'PTM',
@@ -93,31 +91,31 @@ const tree = t => ({
                     link: '/exams/ptm/4. Fachsemester',
                 },
                 {
-                    label: t('Semesterprüfung'),
+                    label: 'Semesterprüfung',
                     isLeaf: true,
                     done: false,
                     link: '/exams/semester/4. Fachsemester',
                 },
                 {
-                    label: t('Praktische Prüfung'),
+                    label: 'Praktische Prüfung',
                     isLeaf: true,
                     done: true,
                     link: '/exams/stations/4. Fachsemester',
                 },
                 {
-                    label: t('Anwesenheit'),
+                    label: 'Anwesenheit',
                     isLeaf: true,
                     done: false,
                 },
                 {
-                    label: t('Famulaturreife'),
+                    label: 'Famulaturreife',
                     isLeaf: true,
                     done: true,
                 },
             ]
         },
         {
-            label: t(`5. Fachsemester`),
+            label: `5. Fachsemester`,
             entries: [
                 {
                     label: 'PTM',
@@ -126,20 +124,20 @@ const tree = t => ({
                     link: '/exams/ptm/5. Fachsemester',
                 },
                 {
-                    label: t('Semesterprüfung'),
+                    label: 'Semesterprüfung',
                     isLeaf: true,
                     done: true,
                     link: '/exams/semester/5. Fachsemester',
                 },
                 {
-                    label: t('Anwesenheit'),
+                    label: 'Anwesenheit',
                     isLeaf: true,
                     done: false,
                 },
             ]
         },
         {
-            label: t(`6. Fachsemester`),
+            label: `6. Fachsemester`,
             entries: [
                 {
                     label: 'PTM',
@@ -148,25 +146,25 @@ const tree = t => ({
                     link: '/exams/ptm/6. Fachsemester',
                 },
                 {
-                    label: t('Semesterprüfung'),
+                    label: 'Semesterprüfung',
                     isLeaf: true,
                     done: false,
                     link: '/exams/semester/6. Fachsemester',
                 },
                 {
-                    label: t('Anwesenheit'),
+                    label: 'Anwesenheit',
                     isLeaf: true,
                     done: false,
                 },
                 {
-                    label: t('M1-Äquivalenz'),
+                    label: 'M1-Äquivalenz',
                     isLeaf: true,
                     done: false,
                 },
             ]
         },
         {
-            label: t(`7. Fachsemester`),
+            label: `7. Fachsemester`,
             entries: [
                 {
                     label: 'PTM',
@@ -175,20 +173,20 @@ const tree = t => ({
                     link: '/exams/ptm/7. Fachsemester',
                 },
                 {
-                    label: t('Semesterprüfung'),
+                    label: 'Semesterprüfung',
                     isLeaf: true,
                     done: false,
                     link: '/exams/semester/7. Fachsemester',
                 },
                 {
-                    label: t('Anwesenheit'),
+                    label: 'Anwesenheit',
                     isLeaf: true,
                     done: false,
                 },
             ]
         },
         {
-            label: t(`8. Fachsemester`),
+            label: `8. Fachsemester`,
             entries: [
                 {
                     label: 'PTM',
@@ -197,20 +195,20 @@ const tree = t => ({
                     link: '/exams/ptm/8. Fachsemester',
                 },
                 {
-                    label: t('Semesterprüfung'),
+                    label: 'Semesterprüfung',
                     isLeaf: true,
                     done: false,
                     link: '/exams/semester/8. Fachsemester',
                 },
                 {
-                    label: t('Anwesenheit'),
+                    label: 'Anwesenheit',
                     isLeaf: true,
                     done: false,
                 },
             ]
         },
         {
-            label: t(`9. Fachsemester`),
+            label: `9. Fachsemester`,
             entries: [
                 {
                     label: 'PTM',
@@ -219,7 +217,7 @@ const tree = t => ({
                     link: '/exams/ptm/9. Fachsemester',
                 },
                 {
-                    label: t('Semesterprüfung'),
+                    label: 'Semesterprüfung',
                     isLeaf: true,
                     done: false,
                     link: '/exams/semester/9. Fachsemester',
@@ -231,14 +229,14 @@ const tree = t => ({
                     link: '/exams/stations/9. Fachsemester',
                 },
                 {
-                    label: t('Anwesenheit'),
+                    label: 'Anwesenheit',
                     isLeaf: true,
                     done: false,
                 },
             ]
         },
         {
-            label: t(`10. Fachsemester`),
+            label: `10. Fachsemester`,
             entries: [
                 {
                     label: 'PTM',
@@ -247,19 +245,19 @@ const tree = t => ({
                     link: '/exams/ptm/10. Fachsemester',
                 },
                 {
-                    label: t('Anwesenheit'),
+                    label: 'Anwesenheit',
                     isLeaf: true,
                     done: false,
                 },
                 {
-                    label: t('Schriftliches Staatsexamen (M2)'),
+                    label: 'Schriftliches Staatsexamen (M2)',
                     isLeaf: true,
                     done: false,
                 },
             ]
         },
         {
-            label: t(`11.-12. Fachsemester`),
+            label: `11.-12. Fachsemester`,
             entries: [
                 {
                     label: 'PTM',
@@ -273,13 +271,12 @@ const tree = t => ({
                     done: false,
                 },
                 {
-                    label: t('Mündlich-Praktisches Staatsexamen (M4)'),
+                    label: 'Mündlich-Praktisches Staatsexamen (M4)',
                     isLeaf: true,
                     done: false,
                 },
             ]
         },
     ]
-})
 
 export default tree
