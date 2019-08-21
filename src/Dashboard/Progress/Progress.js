@@ -7,6 +7,7 @@ import { selectors, actions } from './Store'
 import Legend from '../../Charting/Legend'
 import needsData from '../../Core/needsData'
 import SimpleDonut from '../../Charting/SimpleDonut'
+import AnimatedDonut from '../../Charting/AnimatedDonut'
 
 const checklistStyle = {
     whiteSpace: 'nowrap',
@@ -18,8 +19,14 @@ const Progress = _.compose([withTranslation(), needsData(selectors.loaded, actio
     <div className="card progress-card with-border" style={{overflow: 'hidden'}}>
         <div className="card-body">
             <Legend title={t('Dein Studienfortschritt')}>{t('Hier siehst Du deinen Studienfortschritt und deine bereits erreichten Meilensteinen.')}</Legend>
-            <div style={checklistStyle}>
+            <div>
                 {/* {data.map(d => <Checklist key={d.label} className="d-inline-block align-top" data={d} /> )} */}
+                <div className="m-auto" style={{width: '10rem', height: '10rem'}}>
+                    <AnimatedDonut data={[ props.done, props.total - props.done ]}>
+                        <div style={{fontSize: '1.8rem'}}>{ props.done / props.total * 100 } %</div>
+                        <div style={{fontSize: '.8rem'}}>{ props.done } / { props.total }</div>
+                    </AnimatedDonut>
+                </div>
                 <div className="m-auto" style={{width: '10rem', height: '10rem'}}>
                     <SimpleDonut value={ props.done / props.total * 100 } width=".9rem">
                         <div style={{fontSize: '1.8rem'}}>{ props.done / props.total * 100 } %</div>
