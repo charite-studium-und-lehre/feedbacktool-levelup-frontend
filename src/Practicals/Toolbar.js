@@ -1,10 +1,11 @@
 import React from 'react'
 import SlideDown from 'react-slidedown'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit, faFileExport, faEnvelopeOpenText, faListOl } from '@fortawesome/free-solid-svg-icons'
+import {faFileExport, faEnvelopeOpenText, faListOl } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../Core/makeExtendable'
 import List from './List'
 import Score from './Score'
+import ExternAssessingn from './ExternAssessing'
 import { withTranslation } from 'react-i18next'
 
 const Button = (props) =>
@@ -23,7 +24,7 @@ class Toolbar extends React.Component {
     render() {
         const { t } = this.props
         return (
-            <div className="pt-2 pb-2 mt-2 card text-right sticky-top" style={{ top: '3.7rem' }}>
+            <div className="pt-2 pb-2 mt-2 card sticky-top" style={{ top: '3.7rem' }}>
                 <div>
                     <div className="row">
                     <div className="col-6">
@@ -41,9 +42,12 @@ class Toolbar extends React.Component {
                                 <List />
                             </div>}
                     </SlideDown>
-                    <SlideDown className="animated fast">
+                    <SlideDown >
                         {this.props.extended &&
                             <div className="p-2">
+                                <div className='row'>
+                                <ExternAssessingn onClick={this.props.toggleExtended} col='4'/>
+                                </div>
                                 <div className="d-flex">
                                     <div className="flex-grow-1">
                                         <input className="form-control form-control-sm" placeholder="email"></input>

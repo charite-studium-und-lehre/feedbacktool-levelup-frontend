@@ -344,7 +344,32 @@ id: _.uniqueId(),
       },
   ]
 }
-
+export const ExternAssissing = [
+  {
+    name :  'name 1',
+    datum : '12.02.2019'
+  },
+  {
+    name :  'name 2',
+    datum : '12.02.2019'
+  },
+  {
+    name :  'name 3',
+    datum : '12.02.2019'
+  },
+  {
+    name :  'name 4',
+    datum : '12.02.2019'
+  },
+  {
+    name :  'name 5',
+    datum : '12.02.2019'
+  },
+  {
+    name :  'name 6',
+    datum : '12.02.2019'
+  },
+]
 const addHistoricalScore = item => {
   const random = (a,b) => () => _.round(randomUniform.source(seedrandom(Math.random()))(a,b)())
   return { ...item, historical: {
