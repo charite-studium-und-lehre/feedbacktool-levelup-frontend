@@ -108,12 +108,13 @@ id: _.uniqueId(),
 			              done: 0,
                     confident: 2,
                     external: [{id: 4, value: 1}],
-id: _.uniqueId(),
+                    id: _.uniqueId(),
                   },
                   {
                     label: <Trans>Plan in Patientenkurve eintragen und therapeutische Anforderungsformulare ausfüllen (Gegenzeichnung Arzt)</Trans>,
 			              done: 0,
                     confident: 2,
+                    external: [{id: 5, value: 10}],
 id: _.uniqueId(),
                   },
                 ],
@@ -350,27 +351,29 @@ export const ExternAssissing = [
   {
     id: 3,
     name :  'name 1',
-    datum : '12.02.2019'
+    datum : new Date()
   },
   {
+    id: 4,
     name :  'name 2',
-    datum : '12.02.2019'
+    datum : new Date()
   },
   {
+    id: 5,
     name :  'name 3',
-    datum : '12.02.2019'
+    datum : new Date()
   },
   {
     name :  'name 4',
-    datum : '12.02.2019'
+    datum : new Date()
   },
   {
     name :  'name 5',
-    datum : '12.02.2019'
+    datum : new Date()
   },
   {
     name :  'name 6',
-    datum : '12.02.2019'
+    datum : new Date()
   },
 ]
 const addHistoricalScore = item => {
