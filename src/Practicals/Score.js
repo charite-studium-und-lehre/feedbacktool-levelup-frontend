@@ -1,38 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons'
 import { selectors, actions } from './Store'
 import { withTranslation } from 'react-i18next'
-import Square from './Square'
 import { SlideDown } from 'react-slidedown'
 import makeExtendable from '../Core/makeExtendable'
 import ExternAssessingn from './ExternAssessing'
+import Numbers from './Numbers'
 export const colors = ['hsla(208, 51%, 27%, 1)', '	hsl(280, 100%, 15%)', 'hsl(15, 100%, 25%)']
 const colorsRgb = ['hsla(208, 51%, 27%, .2)', '	hsl(280, 100%, 15%, .2)', ' hsl(15, 100%, 25%, .2)']
-
-export const Numbers = props => {
-    const unit = (5 /  props.maxValue) * props.value
-    const dev = _.range(0,5).map( i => {
-        const cutoff = _.clamp(unit - i, 0, 1) * 100
-        return <Square key={i} style={{ backgroundImage :` linear-gradient(to right, ${props.color} ${cutoff}%, ${props.colorsRgb} ${cutoff}%)`, border: `1px solid ${props.color}`, width: props.width, height: props.height ,  borderRadius:props.borderRadius}}/>
-    })
-
-    return <div>
-        {props.edit &&
-            <span style={{ cursor: 'pointer' }}>
-                <FontAwesomeIcon icon={faMinusCircle} className="text-muted mr-1" onClick={props.decrement} />
-            </span>
-        }
-        <span onClick={props.onClick}>{dev.map((e) => e)}</span>
-        {props.edit &&
-            <span style={{ cursor: 'pointer' }}>
-                <FontAwesomeIcon icon={faPlusCircle} className="text-muted ml-1" onClick={props.increment} />
-            </span>
-        }
-    </div>
-}
 
 const Score = makeExtendable( ({ t, ...props }) => (
     <div className="row text-center">
