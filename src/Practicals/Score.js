@@ -6,7 +6,9 @@ import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons'
 import { selectors, actions } from './Store'
 import { withTranslation } from 'react-i18next'
 import Square from './Square'
-
+import { SlideDown } from 'react-slidedown'
+import makeExtendable from '../Core/makeExtendable'
+import ExternAssessingn from './ExternAssessing'
 export const colors = ['hsla(208, 51%, 27%, 1)', '	hsl(280, 100%, 15%)', 'hsl(15, 100%, 25%)']
 const colorsRgb = ['hsla(208, 51%, 27%, .2)', '	hsl(280, 100%, 15%, .2)', ' hsl(15, 100%, 25%, .2)']
 
@@ -23,7 +25,7 @@ export const Numbers = props => {
                 <FontAwesomeIcon icon={faMinusCircle} className="text-muted mr-1" onClick={props.decrement} />
             </span>
         }
-        {dev.map((e) => e)}
+        <span onClick={props.onClick}>{dev.map((e) => e)}</span>
         {props.edit &&
             <span style={{ cursor: 'pointer' }}>
                 <FontAwesomeIcon icon={faPlusCircle} className="text-muted ml-1" onClick={props.increment} />
@@ -32,7 +34,7 @@ export const Numbers = props => {
     </div>
 }
 
-const Score = ({ t, ...props }) => (
+const Score = makeExtendable( ({ t, ...props }) => (
     <div className="row text-center">
         <div className="col-4 p-0" style={{ color: colors[0] }}>
             <Numbers
@@ -51,6 +53,7 @@ const Score = ({ t, ...props }) => (
                     <div >{t(`Habe ich gemacht`)}</div>
                 </div>
             }
+            
         </div>
         <div className="col-4 p-0" style={{ color: colors[1] }}>
             <Numbers
@@ -78,16 +81,25 @@ const Score = ({ t, ...props }) => (
                 height={props.height}
                 borderRadius= {props.borderRadius}
                 value={props.score('external')}
-                maxValue={props.maxScore} />
+                maxValue={props.maxScore}
+                onClick={props.toggleExtended} />
             {props.headings &&
                 <div className="font-weight-bold">
                     <div >{t(`Traue ich dir zu`)}</div>
-                </div>
+                </div>}
+        </div>
+        <div className='col-4'></div>
+        <div className='col-8'>
+            <SlideDown >
+            {props.extended && <div>
+                <ExternAssessingn/>
+            </div>
             }
+        </SlideDown>
         </div>
     </div>
 )
-
+)
 const stateToProps = (state, ownProps) => ({
     score: _.curry(selectors.getScore)(state, ownProps.entryId),
     maxScore: selectors.getMaxScore(state, ownProps.entryId),

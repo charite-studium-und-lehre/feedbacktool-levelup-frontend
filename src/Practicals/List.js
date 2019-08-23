@@ -13,7 +13,7 @@ const List = ({ t},...props) => {
                     <div>{`${d} - ${e}`}</div>
                     {_.range(5).map((e, i) =>{
                         const cutoff = _.clamp( i- d + 1 , 0, 1) * 100
-                    return <Square key={i} style={{backgroundImage :` linear-gradient(to right, hsla(161, 100%, 25%, .2) ${cutoff}%, hsla(161, 100%, 25%, 1) ${cutoff}%)`}}/> 
+                    return <Square key={i} style={{backgroundImage :` linear-gradient(to right, rgb(127, 144, 30, .3) ${cutoff}%, rgb(127, 144, 30) ${cutoff}%)`}}/> 
                     })}
                 </div>)}
           </div>
