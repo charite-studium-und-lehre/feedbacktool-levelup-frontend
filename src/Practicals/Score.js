@@ -20,7 +20,7 @@ const Score = makeExtendable( ({ t, ...props }) => (
                 height={props.height}
                 borderRadius= {props.borderRadius}
                 edit={props.edit}
-                value={props.score('done')}
+                value={props.done}
                 maxValue={props.maxScore}
                 increment={_.partial(props.levelUpDone, props.entryId)}
                 decrement={_.partial(props.levelDownDone, props.entryId)} />
@@ -39,7 +39,7 @@ const Score = makeExtendable( ({ t, ...props }) => (
                 height={props.height}
                 borderRadius= {props.borderRadius}
                 edit={props.edit}
-                value={props.score('confident')}
+                value={props.confident}
                 maxValue={props.maxScore}
                 increment={_.partial(props.levelUpConfident, props.entryId)}
                 decrement={_.partial(props.levelDownConfident, props.entryId)} />
@@ -56,7 +56,7 @@ const Score = makeExtendable( ({ t, ...props }) => (
                 width={props.width}
                 height={props.height}
                 borderRadius= {props.borderRadius}
-                value={props.score('external')}
+                value={props.external}
                 maxValue={props.maxScore}
                 onClick={props.toggleExtended} />
             {props.headings &&
@@ -77,7 +77,9 @@ const Score = makeExtendable( ({ t, ...props }) => (
 )
 )
 const stateToProps = (state, ownProps) => ({
-    score: _.curry(selectors.getScore)(state, ownProps.entryId),
+    done: selectors.getScore(state, ownProps.entryId, 'done'),
+    confident: selectors.getScore(state, ownProps.entryId, 'confident'),
+    external: selectors.getExternalScore(state, ownProps.entryId),
     maxScore: selectors.getMaxScore(state, ownProps.entryId),
 })
 

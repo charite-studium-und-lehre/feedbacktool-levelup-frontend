@@ -10,10 +10,11 @@ const getLeaves = state => entry => entry.entries.length ? _.flatMap(e => getLea
 const getLeavesById = (state, id) => _.flow([ getItemById, getLeaves(state) ])(state, id)
 
 const getFilter = state => state[identifier].filter
-const visible = _.flow([ getFilter, filter => e => e.external.find && !!e.external.find( e => e.id === filter ) ])
+const visible = _.flow([ getFilter, filter => e => e.external.find && e.external.find( e => e.id === filter ) ])
 const addVisible = state => entry => _.flow([ getLeaves(state), _.some( visible(state) ), visible => ({ ...entry, visible }) ])(entry)
 
-const getScore = (state, id, prop) => _.flow([ getLeavesById, _.map(e => e[prop]), _.sum])(state, id)
+const getScore = (state, id, prop) => _.flow([ getLeavesById, _.map(prop), _.sum])(state, id)
+const getExternalScore = (state, id) => getScore(state, id, e => visible(state)(e) ? visible(state)(e).value : 0)
 
 const getMaxScore = _.flow([ getLeavesById, leaves => leaves.length * 5 ])
 
@@ -23,6 +24,7 @@ export const selectors = baseStore.withLoadedSelector({
   getScore,
   getMaxScore,
   getFilter,
+  getExternalScore,
 })
 
 export const actions = baseStore.withLoadAction({
