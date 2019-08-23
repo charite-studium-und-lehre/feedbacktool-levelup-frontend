@@ -7,16 +7,9 @@ import { withTranslation } from 'react-i18next'
 import LanguageSymbol from './languageSymbol'
 
 export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
-    const isLoggedIn = props.isLoggedIn;
-    let button;
-
-    if (isLoggedIn) {
-        button = <NavLink className="nav-link pull-right" to="/logout"
-        style={{ fontSize: '1.2em'}}
-        >Logout</NavLink>;
-    } else {
-        button = <NavLink className="nav-link pull-right" to="/login">Login</NavLink>
-    }
+    let button = props.isLoggedIn ?
+        <NavLink className="nav-link pull-right" to="/logout">Logout</NavLink> :
+        <NavLink className="nav-link pull-right" to="/login">Login</NavLink>
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top">
@@ -38,7 +31,7 @@ export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
                 </ul>
                 <ul className="navbar-nav">
                 <li className="nav-item">
-                      <div className="mt-2 mr-4"  style={{ fontSize: '1.2em', cursor: 'pointer' }}>
+                      <div className="mt-2 mr-4" style={{ cursor: 'pointer' }}>
                           Willkommen Sabine 
                       </div>
                     </li>
