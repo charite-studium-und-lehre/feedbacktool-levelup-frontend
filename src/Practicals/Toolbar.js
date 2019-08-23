@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import SlideDown from 'react-slidedown'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faFileExport, faEnvelopeOpenText, faListOl } from '@fortawesome/free-solid-svg-icons'
@@ -16,53 +16,48 @@ const Button = (props) =>
         </button>
     </div>
 
-class Toolbar extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = { list: false }
-    }
-    render() {
-        const { t } = this.props
-        return (
-            <div className="pt-2 pb-2 mt-2 card sticky-top" style={{ top: '3.7rem' }}>
-                <div>
-                    <div className="row">
-                    <div className="col-6">
-                            <Button className="d-lg-none" icon={faListOl} active={this.state.list} onClick={() => this.setState({ list: !this.state.list })} />
-                            <Button icon={faFileExport}>{t(`Export`)}</Button>
-                            <Button icon={faEnvelopeOpenText} active={this.props.extended} onClick={this.props.toggleExtended}>{t(`Fremdeinschätzung`)}</Button>
-                        </div>
-                        <div className="col-6">
-                            <Score headings={true} entry={this.props.root} width={'1.1rem'} height={'1.1rem'} borderRadius= {'50%'} />
-                        </div>
+const Toolbar = ({ t, ...props}) => {
+    const [ list, setList ] = useState(false)
+
+    return (
+        <div className="pt-2 pb-2 mt-2 card sticky-top" style={{ top: '3.7rem' }}>
+            <div>
+                <div className="row">
+                <div className="col-6">
+                        <Button className="d-lg-none" icon={faListOl} active={list} onClick={() => setList( !list )} />
+                        <Button icon={faFileExport}>{t(`Export`)}</Button>
+                        <Button icon={faEnvelopeOpenText} active={props.extended} onClick={props.toggleExtended}>{t(`Fremdeinschätzung`)}</Button>
                     </div>
-                    <SlideDown className="animated fast">
-                        {this.state.list &&
-                            <div className="text-left bg-white px-2">
-                                <List />
-                            </div>}
-                    </SlideDown>
-                    <SlideDown >
-                        {this.props.extended &&
-                            <div className="p-2">
-                                <div className='row'>
-                                <ExternAssessingn onClick={this.props.toggleExtended} col='4'/>
-                                </div>
-                                <div className="d-flex">
-                                    <div className="flex-grow-1">
-                                        <input className="form-control form-control-sm" placeholder="email"></input>
-                                    </div>
-                                    <div className="">
-                                        <button className="btn btn-sm btn-success" onClick={this.props.toggleExtended}>senden</button>
-                                    </div>
-                                </div>
-                                <div className="text-secondary text-left" style={{ fontSize: '.7rem' }}>{t(`Wir senden einen Link an diese Email-Adresse, über den eine Fremdeinschätzung abgegeben werden kann.`)}</div>
-                            </div>}
-                    </SlideDown>
+                    <div className="col-6">
+                        <Score headings={true} entry={props.root} width={'1.1rem'} height={'1.1rem'} borderRadius= {'50%'} />
+                    </div>
                 </div>
+                <SlideDown className="animated fast">
+                    {list &&
+                        <div className="text-left bg-white px-2">
+                            <List />
+                        </div>}
+                </SlideDown>
+                <SlideDown className="animated fast">
+                    {props.extended &&
+                        <div className="p-2">
+                            <div className='row'>
+                            <ExternAssessingn onClick={props.toggleExtended} col='4'/>
+                            </div>
+                            <div className="d-flex">
+                                <div className="flex-grow-1">
+                                    <input className="form-control form-control-sm" placeholder="email"></input>
+                                </div>
+                                <div className="">
+                                    <button className="btn btn-sm btn-success" onClick={props.toggleExtended}>senden</button>
+                                </div>
+                            </div>
+                            <div className="text-secondary text-left" style={{ fontSize: '.7rem' }}>{t(`Wir senden einen Link an diese Email-Adresse, über den eine Fremdeinschätzung abgegeben werden kann.`)}</div>
+                        </div>}
+                </SlideDown>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 export default withTranslation()(makeExtendable(Toolbar))
