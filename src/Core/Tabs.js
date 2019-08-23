@@ -4,7 +4,7 @@ const asTabs = WrappedComponent => {
     return class Tabs extends Component {
         constructor(props) {
             super(props)
-            this.state = { tab: Math.max(...React.Children.map(props.children, (child, i) => child.props.title === props.active ? i : 0)) }
+            this.state = { tab: Math.max(...React.Children.map(props.children, (child, i) => props.active && child.props.title === props.active ? i : 0)) }
             this.activeTab = React.createRef()
         }
 
