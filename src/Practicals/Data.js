@@ -100,12 +100,14 @@ id: _.uniqueId(),
                     label: <Trans>Eintrag für die allgemeine Therapie in Patientenkurve vorschreiben (Gegenzeichnung Arzt)</Trans>,
 			              done: 0,
                     confident: 2,
+                    external: [{id: 3, value: 2}],
 id: _.uniqueId(),
                   },
                   {
                     label: <Trans>Plan für die patientenspezifische Therapie entwerfen (Abstimmung mit Arzt)</Trans>,
 			              done: 0,
                     confident: 2,
+                    external: [{id: 4, value: 1}],
 id: _.uniqueId(),
                   },
                   {
@@ -346,6 +348,7 @@ id: _.uniqueId(),
 }
 export const ExternAssissing = [
   {
+    id: 3,
     name :  'name 1',
     datum : '12.02.2019'
   },
@@ -380,4 +383,4 @@ const addHistoricalScore = item => {
 }
 
 const normalize = e => [{...e, entries: (e.entries || []).map(e => e.id) }, _.flatMap(normalize, e.entries || [])]
-export default  _.flow([_.flatMapDeep(normalize), _.map(e => ({ ...e, external: _.random(0, 6)})), _.map(addHistoricalScore), _.keyBy(e => e.id)])([praticalsTree])
+export default  _.flow([_.flatMapDeep(normalize), _.map(e => ({ external: _.random(0, 6), ...e })), _.map(addHistoricalScore), _.keyBy(e => e.id)])([praticalsTree])

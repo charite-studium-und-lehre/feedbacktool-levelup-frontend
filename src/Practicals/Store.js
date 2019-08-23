@@ -6,36 +6,27 @@ import BaseStore from '../Core/BaseStore'
 export const identifier = 'practicals'
 const baseStore = BaseStore(identifier)
 const getItemById = (state, id) => baseStore.getItems(state)[id]
-const flattenTree = (selector, entry) => entry.entries.length ? _.flatMap(e => flattenTree(selector, selector(e)), entry.entries) : [entry]
+const getLeaves = state => entry => entry.entries.length ? _.flatMap(e => getLeaves(state)(getItemById(state, e)), entry.entries) : [entry]
+const getLeavesById = (state, id) => _.flow([ getItemById, getLeaves(state) ])(state, id)
 
-const getScore = (state, id, prop) => {
-  const selectById = _.curry(getItemById)(state)
-  const getEntries = _.curry(flattenTree)(selectById)
-  const selectProp = _.map(e => e[prop])
-  return _.flow([selectById, getEntries, selectProp, _.sum])(id)
-}
+const getFilter = state => state[identifier].filter
+const visible = _.flow([ getFilter, filter => e => e.external.find && !!e.external.find( e => e.id === filter ) ])
+const addVisible = state => entry => _.flow([ getLeaves(state), _.some( visible(state) ), visible => ({ ...entry, visible }) ])(entry)
 
-const getMaxScore = (state, id) => {
-  const selectById = _.curry(getItemById)(state)
-  const getEntries = _.curry(flattenTree)(selectById)
-  return _.flow([selectById, getEntries])(id).length * 5
-}
+const getScore = (state, id, prop) => _.flow([ getLeavesById, _.map(e => e[prop]), _.sum])(state, id)
 
-const getHistoricalScore = (state, id, prop) => {
-  const selectById = _.curry(getItemById)(state)
-  const getEntries = _.curry(flattenTree)(selectById)
-  return _.flow([selectById, getEntries, _.map(_.property(`historical.${prop}`)), _.zipAll, _.map(d => ({ level: _.sumBy('level', d), semester: d[0].semester }))])(id)
-}
+const getMaxScore = _.flow([ getLeavesById, leaves => leaves.length * 5 ])
 
 export const selectors = baseStore.withLoadedSelector({
-  getItemById,
+  getItemById: (state, id) => _.flow([ getItemById, addVisible(state) ])(state, id),
   getItemByLabel: (state, label) => _.find(e => e.label === label, baseStore.getItems(state)),
   getScore,
-  getHistoricalScore,
   getMaxScore,
+  getFilter,
 })
 
 export const actions = baseStore.withLoadAction({
+  setFilter: id => ({ type: 'SET_PRACTICALS_FILTER', payload: { id }}),
   levelUpDone: id => ({ type: 'LEVEL_UP_DONE', payload: { id }}),
   levelDownDone: id => ({ type: 'LEVEL_DOWN_DONE', payload: { id }}),
   levelUpConfident: id => ({ type: 'LEVEL_UP_CONFIDENT', payload: { id }}),
@@ -48,7 +39,16 @@ const level = (state, id, p, val) => {
   return {...state, [id]: entry }
 }
 
-export const reducer = combineReducers(baseStore.withLoadedReducer(function reducer(state = {undefined: {label: 'root', entries: []}}, action) {
+const filter = (state = 3, action) => {
+  switch (action.type) {
+    case 'SET_PRACTICALS_FILTER':
+      return action.payload.id
+    default:
+      return state
+  }
+}
+
+export const reducer = combineReducers({...baseStore.withLoadedReducer(function reducer(state = {undefined: {label: 'root', entries: []}}, action) {
   switch (action.type) {
     case 'LEVEL_UP_DONE':
       return level(state, action.payload.id, 'done', 1)
@@ -61,4 +61,4 @@ export const reducer = combineReducers(baseStore.withLoadedReducer(function redu
     default:
       return state
   }
-}))
+}), filter })
