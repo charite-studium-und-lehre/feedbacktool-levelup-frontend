@@ -7,7 +7,7 @@ import DashboardCard from './DashboardCard'
 
 const Practicals = needsData(
     () => <div className="m-2">
-        <PracticalsScore headings />
+        <PracticalsScore headings   width='1rem' height='1rem'  borderRadius='50%' />
     </div>
 , selectors.loaded, actions.load)
 
