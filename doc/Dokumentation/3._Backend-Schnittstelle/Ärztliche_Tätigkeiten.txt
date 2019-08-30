@@ -5,3 +5,9 @@ Creation-Date: 2019-06-25T17:53:18+02:00
 ====== Ärztliche Tätigkeiten ======
 
 
+Selbsteinschätzung an Server senden:
+
+POST oder UPDATE
+
+Server sendet 204 created 
+oder 400 "BAD REQUEST" bei ungültiger ID oder Wert
