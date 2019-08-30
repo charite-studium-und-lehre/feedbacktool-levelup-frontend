@@ -3,20 +3,22 @@ import { combineReducers } from 'redux'
 import initialState from './Data'
 import BaseStore from '../Core/BaseStore'
 
-export const identifier = 'practicals'
-const baseStore = BaseStore(identifier)
-const getItemById = (state, id) => baseStore.getItems(state)[id]
-const getLeaves = state => entry => entry.entries.length ? _.flatMap(e => getLeaves(state)(getItemById(state, e)), entry.entries) : [entry]
-const getLeavesById = (state, id) => _.flow([ getItemById, getLeaves(state) ])(state, id)
+const storeIdentifier = 'practicals'
+export const identifier = storeIdentifier
+const baseStore = BaseStore(storeIdentifier)
+const getItemById = _.curry((state, id) => baseStore.getItems(state)[id])
+const getLeavesById = state => _.flow([ getItemById(state), getLeaves(state) ])
+const getLeaves = state => entry => entry.entries.length ? _.flatMap( getLeavesById(state) )(entry.entries) : [entry]
 
-const getFilter = state => state[identifier].filter
-const visible = _.flow([ getFilter, filter => e => e.external.find && e.external.find( e => e.id === filter ) ])
+const getFilter = state => state[storeIdentifier].filter
+const visibleFnFromFilter = filter => filter ? e => e.external.find( e => e.id === filter ) : () => true
+const visible = _.flow([ getFilter, visibleFnFromFilter ])
 const addVisible = state => entry => _.flow([ getLeaves(state), _.some( visible(state) ), visible => ({ ...entry, visible }) ])(entry)
 
-const getScore = (state, id, prop) => _.flow([ getLeavesById, _.map(prop), _.sum])(state, id)
+const getScore = (state, id, prop) => _.flow([ getLeavesById(state), _.map(prop), _.sum])(id)
 const getExternalScore = (state, id) => getScore(state, id, e => visible(state)(e) ? visible(state)(e).value : 0)
 
-const getMaxScore = _.flow([ getLeavesById, leaves => leaves.length * 5 ])
+const getMaxScore = (state, id) => _.flow([ getLeavesById(state), leaves => leaves.length * 5 ])(id)
 
 export const selectors = baseStore.withLoadedSelector({
   getItemById: (state, id) => _.flow([ getItemById, addVisible(state) ])(state, id),
@@ -41,7 +43,7 @@ const level = (state, id, p, val) => {
   return {...state, [id]: entry }
 }
 
-const filter = (state = 3, action) => {
+const filter = (state = null, action) => {
   switch (action.type) {
     case 'SET_PRACTICALS_FILTER':
       return action.payload.id
