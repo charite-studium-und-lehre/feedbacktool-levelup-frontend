@@ -100,21 +100,21 @@ id: _.uniqueId(),
                     label: <Trans>Eintrag für die allgemeine Therapie in Patientenkurve vorschreiben (Gegenzeichnung Arzt)</Trans>,
 			              done: 0,
                     confident: 2,
-                    external: [{id: 3, value: 2}],
+                    external: [{id: 1, value: 2}],
 id: _.uniqueId(),
                   },
                   {
                     label: <Trans>Plan für die patientenspezifische Therapie entwerfen (Abstimmung mit Arzt)</Trans>,
 			              done: 0,
                     confident: 2,
-                    external: [{id: 4, value: 1}],
+                    external: [{id: 2, value: 1}],
                     id: _.uniqueId(),
                   },
                   {
                     label: <Trans>Plan in Patientenkurve eintragen und therapeutische Anforderungsformulare ausfüllen (Gegenzeichnung Arzt)</Trans>,
 			              done: 0,
                     confident: 2,
-                    external: [{id: 5, value: 10}],
+                    external: [{id: 3, value: 10}],
 id: _.uniqueId(),
                   },
                 ],
@@ -192,12 +192,14 @@ id: _.uniqueId(),
                   label: <Trans>Nicht-unterschreibungspflichtige Untersuchungen/Prozeduren (z.B. Blutentnahmen, Blasenkatheter, Magensonde, Röntgen-Untersuchungen)</Trans>,
                   done: 1,
                   confident: 1,
+                  external: [{id: 4, value: 6}],
 id: _.uniqueId(),
                 },
                 {
                   label: <Trans>Unterschriftspflichtige Prozeduren mit Gegenzeichung des Arztes (Gabe von Erythrozyten, Thrombozyten oder Plasmapräparaten)</Trans>,
                   done: 1,
                   confident: 1,
+                  external: [{id: 5, value: 10}],
 id: _.uniqueId(),
                 },
               ],
@@ -212,6 +214,7 @@ id: _.uniqueId(),
                   label: <Trans>Informieren des Patienten (allgemeine Information zu Art der Beschwerden, dem Krankheitsbild und der Diagnostik und Therapie</Trans>,
                   done: 1,
                   confident: 2,
+                  external: [{id: 6, value: 8}],
 id: _.uniqueId(),
                 },
                 {
@@ -349,29 +352,32 @@ id: _.uniqueId(),
 }
 export const ExternAssissing = [
   {
-    id: 3,
+    id: 1,
     name :  'name 1',
     datum : new Date()
   },
   {
-    id: 4,
+    id: 2,
     name :  'name 2',
     datum : new Date()
   },
   {
-    id: 5,
+    id: 3,
     name :  'name 3',
     datum : new Date()
   },
   {
+    id: 4,
     name :  'name 4',
     datum : new Date()
   },
   {
+    id: 5,
     name :  'name 5',
     datum : new Date()
   },
   {
+    id: 6,
     name :  'name 6',
     datum : new Date()
   },
