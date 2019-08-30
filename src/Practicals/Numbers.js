@@ -17,7 +17,7 @@ const Numbers = ({ maxValue = 5, ...props }) => {
                 <FontAwesomeIcon icon={faMinusCircle} className="text-muted mr-1" onClick={props.decrement} />
             </span>
         }
-        <span onClick={props.onClick}>{dev}</span>
+        <span onClick={props.onClick}>{props.average &&<span style={{fontSize:'1.3rem'}} className='mr-3'>&#8960;</span>}{dev}</span>
         {props.edit &&
             <span style={{ cursor: 'pointer' }}>
                 <FontAwesomeIcon icon={faPlusCircle} className="text-muted ml-1" onClick={props.increment} />

@@ -29,7 +29,7 @@ const Toolbar = ({ t, ...props}) => {
                         <Button icon={faEnvelopeOpenText} active={props.extended} onClick={props.toggleExtended}>{t(`Fremdeinschätzung`)}</Button>
                     </div>
                     <div className="col-6">
-                        <Score headings={true} entry={props.root} width={'1.1rem'} height={'1.1rem'} borderRadius= {'50%'} />
+                        <Score headings={true} entry={props.root} average={true} width={'1.1rem'} height={'1.1rem'} borderRadius= {'50%'} />
                     </div>
                 </div>
                 <SlideDown className="animated fast">
@@ -42,7 +42,7 @@ const Toolbar = ({ t, ...props}) => {
                     {props.extended &&
                         <div className="p-2">
                             <div className='row'>
-                            <ExternAssessingn onClick={props.toggleExtended} col='4'/>
+                            <ExternAssessingn onClick={props.toggleExtended} button={true} col='4' />
                             </div>
                             <div className="d-flex">
                                 <div className="flex-grow-1">

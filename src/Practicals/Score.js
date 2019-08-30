@@ -20,6 +20,7 @@ const Score = makeExtendable( ({ t, ...props }) => (
                 height={props.height}
                 borderRadius= {props.borderRadius}
                 edit={props.edit}
+                average={props.average}
                 value={props.done}
                 maxValue={props.maxScore}
                 increment={_.partial(props.levelUpDone, props.entryId)}
@@ -39,6 +40,7 @@ const Score = makeExtendable( ({ t, ...props }) => (
                 height={props.height}
                 borderRadius= {props.borderRadius}
                 edit={props.edit}
+                average={props.average}
                 value={props.confident}
                 maxValue={props.maxScore}
                 increment={_.partial(props.levelUpConfident, props.entryId)}
@@ -56,6 +58,7 @@ const Score = makeExtendable( ({ t, ...props }) => (
                 width={props.width}
                 height={props.height}
                 borderRadius= {props.borderRadius}
+                average={props.average}
                 value={props.external}
                 maxValue={props.maxScore}
                 onClick={props.toggleExtended} />
