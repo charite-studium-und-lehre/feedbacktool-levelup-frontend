@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { line } from 'd3-shape'
 import { select } from 'd3-selection'
 import { animationTime as at } from './Utils'

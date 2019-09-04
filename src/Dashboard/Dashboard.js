@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Progress from './Progress/Progress'
+import Progress from './Progress'
 import Timeline from './Timeline/Timeline'
 import Stations from './Stations'
 import Practicals from './Practicals'
@@ -10,7 +10,9 @@ export default () =>
     <div className="container-fluid">
         <div className="row">
             <div className="col-lg-6 mt-2">
-                <Progress />
+                <Link to="/progress">
+                    <Progress />
+                </Link>
             </div>
             <div className="col-lg-6 mt-2">
                 <Timeline />

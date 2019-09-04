@@ -1,7 +1,7 @@
 import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
 import Results from './Data'
-import BaseStore from '../../Core/BaseStore'
+import BaseStore from '../Core/BaseStore'
 
 export const identifier = 'progress'
 const baseStore = BaseStore(identifier)

@@ -9,6 +9,7 @@ import Strengths from '../Strengths/Strengths'
 import Stations from '../Exams/Stations/Stations'
 import Consulting from '../consulting/Consulting'
 import Practicals from '../Practicals/Practicals'
+import Progress from '../Progress/Progress'
 import i18next from 'i18next'
 
 const Routes = [
@@ -82,6 +83,13 @@ const Routes = [
     path: '/exams/stations/:test',
     component: Stations,
     breadcrumb: params => <Link to="/exams/stations">{i18next.t(`Praktische Prüfungen`)}</Link>,
+    exact: true,
+    private: true,
+  },
+  {
+    path: '/progress',
+    component: Progress,
+    breadcrumb: () => <Link to="/progress">{i18next.t('Studienfortschritt')}</Link>,
     exact: true,
     private: true,
   },
