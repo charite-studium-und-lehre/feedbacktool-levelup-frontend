@@ -16,7 +16,9 @@ const dashboardData = _.flow([
 
 export const selectors = baseStore.withLoadedSelector({
     getTree: state => baseStore.getItems(state),
-    getDashboardData: _.flow([ baseStore.getItems, dashboardData ])
+    getDashboardData: _.flow([ baseStore.getItems, dashboardData ]),
+    getTotal,
+    getDone,
 })
 
 export const actions = baseStore.withLoadAction({}, Results)
