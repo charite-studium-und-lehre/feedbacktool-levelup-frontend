@@ -19,7 +19,7 @@ const Container = _.compose([needsData(selectors.loaded, actions.load), connect(
             <Tabs>
             { root.entries.map(e =>
                 <div key={e} className="p-2" title={<Title entryId={e} />}>
-                    <Item entryId={e} level={1} />
+                    <Item entryId={e} /> 
                 </div>
             )}
             </Tabs>

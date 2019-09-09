@@ -382,6 +382,20 @@ export const ExternAssissing = [
     datum : new Date()
   },
 ]
+export const ExternAssessingValue = [
+  {
+    id: 1,
+    name :  'name 1',
+    datum : new Date(),
+    value: 3
+  },
+  {
+    id: 2,
+    name :  'name 2',
+    datum : new Date(),
+    value: 3
+  }
+]
 const addHistoricalScore = item => {
   const random = (a,b) => () => _.round(randomUniform.source(seedrandom(Math.random()))(a,b)())
   return { ...item, historical: {

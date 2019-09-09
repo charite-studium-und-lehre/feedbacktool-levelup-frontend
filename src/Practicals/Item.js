@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import makeExtendable from '../Core/makeExtendable'
 import Score from './Score'
 import { selectors } from './Store'
 
@@ -9,41 +8,47 @@ import { selectors } from './Store'
 const stateToProps = (state, ownProps) => ({ entry: selectors.getItemById(state, ownProps.entryId) })
 
 const Item = connect(stateToProps)(props => {
-
   const ItemLevel1 = (props) => (
     <div>
       <div>
         <h4 className='text-center'>{props.label}</h4>
-        <div>
-          {props.children}
-        </div>
+        <Score edit={props.edit} entryId={props.entryId} average={props.average} width='1rem' height='1rem' borderRadius='50%' />
+      </div>
+      <div>
+        {props.children}
       </div>
     </div>
   )
   const ItemLevel2 = (props) => (
-    <div className='row'>
+    <div className='with-shadow'>
+        <h5 className='text-center'>{props.label}</h5>
+        <div>
+          {props.children}
+        </div>
+    </div>
+  )
+  const ItemLevel3 = (props) => (
+    <div className='row '>
       <div className='col-6'>
       {props.label}
       </div>
-        <div className='col-6'>
-          {props.children}
-        </div>
-      
-    </div>
-  )
-
-  return props.entry.visible ?
-    <div>
-      <div>
-        <h4 className='text-center'>{props.entry.label}</h4>
-        <Score edit={!props.entry.entries.length} entryId={props.entryId} average={!!props.entry.entries.length} width='1rem' height='1rem' borderRadius='50%' />
-         {props.entry.entries.map(f => <ItemLevel1 key={f} entryId={f} label={props.entry.label}>
-          {props.entry.entries.map(f => <ItemLevel2 key={f} entryId={f} label={props.entry.label}>
-            <Score edit={!props.entry.entries.length} entryId={props.entryId} average={!!props.entry.entries.length} width='1rem' height='1rem' borderRadius='50%' />
-          </ItemLevel2>)}
-         </ItemLevel1>)}
+      <div className='col-6'>
+       {props.children}
       </div>
     </div>
+  )
+  return props.entry.visible ?
+      <div>
+        <ItemLevel1 average={!!props.entry.entries.length} label={props.entry.label}>
+          {props.entry.entries.map(f => 
+            <ItemLevel2 key={f} entryId={f} label={props.entry.label}>
+                {props.entry.entries.map(e => 
+                  <ItemLevel3 key={e} entryId={e} label={props.entry.label}>
+                    <Score  edit={true} entryId={props.entryId} width='.8rem' height='.6rem' borderRadius='5%' />
+                  </ItemLevel3>)}
+            </ItemLevel2>)}
+         </ItemLevel1>
+      </div>
     :
     <div></div>
 })

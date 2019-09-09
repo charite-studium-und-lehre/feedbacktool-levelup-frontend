@@ -5,7 +5,7 @@ import { selectors, actions } from './Store'
 import { withTranslation } from 'react-i18next'
 import { SlideDown } from 'react-slidedown'
 import makeExtendable from '../Core/makeExtendable'
-import ExternAssessingn from './ExternAssessing'
+import ExternAssessingWithValue from './ExternAssessingValue'
 import Numbers from './Numbers'
 export const colors = ['hsla(208, 51%, 27%, 1)', '	hsl(280, 100%, 15%)', 'hsl(15, 100%, 25%)']
 const colorsRgb = ['hsla(208, 51%, 27%, .2)', '	hsl(280, 100%, 15%, .2)', ' hsl(15, 100%, 25%, .2)']
@@ -70,8 +70,9 @@ const Score = makeExtendable( ({ t, ...props }) => (
         <div className='col-4'></div>
         <div className='col-8'>
             <SlideDown >
-            {props.extended && <div>
-                <ExternAssessingn/>
+            {props.extended && 
+            <div>
+                <ExternAssessingWithValue/>
             </div>
             }
         </SlideDown>
