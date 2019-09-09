@@ -21,6 +21,7 @@ id: _.uniqueId(),
                       label: <Trans>Vollständige oder fokussierte Anamnese erheben und körperliche Untersuchung  durchführen (entsprechend Situationsanforderung)</Trans>,
 			                done: 3,
                       confident: 3,
+                      external: [{ id: 1, value: 4 }, { id: 4, value: 2 }],
 id: _.uniqueId(),
                     },
                     {
@@ -382,20 +383,7 @@ export const ExternAssissing = [
     datum : new Date()
   },
 ]
-export const ExternAssessingValue = [
-  {
-    id: 1,
-    name :  'name 1',
-    datum : new Date(),
-    value: 3
-  },
-  {
-    id: 2,
-    name :  'name 2',
-    datum : new Date(),
-    value: 3
-  }
-]
+
 const addHistoricalScore = item => {
   const random = (a,b) => () => _.round(randomUniform.source(seedrandom(Math.random()))(a,b)())
   return { ...item, historical: {

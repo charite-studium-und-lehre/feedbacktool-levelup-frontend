@@ -11,12 +11,12 @@ const getLeavesById = state => _.flow([ getItemById(state), getLeaves(state) ])
 const getLeaves = state => entry => entry.entries.length ? _.flatMap( getLeavesById(state) )(entry.entries) : [entry]
 
 const getFilter = state => state[storeIdentifier].filter
-const visibleFnFromFilter = filter => filter ? e => e.external.find( e => e.id === filter ) : () => true
+const visibleFnFromFilter = filter => e => filter ? e.external.find( e => e.id === filter ) : e.external
 const visible = _.flow([ getFilter, visibleFnFromFilter ])
 const addVisible = state => entry => _.flow([ getLeaves(state), _.some( visible(state) ), visible => ({ ...entry, visible }) ])(entry)
 
 const getScore = (state, id, prop) => _.flow([ getLeavesById(state), _.map(prop), _.sum])(id)
-const getExternalScore = (state, id) => getScore(state, id, e => visible(state)(e) ? visible(state)(e).value : 0)
+const getExternalScore = (state, id) => getScore(state, id, e => visible(state)(e) ? visible(state)(e) : 0)
 
 const getMaxScore = (state, id) => _.flow([ getLeavesById(state), leaves => leaves.length * 5 ])(id)
 

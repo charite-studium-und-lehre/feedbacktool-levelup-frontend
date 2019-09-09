@@ -7,55 +7,39 @@ import { selectors } from './Store'
 
 const stateToProps = (state, ownProps) => ({ entry: selectors.getItemById(state, ownProps.entryId) })
 
-const Item = connect(stateToProps)(props => {
-  const ItemLevel1 = (props) => (
+const Item = connect(stateToProps)(props => (
+  <div>
     <div>
-      <div>
-        <h4 className='text-center'>{props.label}</h4>
-        <Score edit={props.edit} entryId={props.entryId} average={props.average} width='1rem' height='1rem' borderRadius='50%' />
-      </div>
-      <div>
-        {props.children}
-      </div>
+      <h4 className='text-center'>{props.entry.label}</h4>
+      <Score edit={props.edit} entryId={props.entryId} average={true} width='1rem' height='1rem' borderRadius='50%' />
     </div>
-  )
-  const ItemLevel2 = (props) => (
-    <div className='with-shadow'>
-        <h5 className='text-center'>{props.label}</h5>
-        <div>
-          {props.children}
-        </div>
+    <div>
+      {props.entry.entries.map(f => <ItemLevel2 key={f} entryId={f} /> )}
     </div>
-  )
-  const ItemLevel3 = (props) => (
-    <div className='row '>
-      <div className='col-6'>
-      {props.label}
-      </div>
-      <div className='col-6'>
-       {props.children}
-      </div>
-    </div>
-  )
-  return props.entry.visible ?
+  </div>
+))
+
+const ItemLevel2 = connect(stateToProps)(props => {
+  return props.entry.visible ? <div className='with-shadow'>
+      <h5 className='text-center'>{props.entry.label}</h5>
       <div>
-        <ItemLevel1 average={!!props.entry.entries.length} label={props.entry.label}>
-          {props.entry.entries.map(f => 
-            <ItemLevel2 key={f} entryId={f} label={props.entry.label}>
-                {props.entry.entries.map(e => 
-                  <ItemLevel3 key={e} entryId={e} label={props.entry.label}>
-                    <Score  edit={true} entryId={props.entryId} width='.8rem' height='.6rem' borderRadius='5%' />
-                  </ItemLevel3>)}
-            </ItemLevel2>)}
-         </ItemLevel1>
+        {props.entry.entries.map( e => <ItemLevel3 key={e} entryId={e} /> )}
       </div>
-    :
-    <div></div>
+  </div> : <div></div>
 })
+
+const ItemLevel3 = connect(stateToProps)(props => (
+  <div className='row '>
+    <div className='col-6'>
+    {props.entry.label}
+    </div>
+    <div className='col-6'>
+      <Score edit={true} entryId={props.entryId} width='.8rem' height='.6rem' borderRadius='5%' />
+    </div>
+  </div>
+))
+
 export default Item
-
-
-
 
 // const stateToProps = (state, ownProps) => ({ entry: selectors.getItemById(state, ownProps.entryId) })
 
