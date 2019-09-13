@@ -11,5 +11,5 @@ Creation-Date: 2019-09-12T13:07:48+02:00
 
 ''apt install apache2 mysql-server mysql-client vim''
 
-''apt install php7.3-fpm php7.3-cli php-apcu php-apcu-bc php7.3-mysql php7.3-ldap php7.3-mbstring php7.3-zip php7.3-intl''
+''apt install php7.3-fpm php7.3-cli php-apcu php-apcu-bc php7.3-mysql php7.3-ldap php7.3-mbstring php7.3-zip php7.3-intl php7.3-curl php7.3-xml unzip''
 
