@@ -15,7 +15,7 @@ const Title = connect((state, ownProps) => ({ entry: selectors.getItemById(state
 const Container = _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps)])(({ root }) =>
     <div>
         <Toolbar/>
-        <div className="card mt-4 p-2">
+        <div className="card mt-4 p-1">
             <Tabs>
             { root.entries.map(e =>
                 <div key={e} className="p-2" title={<Title entryId={e} />}>

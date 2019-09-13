@@ -1,47 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import { selectors, actions } from './Store'
 import { withTranslation } from 'react-i18next'
 import { SlideDown } from 'react-slidedown'
 import makeExtendable from '../Core/makeExtendable'
 import ExternAssessingWithValue from './ExternAssessingValue'
 import Numbers from './Numbers'
-export const colors = ['hsla(208, 51%, 27%, 1)', '	hsl(280, 100%, 15%)', 'hsl(15, 100%, 25%)']
-const colorsRgb = ['hsla(208, 51%, 27%, .2)', '	hsl(280, 100%, 15%, .2)', ' hsl(15, 100%, 25%, .2)']
 
-const ExternalScore = props => <div className="col-4 p-0">
-    <div  style={{ color: colors[2] }}>
-        <Numbers
-            colorsRgb={colorsRgb[2]}
-            color={colors[2]}
-            width={props.width}
-            height={props.height}
-            borderRadius= {props.borderRadius}
-            average={props.average}
-            value={props.external.length ? props.external[0].value : 0}
-            maxValue={props.maxScore}
-            onClick={props.toggleExtended} />
-        {props.headings &&
-            <div className="font-weight-bold">
-                <div >{props.label}</div>
-            </div>}
-    </div>
-    <div className='col-4'></div>
-    <div className='col-8'>
-        <SlideDown >
-            {props.extended && 
-            <div>
-                <ExternAssessingWithValue values={props.external} />
-            </div>
-            }
-        </SlideDown>
-    </div>
-</div>
+export const colors = ['hsla(208, 51%, 27%, 1)','hsl(188, 86%, 26%)', 'hsl(15, 100%, 25%)']
+const colorsRgb = ['hsla(208, 51%, 27%, .2)', 'hsl(188, 86%, 26%, .2)', ' hsl(15, 100%, 25%, .2)']
 
 const Score = makeExtendable( ({ t, ...props }) => (
     <div className="row text-center">
-        <div className="col-4 p-0" style={{ color: colors[0] }}>
+        <div className="col-sm-4 p-0" style={{ color: colors[0] }}>
             <Numbers
                 colorsRgb={colorsRgb[0]}
                 color={colors[0]}
@@ -60,7 +34,7 @@ const Score = makeExtendable( ({ t, ...props }) => (
                 </div>
             }
         </div>
-        <div className="col-4 p-0" style={{ color: colors[1] }}>
+        <div className="col-sm-4 p-0" style={{ color: colors[1] }}>
             <Numbers
                 colorsRgb={colorsRgb[1]}
                 color={colors[1]}
@@ -79,7 +53,38 @@ const Score = makeExtendable( ({ t, ...props }) => (
                 </div>
             }
         </div>
-        <ExternalScore {...props} label={t(`Traue ich dir zu`)} />
+        <div className="col-sm-4 p-0"  style={{ color: colors[2] }}>
+        <Numbers
+            colorsRgb={colorsRgb[2]}
+            color={colors[2]}
+            width={props.width}
+            height={props.height}
+            borderRadius= {props.borderRadius}
+            average={props.average}
+            value={props.external.length ? props.external[0].value : 0}
+            maxValue={props.maxScore}/>
+        {props.headings &&
+            <div className="font-weight-bold">
+                <div>{t(`Wird mir zugetrau`)}</div>
+            </div>}
+            { props.datum && <div>
+                  { props.external.length ? 
+                  <div onClick={props.toggleExtended}>
+                  <div  style={{cursor:'pointer'}}>{new Date().toLocaleDateString()}</div>
+                   <span  style={{cursor:'pointer'}}><FontAwesomeIcon icon={props.extended? faMinus : faPlus}/></span>  
+                      </div>
+                   : null}
+            </div>}
+    </div>
+    <div className="col-8 m-auto" style={{minWidth:'22rem', maxWidth:'26rem'}} >
+        <SlideDown >
+            {props.extended && 
+            <div>
+                <ExternAssessingWithValue values={props.external} />
+            </div>
+            }
+        </SlideDown>
+    </div>
     </div>
 )
 )

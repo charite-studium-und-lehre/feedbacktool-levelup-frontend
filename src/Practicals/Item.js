@@ -9,57 +9,45 @@ const stateToProps = (state, ownProps) => ({ entry: selectors.getItemById(state,
 
 const Item = connect(stateToProps)(props => (
   <div>
-    <div>
-      <h4 className='text-center'>{props.entry.label}</h4>
-      <Score edit={props.edit} entryId={props.entryId} average={true} width='1rem' height='1rem' borderRadius='50%' />
+    <div className='mb-3'>
+      <h5 className='text-center'>{props.entry.label}</h5>
+      <div className="m-auto" style={{ maxWidth: '45rem' }}>
+        <Score edit={props.edit} entryId={props.entryId} average={true} width='.9rem' height='.9rem' borderRadius='50%' />
+      </div>
     </div>
-    <div>
-      {props.entry.entries.map(f => <ItemLevel2 key={f} entryId={f} /> )}
+    <div >
+      {props.entry.entries.map(f => <ItemLevel2 key={f} entryId={f} />)}
     </div>
   </div>
 ))
 
 const ItemLevel2 = connect(stateToProps)(props => {
-  return props.entry.visible ? <div className='with-shadow'>
-      <h5 className='text-center'>{props.entry.label}</h5>
-      <div>
-        {props.entry.entries.map( e => <ItemLevel3 key={e} entryId={e} /> )}
-      </div>
+  return props.entry.visible ? <div className='with-shadow-2px pl-2   mb-3 overflow-hidden '>
+    {props.entry.entries.length ? <h6 className='text-center mt-3 mb-4'>{props.entry.label}</h6> : null }
+    {!props.entry.entries.length &&
+      <div className="row pb-3">
+        <div className="col-sm-12 col-md-5">
+          <span>{props.entry.label}</span>
+        </div>
+        <div className="col-sm-12 mt-sm-3 col-md-7">
+        <Score edit={true} entryId={props.entryId} width='.8rem' height='.6rem' borderRadius='5%' datum={true}/>
+        </div>
+      </div>}
+    <div >
+      {props.entry.entries.map(e => <ItemLevel3 key={e} entryId={e} />)}
+    </div>
   </div> : <div></div>
 })
 
 const ItemLevel3 = connect(stateToProps)(props => (
-  <div className='row '>
-    <div className='col-6'>
-    {props.entry.label}
+  <div className='row with-shadow mt-2 py-2'>
+    <div className='col-xs-6 col-md-12 col-lg-6 mb-sm-2'>
+      {props.entry.label}
     </div>
-    <div className='col-6'>
-      <Score edit={true} entryId={props.entryId} width='.8rem' height='.6rem' borderRadius='5%' />
+    <div className='col-xs-6 col-md-12  col-lg-6 mt-2 '>
+      <Score edit={true} entryId={props.entryId} width='.8rem' height='.6rem' borderRadius='5%' datum={true} />
     </div>
   </div>
 ))
 
 export default Item
-
-// const stateToProps = (state, ownProps) => ({ entry: selectors.getItemById(state, ownProps.entryId) })
-
-// const Item = connect(stateToProps)(props =>
-//   props.entry.visible ? <div className="mt-2 ">
-//     <div className={`p-2 pb-3 with-shadow ${props.level === 3 ? 'mx-2' : props.level === 2 ? 'mx-2 mb-4': ''}`} style={{ backgroundColor: 'rgb(210, 220, 152)' }}>
-//       <div className="row">
-//         <div className={`col-xl-${props.level <= 2 ? '12' : '6'} pr-0`}>
-//           <div className={props.level <= 2 ? "font-weight-bold mb-2" : "" } style={{ fontSize: '.8rem', textAlign: `${props.level <= 2 ? 'center' : 'left'}` }}>
-//             {props.entry.label}
-//           </div>
-//         </div>
-//         <div className='col-lg-6' style={{ margin: props.level <= 2 ? '.5rem auto' : '' }}>
-//           <Score edit={!props.entry.entries.length} entryId={props.entryId} average={!!props.entry.entries.length} width={props.level === 1 ? '1rem' : props.level === 2 ? '.8rem' : '.8rem'} height={props.level === 1 ? '1rem' : !!props.entry.entries.length ? '.85rem' : '.6rem'} borderRadius={!!props.entry.entries.length ? '50%' : '5%'} />
-//         </div>
-//         <div className='col-md-12'>
-//           {props.entry.entries.map(f => <Item key={f} entryId={f} level={props.level + 1} />)}
-//         </div>
-//       </div>
-//     </div>
-//   </div> : <div></div>
-// )
-// export default Item

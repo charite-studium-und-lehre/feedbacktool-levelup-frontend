@@ -9,7 +9,7 @@ const List = ({ t }) => {
                 {level(t).map((e, d) => 
                 <div key={d}>
                     <div>{`${d} - ${e}`}</div>
-                    <Numbers color="rgb(127, 144, 30)" colorsRgb="rgba(127, 144, 30, .3)" value={d} />
+                    <Numbers color="hsl(161, 100%, 25%)" colorsRgb="hsl(161, 100%, 25%, .2)" value={d} />
                 </div>)}
           </div>
 }

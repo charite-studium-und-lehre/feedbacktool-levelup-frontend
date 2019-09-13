@@ -20,16 +20,16 @@ const Toolbar = ({ t, ...props}) => {
     const [ list, setList ] = useState(false)
 
     return (
-        <div className="pt-2 pb-2 mt-2 card sticky-top" style={{ top: '3.7rem' }}>
+        <div className="pt-2 pb-2 mt-2 card" style={{ top: '3.7rem' }}>
             <div>
-                <div className="row">
-                <div className="col-6">
+                <div className="row pb-5 ">
+                <div className=" col-xs-12 col-sm-6  col-md-4 ">
                         <Button className="d-lg-none" icon={faListOl} active={list} onClick={() => setList( !list )} />
                         <Button icon={faFileExport}>{t(`Export`)}</Button>
                         <Button icon={faEnvelopeOpenText} active={props.extended} onClick={props.toggleExtended}>{t(`Fremdeinschätzung`)}</Button>
                     </div>
-                    <div className="col-6">
-                        <Score headings={true} entry={props.root} average={true} width={'1.1rem'} height={'1.1rem'} borderRadius= {'50%'} />
+                    <div className="col-sm-12 col-md-8 mt-sm-3" >
+                        <Score headings={true} entry={props.root} average={true} width={'1rem'} height={'1rem'} borderRadius= {'50%'} />
                     </div>
                 </div>
                 <SlideDown className="animated fast">
