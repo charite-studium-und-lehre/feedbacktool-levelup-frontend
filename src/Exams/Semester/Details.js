@@ -53,6 +53,11 @@ const Details = withTranslation()(({ t, semester }) => {
                             <button type="button" className="btn btn-outline-primary">Fragen und Antworten</button>
                         </Link>
                     </div>
+                    <div className="mt-3 col-md-5">
+                        <Link to=''>
+                            <button type="button" className="btn btn-outline-primary">TellMe</button>
+                        </Link>
+                    </div>
                     <div className="col-md-6 mt-4">
                         <label className="m-0 mr-2"><input type="radio" name="details.mode" checked={mode === 'modules'} onChange={() => setMode('modules')} className="mx-2" />Module</label>
                         <label><input type="radio" name="details.mode" checked={mode === 'subjects'} onChange={() => setMode('subjects')} className="mx-2" />Fächer</label>
