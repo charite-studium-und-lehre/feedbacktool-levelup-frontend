@@ -30,7 +30,7 @@ const icons = id => {
 
 const ChecklistItem = props => 
     <div className="mr-2 mb-2 p-1 card text-info">
-        <div className="mr-2 text-nowrap">
+        <div className="mr-2">
             {props.link && props.done ? 
             <Link to={props.link} className="d-inline-block">
                 <div style={{fontSize: '.75rem'}} >
