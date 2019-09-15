@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import _ from 'lodash/fp'
 import SemesterInfo from '../../Exams/SemesterInfo'
 import PtmInfo from '../../Exams/PtmInfo'
 import StationsInfo from '../../Exams/StationsInfo'
@@ -36,9 +36,15 @@ const graphs = state => [
     },
 ]
 
+const getAllDates = _.flatMap( g => g.data.map( d => d.x ) )
+const getByExam = exam => graphs => graphs.find( g => g.name === exam )
+const getBySemester = semester => graph => graph.data.find( d => d.label === semester )
+
 const selectors = {
     getGraphs: graphs,
     loaded: () => true,
+    getTimerange: _.flow([ graphs, getAllDates, _.over([_.flow(_.min, _.defaultTo(new Date())), _.flow(_.max, _.defaultTo(new Date()))]) ]),
+    getByExamAndSemester: (exam = 'semester', semester) => _.flow([ graphs, getByExam(exam), getBySemester(semester) ])
 }
 
 const actions = {

@@ -13,7 +13,7 @@ const defaultStyle = {
 const SimpleDot = props => {
     const style = _.defaults({ left: `calc(${props.value}% - .4rem)` }, props.style, defaultStyle)
     return (
-        <div style={style} />
+        <div className="animated" style={style} />
     )
 }
 

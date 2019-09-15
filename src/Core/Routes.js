@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Dashboard from '../Dashboard/Dashboard'
-//import Exams from '../Exams/Exams'
+import Exams from '../Exams/Exams'
 import Semester from '../Exams/Semester/Semester'
 import Questions from '../Exams/Semester/Questions'
 import Ptm from '../Exams/Ptm/Ptm'
@@ -21,13 +21,12 @@ const Routes = [
     private: true,
   },
 
-  // {
-  //   path: '/exams/:graphs?',
-  //   component: Exams,
-  //   breadcrumb: () => <Link to="/exams">{i18next.t(`Prüfungen`)}</Link>,
-  //   exact: true,
-  //   private: true,
-  // },
+  {
+    path: '/exams/:exam?/:id?',
+    component: Exams,
+    breadcrumb: () => <Link to="/exams">{i18next.t(`Prüfungen`)}</Link>,
+    private: true,
+  },
 
   {
     path: '/consulting',
@@ -49,6 +48,7 @@ const Routes = [
     path: '/exams/semester/:test',
     component: Semester,
     breadcrumb: params => [
+      <Link to={`/exams/semester`}>MC Prüfungen</Link>,
       <Link to={`/exams/semester/${params.test}`}>{params.test}</Link>
     ],
     exact: true,
@@ -65,6 +65,7 @@ const Routes = [
     path: '/exams/ptm/:test',
     component: Ptm,
     breadcrumb: params => [
+      <Link to={`/exams/semester`}>PTM</Link>,
       <Link to={`/exams/ptm/${params.test}`}>{params.test}</Link>
     ],
     exact: true,

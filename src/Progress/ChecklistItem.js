@@ -23,6 +23,7 @@ const icons = id => {
             return faNotesMedical
         case 70:
             return faMedkit
+        default:
     }
     if(id > 100 && id < 110) return faCalendarAlt
     return null

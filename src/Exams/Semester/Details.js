@@ -12,9 +12,9 @@ import { selectors, actions } from './Store'
 
 const stateToProps = (state, ownProps) => ( {...selectors.getBySemester(state, ownProps.semester)})
 const Chart = _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps))(({ mode, fächer, modules }) => { return mode === 'modules' ?
-modules.map(d =>
+modules.map((d, i) =>
     <BarWithHeader
-        key={d.label}
+        key={i}
         name={d.label}
         result={d.result}
         total={80}

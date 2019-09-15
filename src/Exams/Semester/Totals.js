@@ -21,7 +21,6 @@ const Totals = class extends Component {
         this.state = {
             mode: 'graph',
         }
-        this.histo = _.map(_.groupBy(this.props.dist.map(d => d.y), d => Math.floor(d / 5)), (d, i) => ({x: +i*5, y: d.length, highlight: +i === Math.floor(this.props.resultMean / 5)}))
     }
     
     setMode(mode) {
@@ -36,6 +35,7 @@ const Totals = class extends Component {
     }
     
     render () {
+        const histo = _.map(_.groupBy(this.props.dist.map(d => d.y), d => Math.floor(d / 5)), (d, i) => ({x: +i*5, y: d.length, highlight: +i === Math.floor(this.props.resultMean / 5)}))
         const LegendText = Legends.Exams.Semester.Totals
         return (
             <div className="card p-4">
@@ -65,10 +65,10 @@ const Totals = class extends Component {
                             <div><span className="font-weight-bold">{respSwitch('Dein Ergebnis', 'Du')}: </span>{this.props.resultMean} Pkte</div>
                             <div><span className="font-weight-bold">{respSwitch('Durchschnitt', '∅')}: </span>{this.props.distMean} Pkte</div>
                         </div>
-                        <LinearChart xDomain={[Math.min(...this.histo.map(d => d.x)) - 5, Math.max(...this.histo.map(d => d.x)) + 5]} yDomain={[0,Math.max(...this.histo.map(d => d.y))]}>
+                        <LinearChart xDomain={[Math.min(...histo.map(d => d.x)) - 5, Math.max(...histo.map(d => d.x)) + 5]} yDomain={[0,Math.max(...histo.map(d => d.y))]}>
                             <XAxis label="erreichte Punkte" />
                             <YAxis label="Anzahl Studierender" />
-                            <BarGraph labels width={.75} data={this.histo} color="hsla(33, 100%, 20%, .5)" highlightColor="hsla(33, 100%, 20%, .8)" />
+                            <BarGraph labels width={.75} data={histo} color="hsla(33, 100%, 20%, .5)" highlightColor="hsla(33, 100%, 20%, .8)" />
                         </LinearChart>
                     </div>
                     )}

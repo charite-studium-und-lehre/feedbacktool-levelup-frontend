@@ -36,7 +36,6 @@ class AnimatedText extends Component {
             fill={this.props.color}
             style={this.props.style}
             dominantBaseline={this.props.dominantBaseline}
-            transform={`rotate(${this.props.vertical ? '-90' : '0'})`}
             className={`animated ${this.props.className}`}>
             {this.props.children}
         </text>)
