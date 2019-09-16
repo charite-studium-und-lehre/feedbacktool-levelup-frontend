@@ -10,7 +10,7 @@ import { withTranslation } from 'react-i18next'
 
 const Button = (props) =>
     <div className={`d-inline-block float-left ${props.className || ''}`}>
-        <button className={`btn btn-sm mr-2 mb-2 ${props.active ? 'btn-success' : 'btn-primary'}`} onClick={props.onClick}>
+        <button className={`btn btn-sm mr-2 mb-2 ${props.active ? 'btn-success' : 'btn-secondary'}`} onClick={props.onClick}>
             <span className="d-none d-lg-inline mr-2">{props.children}</span>
             <FontAwesomeIcon icon={props.icon} />
         </button>
@@ -20,10 +20,10 @@ const Toolbar = ({ t, ...props}) => {
     const [ list, setList ] = useState(false)
 
     return (
-        <div className="pt-2 pb-2 mt-2 card" style={{ top: '3.7rem' }}>
+        <div className="pt-2 pb-2  card" style={{ top: '1rem' }}>
             <div>
-                <div className="row pb-5 ">
-                <div className=" col-xs-12 col-sm-6  col-md-4 ">
+                <div className="row pb-xs-5 pl-1 ">
+                <div className="col-xs-12 col-sm-6  col-md-4 ">
                         <Button className="d-lg-none" icon={faListOl} active={list} onClick={() => setList( !list )} />
                         <Button icon={faFileExport}>{t(`Export`)}</Button>
                         <Button icon={faEnvelopeOpenText} active={props.extended} onClick={props.toggleExtended}>{t(`Fremdeinschätzung`)}</Button>
@@ -39,7 +39,7 @@ const Toolbar = ({ t, ...props}) => {
                         </div>}
                 </SlideDown>
                 <SlideDown className="animated fast">
-                    {props.extended &&
+                    { props.extended &&
                         <div className="p-2">
                             <div className='row'>
                             <ExternAssessingn onClick={props.toggleExtended} button={true} col='4' />

@@ -41,10 +41,10 @@ const ItemLevel2 = connect(stateToProps)(props => {
 
 const ItemLevel3 = connect(stateToProps)(props => (
   <div className='row with-shadow mt-2 py-2'>
-    <div className='col-xs-6 col-md-12 col-lg-6 mb-sm-2'>
+    <div className='col-xs-6 col-md-12 col-lg-6 mb-sm-2 pr-3'>
       {props.entry.label}
     </div>
-    <div className='col-xs-6 col-md-12  col-lg-6 mt-2 '>
+    <div className='col-xs-6 col-md-12 col-lg-6 mt-2 '>
       <Score edit={true} entryId={props.entryId} width='.8rem' height='.6rem' borderRadius='5%' datum={true} />
     </div>
   </div>
