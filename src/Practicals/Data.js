@@ -94,7 +94,7 @@ id: _.uniqueId(),
                 hasGraph: true
               },          
               {
-                label: <Trans>Behandlungsplan erstellen und die Umsetzung einleite</Trans>,
+                label: <Trans>Behandlungsplan erstellen und die Umsetzung einleiten</Trans>,
 			
 id: _.uniqueId(),
                 entries: [
