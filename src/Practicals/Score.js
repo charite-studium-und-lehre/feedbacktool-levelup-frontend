@@ -65,7 +65,7 @@ const Score = makeExtendable( ({ t, ...props }) => (
             maxValue={props.maxScore}/>
         {props.headings &&
             <div className="font-weight-bold">
-                <div>{t(`Wird mir zugetrau`)}</div>
+                <div>{t(`Wird mir zugetraut`)}</div>
             </div>}
             { props.datum && <div>
                   { props.external.length ? 
