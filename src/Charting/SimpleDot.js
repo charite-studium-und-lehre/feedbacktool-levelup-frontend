@@ -12,9 +12,7 @@ const defaultStyle = {
 
 const SimpleDot = props => {
     const style = _.defaults({ left: `calc(${props.value}% - .4rem)` }, props.style, defaultStyle)
-    return (
-        <div className="animated" style={style} />
-    )
+    return <div className="animated" style={style} />
 }
 
 export default SimpleDot

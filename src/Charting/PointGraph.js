@@ -2,7 +2,7 @@ import React from 'react'
 import Label from './Label'
 import AnimatedPoint from './AnimatedPoint'
 
-export default function PointGraph(props) {
+export default function PointGraph({offset = .5, ...props}) {
     const onClick = props.onClick || (() => {})
 
     const texts = !props.labels || props.data.map((d, i) => (<Label
@@ -14,7 +14,7 @@ export default function PointGraph(props) {
     const circles = props.data.map(d => <AnimatedPoint 
         key={"circle" + d.x} 
         selected={props.selectedPoint === d.x} 
-        cx={props.xScale(d.x) + (props.xScale.bandwidth ? props.xScale.bandwidth() / 2 : 0)} 
+        cx={props.xScale(d.x) + (props.xScale.bandwidth ? props.xScale.bandwidth() * offset : 0)} 
         cy={props.yScale(d.y)} 
         r={props.size || "5"}
         fill={props.color || 'black'}
