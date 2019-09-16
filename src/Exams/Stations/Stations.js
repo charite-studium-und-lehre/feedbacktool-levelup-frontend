@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 import { scaleOrdinal } from 'd3-scale'
@@ -18,9 +18,14 @@ const Stations = ({ t, data, match }) => {
     const categories = _.uniq(_.flatMap(data, e => e.stations).map(d => d.category))
     const categoryColors = c => colors(categories.indexOf(c))
 
-    const [ groupFilters, setGroupFilters ] = useState( groups.map(g => ({ label: g, pred: e => e.group === g, selected: g === match.params.test || match.params.test === 'all'})) )
+    const [ groupFilters, setGroupFilters ] = useState(groups.map(g => ({ label: g, pred: e => e.group === g, selected: g === match.params.test || match.params.test === 'all' })))
     const [ categoryFilters, setCategoryFilters ] = useState( categories.map(c => ({label: c, pred: d => d.category === c , selected: true, color: categoryColors(c) })) )
     
+    const selectTest = test => setGroupFilters(groups.map(g => ({ label: g, pred: e => e.group === g, selected: g === test || test === 'all'})))
+    useCallback( () => {
+        selectTest(match.params.test)
+    }, [ match ])
+
     const LegendText = Legends.Exams.Stations.Main
     const filteredData = data
     .filter(_.overSome(groupFilters.filter(f => f.selected).map(f => f.pred)))
@@ -61,4 +66,4 @@ const Stations = ({ t, data, match }) => {
 }
 
 const stateToProps = state => ({ data: selectors.getItems(state) })
-export default needsData(withTranslation()(connect(stateToProps)(Stations)), selectors.loaded, actions.load)
+export default _.flowRight([ needsData(selectors.loaded, actions.load), withTranslation(), connect(stateToProps) ])(Stations)

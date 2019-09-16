@@ -77,12 +77,13 @@ const createResult = _.flow([
             [90] 
         ],
         means: [77, 22, 101],
-        semester,
+        id: _.uniqueId(),
+        label: semester,
         short: semester.substr(0,4) + 'S',
         fächer: SubjectsWithNumbers(semester),
         date: new Date(2013 + parseInt(semester.substr(0,1)), 6 + random(2, -1), 15 + random(20, -10)),
     })
 ])
 
-const Results = _.keyBy(r => r.semester, _.map(createResult)(semesters))
+const Results = _.keyBy(r => r.id, _.map(createResult)(semesters))
 export default Results

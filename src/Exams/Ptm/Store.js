@@ -7,7 +7,7 @@ import Results from './Data'
 export const identifier = 'ptms'
 const baseStore = BaseStore(identifier)
 
-const findBySemester = _.curry((semester, ptms) => ptms[semester])
+const findById = _.curry((id, ptms) => ptms[id])
 const findSubject = subject => _.flow([_.find({'name': subject}), _.defaultTo({})])
 const getFächer = ptm => ptm.fächer
 const getSubjects = _.flow([ getFächer ])
@@ -15,7 +15,8 @@ const getSubject = subject => _.flow([ getSubjects, findSubject(subject) ])
 const getRanking = _.flow([ getSubjects, _.filter(s => s.gesamt >= minQuestions), _.sortBy(s => -s.richtig / s.gesamt) ])
 
 const toTimeline = ptm => ({
-    x: ptm.date,
+    id: ptm.id,
+    date: ptm.date,
     result: ptm.results[0],
     mean: ptm.means[0],
     label: ptm.semester,
@@ -23,10 +24,10 @@ const toTimeline = ptm => ({
 const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 
 export const selectors = baseStore.withLoadedSelector({
-    getSubjectByName: (state, semester, subject) => _.flow([ baseStore.getItems, findBySemester(semester), getSubject(subject) ])(state, semester),
+    getSubjectByName: (state, id, subject) => _.flow([ baseStore.getItems, findById(id), getSubject(subject) ])(state),
     getAllForSubject: (state, subject) => 
     _.flow([ baseStore.getItems, _.map(ptm => ({ ...getSubject(subject)(ptm), short: ptm.short })) ])(state),
-    getBySemester: (state, semester) => _.flow([ baseStore.getItems, findBySemester(semester) ])(state),
+    getById: (state, id) => _.flow([ baseStore.getItems, findById(id) ])(state),
     getLatest: _.flow([ baseStore.getItems, _.sortBy('semester'), _.last ]),
     getSubjects,
     getRanking,

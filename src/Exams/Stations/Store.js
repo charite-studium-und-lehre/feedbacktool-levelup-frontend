@@ -8,10 +8,11 @@ const baseStore = BaseStore(identifier)
 const findBySemester = _.curry((semester, exams) => exams[semester])
 
 const toTimeline = exams => ({
-    x: exams[0].date,
+    date: exams[0].date,
     result: _.meanBy('result', exams),
     mean: _.meanBy('mean', exams),
     label: exams[0].group,
+    id: exams[0].group,
 })
 const getTimeline = _.flow([ baseStore.getItems, _.groupBy(e => e.group), _.map( toTimeline ) ])
 

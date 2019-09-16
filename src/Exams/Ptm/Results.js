@@ -13,7 +13,7 @@ import { selectors, actions } from './Store'
 const labels = ['richtig', 'falsch', 'nicht beantwortet']
 const color = 'rgb(49, 130, 189)'
 
-const stateToProps = (state, props) => ({ data: props.semester ? selectors.getBySemester(state, props.semester) : selectors.getLatest(state) })
+const stateToProps = (state, props) => ({ data: props.id ? selectors.getById(state, props.id) : selectors.getLatest(state) })
 const Chart = _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps)])(({ data }) => 
     <OrdinalChart xDomain={labels} yDomain={[0,100]}>
         <XAxis />

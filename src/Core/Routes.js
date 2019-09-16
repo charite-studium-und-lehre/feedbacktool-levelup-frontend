@@ -81,7 +81,7 @@ const Routes = [
     private: true,
   },
   {
-    path: '/exams/stations/:test',
+    path: '/exams/stations/:test?',
     component: Stations,
     breadcrumb: params => <Link to="/exams/stations">{i18next.t(`Praktische Prüfungen`)}</Link>,
     exact: true,

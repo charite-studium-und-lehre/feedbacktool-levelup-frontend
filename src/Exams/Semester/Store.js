@@ -9,10 +9,11 @@ const baseStore = BaseStore(identifier)
 const findBySemester = _.curry((semester, exams) => exams[semester])
 
 const toTimeline = exam => ({
-    x: exam.date,
+    date: exam.date,
     result: exam.resultMean,
     mean: exam.distMean,
     label: exam.semester,
+    id: exam.semester,
 })
 const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 

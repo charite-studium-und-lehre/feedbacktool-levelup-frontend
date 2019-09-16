@@ -59,7 +59,7 @@ const Subject = props => (
 )
 
 const stateToProps = (state, ownProps) => ({
-    data: selectors.getSubjectByName(state, ownProps.semester, ownProps.name), 
+    data: selectors.getSubjectByName(state, ownProps.id, ownProps.name), 
     timeline: selectors.getAllForSubject(state, ownProps.name)
 })
 

@@ -36,15 +36,15 @@ const graphs = state => [
     },
 ]
 
-const getAllDates = _.flatMap( g => g.data.map( d => d.x ) )
+const getAllDates = _.flatMap( g => g.data.map( d => d.date ) )
 const getByExam = exam => graphs => graphs.find( g => g.name === exam )
-const getBySemester = semester => graph => graph.data.find( d => d.label === semester )
+const getById = id => graph => graph.data.find( d => d.id === id )
 
 const selectors = {
     getGraphs: graphs,
     loaded: () => true,
     getTimerange: _.flow([ graphs, getAllDates, _.over([_.flow(_.min, _.defaultTo(new Date())), _.flow(_.max, _.defaultTo(new Date()))]) ]),
-    getByExamAndSemester: (exam = 'semester', semester) => _.flow([ graphs, getByExam(exam), getBySemester(semester) ])
+    getByExamAndSemester: (exam = 'semester', id) => _.flow([ graphs, getByExam(exam), getById(id) ])
 }
 
 const actions = {

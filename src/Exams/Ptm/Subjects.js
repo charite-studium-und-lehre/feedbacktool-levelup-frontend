@@ -9,8 +9,8 @@ import { selectors, actions } from './Store'
 import css from './Subjects.module.css'
 import { minQuestions } from '../../Utils/Constants';
 
-const stateToProps = (state, { semester }) => _.flow(selectors.getBySemester, selectors.getSubjects, _.sortBy( s => -s.richtig / s.gesamt ), r => ({ fächer: r}))(state, semester)
-const Subjects = _.compose(needsData(selectors.loaded, actions.load), withTranslation(), connect(stateToProps))( ({ t, fächer, semester }) => {
+const stateToProps = (state, { id }) => _.flow(selectors.getById, selectors.getSubjects, _.sortBy( s => -s.richtig / s.gesamt ), r => ({ fächer: r}))(state, id)
+const Subjects = _.compose(needsData(selectors.loaded, actions.load), withTranslation(), connect(stateToProps))( ({ t, fächer, id }) => {
     const categories = _.keys(_.groupBy( s => s.kategorie, fächer ))
     const [ filters, setFilters ] = useState( 
         categories.map(c => ({label: c, pred: d => d.kategorie === c , selected: true, color: 'hsla(200, 50%, 50%, .8)', group: 'categories'}))
@@ -38,7 +38,7 @@ const Subjects = _.compose(needsData(selectors.loaded, actions.load), withTransl
         <div className={css.subjects}>
         {filtered.map((s, rank) =>
             <div className={`w-100`} key={s.name}>
-                <Subject key={s.name} name={s.name} category={s.kategorie} rank={parseInt(rank) + 1} semester={semester} />
+                <Subject key={s.name} name={s.name} category={s.kategorie} rank={parseInt(rank) + 1} id={id} />
             </div>
         )}
         </div>
