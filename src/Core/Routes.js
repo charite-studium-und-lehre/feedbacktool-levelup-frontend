@@ -52,7 +52,6 @@ const Routes = [
   {
     path: '/exams/semester/:test/questions',
     component: Questions,
-    breadcrumb: params => <Link to={`/exams/semester/${params.test}/questions`}>{i18next.t(`Fragen und Antworten`)}</Link>,
     exact: true,
     private: true,
   },
