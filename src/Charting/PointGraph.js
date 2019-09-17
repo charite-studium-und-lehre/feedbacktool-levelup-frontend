@@ -13,7 +13,7 @@ export default function PointGraph({offset = .5, ...props}) {
 
     const circles = props.data.map(d => <AnimatedPoint 
         key={"circle" + d.x} 
-        selected={props.selectedPoint === d.x} 
+        selected={props.selectedPoint === d.x || d.selected} 
         cx={props.xScale(d.x) + (props.xScale.bandwidth ? props.xScale.bandwidth() * offset : 0)} 
         cy={props.yScale(d.y)} 
         r={props.size || "5"}

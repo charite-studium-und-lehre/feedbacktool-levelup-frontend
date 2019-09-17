@@ -1,7 +1,7 @@
 import React from 'react'
 import MainChart from './MainChart'
 
-const Exams = props =>
+const Exams = () =>
 <nav aria-label="breadcrumb">
     <ol className="breadcrumb p-0">
         <li className="breadcrumb-item w-100" aria-current="page">
