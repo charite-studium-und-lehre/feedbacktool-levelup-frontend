@@ -444,6 +444,7 @@ const data = [
 
 const StationsData = data.map( e => ({
     ...e,
+    id: _.uniqueId(),
     stations: e.stations.map(s => ({
         ...s, 
         result: _.round(_.meanBy(s.details.filter( d => _.isNumber(d.value) ), 'value') ),

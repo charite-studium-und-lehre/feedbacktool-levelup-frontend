@@ -78,5 +78,5 @@ const Totals = class extends Component {
     }
 }
 
-const stateToProps = (state, ownProps) => ( {...selectors.getBySemester(state, ownProps.semester)})
+const stateToProps = (state, ownProps) => ( {...selectors.getById(state, ownProps.id)})
 export default needsData(connect(stateToProps)(Totals), selectors.loaded, actions.load)

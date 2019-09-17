@@ -6,14 +6,14 @@ import Results from './Data'
 
 export const identifier = 'semester'
 const baseStore = BaseStore(identifier)
-const findBySemester = _.curry((semester, exams) => exams[semester])
+const findById = _.curry((id, exams) => exams[id])
 
 const toTimeline = exam => ({
     date: exam.date,
     result: exam.resultMean,
     mean: exam.distMean,
     label: exam.semester,
-    id: exam.semester,
+    id: exam.id,
 })
 const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 
@@ -23,7 +23,7 @@ const getSubjectsTotals = _.flow([ baseStore.getItems, _.flatMap( i => i.fächer
 const getRanking = _.flow([ getSubjectsTotals, _.filter(s => s.gesamt >= minQuestions), _.sortBy(s => -s.richtig / s.gesamt) ])
 
 export const selectors = baseStore.withLoadedSelector({
-    getBySemester: (state, semester) => _.flow([ baseStore.getItems, findBySemester(semester)])(state),
+    getById: (state, id) => _.flow([ baseStore.getItems, findById(id)])(state),
     strongestSubject: _.flow([getRanking, _.first]),
     getRanking,
     getSubjectsTotals,

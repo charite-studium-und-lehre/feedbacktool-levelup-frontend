@@ -10,7 +10,7 @@ import needsData from '../../Core/needsData'
 import BarWithHeader from './BarWithHeader'
 import { selectors, actions } from './Store'
 
-const stateToProps = (state, ownProps) => ( {...selectors.getBySemester(state, ownProps.semester)})
+const stateToProps = (state, ownProps) => ( {...selectors.getById(state, ownProps.id)})
 const Chart = _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps))(({ mode, fächer, modules }) => { return mode === 'modules' ?
 modules.map((d, i) =>
     <BarWithHeader
@@ -34,7 +34,7 @@ fächer.map(d =>
 )
 })
 
-const Details = withTranslation()(({ t, semester }) => {
+const Details = withTranslation()(({ t, id }) => {
     const [ mode, setMode ] = useState('modules')
     const LegendText = Legends.Exams.Semester.Details
     return (
@@ -59,7 +59,7 @@ const Details = withTranslation()(({ t, semester }) => {
                     </div>
                 </div>
                 <div className="mt-3">
-                    <Chart mode={mode} semester={semester} />
+                    <Chart mode={mode} id={id} />
                 </div>
             </div>
         </div>

@@ -175,6 +175,7 @@ const createTotalsData = ([result, dist]) => {
         resultMean: _.round(_.mean(result)),
         resultPercent: scale(dist.indexOf(result)),
         distMean: distMean(dist),
+        id: _.uniqueId(),
     }
 }
 
@@ -203,6 +204,6 @@ const createDetailsData = (semester, [result, dist]) => ({
     date: new Date(2013 + parseInt(semester), 6, 15),
 })
 
-const Results = fp.keyBy(r => r.semester, fp.map(semester => _.flow([createResult, _.over([ _.partial(createDetailsData, semester.split(".")[0]), createTotalsData, () => ({ semester })]), fp.mergeAll])(semester) )(semesters))
+const Results = fp.keyBy(r => r.id, fp.map(semester => _.flow([createResult, _.over([ _.partial(createDetailsData, semester.split(".")[0]), createTotalsData, () => ({ semester })]), fp.mergeAll])(semester) )(semesters))
 
 export default Results

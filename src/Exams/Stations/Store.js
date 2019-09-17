@@ -12,7 +12,7 @@ const toTimeline = exams => ({
     result: _.meanBy('result', exams),
     mean: _.meanBy('mean', exams),
     label: exams[0].group,
-    id: exams[0].group,
+    id: exams[0].id,
 })
 const getTimeline = _.flow([ baseStore.getItems, _.groupBy(e => e.group), _.map( toTimeline ) ])
 
