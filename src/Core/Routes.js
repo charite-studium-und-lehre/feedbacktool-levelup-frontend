@@ -24,7 +24,6 @@ const Routes = [
   {
     path: '/exams/:exam?/:id?',
     component: Exams,
-    breadcrumb: () => <Link to="/exams">{i18next.t(`Prüfungen`)}</Link>,
     private: true,
   },
 
@@ -47,10 +46,6 @@ const Routes = [
   {
     path: '/exams/semester/:test',
     component: Semester,
-    breadcrumb: params => [
-      <Link to={`/exams/semester`}>MC Prüfungen</Link>,
-      <Link to={`/exams/semester/${params.test}`}>{params.test}</Link>
-    ],
     exact: true,
     private: true,
   },
@@ -64,10 +59,6 @@ const Routes = [
   {
     path: '/exams/ptm/:test',
     component: Ptm,
-    breadcrumb: params => [
-      <Link to={`/exams/semester`}>PTM</Link>,
-      <Link to={`/exams/ptm/${params.test}`}>{params.test}</Link>
-    ],
     exact: true,
     private: true,
   },
@@ -83,7 +74,6 @@ const Routes = [
   {
     path: '/exams/stations/:test?',
     component: Stations,
-    breadcrumb: params => <Link to="/exams/stations">{i18next.t(`Praktische Prüfungen`)}</Link>,
     exact: true,
     private: true,
   },
