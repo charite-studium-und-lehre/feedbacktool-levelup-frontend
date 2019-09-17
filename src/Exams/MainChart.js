@@ -15,7 +15,6 @@ const MainChart = ({ graphs, history, timerange, selectedPoint, match }) => {
     return <OrdinalChart xDomain={markers.map( m => m.label )} yDomain={[0,1]}>
             <XAxis />
             {graphs.map((g, i) => {
-                //const point = match.params.exam === g.name && _.defaultTo({label: ''})(markers.find( m => (selectedPoint && selectedPoint.x) - m.value < 1000 * 60 * 60 * 24 * 100)).label
                 return <PointGraph
                     offset={i/(graphs.length - 1)*.6 + .2}
                     selectedPoint={selectedPoint}

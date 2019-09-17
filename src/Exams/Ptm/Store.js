@@ -19,7 +19,7 @@ const toTimeline = ptm => ({
     date: ptm.date,
     result: ptm.results[0],
     mean: ptm.means[0],
-    label: ptm.semester,
+    label: ptm.label,
 })
 const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 
