@@ -60,3 +60,7 @@ span.input-group-text {
 ol.breadcrumb {
   margin-bottom: .5rem;
 }
+
+ol.breadcrumb:empty {
+  display: none;
+}
