@@ -12,7 +12,8 @@ const MainChart = ({ graphs, history, timerange, selectedPoint = { id: -1 } }) =
     const years = _.range( timerange[0].getFullYear() - 2000, timerange[1].getFullYear() - 1999 )
     const markers = _.flatMap( y => [{ label: `SS ${y}`, value: new Date(2000+y, 3, 1) }, { label: `WS ${y}/${y+1}`, value: new Date(2000+y, 9, 1) }] )( years )
     const navigate = graph => exam => history.push(`/exams/${graph}/${exam.id}`)
-    return <OrdinalChart xDomain={markers.map( m => m.label )} yDomain={[0,1]}>
+    return <div style={{height: '1rem', minWidth: `${markers.length*4}rem`}}>
+        <OrdinalChart xDomain={markers.map( m => m.label )} yDomain={[0,1]}>
             <XAxis />
             {graphs.map((g, i) => {
                 return <PointGraph
@@ -21,7 +22,8 @@ const MainChart = ({ graphs, history, timerange, selectedPoint = { id: -1 } }) =
                     key={i} data={g.data.map(d => ({ ...d, x: markers.find( m => d.date - m.value < 1000 * 60 * 60 * 24 * 100).label, y: 1, selected: selectedPoint.id === d.id }))} 
                     color={`hsla(${g.color}, 50%, 50%, .75)`} />
             })}
-    </OrdinalChart>
+        </OrdinalChart>
+    </div>
 }
 
 const stateToProps = (state, ownProps) => ({ 
