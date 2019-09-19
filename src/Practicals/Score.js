@@ -76,11 +76,11 @@ const Score = makeExtendable( ({ t, ...props }) => (
                    : null}
             </div>}
     </div>
-    <div className="col-8 m-auto " style={{minWidth:'20rem', maxWidth:'26rem'}} >
+    <div className="col-8 m-auto " style={{minWidth:'19rem', maxWidth:'26rem'}} >
         <SlideDown >
             {props.extended && 
             <div>
-                <ExternAssessingWithValue values={props.external} />
+                <ExternAssessingWithValue values={props.external} onClick={props.toggleExtended} />
             </div>
             }
         </SlideDown>
