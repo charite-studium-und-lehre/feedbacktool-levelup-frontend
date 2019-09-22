@@ -7,30 +7,28 @@ import { reducer as stationsReducer, identifier as stationsIdentifier, selectors
 
 export const identifier = 'exams'
 
-const getSelected = state => state[identifier].selected
-
-const toNavigationData = selected => _.flow(
+const toNavigationData = _.flow(
     _.groupBy( d => d.timesemester ),
     _.map( g => { 
         const scale = scaleBand([0,g.length-1],[0,1])
-        return g.map( (d, i) => ({ ...d, x: d.timesemester, y: scale(i) + scale.bandwidth() * .5, selected: selected === d.id }))
+        return g.map( (d, i) => ({ ...d, x: d.timesemester, y: scale(i) + scale.bandwidth() * .5 }))
     }),
     _.flatten)
 
 const graphs = state => [
     {
         name: 'semester',
-        data: toNavigationData(getSelected(state))(SemesterSelectors.getTimeline(state)),
+        data: toNavigationData(SemesterSelectors.getTimeline(state)),
         color: 120,
     },
     {
         name: 'ptm',
-        data: toNavigationData(getSelected(state))(PtmSelectors.getTimeline(state)),
+        data: toNavigationData(PtmSelectors.getTimeline(state)),
         color: 240,
     },
     {
         name: 'stations',
-        data: toNavigationData(getSelected(state))(StationsSelectors.getTimeline(state)),
+        data: toNavigationData(StationsSelectors.getTimeline(state)),
         color: 0,
     },
 ]
@@ -38,7 +36,6 @@ const graphs = state => [
 const selectors = {
     loaded: () => true,
     getNavigationData: graphs,
-    getSelected,
 }
 
 const actions = {
@@ -48,13 +45,4 @@ const actions = {
 
 export { selectors, actions }
 
-const selected = ( state = -1, action ) => {
-    switch(action.type) {
-        case 'EXAMS_SELECT':
-            return action.payload.id
-        default:
-            return state
-    }
-}
-
-export const reducer = combineReducers({ selected, [ptmsIdentifier]: ptmsReducer, [semesterIdentifier]: semesterReducer, [stationsIdentifier]: stationsReducer })
+export const reducer = combineReducers({ [ptmsIdentifier]: ptmsReducer, [semesterIdentifier]: semesterReducer, [stationsIdentifier]: stationsReducer })

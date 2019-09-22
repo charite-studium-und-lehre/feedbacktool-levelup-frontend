@@ -459,4 +459,4 @@ const StationsData = data.map( e => ({
     mean: _.round(_.meanBy( e.stations, 'mean')),
 }))
 
-export default StationsData
+export default fp.keyBy(i => i.id, StationsData)
