@@ -64,6 +64,8 @@ const SubjectsWithNumbers = _.flow([rnd, random => Subjects.map(
 )), _.flatMap(c => c.subjects)])
 
 const semesters = ['1. Fachsemester', '2. Fachsemester', '3. Fachsemester', '4. Fachsemester', '5. Fachsemester']
+const timesemesters = _.flatMap( y => [{ label: `SS ${y}`, value: new Date(2000+y, 3, 1) }, { label: `WS ${y}/${y+1}`, value: new Date(2000+y, 9, 1) }] )( _.range( 14, 19 ) )
+
 const createResult = _.flow([
     _.over([
         _.flow([seedrandom, randomUniform.source, rnd => (a,b) => _.round(rnd(a,b)())]),
@@ -82,6 +84,7 @@ const createResult = _.flow([
         short: semester.substr(0,4) + 'S',
         fächer: SubjectsWithNumbers(semester),
         date: new Date(2013 + parseInt(semester.substr(0,1)), 6 + random(2, -1), 15 + random(20, -10)),
+        timesemester: timesemesters[semester.split('.')[0]].label
     })
 ])
 

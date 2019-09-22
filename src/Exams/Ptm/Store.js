@@ -15,11 +15,9 @@ const getSubject = subject => _.flow([ getSubjects, findSubject(subject) ])
 const getRanking = _.flow([ getSubjects, _.filter(s => s.gesamt >= minQuestions), _.sortBy(s => -s.richtig / s.gesamt) ])
 
 const toTimeline = ptm => ({
-    id: ptm.id,
-    date: ptm.date,
+    ...ptm,
     result: ptm.results[0],
     mean: ptm.means[0],
-    label: ptm.label,
 })
 const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 

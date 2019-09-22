@@ -148,7 +148,8 @@ const subjects = _.range(0,10).map(() => _.shuffle(fp.flatMap(c => c.subjects, S
     ],
 }*/
 
-const semesters = ['1. Fachsemester', '2. Fachsemester', '3. Fachsemester', '4. Fachsemester', '5. Fachsemester']
+const semesters = ['1. Fachsemester','1. Fachsemester', '2. Fachsemester', '3. Fachsemester', '4. Fachsemester', '5. Fachsemester']
+const timesemesters = fp.flatMap( y => [{ label: `SS ${y}`, value: new Date(2000+y, 3, 1) }, { label: `WS ${y}/${y+1}`, value: new Date(2000+y, 9, 1) }] )( _.range( 14, 19 ) )
 
 const result = _.flow([
     seedrnd => randomUniform.source(seedrnd)(50, 75), 
@@ -201,9 +202,11 @@ const createDetailsData = (semester, [result, dist]) => ({
         label: `Modul ${semester * 4 - 3 + i}`
     })),
     fächer: createSubjects(semester),
-    date: new Date(2013 + parseInt(semester), 6, 15),
+    date: new Date(2013 + parseInt(semester), 6+Math.random()*2, 15),
 })
 
-const Results = fp.keyBy(r => r.id, fp.map(semester => _.flow([createResult, _.over([ _.partial(createDetailsData, semester.split(".")[0]), createTotalsData, () => ({ semester })]), fp.mergeAll])(semester) )(semesters))
+const addTimesemester = d => ({...d, timesemester: timesemesters.find( m => d.date - m.value < 1000 * 60 * 60 * 24 * 100).label})
+
+const Results = fp.keyBy(r => r.id, fp.map(semester => _.flow([createResult, _.over([ _.partial(createDetailsData, semester.split(".")[0]), createTotalsData, () => ({ semester })]), fp.mergeAll], addTimesemester)(semester) )(semesters))
 
 export default Results
