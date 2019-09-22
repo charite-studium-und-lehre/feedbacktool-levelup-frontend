@@ -29,8 +29,6 @@ const MainChart = ({ graphs, history, setSelected, match }) => {
     </div>
 }
 
-const stateToProps = (state, ownProps) => ({ 
-    graphs: selectors.getNavigationData(state),
-})
+const stateToProps = state => ({ graphs: selectors.getNavigationData(state) })
 
 export default _.compose(withRouter, needsData(selectors.loaded, actions.load), connect(stateToProps, actions))(MainChart)

@@ -7,6 +7,8 @@ import { reducer as stationsReducer, identifier as stationsIdentifier, selectors
 
 export const identifier = 'exams'
 
+const getSelected = state => state[identifier].selected
+
 const toNavigationData = selected => _.flow(
     _.groupBy( d => d.timesemester ),
     _.map( g => { 
@@ -18,24 +20,25 @@ const toNavigationData = selected => _.flow(
 const graphs = state => [
     {
         name: 'semester',
-        data: toNavigationData(state[identifier].selected)(SemesterSelectors.getTimeline(state)),
+        data: toNavigationData(getSelected(state))(SemesterSelectors.getTimeline(state)),
         color: 120,
     },
     {
         name: 'ptm',
-        data: toNavigationData(state[identifier].selected)(PtmSelectors.getTimeline(state)),
+        data: toNavigationData(getSelected(state))(PtmSelectors.getTimeline(state)),
         color: 240,
     },
     {
         name: 'stations',
-        data: toNavigationData(state[identifier].selected)(StationsSelectors.getTimeline(state)),
+        data: toNavigationData(getSelected(state))(StationsSelectors.getTimeline(state)),
         color: 0,
     },
 ]
 
 const selectors = {
     loaded: () => true,
-    getNavigationData: graphs
+    getNavigationData: graphs,
+    getSelected,
 }
 
 const actions = {

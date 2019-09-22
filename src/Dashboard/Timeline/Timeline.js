@@ -57,9 +57,8 @@ const Timeline = props => {
                     <Chart oldest={oldest} newest={newest} initTimerange={initTimerange}>
                     {props.graphs.map((g, i) => (
                         <PointGraph
-                            selectedPoint={selectedPoint ? selectedPoint.x : 0} 
                             onClick={ point => zoomIn(point, g) } 
-                            key={i} data={g.data.map(d => ({ ...d, x: d.date, y: d.result }))} 
+                            key={i} data={g.data.map(d => ({ ...d, x: d.date, y: d.result, selected: selectedPoint && selectedPoint.x === d.date }))} 
                             color={`hsla(${g.color}, 50%, 50%, .75)`} 
                             fadeIn={true} />
                     ))}
