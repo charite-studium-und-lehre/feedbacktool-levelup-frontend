@@ -5,7 +5,7 @@ import _ from 'lodash/fp'
 import needsData from '../Core/needsData'
 import { OrdinalChart } from '../Charting/Chart'
 import PointGraph from '../Charting/PointGraph'
-import { selectors, actions } from '../Dashboard/Timeline/Store'
+import { selectors, actions } from './Store'
 import { XAxis } from '../Charting/Axis'
 
 const MainChart = ({ graphs, history, timerange, selectedPoint = { id: -1 } }) => {

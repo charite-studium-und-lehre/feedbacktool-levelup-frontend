@@ -1,7 +1,7 @@
 import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
 import { minQuestions } from '../../Utils/Constants'
-import BaseStore from '../Store'
+import BaseStore from '../BaseStore'
 import Results from './Data'
 
 export const identifier = 'semester'

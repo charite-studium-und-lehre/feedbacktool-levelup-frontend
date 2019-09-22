@@ -1,5 +1,5 @@
 import _ from 'lodash/fp'
-import BaseStore from '../Store'
+import BaseStore from '../BaseStore'
 import Results from './Data'
 import { combineReducers } from 'redux'
 
