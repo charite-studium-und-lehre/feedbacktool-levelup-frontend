@@ -33,12 +33,8 @@ const graphs = state => [
     },
 ]
 
-const getByExam = exam => graphs => graphs.find( g => g.name === exam )
-const getById = id => graph => graph.data.find( d => d.id === id )
-
 const selectors = {
     loaded: () => true,
-    getByExamAndSemester: (exam = 'semester', id) => _.flow([ graphs, getByExam(exam), getById(id) ]),
     getNavigationData: graphs
 }
 

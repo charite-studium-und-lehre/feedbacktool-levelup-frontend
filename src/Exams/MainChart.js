@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import _ from 'lodash/fp'
@@ -8,9 +8,13 @@ import PointGraph from '../Charting/PointGraph'
 import { selectors, actions } from './Store'
 import { XAxis } from '../Charting/Axis'
 
-const MainChart = ({ graphs, history, setSelected, selectedPoint = { id: -1 } }) => {
+const MainChart = ({ graphs, history, setSelected, match }) => {
     const semesters = _.flow(_.flatMap( g => g.data.map( d => d.timesemester )), _.uniq)(graphs)
     const navigate = graph => exam => { setSelected(exam.id); history.push(`/exams/${graph}/${exam.id}`) }
+
+    useEffect( () => {
+        setSelected(match.params.id)
+    })
     return <div style={{height: '2.5rem', minWidth: `${semesters.length*4}rem`}}>
         <OrdinalChart xDomain={semesters} yDomain={[0,1]}>
             <XAxis />
@@ -27,7 +31,6 @@ const MainChart = ({ graphs, history, setSelected, selectedPoint = { id: -1 } })
 
 const stateToProps = (state, ownProps) => ({ 
     graphs: selectors.getNavigationData(state),
-    selectedPoint: selectors.getByExamAndSemester(ownProps.match.params.exam, ownProps.match.params.id)(state),
 })
 
 export default _.compose(withRouter, needsData(selectors.loaded, actions.load), connect(stateToProps, actions))(MainChart)
