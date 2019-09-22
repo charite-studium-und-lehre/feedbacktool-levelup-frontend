@@ -8,18 +8,17 @@ import PointGraph from '../Charting/PointGraph'
 import { selectors, actions } from './Store'
 import { XAxis } from '../Charting/Axis'
 
-const MainChart = ({ graphs, history, timerange, selectedPoint = { id: -1 } }) => {
-    const years = _.range( timerange[0].getFullYear() - 2000, timerange[1].getFullYear() - 1999 )
-    const markers = _.flatMap( y => [{ label: `SS ${y}`, value: new Date(2000+y, 3, 1) }, { label: `WS ${y}/${y+1}`, value: new Date(2000+y, 9, 1) }] )( years )
-    const navigate = graph => exam => history.push(`/exams/${graph}/${exam.id}`)
-    return <div style={{height: '1rem', minWidth: `${markers.length*4}rem`}}>
-        <OrdinalChart xDomain={markers.map( m => m.label )} yDomain={[0,1]}>
+const MainChart = ({ graphs, history, setSelected, selectedPoint = { id: -1 } }) => {
+    const semesters = _.flow(_.flatMap( g => g.data.map( d => d.timesemester )), _.uniq)(graphs)
+    const navigate = graph => exam => { setSelected(exam.id); history.push(`/exams/${graph}/${exam.id}`) }
+    return <div style={{height: '2.5rem', minWidth: `${semesters.length*4}rem`}}>
+        <OrdinalChart xDomain={semesters} yDomain={[0,1]}>
             <XAxis />
             {graphs.map((g, i) => {
                 return <PointGraph
-                    offset={i/(graphs.length - 1)*.6 + .2}
+                    offset={i / (graphs.length - 1)}
                     onClick={navigate(g.name)}
-                    key={i} data={g.data.map(d => ({ ...d, x: markers.find( m => d.date - m.value < 1000 * 60 * 60 * 24 * 100).label, y: 1, selected: selectedPoint.id === d.id }))} 
+                    key={i} data={g.data} 
                     color={`hsla(${g.color}, 50%, 50%, .75)`} />
             })}
         </OrdinalChart>
@@ -27,9 +26,8 @@ const MainChart = ({ graphs, history, timerange, selectedPoint = { id: -1 } }) =
 }
 
 const stateToProps = (state, ownProps) => ({ 
-    graphs: selectors.getGraphs(state), 
-    timerange: selectors.getTimerange(state), 
+    graphs: selectors.getNavigationData(state),
     selectedPoint: selectors.getByExamAndSemester(ownProps.match.params.exam, ownProps.match.params.id)(state),
 })
 
-export default _.compose(withRouter, needsData(selectors.loaded, actions.load), connect(stateToProps))(MainChart)
+export default _.compose(withRouter, needsData(selectors.loaded, actions.load), connect(stateToProps, actions))(MainChart)
