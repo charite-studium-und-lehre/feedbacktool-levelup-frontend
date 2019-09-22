@@ -10,7 +10,10 @@ import { XAxis } from '../Charting/Axis'
 
 const MainChart = ({ graphs, history, setSelected, match }) => {
     const semesters = _.flow(_.flatMap( g => g.data.map( d => d.timesemester )), _.uniq)(graphs)
-    const navigate = graph => exam => { setSelected(exam.id); history.push(`/exams/${graph}/${exam.id}`) }
+    const navigate = graph => exam => { 
+        setSelected(exam.id, exam)
+        history.push(`/exams/${graph}/${exam.id}`) 
+    }
 
     useEffect( () => {
         setSelected(match.params.id)

@@ -42,7 +42,7 @@ const selectors = {
 }
 
 const actions = {
-    setSelected: id => ({ type: 'EXAMS_SELECT', payload: id }),
+    setSelected: (id, value) => ({ type: 'EXAMS_SELECT', payload: { id, value }}),
     load: () => _.over([PtmActions.load(), SemesterActions.load(), StationsActions.load()])
 }
 
@@ -51,7 +51,7 @@ export { selectors, actions }
 const selected = ( state = -1, action ) => {
     switch(action.type) {
         case 'EXAMS_SELECT':
-            return action.payload
+            return action.payload.id
         default:
             return state
     }
