@@ -20,7 +20,7 @@ export default function LineGraph(props) {
 
     const circles = props.noPoints || props.data.map((d, i) => <AnimatedPoint 
         key={i} 
-        selected={props.selectedPoint === d.x}
+        selected={d.selected}
         cx={x(d)} 
         cy={props.yScale(d.y)} 
         r="5" 

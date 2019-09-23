@@ -74,7 +74,7 @@ const createResult = _.flow([
     ([random, semester]) => ({
         alt: true,
         results: [
-            [ 83],
+            [random(0,200)],
             [30],
             [90] 
         ],

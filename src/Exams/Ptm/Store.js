@@ -26,7 +26,7 @@ export const selectors = baseStore.withLoadedSelector({
     getAllForSubject: (state, subject) => 
     _.flow([ baseStore.getItems, _.map(ptm => ({ ...getSubject(subject)(ptm), short: ptm.short })) ])(state),
     getById: (state, id) => _.flow([ baseStore.getItems, findById(id) ])(state),
-    getLatest: _.flow([ baseStore.getItems, _.sortBy('semester'), _.last ]),
+    getLatest: _.flow([ baseStore.getItems, _.sortBy('date'), _.last ]),
     getSubjects,
     getRanking,
     strongestSubject: _.flow([ getRanking, _.first ]),

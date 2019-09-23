@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Progress from './Progress'
 import Timeline from './Timeline/Timeline'
-import Stations from './Stations'
+import Ptm from './Ptm'
 import Practicals from './Practicals'
 import Strengths from './Strengths'
 
@@ -27,9 +27,7 @@ export default () =>
                 </div>
             </div>
             <div className="col-lg-4 mt-2">
-                <Link to="/exams/stations/all">
-                    <Stations />
-                </Link>
+                <Ptm />
             </div>
             <div className="col-lg-4">
                 <div className="mt-2">
