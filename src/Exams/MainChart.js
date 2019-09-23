@@ -15,9 +15,9 @@ const MainChart = ({ graphs, history, setSelected, match }) => {
         history.push(`/exams/${graph}/${exam.id}`) 
     }
 
-    useEffect( () => {
-        setSelected(match.params.id)
-    })
+    // useEffect( () => {
+    //     setSelected(match.params.id)
+    // })
     return <div style={{height: '2.5rem', minWidth: `${semesters.length*4}rem`}}>
         <OrdinalChart xDomain={semesters} yDomain={[0,1]}>
             <XAxis />

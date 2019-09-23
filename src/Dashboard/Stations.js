@@ -1,16 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withTranslation } from 'react-i18next'
+import _ from 'lodash/fp'
 import needsData from '../Core/needsData'
 import SimpleBar from '../Charting/SimpleBar'
 import { selectors, actions } from '../Exams/Stations/Store'
 import DashboardCard from './DashboardCard'
 
 const stateToProps = state => ({ stations: selectors.getItems(state) })
-const Stations = needsData(connect(stateToProps)(({ stations }) => stations.map(e => <div key={e.exam}>
+const Stations = needsData(connect(stateToProps)(({ stations }) => _.map(e => <div key={e.exam}>
     <span className="text-secondary" style={{fontSize: '.8rem'}}>{e.exam}</span>
     <SimpleBar value={e.result} >{e.result} %</SimpleBar>
-</div>)), selectors.loaded, actions.load)
+</div>, stations)), selectors.loaded, actions.load)
 
 const Wrapper = withTranslation()(({ t }) => <DashboardCard 
         header={Math.round(Math.random() * 100) + ' %'} 
