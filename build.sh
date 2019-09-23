@@ -3,9 +3,9 @@
 cd `dirname $0`
 git pull --rebase
 
-DIR=`basename $(pwd)`
+DIR=app-`basename $(pwd)`
 if [ $DIR = "master" -o $DIR = "levelup" ]; then
-	DIR=""
+	DIR="app"
 fi
 
 GIT_BRANCH=`git rev-parse --abbrev-ref HEAD`
