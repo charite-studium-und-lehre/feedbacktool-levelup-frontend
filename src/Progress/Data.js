@@ -6,7 +6,7 @@ const tree = [
                     label: 'MC',
                     id: 1,
                     done: true,
-                    link: '/exams/semester/1. Fachsemester',
+                    link: '/exams/semester/1',
                 },
                 {
                     label: 'Anwesenheit',
@@ -22,7 +22,7 @@ const tree = [
                     label: 'MC',
                     id: 1,
                     done: true,
-                    link: '/exams/semester/2. Fachsemester',
+                    link: '/exams/semester/3',
                 },
                 {
                     label: 'Anwesenheit',
@@ -38,7 +38,7 @@ const tree = [
                     label: 'MC',
                     id: 1,
                     done: true,
-                    link: '/exams/semester/3. Fachsemester',
+                    link: '/exams/semester/4',
                 },
                 {
                     label: 'Anwesenheit',
@@ -64,13 +64,13 @@ const tree = [
                     label: 'MC',
                     id: 1,
                     done: false,
-                    link: '/exams/semester/4. Fachsemester',
+                    link: '/exams/semester/5',
                 },
                 {
                     label: 'Praktische Prüfung',
                     id: 70,
                     done: true,
-                    link: '/exams/stations/4. Fachsemester',
+                    link: '/exams/stations/8',
                 },
                 {
                     label: 'Anwesenheit',
@@ -91,7 +91,7 @@ const tree = [
                     label: 'MC',
                     id: 1,
                     done: true,
-                    link: '/exams/semester/5. Fachsemester',
+                    link: '/exams/semester/6',
                 },
                 {
                     label: 'Anwesenheit',
@@ -112,7 +112,7 @@ const tree = [
                     label: 'MC',
                     id: 1,
                     done: false,
-                    link: '/exams/semester/6. Fachsemester',
+                    link: '/exams/semester/7',
                 },
                 {
                     label: 'Anwesenheit',
@@ -133,7 +133,6 @@ const tree = [
                     label: 'MC',
                     id: 1,
                     done: false,
-                    link: '/exams/semester/7. Fachsemester',
                 },
                 {
                     label: 'Anwesenheit',
@@ -149,7 +148,6 @@ const tree = [
                     label: 'MC',
                     id: 1,
                     done: false,
-                    link: '/exams/semester/8. Fachsemester',
                 },
                 {
                     label: 'Anwesenheit',
@@ -165,12 +163,10 @@ const tree = [
                     label: 'MC',
                     id: 1,
                     done: false,
-                    link: '/exams/semester/9. Fachsemester',
                 },
                 {
                     label: 'OSCE',
                     done: false,
-                    link: '/exams/stations/9. Fachsemester',
                     id: 70,
                 },
                 {
