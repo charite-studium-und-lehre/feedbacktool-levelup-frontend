@@ -7,6 +7,8 @@ import { withTranslation } from 'react-i18next'
 import Details from './Details'
 import { selectors, actions } from './Store'
 
+export const color = 'hsla(120, 50%, 50%, .75)'
+
 const Semester = ({ test, t }) => {
         return (
         <div className="container-fluid">

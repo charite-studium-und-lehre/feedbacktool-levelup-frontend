@@ -26,7 +26,7 @@ const MainChart = ({ graphs, history, setSelected, match }) => {
                     offset={i / (graphs.length - 1)}
                     onClick={navigate(g.name)}
                     key={i} data={g.data} 
-                    color={`hsla(${g.color}, 50%, 50%, .75)`} />
+                    color={g.color} />
             })}
         </OrdinalChart>
     </div>

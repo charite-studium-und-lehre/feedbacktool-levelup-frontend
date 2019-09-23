@@ -59,7 +59,7 @@ const Timeline = props => {
                         <PointGraph
                             onClick={ point => zoomIn(point, g) } 
                             key={i} data={g.data.map(d => ({ ...d, x: d.date, y: d.result, selected: selectedPoint && selectedPoint.x === d.date }))} 
-                            color={`hsla(${g.color}, 50%, 50%, .75)`} 
+                            color={g.color} 
                             fadeIn={true} />
                     ))}
                     </Chart>
@@ -76,7 +76,7 @@ const Timeline = props => {
                 </div>
                 <div className="mt-2">
                     {props.graphs.map(g => (
-                        <span key={g.label} className="m-2 d-inline-block" style={{fontSize: '.8rem', color: `hsl(${g.color}, 50%, 50%)`}} >{g.label}</span>
+                        <span key={g.label} className="m-2 d-inline-block" style={{fontSize: '.8rem', color: g.color}} >{g.label}</span>
                     ))}
                 </div>
             </div>

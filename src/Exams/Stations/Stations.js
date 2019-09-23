@@ -12,6 +12,7 @@ import SimpleDot from '../../Charting/SimpleDot'
 import { withTranslation } from 'react-i18next'
 import { selectors, actions } from './Store'
 
+export const color = 'hsla(0, 50%, 50%, .75)'
 const colors = scaleOrdinal(schemeSpectral[6])
 
 const Stations = ({ t, data, groupFilters, setGroupFilters }) => {

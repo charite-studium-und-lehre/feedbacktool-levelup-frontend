@@ -4,6 +4,9 @@ import { scaleBand } from 'd3-scale'
 import { reducer as ptmsReducer, identifier as ptmsIdentifier, selectors as PtmSelectors, actions as PtmActions } from './Ptm/Store'
 import { reducer as semesterReducer, identifier as semesterIdentifier, selectors as SemesterSelectors, actions as SemesterActions } from './Semester/Store'
 import { reducer as stationsReducer, identifier as stationsIdentifier, selectors as StationsSelectors, actions as StationsActions } from './Stations/Store'
+import { color as semesterColor } from './Semester/Semester'
+import { color as ptmColor } from './Ptm/Ptm'
+import { color as stationsColor } from './Stations/Stations'
 
 export const identifier = 'exams'
 
@@ -19,17 +22,17 @@ const graphs = state => [
     {
         name: 'semester',
         data: toNavigationData(SemesterSelectors.getTimeline(state)),
-        color: 120,
+        color: semesterColor,
     },
     {
         name: 'ptm',
         data: toNavigationData(PtmSelectors.getTimeline(state)),
-        color: 240,
+        color: ptmColor,
     },
     {
         name: 'stations',
         data: toNavigationData(StationsSelectors.getTimeline(state)),
-        color: 0,
+        color: stationsColor,
     },
 ]
 

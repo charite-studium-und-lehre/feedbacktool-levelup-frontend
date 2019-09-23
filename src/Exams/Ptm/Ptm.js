@@ -8,6 +8,7 @@ import Subjects from './Subjects'
 import Results from './Results'
 import { selectors, actions } from './Store'
 
+export const color = 'hsla(240, 50%, 50%, .75)'
 const Ptm = ({ test }) => {
     const LegendText = LegendTexts.Exams.Ptm
     

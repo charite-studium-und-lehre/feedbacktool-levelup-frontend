@@ -8,13 +8,16 @@ import StationsTimelineInfo from './StationsInfo'
 import { selectors as StationsSelectors, actions as StationsActions } from '../../Exams/Stations/Store'
 import { selectors as SemesterSelectors, actions as SemesterActions } from '../../Exams/Semester/Store'
 import { selectors as PtmSelectors, actions as PtmActions } from '../../Exams/Ptm/Store'
+import { color as semesterColor } from '../../Exams/Semester/Semester'
+import { color as ptmColor } from '../../Exams/Ptm/Ptm'
+import { color as stationsColor } from '../../Exams/Stations/Stations'
 
 const graphs = state => [
     {
         name: 'semester',
         label: 'Semesterprüfung',
         data: SemesterSelectors.getTimeline(state),
-        color: 120,
+        color: semesterColor,
         info: SemesterInfo,
         timelineinfo: SemesterTimelineInfo,
     },
@@ -22,7 +25,7 @@ const graphs = state => [
         name: 'ptm',
         label: 'PTM',
         data: PtmSelectors.getTimeline(state),
-        color: 240,
+        color: ptmColor,
         info: PtmInfo,
         timelineinfo: PtmTimelineInfo,
     },
@@ -30,7 +33,7 @@ const graphs = state => [
         name: 'stations',
         label: 'Praktische Prüfung',
         data: StationsSelectors.getTimeline(state),
-        color: 0,
+        color: stationsColor,
         info: StationsInfo,
         timelineinfo: StationsTimelineInfo,
     },
