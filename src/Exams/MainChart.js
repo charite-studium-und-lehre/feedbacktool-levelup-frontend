@@ -9,7 +9,7 @@ import { selectors, actions } from './Store'
 import { XAxis } from '../Charting/Axis'
 
 const MainChart = ({ graphs, history, setSelected, match }) => {
-    const semesters = _.flow(_.flatMap( g => g.data.map( d => d.timesemester )), _.uniq)(graphs)
+    const semesters = _.flow(_.flatMap( g => g.data.map( d => d.timesemester )), _.uniq, _.sortBy( t => t.split(' ')[1]))(graphs)
     const navigate = graph => exam => { 
         setSelected(exam.id, exam)
         history.push(`/exams/${graph}/${exam.id}`) 
