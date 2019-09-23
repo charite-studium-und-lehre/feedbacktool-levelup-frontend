@@ -74,7 +74,7 @@ const createResult = _.flow([
     ([random, semester]) => ({
         alt: true,
         results: [
-            [random(0,200)],
+            [semester.split('.')[0]*semester.split('.')[0]*6],
             [30],
             [90] 
         ],
