@@ -51,6 +51,7 @@ const Totals = props => {
                     <div className="position-absolute" style={{right:0, fontSize: '.75rem'}}>
                         <div><span className="font-weight-bold">{respSwitch('Dein Ergebnis', 'Du')}: </span>{props.resultMean} Pkte</div>
                         <div><span className="font-weight-bold">{respSwitch('Durchschnitt', '∅')}: </span>{props.distMean} Pkte</div>
+                        <div><span className="font-weight-bold">{respSwitch('Bestanden ab', 'Bst ab')}: </span>{props.bestandenAb} Pkte</div>
                     </div>
                     <LinearChart xDomain={[Math.min(...histo.map(d => d.x)) - 5, Math.max(...histo.map(d => d.x)) + 5]} yDomain={[0,Math.max(...histo.map(d => d.y))]}>
                         <XAxis label="erreichte Punkte" />
