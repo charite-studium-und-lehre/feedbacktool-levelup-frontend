@@ -4,7 +4,7 @@ cd `dirname $0`
 git pull --rebase
 
 DIR=app-`basename $(pwd)`
-if [ $DIR = "master" -o $DIR = "levelup" ]; then
+if [ $DIR = "app-master" -o $DIR = "app-levelup" ]; then
 	DIR="app"
 fi
 
