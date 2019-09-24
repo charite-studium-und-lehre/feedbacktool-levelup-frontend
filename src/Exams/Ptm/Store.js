@@ -24,7 +24,7 @@ const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 export const selectors = baseStore.withLoadedSelector({
     getSubjectByName: (state, id, subject) => _.flow([ baseStore.getItems, findById(id), getSubject(subject) ])(state),
     getAllForSubject: (state, subject) => 
-    _.flow([ baseStore.getItems, _.map(ptm => ({ ...getSubject(subject)(ptm), short: ptm.short })) ])(state),
+        _.flow([ baseStore.getItems, _.map(ptm => ({ ...getSubject(subject)(ptm), timesemester: ptm.timesemester })) ])(state),
     getById: (state, id) => _.flow([ baseStore.getItems, findById(id) ])(state),
     getLatest: _.flow([ baseStore.getItems, _.sortBy('date'), _.last ]),
     getSubjects,
