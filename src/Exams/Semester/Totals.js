@@ -17,6 +17,7 @@ import { mobileWidth } from '../../Charting/Utils'
 import { selectors, actions } from './Store'
 import Legends from '../../Core/LegendTexts'
 import needsData from '../../Core/needsData'
+import AnimatedInteger from '../../Charting/AnimatedInteger'
 
 const respSwitch = (large, small) => <span><span className="d-none d-md-inline-block">{large}</span><span className="d-inline-block d-md-none">{small}</span></span>
 const Totals = ({ t, dist, ...props }) => {
@@ -28,7 +29,7 @@ const Totals = ({ t, dist, ...props }) => {
 
     const histo = _.flow(
         _.groupBy(d => Math.floor(d / 5)),
-        _.map(d => ({x: Math.floor(d[0] / 5) * 5, y: d.length, highlight: 0 === Math.floor(props.resultMean / 5)}))
+        _.map(d => ({x: Math.floor(d[0] / 5) * 5, y: d.length, highlight: 0 === Math.floor(props.resultMean / 5), label: <AnimatedInteger value={d.length} />}))
     )(dist)
 
     const PercentileArea = ({ percentiles, ...props }) => {
