@@ -1,18 +1,21 @@
 import React from 'react'
 import { pie, arc } from 'd3-shape'
 import { interpolate } from 'd3-interpolate'
+import { scaleLinear } from 'd3-scale'
 import { LinearChart } from './Chart'
 import AnimatedPath from './AnimatedPath'
-import { animationTime } from './Utils'
+import { animationTime as at } from './Utils'
 
 const defaultColors = ['hsla(120, 50%, 50%, .7)', 'hsla(0, 0%, 0%, .05)']
 
-const Graph = ({ data, xScale, yScale, width = .2, colors = defaultColors}) =>
+const Graph = ({ data, xScale, yScale, width = .2, colors = defaultColors, animationTime = at}) =>
     <g transform={`translate(${xScale(.5)}, ${yScale(.5)})`}>
     {pie().sortValues(null).value( d => d.value || d )(data).map((d, i) => {
-        var int = interpolate(d.startAngle, d.endAngle);
+        const int = interpolate(d.startAngle, d.endAngle);
+        const scale = scaleLinear().domain([0,2*Math.PI]).range([0,animationTime])
         return <AnimatedPath
-            delay={i*animationTime}
+            animationTime={scale(d.endAngle - d.startAngle)}
+            delay={scale(d.startAngle)}
             tween={ t => ({...d, endAngle: int(t) })}
             stroke="none"
             fill={d.data.color || colors[i]}

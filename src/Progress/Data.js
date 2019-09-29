@@ -63,7 +63,7 @@ const tree = [
                 {
                     label: 'MC',
                     id: 1,
-                    done: false,
+                    done: true,
                     link: '/exams/semester/5',
                 },
                 {
@@ -75,7 +75,7 @@ const tree = [
                 {
                     label: 'Anwesenheit',
                     id: 101,
-                    done: false,
+                    done: true,
                 },
                 {
                     label: 'Famulaturreife',
@@ -96,12 +96,12 @@ const tree = [
                 {
                     label: 'Anwesenheit',
                     id: 101,
-                    done: false,
+                    done: true,
                 },
                 {
                     label: 'Hausarbeit',
                     id: 10,
-                    done: false,
+                    done: true,
                 },
             ]
         },
@@ -111,18 +111,18 @@ const tree = [
                 {
                     label: 'MC',
                     id: 1,
-                    done: false,
+                    done: true,
                     link: '/exams/semester/7',
                 },
                 {
                     label: 'Anwesenheit',
                     id: 101,
-                    done: false,
+                    done: true,
                 },
                 {
                     label: 'M1-Äquivalenz',
                     id: 50,
-                    done: false,
+                    done: true,
                 },
             ]
         },
@@ -132,12 +132,12 @@ const tree = [
                 {
                     label: 'MC',
                     id: 1,
-                    done: false,
+                    done: true,
                 },
                 {
                     label: 'Anwesenheit',
                     id: 101,
-                    done: false,
+                    done: true,
                 },
             ]
         },
@@ -147,12 +147,12 @@ const tree = [
                 {
                     label: 'MC',
                     id: 1,
-                    done: false,
+                    done: true,
                 },
                 {
                     label: 'Anwesenheit',
                     id: 101,
-                    done: false,
+                    done: true,
                 },
             ]
         },
