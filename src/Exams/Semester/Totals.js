@@ -13,6 +13,7 @@ import Marker from '../../Charting/Marker'
 import LineMarker from '../../Charting/LineMarker'
 import Legend from '../../Charting/Legend'
 import { XAxis, YAxis } from '../../Charting/Axis'
+import { mobileWidth } from '../../Charting/Utils'
 import { selectors, actions } from './Store'
 import Legends from '../../Core/LegendTexts'
 import needsData from '../../Core/needsData'
@@ -26,8 +27,8 @@ const Totals = ({ t, dist, ...props }) => {
     const percent = _.round(scale(dist.filter(d => d < props.result).length))
 
     const histo = _.flow(
-        _.groupBy(d => Math.floor(d / 5)), 
-        _.map(d => ({x: Math.floor(d[0] / 5), y: d.length, highlight: 0 === Math.floor(props.resultMean / 5)}))
+        _.groupBy(d => Math.floor(d / 5)),
+        _.map(d => ({x: Math.floor(d[0] / 5) * 5, y: d.length, highlight: 0 === Math.floor(props.resultMean / 5)}))
     )(dist)
 
     const PercentileArea = ({ percentiles, ...props }) => {
@@ -42,6 +43,7 @@ const Totals = ({ t, dist, ...props }) => {
         </g>
     }
 
+    const domain = window.innerWidth <= mobileWidth ? histo.map(d => d.x) : _.range(0,20).map(d => d*5)
     const LegendText = Legends.Exams.Semester.Totals
     return (
         <div className="card p-4">
@@ -68,7 +70,7 @@ const Totals = ({ t, dist, ...props }) => {
                         <div><span className="font-weight-bold">{respSwitch(t('Durchschnitt'), '∅')}: </span>{props.mean} {t('Pkte')}</div>
                         <div><span className="font-weight-bold">{respSwitch(t('Bestanden ab'), t('Bst ab'))}: </span>{props.bestandenAb} {t('Pkte')}</div>
                     </div>
-                    <OrdinalChart xDomain={histo.map(d => d.x)} yDomain={[0,Math.max(...histo.map(d => d.y))]}>
+                    <OrdinalChart xDomain={domain} yDomain={[0,Math.max(...histo.map(d => d.y))]}>
                         <XAxis label={t('erreichte Punkte')} />
                         <YAxis label={t('Anzahl Studierender')} />
                         <BarGraph labels width={.75} data={histo} color="hsla(33, 100%, 20%, .5)" highlightColor="hsla(33, 100%, 20%, .8)" />
