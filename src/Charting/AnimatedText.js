@@ -1,45 +1,42 @@
-import React, { Component } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { select } from 'd3-selection'
 import { animationTime } from './Utils'
 
-class AnimatedText extends Component {
-    static defaultProps = {
-        color: 'black',
-        textAnchor: 'middle',
-        className: '',
-        transform: '',
-        dominantBaseline: "baseline",
-        style: {fontSize: '0.8rem'},
-    }
+const AnimatedText = ({
+        color = 'black',
+        textAnchor = 'middle',
+        className = '',
+        transform = '',
+        dominantBaseline = "baseline",
+        style = {fontSize: '0.8rem'},
+        ...props
+    }) => {
 
-    constructor(props) {
-        super(props)
-		this.node = React.createRef()
-		this.state = { x: props.x, y: props.y }
-    }
+	const node = useRef()
+    const [x] = useState(props.x)
+    const [y] = useState(props.y)
 
-    componentDidUpdate() {
-		select(this.node.current)
-			.datum(this.props)
+    useEffect(() => {
+        if(!node.current) return
+		select(node.current)
+			.datum(props)
             .transition()
 			.duration(animationTime)
 			.attr('x', d => d.x)
 			.attr('y', d => d.y)
-    }
+    })
 
-    render() {
-        return (<text
-            ref={this.node}
-            x={this.state.x}
-            y={this.state.y}
-            textAnchor={this.props.textAnchor}
-            fill={this.props.color}
-            style={this.props.style}
-            dominantBaseline={this.props.dominantBaseline}
-            className={`animated ${this.props.className}`}>
-            {this.props.children}
-        </text>)
-    }
+    return (<text
+        ref={node}
+        x={x}
+        y={y}
+        textAnchor={textAnchor}
+        fill={color}
+        style={style}
+        dominantBaseline={dominantBaseline}
+        className={`animated ${className}`}>
+        {props.children}
+    </text>)
 }
 
 export default AnimatedText
