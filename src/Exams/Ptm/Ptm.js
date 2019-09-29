@@ -24,12 +24,12 @@ const Ptm = ({ test }) => {
                 <div className="col-xl-4 mb-2">
                     <div className="row">
                         <div className="col">
-                            <Results id={test.id} />
+                            <Timeline />
                         </div>
                     </div>
                     <div className="row mt-2">
                         <div className="col">
-                            <Timeline />
+                            <Results id={test.id} />
                         </div>
                     </div>
                 </div>

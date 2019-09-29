@@ -38,8 +38,8 @@ const Ptm = _.compose(needsData(selectors.loaded, actions.load), connect(stateTo
                 </div>
                 <div className="w-100" style={{height: '4rem'}}>
                     <LinearChart xDomain={[0, ptms.length - 1]} yDomain={[0,100]}>
-                        <AreaGraph labels color={tinycolor(color).setAlpha(.08).toString()} data={ptms.map( (d, i) => ({ x: i, y0: 0, y1: d.result }))} />
-                        <LineGraph labels color={tinycolor(color).setAlpha(.23).toString()} data={ptms.map( (d, i) => ({ x: i, y: d.result }))} />
+                        <AreaGraph color={tinycolor(color).setAlpha(.08).toString()} data={ptms.map( (d, i) => ({ x: i, y0: 0, y1: d.result }))} />
+                        <LineGraph color={tinycolor(color).setAlpha(.23).toString()} data={ptms.map( (d, i) => ({ x: i, y: d.result }))} />
                     </LinearChart>
                 </div>
             </div>
