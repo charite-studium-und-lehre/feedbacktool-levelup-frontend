@@ -1,6 +1,5 @@
 import _ from 'lodash'
 import fp from 'lodash/fp'
-import { scaleLinear } from 'd3-scale'
 import { randomNormal, randomUniform } from 'd3-random'
 import seedrandom from 'seedrandom'
 
@@ -157,26 +156,24 @@ const result = _.flow([
 ])
 
 const createDist = _.flow([
-    seedrnd => randomNormal.source(seedrnd)(50, 30),
+    seedrnd => randomNormal.source(seedrnd)(65, 20),
     rng => _.range(100)
         .map(() => _.range(4).map(() => Math.min(Math.floor(rng()), 80)))
 ])
     
-const distMean = d => _.round(_.meanBy(d, d => _.mean(d)))
+const distMean = d => _.round(_.meanBy(d, _.mean))
 
 const concatResult = ([result, data]) => [ result, data.concat([ result ]).sort((a,b) => _.mean(a)-_.mean(b)) ]
 
 const createResult = _.flow([ seedrandom, _.over(result, createDist), concatResult ])
 
 const createTotalsData = ([result, dist]) => {
-    const scale = scaleLinear().domain([0,dist.length - 1]).range([100, 0])
     return {
-        dist: dist.map( (d, i) => ({ x: scale(i), y: _.mean(d) })),
-        result,
-        resultMean: _.round(_.mean(result)),
-        resultPercent: scale(dist.indexOf(result)),
-        distMean: distMean(dist),
+        dist: dist.map( _.mean ),
+        result: _.round(_.mean(result)),
+        mean: distMean(dist),
         id: _.uniqueId(),
+        bestandenAb: 48,
     }
 }
 
