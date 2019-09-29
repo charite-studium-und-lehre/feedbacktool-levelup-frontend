@@ -11,14 +11,13 @@ import { XAxis } from '../Charting/Axis'
 const MainChart = ({ graphs, history, setSelected, match }) => {
     const semesters = _.flow(_.flatMap( g => g.data.map( d => d.timesemester )), _.uniq, _.sortBy( t => t.split(' ')[1]))(graphs)
     const navigate = graph => exam => { 
-        setSelected(exam.id, exam)
         history.push(`/exams/${graph}/${exam.id}`) 
     }
 
-    // useEffect( () => {
-    //     setSelected(match.params.id)
-    // })
-    return <div style={{height: '2.5rem', minWidth: `${semesters.length*4}rem`}}>
+    useEffect( () => {
+        setSelected(match.params.id)
+    }, [ setSelected, match.params.id ])
+    return <div style={{height: '2.5rem', minWidth: `${semesters.length*8}rem`}}>
         <OrdinalChart xDomain={semesters} yDomain={[0,1]}>
             <XAxis />
             {graphs.map((g, i) => {
