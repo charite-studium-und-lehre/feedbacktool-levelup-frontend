@@ -45,6 +45,10 @@ const Legends = {
                 title: <Trans>Gesamtes Ergebnis</Trans>,
                 text: <Trans>Hier findest du eine generelle Auswertung deines PTMs im Vergleich mit der Kohorte.</Trans>
             },
+            Timeline: {
+                title: <Trans>Deine Entwicklung</Trans>,
+                text: <Trans>Hier findest du eine generelle Auswertung deines PTMs im Vergleich mit der Kohorte.</Trans>
+            },
             Strengths: {
                 title: <Trans>Starke Fächer in diesem PTM</Trans>,
                 text: <Trans>Hier findest du eine Übersicht zu deinen besten theoretischen, klinischen und Querschnittsfächern im PTM diesen Semesters. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen beantworteten Fragen.</Trans>,
