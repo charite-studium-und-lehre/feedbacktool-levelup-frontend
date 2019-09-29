@@ -1,9 +1,9 @@
 import React from 'react'
 import { line } from 'd3-shape'
 import { curveMonotoneX } from 'd3-shape'
-import AnimatedPoint from './AnimatedPoint'
 import AnimatedPath from './AnimatedPath'
 import AnimatedText from './AnimatedText'
+import PointGraph from './PointGraph'
 
 export default function LineGraph(props) {
     const x = d => props.xScale(d.x) + (props.xScale.bandwidth ? props.xScale.bandwidth() / 2 : 0)
@@ -18,19 +18,9 @@ export default function LineGraph(props) {
         y={props.yScale(d.y) + 15}>
         {d.label}</AnimatedText>))
 
-    const circles = props.noPoints || props.data.map((d, i) => <AnimatedPoint 
-        key={i} 
-        selected={d.selected}
-        cx={x(d)} 
-        cy={props.yScale(d.y)} 
-        r="5" 
-        fill={props.color || "black"}
-        onClick={props.onClick}>
-    </AnimatedPoint>)
-
     return (<g className={`animated ${props.className}`} style={props.style}>
         <AnimatedPath d={props.data} shape={_line} style={{strokeWidth: 2, stroke: props.color || "black"}}></AnimatedPath>
-        {circles}
+        {props.noPoints || <PointGraph {...props} />}
         {texts}
     </g>)
 }
