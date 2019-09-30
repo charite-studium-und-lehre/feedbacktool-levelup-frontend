@@ -39,7 +39,7 @@ const Toolbar = ({ t, ...props }) => {
                         </div>}
                 </SlideDown>
                 <SlideDown className="animated fast">
-                    { 
+                    { props.extended &&
                         <div className="p-2">
                             <div className='row'>
                                 <ExternAssessingn />

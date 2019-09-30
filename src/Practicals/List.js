@@ -8,7 +8,7 @@ const List = ({ t }) => {
                 <h4>{t('Level der Eigenständigkeit und Aufsicht')}</h4>
                 {level(t).map((e, d) => 
                 <div key={d}>
-                    <div>{`${d} - ${e}`}</div>
+                    <div>{`${d+1} - ${e}`}</div>
                     <Numbers color="hsl(161, 100%, 25%)" colorsRgb="hsl(161, 100%, 25%, .2)" value={d} />
                 </div>)}
           </div>
