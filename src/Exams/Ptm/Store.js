@@ -1,13 +1,13 @@
 import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
 import { minQuestions } from '../../Utils/Constants'
-import BaseStore from '../Store'
+import BaseStore from '../BaseStore'
 import Results from './Data'
 
 export const identifier = 'ptms'
 const baseStore = BaseStore(identifier)
 
-const findBySemester = _.curry((semester, ptms) => ptms[semester])
+const findById = _.curry((id, ptms) => ptms[id])
 const findSubject = subject => _.flow([_.find({'name': subject}), _.defaultTo({})])
 const getFächer = ptm => ptm.fächer
 const getSubjects = _.flow([ getFächer ])
@@ -15,19 +15,18 @@ const getSubject = subject => _.flow([ getSubjects, findSubject(subject) ])
 const getRanking = _.flow([ getSubjects, _.filter(s => s.gesamt >= minQuestions), _.sortBy(s => -s.richtig / s.gesamt) ])
 
 const toTimeline = ptm => ({
-    x: ptm.date,
-    result: ptm.results[0],
+    ...ptm,
+    result: ptm.results[0]/2,
     mean: ptm.means[0],
-    label: ptm.semester,
 })
 const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 
 export const selectors = baseStore.withLoadedSelector({
-    getSubjectByName: (state, semester, subject) => _.flow([ baseStore.getItems, findBySemester(semester), getSubject(subject) ])(state, semester),
+    getSubjectByName: (state, id, subject) => _.flow([ baseStore.getItems, findById(id), getSubject(subject) ])(state),
     getAllForSubject: (state, subject) => 
-    _.flow([ baseStore.getItems, _.map(ptm => ({ ...getSubject(subject)(ptm), short: ptm.short })) ])(state),
-    getBySemester: (state, semester) => _.flow([ baseStore.getItems, findBySemester(semester) ])(state),
-    getLatest: _.flow([ baseStore.getItems, _.sortBy('semester'), _.last ]),
+        _.flow([ baseStore.getItems, _.map(ptm => ({ ...getSubject(subject)(ptm), timesemester: ptm.timesemester })) ])(state),
+    getById: (state, id) => _.flow([ baseStore.getItems, findById(id) ])(state),
+    getLatest: _.flow([ baseStore.getItems, _.sortBy('date'), _.last ]),
     getSubjects,
     getRanking,
     strongestSubject: _.flow([ getRanking, _.first ]),
@@ -37,7 +36,7 @@ export const selectors = baseStore.withLoadedSelector({
 
 export const actions = baseStore.withLoadAction({}, Results)
 
-export const reducer = combineReducers(baseStore.withLoadedReducer(( state = [], action ) => {
+export const reducer = combineReducers(_.compose([baseStore.withLoadedReducer, baseStore.withSelectReducer])(( state = [], action ) => {
     switch(action.type) {
         default:
             return state

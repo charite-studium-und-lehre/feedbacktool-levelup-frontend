@@ -12,7 +12,7 @@ const StationsInfo = ({t, ...props}) => {
         </div>
         <div>{(t`geschrieben am `)}<span className="font-weight-bold"> {props.data.x.toLocaleDateString()}</span></div>
         <span className="text-primary float-right" onClick={() => props.onClose()}>{t(`schließen`)}</span>
-        <Link to={`/exams/stations/${props.data.label}`}>
+        <Link to={`/exams/stations/${props.data.id}`}>
             <span className="text-primary">{t(`Details`)}</span>
         </Link>
     </div>)

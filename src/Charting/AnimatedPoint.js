@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { select } from 'd3-selection'
 import { animationTime } from './Utils'
 import css from './AnimatedPoint.module.css'
@@ -13,7 +13,7 @@ const AnimatedPoint = ({
         onClick = () => {},
     }) => {
 
-    const [ node ] = useState(React.createRef())
+    const node = useRef()
     const [ dcx ] = useState(cx)
     const [ dcy ] = useState(cy)
 

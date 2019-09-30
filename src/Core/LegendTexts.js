@@ -30,6 +30,10 @@ const Legends = {
                 title: <Trans>Detaillierte Ergebnisse</Trans>,
                 text: <Trans>Hier kannst du sehen, wie du in den zu dieser Semesterprüfung dazugehörigen Modulen und Fächern in Vergleich zu der Kohorte abgeschnitten hast.</Trans>,
             },
+            McFargen: {
+                title: <Trans>MC-Fragen</Trans>,
+                text: <Trans>Hier findest du eine kurze Zusammenfassung zu deinen MC Prüfungsfragen deiner ausgewählten Fachsemesterprüfung. Schwere Fragen sind Fragen, die weniger als 50% deiner Mitstudierenden beantworten konnten. Leichte Fragen hingegen konnten mehr als 70% deiner Kommilitonen beantworten.Für mehr Details zu den einzelnen Fragen, sowie Filter und Auswertungsmöglichkeiten klick den Button</Trans>,
+            },
             Questions: {
                 title: <Trans>Fragen und Antworten</Trans>,
                 text: <Trans i18nKey="exams.semester.questions.text">
@@ -43,6 +47,10 @@ const Legends = {
         Ptm: {
             Totals: {
                 title: <Trans>Gesamtes Ergebnis</Trans>,
+                text: <Trans>Hier findest du eine generelle Auswertung deines PTMs im Vergleich mit der Kohorte.</Trans>
+            },
+            Timeline: {
+                title: <Trans>Deine Entwicklung</Trans>,
                 text: <Trans>Hier findest du eine generelle Auswertung deines PTMs im Vergleich mit der Kohorte.</Trans>
             },
             Strengths: {

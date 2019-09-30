@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Dashboard from '../Dashboard/Dashboard'
-//import Exams from '../Exams/Exams'
+import Exams from '../Exams/Exams'
 import Semester from '../Exams/Semester/Semester'
 import Questions from '../Exams/Semester/Questions'
 import Ptm from '../Exams/Ptm/Ptm'
@@ -9,6 +9,7 @@ import Strengths from '../Strengths/Strengths'
 import Stations from '../Exams/Stations/Stations'
 import Consulting from '../consulting/Consulting'
 import Practicals from '../Practicals/Practicals'
+import Progress from '../Progress/Progress'
 import i18next from 'i18next'
 
 const Routes = [
@@ -20,13 +21,11 @@ const Routes = [
     private: true,
   },
 
-  // {
-  //   path: '/exams/:graphs?',
-  //   component: Exams,
-  //   breadcrumb: () => <Link to="/exams">{i18next.t(`Prüfungen`)}</Link>,
-  //   exact: true,
-  //   private: true,
-  // },
+  {
+    path: '/exams/:exam?/:id?',
+    component: Exams,
+    private: true,
+  },
 
   {
     path: '/consulting',
@@ -47,25 +46,18 @@ const Routes = [
   {
     path: '/exams/semester/:test',
     component: Semester,
-    breadcrumb: params => [
-      <Link to={`/exams/semester/${params.test}`}>{params.test}</Link>
-    ],
     exact: true,
     private: true,
   },
   {
     path: '/exams/semester/:test/questions',
     component: Questions,
-    breadcrumb: params => <Link to={`/exams/semester/${params.test}/questions`}>{i18next.t(`Fragen und Antworten`)}</Link>,
     exact: true,
     private: true,
   },
   {
     path: '/exams/ptm/:test',
     component: Ptm,
-    breadcrumb: params => [
-      <Link to={`/exams/ptm/${params.test}`}>{params.test}</Link>
-    ],
     exact: true,
     private: true,
   },
@@ -79,9 +71,15 @@ const Routes = [
     private: true,
   },
   {
-    path: '/exams/stations/:test',
+    path: '/exams/stations/:test?',
     component: Stations,
-    breadcrumb: params => <Link to="/exams/stations">{i18next.t(`Praktische Prüfungen`)}</Link>,
+    exact: true,
+    private: true,
+  },
+  {
+    path: '/progress',
+    component: Progress,
+    breadcrumb: () => <Link to="/progress">{i18next.t('Studienfortschritt')}</Link>,
     exact: true,
     private: true,
   },

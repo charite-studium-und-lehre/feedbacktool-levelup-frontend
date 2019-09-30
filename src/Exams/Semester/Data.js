@@ -1,10 +1,12 @@
 import _ from 'lodash'
 import fp from 'lodash/fp'
-import { scaleLinear } from 'd3-scale'
 import { randomNormal, randomUniform } from 'd3-random'
 import seedrandom from 'seedrandom'
 
-const subjects = { 
+import { Subjects } from '../Ptm/Data'
+
+const subjects = _.range(0,10).map(() => _.shuffle(fp.flatMap(c => c.subjects, Subjects)))
+/*{ 
     1: [ {code: 'S02b', name: 'Biochemie/ Molekularbiologie', count: 67},
     {code: 'FÜ', name: 'fächerübergreifend', count: 35},
     {code: 'S01b', name: 'Physiologie', count: 31},
@@ -143,9 +145,10 @@ const subjects = {
     {code: 'Q09', name: 'Klinische Pharmakologie/ Pharmakotherapie', count: 7},
     {code: 'F17', name: 'Pharmakologie, Toxikologie', count: 6},
     ],
-}
+}*/
 
-const semesters = ['1. Fachsemester', '2. Fachsemester', '3. Fachsemester', '4. Fachsemester', '5. Fachsemester']
+const semesters = ['1. Fachsemester','1. Fachsemester', '2. Fachsemester', '3. Fachsemester', '4. Fachsemester', '5. Fachsemester']
+const timesemesters = fp.flatMap( y => [{ label: `SS ${y}`, value: new Date(2000+y, 3, 1) }, { label: `WS ${y}/${y+1}`, value: new Date(2000+y, 9, 1) }] )( _.range( 14, 19 ) )
 
 const result = _.flow([
     seedrnd => randomUniform.source(seedrnd)(50, 75), 
@@ -153,25 +156,24 @@ const result = _.flow([
 ])
 
 const createDist = _.flow([
-    seedrnd => randomNormal.source(seedrnd)(50, 30),
+    seedrnd => randomNormal.source(seedrnd)(65, 20),
     rng => _.range(100)
         .map(() => _.range(4).map(() => Math.min(Math.floor(rng()), 80)))
 ])
     
-const distMean = d => _.round(_.meanBy(d, d => _.mean(d)))
+const distMean = d => _.round(_.meanBy(d, _.mean))
 
 const concatResult = ([result, data]) => [ result, data.concat([ result ]).sort((a,b) => _.mean(a)-_.mean(b)) ]
 
 const createResult = _.flow([ seedrandom, _.over(result, createDist), concatResult ])
 
 const createTotalsData = ([result, dist]) => {
-    const scale = scaleLinear().domain([0,dist.length - 1]).range([100, 0])
     return {
-        dist: dist.map( (d, i) => ({ x: scale(i), y: _.mean(d) })),
-        result,
-        resultMean: _.round(_.mean(result)),
-        resultPercent: scale(dist.indexOf(result)),
-        distMean: distMean(dist),
+        dist: dist.map( _.mean ),
+        result: _.round(_.mean(result)),
+        mean: distMean(dist),
+        id: _.uniqueId(),
+        bestandenAb: 48,
     }
 }
 
@@ -197,9 +199,11 @@ const createDetailsData = (semester, [result, dist]) => ({
         label: `Modul ${semester * 4 - 3 + i}`
     })),
     fächer: createSubjects(semester),
-    date: new Date(2013 + parseInt(semester), 6, 15),
+    date: new Date(2013 + parseInt(semester), 6+Math.random()*2, 15),
 })
 
-const Results = fp.keyBy(r => r.semester, fp.map(semester => _.flow([createResult, _.over([ _.partial(createDetailsData, semester.split(".")[0]), createTotalsData, () => ({ semester })]), fp.mergeAll])(semester) )(semesters))
+const addTimesemester = d => ({...d, timesemester: timesemesters.find( m => d.date - m.value < 1000 * 60 * 60 * 24 * 100).label})
+
+const Results = fp.keyBy(r => r.id, fp.map(semester => _.flow([createResult, _.over([ _.partial(createDetailsData, semester.split(".")[0]), createTotalsData, () => ({ semester })]), fp.mergeAll], addTimesemester)(semester) )(semesters))
 
 export default Results
