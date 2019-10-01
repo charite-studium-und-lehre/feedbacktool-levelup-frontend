@@ -137,12 +137,6 @@ id: _.uniqueId(),
 id: _.uniqueId(),
             },
             {
-              label:<Trans>'Venenverweilkanüle legen </Trans>,
-			        done:1,
-              confident: 3,
-id: _.uniqueId(),
-            },
-            {
               label: <Trans>Blutkultur entnehmen</Trans>,
 			        done: 2,
               confident: 2,
@@ -214,7 +208,7 @@ id: _.uniqueId(),
 id: _.uniqueId(),
               entries: [
                 {
-                  label: <Trans>Informieren des Patienten (allgemeine Information zu Art der Beschwerden, dem Krankheitsbild und der Diagnostik und Therapie</Trans>,
+                  label: <Trans>Informieren des Patienten (allgemeine Information zu Art der Beschwerden, dem Krankheitsbild und der Diagnostik und Therapie)</Trans>,
                   done: 1,
                   confident: 2,
                   external: [{id: 6, value: 4,datum : new Date()}],

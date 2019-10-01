@@ -26,7 +26,7 @@ const Toolbar = ({ t, ...props }) => {
                 <div className="row pb-xs-5 pl-1 ">
                     <div className="col-xs-12 col-sm-6  col-md-4 ">
                         <Button className="d-lg-none" icon={faListOl} active={list} onClick={() => setList(!list)} >{t(`Level der Eigenständigkeit`)}</Button>
-                        <Button icon={faEnvelopeOpenText} active={props.extended} onClick={props.toggleExtended}>{t(`Erhaltene Fremdeinschätzungen `)}</Button>
+                        <Button icon={faEnvelopeOpenText} active={props.extended} onClick={props.toggleExtended}>{t(`Erhaltene Fremdeinschätzung `)}</Button>
                         <Button icon={faEnvelopeOpenText} active={extended1} onClick={()=> setExtended(!extended1)}>{t(`Fremdeinschätzung einfordern`)}</Button>
                     </div>
                 <SlideDown className="animated fast">
@@ -45,8 +45,8 @@ const Toolbar = ({ t, ...props }) => {
                             <ExternAssessingn />
                         </div>}
                 </SlideDown>
-                <SlideDown className="animated fast">
-                    {extended1 && <ExternAsk onClick={props.toggleExtended}/>}
+                < SlideDown className="animated fast">
+                    { extended1 && <ExternAsk onClick={props.toggleExtended}/>}
                 </SlideDown>
             </div>
         </div>
