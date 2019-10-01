@@ -33,7 +33,7 @@ const mcFragen = () => {
         </div>
         <div className="mt-3">
             <Link to='1.%20Fachsemester/questions'>
-                <button type="button" className="btn btn-primary mt-3">Details zu Fargen</button>
+                <button type="button" className="btn btn-primary mt-3">Details zu Fragen</button>
             </Link>
         </div>
     </div>

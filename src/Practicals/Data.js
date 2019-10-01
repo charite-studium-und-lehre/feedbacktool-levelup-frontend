@@ -137,6 +137,12 @@ id: _.uniqueId(),
 id: _.uniqueId(),
             },
             {
+              label:<Trans>Venenverweilkanüle legen </Trans>,
+			        done:1,
+              confident: 3,
+id: _.uniqueId(),
+            },
+            {
               label: <Trans>Blutkultur entnehmen</Trans>,
 			        done: 2,
               confident: 2,

@@ -41,14 +41,14 @@ const ConsultingCard = ({t, ...props}) =>  (
                             <span>{props.tel}</span>
                         </div>
                     </div>
-                    <div className="col-md-12">
-                        <div className="icon">
+                    {props.address && <div className="col-md-12">
+                         <div className="icon">
                             <FontAwesomeIcon icon={faMapMarkedAlt} />
                         </div>
                         <div className="info">
                             <span>{props.address}</span>
-                        </div>
-                    </div>
+                       </div> 
+                    </div> }
                     <div className="col-md-12">
                         <div className="icon">
                             <FontAwesomeIcon icon={faComments} />

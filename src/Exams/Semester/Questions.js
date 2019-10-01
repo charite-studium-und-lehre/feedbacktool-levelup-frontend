@@ -36,7 +36,7 @@ class Questions extends Component {
                 <Filter showAll filters={ filters } onUpdate={ filters => this.setState( { filters } )} />
                 <div className="row">
                     <div className="col">
-                        <span className="font-weight-bold">{questions.length} von {DummyQuestions.length}{t(`angezeigt`)}</span>
+                        <span className="font-weight-bold">{questions.length} von {DummyQuestions.length} {t(`angezeigt`)}</span>
                     </div>
                 </div>
                 {questions.map((question, i) => <Question {...question } key={i} />)}
