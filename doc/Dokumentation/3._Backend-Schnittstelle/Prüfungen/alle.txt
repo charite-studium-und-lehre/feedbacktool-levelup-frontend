@@ -17,7 +17,7 @@ Rückgabe:
 {
 	"pruefungen": [
 		{
-			"typ": "<ptm|mc|station>",
+			"typ": "<typ>",
 			"studiPruefungsId": "<ID">,
 			"name": "<Bezeichnung>",
 			"datum": "<ISO-Datum>",
@@ -26,6 +26,23 @@ Rückgabe:
 	]
 
 }
+
+Typen:
+ "MC-Sem1",
+ "MC-Sem2",
+ "MC-Sem3",
+ "MC-Sem4",
+ "MC-Sem5",
+ "MC-Sem6",
+ "MC-Sem7",
+ "MC-Sem8",
+ "MC-Sem9",
+ "MC-Sem10",
+ "PTM",
+ "Stat-1VK",
+ "Stat-1K",
+ "Stat-2",
+ "Stat-3",
 
 PTM-Ergebnis:
 {

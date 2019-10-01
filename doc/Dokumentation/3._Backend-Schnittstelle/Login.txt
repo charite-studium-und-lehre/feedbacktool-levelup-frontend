@@ -4,28 +4,12 @@ Creation-Date: 2019-05-31T13:27:26+02:00
 
 ====== Login ======
 
-Maske:
-Benutzername, Passwort
-
-(evtl. später Shibolleth extern)
-
+Login über SSO.
 
 == Schnittstelle: ==
-Aufruf an Server:
+POST-Aufruf an Server:
 
 /api/login
-
-== POST-Aufruf: ==
-
-'''
-{
-'''
-	'''
-	"username" : <username>,
-	 "password" : <pwe>
-	}
-	'''
-
 
 === Erfolg: ===
 success: HTTP-Code 200

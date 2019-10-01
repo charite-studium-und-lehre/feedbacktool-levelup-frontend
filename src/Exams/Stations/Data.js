@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import fp from 'lodash/fp'
 
 const data = [
     {
@@ -442,6 +443,7 @@ const data = [
     // }
 ]
 
+const timesemesters = fp.flatMap( y => [{ label: `SS ${y}`, value: new Date(2000+y, 3, 1) }, { label: `WS ${y}/${y+1}`, value: new Date(2000+y, 9, 1) }] )( _.range( 14, 19 ) )
 const StationsData = data.map( e => ({
     ...e,
     stations: e.stations.map(s => ({
@@ -451,8 +453,10 @@ const StationsData = data.map( e => ({
     })),
 })).map(e => ({
     ...e,
+    id: _.uniqueId(),
+    timesemester: timesemesters.find( m => e.date - m.value < 1000 * 60 * 60 * 24 * 100).label,
     result: _.round(_.meanBy( e.stations, 'result')),
     mean: _.round(_.meanBy( e.stations, 'mean')),
 }))
 
-export default StationsData
+export default fp.keyBy(i => i.id, StationsData)

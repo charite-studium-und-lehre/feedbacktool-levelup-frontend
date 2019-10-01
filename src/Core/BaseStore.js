@@ -37,6 +37,7 @@ export default (identifier, getStore) => {
     }
 
     return {
+        getStore,
         withLoadedSelector: selectors => ({ 
             loaded: state => getStore(state).loaded,
             ...selectors

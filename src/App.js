@@ -26,18 +26,9 @@ class App extends Component {
   }
 
   render() {
-    let navbar = (
-      <Navbar isLoggedIn={this.state.loggedIn}></Navbar>
-    )
-    let breadcrumbs =  (
-<Breadcrumbs />
-    )
-
     let login
     if(!this.state.loggedIn) {
       login = () => (<Login handleLogin={() => this.setState({loggedIn: true})}></Login>);
-      navbar = false
-      breadcrumbs = false
     } else {
       login = () => (<Redirect to="/dashboard"></Redirect>)
     }
@@ -46,8 +37,8 @@ class App extends Component {
       <Provider store={createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)))}>
         <BrowserRouter basename={getBasename()}>
           <div className="App">
-            {navbar}
-            {breadcrumbs}
+            {this.state.loggedIn && <Navbar isLoggedIn={this.state.loggedIn}></Navbar>}
+            {this.state.loggedIn && <Breadcrumbs />}
             <Route path="/login" component={login} />
             {Routes.map( route => ( route.private ?
                     <PrivateRoute key={route.path} path={route.path} component={route.component} exact={route.exact} isLoggedIn={this.state.loggedIn} /> :

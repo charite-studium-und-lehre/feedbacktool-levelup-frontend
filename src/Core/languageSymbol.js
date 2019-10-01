@@ -8,7 +8,7 @@ const LanguageSymbol = () => {
             style={{ cursor: 'pointer' }}
              onClick={() => { i18next.changeLanguage(!language? 'en' : 'de'); setLanguage(!language) } }
             >
-            {language? 'en' : 'de'}
+            {language? 'DE' : 'EN'}
             </div>
     )
 }

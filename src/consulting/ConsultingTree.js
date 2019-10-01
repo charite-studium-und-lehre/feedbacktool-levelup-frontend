@@ -6,7 +6,7 @@ export const ConsultingTree = t => ({
             href: 'https://www.stw.berlin/finanzierung.html'
         },
         {
-            title : t('Stipendien-möglichkeiten '),
+            title : t('Stipendien'),
             href : 'https://www.stipendienlotse.de/datenbank.php?A%5B%5D=2&H=&B%5B%5D=4&F=57&S=&job=search'
         },
         {
@@ -31,13 +31,8 @@ export const ConsultingTree = t => ({
             title : t('Hilfe bei Studienabbruch '),
             href:'https://www.queraufstieg-berlin.de'
         },
-        {
-            title : t('Navigation Beratung (video) '),
-            href:'https://www.youtube.com/watch?time_continue=20&v=2nea4zUSkTY'
-        },
     ],
     ConsultingCard : [
-    
     {
         title:t(`MediCoach`),
         paragraph:t(`MediCoach bietet  Ihnen ein individuelles, kostenloses, lösungsorientiertes Coaching zur Unterstützung stressbelasteter Studierender im Rahmen Ihres Studiums an der Charité Universitätsmedizin Berlin an. Neben Einzelcoachings können Sie auch in einer in jedem Semester angebotenen Coachinggruppe gemeinsam mit Ihren Kommiliton*innen Lösungen für Probleme im Studium entwickeln.`),
@@ -79,7 +74,7 @@ export const ConsultingTree = t => ({
    {
         title:t(`Student Mentoring`),
         paragraph:t(`Das Team des Mentoringprogramms unterstützt Studierende der Charité – Universitätsmedizin Berlin, ihr Studium erfolgreich und zielstrebig zu absolvieren. Im Mentoringprogramm werden Studierenden engagierte Ärztinnen und Ärzte als Mentor*innen vermittelt.`),
-        names:[t`Petra Meinhardt (Leitung)","Leonie Kühn und Emma Kula (Organisation)`],
+        names:[t`Petra Meinhardt (Leitung), Leonie Kühn und Emma Kula (Organisation)`],
         tel:"+49 30 450 576 091",
         emails:["studentmentoring@charite.de" ],
         address:"Hannoversche Straße 19, 3. Etage, CCM",

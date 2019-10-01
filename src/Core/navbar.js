@@ -23,6 +23,9 @@ export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
                         <NavLink className="nav-link" to="/dashboard">{t(`Dashboard`)}<span className="sr-only">(current)</span></NavLink>
                     </li>
                     <li className="nav-item">
+                        <NavLink className="nav-link" to="/exams">{t(`Prüfungen`)}</NavLink>
+                    </li>
+                    <li className="nav-item">
                         <NavLink className="nav-link" to="/practicals">{t(`Ärztliche Tätigkeiten`)}</NavLink>
                     </li>
                     <li className="nav-item">
