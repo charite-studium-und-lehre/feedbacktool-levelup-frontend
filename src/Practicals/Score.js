@@ -76,7 +76,7 @@ const Score = makeExtendable( ({ t, ...props }) => (
                    : null}
             </div>}
     </div>
-    <div className="col-8 m-auto " style={{minWidth:'19rem', maxWidth:'26rem'}} >
+    <div className="col-8 m-auto " style={{minWidth:'17rem', maxWidth:'26rem'}} >
         <SlideDown >
             {props.extended && 
             <div>

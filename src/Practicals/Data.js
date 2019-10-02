@@ -214,14 +214,14 @@ id: _.uniqueId(),
 id: _.uniqueId(),
               entries: [
                 {
-                  label: <Trans>Informieren des Patienten (allgemeine Information zu Art der Beschwerden, dem Krankheitsbild und der Diagnostik und Therapie)</Trans>,
+                  label: <Trans>Informieren des Patienten (allgemeine Information zu Art der Beschwerden, dem Krankheitsbild und der Diagnostik und Therapie; spezifische Informationen zum Patienten hierzu wie mit dem Arzt abgestimmt)</Trans>,
                   done: 1,
                   confident: 2,
                   external: [{id: 6, value: 4,datum : new Date()}],
 id: _.uniqueId(),
                 },
                 {
-                  label: <Trans>Informieren des Patienten (allgemeine Information zu Art der Beschwerden, dem Krankheitsbild und der Diagnostik und Therapie; spezifische Informationen zum Patienten hierzu wie mit dem Arzt abgestimmt)</Trans>,
+                  label: <Trans>Allgemeine Beratung des Patienten (Lebensstiländerung; Nikotin- und Alkoholmissbrauch; sexuell übertragbare Erkrankungen)</Trans>,
                   done: 1,
                   confident: 2,
 id: _.uniqueId(),
@@ -232,7 +232,7 @@ id: _.uniqueId(),
           ]
       },
       {
-          label: <Trans>Kommunikation und Zusammenarbeit mit Kollegen</Trans>,
+          label: <Trans>Kommunikation mit Kollegen</Trans>,
 			
 id: _.uniqueId(),
           entries: [
@@ -305,7 +305,7 @@ id: _.uniqueId(),
           ]
       },
       {
-          label: <Trans>Weitere ärztliche professionelle Tätigkeit</Trans>,
+          label: <Trans>Weitere Tätigkeiten</Trans>,
 			
 id: _.uniqueId(),
           entries: [
