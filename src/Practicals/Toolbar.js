@@ -19,15 +19,18 @@ const Button = (props) =>
 
 const Toolbar = ({ t, ...props }) => {
     const [list, setList] = useState(false)
-    const [extended1, setExtended] = useState(false)
+    const [extended, setExtended] = useState({
+        extended1:false,
+        extended2:false
+    })
     return (
         <div className="pt-2 pb-2  card" style={{ top: '1rem' }}>
             <div>
                 <div className="row pb-xs-5 pl-1 ">
                     <div className="col-xs-12 col-sm-6  col-md-4 ">
                         <Button className="d-lg-none" icon={faListOl} active={list} onClick={() => setList(!list)} >{t(`Level der Eigenständigkeit`)}</Button>
-                        <Button icon={faEnvelopeOpenText} active={props.extended} onClick={props.toggleExtended}>{t(`Erhaltene Fremdeinschätzung `)}</Button>
-                        <Button icon={faEnvelopeOpenText} active={extended1} onClick={()=> setExtended(!extended1)}>{t(`Fremdeinschätzung einfordern`)}</Button>
+                        <Button icon={faEnvelopeOpenText} active={extended.extended1} onClick={()=> setExtended({extended1: !extended.extended1, extended2:false})}>{t(`Erhaltene Fremdeinschätzung `)}</Button>
+                        <Button icon={faEnvelopeOpenText} active={extended.extended2} onClick={()=> setExtended({extended1: false, extended2: !extended.extended2})}>{t(`Fremdeinschätzung einfordern`)}</Button>
                     </div>
                 <SlideDown className="animated fast">
                     {list &&
@@ -40,17 +43,17 @@ const Toolbar = ({ t, ...props }) => {
                     </div>
                 </div>
                 <SlideDown className="animated fast">
-                    {props.extended &&
+                    {extended.extended1 &&
                         <div className='row p-2'>
                             <ExternAssessingn />
                         </div>}
                 </SlideDown>
                 < SlideDown className="animated fast">
-                    { extended1 && <ExternAsk onClick={props.toggleExtended}/>}
+                    {extended.extended2 && <ExternAsk onClick={props.toggleExtended}/>}
                 </SlideDown>
             </div>
         </div>
     )
 }
 
-export default withTranslation()(makeExtendable(Toolbar))
+export default withTranslation()(Toolbar)
