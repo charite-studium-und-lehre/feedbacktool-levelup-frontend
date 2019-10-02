@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { withTranslation } from 'react-i18next'
 import _ from 'lodash/fp'
 import Legend from '../../Charting/Legend'
