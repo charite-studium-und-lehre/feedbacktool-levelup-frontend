@@ -4,7 +4,7 @@ import { ExternAssissing } from './Data'
 import { actions } from './Store'
 
 const externAssessingn =  connect(null, actions)(props => (
-    <div className=' col-xs-5 col-sm-8  col-md-6 col-lg-6 col-xl-4 mt-2'>
+    <div className=' col-12 col-md-12 col-xl-10  mt-2'>
         <button className='btn-secondary' style={{width:'5rem', borderRadius:'.3rem'}} onClick={ () => props.setFilter(null) }>Alle</button>
         <ul className='list-group mt-1 mb-3'>
         {ExternAssissing.map(e =>

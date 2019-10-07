@@ -24,9 +24,9 @@ const Toolbar = ({ t, ...props }) => {
     })
     return (
         <div className="pt-2 pb-2  card" style={{ top: '1rem' }}>
-            <div>
-                <div className="row pb-xs-5 pl-1 ">
-                    <div className="col-xs-12 col-sm-6  col-md-4 ">
+            <div className='row'>
+                <div className="col-xs-12 col-sm-6 col-md-5 col-lg-5 pb-xs-5 ">
+                    <div className="ml-2">
                         <Button className="d-lg-none" icon={faListOl} active={list} onClick={() => setList(!list)} >{t(`Level der Eigenständigkeit`)}</Button>
                         <Button icon={faEnvelopeOpenText} active={extended.extended1} onClick={()=> setExtended({extended1: !extended.extended1, extended2:false})}>{t(`Erhaltene Fremdeinschätzung `)}</Button>
                         <Button icon={faEnvelopeOpenText} active={extended.extended2} onClick={()=> setExtended({extended1: false, extended2: !extended.extended2})}>{t(`Fremdeinschätzung einfordern`)}</Button>
@@ -37,12 +37,8 @@ const Toolbar = ({ t, ...props }) => {
                             <List />
                         </div>}
                 </SlideDown>
-                    <div className="col-sm-12 col-md-8 mt-sm-3" >
-                        <Score headings={true} entry={props.root} average={true} width={'1rem'} height={'1rem'} borderRadius={'50%'} />
-                    </div>
-                </div>
                 <SlideDown className="animated fast">
-                    {extended.extended1 &&
+                    { extended.extended1 &&
                         <div className='row p-2'>
                             <ExternAssessingn />
                         </div>}
@@ -50,6 +46,10 @@ const Toolbar = ({ t, ...props }) => {
                 < SlideDown className="animated fast">
                     {extended.extended2 && <ExternAsk onClick={props.toggleExtended}/>}
                 </SlideDown>
+                </div>
+                    <div className="col-sm-12  col-sm-6 col-md-7 col-lg-7 mt-sm-3 pr-5" >
+                        <Score headings={true} entry={props.root} average={true} width={'1rem'} height={'1rem'} borderRadius={'50%'} />
+                    </div>
             </div>
         </div>
     )
