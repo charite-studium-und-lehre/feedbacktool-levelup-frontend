@@ -11,8 +11,6 @@ POST-Aufruf an Server:
 
 /api/login
 
-=== Erfolg: ===
-success: HTTP-Code 200
 
 Rückgabe:
 '''
@@ -27,8 +25,9 @@ Rückgabe:
 '''
 
 
-== Ergebnis: ==
-Cookie wird serverseitig vom Backend gesetzt (als "angemeldet")
+=== Erfolg: ===
+Cookie wird serverseitig vom Backend gesetzt (als "angemeldet").
+success: HTTP-Code 200
 
 === fail: ===
-HTTP-Code 404 (Falscher Benutzer)
+HTTP-Code 404 (Nicht gefunden)
