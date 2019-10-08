@@ -29,10 +29,10 @@ export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
                         <NavLink className="nav-link" to="/practicals">{t(`Ärztliche Tätigkeiten`)}</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="">{t(`TellMe`)}</NavLink>
+                        <NavLink className="nav-link" to="/consulting">{t(`Beratung`)}</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/consulting">{t(`Beratung`)}</NavLink>
+                        <a className="nav-link" href='https://msm-tellme.charite.de/lernen'>{t(`TellMe`)}</a>
                     </li>
                 </ul>
                 <ul className="navbar-nav">
@@ -41,9 +41,9 @@ export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
                           Willkommen Sabine 
                       </div>
                     </li>
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                         <LanguageSymbol />
-                    </li>
+                    </li> */}
                     <li className="nav-item">
                         {button}
                     </li>

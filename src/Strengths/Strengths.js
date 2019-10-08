@@ -16,13 +16,8 @@ const Strengths = ({ match }) => {
                 </Legend>
             </div>
         </div>
-        <div className="row mt-3">
-            <div className="col-md-8 mb-2">
-                <Rankings />
-            </div>
-            <div className="col-md-4 mb-2">
-                <PTMResults />
-            </div>
+        <div >
+          <Rankings />
         </div>
         <div className="row">
             <div className="col">

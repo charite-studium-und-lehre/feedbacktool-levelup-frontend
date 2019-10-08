@@ -5,9 +5,48 @@ Creation-Date: 2019-06-25T17:53:18+02:00
 ====== Ärztliche Tätigkeiten ======
 
 
-Selbsteinschätzung an Server senden:
 
-POST oder UPDATE
+==== Hole verfügbare ärztliche Tätigkeiten: ====
 
-Server sendet 204 created 
+[[/backend]][[/api/epa/meine]]
+
+Erzeugt ein Array aus EPAs und Fremdeinschätzungen
+
+'''
+Array:
+'''
+	'''
+	meineEPAs: Array
+	'''
+		'''
+		id: <id>,
+		beschreibung: <beschreibung>
+		parentId: <parentID oder NULL>
+		gemacht: <level, 0-5>
+		zutrauen: <level, 0-5>
+		zutrauen: <level, 0-5>
+		fremdeinschaetzungen: array:
+			fremdId: <id der Fremdeinschätzung>
+			wert: <level, 0-5>
+		
+		'''
+	'''
+	fremdeinschaetzungen: Array
+		id: <ID der Fremdeinschätzung>	
+		name: <Mailadresse des Prüfers>
+		datum: <ISO-Datum , z.B: "2018-10-31"
+	'''
+
+
+
+==== Selbstbewertung an Server senden: ====
+
+[[/backend]][[/api/epa/selbstbewertung/erhoehen]]
+[[/backend]][[/api/epa/selbstbewertung/vermindern]]
+
+POST-Parameter
+epaID: <epaID, wie gesendet in epas/meine>
+typ: <"gemacht" oder "zutrauen">
+
+Server sendet 200 OK 
 oder 400 "BAD REQUEST" bei ungültiger ID oder Wert

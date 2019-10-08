@@ -25,7 +25,7 @@ import { ConsultingTree } from './ConsultingTree'
                         <div className="consulting-link">
                             <ul className="list-group list-group-flush ">
                                 <h4 className="text-center mb-4">{t(`Externe Beratung`)}</h4>
-                                {ConsultingTree(t).ExternConsulting.map(d => <a className="extern-link text-center list-group-item" href={d.href}>{d.title}</a>)}
+                                {ConsultingTree(t).ExternConsulting.map((d, i)=> <a className="extern-link text-center list-group-item" key={i} href={d.href}>{d.title}</a>)}
                             </ul>
                         </div>
                     </div>
@@ -35,8 +35,8 @@ import { ConsultingTree } from './ConsultingTree'
                 <h1 className="text-center">{t(`Beratung`)}</h1>
                 <div className="row">
                 
-                    {ConsultingTree(t).ConsultingCard.map(d =>
-                        <ConsultingCard
+                    {ConsultingTree(t).ConsultingCard.map((d,i) =>
+                        <ConsultingCard key={i}
                            {...d}
                         />
                     )}

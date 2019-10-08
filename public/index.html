@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="de">
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self';  script-src 'self' 'unsafe-eval' 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com/; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' 'unsafe-inline'; form-action 'self';">
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self';  script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com/; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' 'unsafe-inline'; form-action 'self';">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
@@ -22,21 +24,26 @@
     -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
     <title>-- LevelUp %PUBLIC_URL% %REACT_APP_SITE_TITLE% --</title>
-  </head>
-  <body>
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+</head>
+<body>
+<noscript>
+    You need to enable JavaScript to run this app.
+</noscript>
+<script type="text/javascript"> var ua = window.navigator.userAgent;
+var msie = ua.indexOf("MSIE ");
+if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) document.write(
+    '<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"><\/script>');
+</script>
+<div id="root"></div>
+<!--
+  This HTML file is a template.
+  If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+  You can add webfonts, meta tags, or analytics to this file.
+  The build step will place the bundled scripts into the <body> tag.
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+  To begin the development, run `npm start` or `yarn start`.
+  To create a production bundle, use `npm run build` or `yarn build`.
+-->
+</body>
 </html>

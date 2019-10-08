@@ -40,13 +40,6 @@ class Questions extends Component {
                     </div>
                 </div>
                 {questions.map((question, i) => <Question {...question } key={i} />)}
-                <div className="row mt-3">
-                    <div className="col">
-                        <Link to={`${this.props.match.url.replace('/questions', '')}`}>
-                            <button type="button" className="btn btn-outline-primary mt-2">{t(`Details zur Prüfung`)}</button>
-                        </Link>
-                    </div>
-                </div>
             </div>
         )
     }

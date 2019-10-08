@@ -35,8 +35,12 @@ cd /var/www/levelup/<develop|test1|test2|test3>
 Browser muss Seite neu laden, z.B. über Strg-Shift-R
 
 ->erreichbar unter 
-http://s-mfal-feed-ext.charite.de/develop
-http://s-mfal-feed-ext.charite.de/test1
-http://s-mfal-feed-ext.charite.de/test2
-http://s-mfal-feed-ext.charite.de/test3
+http://levelup.charite.de/app
+http://levelup.charite.de/app-develop
+http://levelup.charite.de/app-test1
+http://levelup.charite.de/app-test2
+http://levelup.charite.de/app-test3
+
+https://levelup.charite.de/backend/api/meilensteine
+https://levelup.charite.de/backend/sso
 

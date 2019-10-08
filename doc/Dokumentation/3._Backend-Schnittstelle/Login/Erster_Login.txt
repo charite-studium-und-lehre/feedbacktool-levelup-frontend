@@ -8,7 +8,6 @@ Formular:
 * Matrikelnummer
 * Vorname (wird nur dargestellt aus Antwort vom Server)
 * Nachname (wird nur dargestellt aus Antwort vom Server)
-* Geburtsdatum
 
 Schnittstelle:
 
@@ -18,12 +17,11 @@ Schnittstelle:
 
 {
 	"matrikelnummer" : <matrikelnummer>,
-	"geburtsdatum" : <geburtsdatum im Format ISO-Format "YYYY-MM-DD">,
 }
 
 == Erfolg: ==
 HTTP-Code 200
--> Backend: dem richtigen Hash wird ein Login-hash hinzugefügt, damit der Benutzer diese Seite nur einmal ausfüllen.
+-> Backend: dem Benutzer wird ein Login-hash hinzugefügt, damit der Benutzer diese Seite nur einmal ausfüllen muss.
 
 == Fail: ==
 HTTP-Code: 404

@@ -18,12 +18,12 @@ const ConsultingCard = ({t, ...props}) =>  (
                             <FontAwesomeIcon icon={faUser} />
                         </div>
                         <div className="info">
-                            {props.names.map(d => <div>{d}</div>)}
+                            {props.names.map(d => <div key={d}>{d}</div>)}
                         </div>
                     </div>
                     {
                         (props.emails || []).map(d =>
-                            <div className="col-md-12" >
+                            <div className="col-md-12" key={d} >
                                 <div className="icon">
                                     <FontAwesomeIcon icon={faAt} />
                                 </div>
@@ -54,7 +54,7 @@ const ConsultingCard = ({t, ...props}) =>  (
                             <FontAwesomeIcon icon={faComments} />
                         </div>
                         <div className="info">
-                            {props.talk.map(d => <div>{d}</div>)}
+                            {props.talk.map(d => <div key={d}>{d}</div>)}
                         </div>
                     </div>
 
