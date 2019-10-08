@@ -108,3 +108,12 @@ ol.breadcrumb:empty {
   height: 1.9rem;
   display: inline-block;
 }
+.tellMeLogo {
+  background:url(./images/tellMeLogo.PNG) no-repeat center center;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  width: 10rem;
+  height: 4rem;
+}

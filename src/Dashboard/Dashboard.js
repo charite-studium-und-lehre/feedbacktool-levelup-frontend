@@ -5,6 +5,8 @@ import Timeline from './Timeline/Timeline'
 import Ptm from './Ptm'
 import Practicals from './Practicals'
 import Strengths from './Strengths'
+import TellMe from './TellMe'
+
 
 export default () => 
     <div className="container-fluid">
@@ -34,6 +36,11 @@ export default () =>
                     <Link to="/strengths">
                         <Strengths />
                     </Link>
+                </div>
+            </div>
+            <div className="col-lg-4">
+                <div className="mt-2">
+                       <TellMe/>
                 </div>
             </div>
         </div>
