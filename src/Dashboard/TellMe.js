@@ -1,5 +1,7 @@
 import React from 'react'
 import DashbordCard from './DashboardCard'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faDumbbell} from '@fortawesome/free-solid-svg-icons'
 
 
 const tellme =()=> (
@@ -13,7 +15,8 @@ const tellme =()=> (
                     <p className='mt-2'>Aktulle ...Version M17 mit kommentierten Fragen. </p>
                 </div>
                     <div className='col-12 col-sm-6 '>
-                    <a className='btn btn-secondary form-control mt-2' style={{position:'relative', bottom:'0'}}  href='https://msm-tellme.charite.de/lernen' >Trainieren </a>
+                    <a className='btn btn-secondary form-control mt-2' style={{position:'relative', bottom:'0'}}  href='https://msm-tellme.charite.de/lernen' >
+                    Trainieren  <span className='ml-2'><FontAwesomeIcon icon={faDumbbell}/></span></a>
                 </div>
             </div>
         </DashbordCard>
