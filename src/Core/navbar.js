@@ -34,6 +34,9 @@ export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
                     <li className="nav-item">
                         <a className="nav-link" href='https://msm-tellme.charite.de/lernen'>{t(`TellMe`)}</a>
                     </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/willcommen">{t(`1.LogIn`)}</NavLink>
+                    </li>
                 </ul>
                 <ul className="navbar-nav">
                 <li className="nav-item">

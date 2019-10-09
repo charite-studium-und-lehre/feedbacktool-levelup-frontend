@@ -11,6 +11,7 @@ import Consulting from '../consulting/Consulting'
 import Practicals from '../Practicals/Practicals'
 import Progress from '../Progress/Progress'
 import i18next from 'i18next'
+import willcommen from '../willcommen'
 
 const Routes = [
   {
@@ -31,6 +32,14 @@ const Routes = [
     path: '/consulting',
     component: Consulting,
     breadcrumb: () => <Link to="/consulting">{i18next.t(`Beratung`)}</Link>,
+    exact: true,
+    private: true,
+  },
+
+  {
+    path: '/willcommen',
+    component: willcommen,
+    breadcrumb: () => <Link to="/willcommen">{i18next.t(`willcommen`)}</Link>,
     exact: true,
     private: true,
   },
