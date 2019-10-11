@@ -25,13 +25,11 @@ Array:
 		istBlatt: TRUE für EPAs, FALSE für Kategorien
 		
 		# nur für EPAs (Blätter):
-		gemacht: <level, 0-5>
-		zutrauen: <level, 0-5>
-		'''
-		'''
+		gemacht: <level= 0-5>
+		zutrauen: <level= 0-5>
 		fremdeinschaetzungen: array:
 			fremdId: <id der Fremdeinschätzung>
-			wert: <level, 0-5>
+			wert: <level= 0-5>
 		
 		'''
 	'''
@@ -54,3 +52,7 @@ typ: <"gemacht" oder "zutrauen">
 
 Server sendet 200 OK 
 oder 400 "BAD REQUEST" bei ungültiger ID oder Wert. Grund steht dann im Return-Wert als Text
+
+== Beispiel ==
+https://levelup.charite.de/backend/api/epa/selbstbewertung/erhoehen?epaID=111&typ=gemacht
+

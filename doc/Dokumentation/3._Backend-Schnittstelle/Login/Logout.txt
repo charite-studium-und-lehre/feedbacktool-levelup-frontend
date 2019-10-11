@@ -1,0 +1,21 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-10-11T14:04:41+02:00
+
+====== Logout ======
+
+====== 1. Logout aus LevelUp ======
+
+''backend/logout''
+
+== Ergebnis: ==
+HTTP-Code 200 "OK"
+Der Nutzer ist mit einem Klick auf "Login" sofort wieder eingeloggt, da er weiterhini auf SSO eingeloggt bleibt
+
+====== 2. Logout aus Charité-SSO ======
+
+Der Nutzer muss im Frontend auf folgende Seite weitergeleitet werden (Kein API-Call!)
+''/backend/ssoLogout''
+
+== Ergebnis: ==
+Der Nutzer sieht die Charité-Seite zur Bestätigung des Logouts.

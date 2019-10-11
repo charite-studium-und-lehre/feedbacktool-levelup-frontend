@@ -4,9 +4,11 @@ Creation-Date: 2019-05-31T13:38:29+02:00
 
 ====== Erster Login ======
 
+Voraussetzung: User muss über SSO eingeloggt sein. Siehe [[Login]]
+
 Formular:
 * Matrikelnummer
-* Vorname (wird nur dargestellt aus Login-Daten vom Server) Siehe [[Login]]
+* Vorname (wird nur dargestellt aus Login-Daten vom Server). Siehe [[Login]]
 * Nachname (wird nur dargestellt aus Login-Daten vom Server)
 
 Schnittstelle:
