@@ -2,10 +2,10 @@ Content-Type: text/x-zim-wiki
 Wiki-Format: zim 0.4
 Creation-Date: 2019-09-12T17:32:54+02:00
 
-====== Meilensteine ======
+====== Studienfortschritt ======
 
 == GET-Aufruf: ==
-[[/backend/api/meilensteine]]
+[[/backend/api/studienfortschritt]]
 
 success: HTTP-Code 200
 
@@ -21,7 +21,7 @@ Rückgabe:
 			"titel": "<langer string>",
 			"fachsemester": <int 1-10>,
 			"erfuellt": <bool>,
-			"studiPruefungsId": <ID oder leer>
+			"studiPruefungsId": <ID zur StudiPruefung oder leer>
 		},
 	]
 

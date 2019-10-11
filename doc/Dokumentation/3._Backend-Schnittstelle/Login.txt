@@ -6,13 +6,14 @@ Creation-Date: 2019-05-31T13:27:26+02:00
 
 Login über SSO.
 
+===== 1. Test vom Frontend, ob User eingeloggt ist =====
+
 == Schnittstelle: ==
 POST-Aufruf an Server:
+''/backend/api/isLoggedIn''
 
-/api/login
-
-
-Rückgabe:
+== Rückgabe, wenn schon eingeloggt: ==
+HTTP-Code 200
 '''
 {
 	"vorname": <vorname>,
@@ -25,9 +26,27 @@ Rückgabe:
 '''
 
 
+=== Wenn "stammdatenVorhanden" true ist ===
+Das Frontend kann den Benutzer als vollständig eingeloggt betrachten und auf das Dashboard weiterleiten
+
+=== Wenn "stammdatenVorhanden" false ist ===
+Das Frontend muss den User auf die Seite [[+Erster Login]] weiterleiten.
+
+
+== Wenn noch nicht eingeloggt: ==
+HTTP-Code 401 "Unauthorized" 
+
+2. ====== Backend zum Logn auffordern ======
+
+Der Nutzer muss im Frontend an folgende URL weitergeleitet werden (kein API/Ajax-Aufruf!)
+https://levelup.charite.de/login
+
 === Erfolg: ===
 Cookie wird serverseitig vom Backend gesetzt (als "angemeldet").
-success: HTTP-Code 200
+Es erfolgt eine Weiterleitung vom Backend auf https://levelup.charite.de/app/loggedIn
 
-=== fail: ===
-HTTP-Code 404 (Nicht gefunden)
+Von dort aus muss die App eine erneute Abfrage auf 1. starten 
+''/backend/api/isLoggedIn''
+
+Nun sollte das Ergebnis 200 sein.
+
