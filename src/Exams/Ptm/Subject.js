@@ -12,12 +12,12 @@ import LineGraph from '../../Charting/LineGraph'
 import { XAxis, YAxis } from '../../Charting/Axis'
 import { selectors } from './Store'
 import SimpleBar from '../../Charting/SimpleBar'
-import Legende from './Legende'
+import FarbLegende from '../../Core/FarbLegende'
 
 const Timeline = withTranslation()(({ t, data }) => 
     <div className="col m-auto" style={{maxWidth: '40rem'}}>
-        <Legende text={t('Anzahl gestellte Fragen')} style={{backgroundColor : colors[0]}}/>
-        <Legende text={t('Anzahl richtige Fragen')} style={{backgroundColor : colors[1]}}/>
+        <FarbLegende text={t('Anzahl gestellte Fragen')} style={{backgroundColor : colors[0]}}/>
+        <FarbLegende text={t('Anzahl richtige Fragen')} style={{backgroundColor : colors[1]}}/>
         <div className="p-4 mt-3" style={{height: '6rem'}} >
             <OrdinalChart xDomain={data.map(d => d.timesemester)} yDomain={[0, Math.max(...data.map(d => d.gesamt))]}>
                 <XAxis />
