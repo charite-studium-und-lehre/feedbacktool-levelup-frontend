@@ -22,22 +22,21 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {loggedIn: true}
+    this.state = {loggedIn:false}
   }
 
   render() {
     let login
     if(!this.state.loggedIn) {
-      login = () => (<Login handleLogin={() => this.setState({loggedIn: true})}></Login>);
+      login = () => (<Login onClick={() => this.setState({loggedIn: true})}></Login>);
     } else {
       login = () => (<Redirect to="/dashboard"></Redirect>)
     }
-
     return (
       <Provider store={createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)))}>
         <BrowserRouter basename={getBasename()}>
           <div className="App">
-            {this.state.loggedIn && <Navbar isLoggedIn={this.state.loggedIn}></Navbar>}
+            {this.state.loggedIn && <Navbar isLoggedIn={this.state.loggedIn} onClick={() => this.setState({loggedIn: false})}></Navbar>}
             {this.state.loggedIn && <Breadcrumbs />}
             <Route path="/login" component={login} />
             {Routes.map( route => ( route.private ?

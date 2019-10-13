@@ -4,13 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from './makeExtendable'
 import { withTranslation } from 'react-i18next'
-import LanguageSymbol from './languageSymbol'
+// import LanguageSymbol from './languageSymbol'
 
 export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
-    let button = props.isLoggedIn ?
-        <NavLink className="nav-link pull-right" to="/logout">Logout</NavLink> :
-        <NavLink className="nav-link pull-right" to="/login">Login</NavLink>
-
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top">
             <Link className="navbar-brand" to="/">LevelUp</Link>
@@ -34,9 +30,6 @@ export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
                     <li className="nav-item" >
                         <a className="nav-link" href='https://msm-tellme.charite.de/lernen'>{t(`TellMe`)}</a>
                     </li>
-                    <li className="nav-item" onClick={props.toggleExtended}>
-                        <NavLink className="nav-link" to="/willcommen">{t(`1.LogIn`)}</NavLink>
-                    </li>
                 </ul>
                 <ul className="navbar-nav">
                 <li className="nav-item">
@@ -48,7 +41,7 @@ export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
                         <LanguageSymbol />
                     </li> */}
                     <li className="nav-item">
-                        {button}
+                    <NavLink className="nav-link pull-right" onClick={props.onClick} to="/login">{t(`Logout`)}</NavLink>
                     </li>
                 </ul>
             </div>
