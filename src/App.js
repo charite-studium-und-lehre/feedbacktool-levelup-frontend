@@ -22,7 +22,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {loggedIn:false}
+    this.state = {loggedIn:true}
   }
 
   render() {

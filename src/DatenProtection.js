@@ -1,10 +1,12 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {   faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { withTranslation } from 'react-i18next'
 
 const datenProtection =({t, ...props})=> (
-    <div>
-        <h4>{t(`Datenschutzhinweise`)}</h4>
-            <p>{t(`Deine Daten werden vertrauensvoll behandelt und sind nicht für Dritte einsehbar.
+    <div className='pb-3'>
+         <h4 className='text-center'>{t(`Datenschutzhinweise`)}</h4>
+         <p>{t(`Deine Daten werden vertrauensvoll behandelt und sind nicht für Dritte einsehbar.
                    Bestimmte Angebote der Webseite kannst Du nur nutzen, wenn Du dich zuvor als Nutzer registrierst. Dabei wird nach deiner Einwilligung ein Hash erstellt und gespeichert, der nur dir nach Login die Zuordnung deiner Prüfungsdaten erlaubt.
                     Dieser Hash ist die einzige Information, die als „Nutzerkonto“ gespeichert wird. Er erlaubt keine direkte Identifizierung einer Person.
                     Die Anmeldung erfolgt durch den zentralen Single-Sign-On-Dienst der Charité (SSO). Durch diesen Dienst erfährt LevelUp temporär deinen Namen, deine Mailadresse und deinen Nutzernamen.
@@ -13,8 +15,11 @@ const datenProtection =({t, ...props})=> (
                     Die Zuordnung der anonymisierten Prüfungsdaten zu deinem Nutzerkonto, das im Rahmen der Registrierung und der Einrichtung des Nutzerkontos erstellt wurde, besteht für die Dauer des Fortbestehens der Registrierung und der Existenz des Nutzerkontos. Eine Zuordnung ist nur nach Login über SSO möglich. Auch für Administratoren der Webseite ist eine Zuordnung von personenbezogenen Daten ohne Zugriff auf weitere Daten nicht möglich.
                     Wenn Du dein Nutzerkonto löschen möchtest, kannst Du uns eine entsprechende Nachricht an die folgende E-Mail-Adresse senden levelup@charite.de
                     Nach Mitteilung Deines Löschbegehrens wird das Nutzerkonto, das heißt der gespeicherte Hash, von uns innerhalb von wenigen Werktagen gelöscht.`)}
-            </p>
-         <span onClick={props.onClick}>{t(`Züruk zu Loginseite`)}</span>
-</div>
+        </p>
+        <div className='text-primary' onClick={ props.onClick}>
+            <FontAwesomeIcon icon={faChevronLeft}/>
+             <span className='font-weight-bold ml-2' style={{cursor:'pointer', fontSize:'15px'}}>{t(`Züruck`)}</span>
+        </div>
+    </div>
 )
 export default withTranslation() (datenProtection)
