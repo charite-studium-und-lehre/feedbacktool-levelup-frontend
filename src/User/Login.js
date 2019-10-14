@@ -1,10 +1,9 @@
 
-import React from 'react';
-import "./login.css";
+import React from 'react'
+import "./login.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLock, faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import makeExtendable from './Core/makeExtendable'
-import DatenProtection from './DatenProtection'
+import makeExtendable from '../Core/makeExtendable'
 import Registration from './Registration'
 import { withTranslation } from 'react-i18next'
 

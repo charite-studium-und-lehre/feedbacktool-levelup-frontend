@@ -1,15 +1,14 @@
 import React from 'react'
 import { withTranslation } from 'react-i18next'
-import makeExtendable from './Core/makeExtendable'
-import DatenProtection from './DatenProtection'
-import {NavLink } from 'react-router-dom'
+import makeExtendable from '../Core/makeExtendable'
+import DataProtection from './DataProtection'
 
 const Data = ['Vorname', 'Nachname', 'Email', 'Immatrikuliertnummer']
 const DataSever = ['LevenUp', 'Charite', 'LevenUp@charite.de']
 
 const registration =({t,...props})=> (
     <div>
-        { props.extended ? <DatenProtection onClick={props.toggleExtended}/>
+        { props.extended ? <DataProtection onClick={props.toggleExtended}/>
           :
         <div className='mx-auto mt-2 p-3'>
                 <h3 className='text-center mb-4 mt-2 mb-4'>{t(`Registrierung bei LevelUp`)}</h3>
