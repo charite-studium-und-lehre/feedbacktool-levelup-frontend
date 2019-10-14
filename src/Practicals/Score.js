@@ -61,7 +61,7 @@ const Score = makeExtendable( ({ t, ...props }) => (
             height={props.height}
             borderRadius= {props.borderRadius}
             average={props.average}
-            value={props.external.length ? props.external[0].value : 0}
+            value={props.external ? props.external.length ? props.external[0].value : props.external.value : 0}
             maxValue={props.maxScore}/>
         {props.headings &&
             <div className="font-weight-bold">
@@ -69,10 +69,10 @@ const Score = makeExtendable( ({ t, ...props }) => (
             </div>}
             { props.datum && <div>
                   { props.external.length ? 
-                  <div onClick={props.toggleExtended}>
-                  <div  style={{cursor:'pointer'}}>{new Date().toLocaleDateString()}</div>
-                   <span  style={{cursor:'pointer'}}><FontAwesomeIcon icon={props.extended? faMinus : faPlus}/></span>  
-                      </div>
+                    <div onClick={props.toggleExtended}>
+                        <div  style={{cursor:'pointer'}}>{new Date().toLocaleDateString()}</div>
+                        <span  style={{cursor:'pointer'}}><FontAwesomeIcon icon={props.extended? faMinus : faPlus}/></span>  
+                    </div>
                    : null}
             </div>}
     </div>

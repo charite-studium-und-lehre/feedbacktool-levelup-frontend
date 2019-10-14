@@ -21,7 +21,7 @@ id: _.uniqueId(),
                       label: <Trans>Vollständige oder fokussierte Anamnese erheben und körperliche Untersuchung  durchführen (entsprechend Situationsanforderung)</Trans>,
 			                done: 3,
                       confident: 3,
-                      external: [{ id: 1, value: 4, datum : new Date() }, { id: 4, value: 2,  datum : new Date() }],
+                      external: [{ id: 1, value: 0, datum : new Date() }, { id: 4, value: 2,  datum : new Date() }],
 id: _.uniqueId(),
                     },
                     {
@@ -357,32 +357,32 @@ export const ExternAssissing = [
   {
     id: 1,
     name :  'name 1',
-    datum : new Date()
+    datum : new Date(2019, 2, 15)
   },
   {
     id: 2,
     name :  'name 2',
-    datum : new Date()
+    datum : new Date(2018, 2, 16)
   },
   {
     id: 3,
     name :  'name 3',
-    datum : new Date()
+    datum : new Date(2017, 2, 17)
   },
   {
     id: 4,
     name :  'name 4',
-    datum : new Date()
+    datum : new Date(2016, 2, 18)
   },
   {
     id: 5,
     name :  'name 5',
-    datum : new Date()
+    datum : new Date(2015, 2, 19)
   },
   {
     id: 6,
     name :  'name 6',
-    datum : new Date()
+    datum : new Date(2014, 2, 20)
   },
 ]
 
