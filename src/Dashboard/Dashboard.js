@@ -21,22 +21,18 @@ export default () =>
             </div>
         </div>
         <div className="row">
-            <div className="col-lg-4">
-                <div className="mt-2">
-                    <Link to="/practicals">
-                        <Practicals />
-                    </Link>
-                </div>
+            <div className="col-lg-4 mt-2">
+                <Link to="/practicals">
+                    <Practicals />
+                </Link>
             </div>
             <div className="col-lg-4 mt-2">
                 <Ptm />
             </div>
-            <div className="col-lg-4">
-                <div className="mt-2">
-                    <Link to="/strengths">
-                        <Strengths />
-                    </Link>
-                </div>
+            <div className="col-lg-4 mt-2">
+                <Link to="/strengths">
+                    <Strengths />
+                </Link>
             </div>
             <div className="col-lg-4">
                 <div className="mt-2">

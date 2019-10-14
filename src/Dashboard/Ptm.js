@@ -24,8 +24,8 @@ const Ptm = _.compose(needsData(selectors.loaded, actions.load), connect(stateTo
     ({ latest, ptms }) => {
     const [ trend, setTrend ] = useState(_.flow(_.map(p => p.result),_.takeRight(2),([a,b]) => b-a)(ptms))
     return <Link to={`/exams/ptm/${latest.id}`}>
-    <div>
-        <div className="row">
+    <div className="position-absolute" style={{top: '33%', bottom: 0, left: 0, right: 0}}>
+        <div className="row h-100">
             <div className="col">
                 <div className="position-absolute pl-2" style={{fontSize: '.75rem'}}>
                     <div><span className="font-weight-bold" onClick={e => {e.preventDefault(); setTrend(trend + 1)}}>{labels[0]}: </span>{latest.results[0][0]}</div>
@@ -36,7 +36,7 @@ const Ptm = _.compose(needsData(selectors.loaded, actions.load), connect(stateTo
                     <span className="mr-1"><FontAwesomeIcon style={{transform: `rotate(${rotationScale(trend)}deg)`, fontSize: '1.4rem'}} icon={faArrowRight} /></span>
                     <span className="">{trend >= 0 ? `+${trend}` : trend} %</span>
                 </div>
-                <div className="w-100" style={{height: '4rem'}}>
+                <div className="w-100 h-100">
                     <LinearChart xDomain={[0, ptms.length - 1]} yDomain={[0,100]}>
                         <AreaGraph color={tinycolor(color).setAlpha(.08).toString()} data={ptms.map( (d, i) => ({ x: i, y0: 0, y1: d.result }))} />
                         <LineGraph color={tinycolor(color).setAlpha(.23).toString()} data={ptms.map( (d, i) => ({ x: i, y: d.result }))} />
