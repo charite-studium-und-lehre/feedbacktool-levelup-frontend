@@ -1,7 +1,6 @@
 import React from 'react'
 import Subjects from './Subjects'
 import Rankings from './Rankings'
-import PTMResults from '../Exams/Ptm/Results'
 import Legend from '../Charting/Legend'
 import Legends from '../Core/LegendTexts'
 

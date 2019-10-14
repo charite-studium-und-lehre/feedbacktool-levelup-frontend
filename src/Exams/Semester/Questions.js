@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
 import Question from './Question'
-import { Link } from 'react-router-dom'
 import DummyQuestions from './DummyQuestions'
 import Legend from '../../Charting/Legend'
 import Legends from '../../Core/LegendTexts'

@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 import Score from './Score'
 import { selectors } from './Store'
 
-
-
 const stateToProps = (state, ownProps) => ({ entry: selectors.getItemById(state, ownProps.entryId) })
 
 const Item = connect(stateToProps)(props => (
