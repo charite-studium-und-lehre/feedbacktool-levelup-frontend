@@ -30,7 +30,7 @@ const Toolbar = ({ t, ...props }) => {
                     <div className="ml-2">
                         <Button className="d-lg-none" icon={faListOl} active={extended.extended1} onClick={()=> setExtended({extended1: !extended.extended1, extended2:false,  extended3:false,})} >{t(`Level der Eigenständigkeit`)}</Button>
                         <Button icon={faEnvelopeOpenText} active={extended.extended2} onClick={()=> setExtended({extended2: !extended.extended2, extended1:false,  extended3:false,})}>{t(`Erhaltene Fremdeinschätzung `)}</Button>
-                        <Button icon={faEnvelopeOpenText} active={extended.extended3} onClick={()=> setExtended({ extended3: !extended.extended3,  extended1:false,  extended2:false})}>{t(`Fremdeinschätzung einfordern`)}</Button>
+                        <Button icon={faEnvelopeOpenText} active={extended.extended3} onClick={()=> setExtended({ extended3: !extended.extended3,  extended1:false,  extended2:false})}>{t(`Fremdbewertung einfordern`)}</Button>
                     </div>
                 <SlideDown className="animated fast">
                     {extended.extended1 &&
