@@ -1,5 +1,5 @@
 import React from 'react'
-import SimpleBar from '../../Charting/SimpleBar'
+import SimpleBar from '../../../Charting/SimpleBar'
 import { withTranslation } from 'react-i18next'
 const Answer = withTranslation()(({t, ...props}) => (
     <div className="m-1">
