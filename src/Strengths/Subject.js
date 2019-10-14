@@ -4,7 +4,7 @@ import { OrdinalChart } from '../Charting/Chart'
 import { XAxis, YAxis } from '../Charting/Axis'
 import BarGraph from '../Charting/BarGraph'
 import { withTranslation } from 'react-i18next'
-import FarbLegende from '../Core/FarbLegende'
+import ColorLegend from '../Charting/ColorLegend'
 const exams = ['alle MCs', 'letzter PTM']
 
 const Subject = ({t, ...props}) => {
@@ -26,8 +26,8 @@ const Subject = ({t, ...props}) => {
                 <span className="font-weight-bold">{props.name}</span>
                 <div className="p-4">
                 <div className='mb-1'>
-                    <FarbLegende text={t('gestellte Fragen')} style={{backgroundColor :'hsla(250, 100%, 50%, .6)'}}/>
-                    <FarbLegende text={t('richtige Antworten')} style={{backgroundColor :'hsla(250, 100%, 50%'}}/>
+                    <ColorLegend text={t('gestellte Fragen')} style={{backgroundColor :'hsla(250, 100%, 50%, .6)'}}/>
+                    <ColorLegend text={t('richtige Antworten')} style={{backgroundColor :'hsla(250, 100%, 50%'}}/>
                 </div>
                     <OrdinalChart style={{height:'15rem'}} xDomain={exams} yDomain={[0,max]}>
                         <YAxis ticks={{count: Math.min(max, 4)}} />

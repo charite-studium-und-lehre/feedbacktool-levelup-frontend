@@ -7,7 +7,7 @@ const defaultStyle = {
     display: 'inline-block',
     backgroundColor: 'red'
 }
-const farbLegende = (props) => {
+const ColorLegend = (props) => {
 
     const style = _.defaults(props.style, defaultStyle)
     return (
@@ -17,4 +17,4 @@ const farbLegende = (props) => {
         </div>
     )
 }
-export default farbLegende
+export default ColorLegend
