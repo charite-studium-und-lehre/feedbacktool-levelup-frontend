@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from './makeExtendable'
 import { withTranslation } from 'react-i18next'
-// import LanguageSymbol from './languageSymbol'
 
 export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
     return (
@@ -14,21 +13,21 @@ export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
                 <FontAwesomeIcon  icon={faBars} />
             </button>
             <div className={`collapse navbar-collapse ${props.extended && 'show'}`} id="navbarSupportedContent">
-                <ul className="navbar-nav mr-auto">
-                    <li className="nav-item" onClick={props.toggleExtended}>
+                <ul className="navbar-nav mr-auto" onClick={props.toggleExtended}>
+                    <li className="nav-item">
                         <NavLink className="nav-link" to="/dashboard">{t(`Dashboard`)}<span className="sr-only">(current)</span></NavLink>
                     </li>
-                    <li className="nav-item" onClick={props.toggleExtended}>
+                    <li className="nav-item">
                         <NavLink className="nav-link" to="/exams">{t(`Prüfungen`)}</NavLink>
                     </li>
-                    <li className="nav-item" onClick={props.toggleExtended}>
+                    <li className="nav-item">
                         <NavLink className="nav-link" to="/practicals">{t(`Ärztliche Tätigkeiten`)}</NavLink>
                     </li>
-                    <li className="nav-item" onClick={props.toggleExtended}>
+                    <li className="nav-item">
                         <NavLink className="nav-link" to="/consulting">{t(`Beratung`)}</NavLink>
                     </li>
                     <li className="nav-item" >
-                        <a className="nav-link" href='https://msm-tellme.charite.de/lernen'>{t(`TellMe`)}</a>
+                        <a className="nav-link" target="blank" href='https://msm-tellme.charite.de/lernen'>{t(`TellMe`)}</a>
                     </li>
                 </ul>
                 <ul className="navbar-nav">
@@ -37,9 +36,6 @@ export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
                           Willkommen Sabine 
                       </div>
                     </li>
-                    {/* <li className="nav-item">
-                        <LanguageSymbol />
-                    </li> */}
                     <li className="nav-item">
                     <NavLink className="nav-link pull-right" onClick={props.onClick} to="/login">{t(`Logout`)}</NavLink>
                     </li>
