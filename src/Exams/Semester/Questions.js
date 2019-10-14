@@ -8,18 +8,18 @@ import Legends from '../../Core/LegendTexts'
 const Infos = (props) => (
     <div className='col-4'>
         <div className='with-shadow'>
-            <div className='font-weight-bold with-shadow'>
+            <div className='font-weight-bold'>
                 <span className='ml-1 py-1'>{props.title}</span>
                 <span className='ml-2'>{props.complete}</span>
             </div>
             <div className='ml-2'>
                 <div>
                     <span className='mr-2' style={{ color: 'green' }}><FontAwesomeIcon icon={faCheckCircle} /></span>
-                    <span className='mr-3'>{props.difficult}</span>
+                    <span className='mr-3'>{props.correct}</span>
                 </div>
                 <div>
                     <span className='mr-2' style={{ color: 'red' }}><FontAwesomeIcon icon={faTimesCircle} /></span>
-                    <span className='mr-3'>{props.easy}</span>
+                    <span className='mr-3'>{props.wrong}</span>
                 </div>
             </div>
         </div>
@@ -33,9 +33,9 @@ const Questions = () => {
             {LegendText.text}
         </Legend>
         <div className=' row mt-3'>
-            <Infos title='Schwer' complete='30' difficult='10' easy='20' />
-            <Infos title='Mittel' complete='50' difficult='15' easy='35' />
-            <Infos title='Leicht' complete='15' difficult='10' easy='5' />
+            <Infos title='Schwer' complete='30' correct='10' wrong='20' />
+            <Infos title='Mittel' complete='50' correct='15' wrong='35' />
+            <Infos title='Leicht' complete='15' correct='10' wrong='5' />
         </div>
         <div className="mt-3">
             <Link to='1.%20Fachsemester/questions'>
