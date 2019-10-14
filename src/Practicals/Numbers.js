@@ -11,7 +11,7 @@ const Numbers = ({ maxValue = 5, ...props }) => {
         return <Square key={i} style={{ backgroundImage :` linear-gradient(to right, ${props.color} ${cutoff}%, ${props.colorsRgb} ${cutoff}%)`, border: `1px solid ${props.color}`, width: props.width, height: props.height, borderRadius: props.borderRadius }}/>
     })
 
-    return <div>
+    return <div className={props.className}>
         {props.edit &&
             <span style={{ cursor: 'pointer' }}>
                 <FontAwesomeIcon icon={faMinusCircle} className="text-muted mr-1" onClick={props.decrement} />
