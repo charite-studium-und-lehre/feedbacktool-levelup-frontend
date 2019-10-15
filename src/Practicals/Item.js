@@ -20,7 +20,7 @@ const Item = connect(stateToProps)(props => (
 ))
 
 const ItemLevel2 = connect(stateToProps)(props => {
-  return props.entry.visible ? <div className='with-shadow pl-2   mb-3 overflow-hidden '>
+  return props.entry.visible ? <div className='pl-2 mb-3 overflow-hidden ' style={{borderBottom: '1px solid lightgrey'}}>
     {props.entry.entries.length ? <h6 className='text-center mt-3 mb-4'>{props.entry.label}</h6> : null }
     {!props.entry.entries.length &&
       <div className="row pb-3">
