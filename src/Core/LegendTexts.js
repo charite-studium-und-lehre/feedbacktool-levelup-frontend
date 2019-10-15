@@ -1,6 +1,6 @@
 import React from 'react'
 import { Trans } from 'react-i18next'
-import Numbers from '../Practicals/Numbers'
+import Numbers from '../EPAs/Numbers'
 
 const Legends = {
     Dashboard: {
@@ -99,15 +99,15 @@ const Legends = {
             text: <Trans>Hier findest du eine Übersicht zu deinen Leistungen in den theoretischen, klinischen und Querschnittsfächern. Die Ergebnisse basieren zum einen auf allen deinen Semesterprüfungen (MCs) und zum anderen auf deinem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.</Trans>,
         },
     },
-    Practicals: {
+    EPAs: {
         Main: {
             title: <Trans>Mein Level</Trans>,
             text: <Trans>
             <div className="my-2">Hier siehst du eine Übersicht zu den ärztlichen Kern-Tätigkeiten, die du im Laufe des Studiums trainieren wirst. Nutze diese Funktion, um die Entwicklung deiner praktischen Kompetenz festzuhalten und ggf. nachzusteuern. Für die Einschätzung jeder Tätigkeit gibt es 6 Level, die als Balken dargestellt<Numbers className="mx-1 d-inline-block" value={3} color="hsl(161, 100%, 25%)" colorsRgb="hsl(161, 100%, 25%, .2)" />und auf der rechten Seite in der Legende definiert sind. Das Ziel ist, dass du als Absolvent*in des Medizinstudiums dazu in der Lage bist, die hier aufgeführten Tätigkeiten zu Berufsbeginn eigenständig durchzuführen und nur Wichtiges nachgeprüft wird (Level 5).</div>
             <strong>Schätze Dich selber ein</strong>
-            <p>So kannst du im Laufe deines Studiums zum Beispiel nach U- oder UaK-Kursen oder Famulaturen angeben, unter welchem Level du die jeweilige Tätigkeit ausgeführt hast <span className='practicalsImage2'></span> und unter welchem Level du dir die Tätigkeit zutraust<span className='practicalsImage3'></span> </p>
+            <p>So kannst du im Laufe deines Studiums zum Beispiel nach U- oder UaK-Kursen oder Famulaturen angeben, unter welchem Level du die jeweilige Tätigkeit ausgeführt hast <span className='epasImage2'></span> und unter welchem Level du dir die Tätigkeit zutraust<span className='epasImage3'></span> </p>
             <strong>Bitte um eine Fremdeinschätzung</strong>
-            <p>Es ist zudem möglich, Fremdeinschätzungen von deinen Lehrenden/ Ärzt*innen einzuholen <span className='practicalsImage4'></span>. Hierfür klickst du auf diesen Button <span className='practicalsImage5'></span>  und kannst die E-Mail-Adresse deines Dozierenden eingeben und eine Einladung senden. Unter der E-Mail-Funktion siehst du alle bisherigen Fremdeinschätzungen.</p>
+            <p>Es ist zudem möglich, Fremdeinschätzungen von deinen Lehrenden/ Ärzt*innen einzuholen <span className='epasImage4'></span>. Hierfür klickst du auf diesen Button <span className='epasImage5'></span>  und kannst die E-Mail-Adresse deines Dozierenden eingeben und eine Einladung senden. Unter der E-Mail-Funktion siehst du alle bisherigen Fremdeinschätzungen.</p>
             </Trans>
         }
     }   

@@ -21,7 +21,7 @@ export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
                         <NavLink className="nav-link" to="/exams">{t(`Prüfungen`)}</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/practicals">{t(`Ärztliche Tätigkeiten`)}</NavLink>
+                        <NavLink className="nav-link" to="/epas">{t(`Ärztliche Tätigkeiten`)}</NavLink>
                     </li>
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/consulting">{t(`Beratung`)}</NavLink>

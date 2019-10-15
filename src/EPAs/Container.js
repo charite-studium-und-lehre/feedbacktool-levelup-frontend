@@ -29,7 +29,7 @@ const Container = _.compose([needsData(selectors.loaded, actions.load), connect(
 const LegendWrapper = () =>
     <div style={{ fontSize: '.9rem' }}>
         <div className="card p-2">
-            <Legend title={Legends.Practicals.Main.title}>{Legends.Practicals.Main.text}</Legend>
+            <Legend title={Legends.EPAs.Main.title}>{Legends.EPAs.Main.text}</Legend>
         </div>
         <Container />
     </div>

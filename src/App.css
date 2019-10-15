@@ -68,8 +68,8 @@ ol.breadcrumb:empty {
   display: none;
 }
 
-.practicalsImage1{
-  background:url(./images/practicalsImage1.PNG) no-repeat center center;
+.epasImage1{
+  background:url(./images/epasImage1.PNG) no-repeat center center;
   -webkit-background-size: cover;
   -o-background-size: cover;
   -moz-background-size: cover;
@@ -78,18 +78,18 @@ ol.breadcrumb:empty {
   height: 0.8rem;
   display: inline-block;
 }
-.practicalsImage2 {
-  background:url(./images/practicalsImage2.PNG) no-repeat center center;
+.epasImage2 {
+  background:url(./images/epasImage2.PNG) no-repeat center center;
 }
-.practicalsImage3 {
-  background:url(./images/practicalsImage3.PNG) no-repeat center center;
+.epasImage3 {
+  background:url(./images/epasImage3.PNG) no-repeat center center;
 }
-.practicalsImage4{
-  background:url(./images/practicalsImage4.PNG) no-repeat center center;
+.epasImage4{
+  background:url(./images/epasImage4.PNG) no-repeat center center;
 }
-.practicalsImage2,
-.practicalsImage3,
-.practicalsImage4{
+.epasImage2,
+.epasImage3,
+.epasImage4{
   -webkit-background-size: cover;
   -o-background-size: cover;
   -moz-background-size: cover;
@@ -98,8 +98,8 @@ ol.breadcrumb:empty {
   height: 1.9rem;
   display: inline-block;
 } 
-.practicalsImage5{
-  background:url(./images/practicalsImage5.PNG) no-repeat center center;
+.epasImage5{
+  background:url(./images/epasImage5.PNG) no-repeat center center;
   -webkit-background-size: cover;
   -o-background-size: cover;
   -moz-background-size: cover;
