@@ -10,6 +10,7 @@ import 'react-slidedown/lib/slidedown.css'
 import './App.css'
 import Navbar from './Core/navbar'
 import Login from './User/Login'
+import Registration from './User/Registration'
 import Breadcrumbs from './Core/Breadcrumbs'
 import PrivateRoute from './Core/PrivateRoute'
 import Routes from './Core/Routes'
@@ -28,7 +29,7 @@ class App extends Component {
   render() {
     let login
     if(!this.state.loggedIn) {
-      login = () => (<Login onClick={() => this.setState({loggedIn: true})}></Login>);
+      login = () => <Login/>;
     } else {
       login = () => (<Redirect to="/dashboard"></Redirect>)
     }
@@ -39,6 +40,7 @@ class App extends Component {
             {this.state.loggedIn && <Navbar isLoggedIn={this.state.loggedIn} onClick={() => this.setState({loggedIn: false})}></Navbar>}
             {this.state.loggedIn && <Breadcrumbs />}
             <Route path="/login" component={login} />
+            <Route path="/registration" component={Registration} />
             {Routes.map( route => ( route.private ?
                     <PrivateRoute key={route.path} path={route.path} component={route.component} exact={route.exact} isLoggedIn={this.state.loggedIn} /> :
                     <Route key={route.path} path={route.path} component={route.component} exact={route.exact} />
@@ -52,5 +54,4 @@ class App extends Component {
     )
   }
 }
-
-export default withTranslation() (App);
+export default withTranslation()(App);
