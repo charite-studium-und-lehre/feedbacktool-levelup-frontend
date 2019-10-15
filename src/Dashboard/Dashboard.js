@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Progress from './Progress'
-import Timeline from './Timeline/Timeline'
+import Newsfeed from './Newsfeed/Newsfeed'
 import Ptm from './Ptm'
 import EPAs from './EPAs'
 import Strengths from './Strengths'
@@ -17,7 +17,7 @@ export default () =>
                 </Link>
             </div>
             <div className="col-lg-6 mt-2">
-                <Timeline />
+                <Newsfeed />
             </div>
         </div>
         <div className="row">

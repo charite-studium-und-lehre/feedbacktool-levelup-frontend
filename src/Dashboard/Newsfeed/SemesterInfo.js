@@ -5,8 +5,8 @@ import { withTranslation } from 'react-i18next'
 
 export default withTranslation() (function SemesterInfo ({ t, ...props }) {
     const data = [
-        { y: 'Durchschnitt', x: props.data.mean, label: `${props.data.mean} %` },
-        { y: 'Dein Ergebnis', x: props.data.result, label: `${props.data.result} %` },
+        { y: 'Durchschnitt', x: props.mean, label: `${props.mean} %` },
+        { y: 'Dein Ergebnis', x: props.result, label: `${props.result} %` },
     ]
 
     return (<div>
@@ -15,12 +15,12 @@ export default withTranslation() (function SemesterInfo ({ t, ...props }) {
         </div>
         <div className="row">
             <div className="col-4 pr-0">
-                <Link to={`/exams/semester/${props.data.id}`}>
+                <Link to={`/exams/semester/${props.id}`}>
                     <span className="text-primary">{t(`Details`)}</span>
                 </Link>
             </div>
             <div className="col-4 p-0 text-center">
-                <Link to={`/exams/semester/${props.data.id}/questions`}>
+                <Link to={`/exams/semester/${props.id}/questions`}>
                     <span className="text-primary">{t(`MC-Fragen`)}</span>
                 </Link>
             </div>
