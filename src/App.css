@@ -67,47 +67,6 @@ ol.breadcrumb {
 ol.breadcrumb:empty {
   display: none;
 }
-
-.epasImage1{
-  background:url(./images/epasImage1.PNG) no-repeat center center;
-  -webkit-background-size: cover;
-  -o-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  width: 5rem;
-  height: 0.8rem;
-  display: inline-block;
-}
-.epasImage2 {
-  background:url(./images/epasImage2.PNG) no-repeat center center;
-}
-.epasImage3 {
-  background:url(./images/epasImage3.PNG) no-repeat center center;
-}
-.epasImage4{
-  background:url(./images/epasImage4.PNG) no-repeat center center;
-}
-.epasImage2,
-.epasImage3,
-.epasImage4{
-  -webkit-background-size: cover;
-  -o-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  width: 6rem;
-  height: 1.9rem;
-  display: inline-block;
-} 
-.epasImage5{
-  background:url(./images/epasImage5.PNG) no-repeat center center;
-  -webkit-background-size: cover;
-  -o-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  width: 12rem;
-  height: 1.9rem;
-  display: inline-block;
-}
 .tellMeLogo {
   background:url(./images/tellMeLogo.PNG) no-repeat center center;
   -webkit-background-size: cover;

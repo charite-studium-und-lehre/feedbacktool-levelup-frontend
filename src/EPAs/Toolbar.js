@@ -8,7 +8,7 @@ import ExternAsk from './ExternAsk'
 import ExternAssessingn from './ExternAssessing'
 import { withTranslation } from 'react-i18next'
 
-const Button = (props) =>
+export const Button = (props) =>
     <div className={` ${props.className || ''}`}>
         <button className={`btn btn-sm mr-2 mb-2 ${props.active ? 'btn-success' : 'btn-secondary'}`} onClick={props.onClick}>
             <span className="d-lg-inline mr-2">{props.children}</span>
