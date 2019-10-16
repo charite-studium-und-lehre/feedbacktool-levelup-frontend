@@ -36,12 +36,12 @@ const Legends = {
             },
             Questions: {
                 title: <Trans>MC-Fragen</Trans>,
-                text: <Trans>Hier findest du eine kurze Zusammenfassung zu deinen MC Prüfungsfragen deiner ausgewählten Fachsemesterprüfung. Schwere Fragen sind Fragen, die weniger als 50% deiner Mitstudierenden beantworten konnten. Leichte Fragen hingegen konnten mehr als 70% deiner Kommilitonen beantworten.Für mehr Details zu den einzelnen Fragen, sowie Filter und Auswertungsmöglichkeiten klick den Button</Trans>,
+                text: <Trans>Hier findest du eine kurze Zusammenfassung zu deinen MC Prüfungsfragen deiner ausgewählten Fachsemesterprüfung. Schwere Fragen sind Fragen, die weniger als 40% deiner Mitstudierenden beantworten konnten. Leichte Fragen hingegen konnten mehr als 80% deiner Kommilitonen beantworten.Für mehr Details zu den einzelnen Fragen, sowie Filter und Auswertungsmöglichkeiten klick den Button</Trans>,
             },
             QuestionsDetails: {
                 title: <Trans>Fragen und Antworten</Trans>,
                 text: <Trans i18nKey="exams.semester.questions.text">
-                    <p>Hier kannst du dir alle Fragen der Semesterprüfung mit den dazugehörigen Antworten ansehen. Jede Frage wurde mit verschiedenen Tags versehen, mit deren Hilfe du die Fragen filtern kannst.Die Filter schwer und leicht zeigen dir wie viel deiner Mitstudierenden diese Frage beantworten konnten. Schwere Fragen sind Fragen, die weniger als 50% deiner Mitstudierenden beantworten konnten. Leichte Fragen hingegen konnten mehr als 70% deiner Kommilitonen beantworten.So kannst du dir z.B. nur die Fragen anzeigen lassen, die du falsch beantwortest hast.</p>
+                    <p>Hier kannst du dir alle Fragen der Semesterprüfung mit den dazugehörigen Antworten ansehen. Jede Frage wurde mit verschiedenen Tags versehen, mit deren Hilfe du die Fragen filtern kannst.Die Filter schwer und leicht zeigen dir wie viel deiner Mitstudierenden diese Frage beantworten konnten. Schwere Fragen sind Fragen, die weniger als 40% deiner Mitstudierenden beantworten konnten. Leichte Fragen hingegen konnten mehr als 80% deiner Kommilitonen beantworten.So kannst du dir z.B. nur die Fragen anzeigen lassen, die du falsch beantwortest hast.</p>
                 </Trans>
             }
         },
