@@ -8,6 +8,7 @@ import Ptm from '../Exams/Ptm/Ptm'
 import Strengths from '../Strengths/Strengths'
 import Stations from '../Exams/Stations/Stations'
 import Consulting from '../consulting/Consulting'
+import AllTools from '../alltools/AllTools'
 import EPAs from '../EPAs/EPAs'
 import Progress from '../Progress/Progress'
 import i18next from 'i18next'
@@ -31,6 +32,14 @@ const Routes = [
     path: '/consulting',
     component: Consulting,
     breadcrumb: () => <Link to="/consulting">{i18next.t(`Beratung`)}</Link>,
+    exact: true,
+    private: true,
+  },
+
+  {
+    path: '/alltools',
+    component: AllTools,
+    breadcrumb: () => <Link to="/alltools">{i18next.t(`Alle Tools`)}</Link>,
     exact: true,
     private: true,
   },
