@@ -23,11 +23,9 @@ const Toolbar = ({ t, ...props }) => {
     return (
         <div className="pt-2 pb-2  card" style={{ top: '1rem' }}>
             <div className='row'>
-                <div className="col-xs-12 col-sm-6 col-md-5 col-lg-5 pb-xs-5 ">
+                <div className="col-12 col-sm-4 d-lg-none pb-xs-5 ">
                     <div className="ml-2">
                         <Button className="d-lg-none" icon={faListOl} active={extended === 0} onClick={() => toggle(0)} >{t(`Level der Eigenständigkeit`)}</Button>
-                        <Button icon={faEnvelopeOpenText} active={extended === 1} onClick={() => toggle(1)}>{t(`Erhaltene Fremdbewertung`)}</Button>
-                        <Button icon={faEnvelopeOpenText} active={extended === 2} onClick={() => toggle(2)}>{t(`Fremdbewertung einfordern`)}</Button>
                     </div>
                 <SlideDown className="animated fast">
                     {extended === 0 &&
@@ -35,17 +33,8 @@ const Toolbar = ({ t, ...props }) => {
                             <List />
                         </div>}
                 </SlideDown>
-                <SlideDown className="animated fast">
-                    { extended === 1 &&
-                        <div className='row p-2'>
-                            <ExternAssessingn />
-                        </div>}
-                </SlideDown>
-                < SlideDown className="animated fast">
-                    {extended === 2 && <ExternAsk onClick={props.toggleExtended}/>}
-                </SlideDown>
                 </div>
-                    <div className="col-sm-12  col-sm-6 col-md-7 col-lg-7 mt-sm-3 pr-5" >
+                    <div className="col-12  col-sm-12 mt-sm-3 pr-5" >
                         <Score headings={true} entry={props.root} average={true} width={'1rem'} height={'1rem'} borderRadius={'50%'} />
                     </div>
             </div>
