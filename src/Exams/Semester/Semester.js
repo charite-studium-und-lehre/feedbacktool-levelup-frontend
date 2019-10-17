@@ -28,7 +28,7 @@ const Semester = ({ test, t }) => {
                     <Details id={test.id} />
                 </div>
                 <div className="col-lg-4 mt-2">
-                    <Questions />
+                    <Questions id={test.id} />
                 </div>
             </div>
         </div>
