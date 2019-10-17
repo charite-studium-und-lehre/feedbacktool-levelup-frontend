@@ -12,8 +12,8 @@ const style = {
     textAlign: 'center',
     fontWeight: 'bold'
 }
-const Item = ({t, ...props} ) =>
-    (<div className="p-3 bg-white" style={{borderBottom: '1px solid lightgrey'}}>
+const Item = ({t, ...props}) =>
+    (<div className="p-2 mb-3 bg-white with-shadow">
         <div className="d-flex">
             <div className="p-1">
                 <div style={{...style, backgroundColor: props.color}}>{props.icon}</div>

@@ -1,22 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { HorizontalBarChart } from '../../Charting/HorizontalBarGraph'
 import { withTranslation } from 'react-i18next'
-const bars = ['Durchschnitt', 'Dein Ergebnis']
+import SimpleBar from '../../Charting/SimpleBar'
 
-const StationsInfo = ({t, ...props}) => {
-    const data = bars.map((d, i) => ({y: d, x: i ? props.result : props.mean, label: i ? `${props.result} %` : `${props.mean} %` }))
-    return (<div>
-        <h5>Praktische Prüfung</h5>
-        <div className="mt-1" style={{height: '4.3rem'}}>
-            <HorizontalBarChart noaxis yDomain={bars} data={data} />
+const StationsInfo = ({t, ...props}) => 
+    <div className="d-flex h-100 flex-column">
+        <div className="font-weight-bold" style={{fontSize: '.8rem'}}>{props.label}</div>
+        <div className="flex-grow-1 d-flex align-items-center">
+            <SimpleBar value={props.result} mean={props.mean}>{props.result} %</SimpleBar>
         </div>
-        <div>{(t`geschrieben am `)}<span className="font-weight-bold"> {props.date.toLocaleDateString()}</span></div>
-        <span className="text-primary float-right" onClick={() => props.onClose()}>{t(`schließen`)}</span>
-        <Link to={`/exams/stations/${props.id}`}>
-            <span className="text-primary">{t(`Details`)}</span>
-        </Link>
-    </div>)
-}
+        <div className="row text-center " style={{fontSize: '.8rem'}}>
+            <div className="col">
+                <Link to={`/exams/stations/${props.id}`}>
+                    <span className="text-primary">{t(`Details`)}</span>
+                </Link>
+            </div>
+        </div>
+    </div>
 
 export default withTranslation() (StationsInfo)
