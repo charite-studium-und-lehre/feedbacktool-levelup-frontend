@@ -30,7 +30,7 @@ const Strengths = _.compose([withTranslation(), needsData(loaded, load), connect
 const Wrapper = withTranslation()(({ t }) => <DashboardCard 
     header={Math.round(Math.random() * 100) + ' p'} 
     title={t(`Deine Stärken`)} 
-    text={t(`Dein Überblick zu deinen fächerorientierten Stärken im PTM und den Semesterprüfungen über das gesamte Studium.`)}>
+    text={t(``)}>
             <Strengths />
 </DashboardCard>)
 

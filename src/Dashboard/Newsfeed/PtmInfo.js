@@ -12,7 +12,7 @@ const PtmInfo = ({t, ...props} ) =>
             <HorizontalBarChart noaxis xDomain={[0,200]} yDomain={labels} data={labels.map((d, i) => ({y: d, x: results[i] }))} />
         </div>
         <span className="text-primary float-right" onClick={() => props.onClose()}>{t(`schließen`)}</span>
-        <Link to={`/exams/ptm/${props.data.id}`}>
+        <Link to={`/exams/ptm/${props.id}`}>
             <span className="text-primary">{t(`Details`)}</span>
         </Link>
     </div>)
