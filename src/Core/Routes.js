@@ -8,7 +8,8 @@ import Ptm from '../Exams/Ptm/Ptm'
 import Strengths from '../Strengths/Strengths'
 import Stations from '../Exams/Stations/Stations'
 import Consulting from '../consulting/Consulting'
-import Practicals from '../Practicals/Practicals'
+import AllTools from '../alltools/AllTools'
+import EPAs from '../EPAs/EPAs'
 import Progress from '../Progress/Progress'
 import i18next from 'i18next'
 
@@ -36,9 +37,17 @@ const Routes = [
   },
 
   {
-    path: '/practicals',
-    component: Practicals,
-    breadcrumb: () => <Link to="/practicals">{i18next.t(`Ärzliche Tätigkeiten`)}</Link>,
+    path: '/alltools',
+    component: AllTools,
+    breadcrumb: () => <Link to="/alltools">{i18next.t(`Alle Tools`)}</Link>,
+    exact: true,
+    private: true,
+  },
+
+  {
+    path: '/epas',
+    component: EPAs,
+    breadcrumb: () => <Link to="/epas">{i18next.t(`Ärzliche Tätigkeiten`)}</Link>,
     exact: true,
     private: true,
   },

@@ -1,0 +1,23 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-10-11T14:04:41+02:00
+
+====== Logout ======
+
+====== 1. Logout aus LevelUp UND Charité-SSO ======
+
+Nutzer wird im Frontend weitergeleitet auf
+**/backend/logout**
+(Kein Api-Aufruf)
+
+== Ergebnis: ==
+Der Nutzer sieht die Charité-Seite zur Bestätigung des Logouts.
+
+
+== 2. Logout nur aus LevelUp ==
+Nur zu Testzwecken?
+
+API-Call nach 
+''/backend/api/levelupLogout''
+
+Ergebnis: User 

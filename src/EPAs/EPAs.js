@@ -3,7 +3,7 @@ import makeExtendable from '../Core/makeExtendable'
 import Container from './Container'
 import List from './List'
 
-const Practicals = props => (
+const EPAs = props => (
     <div className="container-fluid">
             <div className="row position-relative">
                 <div className="col-lg-9 mb-2">
@@ -18,5 +18,5 @@ const Practicals = props => (
     </div>
 )
 
-export default makeExtendable(Practicals)
+export default makeExtendable(EPAs)
 

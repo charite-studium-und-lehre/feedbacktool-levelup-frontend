@@ -6,7 +6,7 @@ Creation-Date: 2019-05-31T14:34:10+02:00
 
 
 ==== GET-Aufruf: ====
-[[/api/pruefung/<id]]>
+[[/backend/api/pruefung/<id]]>
 
 success: HTTP-Code 200
 

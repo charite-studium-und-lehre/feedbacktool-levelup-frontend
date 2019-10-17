@@ -12,53 +12,79 @@ success: HTTP-Code 200
 
 GET-Aufruf ohne Parameter:
 
-Rückgabe:
+== Rückgabe: ==
 '''
 {
 	"pruefungen": [
 		{
-			"typ": "<typ>",
-			"studiPruefungsId": "<ID">,
 			"name": "<Bezeichnung>",
-			"datum": "<ISO-Datum>",
-			"ergebnis": <PTM-Ergebnis|MC-Ergebnis|Stations-Ergebnis>
-		},
-	]
-
-}
-
-Typen:
- "MC-Sem1",
- "MC-Sem2",
- "MC-Sem3",
- "MC-Sem4",
- "MC-Sem5",
- "MC-Sem6",
- "MC-Sem7",
- "MC-Sem8",
- "MC-Sem9",
- "MC-Sem10",
- "PTM",
- "Stat-1VK",
- "Stat-1K",
- "Stat-2",
- "Stat-3",
-
-PTM-Ergebnis:
-{
+			"typ": "<typ>",
 '''
+							''"format": "<mc|station|ptm>",''
+'''
+			"studiPruefungsId": "<ID">,
+			"periodeCode": <siehe periodeCode>,
+'''
+							''"periodetext": <z.B. 'WiSe2018 Haupttermin'>,''
+''			"ergebnis": <siehe PTM-Ergebnis|MC-Ergebnis|Stations-Ergebnis>''
+
+''		},''
+''	]''
+
+''}''
+
+== periodeCode: ==
+'' z.B. 201822 für WiSe2018, 2. Periode (= Wiederholungstermin)''
+'''
+PTM hat keine extra Perioden, also nur z.B. 20181
+
+'''
+== Typen: ==
+
+'' "MC-Sem1",''
+'' "MC-Sem2",''
+'' "MC-Sem3",''
+'' "MC-Sem4",''
+'' "MC-Sem5",''
+'' "MC-Sem6",''
+'' "MC-Sem7",''
+'' "MC-Sem8",''
+'' "MC-Sem9",''
+'' "MC-Sem10",''
+'' "PTM",''
+'' "Stat-1VK",''
+'' "Stat-1K",''
+'' "Stat-2",''
+'' "Stat-3",''
+
+== PTM-Ergebnis: ==
+
+''{''
 		''"antwortenRichtig": <>,''
 ''	"antwortenFalsch": <>,''
 ''	"antwortenWeißNicht": <>,''
 '''
 }
 
-MC-Ergebnis/Stations-Ergebnis:
-{
 '''
-		''"ergebnisProzent": <>,''
-''	"durchschnitt": <>,''
+== MC-Ergebnis: ==
+
+''{''
+	"ergebnisPunkte": <>,
+	"gesamtPunktzahl": <>
+	"bestehensGrenze": <>,
+	"durchschnittPunkte": <>,
 '''
 }
 
+'''
+
+
+== Stations-Ergebnis ==
+''{''
+	"ergebnisProzent": < 0.00 bis 1.00>,
+	"bestehensGrenzeProzent": < 0.00 bis 1.00 >,
+	"durchschnittProzent": < 0.00 bis 1.00 >,
+'''
+}
 '''

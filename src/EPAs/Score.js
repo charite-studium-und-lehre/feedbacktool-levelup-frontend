@@ -10,7 +10,7 @@ import makeExtendable from '../Core/makeExtendable'
 import ExternAssessingWithValue from './ExternAssessingValue'
 import Numbers from './Numbers'
 
-export const colors = ['hsla(208, 51%, 27%, 1)','hsl(188, 86%, 26%)', 'hsl(15, 100%, 25%)']
+export const colors = ['hsla(208, 51%, 27%)','hsl(188, 86%, 26%)', 'hsl(15, 100%, 25%)']
 const colorsRgb = ['hsla(208, 51%, 27%, .2)', 'hsl(188, 86%, 26%, .2)', ' hsl(15, 100%, 25%, .2)']
 
 const Score = makeExtendable( ({ t, ...props }) => (
@@ -61,7 +61,7 @@ const Score = makeExtendable( ({ t, ...props }) => (
             height={props.height}
             borderRadius= {props.borderRadius}
             average={props.average}
-            value={props.external.length ? props.external[0].value : 0}
+            value={props.external ? props.external.length ? props.external[0].value : props.external.value : 0}
             maxValue={props.maxScore}/>
         {props.headings &&
             <div className="font-weight-bold">
@@ -69,10 +69,10 @@ const Score = makeExtendable( ({ t, ...props }) => (
             </div>}
             { props.datum && <div>
                   { props.external.length ? 
-                  <div onClick={props.toggleExtended}>
-                  <div  style={{cursor:'pointer'}}>{new Date().toLocaleDateString()}</div>
-                   <span  style={{cursor:'pointer'}}><FontAwesomeIcon icon={props.extended? faMinus : faPlus}/></span>  
-                      </div>
+                    <div onClick={props.toggleExtended}>
+                        <div  style={{cursor:'pointer'}}>{new Date().toLocaleDateString()}</div>
+                        <span  style={{cursor:'pointer'}}><FontAwesomeIcon icon={props.extended? faMinus : faPlus}/></span>  
+                    </div>
                    : null}
             </div>}
     </div>

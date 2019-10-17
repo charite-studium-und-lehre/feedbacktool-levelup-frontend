@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 import Score from './Score'
 import { selectors } from './Store'
 
-
-
 const stateToProps = (state, ownProps) => ({ entry: selectors.getItemById(state, ownProps.entryId) })
 
 const Item = connect(stateToProps)(props => (
@@ -22,7 +20,7 @@ const Item = connect(stateToProps)(props => (
 ))
 
 const ItemLevel2 = connect(stateToProps)(props => {
-  return props.entry.visible ? <div className='with-shadow-2px pl-2   mb-3 overflow-hidden '>
+  return props.entry.visible ? <div className='pl-2 mb-3 overflow-hidden ' style={{borderBottom: '1px solid lightgrey'}}>
     {props.entry.entries.length ? <h6 className='text-center mt-3 mb-4'>{props.entry.label}</h6> : null }
     {!props.entry.entries.length &&
       <div className="row pb-3">
@@ -39,15 +37,15 @@ const ItemLevel2 = connect(stateToProps)(props => {
   </div> : <div></div>
 })
 
-const ItemLevel3 = connect(stateToProps)(props => (
-  <div className='row with-shadow mt-2 py-2'>
+const ItemLevel3 = connect(stateToProps)(props => {
+  return props.entry.visible ? <div className='row mt-2 p-2'>
     <div className='col-xs-6 col-md-12 col-lg-6 mb-sm-2 pr-3'>
       {props.entry.label}
     </div>
     <div className='col-xs-6 col-md-12 col-lg-6 mt-2 '>
       <Score edit={true} entryId={props.entryId} width='.8rem' height='.6rem' borderRadius='5%' datum={true} />
     </div>
-  </div>
-))
+  </div> : <div></div>
+})
 
 export default Item

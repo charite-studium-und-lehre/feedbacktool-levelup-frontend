@@ -12,12 +12,12 @@ import LineGraph from '../../Charting/LineGraph'
 import { XAxis, YAxis } from '../../Charting/Axis'
 import { selectors } from './Store'
 import SimpleBar from '../../Charting/SimpleBar'
-import Legende from './Legende'
+import ColorLegend from '../../Charting/ColorLegend'
 
 const Timeline = withTranslation()(({ t, data }) => 
     <div className="col m-auto" style={{maxWidth: '40rem'}}>
-        <Legende text={t('Anzahl gestellte Fragen')} style={{backgroundColor : colors[0]}}/>
-        <Legende text={t('Anzahl richtige Fragen')} style={{backgroundColor : colors[1]}}/>
+        <ColorLegend text={t('Anzahl gestellte Fragen')} style={{backgroundColor : colors[0]}}/>
+        <ColorLegend text={t('Anzahl richtige Fragen')} style={{backgroundColor : colors[1]}}/>
         <div className="p-4 mt-3" style={{height: '6rem'}} >
             <OrdinalChart xDomain={data.map(d => d.timesemester)} yDomain={[0, Math.max(...data.map(d => d.gesamt))]}>
                 <XAxis />
@@ -37,10 +37,10 @@ const Subject = props => (
             <div className="col-7 col-sm-6">
                 <span className="text-primary">#{props.rank}</span><span className="ml-1 font-weight-bold">{props.name}</span>
             </div>
-            <div className="col-5 col-sm-2">
+            <div className="col-5 col-sm-2 p-0">
                 <span className="badge badge-info" style={{fontSize: '.6rem'}}>{props.category}</span>
             </div>
-            <div className="col-10 col-sm-3">
+            <div className="col-10 col-sm-3 mt-1">
                 <SimpleBar value={props.data.richtig} total={props.data.gesamt}>
                     {props.data.richtig} von {props.data.gesamt} richtig
                 </SimpleBar>

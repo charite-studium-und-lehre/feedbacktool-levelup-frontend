@@ -1,48 +1,48 @@
-import React, { Component } from 'react'
-import _ from 'lodash'
-import Question from './Question'
+import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 import { Link } from 'react-router-dom'
-import DummyQuestions from './DummyQuestions'
 import Legend from '../../Charting/Legend'
 import Legends from '../../Core/LegendTexts'
-import Filter from '../../Utils/Filter'
-import { withTranslation } from 'react-i18next'
 
-let filters = _.uniq(_.flatMap(DummyQuestions, q => q.tags)).map(t => ({label: t.label, pred: q => _.includes(q.tags, t)})).concat([
-    { label: 'richtig beantwortet', pred: q => q.answers.some( a => a.correct && a.selected )},
-    { label: 'falsch beantwortet', pred: q => q.answers.some( a => !a.correct && a.selected )},
-    { label: 'schwer', pred: q => q.answers.find( a => a.correct ).percentage < 50 },
-    { label: 'leicht', pred: q => q.answers.find( a => a.correct ).percentage > 70 }
-])
-
-class Questions extends Component {
-    constructor(props) {
-        super(props)
-        this.state = { filters }
-    }
-    
-    render() {
-        const { t } = this.props
-        const LegendText = Legends.Exams.Semester.Questions
-        const questions = DummyQuestions.filter(_.overEvery(this.state.filters.filter(f => f.selected).map(f => f.pred)))
-        return (
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col">
-                        {/* <h4 className="mr-auto">Semesterprüfung - {match.params.test}</h4> */}
-                        <Legend title={LegendText.title}>{LegendText.text}</Legend>
-                    </div>
-                </div>
-                <Filter showAll filters={ filters } onUpdate={ filters => this.setState( { filters } )} />
-                <div className="row">
-                    <div className="col">
-                        <span className="font-weight-bold">{questions.length} von {DummyQuestions.length} {t(`angezeigt`)}</span>
-                    </div>
-                </div>
-                {questions.map((question, i) => <Question {...question } key={i} />)}
+const Infos = (props) => (
+    <div className='col-4'>
+        <div className='with-shadow'>
+            <div className='font-weight-bold'>
+                <span className='ml-1 py-1'>{props.title}</span>
+                <span className='ml-2'>{props.complete}</span>
             </div>
-        )
-    }
+            <div className='ml-2'>
+                <div>
+                    <span className='mr-2' style={{ color: 'green' }}><FontAwesomeIcon icon={faCheckCircle} /></span>
+                    <span className='mr-3'>{props.correct}</span>
+                </div>
+                <div>
+                    <span className='mr-2' style={{ color: 'red' }}><FontAwesomeIcon icon={faTimesCircle} /></span>
+                    <span className='mr-3'>{props.wrong}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+)
+
+const Questions = () => {
+    const LegendText = Legends.Exams.Semester.Questions
+    return <div className='card p-3'>
+        <Legend title={LegendText.title}>
+            {LegendText.text}
+        </Legend>
+        <div className=' row mt-3'>
+            <Infos title='Schwer' complete='30' correct='10' wrong='20' />
+            <Infos title='Mittel' complete='50' correct='15' wrong='35' />
+            <Infos title='Leicht' complete='15' correct='10' wrong='5' />
+        </div>
+        <div className="mt-3">
+            <Link to='1.%20Fachsemester/questions'>
+                <button type="button" className="btn btn-primary mt-3">Details zu Fragen</button>
+            </Link>
+        </div>
+    </div>
 }
 
-export default withTranslation() (Questions)
+export default Questions

@@ -3,7 +3,7 @@ import { combineReducers } from 'redux'
 import initialState from './Data'
 import BaseStore from '../Core/BaseStore'
 
-const storeIdentifier = 'practicals'
+const storeIdentifier = 'epas'
 export const identifier = storeIdentifier
 const baseStore = BaseStore(storeIdentifier)
 const getItemById = _.curry((state, id) => baseStore.getItems(state)[id])
@@ -30,7 +30,7 @@ export const selectors = baseStore.withLoadedSelector({
 })
 
 export const actions = baseStore.withLoadAction({
-  setFilter: id => ({ type: 'SET_PRACTICALS_FILTER', payload: { id }}),
+  setFilter: id => ({ type: 'SET_EPAS_FILTER', payload: { id }}),
   levelUpDone: id => ({ type: 'LEVEL_UP_DONE', payload: { id }}),
   levelDownDone: id => ({ type: 'LEVEL_DOWN_DONE', payload: { id }}),
   levelUpConfident: id => ({ type: 'LEVEL_UP_CONFIDENT', payload: { id }}),
@@ -45,7 +45,7 @@ const level = (state, id, p, val) => {
 
 const filter = (state = null, action) => {
   switch (action.type) {
-    case 'SET_PRACTICALS_FILTER':
+    case 'SET_EPAS_FILTER':
       return action.payload.id
     default:
       return state

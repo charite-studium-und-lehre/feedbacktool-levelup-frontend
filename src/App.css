@@ -67,44 +67,12 @@ ol.breadcrumb {
 ol.breadcrumb:empty {
   display: none;
 }
-
-.practicalsImage1{
-  background:url(./images/practicalsImage1.PNG) no-repeat center center;
+.tellMeLogo {
+  background:url(./images/tellMeLogo.PNG) no-repeat center center;
   -webkit-background-size: cover;
   -o-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
-  width: 5rem;
-  height: 0.8rem;
-  display: inline-block;
-}
-.practicalsImage2 {
-  background:url(./images/practicalsImage2.PNG) no-repeat center center;
-}
-.practicalsImage3 {
-  background:url(./images/practicalsImage3.PNG) no-repeat center center;
-}
-.practicalsImage4{
-  background:url(./images/practicalsImage4.PNG) no-repeat center center;
-}
-.practicalsImage2,
-.practicalsImage3,
-.practicalsImage4{
-  -webkit-background-size: cover;
-  -o-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  width: 6rem;
-  height: 1.9rem;
-  display: inline-block;
-} 
-.practicalsImage5{
-  background:url(./images/practicalsImage5.PNG) no-repeat center center;
-  -webkit-background-size: cover;
-  -o-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  width: 12rem;
-  height: 1.9rem;
-  display: inline-block;
+  width: 10rem;
+  height: 4rem;
 }

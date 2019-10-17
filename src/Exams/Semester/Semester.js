@@ -5,6 +5,7 @@ import needsData from '../../Core/needsData'
 import Totals from './Totals'
 import { withTranslation } from 'react-i18next'
 import Details from './Details'
+import Questions from './Questions'
 import { selectors, actions } from './Store'
 
 export const color = 'hsla(120, 50%, 50%, .75)'
@@ -22,9 +23,12 @@ const Semester = ({ test, t }) => {
                     <Totals id={test.id} />
                 </div>
             </div>
-            <div className="row mt-3">
-                <div className="col">
+            <div className="row">
+                <div className="col-lg-8 mt-2">
                     <Details id={test.id} />
+                </div>
+                <div className="col-lg-4 mt-2">
+                    <Questions />
                 </div>
             </div>
         </div>
