@@ -12,6 +12,7 @@ import AllTools from '../alltools/AllTools'
 import EPAs from '../EPAs/EPAs'
 import Progress from '../Progress/Progress'
 import i18next from 'i18next'
+import Registration from '../User/Registration'
 
 const Routes = [
   {
@@ -43,7 +44,12 @@ const Routes = [
     exact: true,
     private: true,
   },
-
+  {
+    path: '/user/registration',
+    component: Registration,
+    exact: true,
+    private: false,
+  },
   {
     path: '/epas',
     component: EPAs,

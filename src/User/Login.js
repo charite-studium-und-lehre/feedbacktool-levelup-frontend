@@ -26,7 +26,7 @@ const Login = ({ t, ...props }) => (
                             </div>
                         </div>
                         <div className="container-form mt-5" style={{ padding: '0 5rem' }} >
-                            <Link to="/registration">
+                            <Link to="/user/registration">
                                 <button type="button" className="btn btn-primary" >{t(`Login`)}</button>
                             </Link>
                         </div>
