@@ -1,58 +1,39 @@
-
-export const AllToolsData = [
+export const StudyToolsData = [
         {
             title: 'LLP',
             description: 'Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. ',
-            href: 'https://lernziele.charite.de',
-            image: ''
-        },
+            href: 'https://lernziele.charite.de'},
         {
             title: 'HIS',
             description: 'Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. ',
-            href: 'https://his.charite.de',
-            image: ''
-        },
+            href: 'https://his.charite.de'},
         {
             title: 'Campusnet',
             description: 'Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. ',
-            href: 'https://campusnet.charite.de',
-            image: ''
-        },
+            href: 'https://campusnet.charite.de'},
         {
-            title: 'BlackBoard',
+            title: 'Blackboard',
             description: 'Dies ist eine Beschreibung. Dies ist eine Beschreibung. ',
-            href: 'https://lms.charite.de',
-            image: ''
-        },
+            href: 'https://lms.charite.de'},
         {
             title: 'TellMe',
             description: 'Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. ',
-            href: 'https://msm-tellme.charite.de/lernen/',
-            image: ''
-        },
+            href: 'https://msm-tellme.charite.de/lernen/'},
         {
             title: 'Minerva (Hausarbeit M23)',
             description: 'Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. ',
-            href: 'https://minerva.charite.de/',
-            image: ''
-        },
+            href: 'https://minerva.charite.de/'},
         {
             title: 'Lernzentrum (Raumbuchung)',
             description: 'Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. ',
-            href: 'https://lernzentrum.charite.de/leistungen/raumbuchung/',
-            image: ''
-        },
+            href: 'https://lernzentrum.charite.de/leistungen/raumbuchung/'},
         {
             title: 'Wikiblog',
             description: 'Dies ist eine Beschreibung. ',
-            href: 'https://wikiblog.charite.de',
-            image: ''
-        },
+            href: 'https://wikiblog.charite.de'},
         {
             title: 'Medizinische Bibliothek',
             description: 'Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. ',
-            href: 'https://bibliothek.charite.de/',
-            image: ''
-        }
+            href: 'https://bibliothek.charite.de/'}
 
     ];
