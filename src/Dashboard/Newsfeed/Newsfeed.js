@@ -5,7 +5,8 @@ import needsData from '../../Core/needsData'
 import { selectors, actions } from './Store'
 import Item from './Item'
 
-const Seperator = () => <div className="px-2 flex-grow-1 d-flex align-items-center"><div className="w-100" style={{borderTop: '1px solid lightgrey', height: 0}}></div></div>
+const Separator = () => <div className="px-2 flex-grow-1 d-flex align-items-center"><div className="w-100" style={{borderTop: '1px solid lightgrey', height: 0}}></div></div>
+
 const stateToProps = state => ({ data: selectors.getData(state) })
 const Newsfeed = _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps)])(({ data }) => 
     <div className="position-relative h-100" style={{minHeight: '10rem'}}>
@@ -13,9 +14,9 @@ const Newsfeed = _.compose([needsData(selectors.loaded, actions.load), connect(s
             { _.map( g => 
                 <div key={g[0].timesemester}>
                     <div className="text-center font-italic mt-3 d-flex" style={{ fontSize: '.8rem' }}>
-                        <Seperator />
+                        <Separator />
                         <div style={{color: 'grey'}}>{g[0].timesemester}</div>
-                        <Seperator />
+                        <Separator />
                     </div>
                     {g.map( d => 
                         <Item key={d.link} icon={d.icon} color={d.color} date={d.date} link={d.link}>
