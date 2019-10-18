@@ -60,10 +60,6 @@ span.input-group-text {
   box-shadow: 2px 2px 4px  rgb(2, 28, 49, .5), -2px -2px 4px  rgb(2, 28, 49, .5)
 }
 
-ol.breadcrumb {
-  margin-bottom: .5rem;
-}
-
 ol.breadcrumb:empty {
   display: none;
 }
