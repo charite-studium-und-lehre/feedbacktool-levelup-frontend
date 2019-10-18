@@ -7,13 +7,13 @@ import { SlideDown } from 'react-slidedown'
 const Legend = props => 
     <div>
         <div className="d-flex">
-            <div>{props.title && <h4>{props.title}</h4>}</div>
+            <div>{props.title && <h5>{props.title}</h5>}</div>
             <div className="ml-auto">
-                <FontAwesomeIcon 
+                {props.children && <FontAwesomeIcon 
                     onClick={() => props.toggleExtended()}
                     className={props.extended ? 'text-primary' : 'text-muted'}
                     style={{fontSize: '1.3rem'}}
-                    icon={faInfoCircle} />
+                    icon={faInfoCircle} />}
             </div>
         </div>
         <div className="animated fast row" style={{ overflow: 'hidden' }}>

@@ -14,7 +14,7 @@ const EPAs = needsData(
 const Wrapper = withTranslation()(({ t }) => <DashboardCard 
     header={Math.round(Math.random() * 100) + ' %'} 
     title={t('Ärztliche Tätigkeiten')} 
-    text={t('')}>
+    text={t('Dein Überblick zur Entwicklung deiner praktischen Fähigkeiten im Studienverlauf.')}>
             <EPAs />
 </DashboardCard>)
 
