@@ -5,7 +5,7 @@ import needsData from '../../Core/needsData'
 import { selectors, actions } from './Store'
 import Item from './Item'
 
-const Separator = () => <div className="px-2 flex-grow-1 d-flex align-items-center"><div className="w-100" style={{borderTop: '1px solid lightgrey', height: 0}}></div></div>
+export const Separator = () => <div className="px-2 flex-grow-1 d-flex align-items-center"><div className="w-100" style={{borderTop: '1px solid lightgrey', height: 0}}></div></div>
 
 const stateToProps = state => ({ data: selectors.getData(state) })
 const Newsfeed = _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps)])(({ data }) => 

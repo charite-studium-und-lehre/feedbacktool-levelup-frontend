@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Progress from './Progress'
 import Newsfeed from './Newsfeed/Newsfeed'
+import NewsfeedMobile from './Newsfeed/NewsfeedMobile'
 import Ptm from './Ptm'
 import EPAs from './EPAs'
 import Strengths from './Strengths'
@@ -24,8 +25,13 @@ const Cards = () => <div>
 export default () => 
     <div className="container-fluid">
         <div className="row">
-            <div className="col-lg-4" style={{backgroundColor: '#eee'}}>
-                <Newsfeed />
+            <div className="col-lg-4" style={{backgroundColor: '#eee'}}>        
+                <div className="d-none d-lg-block h-100">
+                    <Newsfeed />
+                </div>
+                <div className="d-lg-none">
+                    <NewsfeedMobile />
+                </div>
             </div>
             <div className="col-lg-8 pt-2">
                 <div className="row">
