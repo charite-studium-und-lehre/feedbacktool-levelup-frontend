@@ -10,13 +10,13 @@ const Legend = props =>
             <div>{props.title && <h5>{props.title}</h5>}</div>
             <div className="ml-auto">
                 {props.children && <FontAwesomeIcon 
-                    onClick={() => props.toggleExtended()}
+                    onClick={e => {e.preventDefault(); props.toggleExtended()}}
                     className={props.extended ? 'text-primary' : 'text-muted'}
                     style={{fontSize: '1.3rem'}}
                     icon={faInfoCircle} />}
             </div>
         </div>
-        <div className="animated fast row" style={{ overflow: 'hidden' }}>
+        {props.children && <div className="animated fast row" style={{ overflow: 'hidden' }}>
             <SlideDown className="animated fast">
             {props.extended &&
                 <div className="col my-2" style={{fontSize: '.9rem'}}>
@@ -24,7 +24,7 @@ const Legend = props =>
                 </div>
             }
             </SlideDown>
-        </div>
+        </div>}
     </div>
 
 export default makeExtendable(Legend, true)
