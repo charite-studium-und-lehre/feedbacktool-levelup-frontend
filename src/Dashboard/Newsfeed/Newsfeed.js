@@ -19,7 +19,7 @@ const Newsfeed = _.compose([needsData(selectors.loaded, actions.load), connect(s
                         <Separator />
                     </div>
                     {g.map( d => 
-                        <Item key={d.link} icon={d.icon} color={d.color} date={d.date} link={d.link}>
+                        <Item key={d.link} icon={d.icon} color={d.color} link={d.link}>
                             <d.comp {...d} /> 
                         </Item>
                     )}

@@ -20,7 +20,7 @@ const Newsfeed = _.compose([needsData(selectors.loaded, actions.load), connect(s
             t('Noch keine Prüfungen vorhanden.')}
         </div>
         { _.takeWhile( d => d.timesemester === data[0].timesemester, data).map( d => 
-            <Item key={d.link} icon={d.icon} color={d.color} date={d.date} link={d.link}>
+            <Item key={d.link} icon={d.icon} color={d.color} link={d.link}>
                 <d.comp {...d} /> 
             </Item>
         )}
