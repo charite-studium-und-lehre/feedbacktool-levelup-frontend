@@ -31,7 +31,7 @@ const Results = props =>
             <Legend title={Legends.Strengths.PTMResults.title}>
                 {Legends.Strengths.PTMResults.text}
             </Legend>
-            <div className="p-2">
+            <div className="mt-3 p-2">
                 <Chart {...props} />
             </div>
         </div>
