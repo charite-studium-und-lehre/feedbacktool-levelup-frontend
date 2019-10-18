@@ -1,6 +1,6 @@
 
 .login-image {
-    background:url(../images/login.jpg) no-repeat center center;
+    background:url(../images/login.jpg) no-repeat center;
     -webkit-background-size: cover;
     -o-background-size: cover;
     -moz-background-size: cover;
@@ -9,34 +9,11 @@
     width: 100%;
     position: relative;
 }
-  .container-form .form-control {
-    border-radius: 1rem;
-    height: 2.6rem;
-  }
-  .container-form ::-webkit-input-placeholder {
-    font-weight: bold
-  }
-   svg.svg-inline--fa.fa-lock.fa-w-14,
-   svg.svg-inline--fa.fa-envelope.fa-w-16 {
-    color: red;
-    position: relative;
-    line-height: 2.6rem;
-    top: -2rem;
-    right: 1rem;
-    font-size: 20px;
-    float: right;
-    transition: .5s ease-in-out;
-  }
-  .container-form input[type ='email']:focus ~ svg,
-  .container-form input[type ='password']:focus ~ svg   {
-    right: -2.5rem;
-  }
   .container-form button {
-    margin-top: 1rem;
     width: 100%;
     border-radius: 1rem;
     height: 2.6rem;
     font-weight: bold;
     letter-spacing: 1px;
+  
   }
-   

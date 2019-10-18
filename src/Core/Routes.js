@@ -3,14 +3,16 @@ import { Link } from 'react-router-dom'
 import Dashboard from '../Dashboard/Dashboard'
 import Exams from '../Exams/Exams'
 import Semester from '../Exams/Semester/Semester'
-import Questions from '../Exams/Semester/Questions'
+import Questions from '../Exams/Semester/Questions/Questions'
 import Ptm from '../Exams/Ptm/Ptm'
 import Strengths from '../Strengths/Strengths'
 import Stations from '../Exams/Stations/Stations'
 import Consulting from '../consulting/Consulting'
+import AllTools from '../alltools/AllTools'
 import EPAs from '../EPAs/EPAs'
 import Progress from '../Progress/Progress'
 import i18next from 'i18next'
+import Registration from '../User/Registration'
 
 const Routes = [
   {
@@ -35,6 +37,19 @@ const Routes = [
     private: true,
   },
 
+  {
+    path: '/alltools',
+    component: AllTools,
+    breadcrumb: () => <Link to="/alltools">{i18next.t(`Alle Tools`)}</Link>,
+    exact: true,
+    private: true,
+  },
+  {
+    path: '/user/registration',
+    component: Registration,
+    exact: true,
+    private: false,
+  },
   {
     path: '/epas',
     component: EPAs,

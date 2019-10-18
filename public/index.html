@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
     <meta http-equiv="Content-Security-Policy"
-          content="default-src 'self';  script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com/; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' 'unsafe-inline'; form-action 'self';">
+          content="
+            default-src 'self';
+            script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdnjs.cloudflare.com;
+            font-src 'self' https://fonts.gstatic.com/;
+            style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
+            img-src 'self' 'unsafe-inline';
+            form-action 'self';">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!--
       manifest.json provides metadata used when your web app is added to the
@@ -42,7 +48,7 @@ if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) document.write
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
     (function() {
-        var u="//levelup.charite.de/matomo/";
+        var u="/matomo/";
         _paq.push(['setTrackerUrl', u+'matomo.php']);
         _paq.push(['setSiteId', '1']);
         var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];

@@ -10,7 +10,7 @@ import makeExtendable from '../Core/makeExtendable'
 import ExternAssessingWithValue from './ExternAssessingValue'
 import Numbers from './Numbers'
 
-export const colors = ['hsla(208, 51%, 27%, 1)','hsl(188, 86%, 26%)', 'hsl(15, 100%, 25%)']
+export const colors = ['hsla(208, 51%, 27%)','hsl(188, 86%, 26%)', 'hsl(15, 100%, 25%)']
 const colorsRgb = ['hsla(208, 51%, 27%, .2)', 'hsl(188, 86%, 26%, .2)', ' hsl(15, 100%, 25%, .2)']
 
 const Score = makeExtendable( ({ t, ...props }) => (

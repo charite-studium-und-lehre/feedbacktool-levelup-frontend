@@ -28,7 +28,7 @@ class App extends Component {
   render() {
     let login
     if(!this.state.loggedIn) {
-      login = () => (<Login onClick={() => this.setState({loggedIn: true})}></Login>);
+      login = () => <Login/>;
     } else {
       login = () => (<Redirect to="/dashboard"></Redirect>)
     }
@@ -52,5 +52,4 @@ class App extends Component {
     )
   }
 }
-
-export default withTranslation() (App);
+export default withTranslation()(App);

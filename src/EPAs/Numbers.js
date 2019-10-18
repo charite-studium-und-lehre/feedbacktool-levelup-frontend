@@ -23,6 +23,7 @@ const Numbers = ({ maxValue = 5, ...props }) => {
                 <FontAwesomeIcon icon={faPlusCircle} className="text-muted ml-1" onClick={props.increment} />
        </span>
         }
+        { props.headings && <div className='font-weight-bold' style={{ color : props.color}}>{props.headings}</div>}
     </div>
 }
 
