@@ -4,7 +4,7 @@ import { withTranslation } from 'react-i18next'
 
 const SemesterInfo = withTranslation() ( ({ t, ...props }) =>
     <div className="d-flex h-100 flex-column">
-        <div className="font-weight-bold" style={{fontSize: '.8rem'}}>{props.label}</div>
+        <div style={{fontSize: '.9rem'}}>{props.label}</div>
         <div className="flex-grow-1 d-flex align-items-center">
             <SimpleBar total={80} value={props.result} mean={props.mean}>
                 {props.result} von 80 richtig
