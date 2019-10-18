@@ -7,40 +7,37 @@ import EPAs from './EPAs'
 import Strengths from './Strengths'
 import TellMe from './TellMe'
 
+const Cards = () => <div>
+    <Link to="/progress">
+        <Progress />
+    </Link>
+    <Ptm />
+    <Link to="/epas">
+        <EPAs />
+    </Link>
+    <Link to="/strengths">
+        <Strengths />
+    </Link>
+    <TellMe />
+</div>
+
 export default () => 
     <div className="container-fluid">
-        <div className="row flex-wrap-reverse">
-            <div className="col-lg-8">
-                <div className="row">
-                    <div className="col-lg-6 mt-2">
-                        <Link to="/progress">
-                            <Progress />
-                        </Link>
-                    </div>
-                    <div className="col-lg-6 mt-2">
-                        <Ptm />
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-lg-6 mt-2">
-                        <Link to="/epas">
-                            <EPAs />
-                        </Link>
-                    </div>
-                    <div className="col-lg-6 mt-2">
-                        <Link to="/strengths">
-                            <Strengths />
-                        </Link>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-lg-12 mt-2">
-                        <TellMe/>
-                    </div>
-                </div>
-            </div>
-            <div className="col-lg-4">
+        <div className="row">
+            <div className="col-lg-4 pt-2" style={{backgroundColor: '#eee'}}>
                 <Newsfeed />
+            </div>
+            <div className="col-lg-8 pt-2">
+                <div className="row">
+                    <div className="col">
+                        <div className="card-columns d-none d-md-block" style={{columnCount: 2}}>
+                            <Cards />
+                        </div>
+                        <div className="d-md-none">
+                            <Cards />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
