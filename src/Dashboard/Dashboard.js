@@ -24,7 +24,7 @@ const Cards = () => <div>
 export default () => 
     <div className="container-fluid">
         <div className="row">
-            <div className="col-lg-4 pt-2" style={{backgroundColor: '#eee'}}>
+            <div className="col-lg-4" style={{backgroundColor: '#eee'}}>
                 <Newsfeed />
             </div>
             <div className="col-lg-8 pt-2">

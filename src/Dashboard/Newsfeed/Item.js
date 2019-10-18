@@ -13,7 +13,7 @@ const style = {
     fontWeight: 'bold'
 }
 const Item = props =>
-    <Link className="d-block pb-3" to={`/exams/${props.link}`}>
+    <Link className="d-block pt-3" to={`/exams/${props.link}`}>
         <div className="p-2 bg-white with-shadow">
             <div className="d-flex">
                 <div className="p-1">

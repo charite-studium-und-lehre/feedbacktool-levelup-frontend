@@ -12,7 +12,7 @@ const Newsfeed = _.compose([needsData(selectors.loaded, actions.load), connect(s
         <div className="position-absolute overflow-auto p-1" style={{top: 0, bottom: 0, left: 0, right: 0}}>
             { _.map( g => 
                 <div key={g[0].timesemester}>
-                    <div className="text-center font-italic mb-3 d-flex" style={{ fontSize: '.8rem' }}>
+                    <div className="text-center font-italic mt-3 d-flex" style={{ fontSize: '.8rem' }}>
                         <Seperator />
                         <div style={{color: 'grey'}}>{g[0].timesemester}</div>
                         <Seperator />
