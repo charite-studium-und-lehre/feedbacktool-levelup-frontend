@@ -42,7 +42,7 @@ const Legend = props =>
             </div>
         </div>
         <div>
-            {video()}
+            { props.video && video()}
         </div>
         <div className="animated fast row" style={{ overflow: 'hidden' }}>
             <SlideDown className="animated fast">
