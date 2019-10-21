@@ -30,7 +30,7 @@ const Container = _.compose([needsData(selectors.loaded, actions.load), connect(
 export default () =>
     <div style={{fontSize: '.9rem'}}>
         <div className="card p-2">
-            <Legend title={Legends.EPAs.Main.title} video={true}>{Legends.EPAs.Main.text}</Legend>
+            <Legend video={true} title={Legends.EPAs.Main.title}>{Legends.EPAs.Main.text}</Legend>
         </div>
         <Container/>
     </div>
