@@ -11,19 +11,16 @@ import {
     ForwardControl,
     CurrentTimeDisplay,
     TimeDivider,
-    PlaybackRateMenuButton,
     VolumeMenuButton
 } from 'video-react'
 
 const video = ()=>
-        <Player poster="../images/poster.png">
-            <source src="https://levelup.charite.de/videos/epa_2019.mp4" />
+        <Player src="https://levelup.charite.de/videos/epa_2019.mp4">
             <ControlBar>
                 <ReplayControl seconds={10} order={1.1} />
                 <ForwardControl seconds={30} order={1.2} />
                 <CurrentTimeDisplay order={4.1} />
                 <TimeDivider order={4.2} />
-                <PlaybackRateMenuButton rates={[5, 2, 1, 0.5, 0.1]} order={7.1} />
                 <VolumeMenuButton disabled />
             </ControlBar>
         </Player>
@@ -42,7 +39,7 @@ const Legend = props =>
             </div>
         </div>
         <div>
-            {video()}
+            {props.video && video()}
         </div>
         <div className="animated fast row" style={{ overflow: 'hidden' }}>
             <SlideDown className="animated fast">
