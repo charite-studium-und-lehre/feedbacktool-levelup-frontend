@@ -4,32 +4,12 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../Core/makeExtendable'
 import { SlideDown } from 'react-slidedown'
 import 'video-react/dist/video-react.css';
-import {
-    Player,
-    ControlBar,
-    ReplayControl,
-    ForwardControl,
-    CurrentTimeDisplay,
-    TimeDivider,
-    VolumeMenuButton
-} from 'video-react'
-
-const video = ()=>
-        <Player src="https://levelup.charite.de/videos/epa_2019.mp4">
-            <ControlBar>
-                <ReplayControl seconds={10} order={1.1} />
-                <ForwardControl seconds={30} order={1.2} />
-                <CurrentTimeDisplay order={4.1} />
-                <TimeDivider order={4.2} />
-                <VolumeMenuButton disabled />
-            </ControlBar>
-        </Player>
-
 
 const Legend = props => 
     <div>
         <div className="d-flex">
-            <div>{props.title && <h4>{props.title}</h4>}</div>
+            {props.title && <div><h4>{props.title}</h4></div>}
+            {props.button}
             <div className="ml-auto">
                 <FontAwesomeIcon 
                     onClick={() => props.toggleExtended()}
@@ -38,18 +18,16 @@ const Legend = props =>
                     icon={faInfoCircle} />
             </div>
         </div>
-        <div>
-            {props.video && video()}
-        </div>
-        <div className="animated fast row" style={{ overflow: 'hidden' }}>
-            <SlideDown className="animated fast">
-            {props.extended &&
-                <div className="col my-2" style={{fontSize: '.9rem'}}>
-                    {props.children}
-                </div>
-            }
-            </SlideDown>
-        </div>
+        {props.extended && description(props)}
     </div>
 
 export default makeExtendable(Legend, true)
+
+const description = (props) =>
+    <div className="animated fast row" style={{ overflow: 'hidden' }}>
+        <SlideDown className="animated fast">
+            <div className="col my-2" style={{fontSize: '.9rem'}}>
+                {props.children}
+            </div>
+        </SlideDown>
+    </div>

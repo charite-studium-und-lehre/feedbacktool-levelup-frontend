@@ -8,6 +8,8 @@ import Legends from '../Core/LegendTexts'
 import needsData from '../Core/needsData'
 import Assessment from './Assessment'
 import {selectors, actions} from './Store'
+import {faEnvelopeOpenText} from "@fortawesome/free-solid-svg-icons"
+import {Button} from "./Toolbar"
 
 const stateToProps = state => ({filter: selectors.getFilter(state), root: selectors.getItemByLabel(state, 'root')})
 
@@ -27,10 +29,13 @@ const Container = _.compose([needsData(selectors.loaded, actions.load), connect(
         </Tabs>
     </div>)
 
+const getAssessmentButton =
+    <Button icon={faEnvelopeOpenText}>Fremdbewertung einfordern</Button>
+
 export default () =>
     <div style={{fontSize: '.9rem'}}>
         <div className="card p-2">
-            <Legend video={true} title={Legends.EPAs.Main.title}>{Legends.EPAs.Main.text}</Legend>
+            <Legend button={getAssessmentButton} video={true} title={Legends.EPAs.Main.title}>{Legends.EPAs.Main.text}</Legend>
         </div>
         <Container/>
     </div>
