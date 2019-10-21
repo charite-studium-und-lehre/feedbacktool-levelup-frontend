@@ -10,7 +10,7 @@ const Item = connect(stateToProps)(props => (
     <div className='mb-3'>
       <h5 className='text-center'>{props.entry.label}</h5>
       <div className="m-auto" style={{ maxWidth: '45rem' }}>
-        <Score edit={props.edit} entryId={props.entryId} average={true} width='.9rem' height='.9rem' borderRadius='50%' />
+        <Score headings={true} edit={props.edit} entryId={props.entryId} average={true} width='.9rem' height='.9rem' borderRadius='50%' />
       </div>
     </div>
     <div >

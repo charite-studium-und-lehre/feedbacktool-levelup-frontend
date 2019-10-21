@@ -13,6 +13,7 @@ import EPAs from '../EPAs/EPAs'
 import Progress from '../Progress/Progress'
 import i18next from 'i18next'
 import Registration from '../User/Registration'
+import DataProtection from '../User/DataProtection'
 
 const Routes = [
   {
@@ -45,6 +46,12 @@ const Routes = [
   {
     path: '/user/registration',
     component: Registration,
+    exact: true,
+    private: false,
+  },
+  {
+    path: '/user/dataProtection',
+    component: DataProtection,
     exact: true,
     private: false,
   },

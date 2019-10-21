@@ -8,9 +8,10 @@
           content="
             default-src 'self';
             script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdnjs.cloudflare.com;
-            font-src 'self' https://fonts.gstatic.com/;
+            font-src 'self' https://fonts.gstatic.com/ data:;
             style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
-            img-src 'self' 'unsafe-inline';
+            img-src 'self' data: 'unsafe-inline';
+            media-src 'self' https://levelup.charite.de/videos/epa_2019.mp4 ;
             form-action 'self';">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!--

@@ -7,7 +7,7 @@ Creation-Date: 2019-06-25T17:36:46+02:00
 
 
 ==== GET-Aufruf: ====
-[[/api/pruefungsItems/<pruefungsId]]>
+[[/backend/api/pruefungsItems/<pruefungsId]]>
 
 success: HTTP-Code 200
 
@@ -54,8 +54,6 @@ success: HTTP-Code 200
 	'''
 			"kohorteProzent": [<Ergebnis1, Ergebnis2, ...>],
 			"ergebnisProzent": <Ergebnis>,
-	'''
-	'''
 			"fach": <?FachTitel>"
 			}
 		]

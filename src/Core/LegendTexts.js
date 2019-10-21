@@ -102,6 +102,12 @@ const Legends = {
             text: <Trans>Hier findest du eine Übersicht zu deinen Leistungen in den theoretischen, klinischen und Querschnittsfächern. Die Ergebnisse basieren zum einen auf allen deinen Semesterprüfungen (MCs) und zum anderen auf deinem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.</Trans>,
         },
     },
+    TellMe: {
+        text: <Trans>
+                <p>Vom Lernziel zum Lernerfolg mit TELLme -- dem Lerntool für den MSM!</p>
+                <p>Werde Teil der TELLme Academy und teile Dein Wissen.</p>
+            </Trans>
+    },
     EPAs: {
         Main: {
             title: <Trans>Mein Level</Trans>,
