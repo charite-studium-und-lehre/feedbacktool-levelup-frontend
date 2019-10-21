@@ -18,6 +18,7 @@ const toTimeline = ptm => ({
     ...ptm,
     result: ptm.results[0]/2,
     mean: ptm.means[0],
+    link: `ptm/${ptm.id}`,
 })
 const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 

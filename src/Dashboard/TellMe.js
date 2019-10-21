@@ -4,11 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faDumbbell} from '@fortawesome/free-solid-svg-icons'
 import legends from '../Core/LegendTexts'
 import {withTranslation} from 'react-i18next'
+import tellMeLogo from '../images/tellMeLogo.PNG'
 
-const Tellme =({t,})=> (
+const Tellme =({t})=> (
     <div>
         <DashbordCard>
-            <div className='tellMeLogo pb-1 mb-3'></div>
+            <img src={tellMeLogo} className='pb-1 mb-2' style={{width: '7rem'}}></img>
             <div>{legends.TellMe.text}</div>
                 <div className='row'> 
                     <div className='col-12'>

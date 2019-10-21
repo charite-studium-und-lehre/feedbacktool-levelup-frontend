@@ -19,7 +19,6 @@ const Routes = [
   {
     path: '/dashboard',
     component: Dashboard,
-    breadcrumb: () => <Link to="/dashboard">{i18next.t(`Dashboard`)}</Link>,
     exact: true,
     private: true,
   },
@@ -33,7 +32,6 @@ const Routes = [
   {
     path: '/consulting',
     component: Consulting,
-    breadcrumb: () => <Link to="/consulting">{i18next.t(`Beratung`)}</Link>,
     exact: true,
     private: true,
   },
@@ -60,7 +58,6 @@ const Routes = [
   {
     path: '/epas',
     component: EPAs,
-    breadcrumb: () => <Link to="/epas">{i18next.t(`Ärzliche Tätigkeiten`)}</Link>,
     exact: true,
     private: true,
   },
@@ -86,9 +83,6 @@ const Routes = [
   {
     path: '/strengths/:subject?',
     component: Strengths,
-    breadcrumb: params => [
-      <Link to="/strengths">{i18next.t(`Stärken und Schwächen`)}</Link>,
-    ],
     exact: true,
     private: true,
   },
@@ -101,7 +95,6 @@ const Routes = [
   {
     path: '/progress',
     component: Progress,
-    breadcrumb: () => <Link to="/progress">{i18next.t('Studienfortschritt')}</Link>,
     exact: true,
     private: true,
   },
