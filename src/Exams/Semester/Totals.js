@@ -25,7 +25,7 @@ const Totals = ({ t, dist, ...props }) => {
 
     const scale = scaleLinear().domain([0,dist.length-1]).range([100,0])
     
-    const percent = _.round(scale(dist.filter(d => d < props.result).length))
+    const percent = _.round(scale(dist.filter(d => d < props.ergebnis.ergebnisPunkte).length))
 
     const histo = _.flow(
         _.groupBy(d => Math.floor(d / 5)),
@@ -59,17 +59,17 @@ const Totals = ({ t, dist, ...props }) => {
                     <YAxis ticks={{ count: 4 }} label={t('Erreichte Punkte')} />
                     <PercentileArea data={dist.map( (d,i) => ({ x: scale(i), y0: 0, y1: d }))} percentiles={[[100, 50], [50,25], [25, 10], [10, 0]]} />
                     <LineGraph data={dist.map( (d,i) => ({ x: scale(i), y: d }))} color="hsla(181, 100%, 41%, .9)" noPoints curve={curveStep} />
-                    <Marker extended={true} x={percent} y={props.result} label='Du' color="hsla(0, 100%, 30%, .6)" />
-                    <LineMarker value={props.mean} label={t('Durchschnitt')} color="hsla(0, 100%, 30%, .6)" />
-                    <LineMarker value={props.bestandenAb} label={t('Bestehensgrenze')} color="hsla(0, 100%, 30%, .6)" />
+                    <Marker extended={true} x={percent} y={props.ergebnis.ergebnisPunkte} label='Du' color="hsla(0, 100%, 30%, .6)" />
+                    <LineMarker value={props.ergebnis.durchschnitt} label={t('Durchschnitt')} color="hsla(0, 100%, 30%, .6)" />
+                    <LineMarker value={props.ergebnis.bestehensGrenze} label={t('Bestehensgrenze')} color="hsla(0, 100%, 30%, .6)" />
                     <XAxis label="% der Studierenden" />
                 </LinearChart>
                 ) : (
                 <div className="position-relative text-right">
                     <div className="position-absolute" style={{right:0, fontSize: '.75rem'}}>
-                        <div><span className="font-weight-bold">{respSwitch(t('Dein Ergebnis'), t('Du'))}: </span>{props.result} {t('Pkte')}</div>
-                        <div><span className="font-weight-bold">{respSwitch(t('Durchschnitt'), '∅')}: </span>{props.mean} {t('Pkte')}</div>
-                        <div><span className="font-weight-bold">{respSwitch(t('Bestanden ab'), t('Bst ab'))}: </span>{props.bestandenAb} {t('Pkte')}</div>
+                        <div><span className="font-weight-bold">{respSwitch(t('Dein Ergebnis'), t('Du'))}: </span>{props.ergebnis.ergebnisPunkte} {t('Pkte')}</div>
+                        <div><span className="font-weight-bold">{respSwitch(t('Durchschnitt'), '∅')}: </span>{props.ergebnis.durchschnitt} {t('Pkte')}</div>
+                        <div><span className="font-weight-bold">{respSwitch(t('Bestanden ab'), t('Bst ab'))}: </span>{props.ergebnis.bestehensGrenze} {t('Pkte')}</div>
                     </div>
                     <OrdinalChart xDomain={domain} yDomain={[0,Math.max(...histo.map(d => d.y))]}>
                         <XAxis label={t('erreichte Punkte')} />

@@ -2,8 +2,9 @@ import _ from 'lodash/fp'
 import SemesterInfo from './SemesterInfo'
 import PtmInfo from './PtmInfo'
 import StationsInfo from './StationsInfo'
-import { selectors as StationsSelectors, actions as StationsActions } from '../../Exams/Stations/Store'
-import { selectors as SemesterSelectors, actions as SemesterActions } from '../../Exams/Semester/Store'
+import { selectors as ExamsSelectors, actions as ExamsActions } from '../../Exams/Store'
+import { selectors as StationsSelectors } from '../../Exams/Stations/Store'
+import { selectors as SemesterSelectors } from '../../Exams/Semester/Store'
 import { selectors as PtmSelectors, actions as PtmActions } from '../../Exams/Ptm/Store'
 import { color as semesterColor } from '../../Exams/Semester/Semester'
 import { color as ptmColor } from '../../Exams/Ptm/Ptm'
@@ -16,16 +17,19 @@ const getData = _.flow([
         _.flow([ PtmSelectors.getTimeline, _.map(_.merge({ icon: 'PTM', color: ptmColor, comp: PtmInfo }))]),
     ]),
     _.flatten,
-    _.sortBy( d => -d.date)
+    _.sortBy( g => '' + g.periodeCode ),
+    _.reverse,
+    _.groupBy( d => d.zeitsemester ),
+    _.values,
 ])
 
 const selectors = {
     getData,
-    loaded: () => true,
+    loaded: ExamsSelectors.loaded,
 }
 
 const actions = {
-    load: () => _.over([PtmActions.load(), SemesterActions.load(), StationsActions.load()])
+    load: ExamsActions.load
 }
 
 export { selectors, actions }

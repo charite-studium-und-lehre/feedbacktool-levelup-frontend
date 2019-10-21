@@ -148,7 +148,7 @@ const subjects = _.range(0,10).map(() => _.shuffle(fp.flatMap(c => c.subjects, S
 }*/
 
 const semesters = ['1. Fachsemester','1. Fachsemester', '2. Fachsemester', '3. Fachsemester', '4. Fachsemester', '5. Fachsemester']
-const timesemesters = fp.flatMap( y => [{ label: `SS ${y}`, value: new Date(2000+y, 3, 1) }, { label: `WS ${y}/${y+1}`, value: new Date(2000+y, 9, 1) }] )( _.range( 14, 19 ) )
+const timesemesters = fp.flatMap( y => [{ label: `SoSe 20${y}`, value: new Date(2000+y, 3, 1) }, { label: `WiSe 20${y}`, value: new Date(2000+y, 9, 1) }] )( _.range( 14, 19 ) )
 
 const result = _.flow([
     seedrnd => randomUniform.source(seedrnd)(50, 75), 
@@ -170,10 +170,13 @@ const createResult = _.flow([ seedrandom, _.over(result, createDist), concatResu
 const createTotalsData = ([result, dist]) => {
     return {
         dist: dist.map( _.mean ),
-        result: _.round(_.mean(result)),
-        mean: distMean(dist),
+        ergebnis: {
+            ergebnisPunkte: _.round(_.mean(result)),
+            gesamtPunktzahl: 80,
+            durchschnitt: distMean(dist),
+            bestehensGrenze: 48,
+        },
         id: _.uniqueId(),
-        bestandenAb: 48,
     }
 }
 
@@ -202,8 +205,8 @@ const createDetailsData = (semester, [result, dist]) => ({
     date: new Date(2013 + parseInt(semester), 6+Math.random()*2, 15),
 })
 
-const addTimesemester = d => ({...d, timesemester: timesemesters.find( m => d.date - m.value < 1000 * 60 * 60 * 24 * 100).label})
+const addTimesemester = d => ({...d, zeitsemester: timesemesters.find( m => d.date - m.value < 1000 * 60 * 60 * 24 * 100).label})
 
-const Results = fp.keyBy(r => r.id, fp.map(semester => _.flow([createResult, _.over([ _.partial(createDetailsData, semester.split(".")[0]), createTotalsData, () => ({ semester })]), fp.mergeAll], addTimesemester)(semester) )(semesters))
+const Results = fp.keyBy(r => r.id, fp.map(semester => _.flow([createResult, _.over([ _.partial(createDetailsData, semester.split(".")[0]), createTotalsData, () => ({ name: semester })]), fp.mergeAll], addTimesemester)(semester) )(semesters))
 
 export default Results

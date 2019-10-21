@@ -21,10 +21,10 @@ const Chart = _.compose(withRouter, needsData(selectors.loaded, actions.load), c
     const navigate = exam => history.push(`/exams/ptm/${exam.id}`)
 
     return <div>
-        <OrdinalChart xDomain={ptms.map( p => p.timesemester )} yDomain={[0,Math.max(..._.flatten(ptms.map( p => p.results ))) + 10]}>
+        <OrdinalChart xDomain={ptms.map( p => p.zeitsemester )} yDomain={[0,Math.max(..._.flatten(ptms.map( p => p.results ))) + 10]}>
             <XAxis />
             <YAxis ticks={{count: 4}} />
-            {graphs.map( ({value}, i) => <LineGraph key={i} onClick={navigate} color={value} data={ptms.map( d => ({ ...d, x: d.timesemester, y: d.results[i] }))} /> )}
+            {graphs.map( ({value}, i) => <LineGraph key={i} onClick={navigate} color={value} data={ptms.map( d => ({ ...d, x: d.zeitsemester, y: d.results[i] }))} /> )}
         </OrdinalChart>
     </div>
 })

@@ -11,15 +11,16 @@ const stateToProps = state => ({ data: selectors.getData(state) })
 const Newsfeed = _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps), withTranslation()])(({ t, data }) => 
     <div className="pb-3">
         <div className="text-center">
-        {data.length ? 
+        {_.size(data) ? 
             <div className="d-flex">
                 <Separator />
-                <div style={{color: 'grey'}} className="font-italic">{data[0].timesemester}</div>
+                <div style={{color: 'grey'}} className="font-italic">{data[0].zeitsemester}</div>
                 <Separator />
             </div> :
-            t('Noch keine Prüfungen vorhanden.')}
+            <div className="p-3">{t('Hier werden zukünftig deine Prüfungen angezeigt.')}</div>
+        }
         </div>
-        { _.takeWhile( d => d.timesemester === data[0].timesemester, data).map( d => 
+        { !!_.size(data) && data[0].map( d => 
             <Item key={d.link} icon={d.icon} color={d.color} link={d.link}>
                 <d.comp {...d} /> 
             </Item>

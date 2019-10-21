@@ -4,7 +4,7 @@ import { minQuestions } from '../../Utils/Constants'
 import BaseStore from '../BaseStore'
 import Results from './Data'
 
-export const identifier = 'semester'
+export const identifier = 'mcs'
 const baseStore = BaseStore(identifier)
 const findById = _.curry((id, exams) => exams[id])
 
@@ -30,9 +30,9 @@ export const selectors = baseStore.withLoadedSelector({
 
 export const actions = baseStore.withLoadAction({}, Results)
 
-export const reducer = combineReducers(_.compose([baseStore.withLoadedReducer, baseStore.withSelectReducer])(( state = [], action ) => {
+export const reducer = combineReducers({ items: _.compose([ baseStore.withSelectReducer, baseStore.withLoadedReducer ])(( state = {}, action ) => {
     switch (action.type) {
         default:
             return state
     }
-}))
+}, Results)})
