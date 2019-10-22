@@ -55,6 +55,7 @@ const filter = (state = null, action) => {
 export const reducer = combineReducers({...baseStore.withLoadedReducer(function reducer(state = {undefined: {label: 'root', entries: []}}, action) {
   switch (action.type) {
     case `${identifier.toUpperCase()}_DATA_FETCHED`:
+    case `${identifier.toUpperCase()}_DATA_FETCH_FAILED`:
       //return action.payload.meineEPAs
       return initialState
     case 'LEVEL_UP_DONE':
