@@ -9,7 +9,7 @@ const PtmInfo = ({ t, ...props } ) =>
         <span style={{fontSize: '.9rem'}}>{props.name}</span>
         <div>{t(`Deine Antworten:`)}</div>
         <div className="mt-1" style={{height: '5.3rem'}}>
-            <HorizontalBarChart noaxis xDomain={[0,200]} yDomain={labels} data={labels.map((d, i) => ({y: d, x: results[i] }))} />
+            <HorizontalBarChart noaxis xDomain={[0,200]} yDomain={labels} data={labels.map((d, i) => ({y: d, x: props.results[2-i] }))} />
         </div>
     </div>)
 

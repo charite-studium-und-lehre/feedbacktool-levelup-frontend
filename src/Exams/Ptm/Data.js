@@ -1,4 +1,5 @@
 import { randomUniform } from 'd3-random'
+import { scalePow } from 'd3-scale'
 import _ from 'lodash/fp'
 import seedrandom from 'seedrandom'
 
@@ -63,30 +64,30 @@ const SubjectsWithNumbers = _.flow([rnd, random => Subjects.map(
     }
 )), _.flatMap(c => c.subjects)])
 
-const semesters = ['1. Fachsemester', '2. Fachsemester', '3. Fachsemester', '4. Fachsemester', '5. Fachsemester']
-const timesemesters = _.flatMap( y => [{ label: `SoSe 20${y}`, value: new Date(2000+y, 3, 1) }, { label: `WiSe 20${y}`, value: new Date(2000+y, 9, 1) }] )( _.range( 14, 19 ) )
-
+const timesemesters = _.flatMap( y => [{ label: `SoSe ${y}`, value: y*10+1 }, { label: `WiSe ${y}`, value: y*10+2 }] )( _.range( 2016, 2019 ) )
+const scale = scalePow().domain([20161,20192]).range([10, 150])
 const createResult = _.flow([
     _.over([
         _.flow([seedrandom, randomUniform.source, rnd => (a,b) => _.round(rnd(a,b)())]),
         _.identity
     ]), 
-    ([random, semester]) => ({
+    ([random, timesemester]) => ({
         alt: true,
         results: [
-            [semester.split('.')[0]*semester.split('.')[0]*6],
+            [Math.round(scale(timesemester.value))],
             [30],
             [90] 
         ],
         means: [77, 22, 101],
         id: _.uniqueId(),
-        name: semester,
-        short: semester.substr(0,4) + 'S',
-        fächer: SubjectsWithNumbers(semester),
-        date: new Date(2013 + parseInt(semester.substr(0,1)), 6 + random(2, -1), 15 + random(20, -10)),
-        zeitsemester: timesemesters[semester.split('.')[0]].label
+        name: timesemester.label,
+        periodeCode: timesemester.value,
+        short: timesemester.label.substr(0,1) + timesemester.label.substr(-2),
+        fächer: SubjectsWithNumbers(timesemester.label),
+        //date: new Date(2013 + parseInt(timesemester.label.substr(0,1)), 6 + random(2, -1), 15 + random(20, -10)),
+        zeitsemester: timesemester.label
     })
 ])
 
-const Results = _.keyBy(r => r.id, _.map(createResult)(semesters))
+const Results = _.keyBy(r => r.id, _.map(createResult)(timesemesters))
 export default Results
