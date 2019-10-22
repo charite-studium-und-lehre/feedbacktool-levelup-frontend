@@ -4,8 +4,8 @@ import Numbers from './Numbers'
 const level = t => [t(`keine Ausführung`),t(`gemeinsam mit dem Arzt`), t(`unter Beobachtung des Arztes`), t(`eigenständig, alles/vieles wird nachgeprüft (Arzt auf Station`), t(`eigenständig, Wichtiges wird nachgeprüft (Arzt auf Station)`), t(`eigenständig, Wichtiges wird nachgeprüft (Arzt nur telefonisch erreichbar)`)]
 
 const List = ({ t }) => {
-     return <div className="p-3">
-                <h4>{t('Level der Eigenständigkeit und Aufsicht')}</h4>
+     return <div>
+                <h5>{t('Level der Eigenständigkeit und Aufsicht')}</h5>
                 {level(t).map((e, d) => 
                 <div key={d}>
                     <div>{`${d} - ${e}`}</div>

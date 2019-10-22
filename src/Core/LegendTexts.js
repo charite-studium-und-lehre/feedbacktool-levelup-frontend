@@ -3,15 +3,6 @@ import { Trans } from 'react-i18next'
 import Numbers from '../EPAs/Numbers'
 import { faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons'
 import {Button} from '../EPAs/Toolbar'
-import {
-    Player,
-    ControlBar,
-    ReplayControl,
-    ForwardControl,
-    CurrentTimeDisplay,
-    TimeDivider,
-    VolumeMenuButton
-} from 'video-react'
 
 const Legends = {
     Dashboard: {
@@ -121,15 +112,7 @@ const Legends = {
             title: <Trans>Mein Level</Trans>,
             text: <Trans>
                 <div>
-                    <Player src="https://levelup.charite.de/videos/epa_2019.mp4">
-                        <ControlBar>
-                            <ReplayControl seconds={10} order={1.1} />
-                            <ForwardControl seconds={30} order={1.2} />
-                            <CurrentTimeDisplay order={4.1} />
-                            <TimeDivider order={4.2} />
-                            <VolumeMenuButton disabled />
-                        </ControlBar>
-                    </Player>
+                    Video: <a className="btn btn-info" href="https://levelup.charite.de/videos/epa_2019.mp4">Was sind EPAs?</a>
                 </div>
                 <div className="my-2">
                     Hier siehst du eine Übersicht zu den ärztlichen Kern-Tätigkeiten, die du im Laufe des Studiums trainieren wirst. Nutze diese Funktion, um die Entwicklung deiner praktischen Kompetenz festzuhalten und ggf. nachzusteuern. Für die Einschätzung jeder Tätigkeit gibt es 6 Level, die als Balken dargestellt
