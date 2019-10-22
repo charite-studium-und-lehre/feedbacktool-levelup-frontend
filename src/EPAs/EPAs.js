@@ -2,6 +2,7 @@ import React from 'react'
 import makeExtendable from '../Core/makeExtendable'
 import Container from './Container'
 import List from './List'
+import EPAsVideo from './EPAsVideo'
 
 const EPAs = props => (
     <div className="container-fluid">
@@ -10,8 +11,9 @@ const EPAs = props => (
                     <Container />
                 </div>
                 <div className="col-lg-3 d-none d-lg-block">
-                    <div className="card py-1 sticky-top" style={{top: '3.7rem'}}>
+                    <div className="card sticky-top p-3" style={{top: '3.7rem'}}>
                         <List/>
+                        <EPAsVideo/>
                     </div>
                 </div>
             </div>
