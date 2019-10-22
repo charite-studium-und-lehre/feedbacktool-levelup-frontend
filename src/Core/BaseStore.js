@@ -22,6 +22,8 @@ export default (identifier, getStore) => {
             case `${identifier.toUpperCase()}_DATA_FETCHING`:
                 return true
             case `${identifier.toUpperCase()}_DATA_FETCH_FAILED`:
+                console.error(action.payload)
+                return false
             case `${identifier.toUpperCase()}_DATA_FETCHED`:
                 return false
             default:
