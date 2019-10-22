@@ -10,6 +10,7 @@ import Assessment from './Assessment'
 import {selectors, actions} from './Store'
 import {faEnvelopeOpenText} from "@fortawesome/free-solid-svg-icons"
 import {Button} from "./Toolbar"
+import AssessmentsViewTable from "./assessmentsView/AssessmentsViewTable";
 
 const stateToProps = state => ({filter: selectors.getFilter(state), root: selectors.getItemByLabel(state, 'root')})
 
@@ -38,4 +39,5 @@ export default () =>
             <Legend button={getAssessmentButton} video={true} title={Legends.EPAs.Main.title}>{Legends.EPAs.Main.text}</Legend>
         </div>
         <Container/>
+        <AssessmentsViewTable/>
     </div>
