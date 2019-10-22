@@ -25,9 +25,9 @@ const Ptm = _.compose(needsData(selectors.loaded, actions.load), connect(stateTo
                     <div><span className="font-weight-bold">{labels[2]}: </span>{latest.results[2][0]}</div>
                 </div>
                 <div className="w-100 h-100">
-                    <LinearChart xDomain={[0, ptms.length - 1]} yDomain={[0,Math.max(...ptms.map( d => d.result ))]}>
-                        <AreaGraph color={tinycolor(color).setAlpha(.08).toString()} data={ptms.map( (d, i) => ({ x: i, y0: 0, y1: d.result }))} />
-                        <LineGraph color={tinycolor(color).setAlpha(.23).toString()} data={ptms.map( (d, i) => ({ x: i, y: d.result, selected: d.id === latest.id }))} />
+                    <LinearChart xDomain={[0, ptms.length - 1]} yDomain={[0,Math.max(...ptms.map( d => d.results[0] ))]}>
+                        <AreaGraph color={tinycolor(color).setAlpha(.08).toString()} data={ptms.map( (d, i) => ({ x: i, y0: 0, y1: d.results[0] }))} />
+                        <LineGraph color={tinycolor(color).setAlpha(.23).toString()} data={ptms.map( (d, i) => ({ x: i, y: d.results[0], selected: d.id === latest.id }))} />
                     </LinearChart>
                 </div>
             </div>
