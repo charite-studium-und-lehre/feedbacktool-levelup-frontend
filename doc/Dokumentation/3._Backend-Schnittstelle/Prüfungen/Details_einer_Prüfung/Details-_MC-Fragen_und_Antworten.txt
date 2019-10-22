@@ -16,7 +16,7 @@ fail: HTTP-Code 404 (keine Fragen vorhanden)
 Array aus:
 {
 	"pruefungsItemId": <pruefungsItemId>
-	"durchschnitt": <0.0 - 1.0>
+	"durchschnittRichtig": <0.0 - 1.0>
 	"Frage": "<Fragentext als Reintext>",
 	"Antworten": Array aus 
 		{

@@ -35,6 +35,7 @@ fail: HTTP-Code 404 not found
 	"durchschnittsPunktzahl": <0..80>
 	"maximalPunktzahl": <0..80>,
 	"bestehensgrenzePunktzahl": <0..80>,
+	"kohortenPunktzahlen": [ <0..80>, <0..80>, ... ],
 	"module": [
 	'''
 		'''
