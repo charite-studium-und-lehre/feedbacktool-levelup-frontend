@@ -29,13 +29,13 @@ export const selectors = baseStore.withLoadedSelector({
   getExternalScore,
 })
 
-export const actions = baseStore.withLoadAction({
+export const actions = baseStore.withLoadAction(`/epa/meine`)({
   setFilter: id => ({ type: 'SET_EPAS_FILTER', payload: { id }}),
   levelUpDone: id => ({ type: 'LEVEL_UP_DONE', payload: { id }}),
   levelDownDone: id => ({ type: 'LEVEL_DOWN_DONE', payload: { id }}),
   levelUpConfident: id => ({ type: 'LEVEL_UP_CONFIDENT', payload: { id }}),
   levelDownConfident: id => ({ type: 'LEVEL_DOWN_CONFIDENT', payload: { id }}),
-}, initialState)
+})
 
 const level = (state, id, p, val) => {
   const entry = _.clone(state[id])
@@ -54,6 +54,10 @@ const filter = (state = null, action) => {
 
 export const reducer = combineReducers({...baseStore.withLoadedReducer(function reducer(state = {undefined: {label: 'root', entries: []}}, action) {
   switch (action.type) {
+    case `${identifier.toUpperCase()}_DATA_FETCHED`:
+    case `${identifier.toUpperCase()}_DATA_FETCH_FAILED`:
+      //return action.payload.meineEPAs
+      return initialState
     case 'LEVEL_UP_DONE':
       return level(state, action.payload.id, 'done', 1)
     case 'LEVEL_DOWN_DONE':

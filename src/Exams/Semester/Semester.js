@@ -15,7 +15,7 @@ const Semester = ({ test, t }) => {
         <div className="container-fluid">
             <div className="row">
                 <div className="col">
-                    <h4 className="mr-auto">{t(`Semesterprüfung`)} - {test.semester}</h4>
+                    <h4 className="mr-auto">{test.name}</h4>
                 </div>
             </div>
             <div className="row">

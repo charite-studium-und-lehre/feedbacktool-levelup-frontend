@@ -26,7 +26,7 @@ const asChart = WrappedComponent =>
 
         return (
             <svg ref={node} width="100%" height="100%" preserveAspectRatio="none">
-                { size && renderContent() }
+                { size && size.height > 0 && renderContent() }
             </svg>
         )
     }

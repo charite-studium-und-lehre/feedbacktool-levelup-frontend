@@ -21,11 +21,16 @@ export const selectors = baseStore.withLoadedSelector({
     getDone,
 })
 
-export const actions = baseStore.withLoadAction({}, Results)
+export const actions = baseStore.withLoadAction(`/studienfortschritt`)({})
 
-export const reducer = combineReducers(baseStore.withLoadedReducer(( state = [], action ) => {
-    switch(action.type) {
-        default:
-            return state
+export const reducer = combineReducers(baseStore.withLoadedReducer(
+    (state = {}, action) => {
+        switch(action.type) {
+            case `${identifier.toUpperCase()}_DATA_FETCHED`:
+            case `${identifier.toUpperCase()}_DATA_FETCH_FAILED`:
+                return Results
+            default:
+                return state
+        }
     }
-}))
+))

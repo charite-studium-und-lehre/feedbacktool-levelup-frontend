@@ -35,17 +35,19 @@ class App extends Component {
     return (
       <Provider store={createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)))}>
         <BrowserRouter basename={getBasename()}>
-          <div className="App">
+          <div className="App d-flex flex-column">
             {this.state.loggedIn && <Navbar isLoggedIn={this.state.loggedIn} onClick={() => this.setState({loggedIn: false})}></Navbar>}
             {this.state.loggedIn && <Breadcrumbs />}
+            <div className="flex-grow-1">
             <Route path="/login" component={login} />
-            {Routes.map( route => ( route.private ?
-                    <PrivateRoute key={route.path} path={route.path} component={route.component} exact={route.exact} isLoggedIn={this.state.loggedIn} /> :
-                    <Route key={route.path} path={route.path} component={route.component} exact={route.exact} />
-            ))}
-            <Route exact path="/" render={() => (
-                <Redirect to="/dashboard" />
-            )}/>
+              {Routes.map( route => ( route.private ?
+                      <PrivateRoute key={route.path} path={route.path} component={route.component} exact={route.exact} isLoggedIn={this.state.loggedIn} /> :
+                      <Route key={route.path} path={route.path} component={route.component} exact={route.exact} />
+              ))}
+              <Route exact path="/" render={() => (
+                  <Redirect to="/dashboard" />
+              )}/>
+            </div>
           </div>
         </BrowserRouter>
       </Provider>

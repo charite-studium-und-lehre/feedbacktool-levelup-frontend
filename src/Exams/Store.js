@@ -7,14 +7,16 @@ import { reducer as stationsReducer, identifier as stationsIdentifier, selectors
 import { color as semesterColor } from './Semester/Semester'
 import { color as ptmColor } from './Ptm/Ptm'
 import { color as stationsColor } from './Stations/Stations'
+import BaseStore from '../Core/BaseStore'
 
 export const identifier = 'exams'
+const baseStore = BaseStore(identifier)
 
 const toNavigationData = _.flow(
-    _.groupBy( d => d.timesemester ),
+    _.groupBy( d => d.zeitsemester ),
     _.map( g => { 
         const scale = scaleBand([0,g.length-1],[0,1])
-        return g.map( (d, i) => ({ ...d, x: d.timesemester, y: scale(i) + scale.bandwidth() * .5 }))
+        return g.map( (d, i) => ({ ...d, x: d.zeitsemester, y: scale(i) + scale.bandwidth() * .5 }))
     }),
     _.flatten)
 
@@ -36,16 +38,16 @@ const graphs = state => [
     },
 ]
 
-const selectors = {
-    loaded: () => true,
+const selectors = baseStore.withLoadedSelector({
     getNavigationData: graphs,
-}
+})
 
-const actions = {
-    setSelected: (id, value) => ({ type: 'EXAMS_SELECT', payload: { id, value }}),
-    load: () => _.over([PtmActions.load(), SemesterActions.load(), StationsActions.load()])
-}
+const actions = baseStore.withLoadAction('/pruefung')({
+    setSelected: (id, value) => ({ type: 'EXAMS_SELECT', payload: { id, value }})
+})
 
 export { selectors, actions }
 
-export const reducer = combineReducers({ [ptmsIdentifier]: ptmsReducer, [semesterIdentifier]: semesterReducer, [stationsIdentifier]: stationsReducer })
+export const reducer = combineReducers(baseStore.withLoadedReducer(
+    combineReducers({ [ptmsIdentifier]: ptmsReducer, [semesterIdentifier]: semesterReducer, [stationsIdentifier]: stationsReducer })
+))

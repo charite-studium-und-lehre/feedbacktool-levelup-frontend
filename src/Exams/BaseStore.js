@@ -1,6 +1,6 @@
 import _ from 'lodash/fp'
 import BaseStore from '../Core/BaseStore'
-import { identifier } from './Store'
+import { identifier, actions, selectors } from './Store'
 
 const selectItem = (state, id) => ({ ...state, selected: state.id === id })
 const withSelectReducer = reducer => (state, action) => {
@@ -12,7 +12,30 @@ const withSelectReducer = reducer => (state, action) => {
     }
 }
 
-export default newIdentifier => ({
-    ...BaseStore(newIdentifier, state => state[identifier][newIdentifier]), 
-    withSelectReducer,
-})
+export default newIdentifier => {
+
+    const transformResult = _.flow([
+        d => d.pruefungen,
+        _.filter( e => newIdentifier.startsWith(e.format) ),
+        _.map( e => ({ ...e, id: e.studiPruefungsId })),
+        _.keyBy( e => e.id )
+    ])
+    
+    const examsLoadedReducer = (reducer, init) => (state, action) => {
+        switch(action.type) {
+            case 'EXAMS_DATA_FETCHED':
+                return init || transformResult(action.payload)
+            default:
+                return reducer(state, action)
+        }
+    }
+
+    const baseStore = BaseStore(newIdentifier, state => state[identifier].items[newIdentifier])
+    return {
+        ...baseStore,
+        withLoadAction: _.merge({ load: () => actions.load() }),
+        withLoadedSelector: _.merge({ loaded: state => selectors.loaded(state) }),
+        withLoadedReducer: examsLoadedReducer,
+        withSelectReducer,
+    }
+}

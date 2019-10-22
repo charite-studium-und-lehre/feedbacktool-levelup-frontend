@@ -5,7 +5,7 @@ Creation-Date: 2019-06-25T17:48:48+02:00
 ====== Details- MC-Fragen und Antworten ======
 
 ==== GET-Aufruf: ====
-[[/api/pruefungsFrage/<pruefungsItemId]]>
+[[/backend/api/pruefungsFrage/<pruefungsItemId]]>
 
 success: HTTP-Code 200
 

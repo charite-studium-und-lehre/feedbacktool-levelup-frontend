@@ -6,7 +6,7 @@ Creation-Date: 2019-05-31T14:33:58+02:00
 
 
 == GET-Aufruf: ==
-[[/api/pruefung]]
+[[/backend/api/pruefung]]
 
 success: HTTP-Code 200
 
@@ -62,7 +62,7 @@ PTM hat keine extra Perioden, also nur z.B. 20181
 ''{''
 		''"antwortenRichtig": <>,''
 ''	"antwortenFalsch": <>,''
-''	"antwortenWeißNicht": <>,''
+''	"antwortenWeissNicht": <>,''
 '''
 }
 
@@ -83,7 +83,6 @@ PTM hat keine extra Perioden, also nur z.B. 20181
 == Stations-Ergebnis ==
 ''{''
 	"ergebnisProzent": < 0.00 bis 1.00>,
-	"bestehensGrenzeProzent": < 0.00 bis 1.00 >,
 	"durchschnittProzent": < 0.00 bis 1.00 >,
 '''
 }
