@@ -6,6 +6,7 @@ const data = [
         name: '2. Fachsemester Teil 1',
         group: '2. Fachsemester',
         periodeCode: 20162,
+        format: 'station',
         zeitsemester: 'WiSe 2016',
         stations: [
             {
@@ -126,6 +127,7 @@ const data = [
         name: '4. Fachsemester Teil 2',
         group: '4. Fachsemester',
         periodeCode: 20172,
+        format: 'station',
         zeitsemester: 'WiSe 2017',
         stations: [
             {
@@ -223,6 +225,7 @@ const data = [
         name: '4. Fachsemester Teil 3',
         group: '4. Fachsemester',
         periodeCode: 20172,
+        format: 'station',
         zeitsemester: 'WiSe 2017',
         stations: [
             {

@@ -80,6 +80,7 @@ const createResult = _.flow([
         ],
         means: [77, 22, 101],
         id: _.uniqueId(),
+        format: 'ptm',
         name: timesemester.label,
         periodeCode: timesemester.value,
         short: timesemester.label.substr(0,1) + timesemester.label.substr(-2),

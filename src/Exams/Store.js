@@ -40,10 +40,12 @@ const graphs = state => [
 
 const selectors = baseStore.withLoadedSelector({
     getNavigationData: graphs,
+    getById: (state, id) => _.flow([ graphs, _.flatMap( g => g.data ), _.find( d => d.id === id )])(state),
+    getSelected: _.flow([ graphs, _.flatMap( g => g.data ), _.find( d => d.selected )]),
 })
 
 const actions = baseStore.withLoadAction('/pruefung')({
-    setSelected: (id, value) => ({ type: 'EXAMS_SELECT', payload: { id, value }})
+    setSelected: value => ({ type: 'EXAMS_SELECT', payload: value })
 })
 
 export { selectors, actions }

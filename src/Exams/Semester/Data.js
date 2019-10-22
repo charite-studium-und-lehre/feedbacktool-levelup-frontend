@@ -211,6 +211,6 @@ const createDetailsData = (semester, [result, dist]) => ({
     date: new Date(2013 + parseInt(semester), 6+Math.random()*2, 15),
 })
 
-const Results = fp.keyBy(r => r.id, fp.map(semester => _.flow([createResult, _.over([ _.partial(createDetailsData, semester.value.split(".")[0]), createTotalsData, () => ({ name: semester.value, zeitsemester: semester.label, periodeCode: semester.periodeCode })]), fp.mergeAll])(semester) )(timesemesters))
+const Results = fp.keyBy(r => r.id, fp.map(semester => _.flow([createResult, _.over([ _.partial(createDetailsData, semester.value.split(".")[0]), createTotalsData, () => ({ name: semester.value, zeitsemester: semester.label, periodeCode: semester.periodeCode, format: 'mc' })]), fp.mergeAll])(semester) )(timesemesters))
 
 export default Results

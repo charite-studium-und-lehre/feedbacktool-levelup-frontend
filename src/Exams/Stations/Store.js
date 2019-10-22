@@ -35,6 +35,8 @@ export const actions = {
 
 const groupFilter = ( state = [], action ) => {
     switch(action.type) {
+        case 'EXAMS_SELECT':
+            return identifier.startsWith(action.payload.format) ? [action.payload.group] : []
         case 'STATIONS_FILTER_GROUPS':
             return action.payload
         default:
