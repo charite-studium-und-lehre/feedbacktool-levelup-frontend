@@ -15,12 +15,12 @@ const stateToProps = state => ({ mcStrongestSubject: semesterSelectors.strongest
 const Strengths = _.compose([withTranslation(), needsData(loaded, load), connect(stateToProps)])(({ t, mcStrongestSubject, ptmStrongestSubject }) =>
     <div>
         <div className="mb-3">
-            <div style={{fontSize: '.8rem'}} className="text-secondary">{t('Stärkstes Fach in deinen gesamten MCs')}</div>
+            <div style={{fontSize: '.8rem'}} className="text-secondary">{t('in deinen gesamten MCs')}</div>
             {mcStrongestSubject.name}
             <SimpleBar value={mcStrongestSubject.richtig} total={mcStrongestSubject.gesamt}>{mcStrongestSubject.richtig} von {mcStrongestSubject.gesamt}</SimpleBar>
         </div>
         <div className="">
-            <div style={{fontSize: '.8rem'}} className="text-secondary">{t('Stärkstes Fach im letzten PTM')}</div>
+            <div style={{fontSize: '.8rem'}} className="text-secondary">{t('im letzten PTM')}</div>
             {ptmStrongestSubject.name}
             <SimpleBar value={ptmStrongestSubject.richtig} total={ptmStrongestSubject.gesamt}>{ptmStrongestSubject.richtig} von {ptmStrongestSubject.gesamt}</SimpleBar>
         </div>
@@ -29,8 +29,7 @@ const Strengths = _.compose([withTranslation(), needsData(loaded, load), connect
 
 const Wrapper = withTranslation()(({ t }) => <DashboardCard 
     header={Math.round(Math.random() * 100) + ' p'} 
-    title={t(`Deine Stärken`)} 
-    text={t(`Dein Überblick zu deinen fächerorientierten Stärken im PTM und den Semesterprüfungen über das gesamte Studium.`)}>
+    title={t(`Starke Fächer`)} >
             <Strengths />
 </DashboardCard>)
 
