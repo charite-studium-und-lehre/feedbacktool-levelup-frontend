@@ -17,7 +17,7 @@ const getRanking = _.flow([ getSubjects, _.filter(s => s.gesamt >= minQuestions)
 const toTimeline = ptm => ({
     ...ptm,
     link: `ptm/${ptm.id}`,
-    results: ptm.results
+    results: ptm.results || [1,2,3]
 })
 const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 
@@ -25,8 +25,8 @@ export const selectors = baseStore.withLoadedSelector({
     getSubjectByName: (state, id, subject) => _.flow([ baseStore.getItems, findById(id), getSubject(subject) ])(state),
     getAllForSubject: (state, subject) => 
         _.flow([ baseStore.getItems, _.map(ptm => ({ ...getSubject(subject)(ptm), zeitsemester: ptm.zeitsemester })) ])(state),
-    getById: (state, id) => _.flow([ baseStore.getItems, findById(id) ])(state),
-    getLatest: _.flow([ baseStore.getItems, _.sortBy('zeitsemester'), _.last ]),
+    getById: (state, id) => _.flow([ baseStore.getItems, findById(id), _.defaults({ means: [1,2,3], results: [1,2,3] }) ])(state),
+    getLatest: _.flow([ baseStore.getItems, _.sortBy('periodeCode'), _.last, _.defaults({ means: [1,2,3], results: [1,2,3] }) ]),
     getSubjects,
     getRanking,
     strongestSubject: _.flow([ getRanking, _.first ]),

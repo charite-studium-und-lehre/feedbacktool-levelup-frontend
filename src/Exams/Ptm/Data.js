@@ -74,9 +74,9 @@ const createResult = _.flow([
     ([random, timesemester]) => ({
         alt: true,
         results: [
-            [Math.round(scale(timesemester.value))],
-            [30],
-            [90] 
+            Math.round(scale(timesemester.value)),
+            30,
+            90 
         ],
         means: [77, 22, 101],
         id: _.uniqueId(),

@@ -176,7 +176,7 @@ const createResult = _.flow([ seedrandom, _.over(result, createDist), concatResu
 const createTotalsData = ([result, dist]) => {
     return {
         dist: dist.map( _.mean ),
-        ergebnis: {
+        gesamtErgebnis: {
             ergebnisPunkte: _.round(_.mean(result)),
             gesamtPunktzahl: 80,
             durchschnitt: distMean(dist),
