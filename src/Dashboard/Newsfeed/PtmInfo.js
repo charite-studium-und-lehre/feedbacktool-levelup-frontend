@@ -3,7 +3,6 @@ import { HorizontalBarChart } from '../../Charting/HorizontalBarGraph'
 import { withTranslation } from 'react-i18next'
 
 const labels = ['nicht beantwortet', 'falsch', 'richtig']
-const results = [47, 10, 143]
 const PtmInfo = ({ t, ...props } ) =>
     (<div>
         <span style={{fontSize: '.9rem'}}>{props.name}</span>
