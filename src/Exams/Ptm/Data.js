@@ -84,7 +84,6 @@ const createResult = _.flow([
         periodeCode: timesemester.value,
         short: timesemester.label.substr(0,1) + timesemester.label.substr(-2),
         fächer: SubjectsWithNumbers(timesemester.label),
-        //date: new Date(2013 + parseInt(timesemester.label.substr(0,1)), 6 + random(2, -1), 15 + random(20, -10)),
         zeitsemester: timesemester.label
     })
 ])

@@ -5,7 +5,8 @@ const data = [
     {
         name: '2. Fachsemester Teil 1',
         group: '2. Fachsemester',
-        date: new Date(2015, 6, 15),
+        periodeCode: 20162,
+        zeitsemester: 'WiSe 2016',
         stations: [
             {
                 name:'Notfall', 
@@ -124,7 +125,8 @@ const data = [
     {
         name: '4. Fachsemester Teil 2',
         group: '4. Fachsemester',
-        date: new Date(2017, 6, 15),
+        periodeCode: 20172,
+        zeitsemester: 'WiSe 2017',
         stations: [
             {
                 name:'COPD', 
@@ -220,7 +222,8 @@ const data = [
     {
         name: '4. Fachsemester Teil 3',
         group: '4. Fachsemester',
-        date: new Date(2017, 6, 15),
+        periodeCode: 20172,
+        zeitsemester: 'WiSe 2017',
         stations: [
             {
                 name: 'Physiologie 1', 
@@ -443,7 +446,6 @@ const data = [
     // }
 ]
 
-const timesemesters = fp.flatMap( y => [{ label: `SoSe 20${y}`, value: new Date(2000+y, 3, 1) }, { label: `WiSe 20${y}`, value: new Date(2000+y, 9, 1) }] )( _.range( 14, 19 ) )
 const StationsData = data.map( e => ({
     ...e,
     stations: e.stations.map(s => ({
@@ -454,7 +456,6 @@ const StationsData = data.map( e => ({
 })).map(e => ({
     ...e,
     id: _.uniqueId(),
-    zeitsemester: timesemesters.find( m => e.date - m.value < 1000 * 60 * 60 * 24 * 100).label,
     result: _.round(_.meanBy( e.stations, 'result')),
     mean: _.round(_.meanBy( e.stations, 'mean')),
 }))
