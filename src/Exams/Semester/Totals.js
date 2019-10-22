@@ -29,7 +29,11 @@ const Totals = ({ t, dist, ...props }) => {
 
     const histo = _.flow(
         _.groupBy(d => Math.floor(d / 5)),
-        _.map(d => ({x: Math.floor(d[0] / 5) * 5, y: d.length, highlight: 0 === Math.floor(props.resultMean / 5), label: <AnimatedInteger value={d.length} />}))
+        _.map(d => ({
+            x: Math.floor(d[0] / 5) * 5, 
+            y: d.length, highlight: Math.floor(props.ergebnis.ergebnisPunkte / 5) * 5 === Math.floor(d[0] / 5) * 5, 
+            label: <AnimatedInteger value={d.length} />
+        }))
     )(dist)
 
     const PercentileArea = ({ percentiles, ...props }) => {
