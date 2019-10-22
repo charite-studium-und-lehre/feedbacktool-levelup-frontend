@@ -11,14 +11,14 @@ export default withTranslation()(({t, ...props}) => {
     const [extended, setExtended] = useState(0)
     const toggle = i => setExtended(extended !== i && i)
 
-    return <div className="container-fluid p-2">
+    return <div className="container-fluid">
         <div className="row p-2 ">
             <div className="col">
                 <Button icon={faMailBulk} active={extended === 1}
                         onClick={() => toggle(1)}>{t(`Erhaltene Fremdbewertungen`)}</Button>
             </div>
             <div className="col">
-                <Button className="float-right" icon={faEnvelope} active={extended === 2}
+                <Button className="float-md-right" icon={faEnvelope} active={extended === 2}
                         onClick={() => toggle(2)}>{t(`Fremdbewertung einfordern`)}</Button>
             </div>
         </div>
