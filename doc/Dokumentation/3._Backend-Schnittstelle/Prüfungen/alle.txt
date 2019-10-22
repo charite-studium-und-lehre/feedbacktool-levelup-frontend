@@ -6,7 +6,7 @@ Creation-Date: 2019-05-31T14:33:58+02:00
 
 
 == GET-Aufruf: ==
-[[/backend/api/pruefung]]
+[[/backend/api/pruefungen]]
 
 success: HTTP-Code 200
 
@@ -25,9 +25,8 @@ GET-Aufruf ohne Parameter:
 			"studiPruefungsId": "<ID">,
 			"periodeCode": <siehe periodeCode>,
 '''
-							''"periodetext": <z.B. 'WiSe2018 Haupttermin'>,''
-''			"ergebnis": <siehe PTM-Ergebnis|MC-Ergebnis|Stations-Ergebnis>''
-
+							''"periodeText": <z.B. 'WiSe2018 Haupttermin'>,''
+							''"gesamtErgebnis": <siehe PTM-Ergebnis|MC-Ergebnis|Stations-Ergebnis>''
 ''		},''
 ''	]''
 
@@ -57,33 +56,44 @@ PTM hat keine extra Perioden, also nur z.B. 20181
 '' "Stat-2",''
 '' "Stat-3",''
 
-== PTM-Ergebnis: ==
 
-''{''
-		''"antwortenRichtig": <>,''
-''	"antwortenFalsch": <>,''
-''	"antwortenWeissNicht": <>,''
-'''
-}
-
-'''
 == MC-Ergebnis: ==
 
 ''{''
-	"ergebnisPunkte": <>,
-	"gesamtPunktzahl": <>
-	"bestehensGrenze": <>,
-	"durchschnittPunkte": <>,
+	'''
+	"ergebnisPunktzahl": <0..80>,
+	"durchschnittsPunktzahl": <0..80>
+	"maximalPunktzahl": <0..80>,
+	"bestehensgrenzePunktzahl": <0..80>,
+	'''
+
 '''
 }
 
+'''
+== PTM-Ergebnis: ==
+
+''{''
+	'''
+	"ergebnisRichtigPunktzahl": <Punktzahl 0..200>,
+	"ergebnisFalschPunktzahl": <Punktzahl 0..200>,
+	"ergebnisWeissnichtPunktzahl": <Punktzahl 0..200>,
+	"maximalPunktzahl": <Punktzahl 0..200>,
+	
+	"durchschnittRichtigPunktzahl": <Punktzahl 0..200>,
+	"durchschnittFalschPunktzahl": <Punktzahl 0..200>,
+	"durchschnittWeissnichtPunktzahl": <Punktzahl 0..200>,
+	'''
+
+'''
+}
 '''
 
 
 == Stations-Ergebnis ==
 ''{''
-	"ergebnisProzent": < 0.00 bis 1.00>,
-	"durchschnittProzent": < 0.00 bis 1.00 >,
+	''"ergebnisProzentzahl": <0.00 - 1.00>,''
+	''"durchschnittProzentzahl": [0.00 - 1.00],''
 '''
 }
 '''
