@@ -23,9 +23,17 @@ const Ptm = _.compose(needsData(selectors.loaded, actions.load), connect(stateTo
                     {labels.map( (l,i) => <div key={i}><span className="font-weight-bold">{l}: </span>{latest.results[i]}</div> )}
                 </div>
                 <div className="w-100 h-100">
-                    <LinearChart xDomain={[0, ptms.length - 1]} yDomain={[0,Math.max(...ptms.map( d => d.results[0] ))]}>
-                        <AreaGraph color={tinycolor(color).setAlpha(.08).toString()} data={ptms.map( (d, i) => ({ x: i, y0: 0, y1: d.results[0] }))} />
-                        <LineGraph color={tinycolor(color).setAlpha(.23).toString()} data={ptms.map( (d, i) => ({ x: i, y: d.results[0], selected: d.id === latest.id }))} />
+                    <LinearChart xDomain={[-.01, ptms.length - 1+.01]} yDomain={[0,Math.max(...ptms.map( d => d.results[0] ))]}>
+                        <AreaGraph color={tinycolor(color).setAlpha(.08).toString()} data={[
+                            { x: -1, y0: 0, y1: _.head(ptms).results[0] },
+                            ...ptms.map( (d, i) => ({ x: i, y0: 0, y1: d.results[0] })),
+                            { x: ptms.length, y0: 0, y1: _.last(ptms).results[0] },
+                        ]} />
+                        <LineGraph color={tinycolor(color).setAlpha(.23).toString()} data={[
+                            { x: -1, y: _.head(ptms).results[0] },
+                            ...ptms.map( (d, i) => ({ x: i, y: d.results[0], selected: d.id === latest.id })),
+                            { x: ptms.length, y: _.last(ptms).results[0] },
+                        ]} />
                     </LinearChart>
                 </div>
             </div>
