@@ -10,7 +10,7 @@ const Tellme =({t})=> (
         <img src={tellMeLogo} alt="tellme-logo" className='pb-1 mb-2' style={{width: '7rem'}}></img>
         <div className='row'> 
             <div className='col-12'>
-                <span className='font-weight-bold ' style={{borderBottom:'2px solid black'}}>{t(`Neues`)}:</span>
+                <span className='font-weight-bold ' style={{borderBottom:'2px solid black'}}>{t(`news`)}:</span>
                 <p className='mt-2'>Unsere ersten Lerneinheiten für Dich sind fertig: M14 & M17</p>
             </div>
         </div>

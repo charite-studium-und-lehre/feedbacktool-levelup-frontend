@@ -8,17 +8,17 @@ import EPAs from './EPAs'
 import Strengths from './Strengths'
 import TellMe from './TellMe'
 
-const Cards = () => <div>
+const Cards = () => <div className="col">
     <Link to="/progress">
         <Progress />
     </Link>
-    <Ptm />
     <Link to="/epas">
         <EPAs />
     </Link>
     <Link to="/strengths">
         <Strengths />
     </Link>
+    <Ptm />
     <TellMe />
 </div>
 
@@ -33,16 +33,26 @@ export default () =>
                     <NewsfeedMobile />
                 </div>
             </div>
-            <div className="col-lg-8 pt-2">
-                <div className="row">
-                    <div className="col">
-                        <div className="card-columns d-none d-md-block" style={{columnCount: 2}}>
-                            <Cards />
-                        </div>
-                        <div className="d-md-none">
-                            <Cards />
-                        </div>
+            <div className="col-lg-8 py-2">
+                <div className="row h-100 d-none d-md-flex">
+                    <div className="col-6 d-flex flex-column justify-content-around">
+                        <Link to="/progress">
+                            <Progress />
+                        </Link>
+                        <Link to="/strengths">
+                            <Strengths />
+                        </Link>
+                        <TellMe />
                     </div>
+                    <div className="col-6 d-flex flex-column justify-content-around">
+                        <Link to="/epas">
+                            <EPAs />
+                        </Link>
+                        <Ptm />
+                    </div>
+                </div>
+                <div className="row d-flex d-md-none">
+                    <Cards />
                 </div>
             </div>
         </div>
