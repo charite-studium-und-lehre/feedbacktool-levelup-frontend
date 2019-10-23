@@ -5,7 +5,6 @@ import { combineReducers } from 'redux'
 
 export const identifier = 'stations'
 const baseStore = BaseStore(identifier)
-const findBySemester = _.curry((semester, exams) => exams[semester])
 
 const toTimeline = exam => ({
     link: `stations/${exam.id}`,
@@ -23,7 +22,6 @@ const getGroupFilters = state => _.flow(baseStore.getItems, getGroups, getFilter
 export const selectors = baseStore.withLoadedSelector({
     getItems: baseStore.getItems,
     getFilteredItems: state => _.flow(baseStore.getItems, filter(getGroupFilters(state))),
-    getBySemester: (state, semester) => _.flow([ baseStore.getItems, findBySemester(semester)])(state),
     getTimeline,
     getGroupFilters,
 })

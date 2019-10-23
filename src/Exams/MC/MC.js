@@ -10,7 +10,7 @@ import { selectors, actions } from './Store'
 
 export const color = 'hsla(120, 50%, 50%, .75)'
 
-const Semester = ({ test, t }) => {
+const MC = ({ test, t }) => {
         return (
         <div className="container-fluid">
             <div className="row">
@@ -36,4 +36,4 @@ const Semester = ({ test, t }) => {
 }
 
 const stateToProps = (state, ownProps) => ({ test: selectors.getById( state, ownProps.match.params.test )})
-export default _.compose([needsData(selectors.loaded, actions.load), withTranslation(), connect(stateToProps)])(Semester)
+export default _.compose([needsData(selectors.loaded, actions.load), withTranslation(), connect(stateToProps)])(MC)

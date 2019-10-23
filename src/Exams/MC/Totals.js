@@ -49,7 +49,7 @@ const Totals = ({ t, dist, ...props }) => {
     }
 
     const domain = window.innerWidth <= mobileWidth ? histo.map(d => d.x) : _.range(0,20).map(d => d*5)
-    const LegendText = Legends.Exams.Semester.Totals
+    const LegendText = Legends.Exams.MC.Totals
     return (
         <div className="card p-4">
             <Legend title={LegendText.title}>{LegendText.text}</Legend>

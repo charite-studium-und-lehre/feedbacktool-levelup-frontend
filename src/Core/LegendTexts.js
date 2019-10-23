@@ -10,7 +10,7 @@ const Legends = {
             title: <Trans>Deine Prüfungsergebnisse</Trans>,
             text: <Trans>Hier siehst du einen Überblick über deine bisherigen Prüfungsergebnisse. Über die Checkboxen kannst du selber auswählen, welche Prüfungsergebnisse du angezeigt bekommen möchtest. Du kannst auf die jeweiligen Ergebnisse klicken, um detaillierte Informationen zu erhalten (z.B. Ergebnisse der einzelnen Module).</Trans>,
         },
-        Semester: {
+        MC: {
             Summary: {
                 title: <Trans>Zusammenfassung deiner Antworten in den Semesterprüfungen</Trans>,
                 text: <Trans>Hier siehst du eine Aufstellung nach Fächern der von dir beantworteten Fragen in deinen Semesterprüfungen.</Trans>,
@@ -29,7 +29,7 @@ const Legends = {
             },
             QuestionsDetails: {
                 title: <Trans>Fragen und Antworten</Trans>,
-                text: <Trans i18nKey="exams.semester.questions.text">
+                text: <Trans i18nKey="exams.mc.questions.text">
                     <p>Hier kannst du dir alle Fragen der Semesterprüfung mit den dazugehörigen Antworten ansehen. Jede Frage wurde mit verschiedenen Tags versehen, mit deren Hilfe du die Fragen filtern kannst.Die Filter schwer und leicht zeigen dir wie viel deiner Mitstudierenden diese Frage beantworten konnten. Schwere Fragen sind Fragen, die weniger als 40% deiner Mitstudierenden beantworten konnten. Leichte Fragen hingegen konnten mehr als 80% deiner Kommilitonen beantworten.So kannst du dir z.B. nur die Fragen anzeigen lassen, die du falsch beantwortest hast.</p>
                 </Trans>
             }
@@ -72,7 +72,7 @@ const Legends = {
                 <p>Die Anzahl der gestellten Fragen pro Fach kann sich durch die Verteilung der Fächer im Curriculum und bei der Auswahl der MC-Fragen in den Klausuren stark unterscheiden. Weiterhin findet keine Gewichtung des Rankings der Fächer nach schweren und leichten Fragen statt.</p>
             </Trans>
         },
-        Semester: {
+        MC: {
             title: <Trans>Starke Fächer in den Semesterprüfungen</Trans>,
             text: <Trans>
                 <p>Hier findest du eine Übersicht zu deinen besten Fächern basierend auf allen deinen Semesterprüfungen. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.<br /><strong>Achtung: </strong>Nur Fächer mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.</p>

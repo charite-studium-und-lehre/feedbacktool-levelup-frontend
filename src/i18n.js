@@ -4,7 +4,7 @@ import { initReactI18next } from "react-i18next"
 const resources = {
   en: {
     translation: {
-      "exams.semester.questions.text" : "<strong>Nö</strong>",
+      "exams.mc.questions.text" : "<strong>Nö</strong>",
       "Beratung": "counselling",
       "Alle Fächer": "All Subjects",
       "Starke Fächer in den Semesterprüfungen": "Strong subjects in your semester exams",

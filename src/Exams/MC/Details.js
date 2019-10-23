@@ -35,7 +35,7 @@ fächer.map(d =>
 
 const Details = withTranslation()(({ t, id }) => {
     const [mode, setMode] = useState('modules')
-    const LegendText = Legends.Exams.Semester
+    const LegendText = Legends.Exams.MC
     return (
         <div className='card p-3'>
         <Legend title={LegendText.Details.title}>

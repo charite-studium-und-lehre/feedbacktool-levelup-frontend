@@ -2,9 +2,9 @@ import { combineReducers } from 'redux'
 import _ from 'lodash/fp'
 import { scaleBand } from 'd3-scale'
 import { reducer as ptmsReducer, identifier as ptmsIdentifier, selectors as PtmSelectors } from './Ptm/Store'
-import { reducer as semesterReducer, identifier as semesterIdentifier, selectors as SemesterSelectors } from './Semester/Store'
+import { reducer as mcReducer, identifier as mcIdentifier, selectors as MCSelectors } from './MC/Store'
 import { reducer as stationsReducer, identifier as stationsIdentifier, selectors as StationsSelectors } from './Stations/Store'
-import { color as semesterColor } from './Semester/Semester'
+import { color as mcColor } from './MC/MC'
 import { color as ptmColor } from './Ptm/Ptm'
 import { color as stationsColor } from './Stations/Stations'
 import BaseStore from '../Core/BaseStore'
@@ -22,9 +22,9 @@ const toNavigationData = _.flow(
 
 const graphs = state => [
     {
-        name: 'semester',
-        data: toNavigationData(SemesterSelectors.getTimeline(state)),
-        color: semesterColor,
+        name: 'mc',
+        data: toNavigationData(MCSelectors.getTimeline(state)),
+        color: mcColor,
     },
     {
         name: 'ptm',
@@ -51,5 +51,5 @@ const actions = baseStore.withLoadAction('/pruefung')({
 export { selectors, actions }
 
 export const reducer = combineReducers(baseStore.withLoadedReducer(
-    combineReducers({ [ptmsIdentifier]: ptmsReducer, [semesterIdentifier]: semesterReducer, [stationsIdentifier]: stationsReducer })
+    combineReducers({ [ptmsIdentifier]: ptmsReducer, [mcIdentifier]: mcReducer, [stationsIdentifier]: stationsReducer })
 ))

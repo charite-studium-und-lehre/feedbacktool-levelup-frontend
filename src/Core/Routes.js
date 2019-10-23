@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Dashboard from '../Dashboard/Dashboard'
 import Exams from '../Exams/Exams'
-import Semester from '../Exams/Semester/Semester'
-import Questions from '../Exams/Semester/Questions/Questions'
+import MC from '../Exams/MC/MC'
+import Questions from '../Exams/MC/Questions/Questions'
 import Ptm from '../Exams/Ptm/Ptm'
 import Strengths from '../Strengths/Strengths'
 import Stations from '../Exams/Stations/Stations'
@@ -63,13 +63,13 @@ const Routes = [
   },
 
   {
-    path: '/exams/semester/:test',
-    component: Semester,
+    path: '/exams/mc/:test',
+    component: MC,
     exact: true,
     private: true,
   },
   {
-    path: '/exams/semester/:test/questions',
+    path: '/exams/mc/:test/questions',
     component: Questions,
     exact: true,
     private: true,

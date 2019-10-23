@@ -1,19 +1,19 @@
 import _ from 'lodash/fp'
-import SemesterInfo from './SemesterInfo'
+import MCInfo from './MCInfo'
 import PtmInfo from './PtmInfo'
 import StationsInfo from './StationsInfo'
 import { selectors as ExamsSelectors, actions as ExamsActions } from '../../Exams/Store'
 import { selectors as StationsSelectors } from '../../Exams/Stations/Store'
-import { selectors as SemesterSelectors } from '../../Exams/Semester/Store'
+import { selectors as MCSelectors } from '../../Exams/MC/Store'
 import { selectors as PtmSelectors } from '../../Exams/Ptm/Store'
-import { color as semesterColor } from '../../Exams/Semester/Semester'
+import { color as mcColor } from '../../Exams/MC/MC'
 import { color as ptmColor } from '../../Exams/Ptm/Ptm'
 import { color as stationsColor } from '../../Exams/Stations/Stations'
 
 const getData = _.flow([
     _.over([ 
         _.flow([ StationsSelectors.getTimeline, _.map(_.merge({ icon: 'PP', color: stationsColor, comp: StationsInfo }))]),
-        _.flow([ SemesterSelectors.getTimeline, _.map(_.merge({ icon: 'MC', color: semesterColor, comp: SemesterInfo }))]),
+        _.flow([ MCSelectors.getTimeline, _.map(_.merge({ icon: 'MC', color: mcColor, comp: MCInfo }))]),
         _.flow([ PtmSelectors.getTimeline, _.map(_.merge({ icon: 'PTM', color: ptmColor, comp: PtmInfo }))]),
     ]),
     _.flatten,

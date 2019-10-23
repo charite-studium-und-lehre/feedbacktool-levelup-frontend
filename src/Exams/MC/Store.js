@@ -10,8 +10,7 @@ const findById = _.curry((id, exams) => exams[id])
 
 const toTimeline = exam => ({
     ...exam,
-    label: exam.semester,
-    link: `semester/${exam.id}`,
+    link: `mc/${exam.id}`,
 })
 const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 

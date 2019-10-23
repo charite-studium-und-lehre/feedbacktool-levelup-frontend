@@ -27,7 +27,7 @@ const Infos = (props) => (
 )
 
 const Questions = props => {
-    const LegendText = Legends.Exams.Semester.Questions
+    const LegendText = Legends.Exams.MC.Questions
     return <div className='card p-3'>
         <Legend title={LegendText.title}>
             {LegendText.text}

@@ -4,14 +4,14 @@ import { connect } from 'react-redux'
 import { withTranslation } from 'react-i18next'
 import SimpleBar from '../Charting/SimpleBar'
 import needsData from '../Core/needsData'
-import { selectors as semesterSelectors, actions as semesterActions } from '../Exams/Semester/Store'
+import { selectors as mcSelectors, actions as mcActions } from '../Exams/MC/Store'
 import { selectors as ptmSelectors, actions as ptmActions } from '../Exams/Ptm/Store'
 import DashboardCard from './DashboardCard'
 
-const loaded = _.overEvery([ semesterSelectors.loaded, ptmSelectors.loaded ])
-const load = () => _.over([ semesterActions.load(), ptmActions.load ])
+const loaded = _.overEvery([ mcSelectors.loaded, ptmSelectors.loaded ])
+const load = () => _.over([ mcActions.load(), ptmActions.load ])
 const ptmStrongestSubject = _.flow([ ptmSelectors.getLatest, ptmSelectors.strongestSubject ])
-const stateToProps = state => ({ mcStrongestSubject: semesterSelectors.strongestSubject(state), ptmStrongestSubject: ptmStrongestSubject(state), l: semesterSelectors.getRanking(state) })
+const stateToProps = state => ({ mcStrongestSubject: mcSelectors.strongestSubject(state), ptmStrongestSubject: ptmStrongestSubject(state), l: mcSelectors.getRanking(state) })
 const Strengths = _.compose([withTranslation(), needsData(loaded, load), connect(stateToProps)])(({ t, mcStrongestSubject, ptmStrongestSubject }) =>
     <div>
         <div className="mb-3">
