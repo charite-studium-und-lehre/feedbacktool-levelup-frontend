@@ -14,9 +14,9 @@ import { color } from '../Exams/Ptm/Ptm'
 import { labels } from '../Exams/Ptm/Results'
 
 const stateToProps = state => ({ latest: selectors.getLatest(state), ptms: selectors.getTimeline(state) })
-const Ptm = _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps))(
-    ({ latest, ptms }) => {
-    return <div className="h-100" style={{minHeight: '5rem'}}>
+const Ptm = _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps), withTranslation())(
+    ({ t, latest, ptms }) => {
+    return latest ? <div className="h-100" style={{minHeight: '5rem'}}>
         <Link to={`/exams/ptm/${latest.id}`}>
             <div className="h-100">
                 <div className="position-absolute pl-2" style={{fontSize: '.75rem', top: '3rem'}}>
@@ -30,12 +30,12 @@ const Ptm = _.compose(needsData(selectors.loaded, actions.load), connect(stateTo
                 </div>
             </div>
         </Link>
-    </div>
+    </div> : 
+    <div className="p-3">{t('Es liegen noch keine PTM Ergebnisse vor.')}</div>
 })
 
 const Wrapper = withTranslation()(({ t }) => <DashboardCard 
         noPadding
-        header={Math.round(Math.random() * 100) + ' %'} 
         title={<div className="px-3 pt-3">{t(`PTM`)}</div>}>
             <Ptm />
 </DashboardCard>)

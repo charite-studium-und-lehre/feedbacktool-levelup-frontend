@@ -25,8 +25,8 @@ export const selectors = baseStore.withLoadedSelector({
     getSubjectByName: (state, id, subject) => _.flow([ baseStore.getItems, findById(id), getSubject(subject) ])(state),
     getAllForSubject: (state, subject) => 
         _.flow([ baseStore.getItems, _.map(ptm => ({ ...getSubject(subject)(ptm), zeitsemester: ptm.zeitsemester })) ])(state),
-    getById: (state, id) => _.flow([ baseStore.getItems, findById(id), _.defaults({ means: [1,2,3], results: [1,2,3] }) ])(state),
-    getLatest: _.flow([ baseStore.getItems, _.sortBy('periodeCode'), _.last, _.defaults({ means: [1,2,3], results: [1,2,3] }) ]),
+    getById: (state, id) => _.flow([ baseStore.getItems, findById(id) ])(state),
+    getLatest: _.flow([ baseStore.getItems, _.sortBy('periodeCode'), _.last ]),
     getSubjects,
     getRanking,
     strongestSubject: _.flow([ getRanking, _.first ]),
@@ -41,4 +41,4 @@ export const reducer = combineReducers({ items: _.compose([baseStore.withSelectR
         default:
             return state
     }
-}, Results)})
+}, {})})

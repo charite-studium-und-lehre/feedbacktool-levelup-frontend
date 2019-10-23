@@ -10,20 +10,26 @@ import DashboardCard from './DashboardCard'
 
 const loaded = _.overEvery([ mcSelectors.loaded, ptmSelectors.loaded ])
 const load = () => _.over([ mcActions.load(), ptmActions.load ])
-const ptmStrongestSubject = _.flow([ ptmSelectors.getLatest, ptmSelectors.strongestSubject ])
-const stateToProps = state => ({ mcStrongestSubject: mcSelectors.strongestSubject(state), ptmStrongestSubject: ptmStrongestSubject(state), l: mcSelectors.getRanking(state) })
+const ptmStrongestSubject = _.flow([ ptmSelectors.getLatest, _.defaults({}), ptmSelectors.strongestSubject ])
+const stateToProps = state => ({ 
+    mcStrongestSubject: mcSelectors.strongestSubject(state), 
+    ptmStrongestSubject: ptmStrongestSubject(state),
+})
 const Strengths = _.compose([withTranslation(), needsData(loaded, load), connect(stateToProps)])(({ t, mcStrongestSubject, ptmStrongestSubject }) =>
     <div>
-        <div className="mb-3">
+        {mcStrongestSubject && <div className="mb-3">
             <div style={{fontSize: '.8rem'}} className="text-secondary">{t('in deinen gesamten MCs')}</div>
             {mcStrongestSubject.name}
             <SimpleBar value={mcStrongestSubject.richtig} total={mcStrongestSubject.gesamt}>{mcStrongestSubject.richtig} von {mcStrongestSubject.gesamt}</SimpleBar>
-        </div>
-        <div className="">
+        </div>}
+        {ptmStrongestSubject && <div className="">
             <div style={{fontSize: '.8rem'}} className="text-secondary">{t('im letzten PTM')}</div>
             {ptmStrongestSubject.name}
             <SimpleBar value={ptmStrongestSubject.richtig} total={ptmStrongestSubject.gesamt}>{ptmStrongestSubject.richtig} von {ptmStrongestSubject.gesamt}</SimpleBar>
-        </div>
+        </div>}
+        {!ptmStrongestSubject && !mcStrongestSubject && 
+            <div className="p3">{t('Es liegen noch keine Ergebnisse vor.')}</div>
+        }
     </div>
 )
 
