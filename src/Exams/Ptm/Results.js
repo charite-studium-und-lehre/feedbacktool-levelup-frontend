@@ -20,7 +20,7 @@ const Chart = _.compose([needsData(selectors.loaded, actions.load), connect(stat
     <OrdinalChart xDomain={labels} yDomain={[0,Math.max(..._.flatten(data.results))+10]}>
         <XAxis />
         <YAxis label="Anzahl Fragen" ticks={{count: 4}} />
-        <BarGraph labels data={labels.map((l,i) => ({x: l, y: data.results[i][0], label: <AnimatedInteger value={data.results[i][0]} />, color: tinycolor(color).setAlpha(.9).toString()}))} />
+        <BarGraph labels data={labels.map((l,i) => ({x: l, y: data.results[0], label: <AnimatedInteger value={data.results[0]} />, color: tinycolor(color).setAlpha(.9).toString()}))} />
         <PointGraph color="rgba(0, 0, 0, .6)" data={labels.map((l, i) => ({x: l, y: data.means[i]}))} />
     </OrdinalChart>
 )
