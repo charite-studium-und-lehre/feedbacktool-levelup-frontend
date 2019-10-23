@@ -2,6 +2,7 @@ import React from 'react'
 import { pie, arc } from 'd3-shape'
 import { interpolate } from 'd3-interpolate'
 import { scaleLinear } from 'd3-scale'
+import { easeLinear } from 'd3-ease'
 import { LinearChart } from './Chart'
 import AnimatedPath from './AnimatedPath'
 import { animationTime as at } from './Utils'
@@ -17,6 +18,7 @@ const Graph = ({ data, xScale, yScale, width = .2, colors = defaultColors, anima
             animationTime={scale(d.endAngle - d.startAngle)}
             delay={scale(d.startAngle)}
             tween={ t => ({...d, endAngle: int(t) })}
+            ease={easeLinear}
             stroke="none"
             fill={d.data.color || colors[i]}
             key={i}

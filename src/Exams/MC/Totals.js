@@ -20,6 +20,17 @@ import needsData from '../../Core/needsData'
 import AnimatedInteger from '../../Charting/AnimatedInteger'
 
 const respSwitch = (large, small) => <span><span className="d-none d-md-inline-block">{large}</span><span className="d-inline-block d-md-none">{small}</span></span>
+const PercentileArea = ({ percentiles, ...props }) => {
+    const id = 'areagraph'
+    const color = tinycolor('hsla(120, 100%, 10%, .2)')
+    const colors = _.range(0, percentiles.length).map( i => color.lighten(20).toString() )
+    return <g>
+        <clipPath id={id}>
+            <AreaGraph {...props} curve={curveStep} ></AreaGraph>
+        </clipPath>
+        {percentiles.map( (p, i) => <rect key={i} x={props.xScale(p[0])} width={props.xScale(p[1]) - props.xScale(p[0])} height='100%' fill={colors[i]} clipPath={`url(#${id})`} /> )}
+    </g>
+}
 const Totals = ({ t, dist, ...props }) => {
     const [ mode, setMode ] = useState('histo')
 
@@ -36,17 +47,6 @@ const Totals = ({ t, dist, ...props }) => {
         }))
     )(dist)
 
-    const PercentileArea = ({ percentiles, ...props }) => {
-        const id = 'areagraph'
-        const color = tinycolor('hsla(120, 100%, 10%, .2)')
-        const colors = _.range(0, percentiles.length).map( i => color.lighten(20).toString() )
-        return <g>
-            <clipPath id={id}>
-                <AreaGraph {...props} curve={curveStep} ></AreaGraph>
-            </clipPath>
-            {percentiles.map( (p, i) => <rect key={i} x={props.xScale(p[0])} width={props.xScale(p[1]) - props.xScale(p[0])} height='100%' fill={colors[i]} clipPath={`url(#${id})`} /> )}
-        </g>
-    }
 
     const domain = window.innerWidth <= mobileWidth ? histo.map(d => d.x) : _.range(0,20).map(d => d*5)
     const LegendText = Legends.Exams.MC.Totals
