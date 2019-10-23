@@ -2,7 +2,9 @@ export const OtherToolsData = [
         {
             title: 'Beratungsangebote',
             description: 'Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. ',
-            href: '/consulting/consulting'},
+            href: '/consulting',
+            hrefLabel: 'Linksamlung zu Beratung'
+        },
         {
             title: 'Fachschaft Medizin',
             description: 'Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. ',
@@ -18,7 +20,7 @@ export const OtherToolsData = [
         {
             title: 'Evaluation',
             description: 'Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. ',
-            href: 'https://www.charite.de/studium_lehre/struktur_einrichtungen/qualitaetssicherung/',
+            href: 'https://intranet.charite.de/evaluation/evaluationsergebnisse/',
             image: ''//https://msm-tellme.charite.de/lernen/pluginfile.php/1/theme_mb2nl/logo/1571201950/logo_okto.svg'
         },
         {
