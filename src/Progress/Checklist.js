@@ -1,9 +1,7 @@
 import React from 'react'
 import ChecklistItem from './ChecklistItem'
-import { selectors } from './Store'
 
 export const colors = ['rgba(0,158,0,.4)', 'rgba(168,168,168,.4)', 'rgba(255,0,0,.4)']
-const percentDone = ({ entries }) => selectors.getDone(entries) / selectors.getTotal(entries)
 const Checklist = ({ completed, prereq, label, entries }) => {
     const color = colors[ completed ? 0 : prereq ? 1 : 2]
     return <div style={{borderLeft: `1rem solid ${color}`}}>
