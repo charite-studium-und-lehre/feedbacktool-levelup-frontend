@@ -28,7 +28,7 @@ const transform = _.flow([
         label: g[0].fachsemester + '. Fachsemester',
         prereq: _.defaultTo({ erfuellt: true }, g.find( d => d.code === g[0].fachsemester + 300)).erfuellt,
         completed: g.find( d => d.code === g[0].fachsemester + 200 ).erfuellt,
-        entries: g.filter( isVisible ).map( d => ({ ...d, link: '' })),
+        entries: g.filter( isVisible ).map( d => ({ ...d, link: d.format && `/exam/${d.format}/${d.studiPruefungsId}` })),
     }))
 ])
 

@@ -8,7 +8,7 @@ const tree = [
                     beschreibung: 'MC',
                     code: 401,
                     erfuellt: true,
-                    link: '/exams/semester/1',
+                    link: '/exams/mc/1',
                 },
                 {
                     beschreibung: 'Anwesenheit',
@@ -26,7 +26,7 @@ const tree = [
                     beschreibung: 'MC',
                     code: 401,
                     erfuellt: true,
-                    link: '/exams/semester/3',
+                    link: '/exams/mc/3',
                 },
                 {
                     beschreibung: 'Anwesenheit',
@@ -44,7 +44,7 @@ const tree = [
                     beschreibung: 'MC',
                     code: 401,
                     erfuellt: true,
-                    link: '/exams/semester/4',
+                    link: '/exams/mc/4',
                 },
                 {
                     beschreibung: 'Anwesenheit',
@@ -72,7 +72,7 @@ const tree = [
                     beschreibung: 'MC',
                     code: 401,
                     erfuellt: true,
-                    link: '/exams/semester/5',
+                    link: '/exams/mc/5',
                 },
                 {
                     beschreibung: 'Praktische Prüfung',
@@ -101,7 +101,7 @@ const tree = [
                     beschreibung: 'MC',
                     code: 401,
                     erfuellt: true,
-                    link: '/exams/semester/6',
+                    link: '/exams/mc/6',
                 },
                 {
                     beschreibung: 'Anwesenheit',
@@ -124,7 +124,7 @@ const tree = [
                     beschreibung: 'MC',
                     code: 401,
                     erfuellt: true,
-                    link: '/exams/semester/7',
+                    link: '/exams/mc/7',
                 },
                 {
                     beschreibung: 'Anwesenheit',
