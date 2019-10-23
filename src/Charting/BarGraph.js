@@ -8,7 +8,7 @@ class Bar extends Component {
 	constructor(props) {
         super(props)
 		this.node = React.createRef()
-		this.state = { x: props.x, y: props.y, width: props.width, height: props.height }
+		this.state = { x: props.x, y: props.y, width: props.width, height: props.height, fill: props.fill }
 	}
 
 	componentDidUpdate() {
@@ -20,11 +20,13 @@ class Bar extends Component {
 			.attr('y', d => d.y)
 			.attr('height', d => d.height)
 			.attr('width', d => d.width)
+			.attr('fill', d => d.fill)
 	}
 
 	render() {
 		return (<rect
 			ref={this.node}
+			fill={this.state.fill}
 			style={this.props.style}
 			x={this.state.x}
 			y={this.state.y}
@@ -48,7 +50,7 @@ const BarGraph = props => {
 			{[].concat(d.y).map((y,j) => 
 			<g key={j}>
 				<Bar
-					style={{fill: d.highlight ? (props.highlightColor || '#fe99f2') : (_.isArray(d.color) ? d.color[j] : d.color || props.color || '#fe9922')}} 
+					fill={ d.highlight ? (props.highlightColor || '#fe99f2') : (_.isArray(d.color) ? d.color[j] : d.color || props.color || '#fe9922')} 
 					x={props.xScale(d.x) + dx}
 					y={props.yScale(y)}
 					height={props.yScale.range()[0] - props.yScale(y)}
