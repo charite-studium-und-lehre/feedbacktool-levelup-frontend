@@ -1,24 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Dashboard from '../Dashboard/Dashboard'
-import Exams from '../Exams/Exams'
-import Semester from '../Exams/Semester/Semester'
-import Questions from '../Exams/Semester/Questions/Questions'
-import Ptm from '../Exams/Ptm/Ptm'
-import Strengths from '../Strengths/Strengths'
-import Stations from '../Exams/Stations/Stations'
-import Consulting from '../consulting/Consulting'
-import AllTools from '../alltools/AllTools'
-import EPAs from '../EPAs/EPAs'
-import Progress from '../Progress/Progress'
 import i18next from 'i18next'
-import Registration from '../User/Registration'
-import DataProtection from '../User/DataProtection'
+
+import Dashboard from '../../Dashboard/Dashboard'
+import Exams from '../../Exams/Exams'
+import Semester from '../../Exams/Semester/Semester'
+import Questions from '../../Exams/Semester/Questions/Questions'
+import Ptm from '../../Exams/Ptm/Ptm'
+import Strengths from '../../Strengths/Strengths'
+import Stations from '../../Exams/Stations/Stations'
+import Consulting from '../../consulting/Consulting'
+import AllTools from '../../alltools/AllTools'
+import EPAs from '../../EPAs/EPAs'
+import Progress from '../../Progress/Progress'
+import Registration from '../../User/Registration'
+import DataProtection from '../../User/DataProtection'
 
 const Routes = [
   {
     path: '/dashboard',
     component: Dashboard,
+    menuName: 'Dashboard',
     exact: true,
     private: true,
   },
@@ -26,19 +28,27 @@ const Routes = [
   {
     path: '/exams/:exam?/:id?',
     component: Exams,
+    menuName: 'Prüfungen',
     private: true,
   },
-
   {
-    path: '/consulting',
-    component: Consulting,
+    path: '/epas',
+    component: EPAs,
+    menuName: 'Ärztliche Tätigkeiten',
     exact: true,
     private: true,
   },
-
+  {
+    path: '/consulting',
+    component: Consulting,
+    menuName: 'Beratung',
+    exact: true,
+    private: true,
+  },
   {
     path: '/alltools',
     component: AllTools,
+    menuName: 'Alle Tools',
     breadcrumb: () => <Link to="/alltools">{i18next.t(`Alle Tools`)}</Link>,
     exact: true,
     private: true,
@@ -54,12 +64,6 @@ const Routes = [
     component: DataProtection,
     exact: true,
     private: false,
-  },
-  {
-    path: '/epas',
-    component: EPAs,
-    exact: true,
-    private: true,
   },
 
   {

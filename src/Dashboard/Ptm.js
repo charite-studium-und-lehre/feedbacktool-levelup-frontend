@@ -20,7 +20,7 @@ const Ptm = _.compose(needsData(selectors.loaded, actions.load), connect(stateTo
         <Link to={`/exams/ptm/${latest.id}`}>
             <div className="h-100">
                 <div className="position-absolute pl-2" style={{fontSize: '.75rem', top: '3rem'}}>
-                    {labels.map( (l,i) => <div><span className="font-weight-bold">{l}: </span>{latest.results[i]}</div> )}
+                    {labels.map( (l,i) => <div key={i}><span className="font-weight-bold">{l}: </span>{latest.results[i]}</div> )}
                 </div>
                 <div className="w-100 h-100">
                     <LinearChart xDomain={[0, ptms.length - 1]} yDomain={[0,Math.max(...ptms.map( d => d.results[0] ))]}>
