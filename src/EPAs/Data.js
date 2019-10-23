@@ -388,7 +388,7 @@ const praticalsTree = {
         },
     ]
 }
-export const ExternAssissing = [
+export const ExternAssessing = [
     {
         id: 1,
         name: 'name 1',
