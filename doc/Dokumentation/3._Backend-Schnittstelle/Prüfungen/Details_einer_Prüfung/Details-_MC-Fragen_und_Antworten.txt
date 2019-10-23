@@ -15,12 +15,13 @@ fail: HTTP-Code 404 (keine Fragen vorhanden)
 
 Array aus:
 {
+	"id": <Wenn es sowas gibt?>,
 	"pruefungsItemId": <pruefungsItemId>
 	"durchschnittRichtig": <0.0 - 1.0>
-	"Frage": "<Fragentext als Reintext>",
-	"Antworten": Array aus 
+	"text": "<Fragentext als Reintext>",
+	"antworten": Array aus 
 		{
-			"antwort": <Antwort-Text mit Buchstaben "a)">,
+			"text": <Antwort-Text mit Buchstaben "a)">,
 			"richtig": <true|false>,
 '''
 							''"ausgewählt": <true|false>,''
