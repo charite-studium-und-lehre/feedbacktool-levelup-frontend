@@ -105,15 +105,14 @@ const Legends = {
                   </div>
                 <strong className=' d-block my-2'>Schätze Dich selber ein</strong>
                 <div>
-                    So kannst du im Laufe deines Studiums zum Beispiel nach U- oder UaK-Kursen oder Famulaturen angeben, unter welchem Level du die jeweilige Tätigkeit ausgeführt hast
-                      <Numbers className="mx-1 d-inline-block" value={3} color="hsla(208, 51%, 27%)" colorsRgb="hsla(208, 51%, 27%,.2)" width={'.9rem'} height={'.9rem'} borderRadius={'50%'} headings='Habe ich gemacht' />
-                    und unter welchem Level du dir die Tätigkeit zutraust
-                       <Numbers className="mx-1 d-inline-block" value={2} color="hsl(188, 86%, 26%)" colorsRgb="hsl(188, 86%, 26%, .2)" width={'.9rem'} height={'.9rem'} borderRadius={'50%'} headings='Traue ich mir zu' /></div>
+                    So kannst du im Laufe deines Studiums zum Beispiel nach U- oder UaK-Kursen oder Famulaturen angeben,
+                    unter welchem Level du die jeweilige Tätigkeit ausgeführt hast ("Habe ich gemacht") und unter
+                    welchem Level du dir die Tätigkeit zutraust ("Traue ich mir zu").
+                </div>
                 <strong className=' d-block mt-2'>Bitte um eine Fremdeinschätzung</strong>
                 <div>
-                    Es ist zudem möglich, Fremdeinschätzungen von deinen Lehrenden/ Ärzt*innen einzuholen 
-                       <Numbers className="mx-1 d-inline-block" value={1} color="hsl(15, 100%, 25%)" colorsRgb="hsl(15, 100%, 25%, .2)" width={'.9rem'} height={'.9rem'} borderRadius={'50%'} headings='Habe ich gemacht' />.
-                    Hierfür klickst du auf diesen Button 
+                    Es ist zudem möglich, Fremdeinschätzungen ("Wird mir zugetraut") von deinen Lehrenden/ Ärzt*innen
+                    einzuholen. Hierfür klickst du auf diesen Button
                        <Button className='d-inline-block mx-1' icon={faEnvelopeOpenText}>
                     Fremdbewertung einfordern</Button>und kannst die E-Mail-Adresse deines Dozierenden eingeben und eine Einladung senden. Unter der E-Mail-Funktion siehst du alle bisherigen Fremdeinschätzungen.</div>
             </Trans>

@@ -1,12 +1,12 @@
 import React from 'react'
-import { ExternAssissing } from './Data'
+import { ExternAssessing } from './Data'
 import Numbers from './Numbers'
 
 const ExternAssessingWithValue = props =>
     <div>
         <ul className='list-group mt-1 mb-2'>
         {props.values.map(e => {
-            const external = ExternAssissing.find( ex => ex.id === e.id )
+            const external = ExternAssessing.find(ex => ex.id === e.id )
             return <li className='list-group-item d-inline' key={e.id} style={{ boxShadow :' 2px 2px  5px rgb(210, 220, 152), -2px -2px  5px rgb(210, 220, 152)', fontWeight:'bold'}}>
                 <div className='row'>
                     <span className='col-5'>{external.name}</span>

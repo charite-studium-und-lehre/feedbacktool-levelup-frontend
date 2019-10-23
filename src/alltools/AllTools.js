@@ -22,7 +22,7 @@ function AllTools({t}) {
     const othersCards = OtherToolsData.map((data, i) =>
         <div key={i}>
                 <h4 style={{marginBottom: "0px"}}>{data.title}</h4>
-                <a href={data.href} className="btn-link">{data.href}</a>
+                <a href={data.href} className="btn-link">{data.hrefLabel || data.href}</a>
         </div>
     );
 
