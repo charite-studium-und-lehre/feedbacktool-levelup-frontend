@@ -22,7 +22,7 @@ Rückgabe:
 			"fachsemester": <int 1-10>,
 			"erfuellt": <bool>,
 			"studiPruefungsId": <ID zur StudiPruefung oder leer>,
-			"pruefungsTyp": <mc|station|ptm> oder leer
+			"format": <mc|station|ptm> oder leer
 		},
 	]
 
