@@ -1,4 +1,5 @@
-import _ from 'lodash'
+import _ from 'lodash/fp'
+import { Subjects } from '../../Ptm/Data'
 
 const questions = [{"text": "Welches der Medikamente ist ein Kalziumkanalblocker vom Dihydropyridin-Typ?",
 "answers": ["Candesartan", "Amiodaron", "Amlodipin", "Carvedilol"]},
@@ -662,23 +663,24 @@ const questions = [{"text": "Welches der Medikamente ist ein Kalziumkanalblocker
 "Atemwegshyperreagibilität - irreversible Obstruktion der Atemwege - verminderte Mukus-Sekretion in den Atemwegen -Emphysem"]}]
 
 const letters = ['a) ', 'b) ', 'c) ', 'd) ', 'e) ', 'f) ', 'g) ']
-const tags = [ 'Klinisch', 'Theoretisch', 'Querschnittsfach' ]
-function convertQuestion(q) {
-    const correctAnswer = _.random(q.answers.length-1)
-    const selectedAnswer = _.random(q.answers.length-1)
+const convertQuestion = (subjects, semester) => q => {
+    const correctAnswer = _.random(0, q.answers.length-1)
+    const selectedAnswer = _.random(0, q.answers.length-1)
     return {
         text: q.text,
         id: Math.round(Math.random()*100000),
         durchschnittRichtig: Math.random(),
+        fach: _.sampleSize(1, subjects)[0],
+        modul: `Modul ${semester * 4 - 3 + Math.floor(Math.random()*4)}`,
         antworten: q.answers.map( (a, i) => ({
             text: letters[i] + a,
             richtig: correctAnswer === i,
             ausgewählt: selectedAnswer === i,
-        }) ),
-        tags: _.sampleSize(tags, _.random(1, tags.length))
+        }) )
     }
 }
 
-const DummyQuestions = n => _.take(questions, n).map( convertQuestion )
+const subjects = _.sampleSize(5,_.flatMap( c => c.subjects, Subjects))
+const DummyQuestions = (n, semester) => _.sampleSize(n, questions).map( convertQuestion(subjects, semester) )
 
 export default DummyQuestions

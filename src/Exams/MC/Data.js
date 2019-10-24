@@ -224,7 +224,7 @@ const Results = fp.keyBy(
                     zeitsemester: semester.label, 
                     periodeCode: semester.periodeCode, 
                     format: 'mc',
-                    fragen: DummyQuestions(Math.round(Math.random() * 20) + 70),
+                    fragen: DummyQuestions(Math.round(Math.random() * 20) + 70, semester.value.split(".")[0]),
                 })
             ]),
             fp.mergeAll

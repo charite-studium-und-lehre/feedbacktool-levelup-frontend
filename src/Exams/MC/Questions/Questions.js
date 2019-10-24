@@ -10,8 +10,11 @@ import Filters from './Filters'
 import { selectors, actions } from '../Store'
 
 const Questions = ({ t, questions }) => {
-    const [ tagsFilters, setTagsFilters ] = useState(
-        _.uniq(_.flatMap(q => q.tags, questions)).map(t => ({ label: t, pred: q => _.includes(t, q.tags) }))
+    const [ subjectsFilters, setSubjectsFilters ] = useState(
+        _.compose([_.map(s => ({ label: s.name, pred: q => s.code === q.fach.code })), _.uniqBy( q => q.code ), _.map( q => q.fach )])(questions)
+    )
+    const [ modulesFilters, setModulesFilters ] = useState(
+        _.compose([_.map(m => ({ label: m, pred: q => m === q.modul })), _.uniq, _.map( q => q.modul )])(questions)
     )
     const [ difficultyFilter, setDifficultyFilter ] = useState([
         { label: 'schwer', pred: q => q.durchschnittRichtig < .4 },
@@ -23,7 +26,7 @@ const Questions = ({ t, questions }) => {
     ])
 
     const LegendText = Legends.Exams.MC.QuestionsDetails
-    const filters = [ tagsFilters, difficultyFilter, correctFilter ]
+    const filters = [ subjectsFilters, modulesFilters, difficultyFilter, correctFilter ]
     const filteredQuestions = questions.filter(
         _.overEvery(filters.map( 
             f => _.overSome([ ...f.filter(f => f.selected).map(f => f.pred), () => f.filter(f => f.selected).length === 0 ])
@@ -41,7 +44,7 @@ const Questions = ({ t, questions }) => {
                                 <Legend title={LegendText.title}>{LegendText.text}</Legend>
                             </div>
                         </div>
-                        <Filters filters={filters} setters={[ setTagsFilters, setDifficultyFilter, setCorrectFilter ]}>
+                        <Filters filters={filters} setters={[ setSubjectsFilters, setModulesFilters, setDifficultyFilter, setCorrectFilter ]}>
                             <div className="font-weight-bold mt-2">{filteredQuestions.length} von {questions.length} {t(`Fragen angezeigt`)}</div>
                         </Filters>
                         <div className="row mt-2">
