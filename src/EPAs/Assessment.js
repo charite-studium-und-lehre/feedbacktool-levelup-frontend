@@ -1,42 +1,33 @@
-
-import React, { useState } from 'react'
-import {Button} from './Toolbar'
+import React, {useState} from 'react'
+import {withTranslation} from 'react-i18next'
 import SlideDown from 'react-slidedown'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelopeOpenText, faListOl } from '@fortawesome/free-solid-svg-icons'
-import List from './List'
-import Score from './Score'
-import ExternAsk from './ExternAsk'
-import ExternAssessingn from './ExternAssessing'
-import { withTranslation } from 'react-i18next'
+import {faMailBulk, faEnvelope} from '@fortawesome/free-solid-svg-icons'
 
- const Assessment = ({t, ...props})=> {
-    const [extended, setExtended] = useState(-1)
+import {Button} from './Toolbar'
+import ExternAsk from './ExternAsk'
+import ExternAssessing from './ExternAssessing'
+
+export default withTranslation()(({t, ...props}) => {
+    const [extended, setExtended] = useState(0)
     const toggle = i => setExtended(extended !== i && i)
 
-    return <div className=" mt-4 py-4 pb-2 card">
-            <div className='row'>
-            <div className="col-4">
-                     <input className='form-control' placeholder='Suchen'></input>
-                </div>
-                <div className="col-4">
-                        <Button icon={faEnvelopeOpenText} active={extended === 1} onClick={() => toggle(1)}>{t(`Erhaltene Fremdbewertung`)}</Button>
-                </div>
-                    <div className="col-4">
-                        <Button icon={faEnvelopeOpenText} active={extended === 2} onClick={() => toggle(2)}>{t(`Fremdbewertung einfordern`)}</Button>
-                    </div>
+    return <div className="container-fluid p-2 ">
+        <div className="row ">
+            <div className="col">
+                <Button icon={faMailBulk} active={extended === 1}
+                        onClick={() => toggle(1)}>{t(`Erhaltene Fremdbewertungen`)}</Button>
             </div>
-                <SlideDown className="animated fast">
-                    { extended === 1 &&
-                        <div className='row p-2'>
-                            <ExternAssessingn />
-                        </div>}
-                </SlideDown>
-                < SlideDown className="animated fast">
-                    {extended === 2 && <ExternAsk onClick={props.toggleExtended}/>}
-                </SlideDown>
+            <div className="col">
+                <Button className="float-md-right" icon={faEnvelope} active={extended === 2}
+                        onClick={() => toggle(2)}>{t(`Fremdbewertung einfordern`)}</Button>
+            </div>
         </div>
-}
-
-export default withTranslation() (Assessment)
+        <SlideDown className="animated fast p-2">
+            {extended === 1 && <ExternAssessing/>}
+        </SlideDown>
+        < SlideDown className="animated fast p-2">
+            {extended === 2 && <ExternAsk onClick={props.toggleExtended}/>}
+        </SlideDown>
+    </div>
+})
 

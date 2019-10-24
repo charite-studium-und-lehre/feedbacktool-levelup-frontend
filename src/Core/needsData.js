@@ -8,7 +8,8 @@ const Spinner = () => <div className="text-center m-4" style={{fontSize: '1.5rem
     <FontAwesomeIcon className="fa-spin" icon={faCircleNotch} />
 </div>
 
-const needsData = (WrappedComponent, loadedSelector, loadAction) => connect(state => ({ loaded: loadedSelector(state) }), { load: loadAction })(
+const stateToProps = loadedSelector => (state, ownProps) => ({ loaded: loadedSelector(state, ownProps) })
+const needsData = (WrappedComponent, loadedSelector, loadAction) => connect(stateToProps(loadedSelector) , { load: loadAction })(
     ({ load, loaded, ...props }) => {
         useEffect(() => { load() }, [load])
 

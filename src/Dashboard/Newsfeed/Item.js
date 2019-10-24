@@ -1,5 +1,5 @@
 import React from 'react'
-import { withTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 const size = '3rem'
 const style = {
@@ -12,17 +12,18 @@ const style = {
     textAlign: 'center',
     fontWeight: 'bold'
 }
-const Item = ({t, ...props}) =>
-    (<div className="p-2 mb-3 bg-white with-shadow">
-        <div className="d-flex">
-            <div className="p-1">
-                <div style={{...style, backgroundColor: props.color}}>{props.icon}</div>
-                <div className="font-italic pt-2" style={{fontSize: '.9rem'}}>{props.date.toLocaleDateString()}</div>
-            </div>
-            <div className="flex-grow-1 px-3">
-                {props.children}
+const Item = props =>
+    <Link className="d-block pt-3" to={`/exams/${props.link}`}>
+        <div className="p-2 bg-white with-shadow">
+            <div className="d-flex">
+                <div className="p-1">
+                    <div style={{...style, backgroundColor: props.color}}>{props.icon}</div>
+                </div>
+                <div className="flex-grow-1 px-3">
+                    {props.children}
+                </div>
             </div>
         </div>
-    </div>)
+    </Link>
 
-export default withTranslation() (Item)
+export default Item

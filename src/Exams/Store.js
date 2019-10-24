@@ -1,28 +1,30 @@
 import { combineReducers } from 'redux'
 import _ from 'lodash/fp'
 import { scaleBand } from 'd3-scale'
-import { reducer as ptmsReducer, identifier as ptmsIdentifier, selectors as PtmSelectors, actions as PtmActions } from './Ptm/Store'
-import { reducer as semesterReducer, identifier as semesterIdentifier, selectors as SemesterSelectors, actions as SemesterActions } from './Semester/Store'
-import { reducer as stationsReducer, identifier as stationsIdentifier, selectors as StationsSelectors, actions as StationsActions } from './Stations/Store'
-import { color as semesterColor } from './Semester/Semester'
+import { reducer as ptmsReducer, identifier as ptmsIdentifier, selectors as PtmSelectors } from './Ptm/Store'
+import { reducer as mcReducer, identifier as mcIdentifier, selectors as MCSelectors } from './MC/Store'
+import { reducer as stationsReducer, identifier as stationsIdentifier, selectors as StationsSelectors } from './Stations/Store'
+import { color as mcColor } from './MC/MC'
 import { color as ptmColor } from './Ptm/Ptm'
 import { color as stationsColor } from './Stations/Stations'
+import BaseStore from '../Core/BaseStore'
 
 export const identifier = 'exams'
+const baseStore = BaseStore(identifier)
 
 const toNavigationData = _.flow(
-    _.groupBy( d => d.timesemester ),
+    _.groupBy( d => d.zeitsemester ),
     _.map( g => { 
         const scale = scaleBand([0,g.length-1],[0,1])
-        return g.map( (d, i) => ({ ...d, x: d.timesemester, y: scale(i) + scale.bandwidth() * .5 }))
+        return g.map( (d, i) => ({ ...d, x: d.zeitsemester, y: scale(i) + scale.bandwidth() * .5 }))
     }),
     _.flatten)
 
 const graphs = state => [
     {
-        name: 'semester',
-        data: toNavigationData(SemesterSelectors.getTimeline(state)),
-        color: semesterColor,
+        name: 'mc',
+        data: toNavigationData(MCSelectors.getTimeline(state)),
+        color: mcColor,
     },
     {
         name: 'ptm',
@@ -36,16 +38,18 @@ const graphs = state => [
     },
 ]
 
-const selectors = {
-    loaded: () => true,
+const selectors = baseStore.withLoadedSelector({
     getNavigationData: graphs,
-}
+    getById: (state, id) => _.flow([ graphs, _.flatMap( g => g.data ), _.find( d => d.id === id )])(state),
+    getSelected: _.flow([ graphs, _.flatMap( g => g.data ), _.find( d => d.selected )]),
+})
 
-const actions = {
-    setSelected: (id, value) => ({ type: 'EXAMS_SELECT', payload: { id, value }}),
-    load: () => _.over([PtmActions.load(), SemesterActions.load(), StationsActions.load()])
-}
+const actions = baseStore.withLoadAction('/pruefung')({
+    setSelected: value => ({ type: 'EXAMS_SELECT', payload: value })
+})
 
 export { selectors, actions }
 
-export const reducer = combineReducers({ [ptmsIdentifier]: ptmsReducer, [semesterIdentifier]: semesterReducer, [stationsIdentifier]: stationsReducer })
+export const reducer = combineReducers(baseStore.withLoadedReducer(
+    combineReducers({ [ptmsIdentifier]: ptmsReducer, [mcIdentifier]: mcReducer, [stationsIdentifier]: stationsReducer })
+))

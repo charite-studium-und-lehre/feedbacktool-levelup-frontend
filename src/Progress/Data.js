@@ -1,193 +1,213 @@
 const tree = [
         {
-            label: `1. Fachsemester`,
+            beschreibung: `1. Fachsemester`,
+            completed: true,
+            prereq: true,
             entries: [
                 {
-                    label: 'MC',
-                    id: 1,
-                    done: true,
-                    link: '/exams/semester/1',
+                    beschreibung: 'MC',
+                    code: 401,
+                    erfuellt: true,
+                    link: '/exams/mc/1',
                 },
                 {
-                    label: 'Anwesenheit',
-                    id: 101,
-                    done: true,
+                    beschreibung: 'Anwesenheit',
+                    code: 101,
+                    erfuellt: true,
                 },
             ]
         },
         {
-            label: `2. Fachsemester`,
+            beschreibung: `2. Fachsemester`,
+            completed: true,
+            prereq: true,
             entries: [
                 {
-                    label: 'MC',
-                    id: 1,
-                    done: true,
-                    link: '/exams/semester/3',
+                    beschreibung: 'MC',
+                    code: 401,
+                    erfuellt: true,
+                    link: '/exams/mc/3',
                 },
                 {
-                    label: 'Anwesenheit',
-                    id: 101,
-                    done: true,
+                    beschreibung: 'Anwesenheit',
+                    code: 101,
+                    erfuellt: true,
                 },
             ]
         },
         {
-            label: `3. Fachsemester`,
+            beschreibung: `3. Fachsemester`,
+            completed: true,
+            prereq: true,
             entries: [
                 {
-                    label: 'MC',
-                    id: 1,
-                    done: true,
-                    link: '/exams/semester/4',
+                    beschreibung: 'MC',
+                    code: 401,
+                    erfuellt: true,
+                    link: '/exams/mc/4',
                 },
                 {
-                    label: 'Anwesenheit',
-                    id: 101,
-                    done: true,
+                    beschreibung: 'Anwesenheit',
+                    code: 101,
+                    erfuellt: true,
                 },
                 {
-                    label: 'Erste Hilfe',
-                    id: 20,
-                    done: true,
+                    beschreibung: 'Erste Hilfe',
+                    code: 20,
+                    erfuellt: true,
                 },
                 {
-                    label: 'Pflegepraktikum',
-                    id: 30,
-                    done: true,
+                    beschreibung: 'Pflegepraktikum',
+                    code: 30,
+                    erfuellt: true,
                 },
             ]
         },
         {
-            label: `4. Fachsemester`,
+            beschreibung: `4. Fachsemester`,
+            completed: true,
+            prereq: true,
             entries: [
                 {
-                    label: 'MC',
-                    id: 1,
-                    done: true,
-                    link: '/exams/semester/5',
+                    beschreibung: 'MC',
+                    code: 401,
+                    erfuellt: true,
+                    link: '/exams/mc/5',
                 },
                 {
-                    label: 'Praktische Prüfung',
-                    id: 70,
-                    done: true,
+                    beschreibung: 'Praktische Prüfung',
+                    code: 70,
+                    erfuellt: true,
                     link: '/exams/stations/8',
                 },
                 {
-                    label: 'Anwesenheit',
-                    id: 101,
-                    done: true,
+                    beschreibung: 'Anwesenheit',
+                    code: 101,
+                    erfuellt: true,
                 },
                 {
-                    label: 'Famulaturreife',
-                    id: 40,
-                    done: true,
-                },
-            ]
-        },
-        {
-            label: `5. Fachsemester`,
-            entries: [
-                {
-                    label: 'MC',
-                    id: 1,
-                    done: true,
-                    link: '/exams/semester/6',
-                },
-                {
-                    label: 'Anwesenheit',
-                    id: 101,
-                    done: true,
-                },
-                {
-                    label: 'Hausarbeit',
-                    id: 10,
-                    done: true,
+                    beschreibung: 'Famulaturreife',
+                    code: 40,
+                    erfuellt: true,
                 },
             ]
         },
         {
-            label: `6. Fachsemester`,
+            beschreibung: `5. Fachsemester`,
+            completed: true,
+            prereq: true,
             entries: [
                 {
-                    label: 'MC',
-                    id: 1,
-                    done: true,
-                    link: '/exams/semester/7',
+                    beschreibung: 'MC',
+                    code: 401,
+                    erfuellt: true,
+                    link: '/exams/mc/6',
                 },
                 {
-                    label: 'Anwesenheit',
-                    id: 101,
-                    done: true,
+                    beschreibung: 'Anwesenheit',
+                    code: 101,
+                    erfuellt: true,
                 },
                 {
-                    label: 'M1-Äquivalenz',
-                    id: 50,
-                    done: true,
+                    beschreibung: 'Hausarbeit',
+                    code: 10,
+                    erfuellt: true,
                 },
             ]
         },
         {
-            label: `7. Fachsemester`,
+            beschreibung: `6. Fachsemester`,
+            completed: false,
+            prereq: true,
             entries: [
                 {
-                    label: 'MC',
-                    id: 1,
-                    done: true,
+                    beschreibung: 'MC',
+                    code: 401,
+                    erfuellt: true,
+                    link: '/exams/mc/7',
                 },
                 {
-                    label: 'Anwesenheit',
-                    id: 101,
-                    done: true,
+                    beschreibung: 'Anwesenheit',
+                    code: 101,
+                    erfuellt: false,
+                },
+                {
+                    beschreibung: 'M1-Äquivalenz',
+                    code: 50,
+                    erfuellt: true,
                 },
             ]
         },
         {
-            label: `8. Fachsemester`,
+            beschreibung: `7. Fachsemester`,
+            completed: true,
+            prereq: true,
             entries: [
                 {
-                    label: 'MC',
-                    id: 1,
-                    done: true,
+                    beschreibung: 'MC',
+                    code: 401,
+                    erfuellt: true,
                 },
                 {
-                    label: 'Anwesenheit',
-                    id: 101,
-                    done: true,
+                    beschreibung: 'Anwesenheit',
+                    code: 101,
+                    erfuellt: true,
                 },
             ]
         },
         {
-            label: `9. Fachsemester`,
+            beschreibung: `8. Fachsemester`,
+            completed: false,
+            prereq: true,
             entries: [
                 {
-                    label: 'MC',
-                    id: 1,
-                    done: false,
+                    beschreibung: 'MC',
+                    code: 401,
+                    erfuellt: false,
                 },
                 {
-                    label: 'OSCE',
-                    done: false,
-                    id: 70,
-                },
-                {
-                    label: 'Anwesenheit',
-                    id: 101,
-                    done: false,
+                    beschreibung: 'Anwesenheit',
+                    code: 101,
+                    erfuellt: true,
                 },
             ]
         },
         {
-            label: `10. Fachsemester`,
+            beschreibung: `9. Fachsemester`,
+            completed: false,
+            prereq: false,
             entries: [
                 {
-                    label: 'Anwesenheit',
-                    id: 101,
-                    done: false,
+                    beschreibung: 'MC',
+                    code: 401,
+                    erfuellt: false,
                 },
                 {
-                    label: 'Voraussetzungen für Schriftliches Staatsexamen (M2)',
-                    id: 60,
-                    done: false,
+                    beschreibung: 'OSCE',
+                    erfuellt: false,
+                    code: 70,
+                },
+                {
+                    beschreibung: 'Anwesenheit',
+                    code: 101,
+                    erfuellt: false,
+                },
+            ]
+        },
+        {
+            beschreibung: `10. Fachsemester`,
+            completed: false,
+            prereq: false,
+            entries: [
+                {
+                    beschreibung: 'Anwesenheit',
+                    code: 101,
+                    erfuellt: false,
+                },
+                {
+                    beschreibung: 'Voraussetzungen für Schriftliches Staatsexamen (M2)',
+                    code: 60,
+                    erfuellt: false,
                 },
             ]
         }

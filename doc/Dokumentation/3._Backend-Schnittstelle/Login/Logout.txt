@@ -20,4 +20,5 @@ Nur zu Testzwecken?
 API-Call nach 
 ''/backend/api/levelupLogout''
 
-Ergebnis: User 
+Ergebnis: User ist aus Levelp ausgeloggt, wäre nach klick auf Login sofort wieder eingeloggt.
+HTTP-Code 200

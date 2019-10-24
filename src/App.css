@@ -3,10 +3,6 @@
   height: 100%;
 }
 
-.navbar {
-  box-shadow: rgba(0,0,0,.4) 0 0 15px;
-}
-
 svg {
   overflow: visible;
 }
@@ -61,18 +57,9 @@ span.input-group-text {
 }
 
 ol.breadcrumb {
-  margin-bottom: .5rem;
+  margin: 0;
 }
 
 ol.breadcrumb:empty {
   display: none;
-}
-.tellMeLogo {
-  background:url(./images/tellMeLogo.PNG) no-repeat center center;
-  -webkit-background-size: cover;
-  -o-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  width: 10rem;
-  height: 4rem;
 }

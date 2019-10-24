@@ -16,17 +16,17 @@ const getRanking = _.flow([ getSubjects, _.filter(s => s.gesamt >= minQuestions)
 
 const toTimeline = ptm => ({
     ...ptm,
-    result: ptm.results[0]/2,
-    mean: ptm.means[0],
+    link: `ptm/${ptm.id}`,
+    results: ptm.results || [1,2,3]
 })
 const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 
 export const selectors = baseStore.withLoadedSelector({
     getSubjectByName: (state, id, subject) => _.flow([ baseStore.getItems, findById(id), getSubject(subject) ])(state),
     getAllForSubject: (state, subject) => 
-        _.flow([ baseStore.getItems, _.map(ptm => ({ ...getSubject(subject)(ptm), timesemester: ptm.timesemester })) ])(state),
+        _.flow([ baseStore.getItems, _.map(ptm => ({ ...getSubject(subject)(ptm), zeitsemester: ptm.zeitsemester })) ])(state),
     getById: (state, id) => _.flow([ baseStore.getItems, findById(id) ])(state),
-    getLatest: _.flow([ baseStore.getItems, _.sortBy('date'), _.last ]),
+    getLatest: _.flow([ baseStore.getItems, _.sortBy('periodeCode'), _.last ]),
     getSubjects,
     getRanking,
     strongestSubject: _.flow([ getRanking, _.first ]),
@@ -34,11 +34,11 @@ export const selectors = baseStore.withLoadedSelector({
     getFächer,
 })
 
-export const actions = baseStore.withLoadAction({}, Results)
+export const actions = baseStore.withLoadAction({})
 
-export const reducer = combineReducers(_.compose([baseStore.withLoadedReducer, baseStore.withSelectReducer])(( state = [], action ) => {
+export const reducer = combineReducers({ items: _.compose([baseStore.withSelectReducer, baseStore.withLoadedReducer])(( state = {}, action ) => {
     switch(action.type) {
         default:
             return state
     }
-}))
+}, _.keyBy( d => d.id, _.take(2, _.values(Results))))})

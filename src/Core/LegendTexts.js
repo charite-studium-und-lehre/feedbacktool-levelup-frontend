@@ -1,27 +1,16 @@
 import React from 'react'
 import { Trans } from 'react-i18next'
 import Numbers from '../EPAs/Numbers'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelopeOpenText, faListOl } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons'
 import {Button} from '../EPAs/Toolbar'
 
 const Legends = {
-    Dashboard: {
-        Progress: {
-            title: <Trans>Dein Studienfortschritt</Trans>,
-            text: <Trans>Hier siehst Du deinen Studienfortschritt und deine bereits erreichten Meilensteinen.</Trans>,
-        },
-        Timeline: {
-            title: <Trans>Timeline</Trans>,
-            text: <Trans>Hier siehst du die Prüfungen, die du in letzter Zeit abgelegt hast.</Trans>,
-        },
-    },
     Exams: {
         MainChart: {
             title: <Trans>Deine Prüfungsergebnisse</Trans>,
             text: <Trans>Hier siehst du einen Überblick über deine bisherigen Prüfungsergebnisse. Über die Checkboxen kannst du selber auswählen, welche Prüfungsergebnisse du angezeigt bekommen möchtest. Du kannst auf die jeweiligen Ergebnisse klicken, um detaillierte Informationen zu erhalten (z.B. Ergebnisse der einzelnen Module).</Trans>,
         },
-        Semester: {
+        MC: {
             Summary: {
                 title: <Trans>Zusammenfassung deiner Antworten in den Semesterprüfungen</Trans>,
                 text: <Trans>Hier siehst du eine Aufstellung nach Fächern der von dir beantworteten Fragen in deinen Semesterprüfungen.</Trans>,
@@ -40,7 +29,7 @@ const Legends = {
             },
             QuestionsDetails: {
                 title: <Trans>Fragen und Antworten</Trans>,
-                text: <Trans i18nKey="exams.semester.questions.text">
+                text: <Trans i18nKey="exams.mc.questions.text">
                     <p>Hier kannst du dir alle Fragen der Semesterprüfung mit den dazugehörigen Antworten ansehen. Jede Frage wurde mit verschiedenen Tags versehen, mit deren Hilfe du die Fragen filtern kannst.Die Filter schwer und leicht zeigen dir wie viel deiner Mitstudierenden diese Frage beantworten konnten. Schwere Fragen sind Fragen, die weniger als 40% deiner Mitstudierenden beantworten konnten. Leichte Fragen hingegen konnten mehr als 80% deiner Kommilitonen beantworten.So kannst du dir z.B. nur die Fragen anzeigen lassen, die du falsch beantwortest hast.</p>
                 </Trans>
             }
@@ -83,7 +72,7 @@ const Legends = {
                 <p>Die Anzahl der gestellten Fragen pro Fach kann sich durch die Verteilung der Fächer im Curriculum und bei der Auswahl der MC-Fragen in den Klausuren stark unterscheiden. Weiterhin findet keine Gewichtung des Rankings der Fächer nach schweren und leichten Fragen statt.</p>
             </Trans>
         },
-        Semester: {
+        MC: {
             title: <Trans>Starke Fächer in den Semesterprüfungen</Trans>,
             text: <Trans>
                 <p>Hier findest du eine Übersicht zu deinen besten Fächern basierend auf allen deinen Semesterprüfungen. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.<br /><strong>Achtung: </strong>Nur Fächer mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.</p>
@@ -106,6 +95,9 @@ const Legends = {
         Main: {
             title: <Trans>Mein Level</Trans>,
             text: <Trans>
+                <div>
+                    Video: <a className="btn btn-info" href="https://levelup.charite.de/videos/epa_2019.mp4">Was sind EPAs?</a>
+                </div>
                 <div className="my-2">
                     Hier siehst du eine Übersicht zu den ärztlichen Kern-Tätigkeiten, die du im Laufe des Studiums trainieren wirst. Nutze diese Funktion, um die Entwicklung deiner praktischen Kompetenz festzuhalten und ggf. nachzusteuern. Für die Einschätzung jeder Tätigkeit gibt es 6 Level, die als Balken dargestellt
                        <Numbers className="mx-1 d-inline-block" value={3} color="hsl(161, 100%, 25%)" colorsRgb="hsl(161, 100%, 25%, .2)" />
@@ -113,15 +105,14 @@ const Legends = {
                   </div>
                 <strong className=' d-block my-2'>Schätze Dich selber ein</strong>
                 <div>
-                    So kannst du im Laufe deines Studiums zum Beispiel nach U- oder UaK-Kursen oder Famulaturen angeben, unter welchem Level du die jeweilige Tätigkeit ausgeführt hast
-                      <Numbers className="mx-1 d-inline-block" value={3} color="hsla(208, 51%, 27%)" colorsRgb="hsla(208, 51%, 27%,.2)" width={'.9rem'} height={'.9rem'} borderRadius={'50%'} headings='Habe ich gemacht' />
-                    und unter welchem Level du dir die Tätigkeit zutraust
-                       <Numbers className="mx-1 d-inline-block" value={2} color="hsl(188, 86%, 26%)" colorsRgb="hsl(188, 86%, 26%, .2)" width={'.9rem'} height={'.9rem'} borderRadius={'50%'} headings='Traue ich mir zu' /></div>
+                    So kannst du im Laufe deines Studiums zum Beispiel nach U- oder UaK-Kursen oder Famulaturen angeben,
+                    unter welchem Level du die jeweilige Tätigkeit ausgeführt hast ("Habe ich gemacht") und unter
+                    welchem Level du dir die Tätigkeit zutraust ("Traue ich mir zu").
+                </div>
                 <strong className=' d-block mt-2'>Bitte um eine Fremdeinschätzung</strong>
                 <div>
-                    Es ist zudem möglich, Fremdeinschätzungen von deinen Lehrenden/ Ärzt*innen einzuholen 
-                       <Numbers className="mx-1 d-inline-block" value={1} color="hsl(15, 100%, 25%)" colorsRgb="hsl(15, 100%, 25%, .2)" width={'.9rem'} height={'.9rem'} borderRadius={'50%'} headings='Habe ich gemacht' />.
-                    Hierfür klickst du auf diesen Button 
+                    Es ist zudem möglich, Fremdeinschätzungen ("Wird mir zugetraut") von deinen Lehrenden/ Ärzt*innen
+                    einzuholen. Hierfür klickst du auf diesen Button
                        <Button className='d-inline-block mx-1' icon={faEnvelopeOpenText}>
                     Fremdbewertung einfordern</Button>und kannst die E-Mail-Adresse deines Dozierenden eingeben und eine Einladung senden. Unter der E-Mail-Funktion siehst du alle bisherigen Fremdeinschätzungen.</div>
             </Trans>

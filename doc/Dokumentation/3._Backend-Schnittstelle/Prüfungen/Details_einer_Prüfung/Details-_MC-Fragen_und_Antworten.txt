@@ -5,33 +5,29 @@ Creation-Date: 2019-06-25T17:48:48+02:00
 ====== Details- MC-Fragen und Antworten ======
 
 ==== GET-Aufruf: ====
-[[/api/pruefungsFrage/<pruefungsItemId]]>
+[[/backend/api/pruefungen/<studiPruefungsId]]>/fragen
 
 success: HTTP-Code 200
+fail: HTTP-Code 404 (keine Fragen vorhanden)
 
 === Rückgabe: ===
 '''
 
+Array aus:
 {
+	"id": <Wenn es sowas gibt?>,
 	"pruefungsItemId": <pruefungsItemId>
-	"Frage": "<Fragentext als Reintext>",
+	"durchschnittRichtig": <0.0 - 1.0>
+	"text": "<Fragentext als Reintext>",
+	"antworten": Array aus 
+		{
+			"text": <Antwort-Text mit Buchstaben "a)">,
+			"richtig": <true|false>,
 '''
-		'''
-		       "Antworten": 
-		'''
-				'''
-				[ Array aus 
-				'''
-					'''
-					{
-					'''
-						'''
-						"antwort": <Antwort-Text>,
-						"richtig": <true|false>
-						'''
-					'''
-					}
-					},
-					'''
+							''"ausgewählt": <true|false>,''
+'''
+		},
+'''
+
 
 

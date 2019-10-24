@@ -1,23 +1,26 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { ExternAssissing } from './Data'
-import { selectors, actions } from './Store'
+import {connect} from 'react-redux'
+import {ExternAssessing} from './Data'
+import {selectors, actions} from './Store'
 
-const stateToProps = state => ({ selected: selectors.getFilter(state)})
-const externAssessingn =  connect(stateToProps, actions)(({ selected, setFilter }) => (
-    <div className=' col-12 col-md-12 col-xl-10  mt-2'>
-        <button className='btn btn-sm btn-secondary' style={{width:'5rem'}} onClick={ () => setFilter(null) }>Alle</button>
-        <ul className='list-group mt-1 mb-3'>
-        {ExternAssissing.map(e =>
-            <li className={`${selected === e.id && 'bg-primary'} list-group-item d-inline`} key={e.name} onClick={() => setFilter(e.id)} style={{fontWeight:'bold'}}>
-                <div className='row'>
-                    <span className='col-6'>{e.name}</span>
-                    <span className='col-6 text-right'>{e.datum.toLocaleDateString()}</span>
-                </div>
-            </li>
-        )}
-        </ul>
-    </div>
-))
-
-export default externAssessingn
+const stateToProps = state => ({selected: selectors.getFilter(state)})
+export default connect(stateToProps, actions)(({selected, setFilter}) => {
+    return (ExternAssessing != null) && ExternAssessing.hasOwnProperty('length') && (ExternAssessing.length > 0)
+        ? (<div>
+            <button className='btn btn-sm btn-secondary width-100' onClick={() => setFilter(null)}>Alle</button>
+            <ul className='list-group'>
+                {ExternAssessing.map(e =>
+                    <li className={`${selected === e.id && 'bg-primary'} list-group-item d-inline`} key={e.name}
+                        onClick={() => setFilter(e.id)} style={{fontWeight: 'bold'}}>
+                        <div className='row'>
+                            <span className='col'>{e.name}</span>
+                            <span className='col text-right'>{e.datum.toLocaleDateString()}</span>
+                        </div>
+                    </li>
+                )}
+            </ul>
+            </div>)
+        : (<div >
+                Hier sind künftig deine Fremeinschätzungen zu sehen, die du von anderen LevelUp-Nutzern erhalten hast.
+            </div>)
+})

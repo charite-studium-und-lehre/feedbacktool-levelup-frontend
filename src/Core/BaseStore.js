@@ -10,6 +10,7 @@ export default (identifier, getStore) => {
     const loaded = ( state = false, action ) => {
         switch (action.type) {
             case `${identifier.toUpperCase()}_DATA_FETCHED`:
+            case `${identifier.toUpperCase()}_DATA_FETCH_FAILED`:
                 return true
             default:
                 return state
@@ -20,6 +21,9 @@ export default (identifier, getStore) => {
         switch (action.type) {
             case `${identifier.toUpperCase()}_DATA_FETCHING`:
                 return true
+            case `${identifier.toUpperCase()}_DATA_FETCH_FAILED`:
+                console.error(action.payload)
+                return false
             case `${identifier.toUpperCase()}_DATA_FETCHED`:
                 return false
             default:
@@ -27,12 +31,12 @@ export default (identifier, getStore) => {
         }
     }
 
-    const loadReducer = reducer => (state, action) => {
+    const loadReducer = (state = [], action) => {
         switch(action.type) {
             case `${identifier.toUpperCase()}_DATA_FETCHED`:
                 return action.payload
             default:
-                return reducer(state, action)
+                return state
         }
     }
 
@@ -42,18 +46,22 @@ export default (identifier, getStore) => {
             loaded: state => getStore(state).loaded,
             ...selectors
         }),
-        withLoadAction: (actions, result) => ({
+        withLoadAction: url => actions => ({
             load: () => (dispatch, getState) => {
                 if(getStore(getState()).fetching || getStore(getState()).loaded) return
-                setTimeout(() => dispatch({ type: `${identifier.toUpperCase()}_DATA_FETCHED`, payload: result}), 100)
+                fetch(`https://levelup.charite.de/backend/api${url}`, {
+                    credentials: 'include',
+                })
+                .then( result => result.json().then( data => dispatch({ type: `${identifier.toUpperCase()}_DATA_FETCHED`, payload: data })))
+                .catch( err => dispatch({ type: `${identifier.toUpperCase()}_DATA_FETCH_FAILED`, payload: err }))
                 dispatch({ type: `${identifier.toUpperCase()}_DATA_FETCHING` })
             },
             ...actions 
         }),
-        withLoadedReducer: reducer => ({
+        withLoadedReducer: (reducer = loadReducer) => ({
             loaded,
             fetching,
-            items: loadReducer(reducer)
+            items: reducer,
         }),
         getItems: _.flow([getStore, store => store.items]),
     }

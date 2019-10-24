@@ -21,7 +21,8 @@ Rückgabe:
 			"titel": "<langer string>",
 			"fachsemester": <int 1-10>,
 			"erfuellt": <bool>,
-			"studiPruefungsId": <ID zur StudiPruefung oder leer>
+			"studiPruefungsId": <ID zur StudiPruefung oder leer>,
+			"format": <mc|station|ptm> oder leer
 		},
 	]
 

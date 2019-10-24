@@ -5,15 +5,12 @@ import { combineReducers } from 'redux'
 
 export const identifier = 'stations'
 const baseStore = BaseStore(identifier)
-const findBySemester = _.curry((semester, exams) => exams[semester])
 
-const toTimeline = exams => ({
-    result: _.meanBy('result', exams),
-    mean: _.meanBy('mean', exams),
-    label: exams[0].group,
-    ...exams[0]
+const toTimeline = exam => ({
+    link: `stations/${exam.id}`,
+    ...exam
 })
-const getTimeline = _.flow([ baseStore.getItems, _.groupBy(e => e.group), _.map( toTimeline ) ])
+const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 
 const getFilterState = _.flow(baseStore.getStore, s => s.groupFilter)
 const getGroups = _.flow(_.map( d => d.group ), _.uniq)
@@ -25,7 +22,6 @@ const getGroupFilters = state => _.flow(baseStore.getItems, getGroups, getFilter
 export const selectors = baseStore.withLoadedSelector({
     getItems: baseStore.getItems,
     getFilteredItems: state => _.flow(baseStore.getItems, filter(getGroupFilters(state))),
-    getBySemester: (state, semester) => _.flow([ baseStore.getItems, findBySemester(semester)])(state),
     getTimeline,
     getGroupFilters,
 })
@@ -37,6 +33,8 @@ export const actions = {
 
 const groupFilter = ( state = [], action ) => {
     switch(action.type) {
+        case 'EXAMS_SELECT':
+            return identifier.startsWith(action.payload.format) ? [action.payload.group] : []
         case 'STATIONS_FILTER_GROUPS':
             return action.payload
         default:
@@ -44,11 +42,11 @@ const groupFilter = ( state = [], action ) => {
     }
 }
 
-const stationsReducer = ( state = [], action ) => {
+const stationsReducer = ( state = {}, action ) => {
     switch (action.type) {
         default:
             return state
     }
 }
 
-export const reducer = combineReducers({ ..._.compose([baseStore.withLoadedReducer, baseStore.withSelectReducer])(stationsReducer), groupFilter })
+export const reducer = combineReducers({ items: _.compose([ baseStore.withSelectReducer, baseStore.withLoadedReducer ])(stationsReducer, Results), groupFilter })

@@ -8,9 +8,11 @@
           content="
             default-src 'self';
             script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdnjs.cloudflare.com;
-            font-src 'self' https://fonts.gstatic.com/;
+            font-src 'self' https://fonts.gstatic.com/ data:;
             style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
-            img-src 'self' 'unsafe-inline';
+            img-src 'self' data: 'unsafe-inline';
+            media-src 'self' https://levelup.charite.de/videos/epa_2019.mp4 ;
+			connect-src 'self' https://levelup.charite.de;
             form-action 'self';">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!--
@@ -48,7 +50,7 @@ if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) document.write
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
     (function() {
-        var u="//levelup.charite.de/matomo/";
+        var u="/matomo/";
         _paq.push(['setTrackerUrl', u+'matomo.php']);
         _paq.push(['setSiteId', '1']);
         var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];

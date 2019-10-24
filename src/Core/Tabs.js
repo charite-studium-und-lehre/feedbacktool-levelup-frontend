@@ -44,15 +44,12 @@ const asTabs = WrappedComponent => {
     }
 }
 
-const DefaultTabs = asTabs(props =>
+export default asTabs(props =>
     <ul className="nav nav-pills pb-3" role="tablist">
         {React.Children.map(props.children, (child, i) =>
-            <li key={i} className="nav-item" onClick={() => props.selectTab(i)}>
+            <li key={i} className="nav-item border" onClick={() => props.selectTab(i)}>
                 <span className={`nav-link ${props.selectedTab === i ? 'active' : ''}`} data-toggle="pill" role="tab">{child.props.title}</span>
             </li>
         )}
     </ul>
 )
-
-export default DefaultTabs
-export { asTabs }

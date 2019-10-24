@@ -10,7 +10,7 @@ Login über SSO.
 
 == Schnittstelle: ==
 POST-Aufruf an Server:
-''/backend/api/isLoggedIn''
+''/backend/isLoggedIn''
 
 == Rückgabe, wenn schon eingeloggt: ==
 HTTP-Code 200

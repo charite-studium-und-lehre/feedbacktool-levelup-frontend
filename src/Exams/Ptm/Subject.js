@@ -19,13 +19,13 @@ const Timeline = withTranslation()(({ t, data }) =>
         <ColorLegend text={t('Anzahl gestellte Fragen')} style={{backgroundColor : colors[0]}}/>
         <ColorLegend text={t('Anzahl richtige Fragen')} style={{backgroundColor : colors[1]}}/>
         <div className="p-4 mt-3" style={{height: '6rem'}} >
-            <OrdinalChart xDomain={data.map(d => d.timesemester)} yDomain={[0, Math.max(...data.map(d => d.gesamt))]}>
+            <OrdinalChart xDomain={data.map(d => d.zeitsemester)} yDomain={[0, Math.max(...data.map(d => d.gesamt))]}>
                 <XAxis />
                 <YAxis ticks={{count: 3}} />
-                <AreaGraph data={data.map(d => ({ x: d.timesemester, y0: d.richtig, y1: d.gesamt }))} color={colors[0]} />
-                <LineGraph data={data.map(d => ({ x: d.timesemester, y: d.gesamt }))} color={tinycolor(colors[0]).darken(30).toString()} />
-                <AreaGraph data={data.map(d => ({ x: d.timesemester, y0: 0, y1: d.richtig }))} color={colors[1]} />
-                <LineGraph data={data.map(d => ({ x: d.timesemester, y: d.richtig }))} color={tinycolor(colors[1]).darken(30).toString()} />
+                <AreaGraph data={data.map(d => ({ x: d.zeitsemester, y0: d.richtig, y1: d.gesamt }))} color={colors[0]} />
+                <LineGraph data={data.map(d => ({ x: d.zeitsemester, y: d.gesamt }))} color={tinycolor(colors[0]).darken(30).toString()} />
+                <AreaGraph data={data.map(d => ({ x: d.zeitsemester, y0: 0, y1: d.richtig }))} color={colors[1]} />
+                <LineGraph data={data.map(d => ({ x: d.zeitsemester, y: d.richtig }))} color={tinycolor(colors[1]).darken(30).toString()} />
             </OrdinalChart>
         </div>
     </div>)

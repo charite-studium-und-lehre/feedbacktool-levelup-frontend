@@ -1,7 +1,6 @@
 import React from 'react'
 import { withTranslation } from 'react-i18next'
 import makeExtendable from '../Core/makeExtendable'
-import DataProtection from './DataProtection'
 import { Link } from 'react-router-dom'
 
 const Infos = props => (
@@ -15,10 +14,8 @@ const Infos = props => (
             <div className=' col-6 py-2 font-weight-bold'>{props.title}</div>}
     </div>
 )
-const registration = ({ t, ...props }) => (
+const registration = ({ t, ...props}) => (
     <div className='row px-4'>
-        {props.extended ? <DataProtection onClick={props.toggleExtended} />
-            :
             <div className='col-12 col-lg-10 col-xl-7 mx-auto mt-3 pb-4 with-shadow'>
                 <div className='mx-auto mt-2 p-3'>
                     <div>
@@ -37,16 +34,18 @@ const registration = ({ t, ...props }) => (
                         </div>
                     </div>
                     <div className='mt-4'>
-                        <input type="checkbox" />
+                        <input type="checkbox" onChange={props.toggleExtended}/>
                         <span className='ml-3 '>{t(`Ich stimme den`)}
-                        <span className='font-weight-bold ml-1 text-primary' style={{ cursor: 'pointer' }} onClick={props.toggleExtended}>{t(`Datenschutzhinweise `)}</span>
+                        <Link to="/user/dataProtection">
+                           <span className='font-weight-bold ml-1 text-primary' style={{ cursor: 'pointer' }}>{t(`Datenschutzhinweise `)}</span>
+                        </Link>
                         {t(`zu`)}</span>
                     </div>
                     <Link to="/dashboard">
-                    <button className='btn btn-secondary mt-4'>{t(`Absenden`)}</button>
+                      <button className='btn btn-secondary mt-4' disabled={!props.extended} >{t(`Absenden`)}</button>
                     </Link>
                 </div>
-            </div>}
+            </div>
     </div>
 )
 export default withTranslation()(makeExtendable(registration))

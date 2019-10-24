@@ -8,15 +8,17 @@ import PointGraph from '../Charting/PointGraph'
 import { selectors, actions } from './Store'
 import { XAxis } from '../Charting/Axis'
 
-const MainChart = ({ graphs, history, setSelected, match }) => {
-    const semesters = _.flow(_.flatMap( g => g.data.map( d => d.timesemester )), _.uniq, _.sortBy( t => t.split(' ')[1]))(graphs)
+const MainChart = ({ graphs, history, fromQuery, selected = {}, setSelected }) => {
+    const semesters = _.flow(_.flatMap( g => g.data.map( d => d.zeitsemester )), _.uniq, _.sortBy( t => t.split(' ')[1]))(graphs)
     const navigate = graph => exam => { 
         history.push(`/exams/${graph}/${exam.id}`) 
     }
 
     useEffect( () => {
-        setSelected(match.params.id)
-    }, [ setSelected, match.params.id ])
+        if(!fromQuery || selected.id === fromQuery.id) return
+        setSelected(fromQuery)
+    })
+
     return <div style={{height: '2.5rem', minWidth: `${semesters.length*8}rem`}}>
         <OrdinalChart xDomain={semesters} yDomain={[0,1]}>
             <XAxis />
@@ -31,6 +33,10 @@ const MainChart = ({ graphs, history, setSelected, match }) => {
     </div>
 }
 
-const stateToProps = state => ({ graphs: selectors.getNavigationData(state) })
+const stateToProps = (state, ownProps) => ({ 
+    graphs: selectors.getNavigationData(state), 
+    fromQuery: selectors.getById(state, ownProps.match.params.id),
+    selected: selectors.getSelected(state),
+})
 
 export default _.compose(withRouter, needsData(selectors.loaded, actions.load), connect(stateToProps, actions))(MainChart)

@@ -1,24 +1,31 @@
 import React from 'react'
 import DashbordCard from './DashboardCard'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faDumbbell} from '@fortawesome/free-solid-svg-icons'
+import {faDumbbell, faBookOpen} from '@fortawesome/free-solid-svg-icons'
+import {withTranslation} from 'react-i18next'
+import tellMeLogo from '../images/tellMeLogo.PNG'
 
-const tellme =()=> (
-    <div>
-        <DashbordCard>
-            <div className='tellMeLogo pb-1 mb-2'></div>
-            <p>Hier kannst du dein aktuelles Wissen anhand von Prüfungsfragen testen und erhältst Rückmeldungen zu deinen Antworten. Pilotphase: TellMe ist gerade erst an den Start gegangen und braucht noch ein wenig Unterstützung. Daher sind aktuell nur die Fragen aus Modul 17 vollständig einsehbar und kommentiert. Wenn du das ändern möchtest, dann mach mit und kommentiere zusammen mit Kommiliton*innen und XX weitere Fragen mit deinen Lösungsvorschlägen.</p>
-                <div className='row'> 
-                    <div className='col-12 '>
-                        <span className='font-weight-bold ' style={{borderBottom:'2px solid black'}}>Neues:</span>
-                        <p className='mt-2'>Aktulle ...Version M17 mit kommentierten Fragen. </p>
-                    </div>
-                        <div className='col-12 col-sm-6 '>
-                        <a className='btn btn-secondary form-control mt-2' style={{position:'relative', bottom:'0'}} target="blank" href='https://msm-tellme.charite.de/lernen' >
-                        Trainieren  <span className='ml-2'><FontAwesomeIcon icon={faDumbbell}/></span></a>
-                    </div>
-                </div>
-        </DashbordCard>
-    </div>
+const Tellme =({t})=> (
+    <DashbordCard>
+        <img src={tellMeLogo} alt="tellme-logo" className='pb-1 mb-2' style={{width: '7rem'}}></img>
+        <div className='row'> 
+            <div className='col-12'>
+                <span className='font-weight-bold ' style={{borderBottom:'2px solid black'}}>{t(`news`)}:</span>
+                <p className='mt-2'>Unsere ersten Lerneinheiten für Dich sind fertig: M14 & M17</p>
+            </div>
+        </div>
+        <div className="row">
+            <div className='col-md-6'>
+                <a className='btn btn-secondary form-control mt-2' style={{position:'relative', bottom:'0'}} target="blank" href='https://msm-tellme.charite.de/lernen' >
+                    {t(`Trainieren`)}<span className='ml-2'><FontAwesomeIcon icon={faDumbbell}/></span>
+                </a>
+            </div>
+            <div className='col-md-6'>
+                <a className='btn btn-secondary form-control mt-2' style={{position:'relative', bottom:'0'}} target="blank" href='https://msm-tellme.charite.de/lernen' >
+                    {t(`Mitmachen`)}<span className='ml-2'><FontAwesomeIcon icon={faBookOpen}/></span>
+                </a>
+            </div>
+        </div>
+    </DashbordCard>
 )
-export default tellme
+export default withTranslation()(Tellme)

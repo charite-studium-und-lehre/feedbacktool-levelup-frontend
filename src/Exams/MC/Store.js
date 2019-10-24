@@ -3,14 +3,15 @@ import { combineReducers } from 'redux'
 import { minQuestions } from '../../Utils/Constants'
 import BaseStore from '../BaseStore'
 import Results from './Data'
+import { reducer as questionsReducer, identifier as questionsIdentifier } from './Questions/Store'
 
-export const identifier = 'semester'
+export const identifier = 'mcs'
 const baseStore = BaseStore(identifier)
 const findById = _.curry((id, exams) => exams[id])
 
 const toTimeline = exam => ({
     ...exam,
-    label: exam.semester,
+    link: `mc/${exam.id}`,
 })
 const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 
@@ -29,9 +30,9 @@ export const selectors = baseStore.withLoadedSelector({
 
 export const actions = baseStore.withLoadAction({}, Results)
 
-export const reducer = combineReducers(_.compose([baseStore.withLoadedReducer, baseStore.withSelectReducer])(( state = [], action ) => {
+export const reducer = combineReducers({ [questionsIdentifier]: questionsReducer, items: _.compose([ baseStore.withSelectReducer, baseStore.withLoadedReducer ])(( state = {}, action ) => {
     switch (action.type) {
         default:
             return state
     }
-}))
+}, Results)})

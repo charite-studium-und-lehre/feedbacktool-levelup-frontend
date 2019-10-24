@@ -26,8 +26,8 @@ const Infos = (props) => (
     </div>
 )
 
-const Questions = () => {
-    const LegendText = Legends.Exams.Semester.Questions
+const Questions = props => {
+    const LegendText = Legends.Exams.MC.Questions
     return <div className='card p-3'>
         <Legend title={LegendText.title}>
             {LegendText.text}
@@ -38,7 +38,7 @@ const Questions = () => {
             <Infos title='Leicht' complete='15' correct='10' wrong='5' />
         </div>
         <div className="mt-3">
-            <Link to='1.%20Fachsemester/questions'>
+            <Link to={`${props.id}/questions`}>
                 <button type="button" className="btn btn-primary mt-3">Details zu Fragen</button>
             </Link>
         </div>

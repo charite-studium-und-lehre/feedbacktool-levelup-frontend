@@ -9,20 +9,20 @@ import Legend from '../Charting/Legend'
 
 const LegendColor = ({ color }) => <span className="d-inline-block ml-2 mr-1" style={{ backgroundColor: color, width: '1rem', height: '.8rem' }}></span>
 const stateToProps = state => ({ data: selectors.getTree(state) })
-const Progress = _.compose([withTranslation(), needsData(selectors.loaded, actions.load), connect(stateToProps)])(({ data, ...props }) =>
+const Progress = _.compose([withTranslation(), needsData(selectors.loaded, actions.load), connect(stateToProps)])(({ t, data }) =>
     <div className="container-fluid">
         <div className="row mb-1">
             <div className="col">
                 <Legend title="Studienfortschritt">
-                    <LegendColor color={colors[0]} />abgeschlossen
-                    <LegendColor color={colors[1]} />offen
-                    <LegendColor color={colors[2]} />Voraussetzungen nicht erfüllt
+                    <LegendColor color={colors[0]} />{t('abgeschlossen')}
+                    <LegendColor color={colors[1]} />{t('offen')}
+                    <LegendColor color={colors[2]} />{t('Voraussetzungen nicht erfüllt')}
                 </Legend>
             </div>
         </div>
         <div className="row">
             <div className="col">
-                {data.map(d => <Checklist key={d.label} data={d} /> )}
+                {data.map(d => <Checklist key={d.label} {...d} /> )}
             </div>
         </div>
     </div>
