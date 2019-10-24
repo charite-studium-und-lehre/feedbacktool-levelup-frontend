@@ -24,9 +24,9 @@ export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
             </button>
             <div className={`collapse navbar-collapse ${props.extended && 'show'}`} id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto" onClick={props.toggleExtended}>
-                    {Routes.map(route => {
+                    {Routes.map((route, i) => {
                         if (route.hasOwnProperty('menuName'))
-                            return <li className="nav-item">
+                            return <li className="nav-item" key={i}>
                                 <NavLink className="nav-link" to={route.path}>{t(route.menuName)}</NavLink>
                             </li>
                     })}
