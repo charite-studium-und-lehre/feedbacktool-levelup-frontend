@@ -47,7 +47,7 @@ const Details = withTranslation()(({ t, id }) => {
             <div >
                 <div className="mt-2">
                     <label className="m-0 mr-2"><input type="radio" name="details.mode" checked={mode === 'modules'} onChange={() => setMode('modules')} className="mx-2" />Module</label>
-                    <label><input type="radio" name="details.mode" checked={mode === 'subjects'} onChange={() => setMode('subjects')} className="mx-2" />Fächer</label>
+                    <label><input type="radio" name="details.mode" checked={mode === 'subjects'} onChange={() => setMode('subjects')} className="mx-2" />{t('Fächer')}</label>
                 </div>
             </div>
             <div className="mt-2">
