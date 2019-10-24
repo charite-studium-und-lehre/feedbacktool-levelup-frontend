@@ -19,6 +19,7 @@ const Routes = [
   {
     path: '/dashboard',
     component: Dashboard,
+    menuName: 'Dashboard',
     exact: true,
     private: true,
   },
@@ -26,19 +27,27 @@ const Routes = [
   {
     path: '/exams/:exam?/:id?',
     component: Exams,
+    menuName: 'Prüfungen',
     private: true,
   },
-
   {
-    path: '/consulting',
-    component: Consulting,
+    path: '/epas',
+    component: EPAs,
+    menuName: 'Ärztliche Tätigkeiten',
     exact: true,
     private: true,
   },
-
+  {
+    path: '/consulting',
+    component: Consulting,
+    menuName: 'Beratung',
+    exact: true,
+    private: true,
+  },
   {
     path: '/alltools',
     component: AllTools,
+    menuName: 'Alle Tools',
     breadcrumb: () => <Link to="/alltools">{i18next.t(`Alle Tools`)}</Link>,
     exact: true,
     private: true,
@@ -55,13 +64,6 @@ const Routes = [
     exact: true,
     private: false,
   },
-  {
-    path: '/epas',
-    component: EPAs,
-    exact: true,
-    private: true,
-  },
-
   {
     path: '/exams/mc/:test',
     component: MC,
