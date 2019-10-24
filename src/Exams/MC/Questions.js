@@ -1,16 +1,20 @@
 import React from 'react'
+import _ from 'lodash/fp'
 import { withTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
 import Legend from '../../Charting/Legend'
 import Legends from '../../Core/LegendTexts'
+import needsData from '../../Core/needsData'
+import { selectors, actions } from './Store'
 
-const Infos = props => (
+const Infos = ({ questions, title }) => (
     <div className='col-4 text-center text-nowrap'>
         <div>
-            <span className='ml-1 font-weight-bold' style={{fontSize: '1.1rem'}}>{props.total}</span>
-            <span className='ml-1'>{props.title}</span>
+            <span className='ml-1 font-weight-bold' style={{fontSize: '1.1rem'}}>{questions.length}</span>
+            <span className='ml-1'>{title}</span>
         </div>
         <div className="d-flex justify-content-center">
             <div className="text-center">
@@ -18,14 +22,15 @@ const Infos = props => (
                 <div style={{ color: 'red' }}><FontAwesomeIcon icon={faTimes} /></div>
             </div>
             <div className="ml-1">
-                <div>{props.correct}</div>
-                <div>{props.wrong}</div>
+                <div>{_.sumBy( q => q.antworten.some( a => a.ausgewählt && a.richtig ), questions )}</div>
+                <div>{_.sumBy( q => q.antworten.some( a => a.ausgewählt && !a.richtig ), questions )}</div>
             </div>
         </div>
     </div>
 )
 
-const Questions = ({ t, id }) => {
+const stateToProps = (state, ownProps) => ({ questions: selectors.getById(state, ownProps.id).fragen })
+const Questions = _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps), withTranslation()])(({ t, id, questions }) => {
     const LegendText = Legends.Exams.MC.Questions
     return <div className='card p-3' style={{fontSize: '.9rem'}}>
         <Legend title={LegendText.title}>
@@ -33,13 +38,13 @@ const Questions = ({ t, id }) => {
         </Legend>
         <div className="row">
             <div className="col">
-                {t('Dir wurden')} <span style={{fontSize: '1.1rem'}} className="font-weight-bold">{80}</span> {t('Fragen gestellt. Davon waren...')}
+                {t('Dir wurden')} <span style={{fontSize: '1.1rem'}} className="font-weight-bold">{questions.length}</span> {t('Fragen gestellt. Davon waren...')}
             </div>
         </div>
         <div className="row mt-3">
-            <Infos title='schwer' total='30' correct='10' wrong='20' />
-            <Infos title='mittel' total='50' correct='15' wrong='35' />
-            <Infos title='leicht' total='15' correct='10' wrong='5' />
+            <Infos title='schwer' questions={questions.filter( q => q.durchschnittRichtig < .4 )} />
+            <Infos title='mittel' questions={questions.filter( q => q.durchschnittRichtig >= .4 && q.durchschnittRichtig <= .8 )} />
+            <Infos title='leicht' questions={questions.filter( q => q.durchschnittRichtig > .8 )} />
         </div>
         <div className="mt-3">
             <Link to={`${id}/questions`}>
@@ -47,6 +52,6 @@ const Questions = ({ t, id }) => {
             </Link>
         </div>
     </div>
-}
+})
 
-export default withTranslation()(Questions)
+export default Questions

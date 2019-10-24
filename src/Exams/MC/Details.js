@@ -4,6 +4,7 @@ import { withTranslation } from 'react-i18next'
 import _ from 'lodash/fp'
 import Legend from '../../Charting/Legend'
 import SimpleDot from '../../Charting/SimpleDot'
+import AnimatedInteger from '../../Charting/AnimatedInteger'
 import Legends from '../../Core/LegendTexts'
 import needsData from '../../Core/needsData'
 import BarWithHeader from './BarWithHeader'
@@ -18,7 +19,7 @@ modules.map((d, i) =>
         result={d.result}
         total={80}
         mean={d.mean}
-    >{_.round(d.result / 0.8)} %</BarWithHeader>
+    ><AnimatedInteger value={_.round(d.result / 0.8)} /> %</BarWithHeader>
 )
 :
 fächer.map(d =>

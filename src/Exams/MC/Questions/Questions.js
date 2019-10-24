@@ -7,15 +7,15 @@ import Legends from '../../../Core/LegendTexts'
 import needsData from '../../../Core/needsData'
 import Question from './Question'
 import Filters from './Filters'
-import { selectors, actions } from './Store'
+import { selectors, actions } from '../Store'
 
 const Questions = ({ t, questions }) => {
     const [ tagsFilters, setTagsFilters ] = useState(
-        _.uniq(_.flatMap(q => q.tags, questions)).map(t => ({ label: t.label, pred: q => _.includes(t, q.tags) }))
+        _.uniq(_.flatMap(q => q.tags, questions)).map(t => ({ label: t, pred: q => _.includes(t, q.tags) }))
     )
     const [ difficultyFilter, setDifficultyFilter ] = useState([
-        { label: 'schwer', pred: q => q.durchschnittRichtig < .5 },
-        { label: 'leicht', pred: q => q.durchschnittRichtig > .7 }
+        { label: 'schwer', pred: q => q.durchschnittRichtig < .4 },
+        { label: 'leicht', pred: q => q.durchschnittRichtig > .8 }
     ])
     const [ correctFilter, setCorrectFilter ] = useState([
         { label: 'richtig beantwortet', pred: q => q.antworten.some( a => a.richtig && a.ausgewählt )},
@@ -55,5 +55,5 @@ const Questions = ({ t, questions }) => {
         </div>
     )
 }
-const stateToProps = (state, ownProps) => ({ questions: selectors.getById( state, ownProps.match.params.test ) })
+const stateToProps = (state, ownProps) => ({ questions: selectors.getById( state, ownProps.match.params.test ).fragen })
 export default _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps), withTranslation()) (Questions)
