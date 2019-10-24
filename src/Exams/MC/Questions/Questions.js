@@ -21,8 +21,8 @@ const Questions = ({ t, questions }) => {
         { label: 'leicht', pred: q => q.durchschnittRichtig > .8 }
     ])
     const [ correctFilter, setCorrectFilter ] = useState([
-        { label: 'richtig beantwortet', pred: q => q.antworten.some( a => a.richtig && a.ausgewählt )},
-        { label: 'falsch beantwortet', pred: q => q.antworten.some( a => !a.richtig && a.ausgewählt )},
+        { label: 'richtig beantwortet', pred: q => q.antworten.some( a => a.richtig && a.ausgewaehlt )},
+        { label: 'falsch beantwortet', pred: q => q.antworten.some( a => !a.richtig && a.ausgewaehlt )},
     ])
 
     const LegendText = Legends.Exams.MC.QuestionsDetails

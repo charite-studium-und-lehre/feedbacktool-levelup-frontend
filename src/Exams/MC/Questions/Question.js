@@ -7,7 +7,7 @@ const Answer = withTranslation()(({t, ...props}) => (
     <div className="m-1">
         <span>{props.children}</span>
         {props.richtig ? (<span className='ml-1 badge badge-success'>{t(`richtige Antwort`)}</span>) : ''}
-        {props.ausgewählt ? (<span className='ml-1 badge badge-danger'>{t(`deine Antwort`)}</span>) : ''}
+        {props.ausgewaehlt ? (<span className='ml-1 badge badge-danger'>{t(`deine Antwort`)}</span>) : ''}
     </div>
 ))
 

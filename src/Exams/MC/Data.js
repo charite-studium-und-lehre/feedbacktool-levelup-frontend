@@ -207,7 +207,7 @@ const createDetailsData = (semester, [result, dist]) => ({
         result: _.round(result[i]),
         label: `Modul ${semester * 4 - 3 + i}`
     })),
-    fächer: createSubjects(semester),
+    faecher: createSubjects(semester),
     date: new Date(2013 + parseInt(semester), 6+Math.random()*2, 15),
 })
 

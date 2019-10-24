@@ -675,7 +675,7 @@ const convertQuestion = (subjects, semester) => q => {
         antworten: q.answers.map( (a, i) => ({
             text: letters[i] + a,
             richtig: correctAnswer === i,
-            ausgewählt: selectedAnswer === i,
+            ausgewaehlt: selectedAnswer === i,
         }) )
     }
 }

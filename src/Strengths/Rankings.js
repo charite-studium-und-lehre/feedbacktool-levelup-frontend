@@ -7,14 +7,14 @@ import needsData from '../Core/needsData'
 import { selectors as ptmSelectors, actions as ptmActions } from '../Exams/Ptm/Store'
 import { selectors as mcSelectors, actions as mcActions } from '../Exams/MC/Store'
 
-const ptmProps = state => ({ fächer: _.flow(ptmSelectors.getLatest, ptmSelectors.getRanking)(state) })
+const ptmProps = state => ({ faecher: _.flow(ptmSelectors.getLatest, ptmSelectors.getRanking)(state) })
 const PtmRanking = _.compose(needsData(ptmSelectors.loaded, ptmActions.load), connect(ptmProps))(
-    ({ fächer, ...props}) => <Ranking subjects={fächer} {...props} /> 
+    ({ faecher, ...props}) => <Ranking subjects={faecher} {...props} /> 
 )
 
-const mcProps = state => ({ fächer: mcSelectors.getRanking(state) })
+const mcProps = state => ({ faecher: mcSelectors.getRanking(state) })
 const McRanking = _.compose(needsData(mcSelectors.loaded, mcActions.load), connect(mcProps))(
-    ({ fächer, ...props}) => <Ranking subjects={fächer} {...props} /> 
+    ({ faecher, ...props}) => <Ranking subjects={faecher} {...props} /> 
 )
 
 const Rankings = () =>

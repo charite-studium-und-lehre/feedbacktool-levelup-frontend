@@ -11,7 +11,7 @@ import BarWithHeader from './BarWithHeader'
 import { selectors, actions } from './Store'
 
 const stateToProps = (state, ownProps) => ( {...selectors.getById(state, ownProps.id)})
-const Chart = _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps))(({ mode, fächer, modules }) => mode === 'modules' ?
+const Chart = _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps))(({ mode, faecher, modules }) => mode === 'modules' ?
 modules.map((d, i) =>
     <BarWithHeader
         key={i}
@@ -22,13 +22,13 @@ modules.map((d, i) =>
     ><AnimatedInteger value={_.round(d.result / 0.8)} /> %</BarWithHeader>
 )
 :
-fächer.map(d =>
+faecher.map(d =>
     <BarWithHeader
         key={d.name}
         name={d.name}
         result={d.richtig}
         total={d.gesamt}
-        width={d.gesamt * 100 / _.max(fächer.map(s => s.gesamt)) + "%"}
+        width={d.gesamt * 100 / _.max(faecher.map(s => s.gesamt)) + "%"}
         mean={d.mean}
     >{d.richtig} von {d.gesamt}</BarWithHeader>
 ))

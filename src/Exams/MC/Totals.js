@@ -88,4 +88,4 @@ const Totals = ({ t, dist, ...props }) => {
 }
 
 const stateToProps = (state, ownProps) => ( {...selectors.getById(state, ownProps.id)})
-export default _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps), withTranslation())(Totals)
+export default _.compose(needsData(selectors.hasDetails, actions.load), connect(stateToProps), withTranslation())(Totals)

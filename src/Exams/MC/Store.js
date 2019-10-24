@@ -15,7 +15,7 @@ const toTimeline = exam => ({
 })
 const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 
-const getSubjectsTotals = _.flow([ baseStore.getItems, _.flatMap( i => i.fächer ), _.groupBy(f => f.code), 
+const getSubjectsTotals = _.flow([ baseStore.getItems, _.flatMap( i => i.faecher ), _.groupBy(f => f.code), 
     _.map( g => ({ ...g[0], richtig: _.sumBy('richtig')(g), gesamt: _.sumBy('gesamt')(g) }))])
 
 const getRanking = _.flow([ getSubjectsTotals, _.filter(s => s.gesamt >= minQuestions), _.sortBy(s => -s.richtig / s.gesamt) ])

@@ -9,16 +9,16 @@ import { selectors, actions } from './Store'
 import css from './Subjects.module.css'
 import { minQuestions } from '../../Utils/Constants';
 
-const stateToProps = (state, { id }) => _.flow(selectors.getById, selectors.getSubjects, _.sortBy( s => -s.richtig / s.gesamt ), r => ({ fächer: r}))(state, id)
-const Subjects = _.compose(needsData(selectors.loaded, actions.load), withTranslation(), connect(stateToProps))( ({ t, fächer, id }) => {
-    const categories = _.keys(_.groupBy( s => s.kategorie, fächer ))
+const stateToProps = (state, { id }) => _.flow(selectors.getById, selectors.getSubjects, _.sortBy( s => -s.richtig / s.gesamt ), r => ({ faecher: r}))(state, id)
+const Subjects = _.compose(needsData(selectors.loaded, actions.load), withTranslation(), connect(stateToProps))( ({ t, faecher, id }) => {
+    const categories = _.keys(_.groupBy( s => s.kategorie, faecher ))
     const [ filters, setFilters ] = useState( 
         categories.map(c => ({label: c, pred: d => d.kategorie === c , selected: true, color: 'hsla(200, 50%, 50%, .8)', group: 'categories'}))
         .concat({label: `mind. ${minQuestions} Fragen`, pred: s => s.gesamt >= minQuestions , selected: true, color: 'hsla(200, 50%, 50%, .8)' })
     )
     const [ search, setSearch ] = useState('')
 
-    const filtered = fächer.filter(
+    const filtered = faecher.filter(
         _.overEvery([
             _.overSome(filters.filter( f => f.selected && f.group === 'categories').map( f => f.pred )), 
             s => s.name.toLowerCase().indexOf(search.toLowerCase()) >= 0,

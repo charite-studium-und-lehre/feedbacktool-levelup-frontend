@@ -22,8 +22,8 @@ const Infos = ({ questions, title }) => (
                 <div style={{ color: 'red' }}><FontAwesomeIcon icon={faTimes} /></div>
             </div>
             <div className="ml-1">
-                <div>{_.sumBy( q => q.antworten.some( a => a.ausgewählt && a.richtig ), questions )}</div>
-                <div>{_.sumBy( q => q.antworten.some( a => a.ausgewählt && !a.richtig ), questions )}</div>
+                <div>{_.sumBy( q => q.antworten.some( a => a.ausgewaehlt && a.richtig ), questions )}</div>
+                <div>{_.sumBy( q => q.antworten.some( a => a.ausgewaehlt && !a.richtig ), questions )}</div>
             </div>
         </div>
     </div>
