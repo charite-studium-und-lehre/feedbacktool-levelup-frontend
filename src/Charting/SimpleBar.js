@@ -21,7 +21,7 @@ const SimpleBar = props => {
     const style = _.defaults({
         backgroundImage: `linear-gradient(to right, ${color.setAlpha(1).toString()} 100%,  transparent)`,
         backgroundRepeat: 'no-repeat',
-        backgroundSize: `${props.value / total * 100}%`,
+        backgroundSize: `${props.value / total * 100}% 100%`,
         backgroundColor: color.setAlpha(.6).toString(),
         height: props.height,
         width: props.width,

@@ -41,4 +41,4 @@ export const reducer = combineReducers({ items: _.compose([baseStore.withSelectR
         default:
             return state
     }
-}, _.keyBy( d => d.id, _.take(2, _.values(Results))))})
+}, _.keyBy( d => d.id, _.take(1, _.values(Results))))})

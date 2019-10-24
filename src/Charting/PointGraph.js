@@ -20,7 +20,7 @@ export default function PointGraph({padding = 0.2, offset = .5, ...props}) {
             selected={d.selected}
             cx={props.xScale(d.x) + scale(offset)} 
             cy={props.yScale(d.y)} 
-            r={props.size || "5"}
+            r={d.size || props.size || "5"}
             fill={props.color || 'black'}
             color={props.color || 'black'}
             opacity={props.fadeIn ? 0 : 1}
