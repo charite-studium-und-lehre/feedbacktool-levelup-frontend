@@ -24,8 +24,8 @@ const Legends = {
                 text: <Trans>Hier kannst du sehen, wie du in den zu dieser Semesterprüfung dazugehörigen Modulen und Fächern in Vergleich zu der Kohorte abgeschnitten hast.</Trans>,
             },
             Questions: {
-                title: <Trans>MC-Fragen</Trans>,
-                text: <Trans>Hier findest du eine kurze Zusammenfassung zu deinen MC Prüfungsfragen deiner ausgewählten Fachsemesterprüfung. Schwere Fragen sind Fragen, die weniger als 40% deiner Mitstudierenden beantworten konnten. Leichte Fragen hingegen konnten mehr als 80% deiner Kommilitonen beantworten.Für mehr Details zu den einzelnen Fragen, sowie Filter und Auswertungsmöglichkeiten klick den Button</Trans>,
+                title: <Trans>Fragen und Antworten</Trans>,
+                text: <Trans>Schwere Fragen konnten weniger als 40% deiner Mitstudierenden beantworten, leichte Fragen mehr als 80%.</Trans>,
             },
             QuestionsDetails: {
                 title: <Trans>Fragen und Antworten</Trans>,
