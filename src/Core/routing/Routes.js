@@ -64,6 +64,7 @@ const Routes = [
     exact: true,
     private: false,
   },
+
   {
     path: '/exams/mc/:test',
     component: MC,
