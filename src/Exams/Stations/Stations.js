@@ -30,14 +30,17 @@ const Stations = ({ t, data, groupFilters, setGroupFilters }) => {
     <div className="container-fluid">
         <div className="row ">
             <div className="col ">
-                <Legend title={LegendText.title}>
-                    {LegendText.text}
-                    <div className="position-relative">
-                        {t(`Der`)} <SimpleDot style={{position: 'relative', display: 'inline-block', marginLeft: '.75rem'}} value={0} />{t(` kennzeichnet den Kohortenmittelwert.`)}
+                <div className="p-2">
+                        <h4 className="mr-auto">{t('Praktische Prüfungen')}</h4>
                     </div>
-                </Legend>
                 <div className="row col " style={{minHeight: '25rem'}}>
-                    <div className="card px-4 pb-4 w-100" style={{overflow: 'hidden'}}>
+                    <div className="card px-4 py-4 w-100 overflow-hidden">
+                        <Legend title={LegendText.title}>
+                            {LegendText.text}
+                            <div className="position-relative">
+                                {t(`Der`)} <SimpleDot style={{position: 'relative', display: 'inline-block', marginLeft: '.75rem'}} value={0} />{t(` kennzeichnet den Kohortenmittelwert.`)}
+                            </div>
+                        </Legend>
                         <div className="mt-2 mb-3 d-flex flex-wrap">
                             <div style={{fontSize: '.9rem'}}>
                                 {t(`Bereich`)}: <Filter

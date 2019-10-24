@@ -17,7 +17,9 @@ const Ptm = ({ test }) => {
         <div className="container-fluid mb-2">
             <div className="row">
                 <div className="col">
-                    <h4 className="mr-auto">PTM - {test.zeitsemester}</h4>
+                    <div className="p-2">
+                        <h4 className="mr-auto">PTM - {test.zeitsemester}</h4>
+                    </div>
                 </div>
             </div>
             <div className="row">
