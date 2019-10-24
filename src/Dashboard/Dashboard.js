@@ -39,14 +39,14 @@ export default () =>
                         <Link to="/progress">
                             <Progress />
                         </Link>
-                        <Link to="/strengths">
-                            <Strengths />
+                        <Link to="/epas">
+                            <EPAs />
                         </Link>
                         <TellMe />
                     </div>
                     <div className="col-6 d-flex flex-column justify-content-around">
-                        <Link to="/epas">
-                            <EPAs />
+                        <Link to="/strengths">
+                            <Strengths />
                         </Link>
                         <Ptm />
                     </div>

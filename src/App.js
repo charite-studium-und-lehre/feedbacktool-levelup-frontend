@@ -35,7 +35,7 @@ class App extends Component {
         return (
             <Provider store={createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)))}>
                 <BrowserRouter basename={getBasename()}>
-                    <div className="App container-fluid p-0">
+                    <div className="App container-fluid p-0 d-flex flex-column">
                         {this.state.loggedIn && <Navbar isLoggedIn={this.state.loggedIn}
                                                         onClick={() => this.setState({loggedIn: false})}></Navbar>}
                         {this.state.loggedIn && <Breadcrumbs/>}
