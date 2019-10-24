@@ -29,7 +29,7 @@ export const selectors = baseStore.withLoadedSelector({
   getExternalScore,
 })
 
-export const actions = baseStore.withLoadAction(`/epa/meine`)({
+export const actions = baseStore.withLoadAction(`epa/meine`)({
   setFilter: id => ({ type: 'SET_EPAS_FILTER', payload: { id }}),
   levelUpDone: id => ({ type: 'LEVEL_UP_DONE', payload: { id }}),
   levelDownDone: id => ({ type: 'LEVEL_DOWN_DONE', payload: { id }}),

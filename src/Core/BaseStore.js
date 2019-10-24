@@ -49,7 +49,7 @@ export default (identifier, getStore) => {
         withLoadAction: url => actions => ({
             load: () => (dispatch, getState) => {
                 if(getStore(getState()).fetching || getStore(getState()).loaded) return
-                fetch(`https://levelup.charite.de/backend/api${url}`, {
+                fetch(`https://levelup.charite.de/backend/api/${url}`, {
                     credentials: 'include',
                 })
                 .then( result => result.json().then( data => dispatch({ type: `${identifier.toUpperCase()}_DATA_FETCHED`, payload: data })))
