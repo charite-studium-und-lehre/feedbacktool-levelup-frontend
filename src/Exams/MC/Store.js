@@ -28,7 +28,7 @@ export const selectors = baseStore.withLoadedSelector({
     getTimeline,
 })
 
-export const actions = baseStore.withLoadAction({}, Results)
+export const actions = baseStore.withLoadAction({})
 
 export const reducer = combineReducers({ [questionsIdentifier]: questionsReducer, items: _.compose([ baseStore.withSelectReducer, baseStore.withLoadedReducer ])(( state = {}, action ) => {
     switch (action.type) {

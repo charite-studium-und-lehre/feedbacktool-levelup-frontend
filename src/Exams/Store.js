@@ -10,6 +10,7 @@ import { color as stationsColor } from './Stations/Stations'
 import BaseStore from '../Core/BaseStore'
 
 export const identifier = 'exams'
+export const url = 'pruefungen'
 const baseStore = BaseStore(identifier)
 
 const toNavigationData = _.flow(
@@ -44,7 +45,7 @@ const selectors = baseStore.withLoadedSelector({
     getSelected: _.flow([ graphs, _.flatMap( g => g.data ), _.find( d => d.selected )]),
 })
 
-const actions = baseStore.withLoadAction('/pruefung')({
+const actions = baseStore.withLoadAction(url)({
     setSelected: value => ({ type: 'EXAMS_SELECT', payload: value })
 })
 
