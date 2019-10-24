@@ -1,5 +1,5 @@
 import _ from 'lodash/fp'
-
+import { backendUrl } from '../Utils/Constants'
 /*
 * Provides basic functions to stores which need to load data from an external source
 * parameter identifier must be unique throughout the entire app
@@ -49,7 +49,7 @@ export default (identifier, getStore) => {
         withLoadAction: url => actions => ({
             load: () => (dispatch, getState) => {
                 if(getStore(getState()).fetching || getStore(getState()).loaded) return
-                fetch(`https://levelup.charite.de/backend/api/${url}`, {
+                fetch(`${backendUrl}/${url}`, {
                     credentials: 'include',
                 })
                 .then( result => result.json().then( data => dispatch({ type: `${identifier.toUpperCase()}_DATA_FETCHED`, payload: data })))
