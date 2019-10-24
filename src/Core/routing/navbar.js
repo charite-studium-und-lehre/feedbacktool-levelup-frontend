@@ -30,9 +30,6 @@ export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
                                 <NavLink className="nav-link" to={route.path}>{t(route.menuName)}</NavLink>
                             </li>
                     })}
-                    <li className="nav-item">
-                        <a className="nav-link" target="blank" href='https://msm-tellme.charite.de/lernen'>{t(`TellMe`)}</a>
-                    </li>
                 </ul>
                 <div className="float-right d-none d-lg-block" style={{cursor: 'pointer'}}>
                     Willkommen Sabine

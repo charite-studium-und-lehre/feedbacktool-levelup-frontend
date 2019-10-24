@@ -27,13 +27,11 @@ const Routes = [
   {
     path: '/exams/:exam?/:id?',
     component: Exams,
-    menuName: 'Prüfungen',
     private: true,
   },
   {
     path: '/epas',
     component: EPAs,
-    menuName: 'Ärztliche Tätigkeiten',
     exact: true,
     private: true,
   },
