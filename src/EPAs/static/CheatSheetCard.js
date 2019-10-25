@@ -7,7 +7,7 @@ import Legends from "../../Core/LegendTexts";
 
 const CheatSheetCard = () => {
     return (
-        <div className="card p-4">
+        <div className="card p-3 mt-2">
             <Legend title={Legends.EPAs.CheatSheetCard.levels.title}>
                 {Legends.EPAs.CheatSheetCard.levels.text}
             </Legend>

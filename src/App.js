@@ -39,7 +39,7 @@ class App extends Component {
                         {this.state.loggedIn && <Navbar isLoggedIn={this.state.loggedIn}
                                                         onClick={() => this.setState({loggedIn: false})}></Navbar>}
                         {this.state.loggedIn && <Breadcrumbs/>}
-                        <div className="container-fluid flex-fill">
+                        <div className="container-fluid flex-fill p-0">
                             <Route path="/login" component={login}/>
                             {Routes.map(route => (route.private ?
                                     <PrivateRoute key={route.path} path={route.path} component={route.component}
