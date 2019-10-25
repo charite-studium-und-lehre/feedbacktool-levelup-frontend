@@ -8,14 +8,14 @@ import PointGraph from '../Charting/PointGraph'
 import { selectors, actions } from './Store'
 import { XAxis } from '../Charting/Axis'
 
-const MainChart = ({ graphs, history, fromQuery = { id: -1 }, selected = {}, setSelected }) => {
+const MainChart = ({ graphs, history, fromQuery = { id: -1 }, selected, setSelected }) => {
     const semesters = _.flow(_.flatMap( g => g.data.map( d => d.zeitsemester )), _.uniq, _.sortBy( t => t.split(' ')[1]))(graphs)
     const navigate = graph => exam => { 
         history.push(`/exams/${graph}/${exam.id}`) 
     }
 
     useEffect( () => {
-        if(selected.id === fromQuery.id) return
+        if(selected === fromQuery.id) return
         setSelected(fromQuery)
     })
 

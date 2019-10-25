@@ -42,7 +42,7 @@ const graphs = state => [
 const selectors = baseStore.withLoadedSelector({
     getNavigationData: graphs,
     getById: (state, id) => _.flow([ graphs, _.flatMap( g => g.data ), _.find( d => d.id === id )])(state),
-    getSelected: _.flow([ graphs, _.flatMap( g => g.data ), _.find( d => d.selected )]),
+    getSelected: _.flow([ baseStore.getStore, s => s.items.selected ]),
 })
 
 const actions = baseStore.withLoadAction(url)({
@@ -51,6 +51,15 @@ const actions = baseStore.withLoadAction(url)({
 
 export { selectors, actions }
 
+const selected = (state = -1, action) => {
+    switch(action.type) {
+        case 'EXAMS_SELECT':
+            return action.payload.id
+        default:
+            return state
+    }
+}
+
 export const reducer = combineReducers(baseStore.withLoadedReducer(
-    combineReducers({ [ptmsIdentifier]: ptmsReducer, [mcIdentifier]: mcReducer, [stationsIdentifier]: stationsReducer })
+    combineReducers({ selected, [ptmsIdentifier]: ptmsReducer, [mcIdentifier]: mcReducer, [stationsIdentifier]: stationsReducer })
 ))
