@@ -13,13 +13,37 @@ const getItemById = _.curry((state, id) => baseStore.getItems(state)[id])
 const getLeavesById = state => _.flow([ getItemById(state), getLeaves(state) ])
 const getLeaves = state => entry => entry.entries.length ? _.flatMap( getLeavesById(state) )(entry.entries) : [entry]
 
-const getFilter = state => state[storeIdentifier].filter
-const visibleFnFromFilter = filter => e => filter ? e.external.filter( e => e.id === filter ) : e.external
-const visible = _.flow([ getFilter, visibleFnFromFilter ])
+const getAssessments = state => _.values(baseStore.getStore(state).assesments)
+
+const getFilter = state => baseStore.getStore(state).filter
+const externalsFnFromFilter = filter => e => filter && e.external ? e.external.filter( e => e.id === filter ) : e.external
+const getFilteredExternals = _.flow([ getFilter, externalsFnFromFilter ])
+const visible = state => _.flow([ getFilteredExternals(state), d => d.length ])
 const addVisible = state => entry => _.flow([ getLeaves(state), _.some( visible(state) ), visible => ({ ...entry, visible }) ])(entry)
 
 const getScore = (state, id, prop) => _.flow([ getLeavesById(state), _.map(prop), _.sum])(id)
-const getExternalScore = (state, id) => getScore(state, id, e => visible(state)(e) ? visible(state)(e) : 0)
+const getExternals = (state, id) => _.flow([ getItemById, e => getFilteredExternals(state)(e), _.defaultTo([]) ])(state, id)
+const addAssessment = _.flow([ getAssessments, as => _.map( e => ({ ...e, ...as.find( a => a.id === e.id ) })) ])
+const getLatest = _.flow([ _.sortBy( e => -e.datum ), _.head  ])
+
+const getLatestExternal = state =>
+	_.flow([
+		epa => getFilteredExternals(state)(epa),
+		addAssessment(state),
+		getLatest,
+		_.defaultTo([])
+	])
+
+const getExternalScore = (state, id) =>
+	_.flow([ 
+		getLeavesById(state),
+		_.flatMap( getLatestExternal(state) ),
+		_.over([
+			_.sumBy( e => e.value ),
+			a => a.length * 5,
+		]),
+		([ value, total ]) => ({ value, total })
+	])(id)
 
 const getMaxScore = (state, id) => _.flow([ getLeavesById(state), leaves => leaves.length * 5 ])(id)
 
@@ -29,8 +53,9 @@ export const selectors = baseStore.withLoadedSelector({
 	getScore,
 	getMaxScore,
 	getFilter,
+	getExternals: (state, id) => _.flow([ getExternals, addAssessment(state) ])(state, id),
 	getExternalScore,
-	getAssessments: state => _.values(baseStore.getStore(state).assesments)
+	getAssessments,
 })
 
 const propTranslations = { done: 'gemacht', confident: 'zutrauen' }
@@ -100,7 +125,7 @@ const transform = _.flow([
 		label: epa.beschreibung,
 		done: epa.gemacht,
 		confident: epa.zutrauen,
-		external: epa.istBlatt ? [{id:1,value:4}] : undefined,
+		external: epa.istBlatt ? [{id:epa.id % 5,value:Math.round(Math.random() * 5)},{id:epa.id % 5 + 1,value:Math.round(Math.random() * 5)}] : undefined,
 	})),
 	addEntries,
 	addRootElement,
