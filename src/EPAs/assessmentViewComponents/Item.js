@@ -10,7 +10,7 @@ const Item = connect(stateToProps)(props => (
     <div className='mb-3'>
       <h5 className='text-center'>{props.entry.label}</h5>
       <div className="m-auto" style={{ maxWidth: '45rem' }}>
-        <Score headings={true} edit={props.edit} entryId={props.entryId} average={true} width='.9rem' height='.9rem' borderRadius='50%' />
+        <Score headings={true} edit={false} entryId={props.entryId} average={true} width='.9rem' height='.9rem' borderRadius='50%' />
       </div>
     </div>
     <div >
@@ -28,7 +28,7 @@ const ItemLevel2 = connect(stateToProps)(props => {
           <span>{props.entry.label}</span>
         </div>
         <div className="col-sm-12 mt-sm-3 col-md-7">
-        <Score edit={true} entryId={props.entryId} width='.8rem' height='.6rem' borderRadius='5%' datum={true}/>
+        <Score entryId={props.entryId} width='.8rem' height='.6rem' borderRadius='5%'/>
         </div>
       </div>}
     <div >
@@ -43,7 +43,7 @@ const ItemLevel3 = connect(stateToProps)(props => {
       {props.entry.label}
     </div>
     <div className='col-xs-6 col-md-12 col-lg-6 mt-2 '>
-      <Score edit={true} entryId={props.entryId} width='.8rem' height='.6rem' borderRadius='5%' datum={true} />
+      <Score entryId={props.entryId} width='.8rem' height='.6rem' borderRadius='5%' />
     </div>
   </div> : <div></div>
 })

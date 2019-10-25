@@ -5,7 +5,7 @@ import BaseStore from '../Core/BaseStore'
 import { backendUrl } from '../Utils/Constants'
 
 const storeIdentifier = 'epas'
-const url = 'epa'
+const url = 'epas'
 export const identifier = storeIdentifier
 
 const baseStore = BaseStore(storeIdentifier)
@@ -14,7 +14,7 @@ const getLeavesById = state => _.flow([ getItemById(state), getLeaves(state) ])
 const getLeaves = state => entry => entry.entries.length ? _.flatMap( getLeavesById(state) )(entry.entries) : [entry]
 
 const getFilter = state => state[storeIdentifier].filter
-const visibleFnFromFilter = filter => e => filter ? e.external.find( e => e.id === filter ) : e.external
+const visibleFnFromFilter = filter => e => filter ? e.external.filter( e => e.id === filter ) : e.external
 const visible = _.flow([ getFilter, visibleFnFromFilter ])
 const addVisible = state => entry => _.flow([ getLeaves(state), _.some( visible(state) ), visible => ({ ...entry, visible }) ])(entry)
 
@@ -34,27 +34,22 @@ export const selectors = baseStore.withLoadedSelector({
 })
 
 const propTranslations = { done: 'gemacht', confident: 'zutrauen' }
-const changeLevelUrl = (id, prop, method) => `${backendUrl}/${url}/selbstbewertung/${method}?epaID=${id}&typ=${propTranslations[prop]}`
-const callChangeLevel = (prop, method) => id => dispatch => {
-	fetch(changeLevelUrl(id, prop, method), {
+const callChangeLevel = id => dispatch => {
+	fetch(`${backendUrl}/${url}/${id}`, {
 		credentials: 'include',
+		method: 'POST',
+		body: JSON.stringify({})
 	})
-	.catch( err => dispatch({ type: `${identifier.toUpperCase()}_LEVEL_DOWN_${prop.toUpperCase()}`, payload: err }))
-	dispatch({ type: `${identifier.toUpperCase()}_LEVEL_UP_${prop.toUpperCase()}`, payload: { id }})
+	.catch( err => dispatch({ type: `${identifier.toUpperCase()}_SET}`, payload: err }))
+	dispatch({ type: `${identifier.toUpperCase()}_SET}`, payload: { id }})
 }
 
-export const actions = baseStore.withLoadAction(`${url}/meine`)({
+export const actions = baseStore.withLoadAction(`${url}`)({
 	setFilter: id => ({ type: `${identifier.toUpperCase()}_SET_FILTER`, payload: { id }}),
 	levelUpDone: callChangeLevel('done', 'erhoehen'),
-	levelDownDone: id => dispatch => {
-		fetch(`${backendUrl}/${url}/selbstbewertung/vermindern?epaID=${id}&typ=gemacht`, {
-			credentials: 'include',
-		})
-		.catch( err => dispatch({ type: `${identifier.toUpperCase()}_LEVEL_UP_DONE`, payload: err }))
-		dispatch({ type: `${identifier.toUpperCase()}_LEVEL_DOWN_DONE`, payload: { id }})
-	},
+	levelDownDone:callChangeLevel('done', 'erhoehen'),
 	levelUpConfident: callChangeLevel('confident', 'erhoehen'),
-	levelDownConfident: id => ({ type: `${identifier.toUpperCase()}_LEVEL_DOWN_CONFIDENT`, payload: { id }}),
+	levelDownConfident: id => ({ type: `${identifier.toUpperCase()}_SET`, payload: { id }}),
 })
 
 const level = (state, id, p, val) => {
@@ -105,7 +100,7 @@ const transform = _.flow([
 		label: epa.beschreibung,
 		done: epa.gemacht,
 		confident: epa.zutrauen,
-		external: [],
+		external: epa.istBlatt ? [{id:1,value:4}] : undefined,
 	})),
 	addEntries,
 	addRootElement,
@@ -117,7 +112,7 @@ function epasReducer(state = {undefined: {label: 'root', entries: []}}, action) 
 		case `${identifier.toUpperCase()}_DATA_FETCHED`:
 			return transform(action.payload)
 		case `${identifier.toUpperCase()}_DATA_FETCH_FAILED`:
-			return transform(initialEpas)
+			return initialEpas
 		case `${identifier.toUpperCase()}_LEVEL_UP_DONE`:
 			return level(state, action.payload.id, 'done', 1)
 		case `${identifier.toUpperCase()}_LEVEL_DOWN_DONE`:
