@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import Item from './assessmentViewComponents/Item'
 import Tabs from '../Core/Tabs'
 import needsData from '../Core/needsData'
-import Assessment from './assessmentViewComponents/Assessment'
+import Controls from './assessmentViewComponents/AssessmentControls'
 import {selectors, actions} from './Store'
 
 const stateToProps = state => ({filter: selectors.getFilter(state), root: selectors.getItemByLabel(state, 'root')})
@@ -16,7 +16,7 @@ const AssessmentsView = _.compose([
     connect(stateToProps, {resetFilter: () => actions.setFilter(null)})])(
     ({root, resetFilter}) => {
         return <div className="card mt-2">
-            <Assessment resetFilter={resetFilter}/>
+            <Controls resetFilter={resetFilter}/>
             <Tabs inactiveColor="#e9ecef">
                 {root.entries.map(e =>
                     <div key={e} title={
