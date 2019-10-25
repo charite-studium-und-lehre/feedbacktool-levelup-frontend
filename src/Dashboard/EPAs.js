@@ -7,7 +7,7 @@ import DashboardCard from './DashboardCard'
 
 const EPAs = needsData(
     () => <div className="m-2">
-        <EPAsScore headings   width='1rem' height='1rem'  borderRadius='50%' />
+        <EPAsScore headings edit={false} width='1rem' height='1rem'  borderRadius='50%' />
     </div>
 , selectors.loaded, actions.load)
 

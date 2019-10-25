@@ -13,7 +13,7 @@ const Square = props=> {
     return <div className='mr-1' style={style}>{props.children}</div>
 }
 
-const Numbers = ({ maxValue = 5, value = 0, color, colorsRgb, ...props }) => {
+const Numbers = ({ maxValue = 5, value = 0, color, colorsRgb, edit = true, ...props }) => {
     const unit = (5 / maxValue) * value
     const dev = _.range(0,5).map( i => {
         const cutoff = _.clamp(unit - i, 0, 1) * 100
@@ -22,13 +22,13 @@ const Numbers = ({ maxValue = 5, value = 0, color, colorsRgb, ...props }) => {
     })
 
     return <div className={props.className}>
-        {props.decrement &&
+        {props.decrement && edit &&
             <span style={{ cursor: 'pointer' }}>
                 <FontAwesomeIcon icon={faMinusCircle} className="text-muted mr-1" onClick={props.decrement} />
             </span>
         }
         <span onClick={props.onClick}>{props.average &&<span style={{fontSize:'1.3rem'}} className='mr-2'>&#8960;</span>}{dev}</span>
-        {props.increment &&
+        {props.increment && edit &&
             <span style={{ cursor: 'pointer' }}>
                 <FontAwesomeIcon icon={faPlusCircle} className="text-muted ml-1" onClick={props.increment} />
        </span>

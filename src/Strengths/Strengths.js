@@ -8,17 +8,17 @@ const Strengths = ({match}) => {
     const LegendText = Legends.Strengths
     return (
         <div className="container-fluid">
-            <div className="card mb-4">
+            <div className="card mt-2">
                 <div className="card-body">
                     <Legend title={LegendText.Explanation.title}>
                         {LegendText.Explanation.text}
                     </Legend>
                 </div>
             </div>
-            <div className="mb-4">
+            <div className="mt-2">
                 <Rankings/>
             </div>
-            <div className="card">
+            <div className="card my-2">
                 <div className="card-body">
                     <Legend title={LegendText.Subjects.title}>{LegendText.Subjects.text}</Legend>
                 </div>

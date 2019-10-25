@@ -30,7 +30,7 @@ const asTabs = WrappedComponent => {
 
         render() {
             return (
-                <div className="p-2" style={{backgroundColor: "#e9ecef"}}>
+                <div className="py-2" style={{backgroundColor: "#e9ecef"}}>
                     <WrappedComponent selectTab={tab => this.selectTab(tab)} selectedTab={this.state.tab} {...this.props} />
                     <div className="text-nowrap animated pt-4" style={{overflow: `hidden`, backgroundColor: "white"}} >
                         <div className="animated position-relative" style={{left: `-${this.state.tab * 100}%`}}>
