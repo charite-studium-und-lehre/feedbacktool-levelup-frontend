@@ -54,7 +54,7 @@ function Consulting({ t }) {
                     <div className='col-12 col-lg-5 col-xl-4'>
                         <ConsultingCard
                             {...tree.ConsultingCard[selectCard]}
-                        />}
+                        />
                     </div>
                     <div className="col-12 col-lg-3 col-xl-4 text-center">
                         <div className="consulting-link ">
