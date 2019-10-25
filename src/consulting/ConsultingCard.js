@@ -7,7 +7,7 @@ const Infos = props => (
         <div className="col-1 icon">
             <FontAwesomeIcon icon={props.icon} />
         </div>
-        <div className="col-11">
+        <div className="col-9">
             {props.children}
         </div>
     </div>
@@ -19,10 +19,10 @@ const ConsultingCard = ({ t, ...props }) => (
                 <h3 className="text-center ">{props.title}</h3>
                 <p className="card-text">{props.paragraph}</p>
             </div>
-            <Infos icon={faAt}>
+            { props.emails && <Infos icon={faAt}>
                 {(props.emails || []).map(d =>
                     <div key={d}>{d}</div>)}
-            </Infos>
+            </Infos>}
             <Infos icon={faPhoneVolume}>
                 <span>{props.tel}</span>
             </Infos>
