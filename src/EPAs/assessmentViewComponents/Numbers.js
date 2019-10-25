@@ -2,7 +2,16 @@ import React from 'react'
 import _ from 'lodash'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons'
-import Square from './Square'
+
+const Square = props=> {
+    const defaultStyle =  {
+        height: '.6rem',
+        width: '.8rem',
+        display: 'inline-block'
+    }
+    const style = _.defaults(props.style , defaultStyle)
+    return <div className='mr-1' style={style}>{props.children}</div>
+}
 
 const Numbers = ({ maxValue = 5, ...props }) => {
     const unit = (5 / maxValue) * props.value

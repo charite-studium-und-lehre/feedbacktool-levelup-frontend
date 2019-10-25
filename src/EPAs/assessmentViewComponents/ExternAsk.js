@@ -20,13 +20,13 @@ const externAsk = ({ t, ...props }) => (
         <div className="p-2 mt-">
             <div className='row'>
                 <div className="col-12 mt-2">
-                    <div className='mb-3'>{t(`Wir senden einen Link an diese Email-Adresse, über den eine Fremdeinschätzung abgegeben werden kann.`)}</div>
+                    <div className='mb-3'>{t(`Es wird ein Link an diese Email-Adresse gesendet, über den eine Fremdeinschätzung abgegeben werden kann.`)}</div>
                     <Infos name={t(`Name Dozent/in`)} placeholder='Name'/>
                     <Infos name={t(`Email Dozent/in`)} placeholder='Email'/>
                     <Infos name={t(`Tätigkeiten/Kurs (opt)`)} placeholder='Kursname'/>
                     <Infos name={t(`Kommentar (opt)`)} placeholder='Kommentar' textarea={true}/>
                     <div className=' mt-3 pr-1 text-center'>
-                        <button className="btn btn-sm btn-secondary mt-3 " style={{width:'7rem'}} onClick={props.onClick}>senden</button>
+                        <button className="btn btn-sm btn-secondary mt-3 " style={{width:'7rem'}} onClick={props.onClick}>Senden</button>
                     </div>
                 </div>
             </div>
