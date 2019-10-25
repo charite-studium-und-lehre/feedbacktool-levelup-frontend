@@ -28,7 +28,7 @@ font-size: 1.3em
     color: rgb(34, 71, 104);
 }
 
-.consulting-card svg {
+.consulting-card .icon > svg {
     font-size: 1.3em;
     color: rgb(34, 71, 104);
 }

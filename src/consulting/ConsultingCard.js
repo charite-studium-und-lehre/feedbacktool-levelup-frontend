@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPhoneVolume, faAt, faComments, faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons'
 const Infos = props => (
     <div className="row p-0 mt-3">
-        <div className="col-1">
+        <div className="col-1 icon">
             <FontAwesomeIcon icon={props.icon} />
         </div>
         <div className="col-11">
@@ -12,10 +12,9 @@ const Infos = props => (
         </div>
     </div>
 )
-
 const ConsultingCard = ({ t, ...props }) => (
-    <div className="card col-12 with-shadow-2px ">
-        <div className="card-body">
+    <div className="card col-12 with-shadow-2px" style={{minHeight:'32rem'}}>
+        <div className="card-body px-2">
             <div className="mb-4">
                 <h3 className="text-center ">{props.title}</h3>
                 <p className="card-text">{props.paragraph}</p>
@@ -33,7 +32,7 @@ const ConsultingCard = ({ t, ...props }) => (
             <Infos icon={faComments}>
                 {props.talk.map(d => <div key={d}>{d}</div>)}
             </Infos>
-            <a className="btn btn-primary consulting-butten " href={props.href}>{t`Mehr erfahren`}</a>
+            <a className="btn btn-primary consulting-butten mt-4 " href={props.href}>{t`Mehr erfahren`}</a>
         </div>
     </div>
 )

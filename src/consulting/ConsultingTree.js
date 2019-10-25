@@ -1,3 +1,4 @@
+import React from 'react'
 
 export const ConsultingTree = t => ({
     ExternConsulting : [
@@ -13,8 +14,6 @@ export const ConsultingTree = t => ({
             title : t('Finanzielle Hilfen '),
             href : 'https://www.stw.berlin/beratung/themen/finanzelle-hilfen.html'
         },
-       
-        
         {
             title : t('Wohnungssuche'),
             href:'https://www.stw.berlin/wohnen.html#jump_wohnraumb%C3%B6rsen'
@@ -42,6 +41,10 @@ export const ConsultingTree = t => ({
         talk:[t( `Gespräch nach Terminvereinbarung)`)],
         href: 'https://medicoach.charite.de/fuer_studierende' 
     }, 
+    // {
+    //     title: 'Externe',
+    //     component: <div>Externe...</div>
+    // },
     {
         title:t(`Familienbüro`),
         paragraph:t(`Sie studieren an der Charité und betreuen Kinder? Sie suchen einen Kitaplatz? Sie pflegen Angehörige? Sie haben Fragen und benötigen Informationen rund um das Thema Vereinbarkeit von Studium und Familie?`),
