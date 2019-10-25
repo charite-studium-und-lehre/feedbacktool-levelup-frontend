@@ -27,6 +27,7 @@ GET-Aufruf ohne Parameter:
 '''
 							''"periodeText": <z.B. 'WiSe2018 Haupttermin'>,''
 							''"gesamtErgebnis": <siehe PTM-Ergebnis|MC-Ergebnis|Stations-Ergebnis>''
+							"ergebnisse"     : <einzelergebnisse, siehe "Details einer Prüfung" >,
 ''		},''
 ''	]''
 

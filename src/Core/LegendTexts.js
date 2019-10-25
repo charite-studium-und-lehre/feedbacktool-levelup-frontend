@@ -24,8 +24,8 @@ const Legends = {
                 text: <Trans>Hier kannst du sehen, wie du in den zu dieser Semesterprüfung dazugehörigen Modulen und Fächern in Vergleich zu der Kohorte abgeschnitten hast.</Trans>,
             },
             Questions: {
-                title: <Trans>MC-Fragen</Trans>,
-                text: <Trans>Hier findest du eine kurze Zusammenfassung zu deinen MC Prüfungsfragen deiner ausgewählten Fachsemesterprüfung. Schwere Fragen sind Fragen, die weniger als 40% deiner Mitstudierenden beantworten konnten. Leichte Fragen hingegen konnten mehr als 80% deiner Kommilitonen beantworten.Für mehr Details zu den einzelnen Fragen, sowie Filter und Auswertungsmöglichkeiten klick den Button</Trans>,
+                title: <Trans>Fragen und Antworten</Trans>,
+                text: <Trans>Schwere Fragen konnten weniger als 40% deiner Mitstudierenden beantworten, leichte Fragen mehr als 80%.</Trans>,
             },
             QuestionsDetails: {
                 title: <Trans>Fragen und Antworten</Trans>,
@@ -58,7 +58,7 @@ const Legends = {
         },
         Stations: {
             Main: {
-                title: <Trans>Praktische Prüfungen</Trans>,
+                title: <Trans>Ergebnisse</Trans>,
                 text: <Trans>Hier siehst du deine Ergebnisse in den bis jetzt absolvierten praktischen Prüfungen. Klicke auf die Flächen über dem Diagramm um deine Ergebnisse zu filtern. Wenn du auf die Balken im Diagramm klickst, bekommst du genauere Informationen zu der jeweiligen Station.</Trans>,
             },
         },

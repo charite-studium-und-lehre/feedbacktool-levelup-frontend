@@ -1,11 +1,13 @@
 import React from 'react'
 import SimpleBar from '../../../Charting/SimpleBar'
 import { withTranslation } from 'react-i18next'
+import { colors } from './Filters'
+
 const Answer = withTranslation()(({t, ...props}) => (
     <div className="m-1">
         <span>{props.children}</span>
         {props.richtig ? (<span className='ml-1 badge badge-success'>{t(`richtige Antwort`)}</span>) : ''}
-        {props.ausgewählt ? (<span className='ml-1 badge badge-danger'>{t(`deine Antwort`)}</span>) : ''}
+        {props.ausgewaehlt ? (<span className='ml-1 badge badge-danger'>{t(`deine Antwort`)}</span>) : ''}
     </div>
 ))
 
@@ -24,7 +26,7 @@ const Question = ({t, ...props}) =>
                     {Math.round(props.durchschnittRichtig * 100)} {t(`% haben diese Frage richtig beantwortet`)}
                 </SimpleBar>
                 <div className="text-right">
-                    { (props.tags || []).map(tag => <span className="badge badge-primary mr-1 bg-info" key={tag.label}>{ tag.label }</span> )}
+                    { (props.tags || []).map(tag => <span style={{backgroundColor: colors[0]}} className="badge badge-primary mr-1" key={tag}>{ tag }</span> )}
                 </div>
             </div>
         </div>

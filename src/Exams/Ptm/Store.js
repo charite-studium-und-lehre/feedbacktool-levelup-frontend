@@ -9,8 +9,8 @@ const baseStore = BaseStore(identifier)
 
 const findById = _.curry((id, ptms) => ptms[id])
 const findSubject = subject => _.flow([_.find({'name': subject}), _.defaultTo({})])
-const getFächer = ptm => ptm.fächer
-const getSubjects = _.flow([ getFächer ])
+const getFaecher = ptm => ptm.faecher
+const getSubjects = _.flow([ getFaecher ])
 const getSubject = subject => _.flow([ getSubjects, findSubject(subject) ])
 const getRanking = _.flow([ getSubjects, _.filter(s => s.gesamt >= minQuestions), _.sortBy(s => -s.richtig / s.gesamt) ])
 
@@ -31,7 +31,7 @@ export const selectors = baseStore.withLoadedSelector({
     getRanking,
     strongestSubject: _.flow([ getRanking, _.first ]),
     getTimeline,
-    getFächer,
+    getFaecher,
 })
 
 export const actions = baseStore.withLoadAction({})
@@ -41,4 +41,4 @@ export const reducer = combineReducers({ items: _.compose([baseStore.withSelectR
         default:
             return state
     }
-}, _.keyBy( d => d.id, _.take(2, _.values(Results))))})
+}, _.keyBy( d => d.id, _.take(1, _.values(Results))))})

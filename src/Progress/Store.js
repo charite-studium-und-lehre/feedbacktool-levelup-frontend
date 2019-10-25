@@ -19,7 +19,7 @@ export const selectors = baseStore.withLoadedSelector({
     getDashboardData: _.flow([ baseStore.getItems, _.flatMap( d => d.entries ), _.filter( isVisible ), dashboardData ]),
 })
 
-export const actions = baseStore.withLoadAction(`/studienfortschritt`)({})
+export const actions = baseStore.withLoadAction(`studienfortschritt`)({})
 
 const transform = _.flow([
     d => d.meilensteine,

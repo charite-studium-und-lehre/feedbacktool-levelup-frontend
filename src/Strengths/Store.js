@@ -3,11 +3,11 @@ import { selectors as MCSelectors, actions as MCActions } from '../Exams/MC/Stor
 import { selectors as PtmSelectors, actions as PtmActions } from '../Exams/Ptm/Store'
 
 const getData = _.flow(
-    _.over([MCSelectors.getSubjectsTotals, _.flow(PtmSelectors.getLatest, PtmSelectors.getFächer)]),
+    _.over([MCSelectors.getSubjectsTotals, _.flow(PtmSelectors.getLatest, PtmSelectors.getFaecher)]),
     _.map(_.keyBy(s => s.name)),
-    ([ mcFächer, ptmFächer ]) => {
-        const subs = _.uniq(_.keys(mcFächer).concat(_.keys(ptmFächer)))
-        return subs.map( s => ({ name: s, mc: mcFächer[s], ptm: ptmFächer[s] }))
+    ([ mcFaecher, ptmFaecher ]) => {
+        const subs = _.uniq(_.keys(mcFaecher).concat(_.keys(ptmFaecher)))
+        return subs.map( s => ({ name: s, mc: mcFaecher[s], ptm: ptmFaecher[s] }))
     },
     d => ({ data: d })
 )

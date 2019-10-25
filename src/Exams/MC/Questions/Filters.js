@@ -6,12 +6,14 @@ import Filter from '../../../Utils/Filter'
 import makeExtendable from '../../../Core/makeExtendable'
 import SlideDown from 'react-slidedown';
 
-const colors = ["hsla(210, 50%, 55%, 1)", "hsla(170, 50%, 55%, 1)", "hsla(150, 50%, 55%, 1)"]
+export const colors = ["hsla(210, 50%, 55%, .8)", "hsla(40, 50%, 55%, .8)", "hsla(150, 50%, 55%, .8)"]
 const Filters = makeExtendable(
     ({ filters, setters, ...props }) => 
     <div className="p-2">   
-        <div className="d-md-none text-right" style={{color: _.some(f => f.selected, _.flatten(filters)) ? 'red' : 'grey' }}>
-            <FontAwesomeIcon icon={faFilter} onClick={props.toggleExtended} />
+        <div className="d-md-none text-right">
+            <button className={`btn btn-sm btn-outline-${_.some(f => f.selected, _.flatten(filters)) ? 'danger' : 'secondary'}`} onClick={props.toggleExtended}>
+                Filtern <FontAwesomeIcon icon={faFilter} />
+            </button>
         </div>
         <SlideDown className="animated fast">
             {props.extended && <div>

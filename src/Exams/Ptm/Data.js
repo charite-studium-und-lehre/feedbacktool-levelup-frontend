@@ -84,7 +84,7 @@ const createResult = _.flow([
         name: timesemester.label,
         periodeCode: timesemester.value,
         short: timesemester.label.substr(0,1) + timesemester.label.substr(-2),
-        fächer: SubjectsWithNumbers(timesemester.label),
+        faecher: SubjectsWithNumbers(timesemester.label),
         zeitsemester: timesemester.label
     })
 ])

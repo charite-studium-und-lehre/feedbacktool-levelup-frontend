@@ -19,21 +19,24 @@ const Ptm = _.compose(needsData(selectors.loaded, actions.load), connect(stateTo
     return latest ? <div className="h-100" style={{minHeight: '5rem'}}>
         <Link to={`/exams/ptm/${latest.id}`}>
             <div className="h-100">
-                <div className="position-absolute pl-2" style={{fontSize: '.75rem', top: '3rem'}}>
-                    {labels.map( (l,i) => <div key={i}><span className="font-weight-bold">{l}: </span>{latest.results[i]}</div> )}
+                <div className="position-absolute pl-3" style={{fontSize: '.75rem', top: '3rem'}}>
+                    {labels.map( (l,i) => 
+                        <div key={i}>
+                            <span style={{fontSize: '1.1rem', fontWeight: 500}} className="mr-1">{latest.results[i]}</span>
+                            {l}
+                        </div>
+                    )}
                 </div>
-                <div className="d-inline-block">
-                    <LinearChart xDomain={[-.01, ptms.length - 1+.01]} yDomain={[0,Math.max(...ptms.map( d => d.results[0] ))]}>
-                        <AreaGraph color={tinycolor(color).setAlpha(.08).toString()} data={[
-                            { x: -1, y0: 0, y1: _.head(ptms).results[0] },
-                            ...ptms.map( (d, i) => ({ x: i, y0: 0, y1: d.results[0] })),
-                            { x: ptms.length, y0: 0, y1: _.last(ptms).results[0] },
-                        ]} />
-                        <LineGraph color={tinycolor(color).setAlpha(.23).toString()} data={[
-                            { x: -1, y: _.head(ptms).results[0] },
-                            ...ptms.map( (d, i) => ({ x: i, y: d.results[0], selected: d.id === latest.id })),
-                            { x: ptms.length, y: _.last(ptms).results[0] },
-                        ]} />
+                <div className="w-100 h-100">
+                    <LinearChart xDomain={[ptms.length === 1 ? -1 : 0, ptms.length - 1]} yDomain={[0,Math.max(...ptms.map( d => d.results[0] ))]}>
+                        <AreaGraph color={tinycolor(color).setAlpha(.08).toString()} data={
+                            ptms.map( (d, i) => ({ x: i, y0: 0, y1: d.results[0] }))
+                                .concat(ptms.length === 1 ? [{ x: -1, y0: 0, y1: 0 }] : [])
+                        } />
+                        <LineGraph color={tinycolor(color).setAlpha(.23).toString()} data={
+                            ptms.map( (d, i) => ({ x: i, y: d.results[0], selected: d.id === latest.id }))
+                                .concat(ptms.length === 1 ? [{ x: -1, y: 0, size: .01 }] : [])
+                        } />
                     </LinearChart>
                 </div>
             </div>

@@ -15,14 +15,18 @@ fail: HTTP-Code 404 not found
 '''
 
 {
-	"typ": "<ptm|mc|station>",
-	"studiPruefungsId": "<ID">,
-	"name": "<Bezeichnung>",
-	"periodeCode": <siehe periodeCode>,
-	"periodeText": <z.B. 'WiSe2018 Haupttermin'>,
-	"ergebnisse": <PTM-Ergebnisse|MC-Ergebnisse|Stations-Ergebnisse>
-},
+"typ": "<ptm|mc|station>",
+"studiPruefungsId": "<ID">,
+"name": "<Bezeichnung>",
+"periodeCode": <siehe periodeCode>,
+"periodeText": <z.B. 'WiSe2018 Haupttermin'>,
+"zeitsemester" <z.B. 'WiSe 2018'>
+"gesamtErgebnis": <Gesamtergebnis, exakt wie in -> "alle">
+"ergebnisse": <PTM-Ergebnisse|MC-Ergebnisse|Stations-Ergebnisse>,
+	
 '''
+
+''},''
 
 
 === MC-Ergebnisse: ===
@@ -44,7 +48,6 @@ fail: HTTP-Code 404 not found
 			'''
 			"code": "<Nummer, z.B. 'M10'>",
 			"titel": "<Name>",
-			"gruppe": "<z.B. 'Vorklinisch'>",
 			"ergebnisPunktzahl": <Punkte>,
 			"durchschnittsPunktzahl": <Kohortendurchschnitt>,
 			"maximalPunktzahl": <Anzahl Fragen>,
@@ -66,23 +69,45 @@ fail: HTTP-Code 404 not found
 			'''
 			"titel": "<Name>",
 			"ergebnisPunktzahl": <Punkte>,
+			"gruppe": "<z.B. 'Vorklinische Fächer'>",
 			"durchschnittsPunktzahl": <Kohortendurchschnitt>,
 			"maximalPunktzahl": <Anzahl Fragen>,
 			'''
 		'''
 		},
 		'''
-
-'']''
-'''
-}
-
-'''
-=== PTM-Ergebnisse: ===
-'''
-{
-'''
+	],
+	"fragen": [
 	'''
+		'''
+		{
+			"id": <Wenn es sowas gibt?>,
+			"durchschnittRichtig": <0.0 - 1.0>
+			"text": "<Fragentext als Reintext>",
+			"fach": {
+				"code": "<wie oben>",
+				"titel": "<wie oben>"
+			},
+			modul: "<Modulname als Text>",
+			"antworten": [
+			{
+				"text": <Antwort-Text mit Buchstaben "a)">,
+				"richtig": <true|false>,
+				"ausgewaehlt": <true|false>,
+				'''
+			},
+			'''
+			]
+		},
+		'''
+	],
+	'''
+	}
+	
+	'''
+	=== PTM-Ergebnisse: ===
+	'''
+	{
 	"ergebnisRichtigPunktzahl": <Punktzahl 0..200>,
 	"ergebnisFalschPunktzahl": <Punktzahl 0..200>,
 	"ergebnisWeissnichtPunktzahl": <Punktzahl 0..200>,
@@ -94,11 +119,11 @@ fail: HTTP-Code 404 not found
 	
 	"<faecher>": Array aus {
 	'''
-
+	
 			'''
 			"code": "<z.B. 'ana' für Anatomie>",
 			'''
-
+	
 			'''
 			"titel": "<Name, z.B. 'Anatomie'>",
 			"gruppe": "<z.B. 'Vorklinisch'>",
@@ -113,34 +138,32 @@ fail: HTTP-Code 404 not found
 			"durchschnittRichtigPunktzahl": <Punktzahl>,
 			"durchschnittFalschPunktzahl": <Punktzahl>,
 			'''
-
+	
 			'''
 			"durchschnittWeissnichtPunktzahl": <Punktzahl>,
 			'''
 		'''
 		},
 		'''
-
-'']''
-'''
-}
-
-'''
-=== Stations-Ergebnisse: ===
-'''
-{
-'''
-
+	
+	'']''
+	'''
+	}
+	
+	'''
+	=== Stations-Ergebnisse: ===
+	'''
+	{
+	'''
+	
 	''"ergebnisProzentzahl": <0.00 - 1.00>,''
 	''"durchschnittProzentzahl": <0.00 - 1.00>''
 	''"ergebnisse": ''
-''	Array aus: {''
+	''	Array aus: {''
 	'''
 		"modul": <?ModulCode>
 		"fach": <?FachTitel>"
-	'''
 
-	'''
 		"ergebnisProzentzahl": <0.00 - 1.00>,
 		"durchschnittProzentzahl": <0.00 - 1.00>,
 		}

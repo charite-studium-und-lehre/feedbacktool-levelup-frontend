@@ -2,7 +2,7 @@ import _ from 'lodash'
 import fp from 'lodash/fp'
 import { randomNormal, randomUniform } from 'd3-random'
 import seedrandom from 'seedrandom'
-
+import DummyQuestions from './Questions/DummyQuestions'
 import { Subjects } from '../Ptm/Data'
 
 const subjects = _.range(0,10).map(() => _.shuffle(fp.flatMap(c => c.subjects, Subjects)))
@@ -207,10 +207,29 @@ const createDetailsData = (semester, [result, dist]) => ({
         result: _.round(result[i]),
         label: `Modul ${semester * 4 - 3 + i}`
     })),
-    fächer: createSubjects(semester),
+    faecher: createSubjects(semester),
     date: new Date(2013 + parseInt(semester), 6+Math.random()*2, 15),
 })
 
-const Results = fp.keyBy(r => r.id, fp.map(semester => _.flow([createResult, _.over([ _.partial(createDetailsData, semester.value.split(".")[0]), createTotalsData, () => ({ name: semester.value, zeitsemester: semester.label, periodeCode: semester.periodeCode, format: 'mc' })]), fp.mergeAll])(semester) )(timesemesters))
+const Results = fp.keyBy(
+    r => r.id, 
+    fp.map(semester => 
+        _.flow([
+            createResult, 
+            _.over([ 
+                _.partial(createDetailsData, semester.value.split(".")[0]), 
+                createTotalsData, 
+                () => ({ 
+                    name: semester.value, 
+                    zeitsemester: semester.label, 
+                    periodeCode: semester.periodeCode, 
+                    format: 'mc',
+                    fragen: DummyQuestions(Math.round(Math.random() * 20) + 70, semester.value.split(".")[0]),
+                })
+            ]),
+            fp.mergeAll
+        ])(semester)
+    )(timesemesters)
+)
 
 export default Results
