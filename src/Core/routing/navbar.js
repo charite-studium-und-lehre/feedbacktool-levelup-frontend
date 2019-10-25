@@ -1,15 +1,10 @@
-import React from 'react';
-import {Link, NavLink, useLocation} from 'react-router-dom'
+import React from 'react'
+import {Link, NavLink} from 'react-router-dom'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faBars} from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../makeExtendable'
 import {withTranslation} from 'react-i18next'
 import Routes from "./Routes";
-
-function useSwitchRoute(props) {
-    props.toggleExtended()
-    props.whereAmI = (useLocation()).pathname
-}
 
 export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
     return (
@@ -24,12 +19,12 @@ export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
             </button>
             <div className={`collapse navbar-collapse ${props.extended && 'show'}`} id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto" onClick={props.toggleExtended}>
-                    {Routes.map((route, i) => {
-                        if (route.hasOwnProperty('menuName'))
-                            return <li className="nav-item" key={i}>
+                    {Routes.map((route, i) => 
+                        route.hasOwnProperty('menuName') && 
+                            <li className="nav-item" key={i}>
                                 <NavLink className="nav-link" to={route.path}>{t(route.menuName)}</NavLink>
                             </li>
-                    })}
+                    )}
                 </ul>
                 <div className="float-right d-none d-lg-block" style={{cursor: 'pointer'}}>
                     Willkommen Sabine

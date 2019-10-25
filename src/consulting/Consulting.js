@@ -43,9 +43,9 @@ function Consulting({ t }) {
                     <div className='col-12 col-lg-4'>
                         <ul className="list-group list-group-flush">
                             {tree.ConsultingCard.map((e, i) =>
-                                <li className="extern-link text-center list-group-item px-2" style={{ backgroundColor: `${i == selectCard ? ' rgb(34, 71, 104, 0.6)' : ''}`, color: `${i == selectCard ? 'white' : ''}` }} onClick={() => setCard(i)}>{e.title}
+                                <li key={i} className="extern-link text-center list-group-item px-2" style={{ backgroundColor: `${i === selectCard ? ' rgb(34, 71, 104, 0.6)' : ''}`, color: `${i === selectCard ? 'white' : ''}` }} onClick={() => setCard(i)}>{e.title}
                                     <span className='float-right' style={{ color: 'red' }}>
-                                        <FontAwesomeIcon icon={i == selectCard ? faChevronDown : faChevronRight} color={i == selectCard ? 'white ' : 'rgb(34, 71, 104)'} />
+                                        <FontAwesomeIcon icon={i === selectCard ? faChevronDown : faChevronRight} color={i === selectCard ? 'white ' : 'rgb(34, 71, 104)'} />
                                     </span>
                                 </li>
                             )}

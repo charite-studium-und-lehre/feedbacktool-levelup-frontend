@@ -2,12 +2,6 @@ import React from 'react'
 import {Trans} from 'react-i18next'
 import Numbers from '../EPAs/assessmentViewComponents/Numbers'
 import Video from '../EPAs/static/EPAsVideo'
-import {faEnvelope, faMinus, faPlus} from "@fortawesome/free-solid-svg-icons"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import _ from "lodash";
-import {colors} from "../EPAs/assessmentViewComponents/Score";
-import {SlideDown} from "react-slidedown";
-import ExternAssessingWithValue from "../EPAs/assessmentViewComponents/ExternAssessingValue";
 
 const Legends = {
     Exams: {

@@ -1,7 +1,6 @@
 
 import React from 'react'
 import "./login.css"
-import DataProtection from './DataProtection'
 import { Link } from 'react-router-dom'
 import { withTranslation } from 'react-i18next'
 import makeExtendable from '../Core/makeExtendable'
