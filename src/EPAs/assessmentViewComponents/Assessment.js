@@ -1,13 +1,12 @@
 import React, {useState} from 'react'
-import {withTranslation} from 'react-i18next'
 import SlideDown from 'react-slidedown'
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMailBulk, faEnvelope} from '@fortawesome/free-solid-svg-icons'
 
 import ExternAsk from './ExternAsk'
 import ExternAssessing from './ExternAssessing'
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-export default withTranslation()(({t, ...props}) => {
+export default (props) => {
 
     const Button = (props) =>
         <div className={` ${props.className || ''}`}>
@@ -24,11 +23,11 @@ export default withTranslation()(({t, ...props}) => {
         <div className="row ">
             <div className="col">
                 <Button icon={faMailBulk} active={extended === 1}
-                        onClick={() => toggle(1)}>{t(`Erhaltene Fremdbewertungen`)}</Button>
+                        onClick={() => {toggle(1); props.resetFilter();}}>Erhaltene Fremdbewertungen</Button>
             </div>
             <div className="col">
                 <Button className="float-md-right" icon={faEnvelope} active={extended === 2}
-                        onClick={() => toggle(2)}>{t(`Fremdbewertung einfordern`)}</Button>
+                        onClick={() => toggle(2)}>Fremdbewertung einfordern</Button>
             </div>
         </div>
         <SlideDown className="animated fast p-2">
@@ -38,5 +37,4 @@ export default withTranslation()(({t, ...props}) => {
             {extended === 2 && <ExternAsk onClick={props.toggleExtended}/>}
         </SlideDown>
     </div>
-})
-
+}

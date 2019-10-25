@@ -11,19 +11,22 @@ const stateToProps = state => ({filter: selectors.getFilter(state), root: select
 
 const Title = connect((state, ownProps) => ({entry: selectors.getItemById(state, ownProps.entryId)}))(props => props.entry.label)
 
-const AssessmentsView = _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps)])(({root}) => {
-  return <div className="card mt-2">
-        <Assessment/>
-        <Tabs inactiveColor="#e9ecef">
-            {root.entries.map(e =>
-                <div key={e} title={
-                    <Title entryId={e}/>
-                }>
-                    <Item entryId={e}/>
-                </div>
-            )}
-        </Tabs>
-    </div>
-})
+const AssessmentsView = _.compose([
+    needsData(selectors.loaded, actions.load),
+    connect(stateToProps, {resetFilter: () => actions.setFilter(null)})])(
+    ({root, resetFilter}) => {
+        return <div className="card mt-2">
+            <Assessment resetFilter={resetFilter}/>
+            <Tabs inactiveColor="#e9ecef">
+                {root.entries.map(e =>
+                    <div key={e} title={
+                        <Title entryId={e}/>
+                    }>
+                        <Item entryId={e}/>
+                    </div>
+                )}
+            </Tabs>
+        </div>
+    })
 
 export default () => <AssessmentsView/>
