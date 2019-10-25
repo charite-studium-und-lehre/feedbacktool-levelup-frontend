@@ -1,5 +1,5 @@
 import React from 'react'
-import { ExternAssessing } from './Data'
+import { ExternAssessing } from '../static/Data'
 import Numbers from './Numbers'
 
 const ExternAssessingWithValue = props =>

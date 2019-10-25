@@ -10,8 +10,8 @@ const Strengths = ({ match }) => {
     <div className="container-fluid">
         <div className="row">
             <div className="col">
-                <Legend title={LegendText.Main.title}>
-                {LegendText.Main.text}
+                <Legend title={LegendText.Explanation.title}>
+                {LegendText.Explanation.text}
                 </Legend>
             </div>
         </div>

@@ -1,8 +1,7 @@
 import React from 'react'
 import { Trans } from 'react-i18next'
-import Numbers from '../EPAs/Numbers'
-import { faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons'
-import {Button} from '../EPAs/Toolbar'
+import Numbers from '../EPAs/assessmentViewComponents/Numbers'
+import Video from '../EPAs/static/EPAsVideo'
 
 const Legends = {
     Exams: {
@@ -57,14 +56,14 @@ const Legends = {
             },
         },
         Stations: {
-            Main: {
+            Explanation: {
                 title: <Trans>Ergebnisse</Trans>,
                 text: <Trans>Hier siehst du deine Ergebnisse in den bis jetzt absolvierten praktischen Prüfungen. Klicke auf die Flächen über dem Diagramm um deine Ergebnisse zu filtern. Wenn du auf die Balken im Diagramm klickst, bekommst du genauere Informationen zu der jeweiligen Station.</Trans>,
             },
         },
     },
     Strengths: {
-        Main: {
+        Explanation: {
             title: <Trans>Deine Stärken und Schwächen</Trans>,
             text: <Trans i18nKey="strengths.main.text">
                 <p>Auf dieser Seite findest du eine Übersicht zu deinen stärkeren und schwächeren Fächern in den Semesterprüfungen und dem PTM. Die Auswertung basiert auf den Ergebnissen aller zurückliegenden Semesterprüfungen und dem Ergebnis des aktuellen PTMs.</p>
@@ -92,8 +91,8 @@ const Legends = {
         },
     },
     EPAs: {
-        Main: {
-            title: <Trans>Mein Level</Trans>,
+        Explanation: {
+            title: <Trans>Ärztliche Tätigkeiten (EPAs)</Trans>,
             text: <Trans>
                 <div>
                     Video: <a className="btn btn-info" href="https://levelup.charite.de/videos/epa_2019.mp4">Was sind EPAs?</a>
@@ -112,10 +111,29 @@ const Legends = {
                 <strong className=' d-block mt-2'>Bitte um eine Fremdeinschätzung</strong>
                 <div>
                     Es ist zudem möglich, Fremdeinschätzungen ("Wird mir zugetraut") von deinen Lehrenden/ Ärzt*innen
-                    einzuholen. Hierfür klickst du auf diesen Button
-                       <Button className='d-inline-block mx-1' icon={faEnvelopeOpenText}>
-                    Fremdbewertung einfordern</Button>und kannst die E-Mail-Adresse deines Dozierenden eingeben und eine Einladung senden. Unter der E-Mail-Funktion siehst du alle bisherigen Fremdeinschätzungen.</div>
+                    einzuholen. Hierfür klickst du auf "Fremdbewertung einfordern" und kannst die E-Mail-Adresse deines
+                    Dozierenden eingeben und eine Einladung senden. Unter der E-Mail-Funktion siehst du alle bisherigen Fremdeinschätzungen.</div>
             </Trans>
+        },
+        CheatSheetCard:{
+            levels:{
+                title: <Trans>Level der Eigenständigkeit</Trans>,
+                text: ['keine Ausführung',
+                    'gemeinsam mit dem Arzt',
+                    'unter Beobachtung des Arztes',
+                    'eigenständig, alles/vieles wird nachgeprüft (Arzt auf Station',
+                    'eigenständig, Wichtiges wird nachgeprüft (Arzt auf Station)',
+                    'eigenständig, Wichtiges wird nachgeprüft (Arzt nur telefonisch erreichbar)'
+                ].map((e, d) =>
+                    <div key={d}>
+                        <div>{`${d} - ${e}`}</div>
+                        <Numbers color="hsl(161, 100%, 25%)" colorsRgb="hsl(161, 100%, 25%, .2)" value={d} />
+                    </div>)
+            },
+            video:{
+                title: <Trans>Video: Was sind EPAs?</Trans>,
+                text: <Trans><Video/></Trans>
+            }
         }
     },
     DatenProtection: {

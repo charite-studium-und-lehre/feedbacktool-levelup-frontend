@@ -1,6 +1,6 @@
 import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
-import initialState from './Data'
+import initialState from './static/Data'
 import BaseStore from '../Core/BaseStore'
 
 const storeIdentifier = 'epas'

@@ -30,9 +30,9 @@ const asTabs = WrappedComponent => {
 
         render() {
             return (
-                <div>
+                <div className="p-2" style={{backgroundColor: "#e9ecef"}}>
                     <WrappedComponent selectTab={tab => this.selectTab(tab)} selectedTab={this.state.tab} {...this.props} />
-                    <div className="text-nowrap animated" style={{overflow: 'hidden'}} >
+                    <div className="text-nowrap animated pt-4" style={{overflow: `hidden`, backgroundColor: "white"}} >
                         <div className="animated position-relative" style={{left: `-${this.state.tab * 100}%`}}>
                         {React.Children.map(this.props.children, (tc, i) =>
                             <div className="align-top w-100 d-inline-block" key={i} style={{whiteSpace: 'normal', height: 0}} ref={i === this.state.tab ? this.activeTab : null}>{tc}</div>
@@ -45,10 +45,12 @@ const asTabs = WrappedComponent => {
 }
 
 export default asTabs(props =>
-    <ul className="nav nav-pills pb-3" role="tablist">
+    <ul className="nav nav-pills" role="tablist">
         {React.Children.map(props.children, (child, i) =>
-            <li key={i} className="nav-item border" onClick={() => props.selectTab(i)}>
-                <span className={`nav-link ${props.selectedTab === i ? 'active' : ''}`} data-toggle="pill" role="tab">{child.props.title}</span>
+            <li key={i} className="nav-item" onClick={() => props.selectTab(i)}>
+                <span className={`nav-link ${props.selectedTab === i ? 'active bg-white' : 'bg-grey'}`} data-toggle="pill" role="tab">
+                    {child.props.title}
+                </span>
             </li>
         )}
     </ul>

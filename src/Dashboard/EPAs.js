@@ -2,7 +2,7 @@ import React from 'react'
 import { withTranslation } from 'react-i18next'
 import needsData from '../Core/needsData'
 import { selectors, actions } from '../EPAs/Store'
-import EPAsScore from '../EPAs/Score'
+import EPAsScore from '../EPAs/assessmentViewComponents/Score'
 import DashboardCard from './DashboardCard'
 
 const EPAs = needsData(
