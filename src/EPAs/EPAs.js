@@ -9,6 +9,7 @@ const EPAs = () => (
         <div className="row position-relative">
             <div className="col-lg-9 mb-2">
                 <Explanation/>
+                <div className="d-lg-none"><CheatSheetCard extendet="false"/></div>
                 <AssessmentsView/>
             </div>
             <div className="col-lg-3 d-none d-lg-block sticky-top">
