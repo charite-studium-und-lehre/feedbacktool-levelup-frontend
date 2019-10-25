@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {selectors, actions} from './Store'
+import {selectors, actions} from '../Store'
 
 const stateToProps = state => ({ assessments: selectors.getAssessments(state), selected: selectors.getFilter(state) })
 export default connect(stateToProps, actions)(({ assessments, selected, setFilter }) => {

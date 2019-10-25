@@ -1,6 +1,6 @@
 import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
-import initialEpas, { ExternAssessing as initialAssessments } from './Data'
+import initialEpas, { ExternAssessing as initialAssessments } from './static/Data'
 import BaseStore from '../Core/BaseStore'
 import { backendUrl } from '../Utils/Constants'
 

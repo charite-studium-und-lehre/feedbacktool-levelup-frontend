@@ -1,5 +1,5 @@
 import { selectors } from './Store'
-import initialStore from './Data'
+import initialStore from './static/Data'
 
 describe('getItemById ', () => {
     it('returns root entry if no id is given', () => {

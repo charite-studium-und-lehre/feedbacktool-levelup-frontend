@@ -21,7 +21,7 @@ const Stations = ({ t, data, groupFilters, setGroupFilters }) => {
 
     const [ categoryFilters, setCategoryFilters ] = useState( categories.map(c => ({label: c, pred: d => d.category === c , selected: true, color: categoryColors(c) })) )
 
-    const LegendText = Legends.Exams.Stations.Main
+    const LegendText = Legends.Exams.Stations.Explanation
     const filteredData = _.filter(_.overSome(groupFilters.filter(f => f.selected).map(f => f.pred)), data)
         .map(e => ({...e, stations: e.stations
             .filter(_.overSome(categoryFilters.filter(f => f.selected).map(f => f.pred)))
