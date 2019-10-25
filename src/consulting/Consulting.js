@@ -28,40 +28,30 @@ function Consulting({ t }) {
                             </div>
                         </div>
                     </div>
-                    {/* <div className="col-lg-2 col-sm-6 ">
-                        <div className="consulting-link">
-                            <ul className="list-group list-group-flush ">
-                                <h4 className="text-center mb-4">{t(`Externe Angebote`)}</h4>
-                                {tree.ExternConsulting.map((d, i)=> <a className="extern-link text-center list-group-item" key={i} href={d.href}>{d.title}</a>)}
-                            </ul>
-                        </div>
-                    </div> */}
+
                 </div>
             </div>
             <div className="consulting-card mt-5 pb-5">
                 <div className='row'>
-                    <div className='col-12 col-lg-4'>
-                        <ul className="list-group list-group-flush">
-                            {tree.ConsultingCard.map((e, i) =>
-                                <li className="extern-link text-center list-group-item px-2" style={{ backgroundColor: `${i == selectCard ? ' rgb(34, 71, 104, 0.6)' : ''}`, color: `${i == selectCard ? 'white' : ''}` }} onClick={() => setCard(i)}>{e.title}
-                                    <span className='float-right' style={{ color: 'red' }}>
-                                        <FontAwesomeIcon icon={i == selectCard ? faChevronDown : faChevronRight} color={i == selectCard ? 'white ' : 'rgb(34, 71, 104)'} />
-                                    </span>
-                                </li>
-                            )}
-                        </ul>
-                    </div>
-                    <div className='col-12 col-lg-5 col-xl-4'>
-                        <ConsultingCard
-                            {...tree.ConsultingCard[selectCard]}
-                        />
-                    </div>
-                    <div className="col-12 col-lg-3 col-xl-4 text-center">
-                        <div className="consulting-link ">
-                            <ul className="list-group list-group-flush ">
-                                <h4 className="text-center mb-4">{t(`Externe Angebote`)}</h4>
-                                {tree.ExternConsulting.map((d, i) => <a className="extern-link text-center list-group-item py-3" key={i} href={d.href}>{d.title}</a>)}
-                            </ul>
+                    <div className='col-12 col-lg-12 col-xl-9 mx-auto'>
+                        <div className='row'>
+                            <div className='col-12 col-lg-6'>
+                                <ul className="list-group list-group-flush">
+                                    {tree.ConsultingCard.map((e, i) =>
+                                        <li className="extern-link text-center list-group-item px-2" style={{ backgroundColor: `${i == selectCard ? ' rgb(34, 71, 104, 0.6)' : ''}`, color: `${i == selectCard ? 'white' : ''}` }} onClick={() => setCard(i)}>{e.title}
+                                            <span className='float-right' style={{ color: 'red' }}>
+                                                <FontAwesomeIcon icon={i == selectCard ? faChevronDown : faChevronRight} color={i == selectCard ? 'white ' : 'rgb(34, 71, 104)'} />
+                                            </span>
+                                        </li>
+                                    )}
+                                </ul>
+                            </div>
+                            <div className='col-12 col-lg-5 col-xl-6'>
+                                {tree.ConsultingCard[selectCard].component || <ConsultingCard
+                                    {...tree.ConsultingCard[selectCard]}
+                                />}
+                            </div>
+
                         </div>
                     </div>
                 </div>

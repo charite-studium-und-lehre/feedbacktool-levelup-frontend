@@ -1,4 +1,5 @@
 import React from 'react'
+import ExternConsulting from './ExternConsulting'
 
 export const ConsultingTree = t => ({
     ExternConsulting : [
@@ -40,10 +41,10 @@ export const ConsultingTree = t => ({
         talk:[t( `Gespräch nach Terminvereinbarung)`)],
         href: 'https://medicoach.charite.de/fuer_studierende' 
     }, 
-    // {
-    //     title: 'Externe',
-    //     component: <div>Externe...</div>
-    // },
+    {
+        title: 'Externe Angebote',
+        component: <ExternConsulting/>
+    },
     {
         title:t(`Familienbüro`),
         paragraph:t(`Sie studieren an der Charité und betreuen Kinder? Sie suchen einen Kitaplatz? Siepflegen Angehörige? Sie haben Fragen und benötigen Informationen rund um dasThema Vereinbarkeit von Studium und Familie?`),

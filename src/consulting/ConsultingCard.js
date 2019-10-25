@@ -16,7 +16,7 @@ const ConsultingCard = ({ t, ...props }) => (
     <div className="card col-12 with-shadow-2px" style={{minHeight:'32rem'}}>
         <div className="card-body px-2">
             <div className="mb-4">
-                <h3 className="text-center ">{props.title}</h3>
+                <h3 className="text-center">{props.title}</h3>
                 <p className="card-text">{props.paragraph}</p>
             </div>
             { props.emails && <Infos icon={faAt}>
