@@ -1,3 +1,4 @@
+import React from 'react'
 
 export const ConsultingTree = t => ({
     ExternConsulting : [
@@ -13,8 +14,6 @@ export const ConsultingTree = t => ({
             title : t('Finanzielle Hilfen '),
             href : 'https://www.stw.berlin/beratung/themen/finanzelle-hilfen.html'
         },
-       
-        
         {
             title : t('Wohnungssuche'),
             href:'https://www.stw.berlin/wohnen.html#jump_wohnraumb%C3%B6rsen'
@@ -36,17 +35,19 @@ export const ConsultingTree = t => ({
     {
         title:t(`MediCoach`),
         paragraph:t(`MediCoach bietet  Ihnen ein individuelles, kostenloses, lösungsorientiertes Coaching zur Unterstützung stressbelasteter Studierender im Rahmen Ihres Studiums an der Charité Universitätsmedizin Berlin an. Neben Einzelcoachings können Sie auch in einer in jedem Semester angebotenen Coachinggruppe gemeinsam mit Ihren Kommiliton*innen Lösungen für Probleme im Studium entwickeln.`),
-        names:["Dipl.-Soz. Silke Boehm","Dipl.-Soz. Sylvie Tappert"],
         tel:" +49 30 450 529189",
         emails:["medicoach@charite.de"],
         address:"Luisenstr 57 CCM ",
         talk:[t( `Gespräch nach Terminvereinbarung)`)],
         href: 'https://medicoach.charite.de/fuer_studierende' 
     }, 
+    // {
+    //     title: 'Externe',
+    //     component: <div>Externe...</div>
+    // },
     {
         title:t(`Familienbüro`),
         paragraph:t(`Sie studieren an der Charité und betreuen Kinder? Sie suchen einen Kitaplatz? Sie pflegen Angehörige? Sie haben Fragen und benötigen Informationen rund um das Thema Vereinbarkeit von Studium und Familie?`),
-        names:[`Sabine Barleben ${t`(Leitung)`}`,`Stefanie Schmidt ${t`(Sekretariat)`}`],
         tel:"+49 030 450 577 257",
         emails:["familienbuero@charite.de",`${t`Väterbeauftragte`}: vaeterbeauftragte@charite.de`],
         address: "Westring 1, 1. Etage, R1.1011 CVK",
@@ -56,7 +57,6 @@ export const ConsultingTree = t => ({
    {
         title:"ChiC",
         paragraph:t(`ChiC bietet Informationen und Unterstützung rund um die Themen Studieren im Ausland bzw. aus dem Ausland und Unterstützung von internationalen Studierenden in Berlin.`),
-        names:[`Lutz Steiner ${t`(Leitung)`}`,"Marta Gogluska-Obirek (Erasmus outgoing Students)","Angelika Cernitori (Eramus incoming students)" ],
         tel:`+49 30 450 576 088 (Lutz Steiner, ${t`Leitung`}`,
         emails:["erasmixpaten@charite.de" ,"Reinhardtstr. 58, CCM"],
         talk:[t(`Sprechzeiten nach Terminvereinbarung`)],
@@ -65,7 +65,6 @@ export const ConsultingTree = t => ({
    {
         title:"Peer Mentoring",
         paragraph: t(`Das Peer-Mentoring-Programm richtet sich an Studienanfängerinnen und -anfänger im ersten und zweiten Semester und soll der Orientierung am Studienbeginn dienen. Hierzu finden regelmäßige Treffen zwischen Mentor bzw. Mentorin und Mentees statt.`),
-        names:["Pinkus Tober-Lau"],
         tel:"+49 30 450 577 259",
         address:"Virchowweg 24, Aufgang B, 2. Etage, R02.002, CCM",
         talk:[t(`Sprechzeiten nach Terminvereinbarung`)],
@@ -74,7 +73,6 @@ export const ConsultingTree = t => ({
    {
         title:t(`Student Mentoring`),
         paragraph:t(`Das Team des Mentoringprogramms unterstützt Studierende der Charité – Universitätsmedizin Berlin, ihr Studium erfolgreich und zielstrebig zu absolvieren. Im Mentoringprogramm werden Studierenden engagierte Ärztinnen und Ärzte als Mentor*innen vermittelt.`),
-        names:[t`Petra Meinhardt (Leitung), Leonie Kühn und Emma Kula (Organisation)`],
         tel:"+49 30 450 576 091",
         emails:["studentmentoring@charite.de" ],
         address:"Hannoversche Straße 19, 3. Etage, CCM",
@@ -84,7 +82,6 @@ export const ConsultingTree = t => ({
    {
         title:t(`Referat für Studienangelegenheiten`),
         paragraph:t(`Hier erhalten Sie Informationen und Beratung zu allen allgemeinen und organisatorischen Fragen in puncto Studium.`),
-        names:[t(`Petra Meinhardt (Leitung)`)],
         tel:"+49 30 450 576 042 ",
         emails:["petra.meinhardt@charite.de" ],
         address:"Hannoversche Str. 19, 3.OG",
@@ -94,7 +91,6 @@ export const ConsultingTree = t => ({
    {
         title:t(`Frauen- und Gleichstellungsbeauftragte`),
         paragraph:t(`Hier werden Sie aktuell über alle wichtigen Aktivitäten, Maßnahmen und Veranstaltungen informiert, die für die Gleichstellung von Frauen und Männern an der Charité unternommen werden. Unsere Handlungsfelder sind dabei sehr breit gefächert und umfassen Themen wie Karriereplanung, Diversity oder Vereinbarkeit von Familie und Beruf`),
-        names:[t(`Dr. Christine Kurmeyer","Sekretariat: Stefanie Schmidt `)],
         tel:"+49 30 450 577 252",
         address:"Westring 1, CVK",
         talk:[t(`Sprechzeiten nach Terminvereinbarung`)],
@@ -103,7 +99,6 @@ export const ConsultingTree = t => ({
    {
         title:t(`Geschäftsstelle für gute wissenschaftliche Praxis`),
         paragraph:t(`Die Geschäftsstelle Gute wissenschaftliche Praxis berät bei methodischen Fragen, beispielsweise bei Fragen der Datenerhebung, Bildbearbeitung und der statistischen Auswertung, oder vermittelt den Kontakt zu Expertinnen und Experten die weiterhelfen.`),
-        names:["Claudia Mathan"],
         tel:"+49 30 450 576 056",
         emails:["gwp@charite.de", ],
         talk:[t(`Sprechzeiten nach Terminvereinbarung`)],
@@ -112,7 +107,6 @@ export const ConsultingTree = t => ({
    {
     title:t(`Fachschaft Initiative Medizin(FSI Medizin)`),
     paragraph:t(`Die Fachschaftsinitiative ist die Interessenvertretung der Medizinstudierenden an der Charité Universitätsmedizin Berlin. Unter dem Dach der FSI arbeiten zahlreiche Arbeitsgruppen. Darüber hinaus ist die FSI in nahezu allen Gremien an der Charité vertreten.`) ,
-    names:["Stella Berboth, Theodor Kempe"],
     tel:"+49 30 450 576050",
     emails:["sprecher@fsi-charite.de" ],
     address:"Philippstraße 12, “Hexenhaus”, CCM",

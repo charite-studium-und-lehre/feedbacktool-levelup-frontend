@@ -1,72 +1,42 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPhoneVolume, faAt, faUser, faComments, faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons'
-
-const ConsultingCard = ({t, ...props}) =>  (
-    <div className="card col-lg-4 col-sm-6  ">
-        <div className="card-body">
-            <h2 className="card-title text-center ">{props.title}</h2>
-            <div className="consulting-paragraph">
-                <p className="card-text">{props.paragraph}</p>
-            </div>
-            <div className="consulting-info">
-                <h4>{t(`Ansprechpartnerin / Ansprechpartner `)}</h4>
-                <div className="row">
-                    <div className="col-md-12">
-                        <div className="icon">
-                            <FontAwesomeIcon icon={faUser} />
-                        </div>
-                        <div className="info">
-                            {props.names.map(d => <div key={d}>{d}</div>)}
-                        </div>
-                    </div>
-                    {
-                        (props.emails || []).map(d =>
-                            <div className="col-md-12" key={d} >
-                                <div className="icon">
-                                    <FontAwesomeIcon icon={faAt} />
-                                </div>
-                                <div className="info">
-                                    <div className="email1">{d}</div>
-                                </div>
-                            </div>
-                        )
-                    }
-                    <div className="col-md-12">
-                        <div className="icon">
-                            <FontAwesomeIcon icon={faPhoneVolume} />
-                        </div>
-                        <div className="info">
-                            <span>{props.tel}</span>
-                        </div>
-                    </div>
-                    {props.address && <div className="col-md-12">
-                         <div className="icon">
-                            <FontAwesomeIcon icon={faMapMarkedAlt} />
-                        </div>
-                        <div className="info">
-                            <span>{props.address}</span>
-                       </div> 
-                    </div> }
-                    <div className="col-md-12">
-                        <div className="icon">
-                            <FontAwesomeIcon icon={faComments} />
-                        </div>
-                        <div className="info">
-                            {props.talk.map(d => <div key={d}>{d}</div>)}
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
+import { faPhoneVolume, faAt, faComments, faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons'
+const Infos = props => (
+    <div className="row p-0 mt-3">
+        <div className="col-1 icon">
+            <FontAwesomeIcon icon={props.icon} />
         </div>
-        <a className="btn btn-primary consulting-butten " href={props.href}>{t`Mehr erfahren`}</a>
+        <div className="col-11">
+            {props.children}
+        </div>
     </div>
 )
-  export default withTranslation()(ConsultingCard)
+const ConsultingCard = ({ t, ...props }) => (
+    <div className="card col-12 with-shadow-2px" style={{minHeight:'32rem'}}>
+        <div className="card-body px-2">
+            <div className="mb-4">
+                <h3 className="text-center ">{props.title}</h3>
+                <p className="card-text">{props.paragraph}</p>
+            </div>
+            <Infos icon={faAt}>
+                {(props.emails || []).map(d =>
+                    <div key={d}>{d}</div>)}
+            </Infos>
+            <Infos icon={faPhoneVolume}>
+                <span>{props.tel}</span>
+            </Infos>
+            {props.address && <Infos icon={faMapMarkedAlt}>
+                <span>{props.address}</span>
+            </Infos>}
+            <Infos icon={faComments}>
+                {props.talk.map(d => <div key={d}>{d}</div>)}
+            </Infos>
+            <a className="btn btn-primary consulting-butten mt-4 " href={props.href}>{t`Mehr erfahren`}</a>
+        </div>
+    </div>
+)
+export default withTranslation()(ConsultingCard)
 
 
 
