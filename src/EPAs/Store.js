@@ -9,8 +9,8 @@ const url = 'epas'
 export const identifier = storeIdentifier
 
 const baseStore = BaseStore(storeIdentifier)
-const getItemById = _.curry((state, id) => baseStore.getItems(state)[id])
-const getLeavesById = state => _.flow([ getItemById(state), getLeaves(state) ])
+const getById = _.curry((state, id) => baseStore.getItems(state)[id])
+const getLeavesById = state => _.flow([ getById(state), getLeaves(state) ])
 const getLeaves = state => entry => entry.entries.length ? _.flatMap( getLeavesById(state) )(entry.entries) : [entry]
 
 const getAssessments = state => _.values(baseStore.getStore(state).assesments)
@@ -22,7 +22,7 @@ const visible = state => _.flow([ getFilteredExternals(state), d => d.length ])
 const addVisible = state => entry => _.flow([ getLeaves(state), _.some( visible(state) ), visible => ({ ...entry, visible }) ])(entry)
 
 const getScore = (state, id, prop) => _.flow([ getLeavesById(state), _.map(prop), _.sum])(id)
-const getExternals = (state, id) => _.flow([ getItemById, e => getFilteredExternals(state)(e), _.defaultTo([]) ])(state, id)
+const getExternals = (state, id) => _.flow([ getById, e => getFilteredExternals(state)(e), _.defaultTo([]) ])(state, id)
 const addAssessment = _.flow([ getAssessments, as => _.map( e => ({ ...e, ...as.find( a => a.id === e.id ) })) ])
 const getLatest = _.flow([ _.sortBy( e => -e.datum ), _.head  ])
 
@@ -48,7 +48,7 @@ const getExternalScore = (state, id) =>
 const getMaxScore = (state, id) => _.flow([ getLeavesById(state), leaves => leaves.length * 5 ])(id)
 
 export const selectors = baseStore.withLoadedSelector({
-	getItemById: (state, id) => _.flow([ getItemById, addVisible(state) ])(state, id),
+	getById: (state, id) => _.flow([ getById, addVisible(state) ])(state, id),
 	getItemByLabel: (state, label) => _.find(e => e.label === label, baseStore.getItems(state)),
 	getScore,
 	getMaxScore,
@@ -58,37 +58,34 @@ export const selectors = baseStore.withLoadedSelector({
 	getAssessments,
 })
 
-const propTranslations = { done: 'gemacht', confident: 'zutrauen' }
-const callChangeLevel = id => dispatch => {
+const callChangeLevel = (id, newData, oldData) => dispatch => {
+	const reverse = () => dispatch({ type: `${identifier.toUpperCase()}_SET`, payload: { id, value: oldData }})
 	fetch(`${backendUrl}/${url}/${id}`, {
 		credentials: 'include',
 		method: 'POST',
-		body: JSON.stringify({})
+		body: JSON.stringify({ gemacht: newData.done, zutrauen: newData.confident })
 	})
-	.catch( err => dispatch({ type: `${identifier.toUpperCase()}_SET}`, payload: err }))
-	dispatch({ type: `${identifier.toUpperCase()}_SET}`, payload: { id }})
+	.then( result => result.status !== 200 && reverse() )
+	.catch( err => reverse())
+	dispatch({ type: `${identifier.toUpperCase()}_SET`, payload: { id, value: newData }})
 }
 
+const level = newData => epa => callChangeLevel(epa.id, newData(epa), { done: epa.done, confident: epa.confident })
 export const actions = baseStore.withLoadAction(`${url}`)({
 	setFilter: id => ({ type: `${identifier.toUpperCase()}_SET_FILTER`, payload: { id }}),
-	levelUpDone: callChangeLevel('done', 'erhoehen'),
-	levelDownDone:callChangeLevel('done', 'erhoehen'),
-	levelUpConfident: callChangeLevel('confident', 'erhoehen'),
-	levelDownConfident: id => ({ type: `${identifier.toUpperCase()}_SET`, payload: { id }}),
+	levelUpDone: level(epa => ({ done: epa.done + 1, confident: epa.confident })),
+	levelDownDone: level(epa => ({ done: epa.done - 1, confident: epa.confident })),
+	levelUpConfident: level(epa => ({ done: epa.done, confident: epa.confident + 1 })),
+	levelDownConfident: level(epa => ({ done: epa.done, confident: epa.confident - 1 })),
 })
 
-const level = (state, id, p, val) => {
-	const entry = _.clone(state[id])
-	entry[p] = Math.min(Math.max(entry[p] + val, 0), 5)
-	return {...state, [id]: entry }
-}
 
 const filter = (state = null, action) => {
 	switch (action.type) {
 		case `${identifier.toUpperCase()}_SET_FILTER`:
-			return action.payload.id
+		return action.payload.id
 		default:
-			return state
+		return state
 	}
 }
 
@@ -100,23 +97,23 @@ const transformAssessments = _.flow([
 const assesments = (state = {}, action) => {
 	switch(action.type) {
 		case `${identifier.toUpperCase()}_DATA_FETCHED`:
-			return transformAssessments(action.payload)
+		return transformAssessments(action.payload)
 		default:
-			return state
+		return state
 	}
 }
 
 const addEntries = epas =>
-	_.map( epa => ({
-		...epa,
-		entries: epas.filter( e => e.parentId === epa.id ).map( epa => epa.id )
-	}))(epas)
+_.map( epa => ({
+	...epa,
+	entries: epas.filter( e => e.parentId === epa.id ).map( epa => epa.id )
+}))(epas)
 
 const addRootElement = epas => 
-	_.concat([{ 
-		label: 'root', 
-		entries: epas.filter( epa => epa.parentId === null ).map( epa => epa.id )
-	}])(epas)
+_.concat([{ 
+	label: 'root', 
+	entries: epas.filter( epa => epa.parentId === null ).map( epa => epa.id )
+}])(epas)
 
 const transform = _.flow([
 	d => d.meineEPAs,
@@ -132,20 +129,16 @@ const transform = _.flow([
 	_.keyBy( epa => epa.id )
 ])
 
+const setEpa = (state, {id, value}) => ({...state, [id]: { ...state[id], ...value }})
+
 function epasReducer(state = {undefined: {label: 'root', entries: []}}, action) {
 	switch (action.type) {
 		case `${identifier.toUpperCase()}_DATA_FETCHED`:
 			return transform(action.payload)
 		case `${identifier.toUpperCase()}_DATA_FETCH_FAILED`:
 			return initialEpas
-		case `${identifier.toUpperCase()}_LEVEL_UP_DONE`:
-			return level(state, action.payload.id, 'done', 1)
-		case `${identifier.toUpperCase()}_LEVEL_DOWN_DONE`:
-			return level(state, action.payload.id, 'done', -1)
-		case `${identifier.toUpperCase()}_LEVEL_UP_CONFIDENT`:
-			return level(state, action.payload.id, 'confident', 1)
-		case `${identifier.toUpperCase()}_LEVEL_DOWN_CONFIDENT`:
-			return level(state, action.payload.id, 'confident', -1)
+		case `${identifier.toUpperCase()}_SET`:
+			return setEpa(state, action.payload)
 		default:
 			return state
 	}

@@ -9,7 +9,7 @@ import {selectors, actions} from './Store'
 
 const stateToProps = state => ({filter: selectors.getFilter(state), root: selectors.getItemByLabel(state, 'root')})
 
-const Title = connect((state, ownProps) => ({entry: selectors.getItemById(state, ownProps.entryId)}))(props => props.entry.label)
+const Title = connect((state, ownProps) => ({entry: selectors.getById(state, ownProps.entryId)}))(props => props.entry.label)
 
 const AssessmentsView = _.compose([
     needsData(selectors.loaded, actions.load),
