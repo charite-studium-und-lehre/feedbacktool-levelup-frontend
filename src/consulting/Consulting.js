@@ -15,7 +15,7 @@ function Consulting({ t }) {
             <div className="consulting">
                 <h1 className="text-center my-4">{t('Beratungsangebote')}</h1>
                 <div className="row " >
-                    <div className='col-12 mx-auto'>
+                    <div className='col-10 mx-auto'>
                         <div className='row mx-auto'>
                             <div className="col-lg-5 col-sm-6 ">
                                 <div className="consulting-foto">
