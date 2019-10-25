@@ -20,7 +20,7 @@ const Legend = props =>
         {props.children && <div className="animated fast row container-fluid" >
             <SlideDown className="animated fast flex-fill">
             {props.extended &&
-                <div className="col my-2" style={{fontSize: '.9rem'}}>
+                <div className="col my-2">
                     {props.children}
                 </div>
             }
