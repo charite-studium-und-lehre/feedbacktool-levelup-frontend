@@ -21,4 +21,3 @@ const EPAs = props => (
 )
 
 export default makeExtendable(EPAs)
-
