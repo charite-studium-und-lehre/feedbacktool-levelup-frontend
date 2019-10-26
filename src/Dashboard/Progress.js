@@ -9,15 +9,13 @@ import AnimatedDonut from '../Charting/AnimatedDonut'
 import AnimatedInteger from '../Charting/AnimatedInteger'
 import DashboardCard from './DashboardCard'
 
-const Progress = _.compose([withTranslation(), needsData(selectors.loaded, actions.load), connect(selectors.getDashboardData)])(({ t, ...props }) =>
-    <DashboardCard title={t('Studienfortschritt')} >
-        <div className="m-auto" style={{width: '10rem', height: '10rem'}}>
-            <AnimatedDonut data={[ props.done, props.total - props.done ]} animationTime={animationTime * 4}>
-                <div style={{fontSize: '1.8rem'}}><AnimatedInteger initial={0} value={ _.round(props.done / props.total * 100) } animationTime={animationTime * 4} /> %</div>
-                <div style={{fontSize: '.8rem'}}>{ props.done } / { props.total }</div>
-            </AnimatedDonut>
-        </div>
-    </DashboardCard>
+const Progress = _.compose([needsData(selectors.loaded, actions.load), connect(selectors.getDashboardData)])(({ t, ...props }) =>
+    <div className="m-auto" style={{width: '10rem', height: '10rem'}}>
+        <AnimatedDonut data={[ props.done, props.total - props.done ]} animationTime={animationTime * 4}>
+            <div style={{fontSize: '1.8rem'}}><AnimatedInteger initial={0} value={ _.round(props.done / props.total * 100) } animationTime={animationTime * 4} /> %</div>
+            <div style={{fontSize: '.8rem'}}>{ props.done } / { props.total }</div>
+        </AnimatedDonut>
+    </div>
 )
 
-export default Progress
+export default withTranslation()(({t}) => <DashboardCard title={t('Studienfortschritt')} ><Progress /></DashboardCard>)
