@@ -1,6 +1,5 @@
 import _ from 'lodash/fp'
 import BaseStore from '../BaseStore'
-import Results from './Data'
 import { combineReducers } from 'redux'
 
 export const identifier = 'stations'
@@ -26,10 +25,9 @@ export const selectors = baseStore.withLoadedSelector({
     getGroupFilters,
 })
 
-export const actions = {
-    ...baseStore.withLoadAction({}, Results),
+export const actions = baseStore.withLoadAction({
     setGroupFilters: groups => ({ type: 'STATIONS_FILTER_GROUPS', payload: groups }),
-}
+})
 
 const groupFilter = ( state = [], action ) => {
     switch(action.type) {
@@ -49,4 +47,4 @@ const stationsReducer = ( state = {}, action ) => {
     }
 }
 
-export const reducer = combineReducers({ items: _.compose([ baseStore.withSelectReducer, baseStore.withLoadedReducer ])(stationsReducer, Results), groupFilter })
+export const reducer = combineReducers({ items: _.compose([ baseStore.withSelectReducer, baseStore.withLoadedReducer() ])(stationsReducer), groupFilter })

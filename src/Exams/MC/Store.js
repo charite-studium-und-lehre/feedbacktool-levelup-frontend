@@ -29,7 +29,7 @@ export const selectors = baseStore.withLoadedSelector({
 
 export const actions = baseStore.withLoadAction({})
 
-export const reducer = combineReducers({ [questionsIdentifier]: questionsReducer, items: _.compose([ baseStore.withSelectReducer, baseStore.withLoadedReducer ])(( state = {}, action ) => {
+export const reducer = combineReducers({ [questionsIdentifier]: questionsReducer, items: _.compose([ baseStore.withSelectReducer, baseStore.withLoadedReducer() ])(( state = {}, action ) => {
     switch (action.type) {
         default:
             return state

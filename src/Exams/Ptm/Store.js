@@ -2,7 +2,6 @@ import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
 import { minQuestions } from '../../Utils/Constants'
 import BaseStore from '../BaseStore'
-import Results from './Data'
 
 export const identifier = 'ptms'
 const baseStore = BaseStore(identifier)
@@ -36,9 +35,14 @@ export const selectors = baseStore.withLoadedSelector({
 
 export const actions = baseStore.withLoadAction({})
 
-export const reducer = combineReducers({ items: _.compose([baseStore.withSelectReducer, baseStore.withLoadedReducer])(( state = {}, action ) => {
+const transform = ptm => ({
+    results: [ ptm.gesamtErgebnis.ergebnisRichtigPunktzahl, ptm.gesamtErgebnis.ergebnisFalschPunktzahl, ptm.gesamtErgebnis.ergebnisWeissnichtPunktzahl ],
+    ...ptm,
+})
+
+export const reducer = combineReducers({ items: _.compose([baseStore.withSelectReducer, baseStore.withLoadedReducer(transform)])(( state = {}, action ) => {
     switch(action.type) {
         default:
             return state
     }
-}, _.keyBy( d => d.id, _.take(1, _.values(Results))))})
+})})
