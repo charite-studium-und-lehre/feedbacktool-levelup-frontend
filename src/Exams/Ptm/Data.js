@@ -89,5 +89,5 @@ const createResult = _.flow([
     })
 ])
 
-const Results = _.keyBy(r => r.id, _.map(createResult)(timesemesters))
+const Results = _.map(createResult)(timesemesters)
 export default Results

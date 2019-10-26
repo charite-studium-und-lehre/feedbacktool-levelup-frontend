@@ -1,6 +1,5 @@
 import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
-import Results from './Data'
 import BaseStore from '../Core/BaseStore'
 
 export const identifier = 'progress'
@@ -37,8 +36,6 @@ export const reducer = combineReducers(baseStore.withLoadedReducer(
         switch(action.type) {
             case `${identifier.toUpperCase()}_DATA_FETCHED`:
                 return transform(action.payload)
-            case `${identifier.toUpperCase()}_DATA_FETCH_FAILED`:
-                return Results
             default:
                 return state
         }

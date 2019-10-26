@@ -1,393 +1,3 @@
-import _ from 'lodash/fp'
-import seedrandom from 'seedrandom'
-import {randomUniform} from 'd3-random'
-import React from 'react'
-import {Trans} from 'react-i18next'
-
-const praticalsTree = {
-    label: 'root',
-    entries: [
-        {
-            label: <Trans>Betreuung von Patienten</Trans>, id: _.uniqueId(),
-            entries: [
-                {
-                    label: <Trans>Anamnese erheben, körperliche Untersuchung durchführen und Ergebnisse strukturiert
-                        zusammenfassen</Trans>, id: _.uniqueId(),
-                    entries: [
-                        {
-                            label: <Trans>Vollständige oder fokussierte Anamnese erheben und körperliche Untersuchung
-                                durchführen (entsprechend Situationsanforderung)</Trans>,
-                            done: 3,
-                            confident: 3,
-                            external: [{id: 1, value: 0, datum: new Date()}, {id: 4, value: 2, datum: new Date()}],
-                            id: _.uniqueId()
-                        },
-                        {
-                            label: <Trans>Zusammenstellen von Vorbefunden, Dokumenten, Medikation, ggf. Rücksprache mit
-                                behandelnden Ärzten oder Familienangehörigen</Trans>,
-                            done: 2,
-                            confident: 3,
-                            id: _.uniqueId()
-                        },
-                        {
-                            label: <Trans>Strukturierte Dokumentation in Patientenakte, einschließlich Synthese von
-                                Diagnosen/Arbeitsdiagnosen und wesentlicher Differentialdiagnosen</Trans>,
-                            done: 1,
-                            confident: 2,
-                            id: _.uniqueId(),
-                        },
-
-                    ],
-                    hasGraph: true
-                },
-                {
-                    label: <Trans>Diagnostischen Arbeitsplan erstellen und Umsetzung einleiten</Trans>,
-
-                    id: _.uniqueId(),
-                    entries: [
-                        {
-                            label: <Trans>Eintrag für die Basisdiagnostik in Patientenkurve vorschreiben (Gegenzeichnung
-                                Arzt)</Trans>,
-                            done: 1,
-                            confident: 1,
-                            id: _.uniqueId(),
-                        },
-                        {
-                            label: <Trans>Plan für die patientenspezifische Diagnostik entwerfen (Abstimmung mit
-                                Arzt)</Trans>,
-                            done: 0,
-                            confident: 0,
-                            external: [{id: 1, value: 2, datum: new Date()}, {id: 4, value: 2, datum: new Date()}],
-                            id: _.uniqueId(),
-                        },
-                        {
-                            label: <Trans>Plan in Patientenkurve eintragen und diagnostische Anforderungsformulare
-                                ausfüllen (Gegenzeichnung Arzt)</Trans>,
-                            done: 0,
-                            confident: 0,
-                            id: _.uniqueId(),
-                        },
-                    ],
-                    hasGraph: true
-                },
-                {
-                    label: <Trans>Untersuchungsergebnisse interpretieren und weiterführende Schritte einleiten</Trans>,
-
-                    id: _.uniqueId(),
-                    entries: [
-                        {
-                            label: <Trans>Ergebnisse der Basisdiagnostik und häufiger Untersuchungen sichten und
-                                interpretieren</Trans>,
-                            done: 1,
-                            confident: 2,
-                            id: _.uniqueId(),
-                        },
-                        {
-                            label: <Trans>Änderungen in Diagnostik und Therapie vorschlagen (Abstimmung mit
-                                Arzt)</Trans>,
-                            done: 1,
-                            confident: 2,
-                            id: _.uniqueId(),
-                        },
-                        {
-                            label: <Trans>Ergebnisse in Patientenkurve eintragen und ggf. Anforderungsformulare
-                                ausfüllen (Gegenzeichnung Arzt)</Trans>,
-                            done: 0,
-                            confident: 2,
-                            id: _.uniqueId(),
-                        },
-                    ],
-                    hasGraph: true
-                },
-                {
-                    label: <Trans>Behandlungsplan erstellen und die Umsetzung einleiten</Trans>,
-
-                    id: _.uniqueId(),
-                    entries: [
-                        {
-                            label: <Trans>Eintrag für die allgemeine Therapie in Patientenkurve vorschreiben
-                                (Gegenzeichnung Arzt)</Trans>,
-                            done: 0,
-                            confident: 2,
-                            external: [{id: 1, value: 2, datum: new Date()}, {id: 5, value: 4, datum: new Date()}],
-                            id: _.uniqueId(),
-                        },
-                        {
-                            label: <Trans>Plan für die patientenspezifische Therapie entwerfen (Abstimmung mit
-                                Arzt)</Trans>,
-                            done: 0,
-                            confident: 2,
-                            external: [{id: 2, value: 1, datum: new Date()}],
-                            id: _.uniqueId(),
-                        },
-                        {
-                            label: <Trans>Plan in Patientenkurve eintragen und therapeutische Anforderungsformulare
-                                ausfüllen (Gegenzeichnung Arzt)</Trans>,
-                            done: 0,
-                            confident: 2,
-                            external: [{id: 3, value: 5, datum: new Date()}],
-                            id: _.uniqueId(),
-                        },
-                    ],
-                    hasGraph: true
-                },
-
-            ]
-        },
-        {
-            label: <Trans>Ärztliche Prozeduren</Trans>,
-            hasGraph: true,
-            id: _.uniqueId(),
-            entries: [
-                {
-                    label: <Trans>Venös Blut entnehmen</Trans>,
-                    done: 4,
-                    confident: 4,
-                    id: _.uniqueId(),
-                },
-                {
-                    label: <Trans>Venenverweilkanüle legen </Trans>,
-                    done: 1,
-                    confident: 3,
-                    id: _.uniqueId(),
-                },
-                {
-                    label: <Trans>Blutkultur entnehmen</Trans>,
-                    done: 2,
-                    confident: 2,
-                    external: [{id: 1, value: 3, datum: new Date()}, {id: 4, value: 2, datum: new Date()}],
-                    id: _.uniqueId(),
-                },
-                {
-                    label: <Trans>Abstriche (Mund, Nase, Wunde, anal oder urogenital) vornehmen</Trans>,
-                    done: 0,
-                    confident: 1,
-                    id: _.uniqueId(),
-                },
-                {
-                    label: <Trans>Infusion anlegen</Trans>,
-                    done: 2,
-                    confident: 2,
-                    id: _.uniqueId(),
-                },
-                {
-                    label: <Trans>12-Kanal EKG schreiben</Trans>,
-                    done: 2,
-                    confident: 2,
-                    id: _.uniqueId(),
-                },
-                {
-                    label: <Trans>Einfachen Verband anlegen oder wechseln </Trans>,
-                    done: 3,
-                    confident: 3,
-                    id: _.uniqueId(),
-                },
-                {
-                    label: <Trans>Rezept vorschreiben (Gegenzeichnung Arzt) </Trans>,
-                    done: 0,
-                    confident: 1,
-                    id: _.uniqueId(),
-                },
-            ]
-        },
-        {
-            label: <Trans>Kommunikation mit Patienten</Trans>,
-
-            id: _.uniqueId(),
-            entries: [
-                {
-                    label: <Trans>Einverständnis für Untersuchungen und Prozeduren einholen (Patienten über Ablauf,
-                        Nutzen, Risiken, Alternativen informieren)</Trans>,
-
-                    id: _.uniqueId(),
-                    entries: [
-                        {
-                            label: <Trans>Nicht-unterschreibungspflichtige Untersuchungen/Prozeduren (z.B.
-                                Blutentnahmen, Blasenkatheter, Magensonde, Röntgen-Untersuchungen)</Trans>,
-                            done: 1,
-                            confident: 1,
-                            external: [{id: 4, value: 1, datum: new Date()}],
-                            id: _.uniqueId(),
-                        },
-                        {
-                            label: <Trans>Unterschriftspflichtige Prozeduren mit Gegenzeichung des Arztes (Gabe von
-                                Erythrozyten, Thrombozyten oder Plasmapräparaten)</Trans>,
-                            done: 1,
-                            confident: 1,
-                            external: [{id: 5, value: 3, datum: new Date()}],
-                            id: _.uniqueId(),
-                        },
-                    ],
-                    hasGraph: true
-                },
-                {
-                    label: <Trans>Patienten informieren und beraten (häufige Beratungsanlässe und
-                        Krankheitsbilder)</Trans>,
-
-                    id: _.uniqueId(),
-                    entries: [
-                        {
-                            label: <Trans>Informieren des Patienten (allgemeine Information zu Art der Beschwerden, dem
-                                Krankheitsbild und der Diagnostik und Therapie; spezifische Informationen zum Patienten
-                                hierzu wie mit dem Arzt abgestimmt)</Trans>,
-                            done: 1,
-                            confident: 2,
-                            external: [{id: 6, value: 4, datum: new Date()}],
-                            id: _.uniqueId(),
-                        },
-                        {
-                            label: <Trans>Allgemeine Beratung des Patienten (Lebensstiländerung; Nikotin- und
-                                Alkoholmissbrauch; sexuell übertragbare Erkrankungen)</Trans>,
-                            done: 1,
-                            confident: 2,
-                            id: _.uniqueId(),
-                        },
-                    ],
-                    hasGraph: true
-                },
-            ]
-        },
-        {
-            label: <Trans>Kommunikation mit Kollegen</Trans>,
-
-            id: _.uniqueId(),
-            entries: [
-                {
-                    label: <Trans>Krankengeschichte eines Patienten vorstellen (strukturiert, entsprechend Zielpersonen
-                        und Situationserfordernissen)</Trans>,
-
-                    id: _.uniqueId(),
-                    entries: [
-                        {
-                            label: <Trans>Krankengeschichte in Visite vorstellen </Trans>,
-                            done: 0,
-                            confident: 1,
-                            id: _.uniqueId(),
-                        },
-                        {
-                            label: <Trans>Krankengeschichte in Besprechungen vorstellen (z.B. Röntgen-Demo,
-                                Pathokonferenz, Teambesprechungen)</Trans>,
-                            done: 0,
-                            confident: 1,
-                            id: _.uniqueId(),
-                        },
-                    ],
-                    hasGraph: true
-                },
-                {
-                    label: <Trans>Patientenübergabe vornehmen oder entgegennehmen (strukturiert, entsprechend
-                        Zielpersonen und Situationserfordernissen)</Trans>,
-
-                    id: _.uniqueId(),
-                    entries: [
-                        {
-                            label: <Trans>Patientenübergabe an/von Ärzte(n) durchführen (z.B. Dienstübergaben)</Trans>,
-                            done: 0,
-                            confident: 0,
-                            id: _.uniqueId(),
-                        },
-                        {
-                            label: <Trans>Patientenübergabe an/von nicht-ärztliche(n) Mitarbeiter(n)
-                                durchführen</Trans>,
-                            done: 0,
-                            confident: 0,
-                            id: _.uniqueId(),
-                        },
-                    ],
-                    hasGraph: true
-                },
-                {
-                    label: <Trans>Patientenbericht verfassen und übermitteln (strukturiert, entsprechend der Abstimmung
-                        mit dem supervidierenden Arzt zur medizinischen Versorgung des Patienten)</Trans>,
-
-                    id: _.uniqueId(),
-                    entries: [
-                        {
-                            label: <Trans>Vorläufigen Patientenbericht vorschreiben und fertigstellen (Abstimmung und
-                                Gegenzeichnung Arzt)</Trans>,
-                            done: 0,
-                            confident: 2,
-                            id: _.uniqueId(),
-                        },
-                        {
-                            label: <Trans>Abschließenden Patientenbericht vorschreiben und fertigstellen (Abstimmung und
-                                Gegenzeichnung Arzt)</Trans>,
-                            done: 0,
-                            confident: 2,
-                            id: _.uniqueId(),
-                        },
-                        {
-                            label: <Trans>Übermittelung von Patientenbericht an Zielbereich bzw. dessen
-                                Veranlassung</Trans>,
-                            done: 0,
-                            confident: 2,
-                            id: _.uniqueId(),
-                        },
-                    ],
-                    hasGraph: true
-                },
-            ]
-        },
-        {
-            label: <Trans>Weitere Tätigkeiten</Trans>,
-
-            id: _.uniqueId(),
-            entries: [
-                {
-                    label: <Trans>Notfallsituationen erkennen und handeln (Ausmaß grob abschätzen, Soforthilfe leisten,
-                        Hilfe herbeirufen)</Trans>,
-
-                    id: _.uniqueId(),
-                    entries: [
-                        {
-                            label: <Trans>Basic-Life-Support mit und ohne technische Hilfsmittel bei Ausfall von
-                                Vitalfunktionen</Trans>,
-                            done: 1,
-                            confident: 2,
-                            id: _.uniqueId(),
-                        },
-                        {
-                            label: <Trans>Zustände mit drohender vitaler Gefährdung erkennen und ggf. überbrückend
-                                versorgen (Zeichen der Atemnot oder Hypoxie, Thoraxschmerz, zunehmender
-                                Bewusstseinseinschränkung, hohes Fieber, arterielle Hypo- und Hypertension, Tachy- und
-                                Bradykardie, Hypo- und Hyperglykämie, Anurie, innere und äußere Blutung, Trauma und
-                                Verletzungen)</Trans>,
-                            done: 2,
-                            confident: 2,
-                            id: _.uniqueId(),
-                        },
-                    ],
-                    hasGraph: true
-                },
-                {
-                    label: <Trans>Fallvorstellung evidenz-basiert vornehmen und patientenbezogene Umsetzung einleiten
-                        (für PJ´ler bearbeitbare medizinische Problemstellungen)</Trans>,
-
-                    id: _.uniqueId(),
-                    entries: [
-                        {
-                            label: <Trans>Vorbereitung der Fallvorstellung (Suche nach bester verfügbarer Evidenz,
-                                Überprüfung der klinischen Relevanz und Anwendbarkeit für den einzelnen
-                                Patienten)</Trans>,
-                            done: 0,
-                            confident: 1,
-                            id: _.uniqueId(),
-                        },
-                        {
-                            label: <Trans>Durchführung der Fallvorstellung (Strukturierte Vorstellung (z. B.
-                                Abteilungsbesprechungen, interne Fortbildungen); Anordnung der Änderungen entsprechend
-                                1.2 „Diagnostikplan“ und 1.4 „Behandlungsplan“</Trans>,
-                            done: 0,
-                            confident: 1,
-                            id: _.uniqueId(),
-                        },
-                    ],
-                    hasGraph: true
-                },
-            ]
-        },
-    ]
-}
 export const ExternAssessing = [
     {
         id: 1,
@@ -421,25 +31,435 @@ export const ExternAssessing = [
     },
 ]
 
-const addHistoricalScore = item => {
-    const random = (a, b) => () => _.round(randomUniform.source(seedrandom(Math.random()))(a, b)())
-    return {
-        ...item, historical: {
-            done: _.range(1, 8).map(() => random(0, item.done)()).sort().map((d, i) => ({
-                semester: new Date(2012 + i, 6 + random(-1, 2)(), 15 + random(-10, 20)()),
-                level: d
-            })),
-            confident: _.range(1, 8).map(() => random(0, item.confident)()).sort().map((d, i) => ({
-                semester: new Date(2012 + i, 6 + random(-1, 2)(), 15 + random(-10, 20)()),
-                level: d
-            })),
-            external: _.range(1, 8).map(() => random(0, item.external)()).sort().map((d, i) => ({
-                semester: new Date(2012 + i, 6 + random(-1, 2)(), 15 + random(-10, 20)()),
-                level: d
-            })),
-        }
-    }
-}
+// import seedrandom from 'seedrandom'
+// import {randomUniform} from 'd3-random'
+// const addHistoricalScore = item => {
+//     const random = (a, b) => () => _.round(randomUniform.source(seedrandom(Math.random()))(a, b)())
+//     return {
+//         ...item, historical: {
+//             done: _.range(1, 8).map(() => random(0, item.done)()).sort().map((d, i) => ({
+//                 semester: new Date(2012 + i, 6 + random(-1, 2)(), 15 + random(-10, 20)()),
+//                 level: d
+//             })),
+//             confident: _.range(1, 8).map(() => random(0, item.confident)()).sort().map((d, i) => ({
+//                 semester: new Date(2012 + i, 6 + random(-1, 2)(), 15 + random(-10, 20)()),
+//                 level: d
+//             })),
+//             external: _.range(1, 8).map(() => random(0, item.external)()).sort().map((d, i) => ({
+//                 semester: new Date(2012 + i, 6 + random(-1, 2)(), 15 + random(-10, 20)()),
+//                 level: d
+//             })),
+//         }
+//     }
+// }
 
-const normalize = e => [{...e, entries: (e.entries || []).map(e => e.id)}, _.flatMap(normalize, e.entries || [])]
-export default _.flow([_.flatMapDeep(normalize), _.map(e => ({external: [], ...e})), _.map(addHistoricalScore), _.keyBy(e => e.id)])([praticalsTree])
+export const epas = [ 
+       { 
+          "id":100,
+          "beschreibung":"Betreuung von Patienten",
+          "parentId":null,
+          "istBlatt":false,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":200,
+          "beschreibung":"\u00c4rztliche Prozeduren",
+          "parentId":null,
+          "istBlatt":false,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":300,
+          "beschreibung":"Kommunikation mit Patienten",
+          "parentId":null,
+          "istBlatt":false,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":400,
+          "beschreibung":"Kommunikation und Zusammenarbeit mit Kollegen",
+          "parentId":null,
+          "istBlatt":false,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":500,
+          "beschreibung":"Weitere \u00e4rztliche professionelle T\u00e4tigkeit",
+          "parentId":null,
+          "istBlatt":false,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":110,
+          "beschreibung":"Anamnese erheben, k\u00f6rperliche Untersuchung durchf\u00fchren und Ergebnisse strukturiert zusammenfassen",
+          "parentId":100,
+          "istBlatt":false,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":120,
+          "beschreibung":"Diagnostischen Arbeitsplan erstellen und Umsetzung einleiten",
+          "parentId":100,
+          "istBlatt":false,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":130,
+          "beschreibung":"Untersuchungsergebnisse interpretieren und weiterf\u00fchrende Schritte einleiten",
+          "parentId":100,
+          "istBlatt":false,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":140,
+          "beschreibung":"Behandlungsplan erstellen und die Umsetzung einleiten",
+          "parentId":100,
+          "istBlatt":false,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":310,
+          "beschreibung":"Einverst\u00e4ndnis f\u00fcr Untersuchungen und Prozeduren einholen (Patienten \u00fcber Ablauf, Nutzen, Risiken, Alternativen informieren)",
+          "parentId":300,
+          "istBlatt":false,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":320,
+          "beschreibung":"Patienten informieren und beraten (h\u00e4ufige Beratungsanl\u00e4sse und Krankheitsbilder)",
+          "parentId":300,
+          "istBlatt":false,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":410,
+          "beschreibung":"Krankengeschichte eines Patienten vorstellen (strukturiert, entsprechend Zielpersonen und Situationserfordernissen)",
+          "parentId":400,
+          "istBlatt":false,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":420,
+          "beschreibung":"Patienten\u00fcbergabe vornehmen oder entgegennehmen (strukturiert, entsprechend Zielpersonen und Situationserfordernissen)",
+          "parentId":400,
+          "istBlatt":false,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":430,
+          "beschreibung":"Patientenbericht verfassen und \u00fcbermitteln (strukturiert, entsprechend der Abstimmung mit dem supervidierenden Arzt zur medizinischen Versorgung des Patienten)",
+          "parentId":400,
+          "istBlatt":false,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":510,
+          "beschreibung":"Notfallsituationen erkennen und handeln (Ausma\u00df grob absch\u00e4tzen, Soforthilfe leisten, Hilfe herbeirufen)",
+          "parentId":500,
+          "istBlatt":false,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":520,
+          "beschreibung":"Fallvorstellung evidenz-basiert vornehmen und patientenbezogene Umsetzung einleiten (f\u00fcr PJ\u00b4ler bearbeitbare medizinische Problemstellungen)",
+          "parentId":500,
+          "istBlatt":false,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":111,
+          "beschreibung":"Vollst\u00e4ndige oder fokussierte Anamnese erheben und k\u00f6rperliche Untersuchung durchf\u00fchren (entsprechend Situationsanforderung)",
+          "parentId":110,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":112,
+          "beschreibung":"Zusammenstellen von Vorbefunden, Dokumenten, Medikation, ggf. R\u00fccksprache mit behandelnden \u00c4rzten oder Familienangeh\u00f6rigen",
+          "parentId":110,
+          "istBlatt":true,
+          "gemacht":5,
+          "zutrauen":null
+       },
+       { 
+          "id":113,
+          "beschreibung":"Strukturierte Dokumentation in Patientenakte, einschlie\u00dflich Synthese von Diagnosen/Arbeitsdiagnosen und wesentlicher Differentialdiagnosen",
+          "parentId":110,
+          "istBlatt":true,
+          "gemacht":2,
+          "zutrauen":3
+       },
+       { 
+          "id":121,
+          "beschreibung":"Eintrag f\u00fcr die Basisdiagnostik in Patientenkurve vorschreiben (Gegenzeichnung Arzt)",
+          "parentId":120,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":122,
+          "beschreibung":"Plan f\u00fcr die patientenspezifische Diagnostik entwerfen (Abstimmung mit Arzt)",
+          "parentId":120,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":123,
+          "beschreibung":"Plan in Patientenkurve eintragen und diagnostische Anforderungsformulare ausf\u00fcllen (Gegenzeichnung Arzt)",
+          "parentId":120,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":131,
+          "beschreibung":"Ergebnisse der Basisdiagnostik und h\u00e4ufiger Untersuchungen sichten und interpretieren",
+          "parentId":130,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":132,
+          "beschreibung":"\u00c4nderungen in Diagnostik und Therapie vorschlagen (Abstimmung mit Arzt)",
+          "parentId":130,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":133,
+          "beschreibung":"Ergebnisse in Patientenkurve eintragen und ggf. Anforderungsformulare ausf\u00fcllen (Gegenzeichnung Arzt)",
+          "parentId":130,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":141,
+          "beschreibung":"Eintrag f\u00fcr die allgemeine Therapie in Patientenkurve vorschreiben (Gegenzeichnung Arzt)",
+          "parentId":140,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":142,
+          "beschreibung":"Plan f\u00fcr die patientenspezifische Therapie entwerfen (Abstimmung mit Arzt)",
+          "parentId":140,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":143,
+          "beschreibung":"Plan in Patientenkurve eintragen und therapeutische Anforderungsformulare ausf\u00fcllen (Gegenzeichnung Arzt)",
+          "parentId":140,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":201,
+          "beschreibung":"Ven\u00f6s Blut entnehmen",
+          "parentId":200,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":202,
+          "beschreibung":"Venenverweilkan\u00fcle legen",
+          "parentId":200,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":203,
+          "beschreibung":"Blutkultur entnehmen",
+          "parentId":200,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":204,
+          "beschreibung":"Abstriche (Mund, Nase, Wunde, anal oder urogenital) vornehmen",
+          "parentId":200,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":205,
+          "beschreibung":"Infusion anlegen",
+          "parentId":200,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":206,
+          "beschreibung":"12-Kanal EKG schreiben",
+          "parentId":200,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":207,
+          "beschreibung":"Einfachen Verband anlegen oder wechseln ",
+          "parentId":200,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":208,
+          "beschreibung":"Rezept vorschreiben (Gegenzeichnung Arzt)",
+          "parentId":200,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":311,
+          "beschreibung":"Nicht-unterschreibungspflichtige Untersuchungen/Prozeduren (z.B. Blutentnahmen, Blasenkatheter, Magensonde, R\u00f6ntgen-Untersuchungen)",
+          "parentId":310,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":312,
+          "beschreibung":"Unterschriftspflichtige Prozeduren mit Gegenzeichung des Arztes (Gabe von Erythrozyten, Thrombozyten oder Plasmapr\u00e4paraten)",
+          "parentId":310,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":321,
+          "beschreibung":"Informieren des Patienten (allgemeine Information zu Art der Beschwerden, dem Krankheitsbild und der Diagnostik und Therapie",
+          "parentId":320,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":322,
+          "beschreibung":"Informieren des Patienten (allgemeine Information zu Art der Beschwerden, dem Krankheitsbild und der Diagnostik und Therapie; spezifische Informationen zum Patienten hierzu wie mit dem Arzt abgestimmt)",
+          "parentId":320,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":411,
+          "beschreibung":"Krankengeschichte in Visite vorstellen ",
+          "parentId":410,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":412,
+          "beschreibung":"Krankengeschichte in Besprechungen vorstellen (z.B. R\u00f6ntgen-Demo, Pathokonferenz, Teambesprechungen)",
+          "parentId":410,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":421,
+          "beschreibung":"Patienten\u00fcbergabe an/von \u00c4rzte(n) durchf\u00fchren (z.B. Dienst\u00fcbergaben)",
+          "parentId":420,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":422,
+          "beschreibung":"Patienten\u00fcbergabe an/von nicht-\u00e4rztliche(n) Mitarbeiter(n) durchf\u00fchren",
+          "parentId":420,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":431,
+          "beschreibung":"Vorl\u00e4ufigen Patientenbericht vorschreiben und fertigstellen (Abstimmung und Gegenzeichnung Arzt)",
+          "parentId":430,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":432,
+          "beschreibung":"Abschlie\u00dfenden Patientenbericht vorschreiben und fertigstellen (Abstimmung und Gegenzeichnung Arzt)",
+          "parentId":430,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":433,
+          "beschreibung":"\u00dcbermittelung von Patientenbericht an Zielbereich bzw. dessen Veranlassung",
+          "parentId":430,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":511,
+          "beschreibung":"Basic-Life-Support mit und ohne technische Hilfsmittel bei Ausfall von Vitalfunktionen",
+          "parentId":510,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":512,
+          "beschreibung":"Zust\u00e4nde mit drohender vitaler Gef\u00e4hrdung erkennen und ggf. \u00fcberbr\u00fcckend versorgen (Zeichen der Atemnot oder Hypoxie, Thoraxschmerz, zunehmender Bewusstseinseinschr\u00e4nkung, hohes Fieber, arterielle Hypo- und Hypertension, Tachy- und Bradykardie, Hypo- und Hyperglyk\u00e4mie, Anurie, innere und \u00e4u\u00dfere Blutung, Trauma und Verletzungen)",
+          "parentId":510,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":521,
+          "beschreibung":"Vorbereitung der Fallvorstellung (Suche nach bester verf\u00fcgbarer Evidenz, \u00dcberpr\u00fcfung der klinischen Relevanz und Anwendbarkeit f\u00fcr den einzelnen Patienten)",
+          "parentId":520,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       },
+       { 
+          "id":522,
+          "beschreibung":"Durchf\u00fchrung der Fallvorstellung (Strukturierte Vorstellung (z. B. Abteilungsbesprechungen, interne Fortbildungen); Anordnung der \u00c4nderungen entsprechend 1.2 \u201eDiagnostikplan\u201c und 1.4 \u201eBehandlungsplan\u201c",
+          "parentId":520,
+          "istBlatt":true,
+          "gemacht":null,
+          "zutrauen":null
+       }
+    ]

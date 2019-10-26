@@ -2,7 +2,6 @@ import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
 import { minQuestions } from '../../Utils/Constants'
 import BaseStore from '../BaseStore'
-import Results from './Data'
 import { reducer as questionsReducer, identifier as questionsIdentifier } from './Questions/Store'
 
 export const identifier = 'mcs'
@@ -35,4 +34,4 @@ export const reducer = combineReducers({ [questionsIdentifier]: questionsReducer
         default:
             return state
     }
-}, Results)})
+})})

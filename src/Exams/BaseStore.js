@@ -21,10 +21,10 @@ export default newIdentifier => {
         _.keyBy( e => e.id )
     ])
     
-    const examsLoadedReducer = (reducer, init) => (state, action) => {
+    const examsLoadedReducer = reducer => (state, action) => {
         switch(action.type) {
             case 'EXAMS_DATA_FETCHED':
-                return init || transformResult(action.payload)
+                return transformResult(action.payload)
             default:
                 return reducer(state, action)
         }

@@ -211,8 +211,7 @@ const createDetailsData = (semester, [result, dist]) => ({
     date: new Date(2013 + parseInt(semester), 6+Math.random()*2, 15),
 })
 
-const Results = fp.keyBy(
-    r => r.id, 
+const Results =
     fp.map(semester => 
         _.flow([
             createResult, 
@@ -230,6 +229,5 @@ const Results = fp.keyBy(
             fp.mergeAll
         ])(semester)
     )(timesemesters)
-)
 
 export default Results

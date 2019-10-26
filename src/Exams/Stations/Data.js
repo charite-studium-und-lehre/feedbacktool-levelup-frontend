@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import fp from 'lodash/fp'
 
 const data = [
     {
@@ -463,4 +462,4 @@ const StationsData = data.map( e => ({
     mean: _.round(_.meanBy( e.stations, 'mean')),
 }))
 
-export default fp.keyBy(i => i.id, StationsData)
+export default StationsData

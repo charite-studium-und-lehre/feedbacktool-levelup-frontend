@@ -1,8 +1,7 @@
 import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
-import initialEpas, { ExternAssessing as initialAssessments } from './static/Data'
 import BaseStore from '../Core/BaseStore'
-import { backendUrl } from '../Utils/Constants'
+import { post } from '../Core/DataProvider'
 
 const storeIdentifier = 'epas'
 const url = 'epas'
@@ -18,7 +17,7 @@ const getAssessments = state => _.values(baseStore.getStore(state).assesments)
 const getFilter = state => baseStore.getStore(state).filter
 const externalsFnFromFilter = filter => e => filter && e.external ? e.external.filter( e => e.id === filter ) : e.external
 const getFilteredExternals = _.flow([ getFilter, externalsFnFromFilter ])
-const visible = state => _.flow([ getFilteredExternals(state), d => d.length ])
+const visible = state => _.flow([ getFilteredExternals(state), d => !getFilter(state) || (d && d.length) ])
 const addVisible = state => entry => _.flow([ getLeaves(state), _.some( visible(state) ), visible => ({ ...entry, visible }) ])(entry)
 
 const getScore = (state, id, prop) => _.flow([ getLeavesById(state), _.map(prop), _.sum])(id)
@@ -60,13 +59,9 @@ export const selectors = baseStore.withLoadedSelector({
 
 const callChangeLevel = (id, newData, oldData) => dispatch => {
 	const reverse = () => dispatch({ type: `${identifier.toUpperCase()}_SET`, payload: { id, value: oldData }})
-	fetch(`${backendUrl}/${url}/${id}`, {
-		credentials: 'include',
-		method: 'POST',
-		body: JSON.stringify({ gemacht: newData.done, zutrauen: newData.confident })
-	})
-	.then( result => result.status !== 200 && reverse() )
-	.catch( err => reverse())
+	post(`${url}/${id}?gemacht=${newData.done || 0}&zutrauen=${newData.confident || 0}`, { gemacht: newData.done, zutrauen: newData.confident })
+		.then( result => result.status !== 200 && reverse() )
+		.catch( err => reverse())
 	dispatch({ type: `${identifier.toUpperCase()}_SET`, payload: { id, value: newData }})
 }
 
@@ -91,15 +86,15 @@ const filter = (state = null, action) => {
 
 const transformAssessments = _.flow([
 	d => d.fremdeinschaetzungen,
-	() => initialAssessments,
+	_.map( a => ({ ...a, datum: new Date(a.datum)})),
 	_.keyBy( d => d.id )
 ])
 const assesments = (state = {}, action) => {
 	switch(action.type) {
 		case `${identifier.toUpperCase()}_DATA_FETCHED`:
-		return transformAssessments(action.payload)
+			return transformAssessments(action.payload)
 		default:
-		return state
+			return state
 	}
 }
 
@@ -118,11 +113,10 @@ _.concat([{
 const transform = _.flow([
 	d => d.meineEPAs,
 	_.map( epa => ({
-		...epa,
 		label: epa.beschreibung,
 		done: epa.gemacht,
 		confident: epa.zutrauen,
-		external: epa.istBlatt ? [{id:epa.id % 5,value:Math.round(Math.random() * 5)},{id:epa.id % 5 + 1,value:Math.round(Math.random() * 5)}] : undefined,
+		...epa,
 	})),
 	addEntries,
 	addRootElement,
@@ -135,8 +129,6 @@ function epasReducer(state = {undefined: {label: 'root', entries: []}}, action) 
 	switch (action.type) {
 		case `${identifier.toUpperCase()}_DATA_FETCHED`:
 			return transform(action.payload)
-		case `${identifier.toUpperCase()}_DATA_FETCH_FAILED`:
-			return initialEpas
 		case `${identifier.toUpperCase()}_SET`:
 			return setEpa(state, action.payload)
 		default:

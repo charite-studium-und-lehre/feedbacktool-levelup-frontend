@@ -1,5 +1,5 @@
 import _ from 'lodash/fp'
-import { backendUrl } from '../Utils/Constants'
+import { get } from './DataProvider'
 /*
 * Provides basic functions to stores which need to load data from an external source
 * parameter identifier must be unique throughout the entire app
@@ -10,8 +10,8 @@ export default (identifier, getStore) => {
     const loaded = ( state = false, action ) => {
         switch (action.type) {
             case `${identifier.toUpperCase()}_DATA_FETCHED`:
-            case `${identifier.toUpperCase()}_DATA_FETCH_FAILED`:
                 return true
+            case `${identifier.toUpperCase()}_DATA_FETCH_FAILED`:
             default:
                 return state
         }
@@ -49,11 +49,9 @@ export default (identifier, getStore) => {
         withLoadAction: url => actions => ({
             load: () => (dispatch, getState) => {
                 if(getStore(getState()).fetching || getStore(getState()).loaded) return
-                fetch(`${backendUrl}/${url}`, {
-                    credentials: 'include',
-                })
-                .then( result => result.json().then( data => dispatch({ type: `${identifier.toUpperCase()}_DATA_FETCHED`, payload: data })))
-                .catch( err => dispatch({ type: `${identifier.toUpperCase()}_DATA_FETCH_FAILED`, payload: err }))
+                get(url)
+                    .then( result => result.json().then( data => dispatch({ type: `${identifier.toUpperCase()}_DATA_FETCHED`, payload: data })))
+                    .catch( err => dispatch({ type: `${identifier.toUpperCase()}_DATA_FETCH_FAILED`, payload: err }))
                 dispatch({ type: `${identifier.toUpperCase()}_DATA_FETCHING` })
             },
             ...actions 
