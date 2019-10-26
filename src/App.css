@@ -52,9 +52,6 @@ span.input-group-text {
 .with-shadow {
   box-shadow: 1px 1px 5px rgba(0,0,0,.2);
 }
-.with-shadow-2px {
-  box-shadow: 2px 2px 4px  rgb(2, 28, 49, .5), -2px -2px 4px  rgb(2, 28, 49, .5)
-}
 
 ol.breadcrumb {
   margin: 0;
