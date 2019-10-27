@@ -73,13 +73,14 @@ const createResult = _.flow([
     ]), 
     ([random, timesemester]) => ({
         alt: true,
+        gesamtErgebnis: {},
         results: [
             Math.round(scale(timesemester.value)),
             30,
             90 
         ],
         means: [77, 22, 101],
-        id: _.uniqueId(),
+        studiPruefungsId: _.uniqueId(),
         format: 'ptm',
         name: timesemester.label,
         periodeCode: timesemester.value,

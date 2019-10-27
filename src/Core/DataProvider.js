@@ -11,10 +11,10 @@ const mockData = [
         url: 'epas',
         data: () => ({ meineEPAs: epas, fremdeinschaetzungen: initialAssessments })
     },
-    // {
-    //     url: 'pruefungen',
-    //     data: ({ pruefungen: [...PtmData, ...MCData, ...StationsData ]})
-    // },
+    {
+        url: 'pruefungen',
+        data: () => ({ pruefungen: [...PtmData, ...MCData, ...StationsData ]})
+    },
     {
         url: 'studienfortschritt',
         data: () => ProgressData
@@ -26,7 +26,7 @@ const mockData = [
 ]
 
 export const get = url => {
-    const mock = mockData.find( d => url.includes(d.url) )
+    const mock = mockData.find( d => url.endsWith(d.url) )
     return mock ? 
         new Promise( r => r(new Response( JSON.stringify(mock.data(url)) ))) :
         fetch(`${backendUrl}/${url}`, {

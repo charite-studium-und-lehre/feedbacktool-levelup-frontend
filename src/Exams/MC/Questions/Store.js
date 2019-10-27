@@ -7,7 +7,7 @@ export const identifier = 'questions'
 const baseStore = BaseStore(identifier, state => mcSelectors.getStore(state)[identifier] )
 
 export const actions = {
-    load: ownProps => baseStore.withLoadAction(`${url}/${ownProps.id}/fragen`)({}).load()
+    load: id => baseStore.withLoadAction(`${url}/${id}/fragen`)({}).load()
 }
 
 const getById = (state, id) => baseStore.getStore(state)[id]
