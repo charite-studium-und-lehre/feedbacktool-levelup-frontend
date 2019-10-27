@@ -12,7 +12,7 @@ const Subjects = _.compose([needsData(selectors.loaded, actions.load), connect(s
     return (
     <SubjectsTabs active={active}>
         {_.flow(_.entries, _.reverse, _.map(([cat, subs]) => 
-            <div key={cat} title={cat} className="d-flex flex-wrap">{
+            <div key={cat} title={cat} className="d-flex flex-wrap justify-content-around">{
                 _.sortBy('titel', subs).map(
                     s =>
                         <Subject

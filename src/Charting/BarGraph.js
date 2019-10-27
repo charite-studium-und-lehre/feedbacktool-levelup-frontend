@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
 import { select } from 'd3-selection'
+import { scaleBand } from 'd3-scale'
 import AnimatedText from './AnimatedText'
 import { animationTime } from './Utils'
 
@@ -45,27 +46,32 @@ const BarGraph = props => {
 	const clickHandler = props.onClick || (() => {})
 	return (
 	<g className={`bar-graph ${props.className || ''}`}>
-	{props.data.map((d, i) => 
-		<g key={d.x} className="bar animated" style={props.style}>
-			{[].concat(d.y).map((y,j) => 
+	{props.data.map((d, i) => {
+		const values = [].concat(d.y)
+		const scale = scaleBand()
+			.domain([0, values.length-1])
+			.range([props.xScale(d.x) + dx, props.xScale(d.x) + dx + width])
+			.paddingOuter(0)
+		return <g key={d.x} className="bar animated" style={props.style}>
+			{values.map((y,j) => 
 			<g key={j}>
 				<Bar
 					fill={ d.highlight ? (props.highlightColor || '#fe99f2') : (_.isArray(d.color) ? d.color[j] : d.color || props.color || '#fe9922')} 
-					x={props.xScale(d.x) + dx}
+					x={scale(j)}
 					y={props.yScale(y)}
 					height={props.yScale.range()[0] - props.yScale(y)}
-					width={width} 
+					width={scale.bandwidth()} 
 					onClick={() => clickHandler(d, i)} />
 				{props.labels && 
 					<AnimatedText 
-					x={props.xScale(d.x) + (props.xScale.bandwidth ? (width/2) : offset)} 
+					x={scale(j) + scale.bandwidth()/2 } 
 					y={props.yScale(y) - 3}>
 						{_.isArray(d.label) ? d.label[j] : d.label || y}
 					</AnimatedText>
 				}
 			</g>)}
 		</g>
-	)}
+	})}
 	</g>)
 }
 
