@@ -11,6 +11,7 @@ import { selectors, actions } from './Store'
 export const color = 'hsla(120, 50%, 50%, .75)'
 
 const MC = ({ test, t }) =>
+    test ? 
     <div className="container-fluid pb-2">
         <div className="row">
             <div className="col">
@@ -32,7 +33,8 @@ const MC = ({ test, t }) =>
                 <Questions id={test.id} />
             </div>
         </div>
-    </div>
+    </div> :
+    <div className="text-center">{t('Diese Prüfung scheint nicht zu existieren.')}</div>
 
 const stateToProps = (state, ownProps) => ({ test: selectors.getById( state, ownProps.match.params.test )})
 export default _.compose([needsData(selectors.loaded, actions.load), withTranslation(), connect(stateToProps)])(MC)

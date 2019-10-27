@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash/fp'
+import { withTranslation } from 'react-i18next'
 import needsData from '../../Core/needsData'
 import Legend from '../../Charting/Legend'
 import LegendTexts from '../../Core/LegendTexts'
@@ -10,10 +11,10 @@ import Timeline from './Timeline'
 import { selectors, actions } from './Store'
 
 export const color = 'hsla(240, 50%, 50%, .75)'
-const Ptm = ({ test }) => {
+const Ptm = ({ test, t }) => {
     const LegendText = LegendTexts.Exams.Ptm
     
-    return (
+    return test ?
         <div className="container-fluid mb-2">
             <div className="row">
                 <div className="col">
@@ -42,9 +43,9 @@ const Ptm = ({ test }) => {
                     </div>
                 </div>
             </div>
-        </div>
-    )
+        </div> :
+        <div className="text-center">{t('Diese Prüfung scheint nicht zu existieren.')}</div>
 }
 
 const stateToProps = (state, ownProps) => ({ test: selectors.getById( state, ownProps.match.params.test )})
-export default _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps)])(Ptm)
+export default _.compose([withTranslation(), needsData(selectors.loaded, actions.load), connect(stateToProps)])(Ptm)
