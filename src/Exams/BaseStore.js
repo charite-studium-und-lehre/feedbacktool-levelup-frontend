@@ -17,7 +17,7 @@ export default newIdentifier => {
     const transformResult = _.flow([
         d => d.pruefungen,
         _.filter( e => newIdentifier.startsWith(e.format) ),
-        _.map( e => ({ ...e, id: e.studiPruefungsId })),
+        _.map( e => ({ ...e, id: '' + e.studiPruefungsId })),
     ])
     
     const examsLoadedReducer = (transform = _.identity) => reducer => (state, action) => {
