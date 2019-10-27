@@ -9,7 +9,7 @@ export default function PointGraph({padding = 0.2, offset = .5, ...props}) {
     const texts = !props.labels || props.data.map((d, i) => (<Label
         key={i}
         x={props.xScale(d.x)}
-        y={props.yScale(d.y) + 20}
+        y={props.yScale(d.y) - 20}
         >{d.label}</Label>))
 
     const circles = props.data.map(d => {

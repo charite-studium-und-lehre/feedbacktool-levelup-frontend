@@ -30,14 +30,14 @@ const LineMarker = props => {
     const yValue=props.vertical ? (props.yScale.range()[0] + 2) : props.yScale(props.value)
 	return (<g>
         <AnimatedPath d={_line} />
-        <g style={{transform: `translate(${xLabel}px, ${yLabel}px) ${props.vertical ? 'rotate(-90deg)' : ''}`}}>
-            <AnimatedText  
-                textAnchor={'end'}
-                dominantBaseline={props.vertical ? 'hanging' : 'baseline'}
-                vertical={props.vertical}>
-                {props.label}
-            </AnimatedText>
-        </g>
+        <AnimatedText
+            x={xLabel}
+            y={yLabel}
+            textAnchor={'end'}
+            dominantBaseline={props.vertical ? 'hanging' : 'baseline'}
+            vertical={props.vertical}>
+            {props.label}
+        </AnimatedText>
         {!props.noValue && <AnimatedText 
             dominantBaseline={props.vertical ? 'hanging' : 'central'}
             x={xValue}
