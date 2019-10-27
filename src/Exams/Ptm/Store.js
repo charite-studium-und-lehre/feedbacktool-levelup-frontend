@@ -37,6 +37,7 @@ export const actions = baseStore.withLoadAction({})
 
 const transform = ptm => ({
     results: [ ptm.gesamtErgebnis.ergebnisRichtigPunktzahl, ptm.gesamtErgebnis.ergebnisFalschPunktzahl, ptm.gesamtErgebnis.ergebnisWeissnichtPunktzahl ],
+    means: [ ptm.gesamtErgebnis.durchschnittRichtigPunktzahl, ptm.gesamtErgebnis.durchschnittFalschPunktzahl, ptm.gesamtErgebnis.durchschnittWeissnichtPunktzahl ],
     ...ptm,
 })
 
