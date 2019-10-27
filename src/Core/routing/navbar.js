@@ -8,7 +8,7 @@ import Routes from "./Routes";
 
 export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top flex-shrink-0">
 
             <Link className="navbar-brand" to="/">LevelUp</Link>
 

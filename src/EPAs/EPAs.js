@@ -12,8 +12,10 @@ const EPAs = () => (
                 <div className="d-lg-none"><CheatSheetCard extendet="false"/></div>
                 <AssessmentsView/>
             </div>
-            <div className="col-lg-3 d-none d-lg-block sticky-top">
-                <CheatSheetCard/>
+            <div className="col-lg-3 d-none d-lg-block">
+                <div className="sticky-top" style={{top: '4rem'}}>
+                    <CheatSheetCard/>
+                </div>
             </div>
         </div>
     </div>
