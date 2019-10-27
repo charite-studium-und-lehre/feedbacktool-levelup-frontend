@@ -55,9 +55,9 @@ const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 const getById = (state, id) => _.flow([ baseStore.getItems, findById(id)])(state)
 const getTotalsData = _.flow([ getById, e => e.gesamtErgebnis, addPercent, addHistogram, addGraphData ])
 const getSubjectsTotals = _.flow([ baseStore.getItems, _.flatMap( i => i.faecher ), _.groupBy(f => f.code), 
-    _.map( g => ({ ...g[0], richtig: _.sumBy('richtig')(g), gesamt: _.sumBy('gesamt')(g) }))])
+    _.map( g => ({ ...g[0], correct: _.sumBy('ergebnisPunktzahl')(g), total: _.sumBy('maximalPunktzahl')(g) }))])
 
-const getRanking = _.flow([ getSubjectsTotals, _.filter(s => s.gesamt >= minQuestions), _.sortBy(s => -s.richtig / s.gesamt) ])
+const getRanking = _.flow([ getSubjectsTotals, _.filter(s => s.total >= minQuestions), _.sortBy([ s => -s.correct / s.total, s => -s.total ]) ])
 
 export const selectors = baseStore.withLoadedSelector({
     getById,

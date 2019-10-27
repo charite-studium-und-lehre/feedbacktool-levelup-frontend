@@ -4,12 +4,12 @@ import { selectors as PtmSelectors, actions as PtmActions } from '../Exams/Ptm/S
 
 const getData = _.flow(
     _.over([MCSelectors.getSubjectsTotals, _.flow(PtmSelectors.getLatest, PtmSelectors.getFaecher)]),
-    _.map(_.keyBy(s => s.name)),
+    _.map(_.keyBy(s => s.titel)),
     ([ mcFaecher, ptmFaecher ]) => {
         const subs = _.uniq(_.keys(mcFaecher).concat(_.keys(ptmFaecher)))
-        return subs.map( s => ({ name: s, mc: mcFaecher[s], ptm: ptmFaecher[s] }))
+        return subs.map( s => ({ titel: s, mc: mcFaecher[s], ptm: ptmFaecher[s] }))
     },
-    d => ({ data: d })
+    d => ({ subjects: d })
 )
 
 const selectors = {

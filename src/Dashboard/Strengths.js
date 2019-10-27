@@ -19,13 +19,13 @@ const Strengths = _.compose([withTranslation(), needsData(loaded, load), connect
     <div>
         {mcStrongestSubject && <div className="mb-3">
             <div style={{fontSize: '.8rem'}} className="text-secondary">{t('in deinen gesamten MCs')}</div>
-            <div className="pt-2 pl-2">{mcStrongestSubject.name}</div>
-            <SimpleBar value={mcStrongestSubject.richtig} total={mcStrongestSubject.gesamt}></SimpleBar>
+            <div className="pt-2 pl-2">{mcStrongestSubject.titel}</div>
+            <SimpleBar value={mcStrongestSubject.correct} total={mcStrongestSubject.total}></SimpleBar>
         </div>}
         {ptmStrongestSubject && <div className="">
             <div style={{fontSize: '.8rem'}} className="text-secondary">{t('im letzten PTM')}</div>
-            <div className="pt-2 pl-2">{ptmStrongestSubject.name}</div>
-            <SimpleBar value={ptmStrongestSubject.richtig} total={ptmStrongestSubject.gesamt}></SimpleBar>
+            <div className="pt-2 pl-2">{ptmStrongestSubject.titel}</div>
+            <SimpleBar value={ptmStrongestSubject.correct} total={ptmStrongestSubject.total}></SimpleBar>
         </div>}
         {!ptmStrongestSubject && !mcStrongestSubject && 
             <div className="p3">{t('Es liegen noch keine Ergebnisse vor.')}</div>

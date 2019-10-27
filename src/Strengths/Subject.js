@@ -18,12 +18,12 @@ const Subject = ({t, ...props}) => {
         }, 500)
     }
 
-    const data = exams.map((d, i) => ({ x:d, y: [props.data[i].richtig || 0, props.data[i].gesamt || 0]}))
-    const max = Math.max(..._.map(d => _.ceil(d.gesamt * 1.1) || 0, props.data))
+    const data = exams.map((d, i) => ({ x:d, y: [props.data[i].correct || 0, props.data[i].total || 0]}))
+    const max = Math.max(..._.map(d => _.ceil(d.total * 1.1) || 0, props.data))
     return (
         <div className="card m-2" style={{width: '20rem'}}>
             <div ref={node} className={`card-body ${flash ? 'bg-primary' : ''}`} style={{transition: '5s'}}>
-                <span className="font-weight-bold">{props.name}</span>
+                <span className="font-weight-bold">{props.titel}</span>
                 <div className="p-4">
                 <div className='mb-1'>
                     <ColorLegend text={t('gestellte Fragen')} style={{backgroundColor :'hsla(250, 100%, 50%, .6)'}}/>
