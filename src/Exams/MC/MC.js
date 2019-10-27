@@ -15,7 +15,7 @@ const MC = ({ test, t }) =>
         <div className="row">
             <div className="col">
                 <div className="p-2">
-                    <h4 className="mr-auto">MC-Prüfung - {test.name}</h4>
+                    <h4 className="mr-auto">{test.name}</h4>
                 </div>
             </div>
         </div>

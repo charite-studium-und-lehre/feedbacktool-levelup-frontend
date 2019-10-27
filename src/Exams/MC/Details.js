@@ -11,8 +11,8 @@ import BarWithHeader from './BarWithHeader'
 import { selectors, actions } from './Store'
 
 const stateToProps = (state, ownProps) => ( {...selectors.getById(state, ownProps.id)})
-const Chart = _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps))(({ mode, faecher, modules }) => mode === 'modules' ?
-modules.map((d, i) =>
+const Chart = _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps))(({ mode, faecher, module }) => mode === 'modules' ?
+module.map((d, i) =>
     <BarWithHeader
         key={i}
         name={d.label}

@@ -31,24 +31,24 @@ const PercentileArea = ({ percentiles, ...props }) => {
         {percentiles.map( (p, i) => <rect key={i} x={props.xScale(p[0])} width={props.xScale(p[1]) - props.xScale(p[0])} height='100%' fill={colors[i]} clipPath={`url(#${id})`} /> )}
     </g>
 }
-const Totals = ({ t, dist, ...props }) => {
+const Totals = ({ t, ergebnisPunktzahl, durchschnittPunktzahl, bestehensgrenzePunktzahl, kohortenPunktzahlen, maximalPunktzahl }) => {
     const [ mode, setMode ] = useState('histo')
 
-    const scale = scaleLinear().domain([0,dist.length-1]).range([100,0])
+    const scale = scaleLinear().domain([0,kohortenPunktzahlen.length-1]).range([100,0])
     
-    const percent = _.round(scale(dist.filter(d => d < props.gesamtErgebnis.ergebnisPunkte).length))
+    const percent = _.round(scale(kohortenPunktzahlen.filter(d => d < ergebnisPunktzahl).length))
 
     const histo = _.flow(
         _.groupBy(d => Math.floor(d / 5)),
         _.map(d => ({
             x: Math.floor(d[0] / 5) * 5, 
-            y: d.length, highlight: Math.floor(props.gesamtErgebnis.ergebnisPunkte / 5) * 5 === Math.floor(d[0] / 5) * 5, 
+            y: d.length, highlight: Math.floor(ergebnisPunktzahl / 5) * 5 === Math.floor(d[0] / 5) * 5, 
             label: <AnimatedInteger value={d.length} />
         }))
-    )(dist)
+    )(kohortenPunktzahlen)
 
 
-    const domain = window.innerWidth <= mobileWidth ? histo.map(d => d.x) : _.range(0,20).map(d => d*5)
+    const domain = window.innerWidth <= mobileWidth ? histo.map(d => d.x) : _.range(0,Math.ceil(maximalPunktzahl / 5)).map(d => d*5)
     const LegendText = Legends.Exams.MC.Totals
     return (
         <div className="card p-4">
@@ -61,19 +61,19 @@ const Totals = ({ t, dist, ...props }) => {
                 {mode === 'graph' ? (
                 <LinearChart xDomain={[100, 0]} yDomain={[0,80]}>
                     <YAxis ticks={{ count: 4 }} label={t('Erreichte Punkte')} />
-                    <PercentileArea data={dist.map( (d,i) => ({ x: scale(i), y0: 0, y1: d }))} percentiles={[[100, 50], [50,25], [25, 10], [10, 0]]} />
-                    <LineGraph data={dist.map( (d,i) => ({ x: scale(i), y: d }))} color="hsla(181, 100%, 41%, .9)" noPoints curve={curveStep} />
-                    <Marker extended={true} x={percent} y={props.gesamtErgebnis.ergebnisPunkte} label='Du' color="hsla(0, 100%, 30%, .6)" />
-                    <LineMarker value={props.gesamtErgebnis.durchschnitt} label={t('Durchschnitt')} color="hsla(0, 100%, 30%, .6)" />
-                    <LineMarker value={props.gesamtErgebnis.bestehensGrenze} label={t('Bestehensgrenze')} color="hsla(0, 100%, 30%, .6)" />
+                    <PercentileArea data={kohortenPunktzahlen.map( (d,i) => ({ x: scale(i), y0: 0, y1: d }))} percentiles={[[100, 50], [50,25], [25, 10], [10, 0]]} />
+                    <LineGraph data={kohortenPunktzahlen.map( (d,i) => ({ x: scale(i), y: d }))} color="hsla(181, 100%, 41%, .9)" noPoints curve={curveStep} />
+                    <Marker extended={true} x={percent} y={ergebnisPunktzahl} label='Du' color="hsla(0, 100%, 30%, .6)" />
+                    <LineMarker value={durchschnittPunktzahl} label={t('Durchschnitt')} color="hsla(0, 100%, 30%, .6)" />
+                    <LineMarker value={bestehensgrenzePunktzahl} label={t('Bestehensgrenze')} color="hsla(0, 100%, 30%, .6)" />
                     <XAxis label="% der Studierenden" />
                 </LinearChart>
                 ) : (
                 <div className="position-relative text-right">
                     <div className="position-absolute" style={{right:0, fontSize: '.75rem'}}>
-                        <div><span className="font-weight-bold">{respSwitch(t('Dein Ergebnis'), t('Du'))}: </span>{props.gesamtErgebnis.ergebnisPunkte} {t('Pkte')}</div>
-                        <div><span className="font-weight-bold">{respSwitch(t('Durchschnitt'), '∅')}: </span>{props.gesamtErgebnis.durchschnitt} {t('Pkte')}</div>
-                        <div><span className="font-weight-bold">{respSwitch(t('Bestanden ab'), t('Bst ab'))}: </span>{props.gesamtErgebnis.bestehensGrenze} {t('Pkte')}</div>
+                        <div><span className="font-weight-bold">{respSwitch(t('Dein Ergebnis'), t('Du'))}: </span>{ergebnisPunktzahl} {t('Pkte')}</div>
+                        <div><span className="font-weight-bold">{respSwitch(t('Durchschnitt'), '∅')}: </span>{durchschnittPunktzahl} {t('Pkte')}</div>
+                        <div><span className="font-weight-bold">{respSwitch(t('Bestanden ab'), t('Bst ab'))}: </span>{bestehensgrenzePunktzahl} {t('Pkte')}</div>
                     </div>
                     <OrdinalChart xDomain={domain} yDomain={[0,Math.max(...histo.map(d => d.y))]}>
                         <XAxis label={t('erreichte Punkte')} />
@@ -87,5 +87,5 @@ const Totals = ({ t, dist, ...props }) => {
     )
 }
 
-const stateToProps = (state, ownProps) => ( {...selectors.getById(state, ownProps.id)})
+const stateToProps = (state, ownProps) => ( {...selectors.getById(state, ownProps.id).gesamtErgebnis})
 export default _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps), withTranslation())(Totals)

@@ -29,7 +29,7 @@ const Infos = ({ questions, title }) => (
     </div>
 )
 
-const stateToProps = (state, ownProps) => ({ questions: selectors.getById(state, ownProps.id).fragen })
+const stateToProps = (state, ownProps) => ({ questions: selectors.getById(state, ownProps.id).fragen || []})
 const Questions = _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps), withTranslation()])(({ t, id, questions }) => {
     const LegendText = Legends.Exams.MC.Questions
     return <div className='card p-3' style={{fontSize: '.9rem'}}>
