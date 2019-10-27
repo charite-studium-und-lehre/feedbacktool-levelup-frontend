@@ -59,4 +59,5 @@ const Questions = ({ t, questions }) => {
     )
 }
 const stateToProps = (state, ownProps) => ({ questions: selectors.getById( state, ownProps.match.params.test ) })
-export default _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps), withTranslation()) (Questions)
+const wrapper = Comp => props => <Comp id={props.match.params.test} {...props} />
+export default _.compose(wrapper, needsData(selectors.loaded, actions.load), connect(stateToProps), withTranslation()) (Questions)
