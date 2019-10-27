@@ -21,7 +21,7 @@ const Chart = _.compose([needsData(selectors.loaded, actions.load), connect(stat
         <XAxis />
         <YAxis label="Anzahl Fragen" ticks={{count: 4}} />
         <BarGraph labels data={labels.map((l,i) => ({x: l, y: data.results[i], label: <AnimatedInteger value={data.results[i]} />, color: tinycolor(color).setAlpha(.9).toString()}))} />
-        <PointGraph color="rgba(0, 0, 0, .6)" data={labels.map((l, i) => ({x: l, y: data.means[i]}))} />
+        <PointGraph color="rgba(0, 0, 0, .6)" data={labels.map((l, i) => ({x: l, y: data.means[i], id: i+1}))} />
     </OrdinalChart>
 )
 

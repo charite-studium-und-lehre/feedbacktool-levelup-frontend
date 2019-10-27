@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
+import _ from 'lodash/fp'
 import { select } from 'd3-selection'
 import { animationTime } from './Utils'
 
@@ -9,6 +10,7 @@ const AnimatedText = ({
         transform = '',
         dominantBaseline = "baseline",
         style = {fontSize: '0.8rem'},
+        startPos = {},
         ...props
     }) => {
 
@@ -28,8 +30,8 @@ const AnimatedText = ({
 
     return (<text
         ref={node}
-        x={x}
-        y={y}
+        x={_.defaultTo(x, startPos.x)}
+        y={_.defaultTo(y, startPos.y)}
         textAnchor={textAnchor}
         fill={color}
         style={style}

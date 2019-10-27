@@ -16,6 +16,7 @@ const HorizontalBarGraph = props => {
 		{props.data.map((d, i) => 
 			<g key={"bar" + d.y} className="bar animated" style={props.style}>
 				<Bar 
+					fadeIn={false}
 					style={{fill: d.highlight ? (props.highlightColor || '#fe99f2') : (d.color || props.color || '#fe9922')}}
 					y={props.yScale(d.y) + dy} 
 					x={0}
