@@ -12,25 +12,25 @@ import { selectors, actions } from './Store'
 
 const stateToProps = (state, ownProps) => ( {...selectors.getById(state, ownProps.id)})
 const Chart = _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps))(({ mode, faecher, module }) => mode === 'modules' ?
-module.map((d, i) =>
+_.sortBy( m => m.code, module).map( (d, i) =>
     <BarWithHeader
         key={i}
-        name={d.label}
-        result={d.result}
-        total={80}
-        mean={d.mean}
-    ><AnimatedInteger value={_.round(d.result / 0.8)} /> %</BarWithHeader>
+        name={d.titel}
+        result={d.ergebnisPunktzahl}
+        total={1}
+        mean={d.durchschnittsPunktzahl}
+    ><AnimatedInteger value={_.round(d.ergebnisPunktzahl * 100)} /> %</BarWithHeader>
 )
 :
 faecher.map(d =>
     <BarWithHeader
-        key={d.name}
-        name={d.name}
-        result={d.richtig}
-        total={d.gesamt}
-        width={d.gesamt * 100 / _.max(faecher.map(s => s.gesamt)) + "%"}
-        mean={d.mean}
-    >{d.richtig} von {d.gesamt}</BarWithHeader>
+        key={d.code}
+        name={d.titel}
+        result={d.ergebnisPunktzahl}
+        total={d.maximalPunktzahl}
+        width={d.maximalPunktzahl * 100 / _.max(faecher.map(s => s.maximalPunktzahl)) + "%"}
+        mean={d.durchschnittsPunktzahl}
+    >{d.ergebnisPunktzahl} von {d.maximalPunktzahl}</BarWithHeader>
 ))
 
 const Details = withTranslation()(({ t, id }) => {
