@@ -60,6 +60,7 @@ const getSubjectsTotals = _.flow([ baseStore.getItems, _.flatMap( i => i.faecher
 const getRanking = _.flow([ getSubjectsTotals, _.filter(s => s.total >= minQuestions), _.sortBy([ s => -s.correct / s.total, s => -s.total ]) ])
 
 export const selectors = baseStore.withLoadedSelector({
+    getStore: baseStore.getStore,
     getById,
     strongestSubject: _.flow([getRanking, _.first]),
     getRanking,

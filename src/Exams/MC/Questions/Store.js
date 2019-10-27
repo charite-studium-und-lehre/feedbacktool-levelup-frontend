@@ -1,22 +1,27 @@
-import DummyQuestions from './DummyQuestions'
-//import { selectors } from '../Store'
-const Results = { '1': DummyQuestions }
+import _ from 'lodash/fp'
+import BaseStore from '../../../Core/BaseStore'
+import { selectors as mcSelectors } from '../Store'
+import { url } from '../../Store'
 
 export const identifier = 'questions'
+const baseStore = BaseStore(identifier, state => mcSelectors.getStore(state)[identifier] )
 
-export const actions = { load: () => ({ type: 'FOOBAR' })}
-
-const getById = (state, id) => state.exams.items.mcs[identifier][id]
-//const loaded = (state, { match: { params: { test }}}) => getById(state, test)
-
-export const selectors = {
-    loaded: () => true,
-    getById: state => getById(state, 1),
+export const actions = {
+    load: ownProps => baseStore.withLoadAction(`${url}/${ownProps.id}/fragen`)({}).load()
 }
 
-export const reducer = (state = Results, action) => {
+const getById = (state, id) => baseStore.getStore(state)[id]
+const loaded = (state, ownProps) => !!getById(state, ownProps.id)
+
+export const selectors = {
+    loaded,
+    getById,
+}
+
+export const reducer = (state = {}, action) => {
     switch(action.type) {
-        case 'FOOBAR':
+        case `${identifier.toUpperCase()}_DATA_FETCHED`:
+            return _.merge(state)({ [action.payload.id]: action.payload.fragen })
         default:
             return state
     }

@@ -11,7 +11,7 @@ const Spinner = () => <div className="text-center m-4" style={{fontSize: '1.5rem
 const stateToProps = loadedSelector => (state, ownProps) => ({ loaded: loadedSelector(state, ownProps) })
 const needsData = (WrappedComponent, loadedSelector, loadAction) => connect(stateToProps(loadedSelector) , { load: loadAction })(
     ({ load, loaded, ...props }) => {
-        useEffect(() => { load() }, [load])
+        useEffect(() => { !loaded && load(props) }, [loaded, load, props])
 
         return loaded ? <WrappedComponent {...props} /> : <Spinner />
     }

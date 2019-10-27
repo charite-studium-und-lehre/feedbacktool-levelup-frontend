@@ -7,7 +7,7 @@ import Legends from '../../../Core/LegendTexts'
 import needsData from '../../../Core/needsData'
 import Question from './Question'
 import Filters from './Filters'
-import { selectors, actions } from '../Store'
+import { selectors, actions } from './Store'
 
 const Questions = ({ t, questions }) => {
     const [ subjectsFilters, setSubjectsFilters ] = useState(
@@ -58,5 +58,5 @@ const Questions = ({ t, questions }) => {
         </div>
     )
 }
-const stateToProps = (state, ownProps) => ({ questions: selectors.getById( state, ownProps.match.params.test ).fragen })
+const stateToProps = (state, ownProps) => ({ questions: selectors.getById( state, ownProps.match.params.test ) })
 export default _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps), withTranslation()) (Questions)
