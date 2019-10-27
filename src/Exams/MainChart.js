@@ -9,8 +9,7 @@ import PointGraph from '../Charting/PointGraph'
 import { selectors, actions } from './Store'
 import { XAxis } from '../Charting/Axis'
 
-const MainChart = ({ t, graphs, history, fromQuery = { id: -1 }, selected, setSelected }) => {
-    const semesters = _.flow(_.flatMap( g => g.data.map( d => d.zeitsemester )), _.uniq, _.sortBy( t => t.split(' ')[1]))(graphs)
+const MainChart = ({ t, graphs, history, fromQuery = { id: -1 }, selected, setSelected, semesters }) => {
     const navigate = graph => exam => { 
         history.push(`/exams/${graph}/${exam.id}`) 
     }
@@ -40,6 +39,7 @@ const stateToProps = (state, ownProps) => ({
     graphs: selectors.getNavigationData(state), 
     fromQuery: selectors.getById(state, ownProps.match.params.id),
     selected: selectors.getSelected(state),
+    semesters: selectors.getSemesters(state),
 })
 
 export default _.compose(withRouter, needsData(selectors.loaded, actions.load), connect(stateToProps, actions), withTranslation())(MainChart)
