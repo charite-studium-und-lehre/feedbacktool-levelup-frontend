@@ -18,7 +18,7 @@ const Ptm = _.compose(needsData(selectors.loaded, actions.load), connect(stateTo
     ({ t, latest, ptms }) => {
     return latest ? <div className="h-100" style={{minHeight: '5rem'}}>
         <Link to={`/exams/ptm/${latest.id}`}>
-            <div className="h-100">
+            <div className="h-100 position-relative">
                 <div className="position-absolute pl-3" style={{fontSize: '.75rem', top: '3rem'}}>
                     {labels.map( (l,i) => 
                         <div key={i}>
