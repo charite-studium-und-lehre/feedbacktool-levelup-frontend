@@ -6,7 +6,7 @@ import BaseStore from '../BaseStore'
 export const identifier = 'ptms'
 const baseStore = BaseStore(identifier)
 
-const findById = _.curry((id, ptms) => ptms[id])
+const findById = id => ptms => ptms[id]
 const findSubject = subject => _.flow([_.find({'name': subject}), _.defaultTo({})])
 const getFaecher = ptm => ptm.faecher
 const getSubjects = _.flow([ getFaecher ])
