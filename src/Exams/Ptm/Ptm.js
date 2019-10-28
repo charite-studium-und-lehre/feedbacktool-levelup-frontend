@@ -9,8 +9,12 @@ import Subjects from './Subjects'
 import Results from './Results'
 import Timeline from './Timeline'
 import { selectors, actions } from './Store'
+import colors from "../../colors";
 
-export const color = 'hsla(240, 50%, 50%, .75)'
+export const color = colors.ptm.base
+export const colorTotal = colors.ptm.darker0
+export const colorPartOfTotal = colors.ptm.darker4
+
 const Ptm = ({ test, t }) => {
     const LegendText = LegendTexts.Exams.Ptm
     

@@ -11,13 +11,14 @@ const HorizontalBarGraph = props => {
 	const offset = (props.offset || 0) * height
 	const dy = props.yScale.bandwidth ? 10 : (offset - height/2)
 	const clickHandler = props.onClick || (() => {})
+	console.log(props)
 	return (
 	<g>
 		{props.data.map((d, i) => 
 			<g key={"bar" + d.y} className="bar animated" style={props.style}>
 				<Bar 
 					fadeIn={false}
-					style={{fill: d.highlight ? (props.highlightColor || '#fe99f2') : (d.color || props.color || '#fe9922')}}
+					style={{fill: d.highlight ? (props.highlightColor) : (d.color || props.color)}}
 					y={props.yScale(d.y) + dy} 
 					x={0}
 					width={props.xScale(d.x)}

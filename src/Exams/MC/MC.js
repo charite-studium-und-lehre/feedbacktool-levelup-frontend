@@ -7,8 +7,11 @@ import { withTranslation } from 'react-i18next'
 import Details from './Details'
 import Questions from './Questions'
 import { selectors, actions } from './Store'
+import colors from "../../colors";
 
-export const color = 'hsla(120, 50%, 50%, .75)'
+export const color = colors.mc.base
+export const colorTotal = colors.mc.darker0
+export const colorPartOfTotal = colors.mc.darker4
 
 const MC = ({ test, t }) =>
     test ? 

@@ -1,6 +1,5 @@
 import React from 'react'
 import _ from 'lodash'
-import tinycolor from 'tinycolor2'
 import SimpleDot from './SimpleDot'
 
 const defaultStyle = {
@@ -16,13 +15,12 @@ const defaultStyle = {
 
 const SimpleBar = props => {
     const total = props.total || 100
-    const color = tinycolor(props.color || 'rgb(51, 137, 51)')
 
     const style = _.defaults({
-        backgroundImage: `linear-gradient(to right, ${color.setAlpha(1).toString()} 100%,  transparent)`,
+        backgroundImage: 'linear-gradient(to right, '+ props.colorTotal +' 100%,  transparent)',
         backgroundRepeat: 'no-repeat',
         backgroundSize: `${props.value / total * 100}% 100%`,
-        backgroundColor: color.setAlpha(.6).toString(),
+        backgroundColor: props.colorPartOfTotal,
         height: props.height,
         width: props.width,
     }, defaultStyle)
