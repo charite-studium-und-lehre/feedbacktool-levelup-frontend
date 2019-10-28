@@ -1,4 +1,3 @@
-import React from 'react'
 import Dashboard from '../../Dashboard/Dashboard'
 import Exams from '../../Exams/Exams'
 import MC from '../../Exams/MC/MC'
@@ -12,6 +11,7 @@ import EPAs from '../../EPAs/EPAs'
 import Progress from '../../Progress/Progress'
 import Registration from '../../User/Registration'
 import DataProtection from '../../User/DataProtection'
+import Login from '../../User/Login'
 
 const Routes = [
   {
@@ -21,7 +21,6 @@ const Routes = [
     exact: true,
     private: true,
   },
-
   {
     path: '/exams/:exam?/:id?',
     component: Exams,
@@ -38,14 +37,20 @@ const Routes = [
     component: Consulting,
     menuName: 'Beratung',
     exact: true,
-    private: true,
+    private: false,
   },
   {
     path: '/alltools',
     component: AllTools,
     menuName: 'Alle Tools',
     exact: true,
-    private: true,
+    private: false,
+  },
+  {
+    path: '/login',
+    component: Login,
+    exact: true,
+    private: false,
   },
   {
     path: '/user/registration',

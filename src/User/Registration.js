@@ -1,51 +1,72 @@
-import React from 'react'
+import React, { useRef } from 'react'
+import _ from 'lodash/fp'
 import { withTranslation } from 'react-i18next'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckSquare, faSquare } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../Core/makeExtendable'
 import { Link } from 'react-router-dom'
+import { selectors as user, actions } from './Store'
 
-const Infos = props => (
-    <div className='row'>
-        <div className={`col-6 py-2 ${props.input && 'mt-3'}`} >{props.name}:</div>
-        {props.input ?
-            <div className='col-6 py-2'>
-                <input className="form-control mt-2 font-weight-bold" placeholder="Matrikelnummer"></input>
-            </div>
-            :
-            <div className=' col-6 py-2 font-weight-bold'>{props.title}</div>}
+const Info = ({ name, children }) => (
+    <div className="row">
+        <div className="col-sm-4 pt-2" >{name}:</div>
+        <div className="col-sm-8 py-2 font-weight-bold">{children}</div>
     </div>
 )
-const registration = ({ t, ...props}) => (
-    <div className='row px-4'>
-            <div className='col-12 col-lg-10 col-xl-7 mx-auto mt-3 pb-4 with-shadow'>
-                <div className='mx-auto mt-2 p-3'>
-                    <div>
-                        <h3 className='text-center mb-4 mt-2 mb-4'>{t(`Registrierung bei LevelUp`)}</h3>
-                        <p className='mb-0'>{t(`Bitte bestätige mit deiner Matrikelnummer, dass du LevellUp nutzen willst! `)}</p>
-                        <p>{t(`Nur dadurch können deine Prüfungsdaten dem aktuellen Login zugeordnet werden.`)}</p>
-                        <h6 className='font-weight-bold'>{t(`Datenschutzhinweise`)}:</h6>
-                        <p>{t(`Deine Daten werden natürlich vertrauensvoll behandelt und sind nicht für Dritte einsehbar.Die Matrikelnummer wird nach Eingabe nicht gespeichert, sondern nur dazu verwendet, einmalig die anonymisierten Prüfungsdaten zuordbar zu machen.`)}</p>
-                    </div>
-                    <div className='row'>
-                        <div className='col-12 col-lg-10 col-xl-8 mx-auto'>
-                            <Infos name='Vorname' title='LevelUp' />
-                            <Infos name='Nachname' title='Charite' />
-                            <Infos name='Email' title='LevelUp@charite' />
-                            <Infos name='Matrikelnummer' input={true} />
+
+const errorToText = t => error => {
+    switch(error) {
+        case null:
+            return
+        case 404:
+            return t('Es wurde kein Studi gefunden, auf den Name/Matrikelnummer passt.')
+        default:
+            return t('Mit der Matrikelnummer stimmt was nicht...')
+    }
+}
+const stateToProps = state => ({ ...user.getData(state), error: user.getError(state) })
+const registration = _.compose([ withTranslation(), makeExtendable, connect(stateToProps, actions) ])(
+    ({ t, extended, toggleExtended, nachname, vorname, email, stammdatenVorhanden, sendStammdaten, error }) => {
+    if(stammdatenVorhanden) return <Redirect to="/" />
+    const matrikelnummer = useRef()
+    return <div className='row'>
+            <div className='col-12 mt-2'>
+                <div className="p-4">
+                    <div className='card p-4 mx-auto' style={{maxWidth: '50rem'}}>
+                        <div>
+                            <h4 className='text-center mb-4 mt-2 mb-4'>{t(`Registrierung bei LevelUp`)}</h4>
+                            <p className='mb-0'>{t(`Bitte bestätige mit deiner Matrikelnummer, dass du LevellUp nutzen willst! `)}</p>
+                            <p>{t(`Nur dadurch können deine Prüfungsdaten dem aktuellen Login zugeordnet werden.`)}</p>
+                            <h6 className='font-weight-bold'>{t(`Datenschutzhinweise`)}:</h6>
+                            <p>{t(`Deine Daten werden natürlich vertrauensvoll behandelt und sind nicht für Dritte einsehbar.Die Matrikelnummer wird nach Eingabe nicht gespeichert, sondern nur dazu verwendet, einmalig die anonymisierten Prüfungsdaten zuordbar zu machen.`)}</p>
                         </div>
+                        <div className='row'>
+                            <div className='col-12'>
+                                <Info name={t('Vorname')} >{nachname}</Info>
+                                <Info name={t('Nachname')} >{vorname}</Info>
+                                <Info name={t('Email')} >{email}</Info>
+                                <Info name={t('Matrikelnummer')} >
+                                    <input className="form-control font-weight-bold" placeholder={t('Matrikelnummer')} ref={matrikelnummer}></input>
+                                </Info>
+                            </div>
+                        </div>
+                        <div className='mt-4'>
+                            <label onClick={toggleExtended} >
+                                <FontAwesomeIcon icon={extended ? faCheckSquare : faSquare} />
+                                <span className='ml-3 '>{t(`Ich stimme den`)}
+                                <Link to="/user/dataProtection">
+                                    <span className='font-weight-bold ml-1 text-primary' style={{ cursor: 'pointer' }}>{t(`Datenschutzhinweisen`)}</span>
+                                </Link>
+                                {t(` zu`)}</span>
+                            </label>
+                        </div>
+                        <div className="text-danger text-center">{errorToText(t)(error)}</div>
+                        <button className='btn btn-secondary mt-3' disabled={!extended} onClick={() => sendStammdaten(matrikelnummer.current.value)}>{t(`Absenden`)}</button>
                     </div>
-                    <div className='mt-4'>
-                        <input type="checkbox" onChange={props.toggleExtended}/>
-                        <span className='ml-3 '>{t(`Ich stimme den`)}
-                        <Link to="/user/dataProtection">
-                           <span className='font-weight-bold ml-1 text-primary' style={{ cursor: 'pointer' }}>{t(`Datenschutzhinweise `)}</span>
-                        </Link>
-                        {t(`zu`)}</span>
-                    </div>
-                    <Link to="/dashboard">
-                      <button className='btn btn-secondary mt-4' disabled={!props.extended} >{t(`Absenden`)}</button>
-                    </Link>
                 </div>
             </div>
     </div>
-)
-export default withTranslation()(makeExtendable(registration))
+})
+export default registration
