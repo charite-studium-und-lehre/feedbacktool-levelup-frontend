@@ -36,12 +36,12 @@ export default {
     },
 
     background: {
-        grey4: '#9AA5B4',
-        grey3: '#A7B3C3',
-        grey2: '#B6BDC7',
-        grey1: '#BFC6D1',
-        grey0: '#CFD8E4'
-    },
-
-    navigation: '#004D7F'
+        base: '#f8f9fa',
+        grey5: '#9AA5B4',
+        grey4: '#A7B3C3',
+        grey3: '#B6BDC7',
+        grey2: '#BFC6D1',
+        grey1: '#CFD8E4',
+        grey0: '#D3E0F1'
+    }
 }
