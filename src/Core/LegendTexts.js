@@ -80,9 +80,7 @@ const Legends = {
         Stations: {
             Explanation: {
                 title: <Trans>Ergebnisse</Trans>,
-                text: <Trans>Hier siehst du deine Ergebnisse in den bis jetzt absolvierten praktischen Prüfungen. Klicke
-                    auf die Flächen über dem Diagramm um deine Ergebnisse zu filtern. Wenn du auf die Balken im Diagramm
-                    klickst, bekommst du genauere Informationen zu der jeweiligen Station.</Trans>,
+                text: <Trans>Hier siehst Du die Ergebnisse deiner absolvierten mündlich-praktischen Prüfungen. Klick auf die jeweilige Station und Du bekommst genauere Informationen zu den jeweiligen Teilaufgaben.</Trans>,
             },
         },
     },
