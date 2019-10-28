@@ -9,6 +9,7 @@ export const actions = baseStore.withLoadAction(url)({})
 
 export const selectors = baseStore.withLoadedSelector({
     isLoggedIn: state => baseStore.getStore(state).loggedIn,
+    getData: baseStore.getItems,
 })
 
 const loggedIn = (state = null, action) => {

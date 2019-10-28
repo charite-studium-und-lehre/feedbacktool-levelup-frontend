@@ -1,4 +1,3 @@
-import React from 'react'
 import Dashboard from '../../Dashboard/Dashboard'
 import Exams from '../../Exams/Exams'
 import MC from '../../Exams/MC/MC'
@@ -38,14 +37,14 @@ const Routes = [
     component: Consulting,
     menuName: 'Beratung',
     exact: true,
-    private: true,
+    private: false,
   },
   {
     path: '/alltools',
     component: AllTools,
     menuName: 'Alle Tools',
     exact: true,
-    private: true,
+    private: false,
   },
   {
     path: '/login',
