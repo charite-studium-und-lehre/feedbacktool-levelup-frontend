@@ -4,18 +4,19 @@ import _ from 'lodash/fp'
 import Legend from '../Charting/Legend'
 import Ranking from './Ranking'
 import Legends from '../Core/LegendTexts'
+import SimpleDot from '../Charting/SimpleDot'
 import needsData from '../Core/needsData'
 import { selectors as ptmSelectors, actions as ptmActions } from '../Exams/Ptm/Store'
 import { selectors as mcSelectors, actions as mcActions } from '../Exams/MC/Store'
 
 const ptmProps = state => ({ faecher: _.flow(ptmSelectors.getLatest, ptmSelectors.getRanking)(state) })
 const PtmRanking = _.compose(needsData(ptmSelectors.loaded, ptmActions.load), connect(ptmProps))(
-    ({ faecher }) => <Ranking mean subjects={faecher} /> 
+    ({ faecher }) => <Ranking mean subjects={faecher} />
 )
 
 const mcProps = state => ({ faecher: mcSelectors.getRanking(state) })
 const McRanking = _.compose(needsData(mcSelectors.loaded, mcActions.load), connect(mcProps))(
-    ({ faecher }) => <Ranking subjects={faecher} /> 
+    ({ faecher }) => <Ranking subjects={faecher} />
 )
 
 const Rankings = () =>
@@ -31,7 +32,11 @@ const Rankings = () =>
         <div className="col-md-6 mb-2">
             <div className="card">
                 <div className="card-body">
-                    <Legend title={Legends.Strengths.PTM.title}>{Legends.Strengths.PTM.text}</Legend>
+                    <Legend title={Legends.Strengths.PTM.title}>{Legends.Strengths.PTM.text}
+                    <div className="position-relative">
+                        Der <SimpleDot style={{ position: 'relative', display: 'inline-block', marginLeft: '.75rem' }} value={0} /> kennzeichnet den Kohortenmittelwert
+                   </div>
+                    </Legend>
                     <PtmRanking />
                 </div>
             </div>

@@ -110,10 +110,7 @@ const Legends = {
         },
         PTM: {
             title: <Trans>Starke Fächer im PTM</Trans>,
-            text: <Trans><p>Hier findest du eine Übersicht zu deinen besten Fächern im letzten PTM. Die Auswertung
-                beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen. Der
-                Mittelwert der Kohorte ist durch einen Kreis gekennzeichnet.<br/><strong>Achtung: </strong> Nur Fächer
-                mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.</p></Trans>,
+            text: <Trans><p>Hier findest du eine Übersicht zu deinen besten Fächern im letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.<br/><strong>Achtung: </strong> Nur Fächer mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.</p></Trans>,
         },
         PTMResults: {
             title: <Trans>Gesamtes Ergebnis im PTM</Trans>,
