@@ -152,7 +152,7 @@ const Legends = {
                 <div className="my-2 w-100 position-relative">
 
                     <div>
-                        Video: <a className="text-primary" href="https://levelup.charite.de/videos/epa_2019.mp4">Was
+                        Video: <a className="color-navigation" href="https://levelup.charite.de/videos/epa_2019.mp4">Was
                         sind
                         EPAs?</a>
                     </div>
