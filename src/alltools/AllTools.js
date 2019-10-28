@@ -19,17 +19,18 @@ function AllTools({t}) {
     );
 
     const studyCards = makeStairsList(StudyToolsData);
-    const othersCards = OtherToolsData.map((data, i, array) =>
-        <div className='py-3' key={i} style={{marginLeft: (array.length + i)+"em"}}>
+    const othersCards = OtherToolsData.map((data, i) =>
+        <div key={i}>
                 <h4 style={{marginBottom: "0px"}}>{data.title}</h4>
                 <a href={data.href} className="btn-link">{data.hrefLabel || data.href}</a>
         </div>
     );
 
     return (
-        <div className='row'>
-            <div className='col-6' style={{position: "relative"}}>
+        <div>
             <h1>{t('Lern-Tools')}</h1>
+
+            <div style={{position: "relative"}}>
                 <img src={stift} alt='' style={{
                     position: "absolute",
                     minWidth: "10%",
@@ -58,8 +59,9 @@ function AllTools({t}) {
                 </div>
             </div>
 
-            <div className='col-6' style={{paddingLeft: "2em"}}>
             <h1>{t('Weiteres')}</h1>
+
+            <div style={{paddingLeft: "2em"}}>
                 {othersCards}
             </div>
         </div>
