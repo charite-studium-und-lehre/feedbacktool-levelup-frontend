@@ -23,6 +23,10 @@ const mockData = [
         url: 'fragen',
         data: url => ({ id: url.match(/(\d+)/)[0], fragen: DummyQuestions(80, 1) }),
     },
+    {
+        url: 'stammdaten',
+        data: () => ({ vorname: 'Marta', nachname: 'Musterfrau', stammdatenVorhanden: true, email: 'musterfrau@charite.de' })
+    }
 ]
 
 export const get = url => {
