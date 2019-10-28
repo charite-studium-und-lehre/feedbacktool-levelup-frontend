@@ -59,9 +59,9 @@ export const selectors = baseStore.withLoadedSelector({
 
 const callChangeLevel = (id, newData, oldData) => dispatch => {
 	const reverse = () => dispatch({ type: `${identifier.toUpperCase()}_SET`, payload: { id, value: oldData }})
-	post(`${url}/${id}?gemacht=${newData.done || 0}&zutrauen=${newData.confident || 0}`, { gemacht: newData.done, zutrauen: newData.confident })
+	post(`${url}/${id}`, { gemacht: newData.done, zutrauen: newData.confident })
 		.then( result => result.status !== 200 && reverse() )
-		.catch( err => reverse())
+		.catch( () => reverse())
 	dispatch({ type: `${identifier.toUpperCase()}_SET`, payload: { id, value: newData }})
 }
 
