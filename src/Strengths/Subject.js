@@ -5,9 +5,10 @@ import { XAxis, YAxis } from '../Charting/Axis'
 import BarGraph from '../Charting/BarGraph'
 import { withTranslation } from 'react-i18next'
 import ColorLegend from '../Charting/ColorLegend'
+import COLORS from "../colors";
 const exams = ['alle MCs', 'letzter PTM']
 
-const colors = ['hsla(250, 100%, 50%)', 'hsla(250, 100%, 50%, .6)']
+const colors = [COLORS.progress.lighter1, COLORS.progress.base]
 const Subject = ({t, ...props}) => {
     const [ flash, setFlash ] = useState(props.flash)
     const node = useRef(null)
@@ -27,13 +28,13 @@ const Subject = ({t, ...props}) => {
                 <span className="font-weight-bold">{props.titel}</span>
                 <div className="p-4">
                 <div className='mb-1'>
-                    <ColorLegend text={t('gestellte Fragen')} style={{backgroundColor: colors[0] }}/>
-                    <ColorLegend text={t('richtige Antworten')} style={{backgroundColor: colors[1] }}/>
+                    <ColorLegend text={t('gestellte Fragen')} style={{backgroundColor: COLORS.progress.lighter1 }}/>
+                    <ColorLegend text={t('richtige Antworten')} style={{backgroundColor: COLORS.progress.base }}/>
                 </div>
                     <OrdinalChart style={{height:'15rem'}} xDomain={exams} yDomain={[0,max]}>
                         <YAxis ticks={{count: Math.min(max, 4)}} />
                         <XAxis />
-                        <BarGraph labels data={ data } color="hsla(250, 100%, 50%, .6)" />
+                        <BarGraph labels data={ data } color="#ff0000" />
                     </OrdinalChart>
                 </div>
             </div>

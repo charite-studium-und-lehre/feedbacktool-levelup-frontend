@@ -10,8 +10,8 @@ import { selectors, actions } from './Store'
 import colors from "../../colors";
 
 export const color = colors.mc.base
-export const colorTotal = colors.mc.darker0
-export const colorPartOfTotal = colors.mc.darker4
+export const colorTotal = colors.mc.lighter1
+export const colorPartOfTotal = colors.mc.darker0
 
 const MC = ({ test, t }) =>
     test ? 
