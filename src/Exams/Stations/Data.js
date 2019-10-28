@@ -452,14 +452,19 @@ const StationsData = data.map( e => ({
     ...e,
     stations: e.stations.map(s => ({
         ...s, 
-        result: _.round(_.meanBy(s.details.filter( d => _.isNumber(d.value) ), 'value') ),
-        mean: _.round(_.meanBy(s.details.filter( d => _.isNumber(d.mean) ), 'mean')),
+        gesamtErgebnis: {
+            ergebnisProzentzahl: _.round(_.meanBy(s.details.filter( d => _.isNumber(d.value) ), 'value') ),
+            durchschnittProzentzahl: _.round(_.meanBy(s.details.filter( d => _.isNumber(d.mean) ), 'mean')),
+
+        }
     })),
 })).map(e => ({
     ...e,
     id: _.uniqueId(),
-    result: _.round(_.meanBy( e.stations, 'result')),
-    mean: _.round(_.meanBy( e.stations, 'mean')),
+    gesamtErgebnis: {
+        ergebnisProzentzahl: _.round(_.meanBy( e.stations, 'result')),
+        durchschnittProzentzahl: _.round(_.meanBy( e.stations, 'mean')),
+    }
 }))
 
 export default StationsData

@@ -177,7 +177,7 @@ const createTotalsData = ([result, dist]) => {
         gesamtErgebnis: {
             kohortenPunktzahlen: dist.map( _.mean ),
             ergebnisPunktzahl: _.round(_.mean(result)),
-            gesamtPunktzahl: 80,
+            maximalPunktzahl: 80,
             durchschnittsPunktzahl: distMean(dist),
             bestehensgrenzePunktzahl: 48,
         },
