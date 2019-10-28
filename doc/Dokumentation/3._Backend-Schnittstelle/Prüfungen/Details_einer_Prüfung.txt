@@ -80,10 +80,8 @@ fail: HTTP-Code 404 not found
 
 ''}''
 
-	
-	'''
-	=== PTM-Ergebnisse: ===
-	'''
+==== PTM-Ergebnisse: ====
+'''
 	{
 	"ergebnisRichtigPunktzahl": <Punktzahl 0..200>,
 	"ergebnisFalschPunktzahl": <Punktzahl 0..200>,
@@ -93,56 +91,59 @@ fail: HTTP-Code 404 not found
 	"durchschnittRichtigPunktzahl": <Punktzahl 0..200>,
 	"durchschnittFalschPunktzahl": <Punktzahl 0..200>,
 	"durchschnittWeissnichtPunktzahl": <Punktzahl 0..200>,
+'''
+
 	
 	"<faecher>": Array aus {
-	'''
-	
 			'''
 			"code": "<z.B. 'ana' für Anatomie>",
 			'''
-	
-			'''
-			"titel": "<Name, z.B. 'Anatomie'>",
-			"gruppe": "<z.B. 'Vorklinisch'>",
-			
-			"ergebnisRichtigPunktzahl": <Punktzahl>,
-			"ergebnisFalschPunktzahl": <Punktzahl>,
-			"ergebnisWeissnichtPunktzahl": <Punktzahl>,
-			'''
-				 "''maximalPunktzahl": <Punktzahl>''
-			'''
-			
-			"durchschnittRichtigPunktzahl": <Punktzahl>,
-			"durchschnittFalschPunktzahl": <Punktzahl>,
-			'''
-	
-			'''
-			"durchschnittWeissnichtPunktzahl": <Punktzahl>,
-			'''
-		'''
-		},
-		'''
-	
-	'']''
-	'''
-	}
-	
-	'''
-	=== Stations-Ergebnisse: ===
-	'''
-	{
-	'''
-	
-	''"ergebnisProzentzahl": <0.00 - 1.00>,''
-	''"durchschnittProzentzahl": <0.00 - 1.00>''
-	''"ergebnisse": ''
-	''	Array aus: {''
-	'''
-		"modul": <?ModulCode>
-		"fach": <?FachTitel>"
 
-		"ergebnisProzentzahl": <0.00 - 1.00>,
-		"durchschnittProzentzahl": <0.00 - 1.00>,
-		}
-	}
+			'''
+			"titel": "<Name>",
+			"gruppe": "<z.B. 'Vorklinische Fächer'>",
+			
+			"ergebnisRichtigPunktzahl": <Punkte>,
+			"ergebnisFalschPunktzahl": <Punkte>,
+			"ergebnisWeissnichtPunktzahl": <Punkte>,
+			
+			"durchschnittRichtigPunktzahl": <Kohortendurchschnitt>,
+			"durchschnittFalschPunktzahl": <Kohortendurchschnitt>,
+			"durchschnittWeissnichtPunktzahl": <Kohortendurchschnitt>,
+			
+			"maximalPunktzahl": <Anzahl Fragen>,
+			'''
 	'''
+		},
+	
+	'''
+	}
+
+
+==== Stations-Ergebnisse: ====
+Bei klinischen Stationsprüfungen gibt es TYPISCHERWEISE 2 Ergebnisse pro Fach: 
+//1 = Faktenwissen, 2= Zusammenhangswissen//
+Manchmal gibt es aber auch nur 1 Ergebnis (dann gibt es ein Ergebnis ohne die Zahlen 1/2, z.B. im SoSe2016 Teil1 Klinik) 
+Klinische Stationen sind dagegen Modulen zugeordnet. Hier gibt es immer nur 1 Ergebnis pro Modul
+Es gibt nur eins der beiden Array "faecher" oder "stationsM''odule"''
+
+'''
+	{
+	
+	"ergebnisProzentzahl": <0.00 - 1.00>,
+	"durchschnittProzentzahl": <0.00 - 1.00>
+'''
+    
+''"faecher": [  #(nur wenn klinisch)''
+	''{''
+	''"code": "<z.B. 'ana' für Anatomie>",	''
+	''"titel": "<Name>",''
+	''"ergebnisProzentzahl": <Punkte>,''
+			ODER ''"ergebnisProzentzahl1": <Punkte>,''
+					ODER ''"ergebnisProzentzahl2": <Punkte>,''
+	''"durchschnittProzentzahl<''|1|2>}": <Kohortendurchschnitt>,''
+		''	},''
+	''],''
+			''"stationsModule": [  #(nur wenn vorklinisch)''
+				''# exakt wie bei Fächer. Hier gibt es aber immer nur 1 Ergebnis (ohne Ziffer am Ende)''
+

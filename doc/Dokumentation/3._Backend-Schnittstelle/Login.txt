@@ -18,6 +18,9 @@ HTTP-Code 200
 {
 	"vorname": <vorname>,
 	"nachname": <nachname>,
+'''
+			   ''"email": <email>,''
+'''
 	"stammdatenVorhanden": <true|false>
 '''
 
