@@ -181,7 +181,7 @@ const createTotalsData = ([result, dist]) => {
             durchschnittsPunktzahl: distMean(dist),
             bestehensgrenzePunktzahl: 48,
         },
-        studiPruefungsId: _.uniqueId(),
+        studiPruefungsId: fp.uniqueId(),
     }
 }
 
