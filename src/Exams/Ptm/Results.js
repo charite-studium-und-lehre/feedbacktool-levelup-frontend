@@ -10,6 +10,7 @@ import Legend from '../../Charting/Legend'
 import AnimatedInteger from '../../Charting/AnimatedInteger'
 import Legends from '../../Core/LegendTexts'
 import needsData from '../../Core/needsData'
+import SimpleDot from '../../Charting/SimpleDot'
 import { selectors, actions } from './Store'
 import { color } from './Ptm'
 
@@ -30,6 +31,9 @@ const Results = props =>
         <div className="card-body">
             <Legend title={Legends.Strengths.PTMResults.title}>
                 {Legends.Strengths.PTMResults.text}
+            <div className="position-relative">
+                    Der <SimpleDot style={{ position: 'relative', display: 'inline-block', marginLeft: '.75rem' }} value={0} /> kennzeichnet den Kohortenmittelwert
+            </div>
             </Legend>
             <div className="mt-3 p-2">
                 <Chart {...props} />
