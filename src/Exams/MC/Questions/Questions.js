@@ -11,7 +11,7 @@ import { selectors, actions } from './Store'
 
 const Questions = ({ t, questions }) => {
     const [ subjectsFilters, setSubjectsFilters ] = useState(
-        _.compose([_.map(s => ({ label: s.name, pred: q => s.code === q.fach.code })), _.uniqBy( q => q.code ), _.map( q => q.fach )])(questions)
+        _.compose([_.map(s => ({ label: s.titel, pred: q => s.code === q.fach.code })), _.uniqBy( q => q.code ), _.map( q => q.fach )])(questions)
     )
     const [ modulesFilters, setModulesFilters ] = useState(
         _.compose([_.map(m => ({ label: m, pred: q => m === q.modul })), _.uniq, _.map( q => q.modul )])(questions)
