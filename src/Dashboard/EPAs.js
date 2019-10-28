@@ -5,11 +5,11 @@ import { selectors, actions } from '../EPAs/Store'
 import EPAsScore from '../EPAs/assessmentViewComponents/Score'
 import DashboardCard from './DashboardCard'
 
-const EPAs = needsData(
+const EPAs = needsData(selectors.loaded, actions.load)(
     () => <div className="m-2">
         <EPAsScore headings edit={false} width='1rem' height='1rem'  borderRadius='50%' />
     </div>
-, selectors.loaded, actions.load)
+)
 
 const Wrapper = withTranslation()(({ t }) => <DashboardCard 
     header={Math.round(Math.random() * 100) + ' %'} 
