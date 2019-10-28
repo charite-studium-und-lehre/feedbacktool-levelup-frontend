@@ -9,7 +9,7 @@ const baseStore = BaseStore(identifier)
 export const actions = baseStore.withLoadAction(url)({
     sendStammdaten: matrikelnummer => dispatch =>
         post(`${url}`, { matrikelnummer })
-            .then( result => result.status === 200 ?
+            .then( result => (1 || result.status === 200) ?
                 dispatch({ type: `${identifier.toUpperCase()}_DATA_SENT` }) :
                 dispatch({ type: `${identifier.toUpperCase()}_DATA_SENT`, payload: result.status })
             )
@@ -24,7 +24,7 @@ export const selectors = baseStore.withLoadedSelector({
 const error = (state = null, action) => {
     switch(action.type) {
         case `${identifier.toUpperCase()}_DATA_SENT`:
-            return action.payload
+            return action.payload || null
         default:
             return state
     }
