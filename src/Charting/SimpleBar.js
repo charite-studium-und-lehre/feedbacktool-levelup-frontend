@@ -1,6 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import SimpleDot from './SimpleDot'
+import colors from "../colors"
 
 const defaultStyle = {
     lineHeight: '.8rem',
@@ -15,12 +16,14 @@ const defaultStyle = {
 
 const SimpleBar = props => {
     const total = props.total || 100
+    const colorTotal = props.colorTotal || colors.default
+    const colorPartOfTotal = props.colorPartOfTotal || colors.default
 
     const style = _.defaults({
-        backgroundImage: 'linear-gradient(to right, '+ props.colorTotal +' 100%,  transparent)',
+        backgroundImage: 'linear-gradient(to right, '+ colorPartOfTotal +' 100%,  transparent)',
         backgroundRepeat: 'no-repeat',
         backgroundSize: `${props.value / total * 100}% 100%`,
-        backgroundColor: props.colorPartOfTotal,
+        backgroundColor: colorTotal,
         height: props.height,
         width: props.width,
     }, defaultStyle)

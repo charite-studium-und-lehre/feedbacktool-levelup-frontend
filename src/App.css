@@ -1,6 +1,7 @@
 .App {
   overflow-x: hidden;
   height: 100%;
+  --color-navigation: #005a9c;
 }
 
 svg {
@@ -39,14 +40,14 @@ span.input-group-text {
 }
 
 .nav-pills .nav-link.active {
-  border-bottom: 2px solid #3355ff;
+  border-bottom: 2px solid var(--color-navigation);
   background-color: transparent;
-  color: #3355ff;
+  color: inherit;
   border-radius: 0;
 }
 
 .with-border {
-  border-top: 2px solid #3355ff;
+  border-top: 3px solid var(--color-navigation);
 }
 
 .with-shadow {
@@ -61,4 +62,6 @@ ol.breadcrumb:empty {
   display: none;
 }
 
-.color-navigation { color: #005a9c}
+.color-navigation{
+  color: var(--color-navigation);
+}

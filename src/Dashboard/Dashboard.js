@@ -7,6 +7,7 @@ import Ptm from './Ptm'
 import EPAs from './EPAs'
 import Strengths from './Strengths'
 import TellMe from './TellMe'
+import COLORS from "../colors";
 
 const Cards = () => <div className="col">
     <Link to="/progress">
@@ -25,7 +26,7 @@ const Cards = () => <div className="col">
 export default () => 
     <div className="container-fluid h-100">
         <div className="row h-100 flex-row-reverse">
-            <div className="col-lg-4" style={{backgroundColor: '#eee'}}>        
+            <div className="col-lg-4" style={{backgroundColor: COLORS.background.grey0}}>
                 <div className="d-none d-lg-block h-100">
                     <Newsfeed />
                 </div>

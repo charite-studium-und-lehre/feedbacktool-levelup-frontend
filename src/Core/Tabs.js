@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import COLORS from "../colors";
 
 const asTabs = WrappedComponent => {
     return class Tabs extends Component {
@@ -30,7 +31,7 @@ const asTabs = WrappedComponent => {
 
         render() {
             return (
-                <div className="py-2" style={{backgroundColor: "#e9ecef"}}>
+                <div className="py-2" style={{backgroundColor: COLORS.background.grey0}}>
                     <WrappedComponent selectTab={tab => this.selectTab(tab)} selectedTab={this.state.tab} {...this.props} />
                     <div className="text-nowrap animated pt-4" style={{overflow: `hidden`, backgroundColor: "white"}} >
                         <div className="animated position-relative" style={{left: `-${this.state.tab * 100}%`}}>
@@ -48,7 +49,7 @@ export default asTabs(props =>
     <ul className="nav nav-pills" role="tablist">
         {React.Children.map(props.children, (child, i) =>
             <li key={i} className="nav-item" onClick={() => props.selectTab(i)}>
-                <span className={`nav-link ${props.selectedTab === i ? 'active bg-white' : 'bg-grey'}`} data-toggle="pill" role="tab">
+                <span className={`nav-link ${props.selectedTab === i ? 'active color-navigation bg-white' : ''}`} data-toggle="pill" role="tab">
                     {child.props.title}
                 </span>
             </li>

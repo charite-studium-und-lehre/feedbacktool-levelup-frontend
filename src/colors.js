@@ -1,24 +1,24 @@
 export default {
 
     progress: {
-        base: '#D0847A',
-        lighter1: '#FFDFDB',
-        lighter2: '#F7BCB4',
-        darker1: '#AD574C',
-        darker2: '#8D362B'
+        lighter3: '#D0847A',
+        lighter2: '#e6c9c5',
+        base: '#ab665e',
+        darker1: '#8D362B'
     },
 
     mc: {
-        base: '#21a599',
-        darker0: '#4E6865',
-        darker1: '#3B5754',
-        darker2: '#283F3D',
-        darker3: '#1A3C39',
-        darker4: '#103632'
+        base: '#2299a5',
+        lighter1: '#b7c5cc',
+        darker0: '#4e6468',
+        darker1: '#3b5357',
+        darker2: '#27303f',
+        darker3: '#1a393c',
+        darker4: '#103136'
     },
 
     pp: {
-        base: '#65a400',
+        base: '#63940f',
         darker0: '#8C9A74',
         darker1: '#718158',
         darker2: '#515E3B',
@@ -28,6 +28,8 @@ export default {
 
     ptm: {
         base: '#9b589b',
+        lighter2: '#cca3cc',
+        lighter1: '#e6e1e6',
         darker0: '#6D516D',
         darker1: '#5B3E5B',
         darker2: '#422A42',
@@ -36,12 +38,18 @@ export default {
     },
 
     background: {
-        base: '#f8f9fa',
+        base: '#f8f9ff',
+        grey6: '#585e66',
         grey5: '#9AA5B4',
         grey4: '#A7B3C3',
         grey3: '#B6BDC7',
         grey2: '#BFC6D1',
         grey1: '#CFD8E4',
-        grey0: '#D3E0F1'
-    }
+        grey0: '#e4e9f0'
+    },
+
+    textBlack: '#101010',
+
+    default: '#ff0000'
+
 }
