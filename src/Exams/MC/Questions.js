@@ -30,7 +30,9 @@ const Infos = ({ questions, title }) => (
 )
 
 const stateToProps = (state, ownProps) => ({ questions: selectors.getById(state, ownProps.id) })
-const Questions = _.compose([needsData(selectors.loaded, props => actions.load(props.id)), connect(stateToProps), withTranslation()])(({ t, id, questions }) =>
+const loadedById = (state, ownProps) => selectors.loaded(state, ownProps.id)
+const loadById = ownProps => actions.load(ownProps.id)
+const Questions = _.compose([needsData(loadedById, loadById), connect(stateToProps), withTranslation()])(({ t, id, questions }) =>
     <div>
         <div className="row">
             <div className="col">

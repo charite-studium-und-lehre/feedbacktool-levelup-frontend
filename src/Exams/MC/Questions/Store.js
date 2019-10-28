@@ -11,7 +11,7 @@ export const actions = {
 }
 
 const getById = (state, id) => baseStore.getStore(state)[id]
-const loaded = (state, ownProps) => !!getById(state, ownProps.id)
+const loaded = (state, id) => !!getById(state, id)
 
 export const selectors = {
     loaded,
