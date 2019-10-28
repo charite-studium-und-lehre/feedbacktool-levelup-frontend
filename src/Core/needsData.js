@@ -8,11 +8,11 @@ const Spinner = () => <div className="text-center m-4" style={{fontSize: '1.5rem
 </div>
 
 const stateToProps = loadedSelector => (state, ownProps) => ({ loaded: loadedSelector(state, ownProps) })
-const needsData = (loadedSelector, loadAction) => WrappedComponent => connect(stateToProps(loadedSelector) , { load: loadAction })(
+const needsData = (loadedSelector, loadAction, spinner = true) => WrappedComponent => connect(stateToProps(loadedSelector) , { load: loadAction })(
     ({ load, loaded, ...props }) => {
         useEffect(() => { !loaded && load(props) }, [loaded, load, props])
 
-        return loaded ? <WrappedComponent {...props} /> : <Spinner />
+        return loaded ? <WrappedComponent {...props} /> : (spinner && <Spinner />)
     }
 )
 
