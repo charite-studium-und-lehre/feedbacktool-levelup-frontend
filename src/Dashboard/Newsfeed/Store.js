@@ -6,9 +6,9 @@ import { selectors as ExamsSelectors, actions as ExamsActions } from '../../Exam
 import { selectors as StationsSelectors } from '../../Exams/Stations/Store'
 import { selectors as MCSelectors } from '../../Exams/MC/Store'
 import { selectors as PtmSelectors } from '../../Exams/Ptm/Store'
+import { color as stationsColor } from '../../Exams/Stations/Stations'
 import { color as mcColor } from '../../Exams/MC/MC'
 import { color as ptmColor } from '../../Exams/Ptm/Ptm'
-import { color as stationsColor } from '../../Exams/Stations/Stations'
 
 const getData = _.flow([
     _.over([ 

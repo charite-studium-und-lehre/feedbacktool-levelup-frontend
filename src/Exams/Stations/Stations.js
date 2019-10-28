@@ -11,8 +11,11 @@ import Legends from '../../Core/LegendTexts'
 import SimpleDot from '../../Charting/SimpleDot'
 import { withTranslation } from 'react-i18next'
 import { selectors, actions } from './Store'
+import colordefs from "../../colors";
 
-export const color = 'hsla(0, 50%, 50%, .75)'
+export const color = colordefs.pp.base
+export const colorTotal = colordefs.pp.darker4
+export const colorPartOfTotal = colordefs.pp.darker0
 const colors = scaleOrdinal(schemeSpectral[6])
 
 const Stations = ({ t, data, groupFilters, setGroupFilters }) => {

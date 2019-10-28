@@ -39,14 +39,14 @@ span.input-group-text {
 }
 
 .nav-pills .nav-link.active {
-  border-bottom: 2px solid #007bff;
+  border-bottom: 2px solid #3355ff;
   background-color: transparent;
-  color: #007bff;
+  color: #3355ff;
   border-radius: 0;
 }
 
 .with-border {
-  border-top: 2px solid #007bff;
+  border-top: 2px solid #3355ff;
 }
 
 .with-shadow {
@@ -60,3 +60,38 @@ ol.breadcrumb {
 ol.breadcrumb:empty {
   display: none;
 }
+
+.color-progress { color: #D0847A }
+.color-progress-l1 { color: #F7BCB4 }
+.color-progress-l2 { color: #FFDFDB }
+.color-progress-d1 { color: #AD574C }
+.color-progress-d2 { color: #8D362B }
+
+.color-pp {color: #7DCA00}
+.color-pp-grey-0 { color: #898D83 }
+.color-pp-grey-1 { color: #A1AF8C }
+.color-pp-grey-2 { color: #797E71 }
+.color-pp-grey-3 { color: #6B7260 }
+.color-pp-grey-4 { color: #5C644F }
+
+.color-mc {color: #21a599}
+.color-mc-grey-0 { color: #4E6865 }
+.color-mc-grey-1 { color: #3B5754 }
+.color-mc-grey-2 { color: #283F3D }
+.color-mc-grey-3 { color: #1A3C39 }
+.color-mc-grey-4 { color: #103632 }
+
+.color-ptm {color: #9b589b}
+.color-ptm-grey-0 { color: #635C63 }	
+.color-ptm-grey-1 { color: #7B637B }
+.color-ptm-grey-2 { color: #594F59 }
+.color-ptm-grey-3 { color: #504350 }
+.color-ptm-grey-4 { color: #463846 }
+
+.color-bg-grey-4 { color: #9AA5B4 }
+.color-bg-grey-3 { color: #A7B3C3 }
+.color-bg-grey-2 { color: #B6BDC7 }
+.color-bg-grey-1 { color: #BFC6D1 }
+.color-bg-grey-0 { color: #CFD8E4 }
+
+.color-navigation { color: #004D7F}
