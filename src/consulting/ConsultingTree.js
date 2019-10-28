@@ -35,12 +35,12 @@ export const ConsultingTree = t => ({
         paragraph:t(`MediCoach bietet ein individuelles, kostenloses, lösungsorientiertes Coaching zur Unterstützung bei Stressbelastungen, die sich direkt aus dem Studium oder auch durch private Lebensumstände ergeben. MediCoach möchte dabei unterstützen, die Studienzeit gewinnbringend und bei guter Gesundheit nutzen zu können. Die Beratungen finden nach Bedarf in ein- oder mehrmaligen Einzelgesprächen oder Gruppensitzungen statt.`),
         tel:" +49 30 450 529189",
         emails:["medicoach@charite.de"],
-        talk:[t( `Gespräch nach Terminvereinbarung)`)],
+        talk:[t( `Gespräch nach Terminvereinbarung`)],
         href: 'https://medicoach.charite.de/fuer_studierende' 
     },
     {
         title:t(`Familienbüro`),
-        paragraph:t(`Sie studieren an der Charité und betreuen Kinder? Sie suchen einen Kitaplatz? Siepflegen Angehörige? Sie haben Fragen und benötigen Informationen rund um dasThema Vereinbarkeit von Studium und Familie?`),
+        paragraph:t(`Familienbüro:Sie studieren an der Charité und betreuen Kinder? Sie suchen einen Kitaplatz? Sie pflegen Angehörige? Sie haben Fragen und benötigen Informationen rund um das Thema Vereinbarkeit von Studium und Familie?`),
         tel:"+49 030 450 577 257",
         emails:["familienbuero@charite.de","vaeterbeauftragte@charite.de"],
         address: "Westring 1, 1. Etage, R1.1011 CVK",
@@ -48,7 +48,7 @@ export const ConsultingTree = t => ({
         href: 'https://familienbuero.charite.de/charite_mit_kind/studieren_mit_familie/kinderbetreuung' 
     },
    {
-        title:"Charite International Cooperations (ChiC) ",
+        title:"Charité International Cooperations (ChiC)",
         paragraph:t(`ChiC bietet Informationen und Unterstützung rund um die Themen Studieren im Ausland bzw. aus dem Ausland und Unterstützung von internationalen Studierenden in Berlin.`),
         tel:"+49 30 450 576 088 ",
         emails:["erasmixpaten@charite.de"],
