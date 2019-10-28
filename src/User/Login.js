@@ -1,17 +1,29 @@
-
 import React from 'react'
+import { connect } from 'react-redux'
+import _ from 'lodash/fp'
 import image from './login.jpg'
 import { Link } from 'react-router-dom'
 import { withTranslation } from 'react-i18next'
+import { Redirect } from 'react-router-dom'
 import makeExtendable from '../Core/makeExtendable'
+import { selectors as user } from './Store'
 
 const background = {
     background: `url(${image}) no-repeat center`,
     backgroundSize: 'cover'
 }
 
-const Login = ({ t }) => (
-    <div className='h-100' >
+const stateToProps = state => ({ 
+    loggedIn: user.isLoggedIn(state),
+    hasStammdata: user.getData(state).stammdatenVorhanden,
+})
+const Login = _.compose([
+    connect(stateToProps),
+    withTranslation(),
+    makeExtendable,
+])(
+    ({ t, hasStammdata, loggedIn }) =>
+    (!loggedIn || hasStammdata) ? <div className='h-100' >
         <div className='row h-100' style={background}>
             <div className='col-md-5 offset-md-7 bg-white'>
                 <div className='pr-4 pl-3'>
@@ -32,6 +44,7 @@ const Login = ({ t }) => (
                 </div>
             </div>
         </div>
-    </div>
+    </div> :
+    <Redirect to='/user/registration' />
 )
-export default withTranslation()(makeExtendable(Login))
+export default Login
