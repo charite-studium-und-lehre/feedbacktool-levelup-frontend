@@ -22,48 +22,49 @@ const Stations = ({ t, data, groupFilters, setGroupFilters }) => {
     const categories = _.uniq(_.flatMap(e => e.stations, data).map(d => d.category))
     const categoryColors = c => colors(categories.indexOf(c))
 
-    const [ categoryFilters, setCategoryFilters ] = useState( categories.map(c => ({label: c, pred: d => d.category === c , selected: true, color: categoryColors(c) })) )
+    const [categoryFilters, setCategoryFilters] = useState(categories.map(c => ({ label: c, pred: d => d.category === c, selected: true, color: categoryColors(c) })))
 
     const LegendText = Legends.Exams.Stations.Explanation
     const filteredData = _.filter(_.overSome(groupFilters.filter(f => f.selected).map(f => f.pred)), data)
-        .map(e => ({...e, stations: e.stations
-            .filter(_.overSome(categoryFilters.filter(f => f.selected).map(f => f.pred)))
-    }))
+        .map(e => ({
+            ...e, stations: e.stations
+                .filter(_.overSome(categoryFilters.filter(f => f.selected).map(f => f.pred)))
+        }))
     return (
-    <div className="container-fluid">
-        <div className="row ">
-            <div className="col ">
-                <div className="p-2">
-                        <h4 className="mr-auto">{t('Praktische Prüfungen')}</h4>
+        <div className="container-fluid">
+            <div className="row ">
+                <div className="col ">
+                    <div className="p-2">
+                        <h4 className="mr-auto">{t('Mündlich-praktische Prüfungen')}</h4>
                     </div>
-                <div className="row col " style={{minHeight: '25rem'}}>
-                    <div className="card px-4 py-4 w-100 overflow-hidden">
-                        <Legend title={LegendText.title}>
-                            {LegendText.text}
-                            <div className="position-relative">
-                                {t(`Der`)} <SimpleDot style={{position: 'relative', display: 'inline-block', marginLeft: '.75rem'}} value={0} />{t(` kennzeichnet den Kohortenmittelwert.`)}
+                    <div className="row col " style={{ minHeight: '25rem' }}>
+                        <div className="card px-4 py-4 w-100 overflow-hidden">
+                            <Legend title={LegendText.title}>
+                                {LegendText.text}
+                                <div className="position-relative">
+                                    {t(`Der`)} <SimpleDot style={{ position: 'relative', display: 'inline-block', marginLeft: '.75rem' }} value={0} />{t(` kennzeichnet den Kohortenmittelwert.`)}
+                                </div>
+                            </Legend>
+                            <div className="mt-2 mb-3 d-flex flex-wrap">
+                                <div className='mr-3' style={{ fontSize: '.9rem' }}>
+                                    <Filter
+                                        style={{ display: 'inline-block' }}
+                                        filters={categoryFilters}
+                                        onUpdate={setCategoryFilters} />
+                                </div>
+                                <div style={{ fontSize: '.9rem', width: '17rem' }} className="flex-grow-1">
+                                    <Filter style={{ display: 'inline-block' }} filters={groupFilters} onUpdate={filters => { setGroupFilters(filters.filter(f => f.selected).map(f => f.label)) }} />
+                                </div>
                             </div>
-                        </Legend>
-                        <div className="mt-2 mb-3 d-flex flex-wrap">
-                            <div style={{fontSize: '.9rem'}}>
-                                {t(`Bereich`)}: <Filter
-                                    style={{display: 'inline-block'}}
-                                    filters={ categoryFilters } 
-                                    onUpdate={ setCategoryFilters } />
-                            </div>
-                            <div style={{fontSize: '.9rem', width: '17rem'}} className="flex-grow-1">
-                                {t(`Prüfungen`)}: <Filter style={{display: 'inline-block'}} filters={ groupFilters } onUpdate={ filters => { setGroupFilters(filters.filter( f => f.selected ).map( f => f.label )) }} />
-                            </div>
+                            <StationsChart
+                                colors={categoryColors}
+                                data={filteredData} />
                         </div>
-                        <StationsChart
-                            colors={categoryColors}
-                            data={filteredData} />
                     </div>
                 </div>
             </div>
-        </div>
-    </div>)
+        </div>)
 }
 
 const stateToProps = state => ({ data: selectors.getItems(state), groupFilters: selectors.getGroupFilters(state) })
-export default _.flowRight([ needsData(selectors.loaded, actions.load), withTranslation(), connect(stateToProps, actions) ])(Stations)
+export default _.flowRight([needsData(selectors.loaded, actions.load), withTranslation(), connect(stateToProps, actions)])(Stations)

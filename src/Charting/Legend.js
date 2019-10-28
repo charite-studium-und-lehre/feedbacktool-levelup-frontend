@@ -11,7 +11,7 @@ const Legend = props =>
             <div className="ml-auto">
                 {props.children && <FontAwesomeIcon 
                     onClick={e => {e.preventDefault(); props.toggleExtended()}}
-                    className={props.extended ? 'text-primary' : 'text-muted'}
+                    className={props.extended ? 'text-muted' : 'color-navigation'}
                     style={{fontSize: '1.3rem'}}
                     icon={faInfoCircle} />}
             </div>

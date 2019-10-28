@@ -14,7 +14,7 @@ const style = {
 }
 const Item = props =>
     <Link className="d-block pt-3" to={`/exams/${props.link}`}>
-        <div className="p-2 bg-white with-shadow">
+        <div className="p-2 bg-white">
             <div className="d-flex">
                 <div className="p-1">
                     <div style={{...style, backgroundColor: props.color}}>{props.icon}</div>

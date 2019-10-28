@@ -1,13 +1,14 @@
 import React from 'react'
 import _ from 'lodash'
+import COLORS from "../colors";
 
 const defaultStyle = size => ({
     position: 'absolute',
     height: `${size}rem`,
     width: `${size}rem`,
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    backgroundColor: COLORS.textBlack,
     borderRadius: `${size/2}rem`,
-    border: '1px solid rgba(0,0,0,.2)',
+    border: '3px solid '+ COLORS.background.base
 })
 
 const SimpleDot = ({ className = '', size = .5, ...props }) => {
