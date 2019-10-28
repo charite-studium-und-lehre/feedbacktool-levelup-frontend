@@ -7,7 +7,7 @@ export const identifier = 'ptms'
 const baseStore = BaseStore(identifier)
 
 const findById = id => ptms => ptms[id]
-const findSubject = subject => _.flow([_.find({'name': subject}), _.defaultTo({})])
+const findSubject = subject => _.flow([_.find({'titel': subject}), _.defaultTo({})])
 const getFaecher = ptm => ptm.faecher
 const getSubjects = _.flow([ getFaecher ])
 const getSubject = subject => _.flow([ getSubjects, findSubject(subject) ])

@@ -35,7 +35,7 @@ const Subject = props => (
     <div>
         <div className="row py-3" onClick={() => props.toggleExtended()} >
             <div className="col-7 col-sm-6">
-                <span className="text-primary">#{props.rank}</span><span className="ml-1 font-weight-bold">{props.name}</span>
+                <span className="text-primary">#{props.rank}</span><span className="ml-1 font-weight-bold">{props.titel}</span>
             </div>
             <div className="col-5 col-sm-2 p-0">
                 <span className="badge badge-info" style={{fontSize: '.6rem'}}>{props.category}</span>
@@ -56,8 +56,8 @@ const Subject = props => (
 )
 
 const stateToProps = (state, ownProps) => ({
-    data: selectors.getSubjectByName(state, ownProps.id, ownProps.name), 
-    timeline: selectors.getAllForSubject(state, ownProps.name)
+    data: selectors.getSubjectByName(state, ownProps.id, ownProps.titel), 
+    timeline: selectors.getAllForSubject(state, ownProps.titel)
 })
 
 export default makeExtendable(connect(stateToProps)(Subject))

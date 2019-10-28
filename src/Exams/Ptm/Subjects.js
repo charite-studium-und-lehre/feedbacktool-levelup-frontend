@@ -21,7 +21,7 @@ const Subjects = _.compose(needsData(selectors.loaded, actions.load), withTransl
     const filtered = faecher.filter(
         _.overEvery([
             _.overSome(filters.filter( f => f.selected && f.group === 'categories').map( f => f.pred )), 
-            s => s.name.toLowerCase().indexOf(search.toLowerCase()) >= 0,
+            s => s.titel.toLowerCase().indexOf(search.toLowerCase()) >= 0,
             _.overEvery([...filters.filter( f => f.selected && f.group !== 'categories' ).map( f => f.pred ), () => true]),
         ]))
     return (
@@ -36,8 +36,8 @@ const Subjects = _.compose(needsData(selectors.loaded, actions.load), withTransl
         </div>
         <div className={css.subjects}>
         {filtered.map((s, rank) =>
-            <div className={`w-100`} key={s.name}>
-                <Subject extended={parseInt(rank) < 1} key={s.name} name={s.name} category={s.kategorie} rank={parseInt(rank) + 1} id={id} />
+            <div className={`w-100`} key={s.code}>
+                <Subject extended={parseInt(rank) < 1} key={s.code} titel={s.titel} category={s.kategorie} rank={parseInt(rank) + 1} id={id} />
             </div>
         )}
         </div>
