@@ -47,7 +47,7 @@ span.input-group-text {
 }
 
 .with-border {
-  border-top: 2px solid #3355ff;
+  border-top: 3px solid var(--color-navigation);
 }
 
 .with-shadow {
