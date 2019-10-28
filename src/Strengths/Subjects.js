@@ -7,7 +7,7 @@ import Subject from './Subject'
 import { selectors, actions } from './Store'
 
 const Subjects = _.compose([needsData(selectors.loaded, actions.load), connect(selectors.getData)])( ({ subjects, flash }) => {
-    const categories = _.groupBy( s => s.mc ? s.mc.gruppe : 'Andere' , subjects)
+    const categories = _.groupBy( s => s.ptm ? s.ptm.gruppe : 'Andere' , subjects)
     const active = _.findKey( c => _.some( s => s.name === flash, c ), categories)
     return (
     <SubjectsTabs active={active}>

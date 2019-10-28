@@ -11,8 +11,8 @@ const Ranking = ({t, ...props}) =>
             {_.take(props.subjects, props.extended ? props.subjects.length : 3).map((s, i) =>
                 <div key={s.code} className="py-2">
                     <h5><span className="text-primary">#{i+1}</span> {s.titel}</h5>
-                    <SimpleBar value={s.correct} total={s.total} mean={props.mean && s.durchschnittPunktzahl}>
-                        {s.correct} von {s.total} {t(`richtig`)}
+                    <SimpleBar value={s.ergebnisPunktzahl} total={s.maximalPunktzahl} mean={props.mean && s.durchschnittsPunktzahl}>
+                        {s.ergebnisPunktzahl} von {s.maximalPunktzahl} {t(`richtig`)}
                     </SimpleBar>
                 </div>
             )}

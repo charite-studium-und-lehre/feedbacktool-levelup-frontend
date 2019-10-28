@@ -10,7 +10,7 @@ import { selectors as mcSelectors, actions as mcActions } from '../Exams/MC/Stor
 
 const ptmProps = state => ({ faecher: _.flow(ptmSelectors.getLatest, ptmSelectors.getRanking)(state) })
 const PtmRanking = _.compose(needsData(ptmSelectors.loaded, ptmActions.load), connect(ptmProps))(
-    ({ faecher }) => <Ranking subjects={faecher} /> 
+    ({ faecher }) => <Ranking mean subjects={faecher} /> 
 )
 
 const mcProps = state => ({ faecher: mcSelectors.getRanking(state) })
@@ -32,7 +32,7 @@ const Rankings = () =>
             <div className="card">
                 <div className="card-body">
                     <Legend title={Legends.Strengths.PTM.title}>{Legends.Strengths.PTM.text}</Legend>
-                    <PtmRanking mean />
+                    <PtmRanking />
                 </div>
             </div>
         </div>

@@ -19,8 +19,8 @@ const Subject = ({t, ...props}) => {
         }, 500)
     }
 
-    const data = exams.map((d, i) => ({ color: colors, x:d, y: [props.data[i].total || 0, props.data[i].correct || 0]}))
-    const max = Math.max(..._.map(d => _.ceil(d.total * 1.1) || 0, props.data))
+    const data = exams.map((d, i) => ({ color: colors, x:d, y: [props.data[i].maximalPunktzahl || 0, props.data[i].ergebnisPunktzahl || 0]}))
+    const max = Math.max(..._.map(d => _.ceil(d.maximalPunktzahl * 1.1) || 0, props.data))
     return (
         <div className="card m-2 flex-grow-1" style={{minWidth: '20rem', maxWidth: '40rem'}}>
             <div ref={node} className={`card-body ${flash ? 'bg-primary' : ''}`} style={{transition: '5s'}}>

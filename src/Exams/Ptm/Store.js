@@ -11,7 +11,7 @@ const findSubject = subject => _.flow([_.find({'titel': subject}), _.defaultTo({
 const getFaecher = ptm => ptm.faecher
 const getSubjects = _.flow([ getFaecher ])
 const getSubject = subject => _.flow([ getSubjects, findSubject(subject) ])
-const getRanking = _.flow([ getSubjects, _.filter(s => s.gesamt >= minQuestions), _.sortBy(s => -s.richtig / s.gesamt) ])
+const getRanking = _.flow([ getSubjects, _.filter(s => s.maximalPunktzahl >= minQuestions), _.sortBy([ s => -s.ergebnisPunktzahl / s.maximalPunktzahl, s => -s.maximalPunktzahl ]) ])
 
 const toTimeline = ptm => ({
     ...ptm,

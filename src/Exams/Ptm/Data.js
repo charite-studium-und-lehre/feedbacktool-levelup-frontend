@@ -53,13 +53,13 @@ const SubjectsWithNumbers = _.flow([rnd, random => Subjects.map(
     cat => ({ 
         ...cat, 
         subjects: cat.subjects.map( s => ({
-            kategorie: cat.title,
+            gruppe: cat.title,
             ...s,
-            gesamt: Math.max(0, rnd(s.name)(3,20) + random(0,4)),
+            maximalPunktzahl: Math.max(0, rnd(s.titel)(3,20) + random(0,4)),
         })).map(s => ({ 
             ...s, 
-            richtig: random(0, s.gesamt),
-            durchschnitt: random(1, s.gesamt)
+            ergebnisPunktzahl: random(0, s.maximalPunktzahl),
+            durchschnittsPunktzahl: random(1, s.maximalPunktzahl)
         }))
     }
 )), _.flatMap(c => c.subjects)])
