@@ -4,8 +4,8 @@ import {withTranslation} from 'react-i18next'
 import {StudyToolsData} from './StudyToolsData'
 import {OtherToolsData} from './OtherToolsData'
 
-import stift from './stift.png'
-import spritze from './spritze.png'
+import stift from './stift.svg'
+import spritze from './spritze.svg'
 
 function AllTools({t}) {
 
@@ -13,7 +13,7 @@ function AllTools({t}) {
         <div key={i} style={{marginBottom: "1em"}}>
             <div style={{marginLeft: (array.length-i)+"em"}} >
                 <h4 style={{marginBottom: "0px"}}>{data.title}</h4>
-                <a href={data.href} className="btn-link">{data.href}</a>
+                <a href={data.href} className="color-navigation">{data.href}</a>
             </div>
         </div>
     );
@@ -22,7 +22,7 @@ function AllTools({t}) {
     const othersCards = OtherToolsData.map((data, i) =>
         <div key={i}>
                 <h4 style={{marginBottom: "0px"}}>{data.title}</h4>
-                <a href={data.href} className="btn-link">{data.hrefLabel || data.href}</a>
+                <a href={data.href} className="color-navigation">{data.hrefLabel || data.href}</a>
         </div>
     );
 

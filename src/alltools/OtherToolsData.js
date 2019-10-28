@@ -2,7 +2,7 @@ export const OtherToolsData = [
         {
             title: 'Beratungsangebote',
             description: 'Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. ',
-            href: '/consulting',
+            href: '/consulting/consulting',
             hrefLabel: 'Linksamlung zu Beratung'
         },
         {

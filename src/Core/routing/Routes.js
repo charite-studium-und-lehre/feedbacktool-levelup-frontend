@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import Dashboard from '../../Dashboard/Dashboard'
 import Exams from '../../Exams/Exams'
 import MC from '../../Exams/MC/MC'
@@ -11,7 +10,6 @@ import Consulting from '../../consulting/Consulting'
 import AllTools from '../../alltools/AllTools'
 import EPAs from '../../EPAs/EPAs'
 import Progress from '../../Progress/Progress'
-import i18next from 'i18next'
 import Registration from '../../User/Registration'
 import DataProtection from '../../User/DataProtection'
 
@@ -46,7 +44,6 @@ const Routes = [
     path: '/alltools',
     component: AllTools,
     menuName: 'Alle Tools',
-    breadcrumb: () => <Link to="/alltools">{i18next.t(`Alle Tools`)}</Link>,
     exact: true,
     private: true,
   },
