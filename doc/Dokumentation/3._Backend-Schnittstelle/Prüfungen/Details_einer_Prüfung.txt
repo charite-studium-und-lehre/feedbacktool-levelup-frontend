@@ -76,35 +76,9 @@ fail: HTTP-Code 404 not found
 		'''
 		},
 		],
-		"fragen": [
 		'''
-	'''
-		{
-			"id": <Wenn es sowas gibt?>,
-			"durchschnittRichtig": <0.0 - 1.0>
-			"text": "<Fragentext als Reintext>",
-			"fach": {
-				"code": "<wie oben>",
-				"titel": "<wie oben>"
-			},
-			modul: "<Modulname als Text>",
-			"antworten": [
-			{
-				"text": <Antwort-Text mit Buchstaben "a)">,
-				"richtig": <true|false>,
-				"ausgewaehlt": <true|false>,
-	'''
-	'''
-			},
-	'''
-	'''
-			]
-		},
-	'''
-	'''
-	],
-	}
-	'''
+
+''}''
 
 	
 	'''
