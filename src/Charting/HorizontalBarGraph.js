@@ -11,7 +11,6 @@ const HorizontalBarGraph = props => {
 	const offset = (props.offset || 0) * height
 	const dy = props.yScale.bandwidth ? 10 : (offset - height/2)
 	const clickHandler = props.onClick || (() => {})
-	console.log(props)
 	return (
 	<g>
 		{props.data.map((d, i) => 
