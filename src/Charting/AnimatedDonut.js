@@ -30,7 +30,7 @@ const Graph = ({ data, xScale, yScale, width = .2, colors = defaultColors, anima
 
 const AnimatedDonut = ({ children, ...props }) => 
     <div className="position-relative m-auto d-flex align-items-center h-100 w-100">
-        <div className="position-absolute">
+        <div className="position-absolute h-100 w-100">
             <LinearChart xDomain={[0,1]} yDomain={[1,0]}>
                 <Graph {...props} />
             </LinearChart>
