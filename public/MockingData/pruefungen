@@ -4,6 +4,7 @@
             "name": "Stationspr\u00fcfung Teil3 SoSe2019 Pr\u00fcfungszeitraum 1",
             "typ": "Stat-3",
             "format": "station",
+            "fachsemester": 4,
             "studiPruefungsId": 31726,
             "zeitsemester": "SoSe 2019",
             "periodeCode": 201911,
@@ -12,30 +13,30 @@
                 "ergebnisProzentzahl": 0.86,
                 "durchschnittProzentzahl": 0.79
             },
-            "stationsModule": [
+            "stationen": [
                 {
                     "code": "00#03",
                     "titel": "KIT Gespr\u00e4chstechnik ",
                     "ergebnisProzentzahl": 0.85,
-                    "durchschnittRichtigPunktzahl": 0.74
+                    "durchschnittProzentzahl": 0.74
                 },
                 {
                     "code": "09#01",
                     "titel": "Haut M09",
                     "ergebnisProzentzahl": 0.66,
-                    "durchschnittRichtigPunktzahl": 0.8
+                    "durchschnittProzentzahl": 0.8
                 },
                 {
                     "code": "13#02",
                     "titel": "Atmung M13",
                     "ergebnisProzentzahl": 0.93,
-                    "durchschnittRichtigPunktzahl": 0.82
+                    "durchschnittProzentzahl": 0.82
                 },
                 {
                     "code": "15#02",
                     "titel": "Nervensystem M15",
                     "ergebnisProzentzahl": 1,
-                    "durchschnittRichtigPunktzahl": 0.9
+                    "durchschnittProzentzahl": 0.9
                 }
             ]
         },
@@ -43,6 +44,7 @@
             "name": "Stationspr\u00fcfung Teil1 Vorklinik SoSe2018 Pr\u00fcfungszeitraum 2",
             "typ": "Stat-1VK",
             "format": "station",
+            "fachsemester": 2,
             "studiPruefungsId": 29492,
             "zeitsemester": "SoSe 2018",
             "periodeCode": 201812,
@@ -51,22 +53,46 @@
                 "ergebnisProzentzahl": 0.78,
                 "durchschnittProzentzahl": 0.86
             },
-            "faecher": [
+            "stationen": [
                 {
                     "code": "bioch",
                     "titel": "Biochemie",
-                    "ergebnisProzentzahl1": 0.83,
-                    "ergebnisProzentzahl2": 0.87,
-                    "durchschnittRichtigPunktzahl1": 0.74,
-                    "durchschnittRichtigPunktzahl2": 0.75
+                    "ergebnisProzentzahl": 0.85,
+                    "details": [
+                        {
+                            "code": "1",
+                            "titel": "Faktenwissen",
+                            "ergebnisProzentzahl": 0.83,
+                            "durchschnittProzentzahl": 0.75
+                        },
+                        {
+                            "code": "2",
+                            "titel": "Zusammenhangswissen",
+                            "ergebnisProzentzahl": 0.87,
+                            "durchschnittProzentzahl": 0.74
+                        }
+                    ],
+                    "durchschnittProzentzahl": 0.75
                 },
                 {
                     "code": "sozMed",
                     "titel": "Sozialmedizin",
-                    "ergebnisProzentzahl1": 0.83,
-                    "ergebnisProzentzahl2": 0.73,
-                    "durchschnittRichtigPunktzahl1": 0.89,
-                    "durchschnittRichtigPunktzahl2": 0.85
+                    "ergebnisProzentzahl": 0.78,
+                    "details": [
+                        {
+                            "code": "1",
+                            "titel": "Faktenwissen",
+                            "ergebnisProzentzahl": 0.83,
+                            "durchschnittProzentzahl": 0.75
+                        },
+                        {
+                            "code": "2",
+                            "titel": "Zusammenhangswissen",
+                            "ergebnisProzentzahl": 0.73,
+                            "durchschnittProzentzahl": 0.85
+                        }
+                    ],
+                    "durchschnittProzentzahl": 0.80
                 }
             ]
         },
@@ -74,6 +100,7 @@
             "name": "Stationspr\u00fcfung Teil1 Klinik SoSe2018 Pr\u00fcfungszeitraum 2",
             "typ": "Stat-1K",
             "format": "station",
+            "fachsemester": 2,
             "studiPruefungsId": 29573,
             "zeitsemester": "SoSe 2018",
             "periodeCode": 201812,
@@ -82,18 +109,18 @@
                 "ergebnisProzentzahl": 0.99,
                 "durchschnittProzentzahl": 0.87
             },
-            "stationsModule": [
+            "stationen": [
                 {
                     "code": "S1#N4",
                     "titel": "Notfallstation",
                     "ergebnisProzentzahl": 1,
-                    "durchschnittRichtigPunktzahl": 0.89
+                    "durchschnittProzentzahl": 0.89
                 },
                 {
                     "code": "S1#U2",
                     "titel": "Untersuchungskursstation ",
                     "ergebnisProzentzahl": 0.98,
-                    "durchschnittRichtigPunktzahl": 0.91
+                    "durchschnittProzentzahl": 0.91
                 }
             ]
         },

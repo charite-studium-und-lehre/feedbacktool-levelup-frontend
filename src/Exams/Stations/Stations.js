@@ -18,18 +18,18 @@ export const colorTotal = colordefs.pp.lighter1
 export const colorPartOfTotal = colordefs.pp.darker0
 const colors = scaleOrdinal(schemeSpectral[6])
 
-const Stations = ({ t, data, groupFilters, setGroupFilters }) => {
-    const categories = _.uniq(_.flatMap(e => e.stations, data).map(d => d.category))
-    const categoryColors = c => colors(categories.indexOf(c))
+const Stations = ({ t, data, groupFilters = [], setGroupFilters }) => {
+    const semesters = []
+    const categoryColors = c => colors(semesters.indexOf(c))
 
-    const [categoryFilters, setCategoryFilters] = useState(categories.map(c => ({ label: c, pred: d => d.category === c, selected: true, color: categoryColors(c) })))
+    const [categoryFilters, setCategoryFilters] = useState(semesters.map(c => ({ label: c, pred: d => d.category === c, selected: true, color: categoryColors(c) })))
 
     const LegendText = Legends.Exams.Stations.Explanation
     const filteredData = _.filter(_.overSome(groupFilters.filter(f => f.selected).map(f => f.pred)), data)
-        .map(e => ({
-            ...e, stations: e.stations
-                .filter(_.overSome(categoryFilters.filter(f => f.selected).map(f => f.pred)))
-        }))
+        // .map(e => ({
+        //     ...e, stations: e.stationsModule
+        //         .filter(_.overSome(categoryFilters.filter(f => f.selected).map(f => f.pred)))
+        // }))
     return (
         <div className="container-fluid">
             <div className="row ">
@@ -53,7 +53,7 @@ const Stations = ({ t, data, groupFilters, setGroupFilters }) => {
                                         onUpdate={setCategoryFilters} />
                                 </div>
                                 <div style={{ fontSize: '.9rem', width: '17rem' }} className="flex-grow-1">
-                                    <Filter style={{ display: 'inline-block' }} filters={groupFilters} onUpdate={filters => { setGroupFilters(filters.filter(f => f.selected).map(f => f.label)) }} />
+                                    <Filter style={{ display: 'inline-block' }} filters={groupFilters} onUpdate={filters => { setGroupFilters(filters.filter(f => f.selected).map(f => f.value)) }} />
                                 </div>
                             </div>
                             <StationsChart
@@ -66,5 +66,8 @@ const Stations = ({ t, data, groupFilters, setGroupFilters }) => {
         </div>)
 }
 
-const stateToProps = state => ({ data: selectors.getItems(state), groupFilters: selectors.getGroupFilters(state) })
+const stateToProps = state => ({ 
+    data: selectors.getItems(state), 
+    groupFilters: selectors.getGroupFilters(state) 
+})
 export default _.flowRight([needsData(selectors.loaded, actions.load), withTranslation(), connect(stateToProps, actions)])(Stations)

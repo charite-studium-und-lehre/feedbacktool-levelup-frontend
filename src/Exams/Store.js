@@ -42,7 +42,7 @@ const graphs = state => [
 const selectors = baseStore.withLoadedSelector({
     getNavigationData: graphs,
     getById: (state, id) => _.flow([ graphs, _.flatMap( g => g.data ), _.find( d => d.id === id )])(state),
-    getSelected: _.flow([ baseStore.getStore, s => s.items.selected ]),
+    getSelected: _.flow([ baseStore.getItems, s => s.selected ]),
     getSemesters: _.flow([ graphs, _.flatMap( g => g.data.map( d => d.zeitsemester )), _.uniq, _.sortBy( t => t.split(' ').reverse().join(''))])
 })
 
