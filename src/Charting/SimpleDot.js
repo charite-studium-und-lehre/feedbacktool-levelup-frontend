@@ -1,20 +1,19 @@
 import React from 'react'
 import _ from 'lodash'
+import COLORS from "../colors";
 
-const defaultStyle = {
+const defaultStyle = size => ({
     position: 'absolute',
-    height: '.5rem',
-    width: '.5rem',
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-    borderRadius: '.25rem',
-    border: '1px solid rgba(0,0,0,.2)',
-}
+    height: `${size}rem`,
+    width: `${size}rem`,
+    backgroundColor: COLORS.textBlack,
+    borderRadius: `${size/2}rem`,
+    border: '3px solid '+ COLORS.background.base
+})
 
-const SimpleDot = props => {
-    const style = _.defaults({ left: `calc(${props.value}% - .4rem)` }, props.style, defaultStyle)
-    return (
-        <div style={style} />
-    )
+const SimpleDot = ({ className = '', size = .5, ...props }) => {
+    const style = _.defaults({ left: `calc(${props.value}% - .4rem)` }, props.style, defaultStyle(size))
+    return <div className={`animated ${className}`} style={style} />
 }
 
 export default SimpleDot

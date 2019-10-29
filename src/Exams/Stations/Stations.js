@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import _ from 'lodash'
+import _ from 'lodash/fp'
 import { scaleOrdinal } from 'd3-scale'
 import { schemeSpectral } from 'd3-scale-chromatic'
 import Legend from '../../Charting/Legend'
@@ -11,54 +11,63 @@ import Legends from '../../Core/LegendTexts'
 import SimpleDot from '../../Charting/SimpleDot'
 import { withTranslation } from 'react-i18next'
 import { selectors, actions } from './Store'
+import colordefs from "../../colors";
+
+export const color = colordefs.pp.base
+export const colorTotal = colordefs.pp.lighter1
+export const colorPartOfTotal = colordefs.pp.darker0
 const colors = scaleOrdinal(schemeSpectral[6])
 
-const Stations = ({ t, data, match }) => {
-    const groups = _.uniq(data.map(d => d.group))
-    const categories = _.uniq(_.flatMap(data, e => e.stations).map(d => d.category))
-    const categoryColors = c => colors(categories.indexOf(c))
+const Stations = ({ t, data, groupFilters = [], setGroupFilters }) => {
+    const semesters = []
+    const categoryColors = c => colors(semesters.indexOf(c))
 
-    const [ groupFilters, setGroupFilters ] = useState( groups.map(g => ({ label: g, pred: e => e.group === g, selected: g === match.params.test || match.params.test === 'all'})) )
-    const [ categoryFilters, setCategoryFilters ] = useState( categories.map(c => ({label: c, pred: d => d.category === c , selected: true, color: categoryColors(c) })) )
-    
-    const LegendText = Legends.Exams.Stations.Main
-    const filteredData = data
-    .filter(_.overSome(groupFilters.filter(f => f.selected).map(f => f.pred)))
-        .map(e => ({...e, stations: e.stations
-            .filter(_.overSome(categoryFilters.filter(f => f.selected).map(f => f.pred)))
-    }))
+    const [categoryFilters, setCategoryFilters] = useState(semesters.map(c => ({ label: c, pred: d => d.category === c, selected: true, color: categoryColors(c) })))
+
+    const LegendText = Legends.Exams.Stations.Explanation
+    const filteredData = _.filter(_.overSome(groupFilters.filter(f => f.selected).map(f => f.pred)), data)
+        // .map(e => ({
+        //     ...e, stations: e.stationsModule
+        //         .filter(_.overSome(categoryFilters.filter(f => f.selected).map(f => f.pred)))
+        // }))
     return (
-    <div className="container-fluid">
-        <div className="row ">
-            <div className="col ">
-                <Legend title={LegendText.title}>
-                    {LegendText.text}
-                    <div className="position-relative">
-                        {t(`Der`)} <SimpleDot style={{position: 'relative', display: 'inline-block', marginLeft: '.75rem'}} value={0} />{t(` kennzeichnet den Kohortenmittelwert.`)}
+        <div className="container-fluid">
+            <div className="row ">
+                <div className="col ">
+                    <div className="p-2">
+                        <h4 className="mr-auto">{t('Mündlich-praktische Prüfungen')}</h4>
                     </div>
-                </Legend>
-                <div className="row col " style={{minHeight: '25rem'}}>
-                    <div className="card px-4 pb-4 w-100" style={{overflow: 'hidden'}}>
-                        <div className="mt-2 mb-3 d-flex flex-wrap">
-                            <div style={{fontSize: '.9rem'}}>
-                                {t(`Bereich`)}: <Filter
-                                    style={{display: 'inline-block'}}
-                                    filters={ categoryFilters } 
-                                    onUpdate={ setCategoryFilters } />
+                    <div className="row col " style={{ minHeight: '25rem' }}>
+                        <div className="card px-4 py-4 w-100 overflow-hidden">
+                            <Legend title={LegendText.title}>
+                                {LegendText.text}
+                                <div className="position-relative">
+                                    {t(`Der`)} <SimpleDot style={{ position: 'relative', display: 'inline-block', marginLeft: '.75rem' }} value={0} />{t(` kennzeichnet den Kohortenmittelwert.`)}
+                                </div>
+                            </Legend>
+                            <div className="mt-2 mb-3 d-flex flex-wrap">
+                                <div className='mr-3' style={{ fontSize: '.9rem' }}>
+                                    <Filter
+                                        style={{ display: 'inline-block' }}
+                                        filters={categoryFilters}
+                                        onUpdate={setCategoryFilters} />
+                                </div>
+                                <div style={{ fontSize: '.9rem', width: '17rem' }} className="flex-grow-1">
+                                    <Filter style={{ display: 'inline-block' }} filters={groupFilters} onUpdate={filters => { setGroupFilters(filters.filter(f => f.selected).map(f => f.value)) }} />
+                                </div>
                             </div>
-                            <div style={{fontSize: '.9rem', width: '17rem'}} className="flex-grow-1">
-                                {t(`Prüfungen`)}: <Filter style={{display: 'inline-block'}} filters={ groupFilters } onUpdate={ setGroupFilters } />
-                            </div>
+                            <StationsChart
+                                colors={categoryColors}
+                                data={filteredData} />
                         </div>
-                        <StationsChart
-                            colors={categoryColors}
-                            data={filteredData} />
                     </div>
                 </div>
             </div>
-        </div>
-    </div>)
+        </div>)
 }
 
-const stateToProps = state => ({ data: selectors.getItems(state) })
-export default needsData(withTranslation()(connect(stateToProps)(Stations)), selectors.loaded, actions.load)
+const stateToProps = state => ({ 
+    data: selectors.getItems(state), 
+    groupFilters: selectors.getGroupFilters(state) 
+})
+export default _.flowRight([needsData(selectors.loaded, actions.load), withTranslation(), connect(stateToProps, actions)])(Stations)

@@ -1,39 +1,59 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Progress from './Progress/Progress'
-import Timeline from './Timeline/Timeline'
-import Stations from './Stations'
-import Practicals from './Practicals'
+import Progress from './Progress'
+import Newsfeed from './Newsfeed/Newsfeed'
+import NewsfeedMobile from './Newsfeed/NewsfeedMobile'
+import Ptm from './Ptm'
+import EPAs from './EPAs'
 import Strengths from './Strengths'
+import TellMe from './TellMe'
+import COLORS from "../colors";
+
+const Cards = () => <div className="col">
+    <Link to="/progress">
+        <Progress />
+    </Link>
+    <Link to="/epas">
+        <EPAs />
+    </Link>
+    <Link to="/strengths">
+        <Strengths />
+    </Link>
+    <Ptm />
+    <TellMe />
+</div>
 
 export default () => 
-    <div className="container-fluid">
-        <div className="row">
-            <div className="col-lg-6 mt-2">
-                <Progress />
-            </div>
-            <div className="col-lg-6 mt-2">
-                <Timeline />
-            </div>
-        </div>
-        <div className="row">
-            <div className="col-lg-4">
-                <div className="mt-2">
-                    <Link to="/practicals">
-                        <Practicals />
-                    </Link>
+    <div className="container-fluid h-100">
+        <div className="row h-100 flex-row-reverse">
+            <div className="col-lg-4" style={{backgroundColor: COLORS.background.grey0}}>
+                <div className="d-none d-lg-block h-100">
+                    <Newsfeed />
+                </div>
+                <div className="d-lg-none">
+                    <NewsfeedMobile />
                 </div>
             </div>
-            <div className="col-lg-4 mt-2">
-                <Link to="/exams/stations/all">
-                    <Stations />
-                </Link>
-            </div>
-            <div className="col-lg-4">
-                <div className="mt-2">
-                    <Link to="/strengths">
-                        <Strengths />
-                    </Link>
+            <div className="col-lg-8 py-2">
+                <div className="row h-100 d-none d-md-flex">
+                    <div className="col-6 d-flex flex-column justify-content-around">
+                        <Link to="/progress">
+                            <Progress />
+                        </Link>
+                        <Link to="/epas">
+                            <EPAs />
+                        </Link>
+                        <TellMe />
+                    </div>
+                    <div className="col-6 d-flex flex-column justify-content-around">
+                        <Link to="/strengths">
+                            <Strengths />
+                        </Link>
+                        <Ptm />
+                    </div>
+                </div>
+                <div className="row d-flex d-md-none">
+                    <Cards />
                 </div>
             </div>
         </div>

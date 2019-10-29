@@ -1,11 +1,7 @@
 .App {
   overflow-x: hidden;
   height: 100%;
-  -webkit-overflow-scrolling: touch;
-}
-
-.navbar {
-  box-shadow: rgba(0,0,0,.4) 0 0 15px;
+  --color-navigation: #005a9c;
 }
 
 svg {
@@ -44,14 +40,14 @@ span.input-group-text {
 }
 
 .nav-pills .nav-link.active {
-  border-bottom: 2px solid #007bff;
+  border-bottom: 2px solid var(--color-navigation);
   background-color: transparent;
-  color: #007bff;
+  color: inherit;
   border-radius: 0;
 }
 
 .with-border {
-  border-top: 2px solid #007bff;
+  border-top: 2px solid var(--color-navigation);
 }
 
 .with-shadow {
@@ -74,7 +70,19 @@ span.input-group-text {
 }
 
 ol.breadcrumb {
-  margin-bottom: .5rem;
+  margin: 0;
+}
+
+ol.breadcrumb:empty {
+  display: none;
+}
+
+.color-navigation{
+  color: var(--color-navigation);
+}
+
+.color-bg-navigation{
+  background-color: var(--color-navigation);
 }
 
 input.no-outline {

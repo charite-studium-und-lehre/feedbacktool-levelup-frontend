@@ -1,41 +1,44 @@
-import React, { Component } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { line } from 'd3-shape'
 import { select } from 'd3-selection'
-import { animationTime } from './Utils'
+import { easeCubic } from 'd3-ease'
+import { animationTime as at } from './Utils'
 
-class AnimatedPath extends Component {
-    static defaultProps = {
-        stroke: 'rgba(0,0,0,.6)',
-        style: {},
-        fill: 'none',
-        className: '',
-        animationTime: animationTime,
-        shape: line(),
-    }
+const AnimatedPath = ({ 
+        stroke = 'rgba(0,0,0,.6)',
+        style = {},
+        fill = 'none',
+        className = '',
+        animationTime = at,
+        delay = 0,
+        shape = line(),
+        ease = easeCubic,
+        ...props
+    }) => {
 
-    constructor(props) {
-        super(props)
-		this.node = React.createRef()
-		this.state = { d: props.d }
-    }
+    const node = useRef()
 
-    componentDidUpdate() {
-		select(this.node.current)
-			.datum(this.props.d)
+    function update() {
+		const el = select(node.current)
+            .datum(props.d)
             .transition()
-			.duration(this.props.animationTime)
-			.attr('d', this.props.shape)
+            .attr('d', shape)
+            .ease( ease )
+            .delay(delay)
+			.duration(animationTime)
+        props.tween && el.attrTween('d', d => t => shape(props.tween(t)))
     }
 
-    render() {
-        return <path 
-            ref={this.node} 
-            d={this.props.shape(this.state.d)} 
-            className={`animated ${this.props.className}`}
-            style={this.props.style} 
-            fill={this.props.fill}
-            stroke={this.props.stroke} />
-    }
+    useEffect( () => {
+        update() 
+    })
+
+    return <path 
+        ref={node} 
+        className={`${className}`}
+        style={style} 
+        fill={fill}
+        stroke={stroke} />
 }
 
 export default AnimatedPath

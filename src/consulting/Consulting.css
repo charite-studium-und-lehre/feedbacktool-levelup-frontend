@@ -3,33 +3,10 @@
 .consulting h4 {
 font-weight: bold;
 }
-.consulting {
-    border: 2px solid #ccc;
-    padding: 1.5em 0;
-}
-.consulting .row {
-    margin-top: 2.5em
-}
-.consulting-foto {
-    background:url(../images/beratung.jpg) no-repeat center center;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    height: 24em;
-}
 .consulting-text span {
 font-weight: bold;
 color: rgb(34, 71, 104);
 font-size: 1.3em
-}
-.consulting button {
-    width: 12em;
-    background: rgb(34, 71, 104);
-    margin-top: 2em
-}
-.consulting-link h3 {
-
 }
 .consulting-link .extern-link {
     padding: .5em 0 ;
@@ -37,53 +14,18 @@ font-size: 1.3em
     color: rgb(34, 71, 104);
     font-weight: bold;
 }
-.consulting-card {
-    margin-top: 3em;
-}
- .consulting-card .card  {
-    border: none;
-    padding: 0;
-} 
-.consulting-card .card-body {
-    margin: .8em;
-    box-shadow: 2px 2px  30px rgb(3, 31, 56),
-               -2px -2px  30px rgb(1, 17, 31) 
-}
-.consulting-card h1 {
-    margin-bottom: 1em;
-    font-weight: bold
-}
-.consulting-card h2 {
+
+.consulting-card h3 {
     margin: .4em 0 .7em 0;
     color: rgb(34, 71, 104);
-    font-weight: bold
 }
-.consulting-info h4 {
-    margin: .6em 0;
-    color: rgb(34, 71, 104);
-    font-weight: bold
-}
- .consulting-info .row {
-    padding: 1.5em 0; 
-}
-.consulting-info .row > div {
-    margin-bottom: 1.2em;
-}
- .consulting-info .icon{
-    float: left;
-}
-.consulting-info .info {
-    overflow: hidden;
-}
- .consulting-info  svg {
-    margin-right: .6em;
+
+.consulting-card .icon > svg {
     font-size: 1.3em;
     color: rgb(34, 71, 104);
 }
 .consulting-butten {
     width: 12em;
     background: rgb(34, 71, 104);
-    position: absolute;
-    bottom: 2em;
-    left: 2em;
+ 
 }

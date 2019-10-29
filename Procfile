@@ -1,1 +1,1 @@
-web: yarn serve -s build
+web: yarn serve -s buildFinished

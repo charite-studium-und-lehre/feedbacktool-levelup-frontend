@@ -2,9 +2,11 @@ import _ from 'lodash'
 
 const data = [
     {
-        exam: '2. Fachsemester Teil 1',
+        name: '2. Fachsemester Teil 1',
         group: '2. Fachsemester',
-        date: new Date(2015, 6, 15),
+        periodeCode: 20162,
+        format: 'station',
+        zeitsemester: 'WiSe 2016',
         stations: [
             {
                 name:'Notfall', 
@@ -121,9 +123,11 @@ const data = [
         ]
     },
     {
-        exam: '4. Fachsemester Teil 2',
+        name: '4. Fachsemester Teil 2',
         group: '4. Fachsemester',
-        date: new Date(2017, 6, 15),
+        periodeCode: 20172,
+        format: 'station',
+        zeitsemester: 'WiSe 2017',
         stations: [
             {
                 name:'COPD', 
@@ -217,9 +221,11 @@ const data = [
         ]
     },
     {
-        exam: '4. Fachsemester Teil 3',
+        name: '4. Fachsemester Teil 3',
         group: '4. Fachsemester',
-        date: new Date(2017, 6, 15),
+        periodeCode: 20172,
+        format: 'station',
+        zeitsemester: 'WiSe 2017',
         stations: [
             {
                 name: 'Physiologie 1', 
@@ -304,7 +310,7 @@ const data = [
         ]
     },
     // {
-    //     exam: '9. Fachsemester - OSCE',
+    //     name: '9. Fachsemester - OSCE',
     //     group: '9. Fachsemester',
     //     stations: [
     //         {
@@ -446,13 +452,19 @@ const StationsData = data.map( e => ({
     ...e,
     stations: e.stations.map(s => ({
         ...s, 
-        result: _.round(_.meanBy(s.details.filter( d => _.isNumber(d.value) ), 'value') ),
-        mean: _.round(_.meanBy(s.details.filter( d => _.isNumber(d.mean) ), 'mean')),
+        gesamtErgebnis: {
+            ergebnisProzentzahl: _.round(_.meanBy(s.details.filter( d => _.isNumber(d.value) ), 'value') ),
+            durchschnittProzentzahl: _.round(_.meanBy(s.details.filter( d => _.isNumber(d.mean) ), 'mean')),
+
+        }
     })),
 })).map(e => ({
     ...e,
-    result: _.round(_.meanBy( e.stations, 'result')),
-    mean: _.round(_.meanBy( e.stations, 'mean')),
+    id: _.uniqueId(),
+    gesamtErgebnis: {
+        ergebnisProzentzahl: _.round(_.meanBy( e.stations, 'result')),
+        durchschnittProzentzahl: _.round(_.meanBy( e.stations, 'mean')),
+    }
 }))
 
 export default StationsData

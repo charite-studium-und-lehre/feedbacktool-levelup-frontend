@@ -1,0 +1,7 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-09-12T13:07:34+02:00
+
+====== Frontend ======
+Angelegt Donnerstag 12 September 2019
+

@@ -1,46 +1,55 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import _ from 'lodash/fp'
+import { withTranslation } from 'react-i18next'
+import needsData from '../../Core/needsData'
 import Legend from '../../Charting/Legend'
 import LegendTexts from '../../Core/LegendTexts'
 import Subjects from './Subjects'
 import Results from './Results'
+import Timeline from './Timeline'
+import { selectors, actions } from './Store'
+import colors from "../../colors";
 
-const Ptm = ({ match }) => {
+export const color = colors.ptm.base
+export const colorTotal = colors.ptm.darker0
+export const colorPartOfTotal = colors.ptm.darker4
+
+const Ptm = ({ test, t }) => {
     const LegendText = LegendTexts.Exams.Ptm
     
-    return (
+    return test ?
         <div className="container-fluid mb-2">
             <div className="row">
                 <div className="col">
-                    <h4 className="mr-auto">PTM - {match.params.test}</h4>
+                    <div className="p-2">
+                        <h4 className="mr-auto">PTM - {test.zeitsemester}</h4>
+                    </div>
                 </div>
             </div>
             <div className="row">
-                <div className="col-xl-4 mb-2">
-                    <Results semester={match.params.test} />
+                <div className="col-lg-4 mb-2">
+                    <div className="row">
+                        <div className="col">
+                            <Timeline />
+                        </div>
+                    </div>
+                    <div className="row mt-2">
+                        <div className="col">
+                            <Results id={test.id} />
+                        </div>
+                    </div>
                 </div>
-                <div className="col-xl-8">
+                <div className="col-lg-8">
                     <div className="card p-3">
                         <Legend title={LegendText.Subjects.title}>{LegendText.Subjects.text}</Legend>
-                        <Subjects semester={match.params.test} />
+                        <Subjects id={test.id} />
                     </div>
                 </div>
             </div>
-            {/* <div className="row">
-                <div className="col">
-                <div className="card p-3">
-                <Legend title={LegendText.Organsystem.title}>{LegendText.Organsystem.text}</Legend>
-                <SubjectsTabs>
-                {props.data.fächer.map(c => 
-                    <div key={c.title} title={c.title} className="d-flex flex-wrap">
-                    {_.sortBy(c.subjects, d => d.title).map(s => <SubjectAlt key={s.title} name={s.title} semester={match.params.test} />)}
-                    </div>
-                    )}
-                    </SubjectsTabs>
-                    </div>
-                    </div>
-                </div> */}
-        </div>
-    )
+        </div> :
+        <div className="text-center">{t('Diese Prüfung scheint nicht zu existieren.')}</div>
 }
 
-export default Ptm
+const stateToProps = (state, ownProps) => ({ test: selectors.getById( state, ownProps.match.params.test )})
+export default _.compose([withTranslation(), needsData(selectors.loaded, actions.load), connect(stateToProps)])(Ptm)

@@ -5,3 +5,74 @@ Creation-Date: 2019-06-25T17:53:18+02:00
 ====== Ärztliche Tätigkeiten ======
 
 
+
+==== Hole verfügbare ärztliche Tätigkeiten: ====
+
+[[/backend]][[/api/epa/meine]]
+
+Erzeugt ein Array aus EPA-Kategorien, EPAs und Fremdeinschätzungen
+
+'''
+Array:
+'''
+	'''
+	meineEPAs: Array
+	'''
+		'''
+		id: <id>,
+		beschreibung: <beschreibung>
+		parentId: <parentID oder NULL>
+		istBlatt: TRUE für EPAs, FALSE für Kategorien
+		
+		# nur für EPAs (Blätter):
+		gemacht: <level= 0-5>
+		zutrauen: <level= 0-5>
+		fremdeinschaetzungen: array:
+			fremdId: <id der Fremdeinschätzung>
+			wert: <level= 0-5>
+		
+		'''
+	'''
+	fremdeinschaetzungen: Array
+		id: <ID der Fremdeinschätzung>	
+		name: <Mailadresse des Prüfers>
+		datum: <ISO-Datum , z.B: "2018-10-31">
+	'''
+
+
+
+==== Selbstbewertung an Server senden: ====
+
+[[/backend]][[/api/epas/<ID]]>
+
+POST-Parameter
+'''
+{
+'''
+	'''
+	zutrauen: <Wert>,
+	gemacht: <Wert>,
+	}
+	'''
+
+
+**Success:** 
+	//200 OK// 
+**Error:** 
+	//404 "NOT FOUND": //bei ungültiger ID.
+	//400 "BAD REQUEST":// bei ungültigem Wert.
+
+
+== Beispiel ==
+https://levelup.charite.de/backend/api/epas/111
+BODY
+'''
+{
+'''
+	'''
+	zutrauen: 2,
+	gemacht: 1
+	}
+	'''
+
+

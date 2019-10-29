@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
-import tinycolor from 'tinycolor2'
 import SimpleDot from './SimpleDot'
+import colors from "../colors"
 
 const defaultStyle = {
     lineHeight: '.8rem',
@@ -16,13 +16,14 @@ const defaultStyle = {
 
 const SimpleBar = props => {
     const total = props.total || 100
-    const color = tinycolor(props.color || 'rgb(51, 137, 51)')
+    const colorTotal = props.colorTotal || colors.default
+    const colorPartOfTotal = props.colorPartOfTotal || colors.default
 
     const style = _.defaults({
-        backgroundImage: `linear-gradient(to right, ${color.setAlpha(1).toString()} 100%,  transparent)`,
+        backgroundImage: 'linear-gradient(to right, '+ colorPartOfTotal +' 100%,  transparent)',
         backgroundRepeat: 'no-repeat',
-        backgroundSize: `${props.value / total * 100}%`,
-        backgroundColor: color.setAlpha(.6).toString(),
+        backgroundSize: `${props.value / total * 100}% 100%`,
+        backgroundColor: colorTotal,
         height: props.height,
         width: props.width,
     }, defaultStyle)
@@ -32,7 +33,7 @@ const SimpleBar = props => {
         className="my-1 text-center text-white animated"
         style={style}>
         <span>{props.children}</span>
-        {props.mean && <SimpleDot value={props.mean / total * 100} />}
+        {!_.isUndefined(props.mean) && <SimpleDot value={props.mean / total * 100} />}
     </div>
 )}
 

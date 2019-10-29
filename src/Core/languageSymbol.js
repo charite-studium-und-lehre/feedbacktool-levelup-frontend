@@ -5,10 +5,10 @@ const LanguageSymbol = () => {
     const [language, setLanguage] = useState(false)
     return (
             <div className="mt-2 mr-2"
-            style={{ fontSize: '1.2em' , cursor: 'pointer' }}
+            style={{ cursor: 'pointer' }}
              onClick={() => { i18next.changeLanguage(!language? 'en' : 'de'); setLanguage(!language) } }
             >
-            {language? 'en' : 'de'}
+            {language? 'DE' : 'EN'}
             </div>
     )
 }

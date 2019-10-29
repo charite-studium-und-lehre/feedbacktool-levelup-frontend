@@ -6,41 +6,51 @@ Creation-Date: 2019-05-31T14:34:10+02:00
 
 
 ==== GET-Aufruf: ====
-[[/api/pruefung/<id]]>
+[[/backend/api/pruefungen/<studiPruefungsId]]>
 
 success: HTTP-Code 200
+fail: HTTP-Code 404 not found
 
 === Rückgabe: ===
 '''
 
 {
-	"typ": "<ptm|mc|station>",
-	"studiPruefungsId": "<ID">,
-	"name": "<Bezeichnung>",
-	"datum": "<ISO-Datum>",
-	"ergebnis": <PTM-Ergebnis|MC-Ergebnis|Stations-Ergebnis>
-},
+"typ": "<ptm|mc|station>",
+"studiPruefungsId": "<ID">,
+"name": "<Bezeichnung>",
+"periodeCode": <siehe periodeCode>,
+"periodeText": <z.B. 'WiSe2018 Haupttermin'>,
+"zeitsemester" <z.B. 'WiSe 2018'>
+"gesamtErgebnis": <Gesamtergebnis, exakt wie in -> "alle">
+"ergebnisse": <PTM-Ergebnisse|MC-Ergebnisse|Stations-Ergebnisse>,
+	
 '''
 
+''},''
 
-=== MC-Ergebnis: ===
+
+=== MC-Ergebnisse: ===
 '''
 {
+    
 '''
 	'''
-	"kohortePunkte": [<Ergebnis1, Ergebnis2, ...>],
-	"ergebnisPunkte": <Ergebnis>,
+	"ergebnisPunktzahl": <0..80>,
+	"durchschnittsPunktzahl": <0..80>
+	"maximalPunktzahl": <0..80>,
+	"bestehensgrenzePunktzahl": <0..80>,
+	"kohortenPunktzahlen": [ <0..80>, <0..80>, ... ],
 	"module": [
 	'''
 		'''
 		{
 		'''
 			'''
-			"code": "<Nummer, z.B. 'Modul 10'>",
+			"code": "<Nummer, z.B. 'M10'>",
 			"titel": "<Name>",
-			"ergebnisPunkte": <Punkte>,
-			"durchschnittPunkte": <Kohortendurchschnitt>,
-			"maximalpunktzahl": <Anzahl Fragen>,
+			"ergebnisPunktzahl": <Punkte>,
+			"durchschnittsPunktzahl": <Kohortendurchschnitt>,
+			"maximalPunktzahl": <Anzahl Fragen>,
 			'''
 		'''
 		},
@@ -52,90 +62,91 @@ success: HTTP-Code 200
 		'''
 		{
 		'''
+			'''
+			"code": "<z.B. 'ana' für Anatomie>",
+			'''
 
 			'''
 			"titel": "<Name>",
-			"ergebnisPunkte": <Punkte>,
-			"durchschnittPunkte": <Kohortendurchschnitt>,
-			"maximalpunktzahl": <Anzahl Fragen>,
+			"ergebnisPunktzahl": <Punkte>,
+			"gruppe": "<z.B. 'Vorklinische Fächer'>",
+			"durchschnittsPunktzahl": <Kohortendurchschnitt>,
+			"maximalPunktzahl": <Anzahl Fragen>,
 			'''
 		'''
 		},
+		],
 		'''
 
-'']''
-'''
-}
+''}''
 
+==== PTM-Ergebnisse: ====
 '''
-=== PTM-Ergebnis: ===
-'''
-{
-'''
-	'''
-	"kohorteRichtig": [<Ergebnis1, Ergebnis2, ...>],
-	"kohorteFalsch": [<Ergebnis1, Ergebnis2, ...>],
-	"kohorteWeissnicht": [<Ergebnis1, Ergebnis2, ...>],
+	{
+	"ergebnisRichtigPunktzahl": <Punktzahl 0..200>,
+	"ergebnisFalschPunktzahl": <Punktzahl 0..200>,
+	"ergebnisWeissnichtPunktzahl": <Punktzahl 0..200>,
+	"maximalPunktzahl": <Punktzahl 0..200>,
 	
-	"ergebnisRichtig": <Ergebnis>,
-	"ergebnisFalsch": <Ergebnis>,
-	"ergebnisWeissnicht": <Ergebnis>
+	"durchschnittRichtigPunktzahl": <Punktzahl 0..200>,
+	"durchschnittFalschPunktzahl": <Punktzahl 0..200>,
+	"durchschnittWeissnichtPunktzahl": <Punktzahl 0..200>,
+'''
+
 	
-	"<faecher|organsysteme>": [
-	'''
-		'''
-		{
-		'''
+	"<faecher>": Array aus {
+			'''
+			"code": "<z.B. 'ana' für Anatomie>",
+			'''
 
 			'''
 			"titel": "<Name>",
-			"ergebnisRichtig": <Punkte>,
-			"durchschnittRichtig": <Kohortendurchschnitt>,
-			"ergebnisFalsch": <Punkte>,
-			"durchschnittFalsch": <Kohortendurchschnitt>,
-			"ergebnisWeissnicht": <Punkte>,
-			"durchschnittWeissnicht": <Kohortendurchschnitt>,
-			"maximalpunktzahl": <Max. Punktzahl>,
+			"gruppe": "<z.B. 'Vorklinische Fächer'>",
+			
+			"ergebnisRichtigPunktzahl": <Punkte>,
+			"ergebnisFalschPunktzahl": <Punkte>,
+			"ergebnisWeissnichtPunktzahl": <Punkte>,
+			
+			"durchschnittRichtigPunktzahl": <Kohortendurchschnitt>,
+			"durchschnittFalschPunktzahl": <Kohortendurchschnitt>,
+			"durchschnittWeissnichtPunktzahl": <Kohortendurchschnitt>,
+			
+			"maximalPunktzahl": <Anzahl Fragen>,
 			'''
-		'''
+	'''
 		},
-		'''
-
-'']''
-'''
-}
-
-'''
-=== Stations-Ergebnis: ===
-'''
-{
-'''
-	'''
-	"kohorteProzent": [<Ergebnis1, Ergebnis2, ...>],
-	"ergebnisProzent": <Ergebnis>,
-	"semester": <int>
-	'''
-
-'']''
-'''
-}
-'''
-
 	
-
-'''
-{
-"pruefungsItemId: <pruefungsItemId>
-"ergebnisse": 
-	[ Array aus:
-		{
-'''
 	'''
-			"kohortePunkte": [<Ergebnis1, Ergebnis2, ...>],
-			"ergebnisPunkte": <Ergebnis>,
-			"modul": <?ModulCode>
-			"fach": <?FachTitel>"
-			}
-		]
 	}
-	'''
+
+
+==== Stations-Ergebnisse: ====
+Bei vorklinischen Stationsprüfungen gibt es TYPISCHERWEISE 2 Ergebnisse pro Fach: 
+//1 = Faktenwissen, 2= Zusammenhangswissen//
+Manchmal gibt es aber auch nur 1 Ergebnis (dann gibt es ein Ergebnis ohne die Zahlen 1/2, z.B. im SoSe2016 Teil1 Klinik) 
+Klinische Stationen sind dagegen Modulen zugeordnet. Hier gibt es immer nur 1 Ergebnis pro Modul
+Es gibt nur eins der beiden Array "faecher" oder "stationsM''odule"''
+
+'''
+{
+"ergebnisProzentzahl": <Mein Gesamtergebnis 0.00 - 1.00>,
+"durchschnittProzentzahl": <Kohorte Gesamtergebnis 0.00 - 1.00>
+'''
+    
+''"faecher": [  #(nur wenn klinisch)''
+	''{''
+	''"code": "<z.B. 'ana' für Anatomie>",	''
+	''"titel": "<Name>",''
+	''"ergebnisProzentzahl": <Mein Ergebnis 0.00 - 1.00>,''
+	''"durchschnittProzentzahl''": <Kohortendurchschnitt ''0.00 - 1.00''>,''
+	"details" : Array, optional, nicht immer gegeben: {
+		"''code": "<z.B. 'fakten'>",	''
+		''"titel": "<z.B. Faktenwissen>",''
+		''"ergebnisProzentzahl": <Mein Ergebnis 0.00 - 1.00>,''
+		''"durchschnittProzentzahl''": <Kohortendurchschnitt ''0.00 - 1.00''>,''
+	}'',''
+	
+	
+	''"stationsModule": [  #(nur wenn vorklinisch)''
+	''# exakt wie bei Fächer. Hier gibt es aber immer nur 1 Ergebnis (keine Unterergebnisse)''
+

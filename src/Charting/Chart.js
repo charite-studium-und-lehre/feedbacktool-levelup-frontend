@@ -12,8 +12,12 @@ const asChart = WrappedComponent =>
         const [ size, setSize ] = useState(null)
         const node = useRef(null)
         useEffect(() => {
-            let handler = () => { if (node.current !== null) setSize(node.current.getBoundingClientRect()) }
-            if(size === null) handler()
+            let handler = () => { 
+                if (!node.current) return
+                const { width, height } = node.current.getBoundingClientRect()
+                if (!_.equals({ width, height }, size)) setSize({ width, height })
+            }
+            handler()
             handler = _.debounce(200, handler)
             window.addEventListener('resize', handler)
             return () => window.removeEventListener('resize', handler)
@@ -22,7 +26,7 @@ const asChart = WrappedComponent =>
 
         return (
             <svg ref={node} width="100%" height="100%" preserveAspectRatio="none">
-                { size && renderContent() }
+                { size && size.height > 0 && renderContent() }
             </svg>
         )
     }
