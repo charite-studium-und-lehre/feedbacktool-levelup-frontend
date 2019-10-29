@@ -1,4 +1,4 @@
-export default {
+{
     "meilensteine":[
        {
           "code":10,
@@ -423,5 +423,5 @@ export default {
           "studiPruefungsId":26245,
           "format":"station"
        }
-    ]
- }
+   ]
+}

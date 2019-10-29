@@ -23,7 +23,7 @@ const App = withTranslation()(() =>
     <Provider store={createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)))}>
         <BrowserRouter basename={getBasename()}>
             <div className="App container-fluid p-0 d-flex flex-column">
-                <Navbar isLoggedIn={false} ></Navbar>
+                <Navbar />
                 <Breadcrumbs/>
                 <div className="container-fluid flex-fill p-0">
                     {Routes.map(route => (route.private ?
