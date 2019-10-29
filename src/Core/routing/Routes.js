@@ -66,19 +66,19 @@ const Routes = [
   },
 
   {
-    path: '/exams/mc/:test',
+    path: '/exams/mcs/:test',
     component: MC,
     exact: true,
     private: true,
   },
   {
-    path: '/exams/mc/:test/questions',
+    path: '/exams/mcs/:test/questions',
     component: Questions,
     exact: true,
     private: true,
   },
   {
-    path: '/exams/ptm/:test',
+    path: '/exams/ptms/:test',
     component: Ptm,
     exact: true,
     private: true,

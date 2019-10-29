@@ -10,10 +10,6 @@ import { selectors, actions } from './Store'
 import { XAxis } from '../Charting/Axis'
 
 const MainChart = ({ t, graphs, history, fromQuery = { id: -1 }, selected, setSelected, semesters }) => {
-    const navigate = graph => exam => { 
-        history.push(`/exams/${graph}/${exam.id}`) 
-    }
-
     useEffect( () => {
         if(selected === fromQuery.id) return
         setSelected(fromQuery)
@@ -25,7 +21,7 @@ const MainChart = ({ t, graphs, history, fromQuery = { id: -1 }, selected, setSe
             {graphs.map((g, i) => 
                 <PointGraph
                     offset={i / (graphs.length - 1)}
-                    onClick={navigate(g.name)}
+                    onClick={p => history.push(`/exams/${p.link}`) }
                     key={i} data={g.data} 
                     color={g.color} />
             )}

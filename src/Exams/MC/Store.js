@@ -48,7 +48,7 @@ const findById = id => exams => exams[id]
 
 const toTimeline = exam => ({
     ...exam,
-    link: `mc/${exam.id}`,
+    link: `mcs/${exam.id}`,
 })
 const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 

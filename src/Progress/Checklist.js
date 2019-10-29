@@ -8,7 +8,7 @@ const Checklist = ({ completed, prereq, label, entries }) => {
         <div className="p-2" style={{borderTop: '1px dashed rgba(0,0,0,.1)'}}>
             <div style={{fontSize: '.75rem'}} className="flex-fill mr-2 mb-1 font-italic">{label}</div>
             <div className="d-flex flex-row flex-wrap">
-            {entries.map(e => <ChecklistItem key={e.beschreibung} {...e} /> )}
+            {entries.map(e => <ChecklistItem key={e.code} {...e} /> )}
             </div>
         </div>
     </div>

@@ -23,12 +23,12 @@ const toNavigationData = _.flow(
 
 const graphs = state => [
     {
-        name: 'mc',
+        name: 'mcs',
         data: toNavigationData(MCSelectors.getTimeline(state)),
         color: mcColor,
     },
     {
-        name: 'ptm',
+        name: 'ptms',
         data: toNavigationData(PtmSelectors.getTimeline(state)),
         color: ptmColor,
     },

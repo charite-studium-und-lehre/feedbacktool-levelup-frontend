@@ -15,7 +15,7 @@ const getRanking = _.flow([ getSubjects, _.filter(s => s.maximalPunktzahl >= min
 
 const toTimeline = ptm => ({
     ...ptm,
-    link: `ptm/${ptm.id}`
+    link: `ptms/${ptm.id}`
 })
 const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 
