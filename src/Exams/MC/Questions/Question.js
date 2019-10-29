@@ -11,8 +11,12 @@ const Answer = withTranslation()(({t, ...props}) => (
     </div>
 ))
 
-const Question = ({t, ...props}) => 
-    <div className="row">
+const Question = ({t, ...props}) => {
+    const tags = [
+        { color: colors[0], label: props.fach.titel },
+        { color: colors[1], label: props.modul },
+    ]
+    return <div className="row">
         <div className="col">
             <div className="p-2 mb-2" style={{ borderTop: '1px solid lightgrey' }}>
                 <span className="font-weight-bold ml-1" style={{fontSize: '.8rem'}}>
@@ -26,10 +30,11 @@ const Question = ({t, ...props}) =>
                     {Math.round(props.durchschnittRichtig * 100)} {t(`% haben diese Frage richtig beantwortet`)}
                 </SimpleBar>
                 <div className="text-right">
-                    { (props.tags || []).map(tag => <span style={{backgroundColor: colors[0]}} className="badge badge-primary mr-1" key={tag}>{ tag }</span> )}
+                    { tags.map(tag => <span style={{ backgroundColor: tag.color }} className="badge badge-primary mr-1" key={tag.label}>{ tag.label }</span> )}
                 </div>
             </div>
         </div>
     </div>
+}
 
 export default withTranslation() (Question)
