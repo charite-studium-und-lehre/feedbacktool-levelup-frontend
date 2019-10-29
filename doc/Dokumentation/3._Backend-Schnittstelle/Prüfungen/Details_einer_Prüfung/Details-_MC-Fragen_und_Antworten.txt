@@ -10,10 +10,14 @@ Creation-Date: 2019-06-25T17:48:48+02:00
 success: HTTP-Code 200
 fail: HTTP-Code 404 (keine Fragen vorhanden)
 
+
+
 === Rückgabe: ===
+Achtung! Es kann passieren, dass nicht bekannt ist, was ein Studi ausgewählt hat. Dann ist "ausgewaehlt" für alle Fragen "false"
+
 '''
 {
-	studiPruefungsId: <Prüfungs ID>,
+	studiPruefungsId: <Studi-Prüfungs ID>,
 '''
 		'''
 		"fragen": [
@@ -32,6 +36,8 @@ fail: HTTP-Code 404 (keine Fragen vorhanden)
 	'''
 		'''
 				{
+		'''
+		'''
 					"text": <Antwort-Text mit Buchstaben "a)">,
 					"richtig": <true|false>,
 					"ausgewaehlt": <true|false>,
