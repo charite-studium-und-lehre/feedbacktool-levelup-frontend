@@ -14,7 +14,7 @@ import { selectors, actions } from './Store'
 import colordefs from "../../colors";
 
 export const color = colordefs.pp.base
-export const colorTotal = colordefs.pp.darker4
+export const colorTotal = colordefs.pp.lighter1
 export const colorPartOfTotal = colordefs.pp.darker0
 const colors = scaleOrdinal(schemeSpectral[6])
 

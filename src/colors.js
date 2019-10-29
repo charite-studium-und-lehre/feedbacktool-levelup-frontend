@@ -3,11 +3,11 @@ export default {
     progress: {
         lighter3: '#D0847A',
         lighter2: '#e6c9c5',
-        base: '#ab665e',
+        base: '#ab795c',
         darker1: '#8D362B'
     },
 
-    mc: {
+    ptm: {
         base: '#2299a5',
         lighter1: '#b7c5cc',
         darker0: '#4e6468',
@@ -17,8 +17,9 @@ export default {
         darker4: '#103136'
     },
 
-    pp: {
+    mc: {
         base: '#63940f',
+        lighter1: '#cdd6b6',
         darker0: '#8C9A74',
         darker1: '#718158',
         darker2: '#515E3B',
@@ -26,7 +27,7 @@ export default {
         darker4: '#3B5118'
     },
 
-    ptm: {
+    pp: {
         base: '#9b589b',
         lighter2: '#cca3cc',
         lighter1: '#e6e1e6',
