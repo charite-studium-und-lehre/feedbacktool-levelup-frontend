@@ -11,12 +11,23 @@ import { selectors as mcSelectors, actions as mcActions } from '../Exams/MC/Stor
 
 const ptmProps = state => ({ faecher: _.flow(ptmSelectors.getLatest, ptmSelectors.getRanking)(state) })
 const PtmRanking = _.compose(needsData(ptmSelectors.loaded, ptmActions.load), connect(ptmProps))(
-    ({ faecher }) => <Ranking mean subjects={faecher} />
+    ({ faecher }) => <Ranking mean 
+        subjects={faecher.map( s => ({ 
+            ...s, 
+            value: s.ergebnisRichtigPunktzahl, 
+            mean: s.durchschnittRichtigPunktzahl 
+        }))} 
+    />
 )
 
 const mcProps = state => ({ faecher: mcSelectors.getRanking(state) })
 const McRanking = _.compose(needsData(mcSelectors.loaded, mcActions.load), connect(mcProps))(
-    ({ faecher }) => <Ranking subjects={faecher} />
+    ({ faecher }) => <Ranking 
+        subjects={faecher.map( s => ({ 
+            ...s, 
+            value: s.ergebnisPunktzahl
+        }))} 
+    />
 )
 
 const Rankings = () =>

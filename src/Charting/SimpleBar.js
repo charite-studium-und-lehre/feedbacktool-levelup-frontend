@@ -33,7 +33,7 @@ const SimpleBar = props => {
         className="my-1 text-center text-white animated"
         style={style}>
         <span>{props.children}</span>
-        {props.mean && <SimpleDot value={props.mean / total * 100} />}
+        {!_.isUndefined(props.mean) && <SimpleDot value={props.mean / total * 100} />}
     </div>
 )}
 

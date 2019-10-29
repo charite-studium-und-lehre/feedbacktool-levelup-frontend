@@ -20,7 +20,7 @@ const Subject = ({t, ...props}) => {
         }, 500)
     }
 
-    const data = exams.map((d, i) => ({ color: colors, x:d, y: [props.data[i].maximalPunktzahl || 0, props.data[i].ergebnisPunktzahl || 0]}))
+    const data = exams.map((d, i) => ({ color: colors, x:d, y: [props.data[i].maximalPunktzahl || 0, props.data[i].value || 0]}))
     const max = Math.max(..._.map(d => _.ceil(d.maximalPunktzahl * 1.1) || 0, props.data))
     return (
         <div className="card m-2 flex-grow-1" style={{minWidth: '20rem', maxWidth: '40rem'}}>
@@ -34,7 +34,7 @@ const Subject = ({t, ...props}) => {
                     <OrdinalChart style={{height:'15rem'}} xDomain={exams} yDomain={[0,max]}>
                         <YAxis ticks={{count: Math.min(max, 4)}} />
                         <XAxis />
-                        <BarGraph labels data={ data } color="#ff0000" />
+                        <BarGraph labels data={ data } />
                     </OrdinalChart>
                 </div>
             </div>

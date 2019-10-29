@@ -7,9 +7,9 @@ import Filter from '../../Utils/Filter'
 import Subject from './Subject'
 import { selectors, actions } from './Store'
 import css from './Subjects.module.css'
-import { minQuestions } from '../../Utils/Constants';
+import { minQuestions } from '../../Utils/Constants'
 
-const stateToProps = (state, { id }) => _.flow(selectors.getById, selectors.getSubjects, _.sortBy( s => -s.ergebnisPunktzahl / s.maximalPunktzahl ), r => ({ faecher: r}))(state, id)
+const stateToProps = (state, { id }) => _.flow(selectors.getById, selectors.getSubjects, _.sortBy( s => -s.ergebnisRichtigPunktzahl / s.maximalPunktzahl ), r => ({ faecher: r}))(state, id)
 const Subjects = _.compose(needsData(selectors.loaded, actions.load), withTranslation(), connect(stateToProps))( ({ t, faecher, id }) => {
     const categories = _.keys(_.groupBy( s => s.gruppe, faecher ))
     const [ filters, setFilters ] = useState( 
@@ -26,13 +26,11 @@ const Subjects = _.compose(needsData(selectors.loaded, actions.load), withTransl
         ]))
     return (
     <div className="w-100">
-        <div className="d-flex flex-column flex-lg-row">
-            <div className="">
-                <Filter filters={ filters } onUpdate={ setFilters } />
-            </div>
-            <div className="flex-grow-1 align-middle py-2">
-                <input type="text" placeholder={`${t('Fach suchen')}...`} onKeyUp={e => setSearch(e.target.value)} className={`p-1 ${css.input}`}></input>
-            </div>
+        <div className="">
+            <Filter className="w-100" filters={ filters } onUpdate={ setFilters } />
+        </div>
+        <div className="align-middle my-2 pr-1">
+            <input type="text" placeholder={`${t('Fach suchen')}...`} onKeyUp={e => setSearch(e.target.value)} className={`p-1 ${css.input}`}></input>
         </div>
         <div className={css.subjects}>
         {filtered.map((s, rank) =>

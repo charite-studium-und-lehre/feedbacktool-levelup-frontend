@@ -24,16 +24,16 @@ const Timeline = withTranslation()(({ t, data }) =>
             <OrdinalChart xDomain={data.map(d => d.zeitsemester)} yDomain={[0, Math.max(...data.map(d => d.maximalPunktzahl))]}>
                 <XAxis />
                 <YAxis ticks={{count: 3}} />
-                <AreaGraph data={data.map(d => ({ x: d.zeitsemester, y0: d.ergebnisPunktzahl, y1: d.maximalPunktzahl }))} color={colors[0]} />
+                <AreaGraph data={data.map(d => ({ x: d.zeitsemester, y0: d.ergebnisRichtigPunktzahl, y1: d.maximalPunktzahl }))} color={colors[0]} />
                 <LineGraph data={data.map(d => ({ x: d.zeitsemester, y: d.maximalPunktzahl }))} color={tinycolor(colors[0]).darken(30).toString()} />
-                <AreaGraph data={data.map(d => ({ x: d.zeitsemester, y0: 0, y1: d.ergebnisPunktzahl }))} color={colors[1]} />
-                <LineGraph data={data.map(d => ({ x: d.zeitsemester, y: d.ergebnisPunktzahl }))} color={tinycolor(colors[1]).darken(30).toString()} />
+                <AreaGraph data={data.map(d => ({ x: d.zeitsemester, y0: 0, y1: d.ergebnisRichtigPunktzahl }))} color={colors[1]} />
+                <LineGraph data={data.map(d => ({ x: d.zeitsemester, y: d.ergebnisRichtigPunktzahl }))} color={tinycolor(colors[1]).darken(30).toString()} />
             </OrdinalChart>
         </div>
     </div>)
 
 const colors = ["hsla(120, 50%, 50%, .4)", "hsla(0, 50%, 50%, .4)"]
-const Subject = props => (
+const Subject = ({ data, ...props }) => (
     <div>
         <div className="row py-3" onClick={() => props.toggleExtended()} >
             <div className="col-7 col-sm-6">
@@ -43,8 +43,8 @@ const Subject = props => (
                 <span className="badge badge-info" style={{fontSize: '.6rem'}}>{props.gruppe}</span>
             </div>
             <div className="col-10 col-sm-3 mt-1">
-                <SimpleBar value={props.data.ergebnisPunktzahl} total={props.data.maximalPunktzahl}>
-                    {props.data.ergebnisPunktzahl} von {props.data.maximalPunktzahl} richtig
+                <SimpleBar value={data.ergebnisRichtigPunktzahl} total={data.maximalPunktzahl}>
+                    {data.ergebnisRichtigPunktzahl} von {data.maximalPunktzahl} richtig
                 </SimpleBar>
             </div>
             <div className={`col-2 col-sm-1 text-right`}>

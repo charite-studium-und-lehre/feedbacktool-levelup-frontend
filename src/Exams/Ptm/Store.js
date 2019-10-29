@@ -11,12 +11,11 @@ const findSubject = subject => _.flow([_.find({'titel': subject}), _.defaultTo({
 const getFaecher = ptm => ptm.faecher
 const getSubjects = _.flow([ getFaecher ])
 const getSubject = subject => _.flow([ getSubjects, findSubject(subject) ])
-const getRanking = _.flow([ getSubjects, _.filter(s => s.maximalPunktzahl >= minQuestions), _.sortBy([ s => -s.ergebnisPunktzahl / s.maximalPunktzahl, s => -s.maximalPunktzahl ]) ])
+const getRanking = _.flow([ getSubjects, _.filter(s => s.maximalPunktzahl >= minQuestions), _.sortBy([ s => -s.ergebnisRichtigPunktzahl / s.maximalPunktzahl, s => -s.maximalPunktzahl ]) ])
 
 const toTimeline = ptm => ({
     ...ptm,
-    link: `ptm/${ptm.id}`,
-    results: ptm.results || [1,2,3]
+    link: `ptm/${ptm.id}`
 })
 const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 
@@ -36,9 +35,9 @@ export const selectors = baseStore.withLoadedSelector({
 export const actions = baseStore.withLoadAction({})
 
 const transform = ptm => ({
+    ...ptm,
     results: [ ptm.gesamtErgebnis.ergebnisRichtigPunktzahl, ptm.gesamtErgebnis.ergebnisFalschPunktzahl, ptm.gesamtErgebnis.ergebnisWeissnichtPunktzahl ],
     means: [ ptm.gesamtErgebnis.durchschnittRichtigPunktzahl, ptm.gesamtErgebnis.durchschnittFalschPunktzahl, ptm.gesamtErgebnis.durchschnittWeissnichtPunktzahl ],
-    ...ptm,
 })
 
 export const reducer = combineReducers({ items: _.compose([baseStore.withSelectReducer, baseStore.withLoadedReducer(transform)])(( state = {}, action ) => {
