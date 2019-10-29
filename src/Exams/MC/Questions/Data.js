@@ -1,5 +1,5 @@
 import _ from 'lodash/fp'
-import { Subjects } from '../../Ptm/Data'
+import { Subjects } from '../../../Exams/Ptm/Data'
 
 const questions = [{"text": "Welches der Medikamente ist ein Kalziumkanalblocker vom Dihydropyridin-Typ?",
 "answers": ["Candesartan", "Amiodaron", "Amlodipin", "Carvedilol"]},

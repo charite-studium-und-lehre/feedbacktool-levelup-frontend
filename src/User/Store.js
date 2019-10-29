@@ -9,7 +9,7 @@ const baseStore = BaseStore(identifier)
 export const actions = baseStore.withLoadAction(url)({
     sendStammdaten: matrikelnummer => dispatch =>
         post(`${url}`, { matrikelnummer })
-            .then( result => (1 || result.status === 200) ?
+            .then( result => result.status === 200 ?
                 dispatch({ type: `${identifier.toUpperCase()}_DATA_SENT` }) :
                 dispatch({ type: `${identifier.toUpperCase()}_DATA_SENT`, payload: result.status })
             )
@@ -47,8 +47,6 @@ export const reducer = combineReducers({ ...baseStore.withLoadedReducer((state =
             return { ...state, stammdatenVorhanden: !action.payload }
         case `${identifier.toUpperCase()}_DATA_FETCHED`:
             return action.payload
-        case `${identifier.toUpperCase()}_DATA_FETCH_FAILED`:
-            return state
         default:
             return state
     }
