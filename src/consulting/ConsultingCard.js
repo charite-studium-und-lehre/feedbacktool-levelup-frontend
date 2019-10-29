@@ -33,14 +33,14 @@ const ContactData = props => (
     </div>
 )
 const ConsultingCard = ({ t, ...props }) => (
-    <div className="card col-12 mb-2">
+    <div className="card col-12 mb-2 pl-2">
         <div className="card-body px-2">
             <div className="mb-4">
                 <h3 className="text-center ">{props.title}</h3>
                 <p className="card-text pr-2 pr-sm-0">{props.paragraph}</p>
             </div>
             {props.infoDaten ? <div>
-                <div className='font-weight-bold' style={{ color: ' rgb(34, 71, 104)' }} onClick={props.toggleExtended}>
+                <div className='font-weight-bold' style={{ color: 'rgb(34, 71, 104)' }} onClick={props.toggleExtended}>
                     <span className='mr-2'>Kontaktdaten</span>
                     <FontAwesomeIcon icon={props.extended ? faChevronDown : faChevronRight} />
                 </div>
