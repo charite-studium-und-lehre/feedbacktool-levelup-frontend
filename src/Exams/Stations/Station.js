@@ -23,14 +23,18 @@ const Station = props =>
                 <div style={{opacity: props.extended ? 1 : 0}} className="animated">
                     {props.data.details && 
                         <SlideDown >
-                            {props.extended && props.data.details.map( s =>
-                                <Station
-                                    color={props.color}
-                                    key={s.code}
-                                    style={{opacity: props.extended ? 1 : 0}}
-                                    data={s} />
-                            )}
-                        <div style={{fontSize: '.8rem'}} className="text-primary text-right mt-2">{props.t(`schließen`)}</div>
+                            {props.extended && 
+                                <div>
+                                    {props.data.details.map( s =>
+                                        <Station
+                                            color={props.color}
+                                            key={s.code}
+                                            style={{opacity: props.extended ? 1 : 0}}
+                                            data={s} />
+                                    )}
+                                    <div style={{fontSize: '.8rem'}} className="text-primary text-right mt-2">{props.t(`schließen`)}</div>
+                                </div>
+                            }
                         </SlideDown>
                     }
                 </div>
