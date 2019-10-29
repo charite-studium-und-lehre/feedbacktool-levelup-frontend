@@ -33,7 +33,7 @@ const ContactData = props => (
     </div>
 )
 const ConsultingCard = ({ t, ...props }) => (
-    <div className="card col-12 with-shadow mb-2">
+    <div className="card col-12 mb-2">
         <div className="card-body px-2">
             <div className="mb-4">
                 <h3 className="text-center ">{props.title}</h3>
