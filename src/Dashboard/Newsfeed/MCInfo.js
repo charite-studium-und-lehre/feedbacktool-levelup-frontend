@@ -11,8 +11,7 @@ const McInfo = withTranslation() ( ({ t, ...props }) =>
                 colorTotal={defs.colorTotal}
                 colorPartOfTotal={defs.colorPartOfTotal}
                 total={props.gesamtErgebnis.maximalPunktzahl}
-                value={props.gesamtErgebnis.ergebnisPunktzahl}
-                mean={props.gesamtErgebnis.durchschnittsPunktzahl}>
+                value={props.gesamtErgebnis.ergebnisPunktzahl} >
                 {props.gesamtErgebnis.ergebnisPunktzahl} von {props.gesamtErgebnis.maximalPunktzahl} richtig
             </SimpleBar>
         </div>
