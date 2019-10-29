@@ -15,7 +15,7 @@ const Score = ({ t, values, externalScore, l, levelUpDone, levelUpConfident, lev
     return <div>
         <div className="row text-center">
             {[t('Habe ich gemacht'), t('Traue ich mir zu')].map( (l, i) => 
-                <div key={i} className="col-sm-4 p-0" style={{ color: colors[i] }}>
+                <div key={i} className="col-sm-4 p-0 pt-2" style={{ color: colors[i] }}>
                     <Numbers
                         colorsRgb={colorsRgb[i]}
                         color={colors[i]}
@@ -24,13 +24,13 @@ const Score = ({ t, values, externalScore, l, levelUpDone, levelUpConfident, lev
                         increment={_.partial(uppers[i], entry)}
                         decrement={_.partial(downers[i], entry)} />
                     {headings &&
-                        <div className="font-weight-bold">
+                        <div className="font-weight-bold pb-2">
                             <div>{l}</div>
                         </div>
                     }
                 </div>
             )}
-            <div className="col-sm-4 p-0" style={{ color: colors[2] }}>
+            <div className="col-sm-4 p-0 pt-2" style={{ color: colors[2] }}>
                 <Numbers
                     colorsRgb={colorsRgb[2]}
                     color={colors[2]}

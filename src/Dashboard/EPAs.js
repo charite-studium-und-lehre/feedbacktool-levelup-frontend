@@ -6,8 +6,8 @@ import EPAsScore from '../EPAs/assessmentViewComponents/Score'
 import DashboardCard from './DashboardCard'
 
 const EPAs = needsData(selectors.loaded, actions.load)(
-    () => <div className="m-2">
-        <EPAsScore headings edit={false} width='1rem' height='1rem'  borderRadius='50%' />
+    () => <div className="m-2 py-3 py-xl-5" style={{fontSize: '1rem'}}>
+        <EPAsScore headings edit={false} width='1.3rem' height='1.3rem'  borderRadius='50%' />
     </div>
 )
 
