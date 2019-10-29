@@ -1,9 +1,8 @@
 import React from 'react'
 import {Trans} from 'react-i18next'
 import Numbers from '../EPAs/assessmentViewComponents/Numbers'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChartLine } from '@fortawesome/free-solid-svg-icons'
 import Video from '../EPAs/static/EPAsVideo'
+import {GraphButton} from "./GraphButton";
 
 const Legends = {
     Exams: {
@@ -66,9 +65,12 @@ const Legends = {
             Subjects: {
                 title: <Trans>Alle Fächer</Trans>,
                 text: <Trans>
-                    <p>Hier findest du eine Übersicht zu deinen Leistungen in den theoretischen, klinischen und Querschnittsfächern. Die Ergebnisse innerhalb des grünen Balken basieren auf deinem letzten PTM und zeigen das Verhältnis zwischen richtig beantworteten und allen gestellten Fragen.</p>
-                    <p>Deine Entwicklung im PTM innerhalb eines bestimmten Faches siehst du in der darunter stehenden Graphik<span  className='text-primary ml-2' ><FontAwesomeIcon icon={faChartLine}/></span></p>
-                    </Trans>,
+                    <p>Hier findest du eine Übersicht zu deinen Leistungen in den theoretischen, klinischen und
+                        Querschnittsfächern. Die Ergebnisse innerhalb des grünen Balken basieren auf deinem letzten PTM
+                        und zeigen das Verhältnis zwischen richtig beantworteten und allen gestellten Fragen.</p>
+                    <p>Deine Entwicklung im PTM innerhalb eines bestimmten Faches siehst du in der darunter stehenden
+                        Graphik<GraphButton/></p>
+                </Trans>,
             },
             Organsystem: {
                 title: <Trans>Alle Organsystem</Trans>,

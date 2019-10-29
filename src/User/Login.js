@@ -32,14 +32,14 @@ const Login = _.compose([
                         <p >{t(`Herzlich Willkommen bei LevelUp – deinem Online Feedback Tool zur integrierten Darstellung deines Studienfortschritts im Modellstudiengang 2.0`)}</p>
                     </div>
                     <Link to='/user/dataProtection'>
-                        <div className='text-primary'>
+                        <div className='color-navigation'>
                             <span className='font-weight-bold ml-2' style={{ cursor: 'pointer', fontSize: '1rem' }}>{t(`Datenschutzhinweise`)}</span>
                         </div>
                     </Link>
                 </div>
                 <div className="container-form mt-5" style={{ padding: '0 5rem' }} >
                     <a href="https://levelup.charite.de/backend/login">
-                        <button type="button" className="btn btn-primary w-100 font-weight-bold" >{t(`Login`)}</button>
+                        <button type="button" className="btn btn-secondary w-100 font-weight-bold" >{t(`Login`)}</button>
                     </a>
                 </div>
             </div>

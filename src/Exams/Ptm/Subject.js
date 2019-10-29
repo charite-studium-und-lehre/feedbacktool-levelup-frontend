@@ -13,6 +13,8 @@ import { XAxis, YAxis } from '../../Charting/Axis'
 import { selectors } from './Store'
 import SimpleBar from '../../Charting/SimpleBar'
 import ColorLegend from '../../Charting/ColorLegend'
+import {GraphButton} from "../../Core/GraphButton";
+import COLORS from "../../colors";
 
 const Timeline = withTranslation()(({ t, data }) => 
     <div className="col m-auto" style={{maxWidth: '40rem'}}>
@@ -45,8 +47,8 @@ const Subject = props => (
                     {props.data.ergebnisPunktzahl} von {props.data.maximalPunktzahl} richtig
                 </SimpleBar>
             </div>
-            <div className={`col-2 col-sm-1 ${props.extended ? 'text-secondary' : 'text-primary'} text-right`}>
-                <FontAwesomeIcon icon={faChartLine} />
+            <div className={`col-2 col-sm-1 text-right`}>
+                <GraphButton clicked={props.extended}/>
             </div>
         </div>
         <SlideDown className="row animated fast">

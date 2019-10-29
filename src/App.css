@@ -65,3 +65,7 @@ ol.breadcrumb:empty {
 .color-navigation{
   color: var(--color-navigation);
 }
+
+.color-bg-navigation{
+  background-color: var(--color-navigation);
+}

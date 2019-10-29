@@ -46,7 +46,8 @@ export default {
         grey3: '#B6BDC7',
         grey2: '#BFC6D1',
         grey1: '#CFD8E4',
-        grey0: '#e4e9f0'
+        grey0: '#e4e9f0',
+        buttonGrey: '#6c757d'
     },
 
     textBlack: '#101010',
