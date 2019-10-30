@@ -49,8 +49,8 @@ function Consulting({ t }) {
                     </div>
                     <div className='row'>
                            { tree.ConsultingCard.map(e => 
-                            <div className='col-12 col-md-6 d-lg-none p-1'>
-                           <ConsultingCard infoDaten={true} { ...e} />
+                            <div className='col-12 col-md-6 d-lg-none p-1'key={e.title}>
+                           <ConsultingCard infoDaten={true} { ...e}  />
                            </div>)}
                     </div>
                 </div>
