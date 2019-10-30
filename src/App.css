@@ -98,7 +98,7 @@ ol.breadcrumb:empty {
 }
 
 .color-button-color:hover {
-  color: var(--color-background-grey2)
+  color: var(--color-background-button)
 }
 
 input.no-outline {
