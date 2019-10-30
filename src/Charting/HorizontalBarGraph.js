@@ -28,7 +28,7 @@ const HorizontalBarGraph = props => {
 						x={props.xScale(d.x) + 3}
 						y={props.yScale(d.y) + (height - 13) / 2 + dy}
 						textAnchor="start"
-						color="rgba(0, 0, 0, .6)"
+						color="var(--color-graphs-grid)"
 						style={{fontSize: '.75rem'}}
 						dominantBaseline="central">
 						{d.label || d.x}
@@ -37,7 +37,7 @@ const HorizontalBarGraph = props => {
 				<AnimatedText 
                     y={props.yScale(d.y)} 
 					x={0}
-					color="rgba(0, 0, 0, .6)"
+					color="var(--color-graphs-grid)"
 					style={{fontSize: '.75rem'}}
                     textAnchor="start"
                     dominantBaseline="central">

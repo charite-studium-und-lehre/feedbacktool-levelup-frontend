@@ -38,7 +38,8 @@ const Subject = ({ data, ...props }) => (
             </div>
             <div className="col-5 col-sm-2 p-0">
                 <span className='badge'
-                      style={{fontSize: '.6rem', backgroundColor: props.filterBgColor, color: props.filterTextColor}}>
+                      style={{fontSize: '.6rem', backgroundColor: props.filterColors.background,
+                          color: props.filterColors.text, border: '1px solid '+props.filterColors.line }}>
                     {props.gruppe}
                 </span>
             </div>

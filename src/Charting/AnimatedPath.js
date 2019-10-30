@@ -5,7 +5,7 @@ import { easeCubic } from 'd3-ease'
 import { animationTime as at } from './Utils'
 
 const AnimatedPath = ({ 
-        stroke = 'rgba(0,0,0,.6)',
+        stroke = 'var(--color-graphs-grid)',
         style = {},
         fill = 'none',
         className = '',
