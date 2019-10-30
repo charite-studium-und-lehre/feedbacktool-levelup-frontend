@@ -14,7 +14,7 @@ const Answer = withTranslation()(({t, ...props}) => (
 const Question = ({t, ...props}) => {
     const tags = [
         { color: colors[0], label: props.fach.titel },
-        { color: colors[1], label: props.modul },
+        { color: colors[1], label: props.modul.titel },
     ]
     return <div className="row">
         <div className="col">
