@@ -28,7 +28,7 @@ const errorToText = t => error => {
 }
 const stateToProps = state => ({ ...user.getData(state), error: user.getError(state) })
 const registration = _.compose([ withTranslation(), makeExtendable, connect(stateToProps, actions) ])(
-    ({ t, extended, toggleExtended, nachname, vorname, email, stammdatenVorhanden, sendStammdaten, error }) => {
+    ({ t, extended, toggleExtended, nachname, vorname, email, istAdmin, stammdatenVorhanden, sendStammdaten, error }) => {
     if(stammdatenVorhanden) return <Redirect to="/" />
     const matrikelnummer = useRef()
     return <div className='row'>
@@ -44,8 +44,8 @@ const registration = _.compose([ withTranslation(), makeExtendable, connect(stat
                         </div>
                         <div className='row'>
                             <div className='col-12'>
-                                <Info name={t('Vorname')} >{nachname}</Info>
-                                <Info name={t('Nachname')} >{vorname}</Info>
+                                <Info name={t('Vorname')} >{vorname}</Info>
+                                <Info name={t('Nachname')} >{nachname}</Info>
                                 <Info name={t('Email')} >{email}</Info>
                                 <Info name={t('Matrikelnummer')} >
                                     <input className="form-control font-weight-bold" placeholder={t('Matrikelnummer')} ref={matrikelnummer}></input>
@@ -64,6 +64,11 @@ const registration = _.compose([ withTranslation(), makeExtendable, connect(stat
                         </div>
                         <div className="text-danger text-center">{errorToText(t)(error)}</div>
                         <button className='btn btn-secondary mt-3' disabled={!extended} onClick={() => sendStammdaten(matrikelnummer.current.value)}>{t(`Absenden`)}</button>
+                        {istAdmin && 
+                            <div className="text-center mt-1">
+                                <a href="/backend/admin/switchUser" target="_blank">Datensatz wählen</a>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
