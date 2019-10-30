@@ -36,10 +36,6 @@ const ConsultingCard = ({ t, ...props }) => (
     <div className="card col-12 mb-2 pl-2">
         <div className="card-body px-2">
             <div className="mb-4">
-<<<<<<< HEAD
-                <h3 className="text-center">{props.title}</h3>
-                <p className="card-text">{props.paragraph}</p>
-=======
                 <h3 className="text-center ">{props.title}</h3>
                 <p className="card-text pr-2 pr-sm-0">{props.paragraph}</p>
             </div>
@@ -51,7 +47,6 @@ const ConsultingCard = ({ t, ...props }) => (
                 {props.extended && <SlideDown className="animated fast">
                     <ContactData {...props} />
                 </SlideDown>}
->>>>>>> develop
             </div>
                 :
                 <ContactData {...props} />}

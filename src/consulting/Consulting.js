@@ -20,35 +20,12 @@ function Consulting({ t }) {
                         <span> {t(`medicoach@charite.de`)}</span>
                         </p>
                     </div>
-<<<<<<< HEAD
 
-=======
->>>>>>> develop
                 </div>
             </div>
             <div className="consulting-card mt-4 mt-md-5 pb-5">
                 <div className='row'>
-<<<<<<< HEAD
-                    <div className='col-12 col-lg-12 col-xl-9 mx-auto'>
-                        <div className='row'>
-                            <div className='col-12 col-lg-6'>
-                                <ul className="list-group list-group-flush">
-                                    {tree.ConsultingCard.map((e, i) =>
-                                        <li className="extern-link text-center list-group-item px-2" style={{ backgroundColor: `${i == selectCard ? ' rgb(34, 71, 104, 0.6)' : ''}`, color: `${i == selectCard ? 'white' : ''}` }} onClick={() => setCard(i)}>{e.title}
-                                            <span className='float-right' style={{ color: 'red' }}>
-                                                <FontAwesomeIcon icon={i == selectCard ? faChevronDown : faChevronRight} color={i == selectCard ? 'white ' : 'rgb(34, 71, 104)'} />
-                                            </span>
-                                        </li>
-                                    )}
-                                </ul>
-                            </div>
-                            <div className='col-12 col-lg-5 col-xl-6'>
-                                {tree.ConsultingCard[selectCard].component || <ConsultingCard
-                                    {...tree.ConsultingCard[selectCard]}
-                                />}
-                            </div>
 
-=======
                     <div className='col-12 col-lg-4 d-none d-lg-block'>
                         <ul className="list-group list-group-flush">
                             {tree.ConsultingCard.map((e, i) =>
@@ -71,7 +48,6 @@ function Consulting({ t }) {
                                 <h4 className="text-center mb-4">{t(`Externe Angebote`)}</h4>
                                 {tree.ExternConsulting.map((d, i) => <a className="extern-link text-center list-group-item py-3" key={i} href={d.href}>{d.title}</a>)}
                             </ul>
->>>>>>> develop
                         </div>
                     </div>
                     <div className='row'>
