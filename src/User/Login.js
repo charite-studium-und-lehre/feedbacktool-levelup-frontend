@@ -20,7 +20,7 @@ const stateToProps = state => ({
 const Login = _.compose([
     connect(stateToProps),
     withTranslation(),
-    makeExtendable,
+    makeExtendable(),
 ])(
     ({ t, hasStammdata, loggedIn }) =>
     (!loggedIn || hasStammdata) ? <div className='h-100' >

@@ -34,4 +34,4 @@ const Ranking = ({t, ...props}) =>
     </div> :
     <div className="text-center">{t('Noch keine Ergebnisse gefunden.')}</div>
 
-export default withTranslation()(makeExtendable(Ranking))
+export default withTranslation()(makeExtendable()(Ranking))

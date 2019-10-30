@@ -8,7 +8,7 @@ import makeExtendable from '../../Core/makeExtendable'
 import Numbers from './Numbers'
 import { selectors } from '../Store'
 
-const ExternAssessingWithValue = makeExtendable(({ toggleExtended, extended, externals }) =>
+const ExternAssessingWithValue = makeExtendable()(({ toggleExtended, extended, externals }) =>
     <div>
         <div className="row" >
             { !!externals.length &&
