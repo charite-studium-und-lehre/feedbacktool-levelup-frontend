@@ -83,7 +83,7 @@ const Feedback = _.compose([connect(stateToProps), waitForLogin])(({ user }) => 
                 <input style={{border: 'none', borderBottom: '1px solid lightgrey'}} className="flex-grow-1 no-outline" placeholder="Dein Feedback..." ref={input} onKeyUp={e => handleKeyPress(e)}></input>
                 <FontAwesomeIcon className="text-primary m-2" style={{fontSize: '1rem'}} icon={faPaperPlane} onClick={ () => postFeedback() } />
             </div>
-            <div className="text-right p-2 pb-3 d-flex" style={{lineHeight: '1.2em', color: 'grey', fontSize: '.7rem'}} onClick={ () => setSendId(!sendId) }>
+            <div className="text-right p-2 pb-3 d-flex" style={{cursor: 'pointer', lineHeight: '1.2em', color: 'grey', fontSize: '.7rem'}} onClick={ () => setSendId(!sendId) }>
                 <FontAwesomeIcon className="mr-1" style={{fontSize: '1.2em'}} icon={sendId ? faCheckSquare : faSquare} />
                 meine Email-Adresse mitsenden
             </div>
