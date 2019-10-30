@@ -56,12 +56,12 @@ const colors = {
     default: '#ff0000',
 
     graphs: {
-        correct:"hsla(120, 50%, 50%, .4)",
-        wrong:"hsla(0, 50%, 50%, .4)"
+        correct: 'var(--color-graphs-correct)',
+        wrong: 'var(--color-graphs-wrong)',
+        missingAnswer: 'var(--color-graphs-missing-answer)'
     }
 }
 
-colors.graphs.missingAnswer = colors.graphs.default
 colors.graphs.total = colors.background.grey1
 
 export default colors

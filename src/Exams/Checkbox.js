@@ -19,7 +19,7 @@ const Checkbox = (props) => {
                 <label className="p-2 m-0" style={{color: COLORS.background.base}}>
                     <span className="mr-2 pl-1"
                           style={{
-                              backgroundColor: COLORS.background.base,
+                              backgroundColor: props.textColor,
                               color: props.initialyChecked
                                   ? props.lineColor
                                   : COLORS.background.base

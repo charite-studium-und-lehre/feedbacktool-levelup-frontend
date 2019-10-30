@@ -2,6 +2,7 @@ import React from 'react'
 import Label from './Label'
 import { scaleLinear } from 'd3-scale'
 import AnimatedPoint from './AnimatedPoint'
+import COLORS from '../colors'
 
 export default function PointGraph({padding = 0.2, offset = .5, ...props}) {
     const onClick = props.onClick || (() => {})
@@ -21,8 +22,8 @@ export default function PointGraph({padding = 0.2, offset = .5, ...props}) {
             cx={props.xScale(d.x) + scale(offset)} 
             cy={props.yScale(d.y)} 
             r={d.size || props.size || "5"}
-            fill={props.color || 'black'}
-            color={props.color || 'black'}
+            fill={props.color || COLORS.default}
+            color={props.color || COLORS.default}
             opacity={props.fadeIn ? 0 : 1}
             onClick={() => onClick(d)}>
         </AnimatedPoint>

@@ -4,6 +4,11 @@
   --color-navigation: #005a9c;
   --color-background-grey6: #585e66;
   --color-background-base: #f8f9ff;
+  --color-graphs-correct: hsla(120, 20%, 50%, .65);
+  --color-graphs-wrong: hsla(0, 50%, 50%, .65);
+  --color-graphs-missing-answer: hsla(240, 0%, 50%, .65);
+  --color-graphs-grid: rgba(0,0,0,.6);
+  --color-graphs-grid-text: rgba(0,0,0,.7);
 }
 
 svg {
