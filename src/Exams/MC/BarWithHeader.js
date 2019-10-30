@@ -2,7 +2,6 @@ import React from 'react'
 import SimpleBar from '../../Charting/SimpleBar'
 
 export default function BarWithHeader (props) {
-    console.log(props)
     return (
         <div className='row'>
             <div className=" col-12">

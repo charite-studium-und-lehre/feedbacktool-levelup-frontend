@@ -41,8 +41,9 @@ const colors = {
 
     background: {
         base: 'var(--color-background-base)',
-        grey6: 'var(--color-background-grey6)',
-        grey5: '#9AA5B4',
+        grey6: 'var(--color-background-button)',
+        grey7: '#838c99',
+        grey5: '#8e98a6',
         grey4: '#A7B3C3',
         grey3: '#B6BDC7',
         grey2: '#BFC6D1',
