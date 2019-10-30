@@ -1,6 +1,6 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckSquare, faSquare } from '@fortawesome/free-solid-svg-icons'
+import Checkbox from "../Exams/Checkbox";
+import COLORS from "../colors";
 
 const Filter = ({ filters, ...props }) => {
     function callUpdate(filters) {
@@ -22,17 +22,17 @@ const Filter = ({ filters, ...props }) => {
         <div className={`d-inline-flex flex-row flex-wrap ${props.className}`}>
         {props.showAll && <button className="btn btn-outline-primary btn-sm mr-1 mt-1" onClick={ () => all(false) }>alle anzeigen</button>}
         {filters.map(filter => (
-            <span className="flex-fill d-inline-block mr-1 mt-1"
-                onClick={() => toggleFilter(filter)}
+            <span className="flex-fill d-inline-block mr-1 mt-1" 
                 key={filter.label} 
                 style={{ 
                     fontSize: '.73rem', 
-                    border: `1px solid ${filter.color || props.color || 'hsla(210, 50%, 55%, 1)'}`, 
-                    backgroundColor: filter.color || props.color || 'hsla(210, 50%, 60%, 1)'
+                    border: '1px solid ' + COLORS.background.grey6,
+                    backgroundColor: COLORS.background.grey5
                 }}>
-                <label className="p-2 m-0 text-white" >
-                    <FontAwesomeIcon className="mr-1" icon={filter.selected ? faCheckSquare : faSquare} />
-                {filter.label}</label>
+                <Checkbox checked={true} label={filter.label}
+                          onCheck={() => toggleFilter(filter)}
+                          onUncheck={() => toggleFilter(filter)}
+                          lineColor={COLORS.background.grey6}/>
             </span>)
         )}
         </div>

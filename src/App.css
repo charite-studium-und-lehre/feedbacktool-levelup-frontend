@@ -2,6 +2,8 @@
   overflow-x: hidden;
   height: 100%;
   --color-navigation: #005a9c;
+  --color-background-grey6: #585e66;
+  --color-background-base: #f8f9ff;
 }
 
 svg {

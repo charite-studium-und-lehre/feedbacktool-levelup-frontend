@@ -2,9 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { SlideDown } from 'react-slidedown'
 import { withTranslation } from 'react-i18next'
-import tinycolor from 'tinycolor2'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChartLine } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../../Core/makeExtendable'
 import { OrdinalChart } from '../../Charting/Chart'
 import AreaGraph from '../../Charting/AreaGraph'
@@ -13,37 +10,41 @@ import { XAxis, YAxis } from '../../Charting/Axis'
 import { selectors } from './Store'
 import SimpleBar from '../../Charting/SimpleBar'
 import ColorLegend from '../../Charting/ColorLegend'
-import {GraphButton} from "../../Core/GraphButton";
+import {GraphButton} from './GraphButton'
 import COLORS from "../../colors";
 
-const Timeline = withTranslation()(({ t, data }) => 
+const Timeline = withTranslation()(({ t, data }) =>
     <div className="col m-auto" style={{maxWidth: '40rem'}}>
-        <ColorLegend text={t('Anzahl gestellte Fragen')} style={{backgroundColor : colors[0]}}/>
-        <ColorLegend text={t('Anzahl richtige Fragen')} style={{backgroundColor : colors[1]}}/>
+        <ColorLegend text={t('Anzahl gestellte Fragen')} style={{backgroundColor : COLORS.graphs.total}}/>
+        <ColorLegend text={t('Anzahl richtige Fragen')} style={{backgroundColor : COLORS.graphs.correct}}/>
         <div className="p-4 mt-3" style={{height: '6rem'}} >
             <OrdinalChart xDomain={data.map(d => d.zeitsemester)} yDomain={[0, Math.max(...data.map(d => d.maximalPunktzahl))]}>
                 <XAxis />
                 <YAxis ticks={{count: 3}} />
-                <AreaGraph data={data.map(d => ({ x: d.zeitsemester, y0: d.ergebnisRichtigPunktzahl, y1: d.maximalPunktzahl }))} color={colors[0]} />
-                <LineGraph data={data.map(d => ({ x: d.zeitsemester, y: d.maximalPunktzahl }))} color={tinycolor(colors[0]).darken(30).toString()} />
-                <AreaGraph data={data.map(d => ({ x: d.zeitsemester, y0: 0, y1: d.ergebnisRichtigPunktzahl }))} color={colors[1]} />
-                <LineGraph data={data.map(d => ({ x: d.zeitsemester, y: d.ergebnisRichtigPunktzahl }))} color={tinycolor(colors[1]).darken(30).toString()} />
+                <AreaGraph data={data.map(d => ({ x: d.zeitsemester, y0: d.ergebnisRichtigPunktzahl, y1: d.maximalPunktzahl }))} color={COLORS.graphs.total} />
+                <LineGraph data={data.map(d => ({ x: d.zeitsemester, y: d.maximalPunktzahl }))} color={COLORS.graphs.total} />
+                <AreaGraph data={data.map(d => ({ x: d.zeitsemester, y0: 0, y1: d.ergebnisRichtigPunktzahl }))} color={COLORS.graphs.correct} />
+                <LineGraph data={data.map(d => ({ x: d.zeitsemester, y: d.ergebnisRichtigPunktzahl }))} color={COLORS.graphs.correct} />
             </OrdinalChart>
         </div>
     </div>)
 
-const colors = ["hsla(120, 50%, 50%, .4)", "hsla(0, 50%, 50%, .4)"]
 const Subject = ({ data, ...props }) => (
     <div>
         <div className="row py-3" onClick={() => props.toggleExtended()} >
             <div className="col-7 col-sm-6">
-                <span className="text-primary">#{props.rank}</span><span className="ml-1 font-weight-bold">{props.titel}</span>
+                <span>#{props.rank}</span>
+                <span className="ml-1 font-weight-bold">{props.titel}</span>
             </div>
             <div className="col-5 col-sm-2 p-0">
-                <span className="badge badge-info" style={{fontSize: '.6rem'}}>{props.gruppe}</span>
+                <span className='badge'
+                      style={{fontSize: '.6rem', backgroundColor: props.filterBgColor, color: props.filterTextColor}}>
+                    {props.gruppe}
+                </span>
             </div>
             <div className="col-10 col-sm-3 mt-1">
-                <SimpleBar value={data.ergebnisRichtigPunktzahl} total={data.maximalPunktzahl}>
+                <SimpleBar colorTotal={COLORS.ptm.lighter1} colorPartOfTotal={COLORS.ptm.darker0}
+                           value={data.ergebnisRichtigPunktzahl} total={data.maximalPunktzahl}>
                     {data.ergebnisRichtigPunktzahl} von {data.maximalPunktzahl} richtig
                 </SimpleBar>
             </div>

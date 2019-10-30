@@ -11,5 +11,5 @@ export default function AreaGraph (props) {
 		.y1(d => props.yScale(d.y1) )
 		.curve(props.curve || curveMonotoneX);
 	
-	return <AnimatedPath shape={_area} d={props.data} fill={props.color || "black"} stroke="none" />
+	return <AnimatedPath shape={_area} d={props.data} fill={props.color || 'red'} stroke="none" />
 }

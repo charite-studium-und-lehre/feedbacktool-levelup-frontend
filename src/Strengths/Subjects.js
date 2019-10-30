@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash/fp'
-import SubjectsTabs from '../Core/Tabs'
+import SubjectsTabs from '../Utils/Tabs'
 import needsData from '../Core/needsData'
 import Subject from './Subject'
 import { selectors, actions } from './Store'
