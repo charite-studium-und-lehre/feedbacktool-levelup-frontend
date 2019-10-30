@@ -1,5 +1,6 @@
-export default {
+import './App.css'
 
+const colors = {
     progress: {
         base: '#63940f',
         lighter2: '#cdd6b6',
@@ -39,8 +40,8 @@ export default {
     },
 
     background: {
-        base: '#f8f9ff',
-        grey6: '#585e66',
+        base: 'var(--color-background-base)',
+        grey6: 'var(--color-background-grey6)',
         grey5: '#9AA5B4',
         grey4: '#A7B3C3',
         grey3: '#B6BDC7',
@@ -52,6 +53,15 @@ export default {
 
     textBlack: '#101010',
 
-    default: '#ff0000'
+    default: '#ff0000',
 
+    graphs: {
+        correct:"hsla(120, 50%, 50%, .4)",
+        wrong:"hsla(0, 50%, 50%, .4)"
+    }
 }
+
+colors.graphs.missingAnswer = colors.graphs.default
+colors.graphs.total = colors.background.grey1
+
+export default colors

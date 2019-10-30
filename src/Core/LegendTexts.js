@@ -2,7 +2,7 @@ import React from 'react'
 import {Trans} from 'react-i18next'
 import Numbers from '../EPAs/assessmentViewComponents/Numbers'
 import Video from '../EPAs/static/EPAsVideo'
-import {GraphButton} from "./GraphButton";
+import {GraphButton} from "../Exams/Ptm/GraphButton";
 
 const Legends = {
     Exams: {

@@ -1,6 +1,6 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckSquare, faSquare } from '@fortawesome/free-solid-svg-icons'
+import Checkbox from "../Exams/Checkbox";
+import COLORS from "../colors";
 
 const Filter = ({ filters, ...props }) => {
     function callUpdate(filters) {
@@ -26,12 +26,13 @@ const Filter = ({ filters, ...props }) => {
                 key={filter.label} 
                 style={{ 
                     fontSize: '.73rem', 
-                    border: `1px solid ${filter.color || props.color || 'hsla(210, 50%, 55%, 1)'}`, 
-                    backgroundColor: filter.color || props.color || 'hsla(210, 50%, 60%, 1)'
+                    border: '1px solid ' + COLORS.background.grey6,
+                    backgroundColor: COLORS.background.grey5
                 }}>
-                <label className="p-2 m-0 text-white" onClick={() => toggleFilter(filter)} >
-                    <FontAwesomeIcon className="mr-1" icon={filter.selected ? faCheckSquare : faSquare} />
-                {filter.label}</label>
+                <Checkbox checked={true} label={filter.label}
+                          onCheck={() => toggleFilter(filter)}
+                          onUncheck={() => toggleFilter(filter)}
+                          lineColor={COLORS.background.grey6}/>
             </span>)
         )}
         </div>
