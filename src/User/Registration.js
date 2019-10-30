@@ -27,7 +27,7 @@ const errorToText = t => error => {
     }
 }
 const stateToProps = state => ({ ...user.getData(state), error: user.getError(state) })
-const registration = _.compose([ withTranslation(), makeExtendable, connect(stateToProps, actions) ])(
+const registration = _.compose([ withTranslation(), makeExtendable(), connect(stateToProps, actions) ])(
     ({ t, extended, toggleExtended, nachname, vorname, email, istAdmin, stammdatenVorhanden, sendStammdaten, error }) => {
     if(stammdatenVorhanden) return <Redirect to="/" />
     const matrikelnummer = useRef()

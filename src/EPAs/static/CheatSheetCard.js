@@ -18,4 +18,4 @@ const CheatSheetCard = () => {
         </div>
     )
 }
-export default withTranslation()(makeExtendable(CheatSheetCard))
+export default withTranslation()(makeExtendable()(CheatSheetCard))

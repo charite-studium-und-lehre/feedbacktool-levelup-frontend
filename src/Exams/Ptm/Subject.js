@@ -64,4 +64,4 @@ const stateToProps = (state, ownProps) => ({
     timeline: selectors.getAllForSubject(state, ownProps.titel)
 })
 
-export default makeExtendable(connect(stateToProps)(Subject))
+export default makeExtendable()(connect(stateToProps)(Subject))

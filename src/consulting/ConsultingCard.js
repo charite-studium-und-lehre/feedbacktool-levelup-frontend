@@ -61,7 +61,7 @@ const ConsultingCard = ({ t, ...props }) => (
         </div>
     </div>
 )
-export default makeExtendable(withTranslation()(ConsultingCard))
+export default makeExtendable()(withTranslation()(ConsultingCard))
 
 
 

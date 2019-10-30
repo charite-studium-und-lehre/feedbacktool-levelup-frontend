@@ -31,4 +31,4 @@ const Marker = props =>
         </g>
     </g>
 
-export default makeExtendable(Marker)
+export default makeExtendable()(Marker)

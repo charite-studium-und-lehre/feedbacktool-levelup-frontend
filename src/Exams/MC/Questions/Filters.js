@@ -7,7 +7,7 @@ import makeExtendable from '../../../Core/makeExtendable'
 import SlideDown from 'react-slidedown';
 
 export const colors = ["hsla(210, 50%, 55%, .8)", "hsla(40, 50%, 55%, .8)", "hsla(150, 50%, 55%, .8)"]
-const Filters = makeExtendable(
+const Filters = makeExtendable()(
     ({ filters, setters, ...props }) => 
     <div className="p-2">   
         <div className="d-md-none text-right">
@@ -23,6 +23,6 @@ const Filters = makeExtendable(
                 {props.children}
             </div>}
         </SlideDown>
-    </div>, true)
+    </div>)
 
 export default Filters

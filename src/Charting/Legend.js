@@ -1,16 +1,22 @@
 import React from 'react'
+import _ from 'lodash/fp'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../Core/makeExtendable'
 import { SlideDown } from 'react-slidedown'
+import { mobileWidth } from '../Charting/Utils'
 
-const Legend = props => 
-    <div>
+const Legend = props => {
+    const toggle = () => {
+        props.storageId && window.localStorage.setItem(props.storageId, !props.extended)
+        props.toggleExtended()
+    }
+    return <div>
         <div className="d-flex">
             <div>{props.title && <h5>{props.title}</h5>}</div>
             <div className="ml-auto">
                 {props.children && <FontAwesomeIcon 
-                    onClick={e => {e.preventDefault(); props.toggleExtended()}}
+                    onClick={e => {e.preventDefault(); toggle()}}
                     className={props.extended ? 'text-muted' : 'color-navigation'}
                     style={{fontSize: '1.3rem'}}
                     icon={faInfoCircle} />}
@@ -24,5 +30,9 @@ const Legend = props =>
         </div>}
         </SlideDown>
     </div>
-
-export default makeExtendable(Legend, true)
+}
+const defaultOpen = _.flow([ 
+    props => props.storageId && window.localStorage.getItem(props.storageId) === 'true',
+    _.defaultTo(window.innerWidth > mobileWidth)
+])
+export default makeExtendable(defaultOpen)(Legend)
