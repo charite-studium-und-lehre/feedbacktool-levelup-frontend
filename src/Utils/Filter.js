@@ -29,10 +29,12 @@ const Filter = ({ filters, ...props }) => {
                     border: '1px solid ' + COLORS.background.grey6,
                     backgroundColor: COLORS.background.grey5
                 }}>
-                <Checkbox initialyChecked={filter.selected} label={filter.label}
+                <Checkbox checked={filter.selected}
                           onCheck={() => toggleFilter(filter)}
                           onUncheck={() => toggleFilter(filter)}
-                          lineColor={COLORS.background.grey6}/>
+                          lineColor={COLORS.background.grey6} >
+                          {filter.label}
+                </Checkbox>
             </span>)
         )}
         </div>

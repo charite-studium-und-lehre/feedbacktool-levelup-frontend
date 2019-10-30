@@ -1,17 +1,14 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCheck} from '@fortawesome/free-solid-svg-icons'
 import COLORS from '../colors'
 
-const Checkbox = (props) => {
-    const [checked, setChecked] = useState(0)
-
+const Checkbox = ({ checked, lineColor, children, onUncheck, onCheck }) => {
     const toggle = () => {
         if (checked)
-            props.onUncheck()
+            onUncheck()
         else
-            props.onCheck()
-        setChecked(!checked)
+            onCheck()
     }
 
     return (
@@ -20,16 +17,16 @@ const Checkbox = (props) => {
                     <span className="mr-2 pl-1"
                           style={{
                               backgroundColor: COLORS.background.base,
-                              color: props.initialyChecked
-                                  ? props.lineColor
+                              color: checked
+                                  ? lineColor
                                   : COLORS.background.base
                           }}>
                          <FontAwesomeIcon className="mr-1" icon={faCheck}/>
                     </span>
-                    {props.label}
+                    {children}
                 </label>
             </span>
-    );
+    )
 }
 
-export default Checkbox;
+export default Checkbox
