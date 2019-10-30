@@ -13,11 +13,14 @@ import COLORS from "../../colors"
 const stateToProps = (state, { id }) => _.flow(selectors.getById, selectors.getSubjects, _.sortBy( s => -s.ergebnisRichtigPunktzahl / s.maximalPunktzahl ), r => ({ faecher: r}))(state, id)
 const Subjects = _.compose(needsData(selectors.loaded, actions.load), withTranslation(), connect(stateToProps))( ({ t, faecher, id }) => {
     const categories = _.keys(_.groupBy( s => s.gruppe, faecher ))
-    const filterBgColor = COLORS.background.grey1
-    const filterTextColor = COLORS.textBlack
+    const filterColors = {
+        background: COLORS.background.grey5,
+        line: COLORS.background.grey6,
+        text: COLORS.background.base
+    }
     const [ filters, setFilters ] = useState(
-        categories.map(c => ({label: c, pred: d => d.gruppe === c , selected: true, color: filterBgColor, group: 'categories'}))
-        .concat({label: `mind. ${minQuestions} Fragen`, pred: s => s.maximalPunktzahl >= minQuestions , selected: true, color: filterBgColor })
+        categories.map(c => ({label: c, pred: d => d.gruppe === c , selected: true, color: filterColors.background, group: 'categories'}))
+        .concat({label: `mind. ${minQuestions} Fragen`, pred: s => s.maximalPunktzahl >= minQuestions , selected: true, color: filterColors.background })
     )
 
     const [ search, setSearch ] = useState('')
@@ -31,7 +34,7 @@ const Subjects = _.compose(needsData(selectors.loaded, actions.load), withTransl
     return (
     <div className="w-100">
         <div className="">
-            <Filter className="w-100" filters={ filters } onUpdate={ setFilters } />
+            <Filter className="w-100" filters={ filters } onUpdate={ setFilters } colors={filterColors}/>
         </div>
         <div className="align-middle my-2 pr-1">
             <input type="text" placeholder={`${t('Fach suchen')}...`} onKeyUp={e => setSearch(e.target.value)} className={`p-1 ${css.input}`}></input>
@@ -41,7 +44,7 @@ const Subjects = _.compose(needsData(selectors.loaded, actions.load), withTransl
             <div className={`w-100`} key={rank}>
                 <Subject extended={parseInt(rank) < 1} key={s.code}
                          titel={s.titel} gruppe={s.gruppe} rank={parseInt(rank) + 1} id={id}
-                         filterBgColor={filterBgColor} filterTextColor={filterTextColor}/>
+                         filterColors={filterColors}/>
             </div>
         )}
         </div>

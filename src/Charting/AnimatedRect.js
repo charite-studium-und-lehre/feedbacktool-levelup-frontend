@@ -4,7 +4,7 @@ import { animationTime } from './Utils'
 
 class AnimatedRect extends Component {
     static defaultProps = {
-        color: 'rgba(0,0,0,.6)',
+        color: 'var(--color-graphs-grid)',
         strokeDasharray: '0',
         strokeWidth: 1,
         style: {},
