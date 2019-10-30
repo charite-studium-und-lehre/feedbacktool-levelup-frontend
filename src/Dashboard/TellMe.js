@@ -16,12 +16,12 @@ const Tellme =({t})=> (
         </div>
         <div className="row">
             <div className='col-md-6'>
-                <a className='btn btn-secondary form-control mt-2' style={{position:'relative', bottom:'0'}} target="blank" href='https://msm-tellme.charite.de/lernen' >
+                <a className='btn color-button-color form-control mt-2' style={{position:'relative', bottom:'0'}} target="blank" href='https://msm-tellme.charite.de/lernen' >
                     {t(`Trainieren`)}<span className='ml-2'><FontAwesomeIcon icon={faDumbbell}/></span>
                 </a>
             </div>
             <div className='col-md-6'>
-                <a className='btn btn-secondary form-control mt-2' style={{position:'relative', bottom:'0'}} target="blank" href='https://msm-tellme.charite.de/lernen' >
+                <a className='btn color-button-color form-control mt-2' style={{position:'relative', bottom:'0'}} target="blank" href='https://msm-tellme.charite.de/lernen' >
                     {t(`Mitmachen`)}<span className='ml-2'><FontAwesomeIcon icon={faBookOpen}/></span>
                 </a>
             </div>

@@ -8,7 +8,7 @@ import ColorLegend from '../Charting/ColorLegend'
 import COLORS from "../colors";
 const exams = ['alle MCs', 'letzter PTM']
 
-const colors = [COLORS.progress.lighter2, COLORS.progress.base]
+const colors = [COLORS.graphs.total, COLORS.progress.darker1]
 const Subject = ({t, ...props}) => {
     const [ flash, setFlash ] = useState(props.flash)
     const node = useRef(null)
@@ -28,8 +28,8 @@ const Subject = ({t, ...props}) => {
                 <span className="font-weight-bold">{props.titel}</span>
                 <div className="p-4">
                 <div className='mb-1'>
-                    <ColorLegend text={t('gestellte Fragen')} style={{backgroundColor: COLORS.progress.lighter2 }}/>
-                    <ColorLegend text={t('richtige Antworten')} style={{backgroundColor: COLORS.progress.base }}/>
+                    <ColorLegend text={t('gestellte Fragen')} style={{backgroundColor: COLORS.graphs.total }}/>
+                    <ColorLegend text={t('richtige Antworten')} style={{backgroundColor: COLORS.progress.darker1 }}/>
                 </div>
                     <OrdinalChart style={{height:'15rem'}} xDomain={exams} yDomain={[0,max]}>
                         <YAxis ticks={{count: Math.min(max, 4)}} />

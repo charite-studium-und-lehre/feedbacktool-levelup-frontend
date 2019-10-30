@@ -10,7 +10,7 @@ export default (props) => {
 
     const Button = (props) =>
         <div className={` ${props.className || ''}`}>
-            <button className={`btn btn-sm mr-2 mb-2 text-wrap ${props.active ? 'btn-success' : 'btn-secondary'}`} onClick={props.onClick}>
+            <button className='btn btn-sm mr-2 mb-2 text-wrap color-button-color' onClick={props.onClick}>
                 <span className="d-lg-inline mr-2">{props.children}</span>
                 <FontAwesomeIcon icon={props.icon} />
             </button>

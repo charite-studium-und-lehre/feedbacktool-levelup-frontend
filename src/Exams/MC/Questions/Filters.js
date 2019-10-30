@@ -5,12 +5,33 @@ import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import Filter from '../../../Utils/Filter'
 import makeExtendable from '../../../Core/makeExtendable'
 import SlideDown from 'react-slidedown';
+import COLORS from "../../../colors";
 
-export const colors = ["hsla(210, 50%, 55%, .8)", "hsla(40, 50%, 55%, .8)", "hsla(150, 50%, 55%, .8)"]
+export const colors = [COLORS.background.grey7, COLORS.background.grey4, COLORS.background.grey1]
+
+const filterElementColors = [
+    { // Subjects
+        background: COLORS.background.grey7,
+        line: COLORS.background.grey7,
+        text: COLORS.background.base },
+    { // Modules
+        background: COLORS.background.grey4,
+        line: COLORS.background.grey4,
+        text: COLORS.background.base },
+    { // Difficult
+        background: COLORS.background.grey1,
+        line: COLORS.background.grey3,
+        text: COLORS.textBlack },
+    { // Correct
+        background: COLORS.background.grey1,
+        line: COLORS.background.grey3,
+        text: COLORS.textBlack }
+]
+
 const Filters = makeExtendable()(
     ({ filters, setters, ...props }) => 
     <div className="p-2">   
-        <div className="d-md-none text-right">
+        <div className="text-right">
             <button className={`btn btn-sm btn-outline-${_.some(f => f.selected, _.flatten(filters)) ? 'danger' : 'secondary'}`} onClick={props.toggleExtended}>
                 Filtern <FontAwesomeIcon icon={faFilter} />
             </button>
@@ -18,7 +39,7 @@ const Filters = makeExtendable()(
         <SlideDown className="animated fast">
             {props.extended && <div>
                 <div className="d-flex flex-wrap">
-                    {filters.map( (f, i) => <Filter key={i} className="mr-2" filters={ f } onUpdate={ setters[i] } color={colors[i]} /> )}
+                    {filters.map( (f, i) => <Filter key={i} className="mr-2" filters={ f } onUpdate={ setters[i] } color={filterElementColors[i]} /> )}
                 </div>
                 {props.children}
             </div>}

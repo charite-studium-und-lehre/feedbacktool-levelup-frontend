@@ -3,6 +3,7 @@ import {Trans} from 'react-i18next'
 import Numbers from '../EPAs/assessmentViewComponents/Numbers'
 import Video from '../EPAs/static/EPAsVideo'
 import {GraphButton} from "../Exams/Ptm/GraphButton";
+import COLORS from "../colors";
 
 const Legends = {
     Exams: {
@@ -291,7 +292,7 @@ const Legends = {
                 ].map((e, d) =>
                     <div key={d}>
                         <div>{`${d} - ${e}`}</div>
-                        <Numbers color="hsl(161, 100%, 25%)" colorsRgb="hsl(161, 100%, 25%, .2)" value={d}/>
+                        <Numbers color={COLORS.background.grey7} colorsRgb={COLORS.background.grey1} value={d}/>
                     </div>)
             },
             video: {
