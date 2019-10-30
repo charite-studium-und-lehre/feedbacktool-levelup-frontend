@@ -12,6 +12,7 @@ import Progress from '../../Progress/Progress'
 import Registration from '../../User/Registration'
 import DataProtection from '../../User/DataProtection'
 import Login from '../../User/Login'
+import Impressum from '../../Core/Impressum'
 
 const Routes = [
   {
@@ -100,6 +101,12 @@ const Routes = [
     component: Progress,
     exact: true,
     private: true,
+  },
+  {
+    path: '/impressum',
+    component: Impressum,
+    exact: true,
+    private: false,
   },
 ]
 

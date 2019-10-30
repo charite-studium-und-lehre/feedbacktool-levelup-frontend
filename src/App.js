@@ -1,5 +1,5 @@
 import React from 'react'
-import {BrowserRouter} from 'react-router-dom'
+import {BrowserRouter, NavLink} from 'react-router-dom'
 import {Route, Redirect} from 'react-router'
 import {Provider} from 'react-redux'
 import {createStore, compose, applyMiddleware} from 'redux'
@@ -36,6 +36,9 @@ const App = withTranslation()(() =>
                     <Route exact path="/" render={() => (
                         <Redirect to="/dashboard"/>
                     )}/>
+                </div>
+                <div className="w-100 text-center" style={{fontSize: '.9rem', color: 'grey', backgroundColor: 'lightgrey'}}>
+                    <NavLink to="/impressum">Impressum / Disclaimer</NavLink>
                 </div>
                 <Feedback />
             </div>
