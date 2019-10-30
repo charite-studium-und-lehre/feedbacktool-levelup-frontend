@@ -8,7 +8,7 @@ import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 import Legend from '../../Charting/Legend'
 import Legends from '../../Core/LegendTexts'
 import needsData from '../../Core/needsData'
-import { selectors, actions } from './Store'
+import { selectors, actions } from './Questions/Store'
 
 const Infos = ({ questions, title }) => (
     <div className='col-4 text-center text-nowrap'>
@@ -29,13 +29,11 @@ const Infos = ({ questions, title }) => (
     </div>
 )
 
-const stateToProps = (state, ownProps) => ({ questions: selectors.getById(state, ownProps.id).fragen })
-const Questions = _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps), withTranslation()])(({ t, id, questions }) => {
-    const LegendText = Legends.Exams.MC.Questions
-    return <div className='card p-3' style={{fontSize: '.9rem'}}>
-        <Legend title={LegendText.title}>
-            {LegendText.text}
-        </Legend>
+const stateToProps = (state, ownProps) => ({ questions: selectors.getById(state, ownProps.id) })
+const loadedById = (state, ownProps) => selectors.loaded(state, ownProps.id)
+const loadById = ownProps => actions.load(ownProps.id)
+const Questions = _.compose([needsData(loadedById, loadById), connect(stateToProps), withTranslation()])(({ t, id, questions }) =>
+    <div>
         <div className="row">
             <div className="col">
                 {t('Dir wurden')} <span style={{fontSize: '1.1rem'}} className="font-weight-bold">{questions.length}</span> {t('Fragen gestellt. Davon waren...')}
@@ -52,6 +50,12 @@ const Questions = _.compose([needsData(selectors.loaded, actions.load), connect(
             </Link>
         </div>
     </div>
-})
+)
 
-export default Questions
+export default props => 
+    <div className='card p-3' style={{fontSize: '.9rem'}}>
+        <Legend title={Legends.Exams.MC.Questions.title}>
+            {Legends.Exams.MC.Questions.text}
+        </Legend>
+        <Questions {...props} />
+    </div>

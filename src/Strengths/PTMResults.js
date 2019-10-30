@@ -35,7 +35,7 @@ const PTMResults = ({ t, data }) =>
                     <XAxis />
                     <YAxis ticks={{count: 4}} />
                     <BarGraph labels data={labels.map((l,i) => ({x: l, y: data.results[i][0], label: data.results[i][1], color: _.range(0,3).map(i => colors(i))}))} />
-                    <PointGraph color="rgba(0, 0, 0, .6)" data={labels.map((l, i) => ({x: l, y: data.means[i]}))} />
+                    <PointGraph color="rgba(0, 0, 0, .6)" data={labels.map((l, i) => ({x: l, y: data.means[i], id: i+1}))} />
                 </OrdinalChart>
             </div>
         </div>

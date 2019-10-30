@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../Core/makeExtendable'
 import { SlideDown } from 'react-slidedown'
-import 'video-react/dist/video-react.css'
 
 const Legend = props => 
     <div>
@@ -12,20 +11,18 @@ const Legend = props =>
             <div className="ml-auto">
                 {props.children && <FontAwesomeIcon 
                     onClick={e => {e.preventDefault(); props.toggleExtended()}}
-                    className={props.extended ? 'text-primary' : 'text-muted'}
+                    className={props.extended ? 'text-muted' : 'color-navigation'}
                     style={{fontSize: '1.3rem'}}
                     icon={faInfoCircle} />}
             </div>
         </div>
-        {props.children && <div className="animated fast row" style={{ overflow: 'hidden' }}>
-            <SlideDown className="animated fast">
-            {props.extended &&
-                <div className="col my-2" style={{fontSize: '.9rem'}}>
-                    {props.children}
-                </div>
-            }
-            </SlideDown>
+        <SlideDown className="animated fast flex-fill">
+        {props.children && props.extended && <div className="animated fast row container-fluid" >
+            <div className="col my-2">
+                {props.children}
+            </div>
         </div>}
+        </SlideDown>
     </div>
 
 export default makeExtendable(Legend, true)

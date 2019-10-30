@@ -1,6 +1,7 @@
 .App {
   overflow-x: hidden;
   height: 100%;
+  --color-navigation: #005a9c;
 }
 
 svg {
@@ -39,21 +40,33 @@ span.input-group-text {
 }
 
 .nav-pills .nav-link.active {
-  border-bottom: 2px solid #007bff;
+  border-bottom: 2px solid var(--color-navigation);
   background-color: transparent;
-  color: #007bff;
+  color: inherit;
   border-radius: 0;
 }
 
 .with-border {
-  border-top: 2px solid #007bff;
+  border-top: 2px solid var(--color-navigation);
 }
 
 .with-shadow {
   box-shadow: 1px 1px 5px rgba(0,0,0,.2);
 }
-.with-shadow-2px {
-  box-shadow: 2px 2px 4px  rgb(2, 28, 49, .5), -2px -2px 4px  rgb(2, 28, 49, .5)
+
+.with-z-shadow { 
+  position: relative;
+}
+ 
+.with-z-shadow:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  box-shadow: 1px 1px 5px rgba(0,0,0,.2);
 }
 
 ol.breadcrumb {
@@ -62,4 +75,17 @@ ol.breadcrumb {
 
 ol.breadcrumb:empty {
   display: none;
+}
+
+.color-navigation{
+  color: var(--color-navigation);
+}
+
+.color-bg-navigation{
+  background-color: var(--color-navigation);
+}
+
+input.no-outline {
+  outline: none;
+  border-radius: 0;
 }

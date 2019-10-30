@@ -1,19 +1,18 @@
-import React from 'react';
-import {Link, NavLink, useLocation} from 'react-router-dom'
+import React from 'react'
+import { connect } from 'react-redux'
+import _ from 'lodash/fp'
+import {Link, NavLink} from 'react-router-dom'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faBars} from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../makeExtendable'
 import {withTranslation} from 'react-i18next'
-import Routes from "./Routes";
+import Routes from "./Routes"
+import { selectors as user } from '../../User/Store'
 
-function useSwitchRoute(props) {
-    props.toggleExtended()
-    props.whereAmI = (useLocation()).pathname
-}
-
-export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
+const stateToProps = state => ({ loggedIn: user.isLoggedIn(state), userData: user.getData(state) })
+export default _.compose([ connect(stateToProps), withTranslation(), makeExtendable ])(function Navbar({t, loggedIn, userData, ...props}) {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top flex-shrink-0">
 
             <Link className="navbar-brand" to="/">LevelUp</Link>
 
@@ -24,22 +23,25 @@ export default withTranslation()(makeExtendable(function Navbar({t, ...props}) {
             </button>
             <div className={`collapse navbar-collapse ${props.extended && 'show'}`} id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto" onClick={props.toggleExtended}>
-                    {Routes.map((route, i) => {
-                        if (route.hasOwnProperty('menuName'))
-                            return <li className="nav-item" key={i}>
+                    {Routes.map((route, i) => 
+                        route.menuName && ( !route.private || loggedIn) && 
+                            <li className="nav-item" key={i}>
                                 <NavLink className="nav-link" to={route.path}>{t(route.menuName)}</NavLink>
                             </li>
-                    })}
+                    )}
                 </ul>
                 <div className="float-right d-none d-lg-block" style={{cursor: 'pointer'}}>
-                    Willkommen Sabine
+                    {loggedIn && <span>Willkommen {userData.vorname}</span> }
                 </div>
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <NavLink className="nav-link pull-right" onClick={props.onClick} to="/login">{t(`Logout`)}</NavLink>
+                        { loggedIn ? 
+                            <a className="nav-link pull-right" href="https://levelup.charite.de/backend/logout">{t(`logout`)}</a> :
+                            <NavLink className="nav-link pull-right" to="/login">{t(`login`)}</NavLink>
+                        }
                     </li>
                 </ul>
             </div>
         </nav>
     )
-}))
+})

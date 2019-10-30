@@ -9,8 +9,8 @@ Login über SSO.
 ===== 1. Test vom Frontend, ob User eingeloggt ist =====
 
 == Schnittstelle: ==
-POST-Aufruf an Server:
-''/backend/isLoggedIn''
+GET-Aufruf an Server:
+''/backend/api/stammdaten''
 
 == Rückgabe, wenn schon eingeloggt: ==
 HTTP-Code 200
@@ -18,6 +18,9 @@ HTTP-Code 200
 {
 	"vorname": <vorname>,
 	"nachname": <nachname>,
+'''
+			   ''"email": <email>,''
+'''
 	"stammdatenVorhanden": <true|false>
 '''
 
@@ -36,7 +39,7 @@ Das Frontend muss den User auf die Seite [[+Erster Login]] weiterleiten.
 == Wenn noch nicht eingeloggt: ==
 HTTP-Code 401 "Unauthorized" 
 
-2. ====== Backend zum Logn auffordern ======
+== Backend zum Login auffordern ==
 
 Der Nutzer muss im Frontend an folgende URL weitergeleitet werden (kein API/Ajax-Aufruf!)
 https://levelup.charite.de/login

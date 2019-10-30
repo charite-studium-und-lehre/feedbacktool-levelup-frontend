@@ -1,6 +1,5 @@
 import _ from 'lodash/fp'
 import BaseStore from '../BaseStore'
-import Results from './Data'
 import { combineReducers } from 'redux'
 
 export const identifier = 'stations'
@@ -13,8 +12,13 @@ const toTimeline = exam => ({
 const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 
 const getFilterState = _.flow(baseStore.getStore, s => s.groupFilter)
-const getGroups = _.flow(_.map( d => d.group ), _.uniq)
-const getFilters = state => groups => groups.map(g => ({ label: g, pred: e => e.group === g, selected: getFilterState(state).indexOf(g) >= 0 }))
+const getGroups = _.flow(_.map( d => d.fachsemester ), _.uniq)
+const getFilters = state => groups => groups.map(g => ({ 
+    label: `${g}. Fachsemester`,
+    value: g,
+    pred: e => e.fachsemester === g, 
+    selected: getFilterState(state).indexOf(g) >= 0 
+}))
 
 const filter = filters => data => data.filter(_.overSome(filters.filter(f => f.selected).map(f => f.pred)))
 const getGroupFilters = state => _.flow(baseStore.getItems, getGroups, getFilters(state))(state)
@@ -26,15 +30,14 @@ export const selectors = baseStore.withLoadedSelector({
     getGroupFilters,
 })
 
-export const actions = {
-    ...baseStore.withLoadAction({}, Results),
+export const actions = baseStore.withLoadAction({
     setGroupFilters: groups => ({ type: 'STATIONS_FILTER_GROUPS', payload: groups }),
-}
+})
 
 const groupFilter = ( state = [], action ) => {
     switch(action.type) {
         case 'EXAMS_SELECT':
-            return identifier.startsWith(action.payload.format) ? [action.payload.group] : []
+            return identifier.startsWith(action.payload.format) ? [action.payload.fachsemester] : []
         case 'STATIONS_FILTER_GROUPS':
             return action.payload
         default:
@@ -49,4 +52,4 @@ const stationsReducer = ( state = {}, action ) => {
     }
 }
 
-export const reducer = combineReducers({ items: _.compose([ baseStore.withSelectReducer, baseStore.withLoadedReducer ])(stationsReducer, Results), groupFilter })
+export const reducer = combineReducers({ items: _.compose([ baseStore.withSelectReducer, baseStore.withLoadedReducer() ])(stationsReducer), groupFilter })

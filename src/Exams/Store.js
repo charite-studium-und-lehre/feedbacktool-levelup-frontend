@@ -23,12 +23,12 @@ const toNavigationData = _.flow(
 
 const graphs = state => [
     {
-        name: 'mc',
+        name: 'mcs',
         data: toNavigationData(MCSelectors.getTimeline(state)),
         color: mcColor,
     },
     {
-        name: 'ptm',
+        name: 'ptms',
         data: toNavigationData(PtmSelectors.getTimeline(state)),
         color: ptmColor,
     },
@@ -42,7 +42,8 @@ const graphs = state => [
 const selectors = baseStore.withLoadedSelector({
     getNavigationData: graphs,
     getById: (state, id) => _.flow([ graphs, _.flatMap( g => g.data ), _.find( d => d.id === id )])(state),
-    getSelected: _.flow([ graphs, _.flatMap( g => g.data ), _.find( d => d.selected )]),
+    getSelected: _.flow([ baseStore.getItems, s => s.selected ]),
+    getSemesters: _.flow([ graphs, _.flatMap( g => g.data.map( d => d.zeitsemester )), _.uniq, _.sortBy( t => t.split(' ').reverse().join(''))])
 })
 
 const actions = baseStore.withLoadAction(url)({
@@ -51,6 +52,15 @@ const actions = baseStore.withLoadAction(url)({
 
 export { selectors, actions }
 
+const selected = (state = -1, action) => {
+    switch(action.type) {
+        case 'EXAMS_SELECT':
+            return action.payload.id
+        default:
+            return state
+    }
+}
+
 export const reducer = combineReducers(baseStore.withLoadedReducer(
-    combineReducers({ [ptmsIdentifier]: ptmsReducer, [mcIdentifier]: mcReducer, [stationsIdentifier]: stationsReducer })
+    combineReducers({ selected, [ptmsIdentifier]: ptmsReducer, [mcIdentifier]: mcReducer, [stationsIdentifier]: stationsReducer })
 ))

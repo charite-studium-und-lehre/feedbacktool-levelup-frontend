@@ -43,16 +43,36 @@ Array:
 
 ==== Selbstbewertung an Server senden: ====
 
-[[/backend]][[/api/epa/selbstbewertung/erhoehen]]
-[[/backend]][[/api/epa/selbstbewertung/vermindern]]
+[[/backend]][[/api/epas/<ID]]>
 
 POST-Parameter
-epaID: <epaID, wie gesendet in epas/meine, z.B. 111>
-typ: <"gemacht" oder "zutrauen">
+'''
+{
+'''
+	'''
+	zutrauen: <Wert>,
+	gemacht: <Wert>,
+	}
+	'''
 
-Server sendet 200 OK 
-oder 400 "BAD REQUEST" bei ungültiger ID oder Wert. Grund steht dann im Return-Wert als Text
+
+**Success:** 
+	//200 OK// 
+**Error:** 
+	//404 "NOT FOUND": //bei ungültiger ID.
+	//400 "BAD REQUEST":// bei ungültigem Wert.
+
 
 == Beispiel ==
-https://levelup.charite.de/backend/api/epa/selbstbewertung/erhoehen?epaID=111&typ=gemacht
+https://levelup.charite.de/backend/api/epas/111
+BODY
+'''
+{
+'''
+	'''
+	zutrauen: 2,
+	gemacht: 1
+	}
+	'''
+
 

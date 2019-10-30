@@ -2,7 +2,6 @@ import _ from 'lodash'
 import fp from 'lodash/fp'
 import { randomNormal, randomUniform } from 'd3-random'
 import seedrandom from 'seedrandom'
-import DummyQuestions from './Questions/DummyQuestions'
 import { Subjects } from '../Ptm/Data'
 
 const subjects = _.range(0,10).map(() => _.shuffle(fp.flatMap(c => c.subjects, Subjects)))
@@ -175,14 +174,14 @@ const createResult = _.flow([ seedrandom, _.over(result, createDist), concatResu
 
 const createTotalsData = ([result, dist]) => {
     return {
-        dist: dist.map( _.mean ),
         gesamtErgebnis: {
-            ergebnisPunkte: _.round(_.mean(result)),
-            gesamtPunktzahl: 80,
-            durchschnitt: distMean(dist),
-            bestehensGrenze: 48,
+            kohortenPunktzahlen: dist.map( _.mean ),
+            ergebnisPunktzahl: _.round(_.mean(result)),
+            maximalPunktzahl: 80,
+            durchschnittsPunktzahl: distMean(dist),
+            bestehensgrenzePunktzahl: 48,
         },
-        id: _.uniqueId(),
+        studiPruefungsId: fp.uniqueId(),
     }
 }
 
@@ -198,21 +197,21 @@ const createSubjects = semester => {
         .concat([0,80])
         .sort((a,b) => a-b)
         .map((d, i, a) => d - a[i-1])
-    return _.take(subjects[semester], 8).map((s, i) => ({...s, richtig: _.round(random(0,questions[i+1])()), gesamt: questions[i+1]}))
+    return _.take(subjects[semester], 8).map((s, i) => ({...s, ergebnisPunktzahl: _.round(random(0,questions[i+1])()), maximalPunktzahl: questions[i+1]}))
 }
 
 const createDetailsData = (semester, [result, dist]) => ({
-    modules: _.zip(...dist).map( (d, i) => ({
-        mean:  _.mean(d),
-        result: _.round(result[i]),
-        label: `Modul ${semester * 4 - 3 + i}`
+    module: _.zip(...dist).map( (d, i) => ({
+        durchschnittsPunktzahl:  _.mean(d) / 100,
+        ergebnisPunktzahl: _.round(result[i]) / 100,
+        titel: `Modul ${semester * 4 - 3 + i}`,
+        code: `M${semester * 4 - 3 + i}`
     })),
     faecher: createSubjects(semester),
     date: new Date(2013 + parseInt(semester), 6+Math.random()*2, 15),
 })
 
-const Results = fp.keyBy(
-    r => r.id, 
+const Results =
     fp.map(semester => 
         _.flow([
             createResult, 
@@ -224,12 +223,10 @@ const Results = fp.keyBy(
                     zeitsemester: semester.label, 
                     periodeCode: semester.periodeCode, 
                     format: 'mc',
-                    fragen: DummyQuestions(Math.round(Math.random() * 20) + 70, semester.value.split(".")[0]),
                 })
             ]),
             fp.mergeAll
         ])(semester)
     )(timesemesters)
-)
 
 export default Results

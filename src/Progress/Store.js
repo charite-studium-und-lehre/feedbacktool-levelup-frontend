@@ -1,6 +1,5 @@
 import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
-import Results from './Data'
 import BaseStore from '../Core/BaseStore'
 
 export const identifier = 'progress'
@@ -28,7 +27,7 @@ const transform = _.flow([
         label: g[0].fachsemester + '. Fachsemester',
         prereq: _.defaultTo({ erfuellt: true }, g.find( d => d.code === g[0].fachsemester + 300)).erfuellt,
         completed: g.find( d => d.code === g[0].fachsemester + 200 ).erfuellt,
-        entries: g.filter( isVisible ).map( d => ({ ...d, link: d.format && `/exams/${d.format}/${d.studiPruefungsId}` })),
+        entries: g.filter( isVisible ).map( d => ({ ...d, link: d.format && `/exams/${d.format}s/${d.studiPruefungsId}` })),
     }))
 ])
 
@@ -37,8 +36,6 @@ export const reducer = combineReducers(baseStore.withLoadedReducer(
         switch(action.type) {
             case `${identifier.toUpperCase()}_DATA_FETCHED`:
                 return transform(action.payload)
-            case `${identifier.toUpperCase()}_DATA_FETCH_FAILED`:
-                return Results
             default:
                 return state
         }

@@ -2,7 +2,7 @@ import React from 'react'
 import _ from 'lodash/fp'
 import { connect } from 'react-redux'
 import { withTranslation } from 'react-i18next'
-import SimpleBar from '../Charting/SimpleBar'
+import AnimatedDonut from '../Charting/AnimatedDonut'
 import needsData from '../Core/needsData'
 import { selectors as mcSelectors, actions as mcActions } from '../Exams/MC/Store'
 import { selectors as ptmSelectors, actions as ptmActions } from '../Exams/Ptm/Store'
@@ -15,17 +15,33 @@ const stateToProps = state => ({
     mcStrongestSubject: mcSelectors.strongestSubject(state), 
     ptmStrongestSubject: ptmStrongestSubject(state),
 })
+const Label = ({ title, children }) => 
+    <div className="mt-2 w-100 d-flex flex-column">
+        <div style={{fontSize: '.8rem'}} className="text-secondary">{title}</div>
+        <div className="pt-2 d-flex align-items-center flex-grow-1" style={{fontWeight: 500}}>
+            <div>{children}</div>
+        </div>
+    </div>
+const Donut = ({ value, total }) => 
+    <div className="mt-2 w-100">
+        <div style={{height: '5rem'}}>
+            <AnimatedDonut animationTime={0} width={.22} data={[ value, total - value ]}>
+                <span style={{fontSize: '.8rem', fontWeight: 500}}>{value} / {total}</span>
+            </AnimatedDonut>
+        </div>
+    </div>
 const Strengths = _.compose([withTranslation(), needsData(loaded, load), connect(stateToProps)])(({ t, mcStrongestSubject, ptmStrongestSubject }) =>
-    <div>
-        {mcStrongestSubject && <div className="mb-3">
-            <div style={{fontSize: '.8rem'}} className="text-secondary">{t('in deinen gesamten MCs')}</div>
-            <div className="pt-2 pl-2">{mcStrongestSubject.name}</div>
-            <SimpleBar value={mcStrongestSubject.richtig} total={mcStrongestSubject.gesamt}></SimpleBar>
-        </div>}
-        {ptmStrongestSubject && <div className="">
-            <div style={{fontSize: '.8rem'}} className="text-secondary">{t('im letzten PTM')}</div>
-            <div className="pt-2 pl-2">{ptmStrongestSubject.name}</div>
-            <SimpleBar value={ptmStrongestSubject.richtig} total={ptmStrongestSubject.gesamt}></SimpleBar>
+    <div className="">
+        { (mcStrongestSubject || ptmStrongestSubject) && 
+        <div>
+            <div className="d-flex">
+                { mcStrongestSubject && <Label title={t('in deinen gesamten MCs')}>{mcStrongestSubject.titel}</Label> }
+                { ptmStrongestSubject && <Label title={t('im letzten PTM')}>{ptmStrongestSubject.titel}</Label> }
+            </div>
+            <div className="d-flex">
+                {mcStrongestSubject && <Donut total={mcStrongestSubject.maximalPunktzahl} value={mcStrongestSubject.ergebnisPunktzahl} /> }
+                {ptmStrongestSubject && <Donut value={ptmStrongestSubject.ergebnisRichtigPunktzahl} total={ptmStrongestSubject.maximalPunktzahl} /> }
+            </div>
         </div>}
         {!ptmStrongestSubject && !mcStrongestSubject && 
             <div className="p3">{t('Es liegen noch keine Ergebnisse vor.')}</div>

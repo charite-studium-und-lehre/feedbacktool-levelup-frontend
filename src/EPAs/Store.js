@@ -1,72 +1,139 @@
 import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
-import initialState from './Data'
 import BaseStore from '../Core/BaseStore'
+import { post } from '../Core/DataProvider'
 
 const storeIdentifier = 'epas'
+const url = 'epas'
 export const identifier = storeIdentifier
+
 const baseStore = BaseStore(storeIdentifier)
-const getItemById = _.curry((state, id) => baseStore.getItems(state)[id])
-const getLeavesById = state => _.flow([ getItemById(state), getLeaves(state) ])
+const getById = _.curry((state, id) => baseStore.getItems(state)[id])
+const getLeavesById = state => _.flow([ getById(state), getLeaves(state) ])
 const getLeaves = state => entry => entry.entries.length ? _.flatMap( getLeavesById(state) )(entry.entries) : [entry]
 
-const getFilter = state => state[storeIdentifier].filter
-const visibleFnFromFilter = filter => e => filter ? e.external.find( e => e.id === filter ) : e.external
-const visible = _.flow([ getFilter, visibleFnFromFilter ])
+const getAssessments = state => _.values(baseStore.getStore(state).assesments)
+
+const getFilter = state => baseStore.getStore(state).filter
+const externalsFnFromFilter = filter => e => filter && e.external ? e.external.filter( e => e.id === filter ) : e.external
+const getFilteredExternals = _.flow([ getFilter, externalsFnFromFilter ])
+const visible = state => _.flow([ getFilteredExternals(state), d => !getFilter(state) || (d && d.length) ])
 const addVisible = state => entry => _.flow([ getLeaves(state), _.some( visible(state) ), visible => ({ ...entry, visible }) ])(entry)
 
 const getScore = (state, id, prop) => _.flow([ getLeavesById(state), _.map(prop), _.sum])(id)
-const getExternalScore = (state, id) => getScore(state, id, e => visible(state)(e) ? visible(state)(e) : 0)
+const getExternals = (state, id) => _.flow([ getById, e => getFilteredExternals(state)(e), _.defaultTo([]) ])(state, id)
+const addAssessment = _.flow([ getAssessments, as => _.map( e => ({ ...e, ...as.find( a => a.id === e.id ) })) ])
+const getLatest = _.flow([ _.sortBy( e => -e.datum ), _.head  ])
+
+const getLatestExternal = state =>
+	_.flow([
+		epa => getFilteredExternals(state)(epa),
+		addAssessment(state),
+		getLatest,
+		_.defaultTo([])
+	])
+
+const getExternalScore = (state, id) =>
+	_.flow([ 
+		getLeavesById(state),
+		_.flatMap( getLatestExternal(state) ),
+		_.over([
+			_.sumBy( e => e.value ),
+			a => a.length * 5,
+		]),
+		([ value, total ]) => ({ value, total })
+	])(id)
 
 const getMaxScore = (state, id) => _.flow([ getLeavesById(state), leaves => leaves.length * 5 ])(id)
 
 export const selectors = baseStore.withLoadedSelector({
-  getItemById: (state, id) => _.flow([ getItemById, addVisible(state) ])(state, id),
-  getItemByLabel: (state, label) => _.find(e => e.label === label, baseStore.getItems(state)),
-  getScore,
-  getMaxScore,
-  getFilter,
-  getExternalScore,
+	getById: (state, id) => _.flow([ getById, addVisible(state) ])(state, id),
+	getItemByLabel: (state, label) => _.find(e => e.label === label, baseStore.getItems(state)),
+	getScore,
+	getMaxScore,
+	getFilter,
+	getExternals: (state, id) => _.flow([ getExternals, addAssessment(state) ])(state, id),
+	getExternalScore,
+	getAssessments,
 })
 
-export const actions = baseStore.withLoadAction(`epa/meine`)({
-  setFilter: id => ({ type: 'SET_EPAS_FILTER', payload: { id }}),
-  levelUpDone: id => ({ type: 'LEVEL_UP_DONE', payload: { id }}),
-  levelDownDone: id => ({ type: 'LEVEL_DOWN_DONE', payload: { id }}),
-  levelUpConfident: id => ({ type: 'LEVEL_UP_CONFIDENT', payload: { id }}),
-  levelDownConfident: id => ({ type: 'LEVEL_DOWN_CONFIDENT', payload: { id }}),
-})
-
-const level = (state, id, p, val) => {
-  const entry = _.clone(state[id])
-  entry[p] = Math.min(Math.max(entry[p] + val, 0), 5)
-  return {...state, [id]: entry }
+const callChangeLevel = (id, newData, oldData) => dispatch => {
+	const reverse = () => dispatch({ type: `${identifier.toUpperCase()}_SET`, payload: { id, value: oldData }})
+	post(`${url}/${id}`, { gemacht: newData.done, zutrauen: newData.confident })
+		.then( result => result.status !== 200 && reverse() )
+		.catch( () => reverse())
+	dispatch({ type: `${identifier.toUpperCase()}_SET`, payload: { id, value: newData }})
 }
+
+const level = newData => epa => callChangeLevel(epa.id, newData(epa), { done: epa.done, confident: epa.confident })
+export const actions = baseStore.withLoadAction(`${url}`)({
+	setFilter: id => ({ type: `${identifier.toUpperCase()}_SET_FILTER`, payload: { id }}),
+	levelUpDone: level(epa => ({ done: epa.done + 1, confident: epa.confident })),
+	levelDownDone: level(epa => ({ done: epa.done - 1, confident: epa.confident })),
+	levelUpConfident: level(epa => ({ done: epa.done, confident: epa.confident + 1 })),
+	levelDownConfident: level(epa => ({ done: epa.done, confident: epa.confident - 1 })),
+})
+
 
 const filter = (state = null, action) => {
-  switch (action.type) {
-    case 'SET_EPAS_FILTER':
-      return action.payload.id
-    default:
-      return state
-  }
+	switch (action.type) {
+		case `${identifier.toUpperCase()}_SET_FILTER`:
+		return action.payload.id
+		default:
+		return state
+	}
 }
 
-export const reducer = combineReducers({...baseStore.withLoadedReducer(function reducer(state = {undefined: {label: 'root', entries: []}}, action) {
-  switch (action.type) {
-    case `${identifier.toUpperCase()}_DATA_FETCHED`:
-    case `${identifier.toUpperCase()}_DATA_FETCH_FAILED`:
-      //return action.payload.meineEPAs
-      return initialState
-    case 'LEVEL_UP_DONE':
-      return level(state, action.payload.id, 'done', 1)
-    case 'LEVEL_DOWN_DONE':
-      return level(state, action.payload.id, 'done', -1)
-    case 'LEVEL_UP_CONFIDENT':
-      return level(state, action.payload.id, 'confident', 1)
-    case 'LEVEL_DOWN_CONFIDENT':
-      return level(state, action.payload.id, 'confident', -1)
-    default:
-      return state
-  }
-}), filter })
+const transformAssessments = _.flow([
+	d => d.fremdeinschaetzungen,
+	_.map( a => ({ ...a, datum: new Date(a.datum)})),
+	_.keyBy( d => d.id )
+])
+const assesments = (state = {}, action) => {
+	switch(action.type) {
+		case `${identifier.toUpperCase()}_DATA_FETCHED`:
+			return transformAssessments(action.payload)
+		default:
+			return state
+	}
+}
+
+const addEntries = epas =>
+_.map( epa => ({
+	...epa,
+	entries: epas.filter( e => e.parentId === epa.id ).map( epa => epa.id )
+}))(epas)
+
+const addRootElement = epas => 
+_.concat([{ 
+	label: 'root', 
+	entries: epas.filter( epa => epa.parentId === null ).map( epa => epa.id )
+}])(epas)
+
+const transform = _.flow([
+	d => d.meineEPAs,
+	_.map( epa => ({
+		label: epa.beschreibung,
+		done: epa.gemacht,
+		confident: epa.zutrauen,
+		...epa,
+	})),
+	addEntries,
+	addRootElement,
+	_.keyBy( epa => epa.id )
+])
+
+const setEpa = (state, {id, value}) => ({...state, [id]: { ...state[id], ...value }})
+
+function epasReducer(state = {undefined: {label: 'root', entries: []}}, action) {
+	switch (action.type) {
+		case `${identifier.toUpperCase()}_DATA_FETCHED`:
+			return transform(action.payload)
+		case `${identifier.toUpperCase()}_SET`:
+			return setEpa(state, action.payload)
+		default:
+			return state
+	}
+}
+
+export const reducer = combineReducers({...baseStore.withLoadedReducer(epasReducer), filter, assesments })

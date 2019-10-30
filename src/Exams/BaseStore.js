@@ -17,14 +17,13 @@ export default newIdentifier => {
     const transformResult = _.flow([
         d => d.pruefungen,
         _.filter( e => newIdentifier.startsWith(e.format) ),
-        _.map( e => ({ ...e, id: e.studiPruefungsId })),
-        _.keyBy( e => e.id )
+        _.map( e => ({ ...e, id: '' + e.studiPruefungsId })),
     ])
     
-    const examsLoadedReducer = (reducer, init) => (state, action) => {
+    const examsLoadedReducer = (transform = _.identity) => reducer => (state, action) => {
         switch(action.type) {
             case 'EXAMS_DATA_FETCHED':
-                return init || transformResult(action.payload)
+                return _.flow([ transformResult, _.map(transform), _.keyBy( e => e.id ) ])(action.payload)
             default:
                 return reducer(state, action)
         }

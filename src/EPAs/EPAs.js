@@ -1,22 +1,23 @@
 import React from 'react'
 import makeExtendable from '../Core/makeExtendable'
-import Container from './Container'
-import List from './List'
-import EPAsVideo from './EPAsVideo'
+import AssessmentsView from './AssessmentsView'
+import Explanation from './static/Explanation'
+import CheatSheetCard from "./static/CheatSheetCard";
 
-const EPAs = props => (
+const EPAs = () => (
     <div className="container-fluid">
-            <div className="row position-relative">
-                <div className="col-lg-9 mb-2">
-                    <Container />
-                </div>
-                <div className="col-lg-3 d-none d-lg-block">
-                    <div className="card sticky-top p-3" style={{top: '3.7rem'}}>
-                        <List/>
-                        <EPAsVideo/>
-                    </div>
+        <div className="row position-relative">
+            <div className="col-lg-9 mb-2">
+                <Explanation/>
+                <div className="d-lg-none"><CheatSheetCard extendet="false"/></div>
+                <AssessmentsView/>
+            </div>
+            <div className="col-lg-3 d-none d-lg-block">
+                <div className="sticky-top" style={{top: '4rem'}}>
+                    <CheatSheetCard/>
                 </div>
             </div>
+        </div>
     </div>
 )
 

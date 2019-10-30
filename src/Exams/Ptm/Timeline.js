@@ -18,7 +18,7 @@ const graphs = labels.map( (l, i) => ({ label: l, value: colors[i] }))
 const stateToProps = state => ({ ptms: selectors.getTimeline(state) })
 
 const Chart = _.compose(withRouter, needsData(selectors.loaded, actions.load), connect(stateToProps))(({ ptms, history }) => {
-    const navigate = exam => history.push(`/exams/ptm/${exam.id}`)
+    const navigate = exam => history.push(`/exams/${exam.link}`)
 
     return <div>
         <OrdinalChart xDomain={ptms.map( p => p.zeitsemester )} yDomain={[0,Math.max(..._.flatten(ptms.map( p => p.results ))) + 10]}>

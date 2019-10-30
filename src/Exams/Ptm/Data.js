@@ -7,43 +7,43 @@ export const Subjects = [
     {
         title: "Theoretische Fächer",
         subjects: [
-            { name: 'Biochemie, Chemie, Molekularbiologie', code: 'S02' },
-            { name: 'Anatomie, Biologie', code: 'S03' },
-            { name: 'Med. Psychologie/Soziologie', code: 'S04' },
-            { name: 'Physiologie, Physik', code: 'S01' },
+            { titel: 'Biochemie, Chemie, Molekularbiologie', code: 'S02' },
+            { titel: 'Anatomie, Biologie', code: 'S03' },
+            { titel: 'Med. Psychologie/Soziologie', code: 'S04' },
+            { titel: 'Physiologie, Physik', code: 'S01' },
         ]
     },
     {
         title: "Querschnittsfächer",
         subjects: [
-            { name: 'Epidemiologie, med. Biometrie', code: 'Q01' },
-            { name: 'Hygiene, Mikrobiologie', code: 'F10' },
-            { name: 'Pathologie', code: 'F16' },
-            { name: 'Pharmakologie, Toxikologie', code: 'F17' },
-            { name: 'Radiologie, Nuklearmedizin', code: 'Q11' },
+            { titel: 'Epidemiologie, med. Biometrie', code: 'Q01' },
+            { titel: 'Hygiene, Mikrobiologie', code: 'F10' },
+            { titel: 'Pathologie', code: 'F16' },
+            { titel: 'Pharmakologie, Toxikologie', code: 'F17' },
+            { titel: 'Radiologie, Nuklearmedizin', code: 'Q11' },
         ]
     },
     {
         title: "Klinische Fächer",
         subjects: [
-            { name: 'Allgemeinmedizin', code: 'F01' },
-            { name: 'Anästhesiologie, Notfall- und Intensivmedizin', code: 'F02' },
-            { name: 'Arbeits- und Sozialmedizin, Gesundheitswesen', code: 'F03' },
-            { name: 'Augenheilkunde', code: 'F04' },
-            { name: 'Chirurgie', code: 'F05' },
-            { name: 'Dermatologie, Venerologie', code: 'F06' },
-            { name: 'Frauenheilkunde und Geburtshilfe', code: 'F07' },
-            { name: 'Hals-Nasen-Ohrenheilkunde', code: 'F08' },
-            { name: 'Humangenetik', code: 'F09' },
-            { name: 'Innere Medizin', code: 'F11' },
-            { name: 'Kinderheilkunde', code: 'F12' },
-            { name: 'Klinische Chemie, Labordiagnostik', code: 'F13' },
-            { name: 'Naturheilverfahren, Physikalische Medizin', code: 'Q12' },
-            { name: 'Neurologie', code: 'F14' },
-            { name: 'Orthopädie', code: 'F15' },
-            { name: 'Psychiatrie, Psychosomatik', code: 'F18' },
-            { name: 'Rechtsmedizin', code: 'F20' },
-            { name: 'Urologie', code: 'F21' },
+            { titel: 'Allgemeinmedizin', code: 'F01' },
+            { titel: 'Anästhesiologie, Notfall- und Intensivmedizin', code: 'F02' },
+            { titel: 'Arbeits- und Sozialmedizin, Gesundheitswesen', code: 'F03' },
+            { titel: 'Augenheilkunde', code: 'F04' },
+            { titel: 'Chirurgie', code: 'F05' },
+            { titel: 'Dermatologie, Venerologie', code: 'F06' },
+            { titel: 'Frauenheilkunde und Geburtshilfe', code: 'F07' },
+            { titel: 'Hals-Nasen-Ohrenheilkunde', code: 'F08' },
+            { titel: 'Humangenetik', code: 'F09' },
+            { titel: 'Innere Medizin', code: 'F11' },
+            { titel: 'Kinderheilkunde', code: 'F12' },
+            { titel: 'Klinische Chemie, Labordiagnostik', code: 'F13' },
+            { titel: 'Naturheilverfahren, Physikalische Medizin', code: 'Q12' },
+            { titel: 'Neurologie', code: 'F14' },
+            { titel: 'Orthopädie', code: 'F15' },
+            { titel: 'Psychiatrie, Psychosomatik', code: 'F18' },
+            { titel: 'Rechtsmedizin', code: 'F20' },
+            { titel: 'Urologie', code: 'F21' },
         ]
     },
 ]
@@ -53,13 +53,13 @@ const SubjectsWithNumbers = _.flow([rnd, random => Subjects.map(
     cat => ({ 
         ...cat, 
         subjects: cat.subjects.map( s => ({
-            kategorie: cat.title,
+            gruppe: cat.title,
             ...s,
-            gesamt: Math.max(0, rnd(s.name)(3,20) + random(0,4)),
+            maximalPunktzahl: Math.max(0, rnd(s.titel)(3,20) + random(0,4)),
         })).map(s => ({ 
             ...s, 
-            richtig: random(0, s.gesamt),
-            durchschnitt: random(1, s.gesamt)
+            ergebnisPunktzahl: random(0, s.maximalPunktzahl),
+            durchschnittsPunktzahl: random(1, s.maximalPunktzahl)
         }))
     }
 )), _.flatMap(c => c.subjects)])
@@ -73,13 +73,14 @@ const createResult = _.flow([
     ]), 
     ([random, timesemester]) => ({
         alt: true,
+        gesamtErgebnis: {},
         results: [
             Math.round(scale(timesemester.value)),
             30,
             90 
         ],
         means: [77, 22, 101],
-        id: _.uniqueId(),
+        studiPruefungsId: _.uniqueId(),
         format: 'ptm',
         name: timesemester.label,
         periodeCode: timesemester.value,
@@ -89,5 +90,5 @@ const createResult = _.flow([
     })
 ])
 
-const Results = _.keyBy(r => r.id, _.map(createResult)(timesemesters))
+const Results = _.map(createResult)(timesemesters)
 export default Results

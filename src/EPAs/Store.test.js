@@ -1,8 +1,8 @@
 import { selectors } from './Store'
-import initialStore from './Data'
+import initialStore from './static/Data'
 
-describe('getItemById ', () => {
+describe('getById ', () => {
     it('returns root entry if no id is given', () => {
-        expect(selectors.getItemById({epas: initialStore}).label).toBe('root')
+        expect(selectors.getById({epas: initialStore}).label).toBe('root')
     })
 })

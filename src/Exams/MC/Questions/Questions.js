@@ -7,11 +7,11 @@ import Legends from '../../../Core/LegendTexts'
 import needsData from '../../../Core/needsData'
 import Question from './Question'
 import Filters from './Filters'
-import { selectors, actions } from '../Store'
+import { selectors, actions } from './Store'
 
 const Questions = ({ t, questions }) => {
     const [ subjectsFilters, setSubjectsFilters ] = useState(
-        _.compose([_.map(s => ({ label: s.name, pred: q => s.code === q.fach.code })), _.uniqBy( q => q.code ), _.map( q => q.fach )])(questions)
+        _.compose([_.map(s => ({ label: s.titel, pred: q => s.code === q.fach.code })), _.uniqBy( q => q.code ), _.map( q => q.fach )])(questions)
     )
     const [ modulesFilters, setModulesFilters ] = useState(
         _.compose([_.map(m => ({ label: m, pred: q => m === q.modul })), _.uniq, _.map( q => q.modul )])(questions)
@@ -58,5 +58,7 @@ const Questions = ({ t, questions }) => {
         </div>
     )
 }
-const stateToProps = (state, ownProps) => ({ questions: selectors.getById( state, ownProps.match.params.test ).fragen })
-export default _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps), withTranslation()) (Questions)
+const stateToProps = (state, ownProps) => ({ questions: selectors.getById( state, ownProps.match.params.test ) })
+const loadedById = (state, ownProps) => selectors.loaded(state, ownProps.match.params.test)
+const loadById = ownProps => actions.load(ownProps.match.params.test)
+export default _.compose(needsData(loadedById, loadById), connect(stateToProps), withTranslation()) (Questions)

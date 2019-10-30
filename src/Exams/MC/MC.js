@@ -7,15 +7,19 @@ import { withTranslation } from 'react-i18next'
 import Details from './Details'
 import Questions from './Questions'
 import { selectors, actions } from './Store'
+import colors from "../../colors";
 
-export const color = 'hsla(120, 50%, 50%, .75)'
+export const color = colors.mc.base
+export const colorTotal = colors.mc.lighter1
+export const colorPartOfTotal = colors.mc.darker0
 
 const MC = ({ test, t }) =>
+    test ? 
     <div className="container-fluid pb-2">
         <div className="row">
             <div className="col">
                 <div className="p-2">
-                    <h4 className="mr-auto">MC-Prüfung - {test.name}</h4>
+                    <h4 className="mr-auto">{test.name}</h4>
                 </div>
             </div>
         </div>
@@ -32,7 +36,8 @@ const MC = ({ test, t }) =>
                 <Questions id={test.id} />
             </div>
         </div>
-    </div>
+    </div> :
+    <div className="text-center">{t('Diese Prüfung scheint nicht zu existieren.')}</div>
 
 const stateToProps = (state, ownProps) => ({ test: selectors.getById( state, ownProps.match.params.test )})
 export default _.compose([needsData(selectors.loaded, actions.load), withTranslation(), connect(stateToProps)])(MC)

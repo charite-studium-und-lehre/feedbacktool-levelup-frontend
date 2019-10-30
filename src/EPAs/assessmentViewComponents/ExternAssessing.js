@@ -1,15 +1,14 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {ExternAssessing} from './Data'
-import {selectors, actions} from './Store'
+import {selectors, actions} from '../Store'
 
-const stateToProps = state => ({selected: selectors.getFilter(state)})
-export default connect(stateToProps, actions)(({selected, setFilter}) => {
-    return (ExternAssessing != null) && ExternAssessing.hasOwnProperty('length') && (ExternAssessing.length > 0)
+const stateToProps = state => ({ assessments: selectors.getAssessments(state), selected: selectors.getFilter(state) })
+export default connect(stateToProps, actions)(({ assessments, selected, setFilter }) => {
+    return (assessments != null) && assessments.hasOwnProperty('length') && (assessments.length > 0)
         ? (<div>
             <button className='btn btn-sm btn-secondary width-100' onClick={() => setFilter(null)}>Alle</button>
             <ul className='list-group'>
-                {ExternAssessing.map(e =>
+                {assessments.map(e =>
                     <li className={`${selected === e.id && 'bg-primary'} list-group-item d-inline`} key={e.name}
                         onClick={() => setFilter(e.id)} style={{fontWeight: 'bold'}}>
                         <div className='row'>
@@ -21,6 +20,6 @@ export default connect(stateToProps, actions)(({selected, setFilter}) => {
             </ul>
             </div>)
         : (<div >
-                Hier sind künftig deine Fremeinschätzungen zu sehen, die du von anderen LevelUp-Nutzern erhalten hast.
+                Hier sind künftig deine Fremeinschätzungen zu sehen, die du von Dozierenden erhalten hast.
             </div>)
 })

@@ -1,19 +1,21 @@
-import React, { Component } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import _ from 'lodash'
 import { select } from 'd3-selection'
+import { scaleBand } from 'd3-scale'
 import AnimatedText from './AnimatedText'
 import { animationTime } from './Utils'
 
-class Bar extends Component {
-	constructor(props) {
-        super(props)
-		this.node = React.createRef()
-		this.state = { x: props.x, y: props.y, width: props.width, height: props.height, fill: props.fill }
-	}
+export const Bar = ({ fadeIn = true, ...props }) => {
+	const node = useRef(),
+	[x] = useState(props.x), 
+	[y] = useState(props.y), 
+	[width] = useState(props.width),
+	[height] = useState(props.height),
+	[fill] = useState(props.fill)
 
-	componentDidUpdate() {
-		select(this.node.current)
-			.datum(this.props)
+	useEffect(() => {
+		select(node.current)
+			.datum(props)
             .transition()
 			.duration(animationTime)
 			.attr('x', d => d.x)
@@ -21,19 +23,17 @@ class Bar extends Component {
 			.attr('height', d => d.height)
 			.attr('width', d => d.width)
 			.attr('fill', d => d.fill)
-	}
+	})
 
-	render() {
-		return (<rect
-			ref={this.node}
-			fill={this.state.fill}
-			style={this.props.style}
-			x={this.state.x}
-			y={this.state.y}
-			height={this.state.height}
-			width={this.state.width} 
-			onClick={this.props.onClick} />)
-	}
+	return <rect
+		ref={node}
+		fill={fill}
+		style={props.style}
+		x={x}
+		y={fadeIn ? y + height : y}
+		height={fadeIn ? 0 : height}
+		width={width} 
+		onClick={props.onClick} />
 }
 
 const BarGraph = props => {
@@ -45,29 +45,34 @@ const BarGraph = props => {
 	const clickHandler = props.onClick || (() => {})
 	return (
 	<g className={`bar-graph ${props.className || ''}`}>
-	{props.data.map((d, i) => 
-		<g key={d.x} className="bar animated" style={props.style}>
-			{[].concat(d.y).map((y,j) => 
+	{props.data.map((d, i) => {
+		const values = [].concat(d.y)
+		const scale = scaleBand()
+			.domain([0, values.length-1])
+			.range([props.xScale(d.x) + dx, props.xScale(d.x) + dx + width])
+			.paddingOuter(0)
+		return <g key={d.x} className="bar animated" style={props.style}>
+			{values.map((y,j) => 
 			<g key={j}>
 				<Bar
 					fill={ d.highlight ? (props.highlightColor || '#fe99f2') : (_.isArray(d.color) ? d.color[j] : d.color || props.color || '#fe9922')} 
-					x={props.xScale(d.x) + dx}
+					x={scale(j)}
 					y={props.yScale(y)}
 					height={props.yScale.range()[0] - props.yScale(y)}
-					width={width} 
+					width={scale.bandwidth()} 
 					onClick={() => clickHandler(d, i)} />
 				{props.labels && 
 					<AnimatedText 
-					x={props.xScale(d.x) + (props.xScale.bandwidth ? (width/2) : offset)} 
+					startPos={{y:props.yScale(y) - 3 + props.yScale.range()[0] - props.yScale(y)}}
+					x={scale(j) + scale.bandwidth()/2 } 
 					y={props.yScale(y) - 3}>
 						{_.isArray(d.label) ? d.label[j] : d.label || y}
 					</AnimatedText>
 				}
 			</g>)}
 		</g>
-	)}
+	})}
 	</g>)
 }
 
 export default BarGraph
-export { Bar }
