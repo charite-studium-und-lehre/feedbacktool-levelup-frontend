@@ -33,7 +33,7 @@ const stateToProps = (state, ownProps) => ({ questions: selectors.getById(state,
 const loadedById = (state, ownProps) => selectors.loaded(state, ownProps.id)
 const loadById = ownProps => actions.load(ownProps.id)
 const Questions = _.compose([needsData(loadedById, loadById), connect(stateToProps), withTranslation()])(({ t, id, questions }) =>
-    <div>
+    questions.length ? <div>
         <div className="row">
             <div className="col">
                 {t('Dir wurden')} <span style={{fontSize: '1.1rem'}} className="font-weight-bold">{questions.length}</span> {t('Fragen gestellt. Davon waren...')}
@@ -44,18 +44,20 @@ const Questions = _.compose([needsData(loadedById, loadById), connect(stateToPro
             <Infos title='mittel' questions={questions.filter( q => q.durchschnittRichtig >= .4 && q.durchschnittRichtig <= .8 )} />
             <Infos title='leicht' questions={questions.filter( q => q.durchschnittRichtig > .8 )} />
         </div>
+        <div className="mt-2" style={{fontSize: '.7rem'}}>
+            {Legends.Exams.MC.Questions.text}
+        </div>
         <div className="mt-3">
             <Link to={`${id}/questions`}>
                 <button type="button" className="btn btn-primary">Details zu Fragen</button>
             </Link>
         </div>
-    </div>
+    </div> : 
+    <div className="text-center">{t('Zu dieser Prüfung liegen uns leider keine Fragen und Antworten vor.')}</div>
 )
 
 export default props => 
     <div className='card p-3' style={{fontSize: '.9rem'}}>
-        <Legend title={Legends.Exams.MC.Questions.title}>
-            {Legends.Exams.MC.Questions.text}
-        </Legend>
+        <Legend title={Legends.Exams.MC.Questions.title} />
         <Questions {...props} />
     </div>
