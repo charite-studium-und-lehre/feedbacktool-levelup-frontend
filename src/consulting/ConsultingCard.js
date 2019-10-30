@@ -32,7 +32,7 @@ const ContactData = props => (
         < Infos icon={faComments} >
             {props.talk.map(d => <div key={d}>{d}</div>)}
         </Infos >
-         <Button  className='mt-4'/>
+         <Button  className='mt-4'{...props}/>
     </div>
 )
 const ConsultingCard = ({ t, ...props }) => (
@@ -43,13 +43,13 @@ const ConsultingCard = ({ t, ...props }) => (
                 <p className="card-text pr-2 pr-sm-0">{props.paragraph}</p>
             </div>
             {props.infoDaten ? <div>
-                <div className='row font-weight-bold ' style={{ color: 'rgb(34, 71, 104)' }} onClick={props.toggleExtended}>
-                    <div className='col-6'>
+                <div className='row font-weight-bold ' style={{ color: 'rgb(34, 71, 104)' }} >
+                    <div className='col-6' onClick={props.toggleExtended}>
                     <span className='mr-2'>Kontaktdaten</span>
                     <FontAwesomeIcon icon={props.extended ? faChevronDown : faChevronRight} />
                     </div>
                    {  !props.extended && <div className='col-6 p-0'>
-                      <Button className='float-right'/>
+                      <Button className='float-right' {...props}/>
                     </div>}
                 </div>
                 {props.extended && <SlideDown className="animated fast">
