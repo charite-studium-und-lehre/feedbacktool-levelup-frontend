@@ -16,7 +16,7 @@ export default function PointGraph({padding = 0.2, offset = .5, ...props}) {
         const width = props.xScale.bandwidth ? props.xScale.bandwidth() : 0
         const scale = scaleLinear([ width * padding, width * (1-padding) ])
         return <AnimatedPoint 
-            key={"circle" + (d.id || (d.x + d.y))} 
+            key={"circle" + (d.id || (d.x + '' + d.y))} 
             selected={d.selected}
             cx={props.xScale(d.x) + scale(offset)} 
             cy={props.yScale(d.y)} 
