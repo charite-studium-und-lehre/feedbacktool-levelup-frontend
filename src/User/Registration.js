@@ -31,6 +31,10 @@ const registration = _.compose([ withTranslation(), makeExtendable, connect(stat
     ({ t, extended, toggleExtended, nachname, vorname, email, istAdmin, stammdatenVorhanden, sendStammdaten, error }) => {
     if(stammdatenVorhanden) return <Redirect to="/" />
     const matrikelnummer = useRef()
+    const openSwitchUser = () => {
+        const w = window.open('/backend/admin/switchUser', '_blank')
+        w.onblur = () => window.location.reload()
+    }
     return <div className='row'>
             <div className='col-12 mt-2'>
                 <div className="p-4">
@@ -66,7 +70,7 @@ const registration = _.compose([ withTranslation(), makeExtendable, connect(stat
                         <button className='btn btn-secondary mt-3' disabled={!extended} onClick={() => sendStammdaten(matrikelnummer.current.value)}>{t(`Absenden`)}</button>
                         {istAdmin && 
                             <div className="text-center mt-1">
-                                <a href="/backend/admin/switchUser" target="_blank">Datensatz wählen</a>
+                                <span onClick={ openSwitchUser  }>Datensatz wählen</span>
                             </div>
                         }
                     </div>
