@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash/fp'
-import tinycolor from 'tinycolor2'
 import { OrdinalChart } from '../../Charting/Chart'
 import { XAxis, YAxis } from '../../Charting/Axis'
 import BarGraph from '../../Charting/BarGraph'
@@ -21,7 +20,11 @@ const Chart = _.compose([needsData(selectors.loaded, actions.load), connect(stat
     <OrdinalChart xDomain={labels} yDomain={[0,Math.max(..._.flatten(data.results))+10]}>
         <XAxis />
         <YAxis label="Anzahl Fragen" ticks={{count: 4}} />
-        <BarGraph labels data={labels.map((l,i) => ({x: l, y: data.results[i], label: <AnimatedInteger value={data.results[i]} />, color: tinycolor(color).setAlpha(.9).toString()}))} />
+        <BarGraph labels data={
+            labels.map((l,i) => ({
+                x: l, y: data.results[i],
+                label: <AnimatedInteger value={data.results[i]} />,
+                color: color}))} />
         <PointGraph color="rgba(0, 0, 0, .6)" data={labels.map((l, i) => ({x: l, y: data.means[i], id: i+1}))} />
     </OrdinalChart>
 )
@@ -32,7 +35,7 @@ const Results = props =>
             <Legend title={Legends.Strengths.PTMResults.title}>
                 {Legends.Strengths.PTMResults.text}
             <div className="position-relative">
-                    Der <SimpleDot style={{ position: 'relative', display: 'inline-block', marginLeft: '.75rem' }} value={0} /> kennzeichnet den Kohortenmittelwert
+                    Der <SimpleDot style={{ position: 'relative', display: 'inline-block', marginLeft: '.75rem' }} size={.7} value={0} /> kennzeichnet den Kohortenmittelwert
             </div>
             </Legend>
             <div className="mt-3 p-2">

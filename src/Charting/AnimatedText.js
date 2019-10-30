@@ -5,7 +5,7 @@ import { animationTime } from './Utils'
 import COLORS from '../colors'
 
 const AnimatedText = ({
-        color = COLORS.default,
+        color = COLORS.textBlack,
         textAnchor = 'middle',
         className = '',
         transform = '',

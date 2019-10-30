@@ -58,10 +58,9 @@ const colors = {
     graphs: {
         correct: 'var(--color-graphs-correct)',
         wrong: 'var(--color-graphs-wrong)',
-        missingAnswer: 'var(--color-graphs-missing-answer)'
+        missingAnswer: 'var(--color-graphs-missing-answer)',
+        total: 'var(--color-graphs-total)'
     }
 }
-
-colors.graphs.total = colors.background.grey1
 
 export default colors
