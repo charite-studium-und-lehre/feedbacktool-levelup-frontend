@@ -35,7 +35,7 @@ export const Bar = ({ fadeIn = true, ...props }) => {
 		height={fadeIn ? 0 : height}
 		width={width} 
 		onClick={props.onClick}
-		opacity={.8}
+		opacity={.9}
 	/>
 }
 

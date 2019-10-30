@@ -5,7 +5,8 @@ import SimpleBar from '../../Charting/SimpleBar'
 import makeExtendable from '../../Core/makeExtendable'
 import SlideDown from 'react-slidedown'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import COLORS from "../../colors";
 
 const Station = props =>
     <div onClick={() => props.data.details && props.toggleExtended()}>
@@ -13,16 +14,18 @@ const Station = props =>
             <div style={{fontSize: '.9rem', marginBottom: '-.3rem', color: 'rgba(0,0,0,.75)'}}>{props.data.titel}</div>
             <div style={{position: 'relative', minHeight: '1.5rem'}}>
                 <div style={{opacity: props.extended ? 0 : 1}} className="animated w-100 h-100 position-absolute">
-                    <SimpleBar height='100%' value={props.data.ergebnisProzentzahl} mean={props.data.durchschnittProzentzahl} total={1} color={props.color}>
+                    <SimpleBar height='100%'
+                               value={props.data.ergebnisProzentzahl} mean={props.data.durchschnittProzentzahl} total={1}
+                               colorPartOfTotal={props.colorPartOfTotal} colorTotal={props.colorTotal}>
                         {props.data.ergebnisProzentzahl * 100} %
                         {props.data.details && <span className="ml-2 float-left">
-                          <FontAwesomeIcon style={{fontSize: '.8rem'}} icon={faPlus}/>
+                          <FontAwesomeIcon style={{fontSize: '.8rem'}} icon={faChevronDown}/>
                         </span>}
                     </SimpleBar>
                 </div>
                 <div style={{opacity: props.extended ? 1 : 0}} className="animated">
                     {props.data.details && 
-                        <SlideDown >
+                        <SlideDown className="mb-4">
                             {props.extended && 
                                 <div>
                                     {props.data.details.map( s =>
@@ -30,9 +33,9 @@ const Station = props =>
                                             color={props.color}
                                             key={s.code}
                                             style={{opacity: props.extended ? 1 : 0}}
-                                            data={s} />
+                                            data={s}
+                                            colorTotal={COLORS.pp.lighter1} colorPartOfTotal={COLORS.pp.darker0}/>
                                     )}
-                                    <div style={{fontSize: '.8rem'}} className="text-primary text-right mt-2">{props.t(`schließen`)}</div>
                                 </div>
                             }
                         </SlideDown>

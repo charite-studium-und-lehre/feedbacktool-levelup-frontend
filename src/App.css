@@ -5,9 +5,11 @@
   --color-background-grey6: #585e66;
   --color-background-base: #f8f9ff;
   --color-graphs-correct: hsla(120, 20%, 50%, .65);
+  --color-graphs-correct-small-icon: hsla(120, 30%, 50%);
   --color-graphs-wrong: hsla(0, 50%, 50%, .65);
   --color-graphs-missing-answer: hsla(240, 0%, 50%, .65);
-  --color-graphs-total: hsla(240, 0%, 50%, .3);
+  --color-graphs-missing-answer-small-icon: hsla(240, 0%, 50%);
+  --color-graphs-total: hsla(240, 0%, 50%, .25);
   --color-graphs-grid: rgba(0,0,0,.6);
   --color-graphs-grid-text: rgba(0,0,0,.7);
 }
@@ -58,10 +60,6 @@ span.input-group-text {
   border-top: 2px solid var(--color-navigation);
 }
 
-.with-shadow {
-  box-shadow: 1px 1px 5px rgba(0,0,0,.2);
-}
-
 .with-z-shadow { 
   position: relative;
 }
@@ -93,7 +91,7 @@ ol.breadcrumb:empty {
   background-color: var(--color-navigation);
 }
 
-.color-button-color {
+.color-button-color, .link-on-hover:hover{
   color: var(--color-background-base);
   background-color: var(--color-background-grey6);
 }

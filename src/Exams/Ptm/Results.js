@@ -11,9 +11,13 @@ import Legends from '../../Core/LegendTexts'
 import needsData from '../../Core/needsData'
 import SimpleDot from '../../Charting/SimpleDot'
 import { selectors, actions } from './Store'
-import { color } from './Ptm'
 
 export const labels = ['richtig', 'falsch', 'nicht beantwortet']
+export const labelsAndColors = [
+    {label: labels[0], color: 'var(--color-graphs-correct)'},
+    {label: labels[1], color: 'var(--color-graphs-wrong)'},
+    {label: labels[2], color: 'var(--color-graphs-missing-answer)'}
+]
 
 const stateToProps = (state, props) => ({ data: props.id ? selectors.getById(state, props.id) : selectors.getLatest(state) })
 const Chart = _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps)])(({ data }) => 
@@ -21,10 +25,10 @@ const Chart = _.compose([needsData(selectors.loaded, actions.load), connect(stat
         <XAxis />
         <YAxis label="Anzahl Fragen" ticks={{count: 4}} />
         <BarGraph labels data={
-            labels.map((l,i) => ({
-                x: l, y: data.results[i],
+            labelsAndColors.map((l,i) => ({
+                x: l.label, y: data.results[i],
                 label: <AnimatedInteger value={data.results[i]} />,
-                color: color}))} />
+                color: l.color}))} />
         <PointGraph color="rgba(0, 0, 0, .6)" data={labels.map((l, i) => ({x: l, y: data.means[i], id: i+1}))} />
     </OrdinalChart>
 )

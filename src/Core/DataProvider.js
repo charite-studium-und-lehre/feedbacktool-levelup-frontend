@@ -1,5 +1,5 @@
-const backendUrl = window.location.origin.includes('localhost') ? 
-    '/MockingData' :
+const backendUrl = window.location.origin.includes('localhost') ?
+    'https://levelup.charite.de/backend/api' :
     'https://levelup.charite.de/backend/api'
 
 

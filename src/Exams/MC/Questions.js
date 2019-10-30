@@ -18,8 +18,8 @@ const Infos = ({ questions, title }) => (
         </div>
         <div className="d-flex justify-content-center">
             <div className="text-center">
-                <div style={{ color: 'green' }}><FontAwesomeIcon icon={faCheck} /></div>
-                <div style={{ color: 'red' }}><FontAwesomeIcon icon={faTimes} /></div>
+                <div style={{ color: 'var(--color-graphs-correct-small-icon)' }}><FontAwesomeIcon icon={faCheck} /></div>
+                <div style={{ color: 'var(--color-graphs-wrong)' }}><FontAwesomeIcon icon={faTimes} /></div>
             </div>
             <div className="ml-1">
                 <div>{_.sumBy( q => q.antworten.some( a => a.ausgewaehlt && a.richtig ), questions )}</div>
@@ -49,7 +49,7 @@ const Questions = _.compose([needsData(loadedById, loadById), connect(stateToPro
         </div>
         <div className="mt-3">
             <Link to={`${id}/questions`}>
-                <button type="button" className="btn btn-primary">Details zu Fragen</button>
+                <button type="button" className="btn color-button-color">Details zu Fragen</button>
             </Link>
         </div>
     </div> : 
