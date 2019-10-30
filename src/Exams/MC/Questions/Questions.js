@@ -14,7 +14,7 @@ const Questions = ({ t, questions }) => {
         _.compose([_.map(s => ({ label: s.titel, pred: q => s.code === q.fach.code })), _.uniqBy( q => q.code ), _.map( q => q.fach )])(questions)
     )
     const [ modulesFilters, setModulesFilters ] = useState(
-        _.compose([_.map(m => ({ label: m, pred: q => m === q.modul })), _.uniq, _.map( q => q.modul )])(questions)
+        _.compose([_.map(m => ({ label: m.titel, pred: q => m.code === q.modul.code })), _.uniqBy( m => m.code ), _.map( q => q.modul )])(questions)
     )
     const [ difficultyFilter, setDifficultyFilter ] = useState([
         { label: 'schwer', pred: q => q.durchschnittRichtig < .4 },

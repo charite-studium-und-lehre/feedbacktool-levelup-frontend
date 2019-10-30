@@ -17,7 +17,7 @@ const Filters = makeExtendable(
         </div>
         <SlideDown className="animated fast">
             {props.extended && <div>
-                <div className="d-flex">
+                <div className="d-flex flex-wrap">
                     {filters.map( (f, i) => <Filter key={i} className="mr-2" filters={ f } onUpdate={ setters[i] } color={colors[i]} /> )}
                 </div>
                 {props.children}
