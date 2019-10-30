@@ -21,4 +21,4 @@ const EPAs = () => (
     </div>
 )
 
-export default makeExtendable(EPAs)
+export default makeExtendable()(EPAs)

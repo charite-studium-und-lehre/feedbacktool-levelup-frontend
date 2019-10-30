@@ -10,7 +10,7 @@ import Routes from "./Routes"
 import { selectors as user } from '../../User/Store'
 
 const stateToProps = state => ({ loggedIn: user.isLoggedIn(state), userData: user.getData(state) })
-export default _.compose([ connect(stateToProps), withTranslation(), makeExtendable ])(function Navbar({t, loggedIn, userData, ...props}) {
+export default _.compose([ connect(stateToProps), withTranslation(), makeExtendable() ])(function Navbar({t, loggedIn, userData, ...props}) {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top flex-shrink-0">
 

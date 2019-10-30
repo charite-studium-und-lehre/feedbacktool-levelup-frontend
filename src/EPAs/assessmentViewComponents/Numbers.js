@@ -22,17 +22,21 @@ const Numbers = ({ maxValue = 5, value = 0, color, colorsRgb, edit = true, ...pr
     })
 
     return <div className={props.className}>
-        {props.decrement && edit &&
-            <span style={{ cursor: 'pointer' }}>
-                <FontAwesomeIcon icon={faMinusCircle} className="text-muted mr-1" onClick={props.decrement} />
+        <div>
+            <span onClick={props.onClick} className="position-relative">
+                {props.decrement && edit && value > 0 &&
+                    <span style={{ cursor: 'pointer', left: '-1.3rem' }} className="position-absolute">
+                        <FontAwesomeIcon icon={faMinusCircle} className="text-muted" onClick={props.decrement} />
+                    </span>
+                }
+                {props.increment && edit && value < maxValue &&
+                    <span style={{ cursor: 'pointer', right: '-1.1rem' }} className="position-absolute">
+                        <FontAwesomeIcon icon={faPlusCircle} className="text-muted" onClick={props.increment} />
+                    </span>
+                }
+                {props.average &&<span style={{fontSize:'1.3rem'}} className='mr-2'>&#8960;</span>}{dev}
             </span>
-        }
-        <span onClick={props.onClick}>{props.average &&<span style={{fontSize:'1.3rem'}} className='mr-2'>&#8960;</span>}{dev}</span>
-        {props.increment && edit &&
-            <span style={{ cursor: 'pointer' }}>
-                <FontAwesomeIcon icon={faPlusCircle} className="text-muted ml-1" onClick={props.increment} />
-       </span>
-        }
+        </div>
         { props.headings && <div className='font-weight-bold' style={{ color : props.color}}>{props.headings}</div>}
         { props.children }
     </div>

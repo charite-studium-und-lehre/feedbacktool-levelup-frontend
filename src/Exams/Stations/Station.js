@@ -45,4 +45,4 @@ const Station = props =>
         </div>
     </div>
 
-export default _.compose([ withTranslation(), makeExtendable ])(Station)
+export default _.compose([ withTranslation(), makeExtendable() ])(Station)

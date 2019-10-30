@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { mobileWidth } from '../Charting/Utils'
 
-const makeExtendable = (WrappedComponent, def = false) => 
+const makeExtendable = (initial = () => false) => WrappedComponent => 
     props => {
-        const [ extended, setExtended ] = useState( props.extended || (def && (!def || window.innerWidth > mobileWidth)) )
+        const [ extended, setExtended ] = useState( props.extended || initial(props) )
     
         return <WrappedComponent toggleExtended={() => setExtended(!extended)} {...props} extended={extended} />
     }

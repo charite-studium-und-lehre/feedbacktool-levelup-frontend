@@ -39,7 +39,7 @@ export const ConsultingTree = t => ({
             href: 'https://www.charite.de/studium_lehre/struktur_einrichtungen/referat_fuer_studienangelegenheiten/'
         },
         {
-            title: t(`Fachschaft Initiative Medizin(FSI Medizin)`),
+            title: t(`Fachschaft Initiative Medizin (FSI Medizin)`),
             paragraph: t(`Die Fachschaftsinitiative ist die Interessenvertretung der Medizinstudierenden an der Charité Universitätsmedizin Berlin. Unter dem Dach der FSI arbeiten zahlreiche Arbeitsgruppen. Darüber hinaus ist die FSI in nahezu allen Gremien an der Charité vertreten.`),
             tel: "+49 30 450 576050",
             emails: ["sprecher@fsi-charite.de"],
@@ -58,8 +58,7 @@ export const ConsultingTree = t => ({
         {
             title: "Peer Mentoring",
             paragraph: t(`Das Peer-Mentoring-Programm richtet sich an Studienanfänger*innen im ersten und zweiten Semester und soll der Orientierung am Studienbeginn dienen. Dazu finden regelmäßige Treffen zwischen Mentor*in und Mentees statt.`),
-            tel: "",
-            address: "",
+            emails: ["peer-mentoring@charite.de"],
             talk: [t(`Sprechzeiten nach Terminvereinbarung`)],
             href: 'https://mentoring.charite.de/fuer_studienanfaenger/'
         },
@@ -86,7 +85,6 @@ export const ConsultingTree = t => ({
             paragraph: t(`Das Team des Mentoringprogramms unterstützt Studierende, ihr Studium erfolgreich und zielstrebig zu absolvieren. Im Mentoringprogramm werden Studierenden engagierte Ärztinnen und Ärzte als Mentor*innen vermittelt.`),
             tel: "+49 30 450 576 091",
             emails: ["studentmentoring@charite.de"],
-            address: "Hannoversche Straße 19, 3. Etage, CCM",
             talk: [t(`Sprechzeiten nach Terminvereinbarung`)],
             href: 'https://studentmentoring.charite.de'
         },
