@@ -87,6 +87,11 @@ ol.breadcrumb:empty {
   background-color: var(--color-navigation);
 }
 
+.color-button-color {
+  color: var(--color-background-base);
+  background-color: var(--color-background-grey6);
+}
+
 input.no-outline {
   outline: none;
   border-radius: 0;

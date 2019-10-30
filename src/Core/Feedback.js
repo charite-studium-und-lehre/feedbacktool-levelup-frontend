@@ -89,7 +89,7 @@ const Feedback = _.compose([connect(stateToProps), waitForLogin])(({ user }) => 
             </div>
         </div>}
         {!show && <div className="w-100 text-right with-shadow">
-            <button className="btn btn-success" onClick={ () => setShow(true) }>
+            <button className="btn color-button-color" onClick={ () => setShow(true) }>
                 <FontAwesomeIcon style={{fontSize: '1rem'}} icon={faEnvelope} />
             </button>
         </div>}
