@@ -34,7 +34,7 @@ const Subjects = _.compose(needsData(selectors.loaded, actions.load), withTransl
         </div>
         <div className={css.subjects}>
         {filtered.map((s, rank) =>
-            <div className={`w-100`} key={s.code}>
+            <div className={`w-100`} key={rank}>
                 <Subject extended={parseInt(rank) < 1} key={s.code} titel={s.titel} gruppe={s.gruppe} rank={parseInt(rank) + 1} id={id} />
             </div>
         )}
