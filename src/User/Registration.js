@@ -41,10 +41,10 @@ const registration = _.compose([ withTranslation(), makeExtendable, connect(stat
                     <div className='card p-4 mx-auto' style={{maxWidth: '50rem'}}>
                         <div>
                             <h4 className='text-center mb-4 mt-2 mb-4'>{t(`Registrierung bei LevelUp`)}</h4>
-                            <p className='mb-0'>{t(`Bitte bestätige mit deiner Matrikelnummer, dass du LevellUp nutzen willst! `)}</p>
+                            <p className='mb-0'>{t(`Bitte bestätige mit deiner Matrikelnummer, dass du LevelUp nutzen willst! `)}</p>
                             <p>{t(`Nur dadurch können deine Prüfungsdaten dem aktuellen Login zugeordnet werden.`)}</p>
                             <h6 className='font-weight-bold'>{t(`Datenschutzhinweise`)}:</h6>
-                            <p>{t(`Deine Daten werden natürlich vertrauensvoll behandelt und sind nicht für Dritte einsehbar.Die Matrikelnummer wird nach Eingabe nicht gespeichert, sondern nur dazu verwendet, einmalig die anonymisierten Prüfungsdaten zuordbar zu machen.`)}</p>
+                            <p>{t(`Deine Daten werden natürlich vertrauensvoll behandelt und sind nicht für Dritte einsehbar. Die Matrikelnummer wird nach Eingabe nicht gespeichert, sondern nur dazu verwendet, einmalig die anonymisierten Prüfungsdaten zuordenbar zu machen.`)}</p>
                         </div>
                         <div className='row'>
                             <div className='col-12'>
