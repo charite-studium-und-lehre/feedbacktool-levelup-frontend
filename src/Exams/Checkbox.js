@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCheck} from '@fortawesome/free-solid-svg-icons'
 import COLORS from '../colors'
@@ -16,7 +16,7 @@ const Checkbox = ({ checked, lineColor, children, onUncheck, onCheck }) => {
                 <label className="p-2 m-0" style={{color: COLORS.background.base}}>
                     <span className="mr-2 pl-1"
                           style={{
-                              backgroundColor: COLORS.background.base,
+                              backgroundColor: props.textColor,
                               color: checked
                                   ? lineColor
                                   : COLORS.background.base

@@ -53,7 +53,7 @@ class XAxis extends Axis {
                 <AnimatedText
                     y="-2"
                     x={this.props.xScale.range()[1]}
-                    color="rgba(1,1,1,.7)"
+                    color="var(--color-graphs-grid-text)"
                     textAnchor="end">
                     {this.props.label}
                 </AnimatedText>
@@ -76,7 +76,7 @@ class YAxis extends Axis {
                 <AnimatedText 
                     textAnchor="start"
                     y="-5"
-                    color="rgba(1,1,1,.7)">
+                    color="var(--color-graphs-grid-text)">
                     {this.props.label}
                 </AnimatedText>
                 <g ref={this.node} className={`${css.y} ${css.axis} ${this.props.horizontal && css.horizontal}`} />

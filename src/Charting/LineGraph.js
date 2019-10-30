@@ -4,6 +4,7 @@ import { curveMonotoneX } from 'd3-shape'
 import AnimatedPath from './AnimatedPath'
 import AnimatedText from './AnimatedText'
 import PointGraph from './PointGraph'
+import COLORS from '../colors'
 
 export default function LineGraph(props) {
     const x = d => props.xScale(d.x) + (props.xScale.bandwidth ? props.xScale.bandwidth() / 2 : 0)
@@ -19,7 +20,7 @@ export default function LineGraph(props) {
         {d.label}</AnimatedText>))
 
     return (<g className={`animated ${props.className}`} style={props.style}>
-        <AnimatedPath d={props.data} shape={_line} style={{strokeWidth: 2, stroke: props.color || "black"}}></AnimatedPath>
+        <AnimatedPath d={props.data} shape={_line} style={{strokeWidth: 2, stroke: props.color || COLORS.default}}></AnimatedPath>
         {props.noPoints || <PointGraph {...props} />}
         {texts}
     </g>)

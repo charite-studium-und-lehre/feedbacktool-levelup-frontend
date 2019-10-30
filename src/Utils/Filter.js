@@ -3,6 +3,13 @@ import Checkbox from "../Exams/Checkbox";
 import COLORS from "../colors";
 
 const Filter = ({ filters, ...props }) => {
+
+    const colors = props.colors
+        ? props.colors
+        : { background: COLORS.background.grey5,
+            line: COLORS.background.grey6,
+            text: COLORS.background.base }
+
     function callUpdate(filters) {
         props.onUpdate(filters)
     }
@@ -26,13 +33,14 @@ const Filter = ({ filters, ...props }) => {
                 key={filter.label} 
                 style={{ 
                     fontSize: '.73rem', 
-                    border: '1px solid ' + COLORS.background.grey6,
-                    backgroundColor: COLORS.background.grey5
+                    border: '1px solid ' + colors.line,
+                    backgroundColor: colors.background
                 }}>
                 <Checkbox checked={filter.selected}
                           onCheck={() => toggleFilter(filter)}
                           onUncheck={() => toggleFilter(filter)}
-                          lineColor={COLORS.background.grey6} >
+                          lineColor={colors.line}
+                          textColor={colors.text} >
                           {filter.label}
                 </Checkbox>
             </span>)
