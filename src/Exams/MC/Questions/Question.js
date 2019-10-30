@@ -26,9 +26,11 @@ const Question = ({t, ...props}) => {
                     { props.antworten.map((answer, i) => 
                         <Answer key={i} {...answer}>{answer.text}</Answer>) }
                 </div>
-                <SimpleBar value={Math.round(props.durchschnittRichtig * 100)}>
-                    {Math.round(props.durchschnittRichtig * 100)} {t(`% haben diese Frage richtig beantwortet`)}
-                </SimpleBar>
+                {props.durchschnittRichtig !== null && 
+                    <SimpleBar value={Math.round(props.durchschnittRichtig * 100)}>
+                        {Math.round(props.durchschnittRichtig * 100)} {t(`% haben diese Frage richtig beantwortet`)}
+                    </SimpleBar>
+                }
                 <div className="text-right">
                     { tags.map(tag => <span style={{ backgroundColor: tag.color }} className="badge badge-primary mr-1" key={tag.label}>{ tag.label }</span> )}
                 </div>
