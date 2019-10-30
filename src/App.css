@@ -4,6 +4,7 @@
   --color-navigation: #005a9c;
   --color-background-button: #575a59;
   --color-background-base: #f8f9ff;
+  --color-background-grey2: #BFC6D1;
   --color-graphs-correct: hsla(120, 20%, 50%, .65);
   --color-graphs-correct-small-icon: hsla(120, 30%, 50%);
   --color-graphs-wrong: hsla(0, 50%, 50%, .65);
@@ -94,6 +95,10 @@ ol.breadcrumb:empty {
 .color-button-color, .link-on-hover:hover{
   color: var(--color-background-base);
   background-color: var(--color-background-button);
+}
+
+.color-button-color:hover {
+  color: var(--color-background-button)
 }
 
 input.no-outline {

@@ -46,7 +46,7 @@ const colors = {
         grey5: '#8e98a6',
         grey4: '#A7B3C3',
         grey3: '#B6BDC7',
-        grey2: '#BFC6D1',
+        grey2: 'var(--color-background-grey2)',
         grey1: '#CFD8E4',
         grey0: '#e4e9f0',
         buttonGrey: '#6c757d'
