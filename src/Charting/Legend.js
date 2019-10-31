@@ -8,7 +8,7 @@ import { mobileWidth } from '../Charting/Utils'
 
 const Legend = props => {
     const toggle = () => {
-        props.storageId && window.localStorage.setItem(props.storageId, !props.extended)
+        props.storageId && window.localStorage.setItem(props.storageId, props.extended ? '' : 1)
         props.toggleExtended()
     }
     return <div>
@@ -31,8 +31,6 @@ const Legend = props => {
         </SlideDown>
     </div>
 }
-const defaultOpen = _.flow([ 
-    props => props.storageId && window.localStorage.getItem(props.storageId) === 'true',
-    _.defaultTo(window.innerWidth > mobileWidth)
-])
+const defaultOpen = props => 
+    _.defaultTo(true, window.localStorage.getItem(props.storageId)) && window.innerWidth > mobileWidth
 export default makeExtendable(defaultOpen)(Legend)

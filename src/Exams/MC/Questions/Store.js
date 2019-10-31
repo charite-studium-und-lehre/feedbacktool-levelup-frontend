@@ -18,14 +18,10 @@ export const selectors = {
     getById,
 }
 
-const transform = q => ({
-    ...q,
-    antworten: q.antworten.map( a => ({ text: a.text, ausgewaehlt: a.ausgewaehlt === 'true', richtig: a.richtig === 'true'}))
-})
 export const reducer = (state = {}, action) => {
     switch(action.type) {
         case `${identifier.toUpperCase()}_DATA_FETCHED`:
-            return _.merge(state)({ [action.payload.studiPruefungsId]: _.map(transform, action.payload.fragen) })
+            return _.merge(state)({ [action.payload.studiPruefungsId]: action.payload.fragen })
         default:
             return state
     }
