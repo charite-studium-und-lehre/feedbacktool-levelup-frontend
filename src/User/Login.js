@@ -21,7 +21,7 @@ const Login = _.compose([
     connect(stateToProps),
     withTranslation(),
     makeExtendable(),
-    c => ({ hasStammdata }) => !hasStammdata ? <Redirect to='/user/registration' /> : c,
+    c => ({ loggedIn, hasStammdata }) => loggedIn && !hasStammdata ? <Redirect to='/user/registration' /> : c,
     c => ({ loggedIn }) => loggedIn ? <Redirect to='/dashboard' /> : c
 ])(({ t }) =>
     <div className='container-fluid h-100' >
