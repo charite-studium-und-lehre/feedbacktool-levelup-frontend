@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import {withTranslation} from 'react-i18next'
 
 import {StudyToolsData} from './StudyToolsData'
@@ -22,7 +23,10 @@ function AllTools({t}) {
     const othersCards = OtherToolsData.map((data, i) =>
         <div key={i}>
                 <h4 style={{marginBottom: "0px"}}>{data.title}</h4>
-                <a href={data.href} className="color-navigation">{data.hrefLabel || data.href}</a>
+                {data.intern ? 
+                    <Link to={data.href} className="color-navigation">{data.hrefLabel || data.href}</Link> : 
+                    <a href={data.href} className="color-navigation">{data.hrefLabel || data.href}</a>
+                }
         </div>
     );
 
