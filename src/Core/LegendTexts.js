@@ -129,29 +129,7 @@ const Legends = {
         Explanation: {
             title: <Trans>Ärztliche Tätigkeiten (EPAs)</Trans>,
             text: <Trans>
-                {/* <div className="my-2">
-                    Hier siehst du eine Übersicht zu den ärztlichen Kern-Tätigkeiten, die du im Laufe des Studiums trainieren wirst. Nutze diese Funktion, um die Entwicklung deiner praktischen Kompetenz festzuhalten und ggf. nachzusteuern. Für die Einschätzung jeder Tätigkeit gibt es 6 Level, die als Balken dargestellt
-                    <Numbers className="mx-1 d-inline-block" value={3} color="hsl(161, 100%, 25%)" colorsRgb="hsl(161, 100%, 25%, .2)" />
-                    und auf der rechten Seite in der Legende definiert sind. Das Ziel ist, dass du als Absolvent*in des Medizinstudiums dazu in der Lage bist, die hier aufgeführten Tätigkeiten zu Berufsbeginn eigenständig durchzuführen und nur Wichtiges nachgeprüft wird (Level 5).
-                </div>
-                <strong className=' d-block my-2'>Schätze Dich selber ein</strong>
-                <div>
-                    So kannst du im Laufe deines Studiums zum Beispiel nach U- oder UaK-Kursen oder Famulaturen angeben, unter welchem Level du die jeweilige Tätigkeit ausgeführt hast
-                    <Numbers className="mx-1 d-inline-block" value={3} color="hsla(208, 51%, 27%)" colorsRgb="hsla(208, 51%, 27%,.2)" width={'.9rem'} height={'.9rem'} borderRadius={'50%'} headings='Habe ich gemacht' />
-                    und unter welchem Level du dir die Tätigkeit zutraust
-                    <Numbers className="mx-1 d-inline-block" value={2} color="hsl(188, 86%, 26%)" colorsRgb="hsl(188, 86%, 26%, .2)" width={'.9rem'} height={'.9rem'} borderRadius={'50%'} headings='Traue ich mir zu' /></div>
-                <strong className=' d-block mt-2'>Bitte um eine Fremdeinschätzung</strong>
-                <div>
-                    Es ist zudem möglich, Fremdeinschätzungen von deinen Lehrenden/ Ärzt*innen einzuholen
-                    <Numbers className="mx-1 d-inline-block" value={1} color="hsl(15, 100%, 25%)" colorsRgb="hsl(15, 100%, 25%, .2)" width={'.9rem'} height={'.9rem'} borderRadius={'50%'} headings='Habe ich gemacht' />.
-                    Hierfür klickst du auf diesen Button
-                    <button className='btn btn-secondary d-inline-block mx-1'>
-                        Fremdbewertung einfordern
-                        <FontAwesomeIcon icon={faEnvelope} />
-                    </button>und kannst die E-Mail-Adresse deines Dozierenden eingeben und eine Einladung senden. Unter der E-Mail-Funktion siehst du alle bisherigen Fremdeinschätzungen.</div>
-*/}
                 <div className="my-2 w-100 position-relative">
-
                     <div>
                         Video: <a className="color-navigation" href="https://levelup.charite.de/videos/epa_2019.mp4">Was
                         sind
@@ -164,8 +142,7 @@ const Legends = {
                     durchzuführen und nur Wichtiges nachgeprüft wird (Level 5).
                     <div className="d-block">
                         Level:
-                        <Numbers className="mx-2 d-inline" value={3} color="hsl(161, 100%, 25%)"
-                                 colorsRgb="hsl(161, 100%, 25%, .2)"/>
+                        <Numbers className="mx-2 d-inline" value={3} color={COLORS.background.grey7} colorsRgb={COLORS.background.grey1}/>
                     </div>
                     <h5 className="mt-4">Schätze dich selbst ein</h5>
                     <div>Im Laufe deines Studiums z.B. nach U- oder UaK-Kursen oder Famulaturen kannst du deine Level

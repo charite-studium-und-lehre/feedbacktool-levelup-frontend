@@ -49,7 +49,7 @@ const Filters = makeExtendable()(
         <div className="p-2">
             <div className="text-right">
                 <button
-                    className={`btn btn-sm btn-outline-${_.some(f => f.selected, _.flatten(filters)) ? 'danger' : 'secondary'}`}
+                    className={`btn btn-sm color-button-color`}
                     onClick={props.toggleExtended}>
                     Filtern <FontAwesomeIcon icon={faFilter}/>
                 </button>
