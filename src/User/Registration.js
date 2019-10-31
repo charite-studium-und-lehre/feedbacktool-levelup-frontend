@@ -21,7 +21,10 @@ const errorToText = t => error => {
         case null:
             return
         case 404:
-            return t('Es wurde kein Studi gefunden, auf den Name/Matrikelnummer passt.')
+            return <div>
+                {t('Es wurde kein Studi gefunden, auf den Name/Matrikelnummer passt.')}<br />
+                {t('Bitte beachte, dass LevelUp nur für Studierende aus dem MSM 2.0 funktioniert.')}
+                </div>
         default:
             return t('Mit der Matrikelnummer stimmt was nicht...')
     }
