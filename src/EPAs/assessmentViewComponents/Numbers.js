@@ -22,19 +22,19 @@ const Numbers = ({ maxValue = 5, value = 0, color, colorsRgb, edit = true, ...pr
     })
 
     return <div className={props.className}>
-        <div className="text-nowrap">
+        <div className="text-nowrap d-inline-block">
             <span onClick={props.onClick} className="position-relative">
                 {props.decrement && edit && value > 0 &&
-                    <span style={{ cursor: 'pointer', left: '-1.3rem' }} className="position-absolute">
+                    <span style={{ cursor: 'pointer'}}>
                         <FontAwesomeIcon icon={faMinusCircle} className="text-muted" onClick={props.decrement} />
                     </span>
                 }
+                {props.average &&<span style={{fontSize:'1.3rem'}} className='mr-2'>&#8960;</span>}{dev}
                 {props.increment && edit && value < maxValue &&
-                    <span style={{ cursor: 'pointer', right: '-1.1rem' }} className="position-absolute">
+                    <span style={{ cursor: 'pointer' }} >
                         <FontAwesomeIcon icon={faPlusCircle} className="text-muted" onClick={props.increment} />
                     </span>
                 }
-                {props.average &&<span style={{fontSize:'1.3rem'}} className='mr-2'>&#8960;</span>}{dev}
             </span>
         </div>
         { props.headings && <div className='font-weight-bold' style={{ color : props.color}}>{props.headings}</div>}
