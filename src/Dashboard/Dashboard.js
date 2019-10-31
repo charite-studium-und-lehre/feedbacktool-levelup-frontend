@@ -23,10 +23,10 @@ const Cards = () => <div className="col">
     <TellMe />
 </div>
 
-export default () => 
+export default () =>
     <div className="container-fluid h-100">
         <div className="row h-100 flex-row-reverse">
-            <div className="col-lg-4" style={{backgroundColor: COLORS.background.grey0}}>
+            <div className="col-lg-4" style={{ backgroundColor: COLORS.background.grey0 }}>
                 <div className="d-none d-lg-block h-100">
                     <Newsfeed />
                 </div>
@@ -45,11 +45,13 @@ export default () =>
                         </Link>
                         <TellMe />
                     </div>
-                    <div className="col-6 d-flex flex-column justify-content-around">
-                        <Link to="/strengths">
-                            <Strengths />
-                        </Link>
-                        <Ptm />
+                    <div className="col-6  d-flex flex-column justify-content-around">
+                        <div className='mt-lg-5'>
+                            <Link to="/strengths">
+                                <Strengths />
+                            </Link>
+                        </div>
+                        <div className='mb-lg-5'><Ptm /></div>
                     </div>
                 </div>
                 <div className="row d-flex d-md-none">
