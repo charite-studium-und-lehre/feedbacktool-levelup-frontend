@@ -13,7 +13,7 @@ const Checkbox = ({ checked, lineColor, textColor, children, onUncheck, onCheck 
 
     return (
         <span onClick={toggle}>
-                <label className="p-2 m-0" style={{color: COLORS.background.base}}>
+                <label className="p-2 m-0" style={{color: textColor}}>
                     <span className="mr-2 pl-1"
                           style={{
                               backgroundColor: textColor,
