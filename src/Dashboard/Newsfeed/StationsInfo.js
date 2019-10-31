@@ -1,11 +1,10 @@
 import React from 'react'
-import { withTranslation } from 'react-i18next'
 import SimpleBar from '../../Charting/SimpleBar'
 import * as defs from "../../Exams/Stations/Stations";
 
-const StationsInfo = ({t, name, gesamtErgebnis }) => 
+const StationsInfo = ({ kurzName, gesamtErgebnis }) => 
     <div className="d-flex h-100 flex-column">
-        <div style={{fontSize: '.9rem'}}>{name}</div>
+        <div style={{fontSize: '.9rem'}}>{kurzName}</div>
         <div className="flex-grow-1 d-flex align-items-center">
             <SimpleBar
                 colorTotal={defs.colorTotal}
@@ -18,4 +17,4 @@ const StationsInfo = ({t, name, gesamtErgebnis }) =>
         </div>
     </div>
 
-export default withTranslation() (StationsInfo)
+export default StationsInfo
