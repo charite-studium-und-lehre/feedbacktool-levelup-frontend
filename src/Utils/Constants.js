@@ -1,0 +1,1 @@
+export const minQuestions = 5

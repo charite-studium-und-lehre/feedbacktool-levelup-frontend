@@ -1,66 +1,64 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { withTranslation } from 'react-i18next'
 import ConsultingCard from "./ConsultingCard"
-import "./Consulting.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronRight, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { ConsultingTree } from './ConsultingTree'
 
 
-
-export default function Consulting(props) {
+function Consulting({ t }) {
+    const [selectCard, setCard] = useState(0)
+    const tree = ConsultingTree(t)
     return (
         <div className="container-fluid">
-            <div className="consulting">
-            <h1 className="text-center my-4">Charitè Beratung</h1>
-                <div className="row  " >
-                    <div className="col-lg-5 col-sm-6">
-                        <div className="consulting-foto">
-                        </div>
-                    </div>
-                    <div className="col-lg-5 col-sm-6 consulting-text pt-5 pl-4 mb-5">
-                        <p>Im Laufe des Studiums wirst du sicherlich schon einige Situationen erlebt haben in denen du einen professionellen Rat zu den diversen Themen des Studienalltagsgebraucht hättest. Damit du immer gut informiert bist, wer dir in der jeweiligen Situation weiterhelfen kann, haben wir auf dieser Seite einige hilfreiche Beratungsangebote der Charitè zusammengefasst. Du erhältst hier eine Übersicht samt Links zu den Beratungsangeboten. Falls du dringend Unterstützung und einen vertrauensvollen Ansprechpartnerfür eventuelle Probleme im Studium benötigst, dann wende dich direkt per Mail an: 
-                        <span> medicoach@charite.de</span>
+            <div>
+                <h2 className="text-center font-weight-bold mt-3 mb-0">{t('Beratungsangebote')}</h2>
+                <div className="row" >
+                    <div className="col-12 col-md-10 col-lg-8 col-xl-6 pt-4 mx-auto">
+                        <p style={{lineHeight:'2.1rem'}}>{t(`Du brauchst professionellen Rat zu den diversen Themen des Studienalltags? Damit du immer gut informiert bist, wer dir in der jeweiligen Situation weiterhelfen kann, sind hier einige hilfreiche Beratungsangebote der Charité zusammengefasst. Falls du dringend Unterstützung für eventuelle Probleme im Studium benötigst, dann wende dich direkt per Mail an`)}:
+                        <span className='font-weight-bold' style={{ color:'rgb(34, 71, 104)', fontSize:'1.3rem'}}> {t(`medicoach@charite.de`)}</span>
                         </p>
-                        <button type="button" className="btn btn-primary"><a href="https://www.charite.de/studium_lehre/service_beratung/">Mehr erfahren</a> </button>
                     </div>
-                    <div className="col-lg-2 col-sm-6 ">
-                        <div className="consulting-link">
+                </div>
+            </div>
+            <div className=" mt-4 mt-md-5 pb-5">
+                <div className='row'>
+                    <div className='col-12 col-lg-4 d-none d-lg-block'>
+                        <ul className="list-group list-group-flush">
+                            {tree.ConsultingCard.map((e, i) =>
+                                <li key={i} className="e text-center list-group-item px-2" style={{ backgroundColor: `${i === selectCard ? ' rgb(34, 71, 104, 0.6)' : ''}`, color: `${i === selectCard ? 'white' : ''}` }} onClick={() => setCard(i)}>{e.title}
+                                    <span className='float-right' style={{ color: 'red' }}>
+                                        <FontAwesomeIcon icon={i === selectCard ? faChevronDown : faChevronRight} color={i === selectCard ? 'white ' : 'rgb(34, 71, 104)'} />
+                                    </span>
+                                </li>
+                            )}
+                        </ul>
+                    </div>
+                    <div className='col-12 col-lg-5 col-xl-4  d-none  d-lg-block'>
+                        <ConsultingCard
+                            {...tree.ConsultingCard[selectCard]}
+                        />
+                    </div>
+                    <div className="col-12 col-md-7 mx-md-auto col-lg-3 col-xl-4 text-center mb-4">
+                        <div>
                             <ul className="list-group list-group-flush ">
-                                <h4 className="text-center mb-4">Externe Beratung</h4>
-                                {ConsultingTree.ExternConsulting.map(d => <a className="extern-link text-center list-group-item" href={d.href}>{d.title}</a>)}
+                                <h4 className="text-center font-weight-bold mb-4">{t(`Externe Angebote`)}</h4>
+                                {tree.ExternConsulting.map((d, i) => <a className="font-weight-bold text-center list-group-item py-3" style={{color:'rgb(34, 71, 104)'}} key={i} href={d.href}>{d.title}</a>)}
                             </ul>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div className="consulting-card">
-                <h1 className="text-center">Beratung</h1>
-                <div className="row">
-                
-                    {ConsultingTree.ConsultingCard.map(d =>
-                        <ConsultingCard
-                            title={d.title}
-                            paragraph={d.paragraph}
-                            name1={d.name1}
-                            name2={d.name2}
-                            name3={d.name3}
-                            email1={d.email1}
-                            email2={d.email2}
-                            email3={d.email3}
-                            tel={d.tel}
-                            address={d.address}
-                            talk={d.talk}
-                            talk1={d.talk1}
-                            href={d.href}
-                        />
-                    )}
-                    
+                    <div className='row'>
+                           { tree.ConsultingCard.map(e => 
+                            <div className='col-12 col-md-6 d-lg-none p-1'key={e.title}>
+                           <ConsultingCard infoDaten={true} { ...e}  />
+                           </div>)}
+                    </div>
                 </div>
             </div>
         </div>
-
-
     )
-
 }
+export default withTranslation()(Consulting)
 
 
 

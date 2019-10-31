@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { select } from 'd3-selection'
 import AnimatedText from './AnimatedText'
 import { animationTime } from './Utils'
+import COLORS from '../colors'
 
 class Label extends Component {
     static defaultProps = {
         onClick: () => {},
         color: 'white',
-        bgcolor: 'black',
+        bgcolor: COLORS.default,
         textAnchor: "middle",
     }
 

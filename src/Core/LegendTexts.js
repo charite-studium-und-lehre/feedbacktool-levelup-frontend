@@ -1,96 +1,311 @@
 import React from 'react'
+import {Trans} from 'react-i18next'
+import Numbers from '../EPAs/assessmentViewComponents/Numbers'
+import Video from '../EPAs/static/EPAsVideo'
+import {GraphButton} from "../Exams/Ptm/GraphButton";
+import COLORS from "../colors";
 
-export default {
-    Dashboard: {
-        Progress: {
-            title: 'Dein Studienfortschritt',
-            text: 'Hier siehst Du deinen Studienfortschritt und deine bereits erreichten Meilensteinen.',
-        },
-        Timeline: {
-            title: 'Timeline',
-            text: 'Hier siehst du die Prüfungen, die du in letzter Zeit abgelegt hast.'
-        },
-    },
+const Legends = {
     Exams: {
         MainChart: {
-            title: 'Deine Prüfungsergebnisse',
-            text: 'Hier siehst du einen Überblick über deine bisherigen Prüfungsergebnisse. Über die Checkboxen kannst du selber auswählen, welche Prüfungsergebnisse du angezeigt bekommen möchtest. Du kannst auf die jeweiligen Ergebnisse klicken, um detaillierte Informationen zu erhalten (z.B. Ergebnisse der einzelnen Module).',
+            title: <Trans>Deine Prüfungsergebnisse</Trans>,
+            text: <Trans>Hier siehst du einen Überblick über deine bisherigen Prüfungsergebnisse. Über die Checkboxen
+                kannst du selber auswählen, welche Prüfungsergebnisse du angezeigt bekommen möchtest. Du kannst auf die
+                jeweiligen Ergebnisse klicken, um detaillierte Informationen zu erhalten (z.B. Ergebnisse der einzelnen
+                Module).</Trans>,
         },
-        Semester: {
+        MC: {
             Summary: {
-                title: 'Zusammenfassung deiner Antworten in den Semesterprüfungen',
-                text: 'Hier siehst du eine Aufstellung nach Fächern der von dir beantworteten Fragen in deinen Semesterprüfungen.'
+                title: <Trans>Zusammenfassung deiner Antworten in den Semesterprüfungen</Trans>,
+                text: <Trans>Hier siehst du eine Aufstellung nach Fächern der von dir beantworteten Fragen in deinen
+                    Semesterprüfungen.</Trans>,
             },
             Totals: {
-                title: 'Gesamtes Ergebnis',
-                text: 'Dies ist eine Darstellung deines Prüfungsergebnisses. Das kumulative Histogramm stellt dar, in welchem Verhältnis du zu deiner Kohorte abgeschnitten hast. Durch das einfache Histogramm lässt sich die Verteilung der Prüfungsergebnisse einsehen.'
+                title: <Trans>Gesamtes Ergebnis</Trans>,
+                text: <Trans>Dies ist eine Darstellung deines Prüfungsergebnisses. Der kumulative Graph stellt dar, in
+                    welchem Verhältnis du zu deiner Kohorte abgeschnitten hast. Durch das einfache Histogramm lässt sich
+                    die Verteilung der Prüfungsergebnisse einsehen.</Trans>,
             },
             Details: {
-                title: 'Detaillierte Ergebnisse',
-                text: 'Hier kannst du sehen, wie du in den zu dieser Semesterprüfung dazugehörigen Modulen und Fächern in Vergleich zu der Kohorte abgeschnitten hast.',
+                title: <Trans>Detaillierte Ergebnisse</Trans>,
+                text: <Trans>Hier kannst du sehen, wie du in den zu dieser Semesterprüfung dazugehörigen Modulen und
+                    Fächern in Vergleich zu der Kohorte abgeschnitten hast.</Trans>,
             },
             Questions: {
-                title: 'Fragen und Antworten',
-                text: <div>
-                    <p>Hier kannst du dir alle Fragen der Semesterprüfung mit den dazugehörigen Antworten ansehen.</p> 
-                    <p>Jede Frage wurde mit verschiedenen Tags versehen, mit deren Hilfe du die Fragen filtern kannst.</p>
-                    <p>So kannst du dir z.B. nur die Fragen anzeigen lassen, die du falsch beantwortest hast.</p>
-                    <p>Die Filter schwer und leicht, zeigen dir wieviel deiner Mitstudierenden diese Frage beantworten konnten. Schwere Fragen sind Fragen, die weniger als 50% deiner Mitstudierenden beantworten konnten. Leichte Fragen hingegen konnten mehr als 70% deiner Kommilitonen beantworten.</p>
-                </div>
+                title: <Trans>Fragen und Antworten</Trans>,
+                text: <Trans>Schwere Fragen konnten weniger als 40% deiner Mitstudierenden beantworten, leichte Fragen
+                    mehr als 80%.</Trans>,
+            },
+            QuestionsDetails: {
+                title: <Trans>Fragen und Antworten</Trans>,
+                text: <Trans i18nKey="exams.mc.questions.text">
+                    <p>Hier kannst du dir alle Fragen der Semesterprüfung mit den dazugehörigen Antworten ansehen. Jede
+                        Frage wurde mit verschiedenen Tags versehen, mit deren Hilfe du die Fragen filtern kannst. Die
+                        Filter schwer und leicht zeigen dir wie viel deiner Mitstudierenden diese Frage beantworten
+                        konnten. Schwere Fragen sind Fragen, die weniger als 40% deiner Mitstudierenden beantworten
+                        konnten. Leichte Fragen hingegen konnten mehr als 80% deiner Kommilitonen beantworten.So kannst
+                        du dir z.B. nur die Fragen anzeigen lassen, die du falsch beantwortest hast.</p>
+                </Trans>
             }
         },
         Ptm: {
             Totals: {
-                title: 'Gesamtes Ergebnis',
-                text: 'Hier findest du eine generelle Auswertung deines PTMs im Vergleich mit der Kohorte.'
+                title: <Trans>Gesamtes Ergebnis</Trans>,
+                text: <Trans>Hier findest du eine generelle Auswertung deines PTMs im Vergleich mit der Kohorte.</Trans>
+            },
+            Timeline: {
+                title: <Trans>Deine Entwicklung</Trans>,
+                text: <Trans>Hier findest du eine generelle Auswertung deines PTMs im zeitlichen Verlauf.</Trans>
             },
             Strengths: {
-                title: 'Starke Fächer in diesem PTM',
-                text: 'Hier findest du eine Übersicht zu deinen besten vorklinischen, klinischen und Querschnittsfächern im PTM diesen Semesters. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen beantworteten Fragen.'
-            }
+                title: <Trans>Starke Fächer in diesem PTM</Trans>,
+                text: <Trans>Hier findest du eine Übersicht zu deinen besten theoretischen, klinischen und
+                    Querschnittsfächern im PTM diesen Semesters. Die Auswertung beruht auf dem Verhältnis der richtig
+                    beantworteten im Vergleich zu allen beantworteten Fragen.</Trans>,
+            },
+            Subjects: {
+                title: <Trans>Alle Fächer</Trans>,
+                text: <Trans>
+                    <p>Hier findest du eine Übersicht zu deinen Leistungen in den theoretischen, klinischen und
+                        Querschnittsfächern. Die Ergebnisse innerhalb des grünen Balken basieren auf deinem letzten PTM
+                        und zeigen das Verhältnis zwischen richtig beantworteten und allen gestellten Fragen.</p>
+                    <p>Deine Entwicklung im PTM innerhalb eines bestimmten Faches siehst du in der darunter stehenden
+                        Graphik<GraphButton/></p>
+                </Trans>,
+            },
+            Organsystem: {
+                title: <Trans>Alle Organsystem</Trans>,
+                text: <Trans>Hier findest du eine Übersicht zu deinen Leistungen in den theoretischen, klinischen und
+                    Querschnittsfächern. Die Ergebnisse basieren auf deinem letzten PTM. Die Auswertung beruht auf dem
+                    Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.</Trans>,
+            },
         },
         Stations: {
-            Main: {
-                title: 'Praktische Prüfungen',
-                text: 'Hier siehst du deine Ergebnisse in den bis jetzt absolvierten praktischen Prüfungen. Klicke auf die Flächen über dem Diagramm um deine Ergebnisse zu filtern. Wenn du auf die Balken im Diagramm klickst, bekommst du genauere Informationen zu der jeweiligen Station.'
+            Explanation: {
+                title: <Trans>Ergebnisse</Trans>,
+                text: <Trans>Hier siehst Du die Ergebnisse deiner absolvierten mündlich-praktischen Prüfungen. Klick auf die jeweilige Station und Du bekommst genauere Informationen zu den jeweiligen Teilaufgaben.</Trans>,
             },
         },
     },
     Strengths: {
-        Main: {
-            title: 'Deine Stärken und Schwächen',
-            text: 'Auf dieser Seite findest du eine Übersicht zu deinen stärkeren und schwächeren Fächern in den Semesterprüfungen und dem PTM. Die Auswertung basiert auf den Ergebnissen aller zurückliegenden Semesterprüfungen und dem Ergebnis des aktuellen PTMs.'
+        Explanation: {
+            title: <Trans>Deine Stärken und Schwächen</Trans>,
+            text: <Trans i18nKey="strengths.main.text">
+                <p>Auf dieser Seite findest du eine Übersicht zu deinen stärkeren und schwächeren Fächern in den
+                    Semesterprüfungen und dem PTM. Die Auswertung basiert auf den Ergebnissen aller zurückliegenden
+                    Semesterprüfungen und dem Ergebnis des aktuellen PTMs.</p>
+                <strong>Wichtig:</strong>
+                <p>Die Anzahl der gestellten Fragen pro Fach kann sich durch die Verteilung der Fächer im Curriculum und
+                    bei der Auswahl der MC-Fragen in den Klausuren stark unterscheiden. Weiterhin findet keine
+                    Gewichtung des Rankings der Fächer nach schweren und leichten Fragen statt.</p>
+            </Trans>
         },
-        Totals: {
-            title: 'Gesamte Ergebnisse',
-            text: 'Hier findest du eine Übersicht über deine Ergebnisse in allen Semesterprüfungen.'
-        },
-        Semester: {
-            title: 'Starke Fächer in den Semesterprüfungen',
-            text: 'Hier findest du eine Übersicht zu deinen besten Fächern basierend auf allen deinen Semesterprüfungen. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen. Achtung: Nur Fächer mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.'
+        MC: {
+            title: <Trans>Starke Fächer in den Semesterprüfungen</Trans>,
+            text: <Trans>
+                <p>Hier findest du eine Übersicht zu deinen besten Fächern basierend auf allen deinen Semesterprüfungen.
+                    Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten
+                    Fragen.<br/><strong>Achtung: </strong>Nur Fächer mit mehr als 4 Fragen werden dargestellt um
+                    Verzerrungen der Auswertung zu vermeiden.</p>
+            </Trans>,
         },
         PTM: {
-            title: 'Starke Fächer im PTM',
-            text: 'Hier findest du eine Übersicht zu deinen besten Fächern in dem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen. Der Mittelwert der Kohorte ist durch einen roten Kreis gekennzeichnet. Achtung: Nur Fächer mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.'
+            title: <Trans>Starke Fächer im PTM</Trans>,
+            text: <Trans><p>Hier findest du eine Übersicht zu deinen besten Fächern im letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.<br/><strong>Achtung: </strong> Nur Fächer mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.</p></Trans>,
         },
         PTMResults: {
-            title: 'Gesamtes Ergebnis im PTM',
-            text: 'Hier findest du eine generelle Auswertung deines PTMs im Vergleich mit der Kohorte.'
+            title: <Trans>Gesamtes Ergebnis im PTM</Trans>,
+            text: <Trans><p>Hier findest du eine generelle Auswertung deines aktuellen PTMs im Vergleich mit der Kohorte.</p></Trans>,
         },
         Subjects: {
-            title: 'Alle Fächer',
-            text: 'Hier findest du eine Übersicht zu deinen Leistungen in den vorklinischen, klinischen und Querschnittsfächern. Die Ergebnisse basieren zum einen auf allen deinen Semesterprüfungen (MCs) und zum anderen auf deinem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.'
+            title: <Trans>Alle Fächer</Trans>,
+            text: <Trans>Hier findest du eine Übersicht zu deinen Leistungen in den theoretischen, klinischen und
+                Querschnittsfächern. Die Ergebnisse basieren zum einen auf allen deinen Semesterprüfungen (MCs) und zum
+                anderen auf deinem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im
+                Vergleich zu allen gestellten Fragen.</Trans>,
         },
     },
-    Practicals: {
-        Main: {
-            title: 'Mein Level',
-            text: <div><p>Hier siehst du eine Übersicht zu den ärztlichen Tätigkeiten, die du im Laufe des Studiums kennenlernen und praktisch üben wirst. Das Ziel ist, dass du als Absolvent*in des Medizinstudiums dazu in der Lage bist, die hier aufgeführten Tätigkeiten zu Berufsbeginn eigenständig durchzuführen und nur Wichtiges nachgeprüft wird (Level 5). </p>
-            <p>Bitte gib mindestens einmal im Halbjahr an, unter welchem Level du die jeweilige Tätigkeit bislang ausgeführt hast und unter welchem Level du dir die Tätigkeit zutraust. Hierdurch kannst du permanent einen Überblick über die Entwicklung deiner praktischen Fertigkeiten erhalten. Es ist zudem möglich Fremdeinschätzungen von Ärzten*innen einzuholen. </p>
-            <p>Insgesamt sind 11 ärztliche Tätigkeiten und 8 Prozeduren gelistet. Die 11 Tätigkeiten werden wiederum in kleinere Tätigkeiten (35) aufgeteilt, die du im Laufe des Studiums ausführen wirst.</p>
-            <p>Da es das Ziel ist, dass du dir die ärztlichen Tätigkeiten zu Berufsbeginn unter Level 5 zutraust, kannst du maximal 175 „Level“ erreichen.</p>
-            <p>In roter Schrift siehst du die Anzahl der Level, unter der du die Tätigkeiten ausgeführt hast. In grüner Schrift die Anzahl der Level, unter der du dir die Tätigkeiten zutraust.</p>
-            </div>
+    EPAs: {
+        Explanation: {
+            title: <Trans>Ärztliche Tätigkeiten (EPAs)</Trans>,
+            text: <Trans>
+                <div className="my-2 w-100 position-relative">
+                    <div>
+                        Video: <a className="color-navigation" href="https://levelup.charite.de/videos/epa_2019.mp4">Was
+                        sind
+                        EPAs?</a>
+                    </div>
+                    Hier siehst du eine Übersicht zu den ärztlichen Kern-Tätigkeiten, die du im Laufe des Studiums
+                    trainieren wirst. Nutze die Funktion ärztliche Tätigkeiten, um die Entwicklung deiner praktischen
+                    Kompetenz festzuhalten und ggf. nachzusteuern. Ziel ist, dass du als Absolvent*in des
+                    Medizinstudiums dazu in der Lage bist, die aufgeführten Tätigkeiten zu Berufsbeginn eigenständig
+                    durchzuführen und nur Wichtiges nachgeprüft wird (Level 5).
+                    <div className="d-block">
+                        Level:
+                        <Numbers className="mx-2 d-inline" value={3} color={COLORS.background.grey7} colorsRgb={COLORS.background.grey1}/>
+                    </div>
+                    <h5 className="mt-4">Schätze dich selbst ein</h5>
+                    <div>Im Laufe deines Studiums z.B. nach U- oder UaK-Kursen oder Famulaturen kannst du deine Level
+                        eintragen.
+                    </div>
+                    <div className="table-responsive-md">
+                    <table className="table table-borderless">
+                        <tbody>
+                        <tr>
+                            <td className="text-nowrap" style={{color: "#224768", lineHeight: ".9rem"}}>
+                                <Numbers
+                                    colorsRgb="#ffffff"
+                                    color="#224768"
+                                    width="1rem"
+                                    height="1rem"
+                                    borderRadius="1rem"
+                                    edit={false}
+                                    average={true}
+                                    value={1}
+                                    maxValue={5}
+                                    increment={null}
+                                    decrement={null}/>
+                                <div className="font-weight-bold pr-2">
+                                    Habe ich gemacht
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    - gibt an unter welchem Level du die jeweilige Tätigkeit ausgeführt hast.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="text-nowrap" style={{color: "#096c7b", lineHeight: ".9rem"}}>
+                                <Numbers
+                                    colorsRgb="#ffffff"
+                                    color="#096c7b"
+                                    width="1rem"
+                                    height="1rem"
+                                    borderRadius="1rem"
+                                    edit={false}
+                                    average={true}
+                                    value={1.7}
+                                    maxValue={5}
+                                    increment={null}
+                                    decrement={null}/>
+                                <div className="font-weight-bold">
+                                    <div>Traue ich mir zu</div>
+                                </div>
+                            </td>
+                            <td >
+                                <div>
+                                    - gibt an unter welchem Level du dir die Tätigkeit zutraust.
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+
+                    <h5 className="mt-4">Bitte um eine Fremdeinschätzung</h5>
+                    <div>
+                        Du kannst auch Fremdeinschätzungen von deinen Lehrenden/ Ärzt*innen einholen.
+                    </div>
+                    <div className="table-responsive-md">
+                    <table className="table table-borderless">
+                        <tbody>
+                        <tr>
+                            <td className="p-1"><div className="btn btn-secondary text-nowrap"> Fremdbewertung einfordern</div></td>
+                            <td className="p-0">
+                                <div>Sende eine Einladung mit einer Fremdbewertungsanforderung an deine*n
+                                    Dozierende*n.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr >
+                            <td className="p-1"><div className="btn btn-secondary text-nowrap"> Erhaltene Fremdbewertungen</div></td>
+                            <td className="p-0">
+                                <div>
+                                    Schau dir alle deine bisher erhaltenen Fremdbewertungen an.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="text-nowrap" style={{color: "#802000", lineHeight: ".9rem"}}>
+                                <Numbers
+                                    colorsRgb="#ffffff"
+                                    color="#802000"
+                                    width="1rem"
+                                    height="1rem"
+                                    borderRadius="1rem"
+                                    edit={false}
+                                    average={true}
+                                    value={0}
+                                    maxValue={5}
+                                    increment={null}
+                                    decrement={null}/>
+                                <div className="font-weight-bold">
+                                    <div>Wird mir zugetraut</div>
+                                </div>
+                            </td>
+                            <td className="p-0">
+                                <div>
+                                    - gibt an unter welchem Level dir deine Lehrenden/ Ärzt*innen die Tätigkeit
+                                    zutrauen.
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </Trans>
+        },
+        CheatSheetCard: {
+            levels: {
+                title: <Trans>Level der Eigenständigkeit</Trans>,
+                text: ['keine Ausführung',
+                    'gemeinsam mit dem Arzt',
+                    'unter Beobachtung des Arztes',
+                    'eigenständig, alles/vieles wird nachgeprüft (Arzt auf Station)',
+                    'eigenständig, Wichtiges wird nachgeprüft (Arzt auf Station)',
+                    'eigenständig, Wichtiges wird nachgeprüft (Arzt nur telefonisch erreichbar)'
+                ].map((e, d) =>
+                    <div key={d}>
+                        <div>{`${d} - ${e}`}</div>
+                        <Numbers color={COLORS.background.grey7} colorsRgb={COLORS.background.grey1} value={d}/>
+                    </div>)
+            },
+            video: {
+                title: <Trans>Video: Was sind EPAs?</Trans>,
+                text: <Trans><Video/></Trans>
+            }
         }
+    },
+    DatenProtection: {
+        text: <Trans>
+            <p>Deine Daten werden vertrauensvoll behandelt und sind nicht für Dritte einsehbar.</p>
+            <p>Bestimmte Angebote der Webseite kannst Du nur nutzen, wenn Du dich zuvor als Nutzer registrierst. Dabei
+                wird nach deiner Einwilligung ein Hash erstellt und gespeichert, der nur dir nach Login die Zuordnung
+                deiner Prüfungsdaten erlaubt.</p>
+            <p>Dieser Hash ist die einzige Information, die als „Nutzerkonto“ gespeichert wird. Er erlaubt keine direkte
+                Identifizierung einer Person.</p>
+            <p>Die Anmeldung erfolgt durch den zentralen Single-Sign-On-Dienst der Charité (SSO). Durch diesen Dienst
+                erfährt LevelUp temporär deinen Namen, deine Mailadresse und deinen Nutzernamen.</p>
+            <p>LevelUp speichert weder deinen Namen, deine Mailadresse, deinen Nutzernamen noch deine Matrikelnummer.
+                Nach Logout aus LevelUp sind diese Informationen LevelUp nicht mehr bekannt. Die Matrikelnummer wird nur
+                direkt bei der Registrierung verwendet und ist danach für die Webseite nicht mehr wiederherstellbar.</p>
+            <p>Die Verarbeitung der Daten im Rahmen der Registrierung und der Einrichtung eines Nutzerkontos (in Form
+                eines Hashes) erfolgen auf der Grundlage deiner Einwilligung. Die Registrierung und das Einrichten eines
+                Nutzerkontos sind freiwillig. Indem Du selbst Deine Registrierung bei LevelUp vornimmst bzw. Dein
+                Nutzerkonto aktivierst, willigst Du in die Verarbeitung der in diesem Rahmen erhobenen Daten ein.</p>
+            <p>Die Zuordnung der anonymisierten Prüfungsdaten zu deinem Nutzerkonto, das im Rahmen der Registrierung und
+                der Einrichtung des Nutzerkontos erstellt wurde, besteht für die Dauer des Fortbestehens der
+                Registrierung und der Existenz des Nutzerkontos. Eine Zuordnung ist nur nach Login über SSO möglich.
+                Auch für Administratoren der Webseite ist eine Zuordnung von personenbezogenen Daten ohne Zugriff auf
+                weitere Daten nicht möglich.</p>
+            <p>Wenn Du dein Nutzerkonto löschen möchtest, kannst Du uns eine entsprechende Nachricht an die folgende
+                E-Mail-Adresse senden: levelup@charite.de</p>
+            <p>Nach Mitteilung Deines Löschbegehrens wird das Nutzerkonto, das heißt der gespeicherte Hash, von uns
+                innerhalb von wenigen Werktagen gelöscht.</p>
+        </Trans>
     }
 }
+
+export default Legends

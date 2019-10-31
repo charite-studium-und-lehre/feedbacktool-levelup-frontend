@@ -2,9 +2,11 @@ import _ from 'lodash'
 
 const data = [
     {
-        exam: '2. Semester Teil 1',
-        group: '2. Semester',
-        date: new Date(2015, 6, 15),
+        name: '2. Fachsemester Teil 1',
+        group: '2. Fachsemester',
+        periodeCode: 20162,
+        format: 'station',
+        zeitsemester: 'WiSe 2016',
         stations: [
             {
                 name:'Notfall', 
@@ -80,7 +82,7 @@ const data = [
             },
             {
                 name:'Biochemie', 
-                category: 'Vorklinisch', 
+                category: 'Theoretisch', 
                 details: [
                     {
                         label: 'Thema',
@@ -100,7 +102,7 @@ const data = [
             },
             {
                 name: 'Anatomie / Biologie', 
-                category: 'Vorklinisch', 
+                category: 'Theoretisch', 
                 details: [
                     {
                         label: 'Thema',
@@ -121,9 +123,11 @@ const data = [
         ]
     },
     {
-        exam: '4. Semester Teil 2',
-        group: '4. Semester',
-        date: new Date(2017, 6, 15),
+        name: '4. Fachsemester Teil 2',
+        group: '4. Fachsemester',
+        periodeCode: 20172,
+        format: 'station',
+        zeitsemester: 'WiSe 2017',
         stations: [
             {
                 name:'COPD', 
@@ -217,13 +221,15 @@ const data = [
         ]
     },
     {
-        exam: '4. Semester Teil 3',
-        group: '4. Semester',
-        date: new Date(2017, 6, 15),
+        name: '4. Fachsemester Teil 3',
+        group: '4. Fachsemester',
+        periodeCode: 20172,
+        format: 'station',
+        zeitsemester: 'WiSe 2017',
         stations: [
             {
                 name: 'Physiologie 1', 
-                category: 'Vorklinisch', 
+                category: 'Theoretisch', 
                 details: [
                     {
                         label: 'Thema',
@@ -243,7 +249,7 @@ const data = [
             },
             {
                 name: 'Physiologie 2', 
-                category: 'Vorklinisch', 
+                category: 'Theoretisch', 
                 details: [
                     {
                         label: 'Thema',
@@ -263,7 +269,7 @@ const data = [
             },
             {
                 name: 'Anatomie', 
-                category: 'Vorklinisch', 
+                category: 'Theoretisch', 
                 details: [
                     {
                         label: 'Thema',
@@ -283,7 +289,7 @@ const data = [
             },
             {
                 name: 'Anatomie 2', 
-                category: 'Vorklinisch', 
+                category: 'Theoretisch', 
                 details: [
                     {
                         label: 'Thema',
@@ -304,8 +310,8 @@ const data = [
         ]
     },
     // {
-    //     exam: '9. Semester - OSCE',
-    //     group: '9. Semester',
+    //     name: '9. Fachsemester - OSCE',
+    //     group: '9. Fachsemester',
     //     stations: [
     //         {
     //             name: 'Schulterverband', 
@@ -446,19 +452,19 @@ const StationsData = data.map( e => ({
     ...e,
     stations: e.stations.map(s => ({
         ...s, 
-        result: _.round(_.meanBy(s.details.filter( d => _.isNumber(d.value) ), 'value') ),
-        mean: _.round(_.meanBy(s.details.filter( d => _.isNumber(d.mean) ), 'mean')),
+        gesamtErgebnis: {
+            ergebnisProzentzahl: _.round(_.meanBy(s.details.filter( d => _.isNumber(d.value) ), 'value') ),
+            durchschnittProzentzahl: _.round(_.meanBy(s.details.filter( d => _.isNumber(d.mean) ), 'mean')),
+
+        }
     })),
 })).map(e => ({
     ...e,
-    result: _.round(_.meanBy( e.stations, 'result')),
-    mean: _.round(_.meanBy( e.stations, 'mean')),
+    id: _.uniqueId(),
+    gesamtErgebnis: {
+        ergebnisProzentzahl: _.round(_.meanBy( e.stations, 'result')),
+        durchschnittProzentzahl: _.round(_.meanBy( e.stations, 'mean')),
+    }
 }))
 
 export default StationsData
-
-const TimelineData = _(StationsData)
-    .groupBy(e => e.group)
-    .map((exams, group) => ({ result: _.meanBy(exams, 'result'), mean: _.meanBy(exams, 'mean'), x: exams[0].date, label: group }))
-    .value()
-export { TimelineData }

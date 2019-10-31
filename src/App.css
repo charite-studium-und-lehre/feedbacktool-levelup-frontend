@@ -1,10 +1,18 @@
 .App {
   overflow-x: hidden;
   height: 100%;
-}
-
-.navbar {
-  box-shadow: rgba(0,0,0,.4) 0 0 15px;
+  --color-navigation: #005a9c;
+  --color-background-button: #575a59;
+  --color-background-base: #f8f9ff;
+  --color-background-grey2: #BFC6D1;
+  --color-graphs-correct: hsla(120, 20%, 50%, .65);
+  --color-graphs-correct-small-icon: hsla(120, 30%, 50%);
+  --color-graphs-wrong: hsla(0, 50%, 50%, .65);
+  --color-graphs-missing-answer: hsla(240, 0%, 50%, .65);
+  --color-graphs-missing-answer-small-icon: hsla(240, 0%, 50%);
+  --color-graphs-total: hsla(240, 0%, 50%, .25);
+  --color-graphs-grid: rgba(0,0,0,.6);
+  --color-graphs-grid-text: rgba(0,0,0,.7);
 }
 
 svg {
@@ -43,35 +51,46 @@ span.input-group-text {
 }
 
 .nav-pills .nav-link.active {
-  border-bottom: 2px solid #007bff;
+  border-bottom: 2px solid var(--color-navigation);
   background-color: transparent;
-  color: #007bff;
+  color: inherit;
   border-radius: 0;
 }
 
 .with-border {
-  border-top: 2px solid #007bff;
+  border-top: 2px solid var(--color-navigation);
+}
+
+ol.breadcrumb {
+  margin: 0;
+}
+
+ol.breadcrumb:empty {
+  display: none;
+}
+
+.color-navigation{
+  color: var(--color-navigation);
+}
+
+.color-bg-navigation{
+  background-color: var(--color-navigation);
+}
+
+.color-button-color, .link-on-hover:hover{
+  color: var(--color-background-base);
+  background-color: var(--color-background-button);
+}
+
+.color-button-color:hover {
+  color: var(--color-background-grey2)
+}
+
+input.no-outline {
+  outline: none;
+  border-radius: 0;
 }
 
 .with-shadow {
   box-shadow: 1px 1px 5px rgba(0,0,0,.2);
-}
-
-.with-z-shadow { 
-  position: relative;
-}
- 
-.with-z-shadow:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: -1;
-  box-shadow: 1px 1px 5px rgba(0,0,0,.2);
-}
-
-ol.breadcrumb {
-  margin-bottom: .5rem;
 }

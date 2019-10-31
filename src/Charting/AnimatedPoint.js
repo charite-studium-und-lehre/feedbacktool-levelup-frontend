@@ -1,41 +1,39 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { select } from 'd3-selection'
 import { animationTime } from './Utils'
 import css from './AnimatedPoint.module.css'
 
-class AnimatedPoint extends Component {
-    static defaultProps = {
-        color: 'rgba(0,0,0,.6)',
-        fill: 'rgba(0,0,0,.6)',
-        className: '',
-        r: 5,
-        onClick: () => {},
-    }
+const AnimatedPoint = ({
+        cx, cy, selected, x,
+        color = 'var(--color-graphs-grid)',
+        fill = 'var(--color-graphs-grid)',
+        className = '',
+        r = 5,
+        opacity = 1,
+        onClick = () => {},
+    }) => {
 
-    constructor(props) {
-        super(props)
-		this.node = React.createRef()
-		this.state = { cx: props.cx, cy: props.cy }
-    }
+    const node = useRef()
+    const [ dcx ] = useState(cx)
+    const [ dcy ] = useState(cy)
 
-    componentDidUpdate() {
-		select(this.node.current)
+    useEffect(() => {
+		select(node.current)
             .transition()
 			.duration(animationTime)
-			.attr('cx', this.props.cx)
-			.attr('cy',  this.props.cy)
-    }
+			.attr('cx', cx)
+            .attr('cy',  cy)
+            .style('opacity', 1)
+    })
 
-    render() {
-        return <circle 
-            ref={this.node}
-            r={this.props.r}
-            style={{stroke: this.props.color, fill: this.props.fill}}
-            cx={this.state.cx} 
-            cy={this.state.cy} 
-            className={`animated ${css.dot} ${this.props.selected && css.selected}`} 
-            onClick={() => this.props.onClick(this.props.x)} />
-    }
+    return <circle 
+        ref={node}
+        r={r}
+        style={{stroke: color, fill, opacity}}
+        cx={dcx}
+        cy={dcy}
+        className={`animated ${css.dot} ${className} ${selected && css.selected}`} 
+        onClick={() => onClick(x)} />
 }
 
 export default AnimatedPoint

@@ -1,10 +1,10 @@
 import React from 'react'
-import StationsExam from './StationsExam';
+import StationsExam from './StationsExam'
 
-const StationsChart = props =>
+const StationsChart = ({ data, colors }) =>
     <div>
-        {props.data.filter(e => e.stations.length > 0).map(e =>
-            <StationsExam colors={props.colors} key={e.exam} label={e.exam} stations={e.stations} />
+        {data.filter(e => e.stationen.length > 0).map(e =>
+            <StationsExam colors={colors} key={e.id} label={e.name} stations={e.stationen} />
         )}
     </div>
 

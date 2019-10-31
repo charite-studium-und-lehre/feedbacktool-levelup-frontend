@@ -7,25 +7,18 @@ import { XAxis, YAxis } from '../Charting/Axis'
 import BarGraph from '../Charting/BarGraph'
 import PointGraph from '../Charting/PointGraph'
 import Legend from '../Charting/Legend'
-import LegendTexts from '../Core/LegendTexts'
-const LegendText = LegendTexts.Strengths
+import Legends from '../Core/LegendTexts'
+import { withTranslation } from 'react-i18next'
 
-const colors = scaleOrdinal(schemeBlues[3])
 const labels = ['richtig', 'falsch', 'nicht beantwortet']
 const confidence = ['geraten', 'wahrscheinlich', 'sicher']
 
-const results = [
-    [[80, 67, 43] , [13, 24, 43]],
-    [[30, 15, 3], [18, 12, 3]],
-    [90, 90] 
-]
+const colors = scaleOrdinal(schemeBlues[3])
 
-const means = [77, 22, 101]
-
-const PTMResults = props => (
+const PTMResults = ({ t, data }) =>
     <div className="card">
         <div className="card-body">
-            <Legend title={LegendText.PTMResults.title}>{LegendText.PTMResults.text}
+            <Legend title={Legends.Strengths.PTMResults.title}>{Legends.Strengths.PTMResults.text}
                 <div className="mt-2">{confidence.map((c, i) => 
                     <span key={i} className="d-inline-block mr-2" style={{height: '1.2rem', lineHeight: '1.2rem'}}>
                         <span className="d-inline-block mr-1" style={{width: '2rem', height: '100%', backgroundColor: colors(i)}}>&nbsp;</span>
@@ -33,7 +26,7 @@ const PTMResults = props => (
                     </span>)}
                     <span className="d-inline-block mr-2" style={{height: '1.2rem', lineHeight: '1.2rem'}}>
                         <span className="d-inline-block mr-1" style={{borderRadius: '.6rem', width: '.6rem', height: '.6rem', backgroundColor: 'rgba(0,0,0,.6)'}}></span>
-                        Durchschnitt in der Kohorte
+                        {t(`Durchschnitt in der Kohorte`)}
                     </span>
                 </div>
             </Legend>
@@ -41,12 +34,11 @@ const PTMResults = props => (
                 <OrdinalChart xDomain={labels} yDomain={[0,100]}>
                     <XAxis />
                     <YAxis ticks={{count: 4}} />
-                    <BarGraph labels data={labels.map((l,i) => ({x: l, y: results[i][0], label: results[i][1], color: _.range(0,3).map(i => colors(i))}))} />
-                    <PointGraph color="rgba(0, 0, 0, .6)" data={labels.map((l, i) => ({x: l, y: means[i]}))} />
+                    <BarGraph labels data={labels.map((l,i) => ({x: l, y: data.results[i][0], label: data.results[i][1], color: _.range(0,3).map(i => colors(i))}))} />
+                    <PointGraph color="rgba(0, 0, 0, .6)" data={labels.map((l, i) => ({x: l, y: data.means[i], id: i+1}))} />
                 </OrdinalChart>
             </div>
         </div>
     </div>
-)
 
-export default PTMResults
+export default withTranslation() (PTMResults)

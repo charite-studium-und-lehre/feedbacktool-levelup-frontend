@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
+import _ from 'lodash/fp'
 import { scaleLinear, scaleBand, scaleTime } from 'd3-scale'
-import { select } from 'd3-selection'
 
 const copyPropsToChildren = props => {
     const {children, ...additionalprops} = props
@@ -8,53 +8,27 @@ const copyPropsToChildren = props => {
 }
 
 const asChart = WrappedComponent =>
-    class extends Component {
-        constructor(props){
-            super(props)
-            this.node = React.createRef()
-            this.state = { size: null }
-        }
+    props => {
+        const [ size, setSize ] = useState(null)
+        const node = useRef(null)
+        useEffect(() => {
+            let handler = () => { 
+                if (!node.current) return
+                const { width, height } = node.current.getBoundingClientRect()
+                if (!_.equals({ width, height }, size)) setSize({ width, height })
+            }
+            handler()
+            handler = _.debounce(200, handler)
+            window.addEventListener('resize', handler)
+            return () => window.removeEventListener('resize', handler)
+        })
+        const renderContent = () => <g><WrappedComponent {...props} width={size.width} height={size.height} /></g>
 
-        componentDidUpdate() {
-            setTimeout(() => {
-                    if(!this.state.size || this.state.size.height !== this.node.current.height.baseVal.value || 
-                        this.state.size.width !== this.node.current.width.baseVal.value) {
-                        this.setState({
-                            size: {
-                                width: this.node.current.width.baseVal.value,
-                                height: this.node.current.height.baseVal.value,
-                            },
-                        })
-                    }
-                }, 100)
-        }
-
-        componentDidMount() {
-            setTimeout(() => {
-                this.setState({
-                    size: {
-                        width: this.node.current.width.baseVal.value,
-                        height: this.node.current.height.baseVal.value,
-                    },
-                })
-            }, 100)
-        }
-
-        renderContent() {
-            const { width, height } = this.state.size
-            
-            select(this.node.current)
-                .attr("preserveAspectRatio", "none")
-
-            return <g><WrappedComponent {...this.props} width={width} height={height} /></g>
-        }
-
-        render() {
-            const size = this.state.size;
-            return (<svg ref={this.node} width="100%" height="100%">
-                { size && this.renderContent() }
-            </svg>)
-        }
+        return (
+            <svg ref={node} width="100%" height="100%" preserveAspectRatio="none">
+                { size && size.height > 0 && renderContent() }
+            </svg>
+        )
     }
 
 const Chart = asChart(copyPropsToChildren)

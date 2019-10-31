@@ -1,97 +1,68 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { withTranslation } from 'react-i18next'
+import { SlideDown } from 'react-slidedown'
+import makeExtendable from '../Core/makeExtendable'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPhoneVolume, faAt, faUser, faComments, faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons'
-
-
-class ConsultingCard extends Component {
-    render() {
-        let email1 = (
-            this.props.email1 ?
-                <div className="col-md-12" >
-                <div className="icon">
-                    <FontAwesomeIcon icon={faAt} />
-                    </div>
-                    <div className="info">
-                    <span className="email1">{this.props.email1}</span>
-                    {email2}
-                    {email3}
-                    </div>
-                </div>
-                : null
-        )
-        let email2 = (
-            this.props.email2 ? <span><br /><span className="email2">{this.props.email2}</span></span> : null
-        )
-        let email3 = (
-            this.props.email3 ? <span><br /><span className="email3">{this.props.email3}</span></span> : null
-        )
-
-        let name2 = (
-            this.props.name2 ? <span><br /> <span className="name2">{this.props.name2}</span></span> : null
-        )
-        let name3 = (
-            this.props.name3 ? <span><br /><span className="name3">{this.props.name3}</span> </span> : null
-        )
-        let talk1 = (
-            this.props.talk1 ? <span><br /><span className="talk1">{this.props.talk1}</span> </span> : null
-        )
-
-        return (
-            <div className="card col-lg-4 col-sm-6  ">
-                <div className="card-body">
-                    <h2 className="card-title text-center ">{this.props.title}</h2>
-                    <div className="consulting-paragraph">
-                        <p className="card-text">{this.props.paragraph}</p>
-                    </div>
-                    <div className="consulting-info">
-                        <h4>Ansprechpartnerin / Ansprechpartner </h4>
-                        <div className="row">
-                            <div className="col-md-12">
-                            <div className="icon">
-                                <FontAwesomeIcon icon={faUser} />
-                                </div>
-                                <div className="info">
-                                <span className="name1">{this.props.name1}</span>
-                                {name2}
-                                {name3}
-                                </div>
-                            </div>
-                            {email1}
-                            <div className="col-md-12">
-                            <div className="icon">
-                                <FontAwesomeIcon icon={faPhoneVolume} />
-                                </div>
-                                <div className="info">
-                                <span>{this.props.tel}</span>
-                                </div>
-                            </div>
-                            <div className="col-md-12">
-                            <div className="icon">
-                                <FontAwesomeIcon icon={faMapMarkedAlt} />
-                                </div>
-                                <div className="info">
-                                <span>{this.props.address}</span>
-                                </div>
-                            </div>
-                            <div className="col-md-12">
-                            <div className="icon">
-                                <FontAwesomeIcon icon={faComments} />
-                                </div>
-                                <div className="info">
-                                <span>{this.props.talk}</span>
-                                {talk1}
-                                </div>
-                            </div>
-                            
-                        </div>
-                     
-                    </div>
-                   
-                </div>
-                <button type="button" className="btn btn-primary consulting-butten ">Mehr erfahren</button>
+import { faPhoneVolume, faAt, faComments, faMapMarkedAlt, faChevronRight, faChevronDown } from '@fortawesome/free-solid-svg-icons'
+const Infos = props => (
+    <div className="row p-0 mt-3">
+        <div className="col-1" style={{color:' rgb(34, 71, 104)', fontSize:'1.3rem'}}>
+            <FontAwesomeIcon icon={props.icon} />
+        </div>
+        <div className="col-9">
+            {props.children}
+        </div>
+    </div>
+) 
+const Button =(props)=> (
+    <a className={`btn btn-primary px-4 ${props.className}`} style={{backgroundColor:' rgb(34, 71, 104)', color:'white'}} href={props.href}>Mehr erfahren</a>
+)
+const ContactData = props => (
+    <div>
+        {props.emails && <Infos icon={faAt}>
+            {(props.emails || []).map(d =>
+                <div key={d}>{d}</div>)}
+        </Infos>}
+       {props.tel && < Infos icon={faPhoneVolume} >
+            <span>{props.tel}</span>
+        </Infos >}
+        {props.address && <Infos icon={faMapMarkedAlt}>
+            <span>{props.address}</span>
+        </Infos>}
+        < Infos icon={faComments} >
+            {props.talk.map(d => <div key={d}>{d}</div>)}
+        </Infos >
+         <Button  className='mt-4'{...props}/>
+    </div>
+)
+const ConsultingCard = ({ t, ...props }) => (
+    <div className="card col-12 mb-2">
+        <div className="card-body ">
+            <div className="mb-4">
+                <h4 className="text-center font-weight-bold mb-4 " style={{color:'rgb(34, 71, 104)'}}>{props.title}</h4>
+                <p className="card-text pr-2 pr-sm-0">{props.paragraph}</p>
             </div>
-        )
-    }
+            {props.infoDaten ? <div>
+                <div className='row font-weight-bold ' style={{ color: 'rgb(34, 71, 104)' }} >
+                    <div className='col-6' onClick={props.toggleExtended}>
+                    <span className='mr-2'>Kontaktdaten</span>
+                    <FontAwesomeIcon icon={props.extended ? faChevronDown : faChevronRight} />
+                    </div>
+                   {  !props.extended && <div className='col-6 p-0'>
+                      <Button className='float-right' {...props}/>
+                    </div>}
+                </div>
+                {props.extended && <SlideDown className="animated fast">
+                    <ContactData {...props} />
+                </SlideDown>}
+            </div>
+                :
+                <ContactData {...props} />}
+        </div>
+    </div>
+)
+export default makeExtendable()(withTranslation()(ConsultingCard))
 
-}
-export default ConsultingCard;
+
+
+

@@ -1,29 +1,37 @@
 import React from 'react'
 import _ from 'lodash'
-import Legend from '../Charting/Legend'
 import makeExtendable from '../Core/makeExtendable'
 import SimpleBar from '../Charting/SimpleBar'
+import { withTranslation } from 'react-i18next'
+import COLORS from "../colors";
+import SlideDown from 'react-slidedown';
 
-const Ranking = props =>
-    <div className="card">
-        <div className="card-body">
-            <Legend title={props.title}>{props.text}</Legend>
-            <div>
-                {_.take(props.subjects, props.extended ? props.subjects.length : 3).map((s, i) =>
-                    <div key={s.title} className="py-2">
-                        <h5><span className="text-primary">#{i+1}</span> {s.title}</h5>
-                        <SimpleBar value={s.correct} total={s.questions} mean={props.mean && s.mean}>
-                            {s.correct} von {s.questions} richtig
-                        </SimpleBar>
-                    </div>
-                )}
-            </div>
-            <div className="text-right">
-                <span className="text-primary" style={{cursor: 'pointer'}} onClick={props.toggleExtended}>
-                    {props.extended ? 'weniger anzeigen' : 'mehr anzeigen'}
-                </span>
-            </div>
+const Ranking = ({t, ...props}) =>
+    props.subjects.length ? 
+    <div>
+        <div>
+            <SlideDown className="animated fast" >
+            {_.take(props.subjects, props.extended ? props.subjects.length : 3).map((s, i) =>
+                <div key={s.code} className="py-2">
+                    <h5><span >#{i+1}</span> {s.titel}</h5>
+                    <SimpleBar
+                        colorTotal={COLORS.progress.lighter2}
+                        colorPartOfTotal={COLORS.progress.base}
+                        value={s.value}
+                        total={s.maximalPunktzahl}
+                        mean={props.mean && s.mean}>
+                        {s.value} von {s.maximalPunktzahl} {t(`richtig`)}
+                    </SimpleBar>
+                </div>
+            )}
+            </SlideDown>
         </div>
-    </div>
+        <div className="text-right">
+            <span className="color-navigation" style={{cursor: 'pointer'}} onClick={props.toggleExtended}>
+                {props.extended ? t('weniger anzeigen') : t('mehr anzeigen')}
+            </span>
+        </div>
+    </div> :
+    <div className="text-center">{t('Noch keine Ergebnisse gefunden.')}</div>
 
-export default makeExtendable(Ranking)
+export default withTranslation()(makeExtendable()(Ranking))

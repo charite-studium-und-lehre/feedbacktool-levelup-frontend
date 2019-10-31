@@ -1,66 +1,73 @@
-import React, { Component } from 'react'
-import _ from 'lodash'
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import _ from 'lodash/fp'
 import { scaleOrdinal } from 'd3-scale'
 import { schemeSpectral } from 'd3-scale-chromatic'
 import Legend from '../../Charting/Legend'
 import Filter from '../../Utils/Filter'
-import data from './Data'
+import needsData from '../../Core/needsData'
 import StationsChart from './StationsChart'
 import Legends from '../../Core/LegendTexts'
-import SimpleDot from '../../Charting/SimpleDot'
-const LegendText = Legends.Exams.Stations.Main
+import { withTranslation } from 'react-i18next'
+import { selectors, actions } from './Store'
+import colordefs from "../../colors";
+import KohortenMittelDot from "../../Charting/KohortenMittelDot";
+
+export const color = colordefs.pp.base
+export const colorTotal = colordefs.pp.lighter1
+export const colorPartOfTotal = colordefs.pp.darker0
 const colors = scaleOrdinal(schemeSpectral[6])
 
-class Stations extends Component {
-    constructor({ props, match }) {
-        super(props)
+const Stations = ({ t, data, groupFilters = [], setGroupFilters }) => {
+    const semesters = []
+    const categoryColors = c => colors(semesters.indexOf(c))
 
-        const categories = _.uniq(_.flatMap(data, e => e.stations).map(d => d.category))
-        const groups = _.uniq(data.map(d => d.group))
-        this.categoryColors = c => colors(categories.indexOf(c))
-        const categoryFilters = categories.map(c => ({label: c, pred: d => d.category === c , selected: true, color: this.categoryColors(c) }))
-        const groupFilters = groups.map(g => ({ label: g, pred: e => e.group === g, selected: g === match.params.test || match.params.test === 'all'}))
-        this.state = { categoryFilters, groupFilters }
-    }
+    const [categoryFilters, setCategoryFilters] = useState(semesters.map(c => ({ label: c, pred: d => d.category === c, selected: true, color: categoryColors(c) })))
 
-    render() {
-        const filteredData = data
-            .filter(_.overSome(this.state.groupFilters.filter(f => f.selected).map(f => f.pred)))
-            .map(e => ({...e, stations: e.stations
-                .filter(_.overSome(this.state.categoryFilters.filter(f => f.selected).map(f => f.pred)))
-        }))
-        return (
+    const LegendText = Legends.Exams.Stations.Explanation
+    const filteredData = _.filter(_.overSome(groupFilters.filter(f => f.selected).map(f => f.pred)), data)
+        // .map(e => ({
+        //     ...e, stations: e.stationsModule
+        //         .filter(_.overSome(categoryFilters.filter(f => f.selected).map(f => f.pred)))
+        // }))
+    return (
         <div className="container-fluid">
             <div className="row ">
                 <div className="col ">
-                    <Legend title={LegendText.title}>
-                        {LegendText.text}
-                        <div className="position-relative">
-                            Der <SimpleDot style={{position: 'relative', display: 'inline-block', marginLeft: '.75rem'}} value={0} /> kennzeichnet den Kohortenmittelwert.
-                        </div>
-                    </Legend>
-                    <div className="row col " style={{minHeight: '25rem'}}>
-                        <div className="card px-4 pb-4 w-100" style={{overflow: 'hidden'}}>
-                            <div className="mt-2 mb-3 d-flex flex-wrap">
-                                <div style={{fontSize: '.9rem'}}>
-                                    Bereich: <Filter
-                                        style={{display: 'inline-block'}}
-                                        filters={ this.state.categoryFilters } 
-                                        onUpdate={ categoryFilters => this.setState({ categoryFilters }) } />
+                    <div className="p-2">
+                        <h4 className="mr-auto">{t('Mündlich-praktische Prüfungen')}</h4>
+                    </div>
+                    <div className="row col " style={{ minHeight: '25rem' }}>
+                        <div className="card px-4 py-4 w-100 overflow-hidden">
+                            <Legend title={LegendText.title}>
+                                {LegendText.text}
+                                <div className="position-relative">
+                                    {t(`Der`)} <KohortenMittelDot placing="inline"/>{t(` kennzeichnet den Kohortenmittelwert.`)}
                                 </div>
-                                <div style={{fontSize: '.9rem', width: '17rem'}} className="flex-grow-1">
-                                    Prüfungen: <Filter style={{display: 'inline-block'}} disabled={!!this.state.selectedItem} filters={ this.state.groupFilters } onUpdate={ groupFilters => this.setState({ groupFilters }) } />
+                            </Legend>
+                            <div className="mt-2 mb-3 d-flex flex-wrap">
+                                <div className='mr-3' style={{ fontSize: '.9rem' }}>
+                                    <Filter
+                                        style={{ display: 'inline-block' }}
+                                        filters={categoryFilters}
+                                        onUpdate={setCategoryFilters} />
+                                </div>
+                                <div style={{ fontSize: '.9rem', width: '17rem' }} className="flex-grow-1">
+                                    <Filter style={{ display: 'inline-block' }} filters={groupFilters} onUpdate={filters => { setGroupFilters(filters.filter(f => f.selected).map(f => f.value)) }} />
                                 </div>
                             </div>
                             <StationsChart
-                                colors={this.categoryColors}
+                                colors={categoryColors}
                                 data={filteredData} />
                         </div>
                     </div>
                 </div>
             </div>
         </div>)
-    }
 }
 
-export default Stations
+const stateToProps = state => ({ 
+    data: selectors.getItems(state), 
+    groupFilters: selectors.getGroupFilters(state) 
+})
+export default _.flowRight([needsData(selectors.loaded, actions.load), withTranslation(), connect(stateToProps, actions)])(Stations)

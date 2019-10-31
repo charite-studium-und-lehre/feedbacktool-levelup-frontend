@@ -24,27 +24,28 @@ const LineMarker = props => {
             props.yScale(props.value),
         ]
     ]
-    const xLabel = props.vertical ? props.xScale.range()[0] : props.xScale.range()[1]
-    const yLabel = props.vertical ? -props.xScale(props.value) - 2 : (props.yScale(props.value) - 2)
+    const xLabel = props.vertical ? props.xScale(props.value) + 2 : props.xScale.range()[1]
+    const yLabel = props.vertical ? props.yScale.range()[1] : (props.yScale(props.value) - 2)
     const xValue=props.vertical ? props.xScale(props.value) : (props.xScale.range()[0] - 2)
     const yValue=props.vertical ? (props.yScale.range()[0] + 2) : props.yScale(props.value)
 	return (<g>
         <AnimatedPath d={_line} />
-        <AnimatedText  
+        <AnimatedText
             x={xLabel}
             y={yLabel}
-            textAnchor={props.vertical ? 'begin' : 'end'}
+            textAnchor={'end'}
+            dominantBaseline={props.vertical ? 'hanging' : 'baseline'}
             vertical={props.vertical}>
             {props.label}
         </AnimatedText>
-        <AnimatedText 
+        {!props.noValue && <AnimatedText 
             dominantBaseline={props.vertical ? 'hanging' : 'central'}
             x={xValue}
             y={yValue}
             textAnchor={props.vertical ? 'middle' : 'end'}
             vertical={props.vertical}>
             {props.value}
-        </AnimatedText>
+        </AnimatedText>}
 	</g>)
 }
 

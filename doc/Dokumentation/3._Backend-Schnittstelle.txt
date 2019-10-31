@@ -1,0 +1,29 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-05-31T13:18:50+02:00
+
+====== 3. Backend-Schnittstelle ======
+
+* Schnittstelle über HTTPS
+
+== Master: ==
+[[/backend]]
+
+== Develop ==
+[[/backend-develop]]
+
+
+==== Technik ====
+* **REST**
+* Datenübertragung über Json
+
+Bei fehlerhaften Parametern bei Api-Aufruf:
+**HTTP-Code 400**
+
+
+==== Alternative (erstmal zurückgestellt): ====
+* GraphQL
+
+
+
+

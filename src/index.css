@@ -7,8 +7,8 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
   background-color: transparent;
+  -webkit-overflow-scrolling: touch;
 }
 
 #root {
