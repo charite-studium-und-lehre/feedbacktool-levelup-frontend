@@ -1,7 +1,4 @@
-const backendUrl = window.location.origin.includes('localhost') ?
-    '/MockingData' :
-    'https://levelup.charite.de/backend/api'
-
+const backendUrl = '/backend/api'
 
 export const get = url =>
     fetch(`${backendUrl}/${url}`, {
