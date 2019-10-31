@@ -16,13 +16,13 @@ import PrivateRoute from './Core/routing/PrivateRoute'
 import Routes from './Core/routing/Routes'
 import {withTranslation} from 'react-i18next'
 
-const getBasename = () => "/" + (window.location.pathname.split('/')[1] || "")
+const basename = process.env.PUBLIC_URL || '/'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const App = withTranslation()(() =>
     <Provider store={createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)))}>
-        <BrowserRouter basename={getBasename()}>
+        <BrowserRouter basename={basename}>
             <div className="App container-fluid p-0 d-flex flex-column">
                 <Navbar />
                 <Breadcrumbs/>
