@@ -29,7 +29,7 @@ const Chart = _.compose([needsData(selectors.loaded, actions.load), connect(stat
                 x: l.label, y: data.results[i],
                 label: <AnimatedInteger value={data.results[i]} />,
                 color: l.color}))} />
-        <PointGraph diamonds color="rgba(0, 0, 0, .6)" data={labels.map((l, i) => ({x: l, y: data.means[i], id: i+1}))} />
+        <PointGraph diamonds offset={.85} data={labels.map((l, i) => ({x: l, y: data.means[i], id: i+1}))} />
     </OrdinalChart>
 )
 
@@ -39,7 +39,7 @@ const Results = props =>
             <Legend title={Legends.Strengths.PTMResults.title}>
                 {Legends.Strengths.PTMResults.text}
             <div className="position-relative">
-                    Der <KohortenMittelDot placing="inline" value={0} /> kennzeichnet den Kohortenmittelwert.
+                    Der <KohortenMittelDot placing="inline" /> kennzeichnet den Kohortenmittelwert.
             </div>
             </Legend>
             <div className="mt-3 p-2">
