@@ -205,7 +205,7 @@ const Legends = {
 
                     <h5 className="mt-4">Bitte um eine Fremdeinschätzung</h5>
                     <div>
-                        Du kannst auch Fremdeinschätzungen von deinen Lehrenden/ Ärzt*innen einzuholen.
+                        Du kannst auch Fremdeinschätzungen von deinen Lehrenden/ Ärzt*innen einholen.
                     </div>
                     <div className="table-responsive-md">
                     <table className="table table-borderless">
@@ -263,7 +263,7 @@ const Legends = {
                 text: ['keine Ausführung',
                     'gemeinsam mit dem Arzt',
                     'unter Beobachtung des Arztes',
-                    'eigenständig, alles/vieles wird nachgeprüft (Arzt auf Station',
+                    'eigenständig, alles/vieles wird nachgeprüft (Arzt auf Station)',
                     'eigenständig, Wichtiges wird nachgeprüft (Arzt auf Station)',
                     'eigenständig, Wichtiges wird nachgeprüft (Arzt nur telefonisch erreichbar)'
                 ].map((e, d) =>
