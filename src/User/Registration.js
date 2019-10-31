@@ -29,10 +29,10 @@ const errorToText = t => error => {
             return t('Mit der Matrikelnummer stimmt was nicht...')
     }
 }
-const stateToProps = state => ({ ...user.getData(state), error: user.getError(state) })
+const stateToProps = state => ({ ...user.getData(state), error: user.getError(state), loggedIn: user.isLoggedIn(state) })
 const registration = _.compose([ withTranslation(), makeExtendable(), connect(stateToProps, actions) ])(
-    ({ t, extended, toggleExtended, nachname, vorname, email, istAdmin, stammdatenVorhanden, sendStammdaten, error }) => {
-    if(stammdatenVorhanden) return <Redirect to="/" />
+    ({ t, extended, toggleExtended, nachname, vorname, email, istAdmin, stammdatenVorhanden, loggedIn, sendStammdaten, error }) => {
+    if(!loggedIn || stammdatenVorhanden) return <Redirect to="/" />
     const matrikelnummer = useRef()
     const openSwitchUser = () => {
         const w = window.open('/backend/admin/switchUser', '_blank')
