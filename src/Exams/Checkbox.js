@@ -1,9 +1,8 @@
 import React from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCheck} from '@fortawesome/free-solid-svg-icons'
-import COLORS from '../colors'
 
-const Checkbox = ({ checked, lineColor, textColor, children, onUncheck, onCheck }) => {
+const Checkbox = ({ checked, lineColor, backgroundColor, children, onUncheck, onCheck }) => {
     const toggle = () => {
         if (checked)
             onUncheck()
@@ -13,13 +12,13 @@ const Checkbox = ({ checked, lineColor, textColor, children, onUncheck, onCheck 
 
     return (
         <span onClick={toggle}>
-                <label className="p-2 m-0" style={{color: textColor}}>
+                <label className="p-2 m-0">
                     <span className="mr-2 pl-1"
                           style={{
-                              backgroundColor: textColor,
+                              backgroundColor: backgroundColor,
                               color: checked
                                   ? lineColor
-                                  : COLORS.background.base
+                                  : backgroundColor
                           }}>
                          <FontAwesomeIcon className="mr-1" icon={faCheck}/>
                     </span>

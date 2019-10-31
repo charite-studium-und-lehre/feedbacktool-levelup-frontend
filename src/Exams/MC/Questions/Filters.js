@@ -3,8 +3,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faFilter} from '@fortawesome/free-solid-svg-icons'
 import Filter from '../../../Utils/Filter'
 import makeExtendable from '../../../Core/makeExtendable'
-import SlideDown from 'react-slidedown';
-import COLORS from "../../../colors";
+import SlideDown from 'react-slidedown'
+import COLORS from "../../../colors"
 
 export const colors = [COLORS.background.grey7, COLORS.background.grey4, COLORS.background.grey1]
 

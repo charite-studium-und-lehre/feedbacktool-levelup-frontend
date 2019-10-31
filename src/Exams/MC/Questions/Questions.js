@@ -18,6 +18,7 @@ const Questions = ({ t, questions }) => {
     )
     const [ difficultyFilter, setDifficultyFilter ] = useState([
         { label: 'schwer', pred: q => q.durchschnittRichtig < .4 },
+        { label: 'mittel', pred: q => q.durchschnittRichtig >= .4 && q.durchschnittRichtig <= .8 },
         { label: 'leicht', pred: q => q.durchschnittRichtig > .8 }
     ])
     const [ correctFilter, setCorrectFilter ] = useState([

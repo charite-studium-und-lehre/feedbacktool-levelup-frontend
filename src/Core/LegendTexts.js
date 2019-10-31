@@ -40,7 +40,7 @@ const Legends = {
                 title: <Trans>Fragen und Antworten</Trans>,
                 text: <Trans i18nKey="exams.mc.questions.text">
                     <p>Hier kannst du dir alle Fragen der Semesterprüfung mit den dazugehörigen Antworten ansehen. Jede
-                        Frage wurde mit verschiedenen Tags versehen, mit deren Hilfe du die Fragen filtern kannst.Die
+                        Frage wurde mit verschiedenen Tags versehen, mit deren Hilfe du die Fragen filtern kannst. Die
                         Filter schwer und leicht zeigen dir wie viel deiner Mitstudierenden diese Frage beantworten
                         konnten. Schwere Fragen sind Fragen, die weniger als 40% deiner Mitstudierenden beantworten
                         konnten. Leichte Fragen hingegen konnten mehr als 80% deiner Kommilitonen beantworten.So kannst
