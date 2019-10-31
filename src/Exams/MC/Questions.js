@@ -36,7 +36,9 @@ const Questions = _.compose([needsData(loadedById, loadById), connect(stateToPro
     questions.length ? <div>
         <div className="row">
             <div className="col">
-                {t('Auswertung für')} <span style={{fontSize: '1.1rem'}} className="font-weight-bold">{questions.length}</span> {t('Fragen:')}
+                {t('Auswertung für ')}
+                <span style={{fontSize: '1.1rem'}} className="font-weight-bold mr-1">{questions.length}</span>
+                Fragen:
             </div>
         </div>
         <div className="row mt-3">
