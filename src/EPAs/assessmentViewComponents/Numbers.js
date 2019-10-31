@@ -22,7 +22,7 @@ const Numbers = ({ maxValue = 5, value = 0, color, colorsRgb, edit = true, ...pr
     })
 
     return <div className={props.className}>
-        <div>
+        <div className="text-nowrap">
             <span onClick={props.onClick} className="position-relative">
                 {props.decrement && edit && value > 0 &&
                     <span style={{ cursor: 'pointer', left: '-1.3rem' }} className="position-absolute">
