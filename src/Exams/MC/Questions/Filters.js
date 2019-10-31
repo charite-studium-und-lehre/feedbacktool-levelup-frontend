@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'lodash/fp'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faFilter} from '@fortawesome/free-solid-svg-icons'
 import Filter from '../../../Utils/Filter'

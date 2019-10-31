@@ -45,7 +45,7 @@ const Rankings = () =>
                 <div className="card-body">
                     <Legend title={Legends.Strengths.PTM.title}>{Legends.Strengths.PTM.text}
                     <div className="position-relative">
-                        Der <span className="position-relative pr-3" style={{minWidth: '1em'}}> <KohortenMittelDot className='inline-block' value={0} /> </span>kennzeichnet den Kohortenmittelwert
+                        Der <KohortenMittelDot placing='inline' value={0} /> kennzeichnet den Kohortenmittelwert
                    </div>
                     </Legend>
                     <PtmRanking />
