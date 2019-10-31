@@ -20,14 +20,6 @@ export default function PointGraph({padding = 0.2, offset = .5, ...props}) {
         const key1 = "circle" + (d.id || (d.x + '' + d.y));
         const cx = props.xScale(d.x) + scale(offset);
         const cy = props.yScale(d.y);
-
-        console.log({
-            key: key1,
-            width: width,
-            scale: scale,
-            x: cx,
-            y: cy
-        })
         return <AnimatedPoint
             key={key1}
             selected={d.selected}
@@ -47,13 +39,6 @@ export default function PointGraph({padding = 0.2, offset = .5, ...props}) {
         const x = props.xScale(d.x) + scale(offset) - (size/2)
         const y = props.yScale(d.y) - (size/2)
         const key = "diamond" + (d.id || (d.x + '' + d.y));
-        console.log({
-            key: key,
-            width: width,
-            scale: scale,
-            x: x,
-            y:y
-        })
         return <g transform={"translate("+x+", "+y+") scale("+size+")"} key={key}>
             <KohortenMittelDot/>
         </g>

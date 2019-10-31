@@ -26,14 +26,6 @@ const AnimatedPoint = ({
             .style('opacity', 1)
     })
 
-   /* console.log(
-        {who: 'animated point',
-            cx: cx,
-            cy: cy,
-            dcx: dcx,
-            dcy: dcy
-        } )*/
-
     return <circle 
         ref={node}
         r={r}

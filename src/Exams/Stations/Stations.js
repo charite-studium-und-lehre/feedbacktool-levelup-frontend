@@ -8,10 +8,10 @@ import Filter from '../../Utils/Filter'
 import needsData from '../../Core/needsData'
 import StationsChart from './StationsChart'
 import Legends from '../../Core/LegendTexts'
-import SimpleDot from '../../Charting/SimpleDot'
 import { withTranslation } from 'react-i18next'
 import { selectors, actions } from './Store'
 import colordefs from "../../colors";
+import KohortenMittelDot from "../../Charting/KohortenMittelDot";
 
 export const color = colordefs.pp.base
 export const colorTotal = colordefs.pp.lighter1
@@ -42,7 +42,7 @@ const Stations = ({ t, data, groupFilters = [], setGroupFilters }) => {
                             <Legend title={LegendText.title}>
                                 {LegendText.text}
                                 <div className="position-relative">
-                                    {t(`Der`)} <SimpleDot style={{ position: 'relative', display: 'inline-block', marginLeft: '.75rem' }} value={0} />{t(` kennzeichnet den Kohortenmittelwert.`)}
+                                    {t(`Der`)} <KohortenMittelDot placing="inline"/>{t(` kennzeichnet den Kohortenmittelwert.`)}
                                 </div>
                             </Legend>
                             <div className="mt-2 mb-3 d-flex flex-wrap">

@@ -3,13 +3,13 @@ import {connect} from 'react-redux'
 import {withTranslation} from 'react-i18next'
 import _ from 'lodash/fp'
 import Legend from '../../Charting/Legend'
-import SimpleDot from '../../Charting/SimpleDot'
 import AnimatedInteger from '../../Charting/AnimatedInteger'
 import Legends from '../../Core/LegendTexts'
 import needsData from '../../Core/needsData'
 import BarWithHeader from './BarWithHeader'
 import {selectors, actions} from './Store'
 import COLORS from "../../colors";
+import KohortenMittelDot from "../../Charting/KohortenMittelDot";
 
 const stateToProps = (state, ownProps) => ({...selectors.getById(state, ownProps.id)})
 const Chart = _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps))(({mode, faecher, module}) => mode === 'modules'
@@ -44,8 +44,7 @@ const Details = withTranslation()(({t, id}) => {
             <Legend title={LegendText.Details.title}>
                 {LegendText.Details.text}
                 <div className="position-relative">
-                    Der <SimpleDot style={{position: 'relative', display: 'inline-block', marginLeft: '.75rem'}}
-                                   value={0}/> {t(`kennzeichnet den Kohortenmittelwert.`)}
+                    Der <KohortenMittelDot placing="inline"/> {t(`kennzeichnet den Kohortenmittelwert.`)}
                 </div>
             </Legend>
             <div>
