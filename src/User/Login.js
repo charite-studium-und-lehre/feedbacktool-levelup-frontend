@@ -21,8 +21,8 @@ const Login = _.compose([
     connect(stateToProps),
     withTranslation(),
     makeExtendable(),
-    c => ({ loggedIn, hasStammdata }) => loggedIn && !hasStammdata ? <Redirect to='/user/registration' /> : c,
-    c => ({ loggedIn }) => loggedIn ? <Redirect to='/dashboard' /> : c
+    C => props => props.loggedIn && !props.hasStammdata ? <Redirect to='/user/registration' /> : <C {...props} />,
+    C => props => props.loggedIn ? <Redirect to='/dashboard' /> : <C {...props} />
 ])(({ t }) =>
     <div className='container-fluid h-100' >
         <div className='row h-100' style={background}>
