@@ -10,7 +10,8 @@ import AnimatedInteger from '../../Charting/AnimatedInteger'
 import Legends from '../../Core/LegendTexts'
 import needsData from '../../Core/needsData'
 import { selectors, actions } from './Store'
-import { InlineKohortenMittelDot, Diamond } from "../../Charting/KohortenMittelDot"
+import { InlineKohortenMittelDot } from "../../Charting/KohortenMittelDot"
+import AnimatedDiamond from "../../Charting/AnimatedDiamond"
 import colors from '../../colors'
 
 export const labels = ['richtig', 'falsch', 'nicht beantwortet']
@@ -22,7 +23,7 @@ export const labelsAndColors = [
 
 const stateToProps = (state, props) => ({ data: props.id ? selectors.getById(state, props.id) : selectors.getLatest(state) })
 const Chart = _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps)])(({ data }) => 
-    <OrdinalChart xDomain={labels} yDomain={[0,Math.max(..._.flatten(data.results))+10]}>
+    <OrdinalChart xDomain={labels} yDomain={[0,Math.max(...data.results, ...data.means)+10]}>
         <XAxis />
         <YAxis label="Anzahl Fragen" ticks={{count: 4}} />
         <BarGraph labels data={
@@ -31,7 +32,7 @@ const Chart = _.compose([needsData(selectors.loaded, actions.load), connect(stat
                 label: <AnimatedInteger value={data.results[i]} />,
                 color: l.color}))} />
         <PointGraph 
-            MarkerComponent={Diamond}
+            MarkerComponent={AnimatedDiamond}
             color={colors.textBlack}
             offset={.85}
             size={15}

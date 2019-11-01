@@ -1,14 +1,5 @@
 import React from 'react'
-import COLORS from "../colors"
-
-const DiamondShape = ({ color = COLORS.textBlack }) =>
-    <polygon style={{fill: color, stroke: 'var(--color-background-base)', strokeWidth: .1}}
-        points="0.5 0, 1 0.5, 0.5 1, 0 0.5"/>
-
-export const Diamond = ({ color = COLORS.textBlack, ...d }) =>
-    <g transform={`translate(${d.cx - d.size*.5}, ${d.cy - d.size*.5}) scale(${d.size})`} key={"diamond" + d.key}>
-        <DiamondShape color={color} />
-    </g>
+import { DiamondShape } from './AnimatedDiamond'
 
 const KohortenMittelDot = ({ className = '', valueInPercent = 0, sizeInEm = 1, ...otherProps}) => 
     <span

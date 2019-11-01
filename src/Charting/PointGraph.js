@@ -5,7 +5,6 @@ import AnimatedPoint from './AnimatedPoint'
 import COLORS from '../colors'
 
 const DefaultMarker = ({ onClick, ...d }) => <AnimatedPoint
-        key={"circle" + d.key}
         selected={d.selected}
         cx={d.cx}
         cy={d.cy}
