@@ -11,7 +11,7 @@ import Legends from '../../Core/LegendTexts'
 import { withTranslation } from 'react-i18next'
 import { selectors, actions } from './Store'
 import colordefs from "../../colors";
-import KohortenMittelDot from "../../Charting/KohortenMittelDot";
+import { InlineKohortenMittelDot } from "../../Charting/KohortenMittelDot"
 
 export const color = colordefs.pp.base
 export const colorTotal = colordefs.pp.lighter1
@@ -42,7 +42,7 @@ const Stations = ({ t, data, groupFilters = [], setGroupFilters }) => {
                             <Legend title={LegendText.title}>
                                 {LegendText.text}
                                 <div className="position-relative">
-                                    {t(`Der`)} <KohortenMittelDot placing="inline"/>{t(` kennzeichnet den Kohortenmittelwert.`)}
+                                    {t(`Der`)} <InlineKohortenMittelDot />{t(` kennzeichnet den Kohortenmittelwert.`)}
                                 </div>
                             </Legend>
                             <div className="mt-2 mb-3 d-flex flex-wrap">

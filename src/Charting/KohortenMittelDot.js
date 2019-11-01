@@ -1,40 +1,30 @@
 import React from 'react'
 import COLORS from "../colors"
 
-export default ({
-                    className = '',
-                    valueInPercent = 0,
-                    widthInPercent = valueInPercent,
-                    color = COLORS.textBlack,
-                    placing = '',
-                    sizeInEm = 1
-                }) => {
+const DiamondShape = ({ color = COLORS.textBlack }) =>
+    <polygon style={{fill: color, stroke: 'var(--color-background-base)', strokeWidth: .1}}
+        points="0.5 0, 1 0.5, 0.5 1, 0 0.5"/>
 
-    sizeInEm = placing==='inline' ? 1 : sizeInEm
+export const Diamond = ({ color = COLORS.textBlack, ...d }) =>
+    <g transform={`translate(${d.cx - d.size*.5}, ${d.cy - d.size*.5}) scale(${d.size})`} key={"diamond" + d.key}>
+        <DiamondShape color={color} />
+    </g>
 
-    const dot = <polygon style={{fill: color, stroke: 'var(--color-background-base)', strokeWidth: .1}}
-                 points="0.5 0, 1 0.5, 0.5 1, 0 0.5"/>
-
-    const valuePlacedDot = ()=> <span
+const KohortenMittelDot = ({ className = '', valueInPercent = 0, sizeInEm = 1, ...otherProps}) => 
+    <span
         className={'animated position-absolute ' + className}
         style={{
-            width: widthInPercent + '%',
+            width: valueInPercent + '%',
             minWidth: sizeInEm + 'em',
             height: sizeInEm + 'em'
         }}>
         <svg width="100%" height="100%" style={{position: 'absolute'}} viewBox="0 0 1 1">
-            {dot}
+            <DiamondShape {...otherProps} />
         </svg>
     </span>
+export default KohortenMittelDot
 
-    return placing === 'valueInPercent'
-        ?
-        valuePlacedDot()
-        :
-        placing === 'inline'
-            ?
-            <span className='position-relative mr-4'>
-                {valuePlacedDot()}
-            </span>
-            : dot
-}
+export const InlineKohortenMittelDot = props =>
+    <span className='position-relative mr-4'>
+        <KohortenMittelDot {...props} />
+    </span>

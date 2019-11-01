@@ -9,7 +9,7 @@ import needsData from '../../Core/needsData'
 import BarWithHeader from './BarWithHeader'
 import {selectors, actions} from './Store'
 import COLORS from "../../colors";
-import KohortenMittelDot from "../../Charting/KohortenMittelDot";
+import { InlineKohortenMittelDot } from "../../Charting/KohortenMittelDot"
 
 const stateToProps = (state, ownProps) => ({...selectors.getById(state, ownProps.id)})
 const Chart = _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps))(({mode, faecher, module}) => mode === 'modules'
@@ -44,7 +44,7 @@ const Details = withTranslation()(({t, id}) => {
             <Legend title={LegendText.Details.title}>
                 {LegendText.Details.text}
                 <div className="position-relative">
-                    Der <KohortenMittelDot placing="inline"/> {t(`kennzeichnet den Kohortenmittelwert.`)}
+                    Der <InlineKohortenMittelDot placing="inline"/> {t(`kennzeichnet den Kohortenmittelwert.`)}
                 </div>
             </Legend>
             <div>

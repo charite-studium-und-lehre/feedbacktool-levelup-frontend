@@ -10,7 +10,8 @@ import AnimatedInteger from '../../Charting/AnimatedInteger'
 import Legends from '../../Core/LegendTexts'
 import needsData from '../../Core/needsData'
 import { selectors, actions } from './Store'
-import KohortenMittelDot from "../../Charting/KohortenMittelDot";
+import { InlineKohortenMittelDot, Diamond } from "../../Charting/KohortenMittelDot"
+import colors from '../../colors'
 
 export const labels = ['richtig', 'falsch', 'nicht beantwortet']
 export const labelsAndColors = [
@@ -29,7 +30,13 @@ const Chart = _.compose([needsData(selectors.loaded, actions.load), connect(stat
                 x: l.label, y: data.results[i],
                 label: <AnimatedInteger value={data.results[i]} />,
                 color: l.color}))} />
-        <PointGraph diamonds offset={.85} data={labels.map((l, i) => ({x: l, y: data.means[i], id: i+1}))} />
+        <PointGraph 
+            MarkerComponent={Diamond}
+            color={colors.textBlack}
+            offset={.85}
+            size={15}
+            data={labels.map((l, i) => ({x: l, y: data.means[i], id: i+1}))} 
+        />
     </OrdinalChart>
 )
 
@@ -39,7 +46,7 @@ const Results = props =>
             <Legend title={Legends.Strengths.PTMResults.title}>
                 {Legends.Strengths.PTMResults.text}
             <div className="position-relative">
-                    Der <KohortenMittelDot placing="inline" /> kennzeichnet den Kohortenmittelwert.
+                    Der <InlineKohortenMittelDot /> kennzeichnet den Kohortenmittelwert.
             </div>
             </Legend>
             <div className="mt-3 p-2">

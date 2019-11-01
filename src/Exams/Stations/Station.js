@@ -17,7 +17,7 @@ const Station = props =>
                     <SimpleBar height='100%'
                                value={props.data.ergebnisProzentzahl} mean={props.data.durchschnittProzentzahl} total={1}
                                colorPartOfTotal={props.colorPartOfTotal} colorTotal={props.colorTotal}>
-                        {props.data.ergebnisProzentzahl * 100} %
+                        {Math.round(props.data.ergebnisProzentzahl * 100)} %
                         {props.data.details && <span className="ml-2 float-left">
                           <FontAwesomeIcon style={{fontSize: '.8rem'}} icon={faChevronDown}/>
                         </span>}

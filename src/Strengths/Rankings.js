@@ -7,7 +7,7 @@ import Legends from '../Core/LegendTexts'
 import needsData from '../Core/needsData'
 import { selectors as ptmSelectors, actions as ptmActions } from '../Exams/Ptm/Store'
 import { selectors as mcSelectors, actions as mcActions } from '../Exams/MC/Store'
-import KohortenMittelDot from "../Charting/KohortenMittelDot";
+import { InlineKohortenMittelDot } from "../Charting/KohortenMittelDot"
 
 const ptmProps = state => ({ faecher: _.flow(ptmSelectors.getLatest, ptmSelectors.getRanking)(state) })
 const PtmRanking = _.compose(needsData(ptmSelectors.loaded, ptmActions.load), connect(ptmProps))(
@@ -45,7 +45,7 @@ const Rankings = () =>
                 <div className="card-body">
                     <Legend title={Legends.Strengths.PTM.title}>{Legends.Strengths.PTM.text}
                     <div className="position-relative">
-                        Der <KohortenMittelDot placing='inline' value={0} /> kennzeichnet den Kohortenmittelwert
+                        Der <InlineKohortenMittelDot /> kennzeichnet den Kohortenmittelwert
                    </div>
                     </Legend>
                     <PtmRanking />
