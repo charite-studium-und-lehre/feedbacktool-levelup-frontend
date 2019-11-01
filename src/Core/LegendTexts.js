@@ -1,8 +1,8 @@
 import React from 'react'
 import {Trans} from 'react-i18next'
-import Numbers from '../EPAs/assessmentViewComponents/Numbers'
+import Level from '../EPAs/assessmentViewComponents/Level'
 import Video from '../EPAs/static/EPAsVideo'
-import {GraphButton} from "../Exams/Ptm/GraphButton";
+import {GraphButton} from "../Exams/Ptm/GraphButton"
 import COLORS from "../colors";
 
 const Legends = {
@@ -142,7 +142,7 @@ const Legends = {
                     durchzuführen und nur Wichtiges nachgeprüft wird (Level 5).
                     <div className="d-block">
                         Level:
-                        <Numbers className="mx-2 d-inline" value={3} color={COLORS.background.grey7} colorsRgb={COLORS.background.grey1}/>
+                        <Level className="mx-2 d-inline" value={3} color={COLORS.background.grey7} colorBackground={COLORS.background.grey1}/>
                     </div>
                     <h5 className="mt-4">Schätze dich selbst ein</h5>
                     <div>Im Laufe deines Studiums z.B. nach U- oder UaK-Kursen oder Famulaturen kannst du deine Level
@@ -153,8 +153,8 @@ const Legends = {
                         <tbody>
                         <tr>
                             <td className="text-nowrap" style={{color: "#224768", lineHeight: ".9rem"}}>
-                                <Numbers
-                                    colorsRgb="#ffffff"
+                                <Level
+                                    colorBackground="#ffffff"
                                     color="#224768"
                                     width="1rem"
                                     height="1rem"
@@ -177,8 +177,8 @@ const Legends = {
                         </tr>
                         <tr>
                             <td className="text-nowrap" style={{color: "#096c7b", lineHeight: ".9rem"}}>
-                                <Numbers
-                                    colorsRgb="#ffffff"
+                                <Level
+                                    colorBackground="#ffffff"
                                     color="#096c7b"
                                     width="1rem"
                                     height="1rem"
@@ -228,8 +228,8 @@ const Legends = {
                         </tr>
                         <tr>
                             <td className="text-nowrap" style={{color: "#802000", lineHeight: ".9rem"}}>
-                                <Numbers
-                                    colorsRgb="#ffffff"
+                                <Level
+                                    colorBackground="#ffffff"
                                     color="#802000"
                                     width="1rem"
                                     height="1rem"
@@ -269,7 +269,7 @@ const Legends = {
                 ].map((e, d) =>
                     <div key={d}>
                         <div>{`${d} - ${e}`}</div>
-                        <Numbers color={COLORS.background.grey7} colorsRgb={COLORS.background.grey1} value={d}/>
+                        <Level color={COLORS.background.grey7} colorBackground={COLORS.background.grey1} value={d}/>
                     </div>)
             },
             video: {

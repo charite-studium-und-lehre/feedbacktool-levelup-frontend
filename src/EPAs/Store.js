@@ -20,7 +20,7 @@ const getFilteredExternals = _.flow([ getFilter, externalsFnFromFilter ])
 const visible = state => _.flow([ getFilteredExternals(state), d => !getFilter(state) || (d && d.length) ])
 const addVisible = state => entry => _.flow([ getLeaves(state), _.some( visible(state) ), visible => ({ ...entry, visible }) ])(entry)
 
-const getScore = (state, id, prop) => _.flow([ getLeavesById(state), _.map(prop), _.sum])(id)
+const getSingleScore = (state, id, prop) => _.flow([ getLeavesById(state), _.map(prop), _.sum])(id)
 const getExternals = (state, id) => _.flow([ getById, e => getFilteredExternals(state)(e), _.defaultTo([]) ])(state, id)
 const addAssessment = _.flow([ getAssessments, as => _.map( e => ({ ...e, ...as.find( a => a.id === e.id ) })) ])
 const getLatest = _.flow([ _.sortBy( e => -e.datum ), _.head  ])
@@ -45,6 +45,13 @@ const getExternalScore = (state, id) =>
 	])(id)
 
 const getMaxScore = (state, id) => _.flow([ getLeavesById(state), leaves => leaves.length * 5 ])(id)
+
+const getScore = (state, id) => ({
+    done: getSingleScore(state, id, 'done'),
+	confident: getSingleScore(state, id, 'confident'),
+    externalScore: getExternalScore(state, id),
+    maxValue: getMaxScore(state, id),
+})
 
 export const selectors = baseStore.withLoadedSelector({
 	getById: (state, id) => _.flow([ getById, addVisible(state) ])(state, id),

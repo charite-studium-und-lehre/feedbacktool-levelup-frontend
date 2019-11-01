@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import { SlideDown } from 'react-slidedown'
 import makeExtendable from '../../Core/makeExtendable'
-import Numbers from './Numbers'
+import Level from './Level'
 import { selectors } from '../Store'
 
 const ExternAssessingWithValue = makeExtendable()(({ toggleExtended, extended, externals }) =>
@@ -34,8 +34,8 @@ const ExternAssessingWithValue = makeExtendable()(({ toggleExtended, extended, e
                                         <div>{e.name}</div>
                                     </div>
                                     <div className='col-7 text-center'>
-                                        <Numbers
-                                        colorsRgb=' hsl(15, 100%, 25%, .2)'
+                                        <Level
+                                        colorBackground=' hsl(15, 100%, 25%, .2)'
                                         color='hsl(15, 100%, 25%)'
                                         width='.8rem'
                                         height='.6rem'

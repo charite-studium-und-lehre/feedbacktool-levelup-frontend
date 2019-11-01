@@ -1,51 +1,47 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Score from './Score'
+import HeaderScore from './HeaderScore'
 import { selectors } from '../Store'
 
-const stateToProps = (state, ownProps) => ({ entry: selectors.getById(state, ownProps.entryId) })
+const stateToProps = (state, ownProps) => ({ ...selectors.getById(state, ownProps.entryId) })
 
-const Item = connect(stateToProps)(props => (
+const Entry = connect(stateToProps)(({ label, entryId, visible }) =>
+  visible ?
+  <div className='row mt-2 p-2'>
+    <div className='col-xs-6 col-md-12 col-xl-6 my-1'>
+      {label}
+    </div>
+    <div className='col-xs-6 col-md-12 col-xl-6 my-1'>
+      <Score entryId={entryId} width='.8rem' height='.6rem' borderRadius='5%' />
+    </div>
+  </div> : null)
+
+const Item = connect(stateToProps)(({ label, entryId, entries }) => (
   <div>
-    <div className='mb-3'>
-      <h5 className='text-center'>{props.entry.label}</h5>
-      <div className="m-auto" style={{ maxWidth: '45rem' }}>
-        <Score headings={true} edit={false} entryId={props.entryId} average={true} width='.9rem' height='.9rem' borderRadius='50%' />
+    <div className='mb-2'>
+      <h5 className='text-center'>{label}</h5>
+      <div className="mx-auto pt-3" style={{ maxWidth: '45rem' }}>
+        <HeaderScore headings={true} edit={false} entryId={entryId} average={true} width='.9rem' height='.9rem' borderRadius='50%' />
       </div>
     </div>
-    <div >
-      {props.entry.entries.map(f => <ItemLevel2 key={f} entryId={f} />)}
+    <div className="container-fluid">
+      {entries.map(f => <ItemLevel2 key={f} entryId={f} />)}
     </div>
   </div>
 ))
 
-const ItemLevel2 = connect(stateToProps)(props => {
-  return props.entry.visible ? <div className='pl-2 mb-3 overflow-hidden ' style={{borderBottom: '1px solid lightgrey'}}>
-    {props.entry.entries.length ? <h6 className='text-center mt-3 mb-4'>{props.entry.label}</h6> : null }
-    {!props.entry.entries.length &&
-      <div className="row pb-3">
-        <div className="col-sm-12 col-md-5">
-          <span>{props.entry.label}</span>
-        </div>
-        <div className="col-sm-12 mt-sm-3 col-md-7">
-        <Score entryId={props.entryId} width='.8rem' height='.6rem' borderRadius='5%'/>
-        </div>
-      </div>}
-    <div >
-      {props.entry.entries.map(e => <ItemLevel3 key={e} entryId={e} />)}
-    </div>
-  </div> : <div></div>
-})
-
-const ItemLevel3 = connect(stateToProps)(props => {
-  return props.entry.visible ? <div className='row mt-2 p-2'>
-    <div className='col-xs-6 col-md-12 col-lg-6 mb-sm-2 pr-3'>
-      {props.entry.label}
-    </div>
-    <div className='col-xs-6 col-md-12 col-lg-6 mt-2 '>
-      <Score entryId={props.entryId} width='.8rem' height='.6rem' borderRadius='5%' />
-    </div>
-  </div> : <div></div>
+const ItemLevel2 = connect(stateToProps)(({ visible, entries, label, entryId }) => {
+  return visible ? 
+    <div className='mb-3 overflow-hidden' style={{borderBottom: '1px solid lightgrey'}}>
+      {entries.length ? 
+        <div>
+          <h6 className='text-center mt-3 mb-4'>{label}</h6>
+          {entries.map(e => <Entry key={e} entryId={e} />)}
+        </div> :
+        <Entry entryId={entryId} />
+      }
+    </div> : null
 })
 
 export default Item
