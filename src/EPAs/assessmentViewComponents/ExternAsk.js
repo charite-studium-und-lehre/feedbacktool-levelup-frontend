@@ -26,8 +26,9 @@ const externAsk = ({ t, ...props }) => (
                     <Infos name={t(`Tätigkeiten/Kurs (opt)`)} placeholder='Kursname'/>
                     <Infos name={t(`Kommentar (opt)`)} placeholder='Kommentar' textarea={true}/>
                     <div className=' mt-3 pr-1 text-center'>
-                        <button className="btn btn-sm btn-secondary mt-3 " style={{width:'7rem'}} onClick={props.onClick}>Senden</button>
+                        <button disabled className="btn btn-sm btn-secondary mt-3 " style={{width:'7rem'}} onClick={props.onClick}>Senden</button>
                     </div>
+                    <p className="text-danger text-center">(Wir werden dieses Feature in den nächsten Tagen freischalten.)</p>
                 </div>
             </div>
         </div>
