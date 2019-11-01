@@ -34,9 +34,15 @@ Array:
 		'''
 	'''
 	fremdeinschaetzungen: Array
-		id: <ID der Fremdeinschätzung>	
-		name: <Mailadresse des Prüfers>
+		id: <ID der Fremdeinschätzung| null, wenn Status=offen>	
+		name: <Name des Bewerters>
+	'''
+					''email: <Email des Prüfers>''
+					''anfrageTaetigkeiten: <Text der angefragen Tätigkeiten>''
+					''anfrageKommentar: <Kommentar der Anfrage>''
+	'''
 		datum: <ISO-Datum , z.B: "2018-10-31">
+		status: <beantwortet|offen>
 	'''
 
 
