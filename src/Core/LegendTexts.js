@@ -4,6 +4,7 @@ import Level from '../EPAs/assessmentViewComponents/Level'
 import Video from '../EPAs/static/EPAsVideo'
 import {GraphButton} from "../Exams/Ptm/GraphButton"
 import COLORS from "../colors";
+import { colors as epaColors, colorsBackground as epaColorsBackground } from '../EPAs/assessmentViewComponents/Score'
 
 const Legends = {
     Exams: {
@@ -152,19 +153,15 @@ const Legends = {
                     <table className="table table-borderless">
                         <tbody>
                         <tr>
-                            <td className="text-nowrap" style={{color: "#224768", lineHeight: ".9rem"}}>
+                            <td className="text-nowrap" style={{color: epaColors[0], lineHeight: ".9rem"}}>
                                 <Level
-                                    colorBackground="#ffffff"
-                                    color="#224768"
+                                    colorBackground={epaColorsBackground[0]}
+                                    color={epaColors[0]}
                                     width="1rem"
                                     height="1rem"
                                     borderRadius="1rem"
-                                    edit={false}
-                                    average={true}
                                     value={1}
-                                    maxValue={5}
-                                    increment={null}
-                                    decrement={null}/>
+                                    maxValue={5}/>
                                 <div className="font-weight-bold pr-2">
                                     Habe ich gemacht
                                 </div>
@@ -176,19 +173,15 @@ const Legends = {
                             </td>
                         </tr>
                         <tr>
-                            <td className="text-nowrap" style={{color: "#096c7b", lineHeight: ".9rem"}}>
+                            <td className="text-nowrap" style={{color: epaColors[1], lineHeight: ".9rem"}}>
                                 <Level
-                                    colorBackground="#ffffff"
-                                    color="#096c7b"
+                                    colorBackground={epaColorsBackground[1]}
+                                    color={epaColors[1]}
                                     width="1rem"
                                     height="1rem"
                                     borderRadius="1rem"
-                                    edit={false}
-                                    average={true}
                                     value={1.7}
-                                    maxValue={5}
-                                    increment={null}
-                                    decrement={null}/>
+                                    maxValue={5}/>
                                 <div className="font-weight-bold">
                                     <div>Traue ich mir zu</div>
                                 </div>
@@ -227,19 +220,15 @@ const Legends = {
                             </td>
                         </tr>
                         <tr>
-                            <td className="text-nowrap" style={{color: "#802000", lineHeight: ".9rem"}}>
+                            <td className="text-nowrap" style={{color: epaColors[2], lineHeight: ".9rem"}}>
                                 <Level
-                                    colorBackground="#ffffff"
-                                    color="#802000"
+                                    colorBackground={epaColorsBackground[2]}
+                                    color={epaColors[2]}
                                     width="1rem"
                                     height="1rem"
                                     borderRadius="1rem"
-                                    edit={false}
-                                    average={true}
                                     value={0}
-                                    maxValue={5}
-                                    increment={null}
-                                    decrement={null}/>
+                                    maxValue={5}/>
                                 <div className="font-weight-bold">
                                     <div>Wird mir zugetraut</div>
                                 </div>
