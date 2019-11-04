@@ -21,6 +21,6 @@ POST-Parameter
 	''}''
 
 **Success:** 
-	//200 OK// 
+	//201 CREATED//
 **Error:** 
 	//400 "BAD REQUEST":// bei ungültigem Wert.

@@ -33,7 +33,7 @@ Array:
 		
 		'''
 	'''
-	fremdeinschaetzungen: Array
+	fremdbewertungen: Array
 		id: <ID der Fremdeinschätzung| null, wenn Status=offen>	
 		name: <Name des Bewerters>
 	'''
