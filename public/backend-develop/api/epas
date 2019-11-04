@@ -1,5 +1,5 @@
 {
-   "fremdeinschaetzungen": [
+   "fremdbewertungen": [
       {
          "id": "1",
          "name": "name 1",
@@ -166,7 +166,8 @@
           "parentId":110,
           "istBlatt":true,
           "gemacht":null,
-          "zutrauen":null
+          "zutrauen":null,
+          "external": [{"id": "1", "value": 4}]
        },
        { 
           "id":112,
