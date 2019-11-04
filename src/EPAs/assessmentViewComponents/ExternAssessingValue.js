@@ -54,6 +54,6 @@ const ExternAssessingWithValue = makeExtendable()(({ toggleExtended, extended, e
     </div>)
 
 const stateToProps = (state, ownProps) => ({ 
-    externals: selectors.getExternals(state, ownProps.entryId) 
+    externals: selectors.getAssessmentsForItem(state, ownProps.entryId) 
 })
 export default connect(stateToProps)(ExternAssessingWithValue)

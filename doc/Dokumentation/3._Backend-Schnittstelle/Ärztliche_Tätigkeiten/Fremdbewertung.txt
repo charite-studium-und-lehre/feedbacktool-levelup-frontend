@@ -6,17 +6,17 @@ Creation-Date: 2019-11-01T17:32:12+01:00
 
 ==== Anfrage zur Fremdbewertung an Server senden: ====
 
-[[/backend]][[/api/epas/fremdbewertung/anfordern]]
+[[/backend]][[/api/epas/fremdbewertung/anfrage]]
 
 POST-Parameter
 '''
 {
 '''
 	'''
-	fremdBewerterName: <String>,
-	fremdBewerterEmail: <String>,
-	angefragteTaetigkeiten: <String oder null>,
-	kommentar:  <String oder null>,	
+	fremdBewerterName: <String, min=5, max=50>,
+	fremdBewerterEmail: <Email>,
+	angefragteTaetigkeiten: <String, min=5, max=2000 oder null>,
+	kommentar:  <String, min=5, max=2000 oder null>,	
 	'''
 	''}''
 

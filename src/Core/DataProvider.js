@@ -1,4 +1,6 @@
-const backendUrl = '/backend/api'
+const host = process.env.NODE_ENV === 'development' ? 'https://levelup.charite.de' : ''
+const platform = process.env.PUBLIC_URL === '/app' ? 'backend' : 'backend-develop'
+const backendUrl = `${host}/${platform}/api`
 
 export const get = url =>
     fetch(`${backendUrl}/${url}`, {

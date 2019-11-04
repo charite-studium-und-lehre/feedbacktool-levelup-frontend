@@ -12,31 +12,31 @@ const getById = _.curry((state, id) => baseStore.getItems(state)[id])
 const getLeavesById = state => _.flow([ getById(state), getLeaves(state) ])
 const getLeaves = state => entry => entry.entries.length ? _.flatMap( getLeavesById(state) )(entry.entries) : [entry]
 
-const getAssessments = state => _.values(baseStore.getStore(state).assesments)
+const getAssessments = state => _.values(baseStore.getStore(state).assessments)
 
 const getFilter = state => baseStore.getStore(state).filter
-const externalsFnFromFilter = filter => e => filter && e.external ? e.external.filter( e => e.id === filter ) : e.external
-const getFilteredExternals = _.flow([ getFilter, externalsFnFromFilter ])
-const visible = state => _.flow([ getFilteredExternals(state), d => !getFilter(state) || (d && d.length) ])
+const assessmentsFnFromFilter = filter => e => filter && e.external ? e.external.filter( e => e.id === filter ) : e.external
+const getFilteredAssessments = _.flow([ getFilter, assessmentsFnFromFilter ])
+const visible = state => _.flow([ getFilteredAssessments(state), d => !getFilter(state) || (d && d.length) ])
 const addVisible = state => entry => _.flow([ getLeaves(state), _.some( visible(state) ), visible => ({ ...entry, visible }) ])(entry)
 
 const getSingleScore = (state, id, prop) => _.flow([ getLeavesById(state), _.map(prop), _.sum])(id)
-const getExternals = (state, id) => _.flow([ getById, e => getFilteredExternals(state)(e), _.defaultTo([]) ])(state, id)
+const getAssessmentsForItem = (state, id) => _.flow([ getById, e => getFilteredAssessments(state)(e), _.defaultTo([]) ])(state, id)
 const addAssessment = _.flow([ getAssessments, as => _.map( e => ({ ...e, ...as.find( a => a.id === e.id ) })) ])
 const getLatest = _.flow([ _.sortBy( e => -e.datum ), _.head  ])
 
-const getLatestExternal = state =>
+const getLatestAssessment = state =>
 	_.flow([
-		epa => getFilteredExternals(state)(epa),
+		epa => getFilteredAssessments(state)(epa),
 		addAssessment(state),
 		getLatest,
 		_.defaultTo([])
 	])
 
-const getExternalScore = (state, id) =>
+const getAssessmentScore = (state, id) =>
 	_.flow([ 
 		getLeavesById(state),
-		_.flatMap( getLatestExternal(state) ),
+		_.flatMap( getLatestAssessment(state) ),
 		_.over([
 			_.sumBy( e => e.value ),
 			a => a.length * 5,
@@ -49,7 +49,7 @@ const getMaxScore = (state, id) => _.flow([ getLeavesById(state), leaves => leav
 const getScore = (state, id) => ({
     done: getSingleScore(state, id, 'done'),
 	confident: getSingleScore(state, id, 'confident'),
-    externalScore: getExternalScore(state, id),
+    externalScore: getAssessmentScore(state, id),
     maxValue: getMaxScore(state, id),
 })
 
@@ -59,8 +59,8 @@ export const selectors = baseStore.withLoadedSelector({
 	getScore,
 	getMaxScore,
 	getFilter,
-	getExternals: (state, id) => _.flow([ getExternals, addAssessment(state) ])(state, id),
-	getExternalScore,
+	getAssessmentsForItem: (state, id) => _.flow([ getAssessmentsForItem, addAssessment(state) ])(state, id),
+	getAssessmentScore,
 	getAssessments,
 })
 
@@ -73,12 +73,19 @@ const callChangeLevel = (id, newData, oldData) => dispatch => {
 }
 
 const level = newData => epa => callChangeLevel(epa.id, newData(epa), { done: epa.done, confident: epa.confident })
+const requestAssessment = formdata => dispatch => {
+	post(`${url}/fremdbewertung/anfrage`, formdata)
+		.then( result => result.status === 200 ? 
+			dispatch({ type: `${identifier.toUpperCase()}_ASSESSMENT_REQUESTED` }) :
+			dispatch({ type: `${identifier.toUpperCase()}_ASSESSMENT_REQUEST_FAILED` }))
+}
 export const actions = baseStore.withLoadAction(`${url}`)({
 	setFilter: id => ({ type: `${identifier.toUpperCase()}_SET_FILTER`, payload: { id }}),
 	levelUpDone: level(epa => ({ done: epa.done + 1, confident: epa.confident })),
 	levelDownDone: level(epa => ({ done: epa.done - 1, confident: epa.confident })),
 	levelUpConfident: level(epa => ({ done: epa.done, confident: epa.confident + 1 })),
 	levelDownConfident: level(epa => ({ done: epa.done, confident: epa.confident - 1 })),
+	requestAssessment,
 })
 
 
@@ -92,11 +99,16 @@ const filter = (state = null, action) => {
 }
 
 const transformAssessments = _.flow([
-	d => d.fremdeinschaetzungen,
-	_.map( a => ({ ...a, datum: new Date(a.datum)})),
+	d => d.fremdbewertungen,
+	_.map( a => ({ 
+		...a, 
+		id: a.id || `offen${_.uniqueId()}`, 
+		datum: new Date(a.datum),
+		open: a.status === 'offen',
+	})),
 	_.keyBy( d => d.id )
 ])
-const assesments = (state = {}, action) => {
+const assessments = (state = {}, action) => {
 	switch(action.type) {
 		case `${identifier.toUpperCase()}_DATA_FETCHED`:
 			return transformAssessments(action.payload)
@@ -143,4 +155,4 @@ function epasReducer(state = {undefined: {label: 'root', entries: []}}, action) 
 	}
 }
 
-export const reducer = combineReducers({...baseStore.withLoadedReducer(epasReducer), filter, assesments })
+export const reducer = combineReducers({...baseStore.withLoadedReducer(epasReducer), filter, assessments })
