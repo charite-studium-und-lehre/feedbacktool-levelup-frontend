@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { withTranslation } from 'react-i18next'
-import { actions } from './Store'
+import { actions } from './RequestsStore'
 
 const Infos = props => (
         <div className="flex-grow-1">
@@ -25,7 +25,7 @@ const Infos = props => (
         </div>
 )
 
-const ExternAsk = ({ t, requestAssessment }) => {
+const ExternAsk = ({ t, makeRequest }) => {
     const [formdata, setFormdata] = useState({})
     const handleChange = field => e => setFormdata({...formdata, [field]: e.target.value})
     const fields = [
@@ -64,7 +64,7 @@ const ExternAsk = ({ t, requestAssessment }) => {
         <div className='mb-3'>{t(`Es wird ein Link an diese Email-Adresse gesendet, über den eine Fremdeinschätzung abgegeben werden kann.`)}</div>
         {fields.map( f => <Infos key={f.name} {...f} /> )}
         <div className='mt-3 text-center'>
-            <button disabled={!isValid} className="btn btn-sm btn-secondary mt-3 " style={{width:'7rem'}} onClick={() => requestAssessment(formdata)}>Senden</button>
+            <button disabled={!isValid} className="btn btn-sm btn-secondary mt-3 " style={{width:'7rem'}} onClick={() => makeRequest(formdata)}>Senden</button>
         </div>
     </div>
 }
