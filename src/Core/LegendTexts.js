@@ -3,8 +3,7 @@ import {Trans} from 'react-i18next'
 import Level from '../EPAs/assessmentViewComponents/Level'
 import Video from '../EPAs/static/EPAsVideo'
 import {GraphButton} from "../Exams/Ptm/GraphButton"
-import COLORS from "../colors";
-import { colors as epaColors, colorsBackground as epaColorsBackground } from '../EPAs/assessmentViewComponents/Score'
+
 
 const Legends = {
     Exams: {
@@ -130,121 +129,12 @@ const Legends = {
         Explanation: {
             title: <Trans>Ärztliche Tätigkeiten (EPAs)</Trans>,
             text: <Trans>
-                <div className="my-2 w-100 position-relative">
-                    <div>
-                        Video: <a className="color-navigation" href="https://levelup.charite.de/videos/epa_2019.mp4">Was
-                        sind
-                        EPAs?</a>
-                    </div>
                     Hier siehst du eine Übersicht zu den ärztlichen Kern-Tätigkeiten, die du im Laufe des Studiums
                     trainieren wirst. Nutze die Funktion ärztliche Tätigkeiten, um die Entwicklung deiner praktischen
                     Kompetenz festzuhalten und ggf. nachzusteuern. Ziel ist, dass du als Absolvent*in des
                     Medizinstudiums dazu in der Lage bist, die aufgeführten Tätigkeiten zu Berufsbeginn eigenständig
                     durchzuführen und nur Wichtiges nachgeprüft wird (Level 5).
-                    <div className="d-block">
-                        Level:
-                        <Level className="mx-2 d-inline" value={3} color={COLORS.background.grey7} colorBackground={COLORS.background.grey1}/>
-                    </div>
-                    <h5 className="mt-4">Schätze dich selbst ein</h5>
-                    <div>Im Laufe deines Studiums z.B. nach U- oder UaK-Kursen oder Famulaturen kannst du deine Level
-                        eintragen.
-                    </div>
-                    <div className="table-responsive-md">
-                    <table className="table table-borderless">
-                        <tbody>
-                        <tr>
-                            <td className="text-nowrap" style={{color: epaColors[0], lineHeight: ".9rem"}}>
-                                <Level
-                                    colorBackground={epaColorsBackground[0]}
-                                    color={epaColors[0]}
-                                    width="1rem"
-                                    height="1rem"
-                                    borderRadius="1rem"
-                                    value={1}
-                                    maxValue={5}/>
-                                <div className="font-weight-bold pr-2">
-                                    Habe ich gemacht
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    - gibt an unter welchem Level du die jeweilige Tätigkeit ausgeführt hast.
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="text-nowrap" style={{color: epaColors[1], lineHeight: ".9rem"}}>
-                                <Level
-                                    colorBackground={epaColorsBackground[1]}
-                                    color={epaColors[1]}
-                                    width="1rem"
-                                    height="1rem"
-                                    borderRadius="1rem"
-                                    value={1.7}
-                                    maxValue={5}/>
-                                <div className="font-weight-bold">
-                                    <div>Traue ich mir zu</div>
-                                </div>
-                            </td>
-                            <td >
-                                <div>
-                                    - gibt an unter welchem Level du dir die Tätigkeit zutraust.
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    </div>
-
-                    <h5 className="mt-4">Bitte um eine Fremdeinschätzung</h5>
-                    <div>
-                        Du kannst auch Fremdeinschätzungen von deinen Lehrenden/ Ärzt*innen einholen.
-                    </div>
-                    <div className="table-responsive-md">
-                    <table className="table table-borderless">
-                        <tbody>
-                        <tr>
-                            <td className="p-1"><div className="btn btn-secondary text-nowrap"> Fremdbewertung einfordern</div></td>
-                            <td className="p-0">
-                                <div>Sende eine Einladung mit einer Fremdbewertungsanforderung an deine*n
-                                    Dozierende*n.
-                                </div>
-                            </td>
-                        </tr>
-                        <tr >
-                            <td className="p-1"><div className="btn btn-secondary text-nowrap"> Erhaltene Fremdbewertungen</div></td>
-                            <td className="p-0">
-                                <div>
-                                    Schau dir alle deine bisher erhaltenen Fremdbewertungen an.
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="text-nowrap" style={{color: epaColors[2], lineHeight: ".9rem"}}>
-                                <Level
-                                    colorBackground={epaColorsBackground[2]}
-                                    color={epaColors[2]}
-                                    width="1rem"
-                                    height="1rem"
-                                    borderRadius="1rem"
-                                    value={0}
-                                    maxValue={5}/>
-                                <div className="font-weight-bold">
-                                    <div>Wird mir zugetraut</div>
-                                </div>
-                            </td>
-                            <td className="p-0">
-                                <div>
-                                    - gibt an unter welchem Level dir deine Lehrenden/ Ärzt*innen die Tätigkeit
-                                    zutrauen.
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    </div>
-                </div>
-            </Trans>
+                 </Trans>
         },
         CheatSheetCard: {
             levels: {
@@ -254,12 +144,7 @@ const Legends = {
                     'unter Beobachtung des Arztes',
                     'eigenständig, alles/vieles wird nachgeprüft (Arzt auf Station)',
                     'eigenständig, Wichtiges wird nachgeprüft (Arzt auf Station)',
-                    'eigenständig, Wichtiges wird nachgeprüft (Arzt nur telefonisch erreichbar)'
-                ].map((e, d) =>
-                    <div key={d}>
-                        <div>{`${d} - ${e}`}</div>
-                        <Level color={COLORS.background.grey7} colorBackground={COLORS.background.grey1} value={d}/>
-                    </div>)
+                    'eigenständig, Wichtiges wird nachgeprüft (Arzt nur telefonisch erreichbar)']
             },
             video: {
                 title: <Trans>Video: Was sind EPAs?</Trans>,
