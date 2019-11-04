@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { withTranslation } from 'react-i18next'
-import { actions } from '../Store'
+import { actions } from './Store'
 
 const Infos = props => (
         <div className="flex-grow-1">

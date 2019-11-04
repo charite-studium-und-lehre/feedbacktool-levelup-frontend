@@ -2,7 +2,7 @@ import React from 'react'
 import { withTranslation } from 'react-i18next'
 import makeExtendable from '../../Core/makeExtendable'
 import Legend from "../../Charting/Legend"
-import Level from '../assessmentViewComponents/Level'
+import Level from '../Level'
 import COLORS from '../../colors';
 
 import Legends from "../../Core/LegendTexts";

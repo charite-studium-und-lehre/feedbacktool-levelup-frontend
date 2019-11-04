@@ -3,7 +3,7 @@ import _ from 'lodash/fp'
 import { withTranslation } from 'react-i18next'
 import needsData from '../Core/needsData'
 import { selectors, actions } from '../EPAs/Store'
-import { withHeaderScore } from '../EPAs/assessmentViewComponents/HeaderScore'
+import { withHeaderScore } from '../EPAs/HeaderScore'
 import DashboardCard from './DashboardCard'
 
 

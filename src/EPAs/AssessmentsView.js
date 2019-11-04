@@ -1,10 +1,10 @@
 import React from 'react'
 import _ from 'lodash/fp'
 import {connect} from 'react-redux'
-import Item from './assessmentViewComponents/Item'
+import Item from './Item'
 import Tabs from '../Utils/Tabs'
 import needsData from '../Core/needsData'
-import Controls from './assessmentViewComponents/AssessmentControls'
+import Controls from './Assessment/Controls'
 import {selectors, actions} from './Store'
 
 const stateToProps = state => ({filter: selectors.getFilter(state), root: selectors.getItemByLabel(state, 'root')})

@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash/fp'
 import {connect} from 'react-redux'
-import { selectors } from '../Store'
+import { selectors } from './Store'
 import {withTranslation} from 'react-i18next'
 import Level from './Level'
 import { colors, colorsBackground } from './Score'

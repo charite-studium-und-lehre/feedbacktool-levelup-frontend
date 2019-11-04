@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {selectors, actions} from '../Store'
-import ExternAssessingWithValue from './ExternAssessingValue'
+import {selectors, actions} from './Store'
+import ExternAssessingWithValue from './Assessment/ExternAssessingValue'
 import Level, { LevelWithEdit } from './Level'
 import ScoreWrapper from './ScoreWrapper'
 

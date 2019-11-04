@@ -4,11 +4,30 @@ Creation-Date: 2019-11-01T17:32:12+01:00
 
 ====== Fremdbewertung ======
 
-==== Anfrage zur Fremdbewertung an Server senden: ====
+===== Anfrage =====
 
-[[/backend]][[/api/epas/fremdbewertung/anfrage]]
+=== lesen ===
+**GET** [[/]][[api/epas/fremdbewertungen/anfrage/<Token]]>
 
-POST-Parameter
+**Success:** 
+	//200 CREATED//
+**Error:** 
+	//404 "NOT FOUND":// bei ungültigem Token.
+	
+//Response://
+''{''
+''id: <ID>,''
+''email: <Email>,''
+''name: <String>,''
+''datum: <ISO-Datum>,''
+''studiName: <Name des anfragenden Studis>,''
+''studiEmail: <Email des anfragenden Studis>''
+''}''
+
+=== erstellen ===
+**POST** [[/]][[api/epas/fremdbewertungen/anfrage]]
+
+Parameter
 '''
 {
 '''
@@ -24,3 +43,30 @@ POST-Parameter
 	//201 CREATED//
 **Error:** 
 	//400 "BAD REQUEST":// bei ungültigem Wert.
+
+
+===== Bewertung =====
+
+=== erstellen ===
+**POST** [[/]][[api/epas/fremdbewertungen]]
+
+Parameter
+'''
+{
+	token: <Anfrage Token>,
+	epas: [
+		{
+			id: <Epa Id>,
+			value: <Wert zwischen 0-5>
+		},
+		...
+	]	
+'''
+	''}''
+
+**Success:** 
+	//201 CREATED//
+**Error:** 
+	//400 "BAD REQUEST":// bei ungültigem Wert.
+
+

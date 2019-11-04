@@ -1,4 +1,4 @@
-const host = process.env.NODE_ENV === 'development' ? 'https://levelup.charite.de' : ''
+const host = process.env.NODE_ENV === 'developments' ? 'https://levelup.charite.de' : ''
 const platform = process.env.PUBLIC_URL === '/app' ? 'backend' : 'backend-develop'
 const backendUrl = `${host}/${platform}/api`
 

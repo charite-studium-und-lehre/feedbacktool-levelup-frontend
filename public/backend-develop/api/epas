@@ -167,7 +167,7 @@
           "istBlatt":true,
           "gemacht":null,
           "zutrauen":null,
-          "external": [{"id": "1", "value": 4}]
+          "external": [{"id": "1", "value": 4},{"id": "2", "value": 3}]
        },
        { 
           "id":112,

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Score from './Score'
 import HeaderScore from './HeaderScore'
-import { selectors } from '../Store'
+import { selectors } from './Store'
 
 const stateToProps = (state, ownProps) => ({ ...selectors.getById(state, ownProps.entryId) })
 

@@ -1,9 +1,7 @@
 import React from 'react'
 import {Trans} from 'react-i18next'
-import Level from '../EPAs/assessmentViewComponents/Level'
 import Video from '../EPAs/static/EPAsVideo'
 import {GraphButton} from "../Exams/Ptm/GraphButton"
-
 
 const Legends = {
     Exams: {
