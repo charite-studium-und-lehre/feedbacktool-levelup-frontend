@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { withTranslation } from 'react-i18next'
-import { actions } from '../Create/RequestsStore'
+import { selectors, actions } from '../Create/RequestsStore'
 
 const Infos = props => (
         <div className="flex-grow-1">
@@ -25,7 +25,7 @@ const Infos = props => (
         </div>
 )
 
-const ExternAsk = ({ t, makeRequest }) => {
+const ExternAsk = ({ t, makeRequest, sending, sent, resetSent }) => {
     const [formdata, setFormdata] = useState({})
     const handleChange = field => e => setFormdata({...formdata, [field]: e.target.value})
     const fields = [
@@ -60,13 +60,18 @@ const ExternAsk = ({ t, makeRequest }) => {
         },
     ]
     const isValid = fields.map( f => f.isValid ).reduce((acc, val) => acc && val)
-    return <div className="mt-2">
-        <div className='mb-3'>{t(`Es wird ein Link an diese Email-Adresse gesendet, über den eine Fremdeinschätzung abgegeben werden kann.`)}</div>
-        {fields.map( f => <Infos key={f.name} {...f} /> )}
-        <div className='mt-3 text-center'>
-            <button disabled={!isValid} className="btn btn-sm btn-secondary mt-3 " style={{width:'7rem'}} onClick={() => makeRequest(formdata)}>Senden</button>
+    return !sent ?
+        <div className="mt-2">
+            <div className='mb-3'>{t(`Es wird ein Link an diese Email-Adresse gesendet, über den eine Fremdeinschätzung abgegeben werden kann.`)}</div>
+            {fields.map( f => <Infos key={f.name} {...f} /> )}
+            <div className='mt-3 text-center'>
+                <button disabled={!isValid || sending} className="btn btn-sm btn-secondary mt-3 " style={{width:'7rem'}} onClick={() => makeRequest(formdata)}>Senden</button>
+            </div>
+        </div> :
+        <div className="text-center">
+            <p>{t('Die Anfrage wurde abgesendet. Du hörst von uns, wenn die Fremdbewertung abgegeben wurde.')}</p>
+            <p className="color-navigation cursor-pointer" onClick={resetSent}>{t('Weitere Fremdbewertung einfordern')}</p>
         </div>
-    </div>
 }
 
-export default [withTranslation(), connect(null, actions)].reduceRight((fx, f) => f(fx), ExternAsk)
+export default [withTranslation(), connect(selectors.getStatus, actions)].reduceRight((fx, f) => f(fx), ExternAsk)

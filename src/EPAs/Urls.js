@@ -1,3 +1,3 @@
 export const epasUrl = `epas`
-export const assessmentsUrl = `${epasUrl}s/fremdbewertungen`
-export const requestsUrl = `${assessmentsUrl}/anfragen`
+export const assessmentsUrl = `${epasUrl}/fremdbewertung`
+export const requestsUrl = `${assessmentsUrl}/anfrage`
