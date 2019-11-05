@@ -2,7 +2,7 @@ import { selectors as epasSelectors } from '../Store'
 import { combineReducers } from 'redux'
 import BaseStore from '../../Core/BaseStore'
 import { post } from '../../Core/DataProvider'
-import { reducer as requestsReducer, identifier as requestsIdentifier } from './RequestsStore'
+import { reducer as requestsReducer, identifier as requestsIdentifier } from './Create/RequestsStore'
 import { assessmentsUrl as url } from '../Urls'
 
 export const identifier = 'assessments'
@@ -21,6 +21,7 @@ const send = token => (dispatch, getState) => {
 			dispatch({ type: `${identifier.toUpperCase()}_SENT`}) :
 			dispatch({ type: `${identifier.toUpperCase()}_SEND_FAILED`})
 		)
+		.catch( () => dispatch({ type: `${identifier.toUpperCase()}_SEND_FAILED`}))
 }
 export const actions = baseStore.withLoadAction(url)({
 	setEpa: (id, value) => ({ type: `${identifier.toUpperCase()}_SET_EPA`, payload: { id, value } }),
@@ -38,6 +39,17 @@ const transformAssessments = data => [
 	d => d.reduce( (a,v) => ({ ...a, [v.id]: v }), {})
 ].reduce((f,g) => g(f), data)
 
+
+const error = (state = null, action) => {
+    switch(action.type) {
+        case `${identifier.toUpperCase()}_SENT`:
+            return null
+        case `${identifier.toUpperCase()}_SEND_FAILED`:
+            return 'Das hat leider nicht funktioniert. Bitte senden Sie uns eine Mail an levelup.charite.de'
+		default:
+			return state
+	}
+}
 
 const current = (state = {}, action) => {
     switch(action.type) {
@@ -57,4 +69,4 @@ const items = (state = {}, action) => {
 			return state
 	}
 }
-export const reducer = combineReducers({ ...baseStore.withLoadedReducer(items), [requestsIdentifier]: requestsReducer, current })
+export const reducer = combineReducers({ ...baseStore.withLoadedReducer(items), [requestsIdentifier]: requestsReducer, current, error })

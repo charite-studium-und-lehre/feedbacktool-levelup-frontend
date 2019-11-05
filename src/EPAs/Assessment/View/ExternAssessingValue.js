@@ -4,9 +4,9 @@ import _ from 'lodash/fp'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import { SlideDown } from 'react-slidedown'
-import makeExtendable from '../../Core/makeExtendable'
-import Level from '../Level'
-import { selectors } from '../Store'
+import makeExtendable from '../../../Core/makeExtendable'
+import Level from '../../Level'
+import { selectors } from '../../Store'
 
 const ExternAssessingWithValue = makeExtendable()(({ toggleExtended, extended, externals }) =>
     <div className="container-fluid">

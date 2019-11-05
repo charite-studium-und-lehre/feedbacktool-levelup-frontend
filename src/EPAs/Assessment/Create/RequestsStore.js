@@ -1,7 +1,7 @@
-import BaseStore from '../../Core/BaseStore'
-import { post } from '../../Core/DataProvider'
-import { requestsUrl as url } from '../Urls'
-import { selectors as assessmentsSelectors } from './Store'
+import BaseStore from '../../../Core/BaseStore'
+import { post } from '../../../Core/DataProvider'
+import { requestsUrl as url } from '../../Urls'
+import { selectors as assessmentsSelectors } from '../Store'
 import DummyData from './Data'
 
 export const identifier = 'requests'

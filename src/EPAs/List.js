@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import Item from './Item'
 import Tabs from '../Utils/Tabs'
 import needsData from '../Core/needsData'
-import Controls from './Assessment/Controls'
+import Controls from './Assessment/View/Controls'
 import {selectors, actions} from './Store'
 
 const stateToProps = state => ({filter: selectors.getFilter(state), root: selectors.getItemByLabel(state, 'root')})

@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withTranslation } from 'react-i18next'
-import colors from '../../colors'
-import { selectors, actions } from './Store'
+import colors from '../../../colors'
+import { selectors, actions } from '../Store'
 
 const Level = ({ selected, onClick, children }) => 
     <div onClick={onClick} className="d-inline-block m-2" 

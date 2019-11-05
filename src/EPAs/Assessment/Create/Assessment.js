@@ -2,25 +2,21 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withTranslation } from 'react-i18next'
 import { selectors, actions as requestActions } from './RequestsStore'
-import { actions } from './Store'
-import { selectors as epasSelectors } from '../Store'
-import needsData from '../../Core/needsData'
+import { actions } from '../Store'
+import { selectors as epasSelectors } from '../../Store'
+import needsData from '../../../Core/needsData'
 import Tab from './Tab'
-import Tabs from '../../Utils/Tabs'
-import CheatSheetCard from '../static/CheatSheetCard'
-import Legend from '../../Charting/Legend'
+import Tabs from '../../../Utils/Tabs'
+import CheatSheetCard from '../../static/CheatSheetCard'
+import Legend from '../../../Charting/Legend'
 
 const load = ownProps => requestActions.loadWithToken(ownProps.match.params.token)
 const loaded = (state, ownProps) => selectors.loaded(state, ownProps.match.params.token)
 
 const Title = connect((state, ownProps) => ({label: epasSelectors.getById(state, ownProps.entryId).label}))(props => props.label)
 
-const stateToProps = (state, ownProps) => ({ 
-    request: selectors.getByToken(state, ownProps.match.params.token),
-    root: epasSelectors.getById(state),
-})
 const Info = withTranslation()(({ t, name, angefragteTaetigkeiten, studiName, studiEmail, kommentar, datum }) => 
-    <div className="card">
+<div className="card">
         <div className="p-3"><Legend extended={true} title={t('Fremdbewertung abgeben')} >
                 <p>Hallo <strong>{name}</strong>!</p>
                 <p>Sie wurden am <strong>{datum.toLocaleDateString()}</strong> von <strong>{studiName}</strong> gebeten eine Einschätzung zu seinen*ihren ärztlichen Tätigkeiten abzugeben.</p>
@@ -31,8 +27,13 @@ const Info = withTranslation()(({ t, name, angefragteTaetigkeiten, studiName, st
         </div>
     </div>)
 
+const stateToProps = (state, ownProps) => ({ 
+    request: selectors.getByToken(state, ownProps.match.params.token),
+    root: epasSelectors.getById(state),
+    error: selectors.getError,
+})
 const Assessment = [needsData(loaded, load), connect(stateToProps, actions), withTranslation()].reduceRight((f,g) => g(f), 
-    ({ t, request, root, send, match: { params: { token }} }) =>
+    ({ t, request, root, send, match: { params: { token }}, error }) =>
     <div className="container-fluid">
         <div className="row">
             <div className="col-lg-4">
@@ -52,6 +53,9 @@ const Assessment = [needsData(loaded, load), connect(stateToProps, actions), wit
                         {root.entries.map(e => <Tab key={e} entryId={e} title={ <Title entryId={e}/> } /> )}
                     </Tabs>
                 </div>
+                {error && <div className="p-2">
+                    <div>{error}</div>
+                </div>}
                 <div className="p-2">
                     <button type="submit" className="w-100 btn btn-info" 
                         onClick={() => window.confirm(t('Soll die Bewertung jetzt abgesendet werden?')) && send(token)}>

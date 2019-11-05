@@ -4,7 +4,7 @@ import BaseStore from '../Core/BaseStore'
 import { post } from '../Core/DataProvider'
 import { reducer as assessments, identifier as assessmentsIdentifier, selectors as assessmentsSelectors } from './Assessment/Store'
 import { epasUrl as url } from './Urls'
-import DummyData from './Assessment/Data'
+import DummyData from './Assessment/Create/Data'
 
 const storeIdentifier = 'epas'
 export const identifier = storeIdentifier

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { selectors } from '../Store'
+import { selectors } from '../../Store'
 import Rating from './Rating'
 
 const stateToProps = (state, ownProps) => ({ ...selectors.getById(state, ownProps.entryId) })

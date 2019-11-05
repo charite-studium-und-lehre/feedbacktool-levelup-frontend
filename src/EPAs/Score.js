@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {selectors, actions} from './Store'
-import ExternAssessingWithValue from './Assessment/ExternAssessingValue'
+import Assessments from './Assessment/View/ExternAssessingValue'
 import Level, { LevelWithEdit } from './Level'
 import ScoreWrapper from './ScoreWrapper'
 
@@ -36,7 +36,7 @@ const Score = ({
                 maxValue={Math.max(externalScore.total, 1)}
                 value={externalScore.value}/>
         ]} />
-        <ExternAssessingWithValue entryId={entryId}/>
+        <Assessments entryId={entryId}/>
     </div>
 
 const stateToProps = (state, ownProps) => ({
