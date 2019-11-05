@@ -4,6 +4,7 @@ import BaseStore from '../Core/BaseStore'
 import { post } from '../Core/DataProvider'
 import { reducer as assessments, identifier as assessmentsIdentifier, selectors as assessmentsSelectors } from './Assessment/Store'
 import { epasUrl as url } from './Urls'
+import DummyData from './Assessment/Data'
 
 const storeIdentifier = 'epas'
 export const identifier = storeIdentifier
@@ -118,6 +119,8 @@ const setEpa = (state, {id, value}) => ({...state, [id]: { ...state[id], ...valu
 
 function epasReducer(state = {undefined: {label: 'root', entries: []}}, action) {
 	switch (action.type) {
+		case `REQUESTS_DATA_FETCH_FAILED`:
+			return transform(DummyData.epas)
 		case `REQUESTS_DATA_FETCHED`:
 			return transform(action.payload.epas)
 		case `${identifier.toUpperCase()}_DATA_FETCHED`:
