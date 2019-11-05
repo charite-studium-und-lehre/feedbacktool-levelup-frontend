@@ -2,38 +2,26 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withTranslation } from 'react-i18next'
 import { selectors, actions as requestActions } from './RequestsStore'
-import { actions } from '../Store'
+import { selectors as assessmentsSelectors, actions } from '../Store'
 import { selectors as epasSelectors } from '../../Store'
-import needsData from '../../../Core/needsData'
+import needsData, { Spinner } from '../../../Core/needsData'
 import Tab from './Tab'
 import Tabs from '../../../Utils/Tabs'
 import CheatSheetCard from '../../static/CheatSheetCard'
-import Legend from '../../../Charting/Legend'
+import Info from './Info'
 
 const load = ownProps => requestActions.loadWithToken(ownProps.match.params.token)
 const loaded = (state, ownProps) => selectors.loaded(state, ownProps.match.params.token)
 
 const Title = connect((state, ownProps) => ({label: epasSelectors.getById(state, ownProps.entryId).label}))(props => props.label)
 
-const Info = withTranslation()(({ t, name, angefragteTaetigkeiten, studiName, studiEmail, kommentar, datum }) => 
-<div className="card">
-        <div className="p-3"><Legend extended={true} title={t('Fremdbewertung abgeben')} >
-                <p>Hallo <strong>{name}</strong>!</p>
-                <p>Sie wurden am <strong>{datum.toLocaleDateString()}</strong> von <strong>{studiName}</strong> gebeten eine Einschätzung zu seinen*ihren ärztlichen Tätigkeiten abzugeben.</p>
-                {angefragteTaetigkeiten && <p><u>Tätigkeit / Kurs:</u> {angefragteTaetigkeiten}</p>}
-                {kommentar && <p><u>Kommentar:</u> {kommentar}</p>}
-                <p>Sie müssen nicht alle Items bewerten. Bei Fragen können Sie den*die Student*in unter <a className="color-navigation" href={`mailto: ${studiEmail}`}>{studiEmail}</a> erreichen. Bei technischen Problemen können Sie uns unter <a className="color-navigation" href={'mailto: levelup@charite.de'}>levelup@charite.de</a> kontaktieren.</p>
-            </Legend>
-        </div>
-    </div>)
-
 const stateToProps = (state, ownProps) => ({ 
     request: selectors.getByToken(state, ownProps.match.params.token),
     root: epasSelectors.getById(state),
-    error: selectors.getError,
+    ...assessmentsSelectors.getStatus(state),
 })
 const Assessment = [needsData(loaded, load), connect(stateToProps, actions), withTranslation()].reduceRight((f,g) => g(f), 
-    ({ t, request, root, send, match: { params: { token }}, error }) =>
+    ({ t, request, root, send, match: { params: { token }}, error, sending }) =>
     <div className="container-fluid">
         <div className="row">
             <div className="col-lg-4">
@@ -53,13 +41,15 @@ const Assessment = [needsData(loaded, load), connect(stateToProps, actions), wit
                         {root.entries.map(e => <Tab key={e} entryId={e} title={ <Title entryId={e}/> } /> )}
                     </Tabs>
                 </div>
-                {error && <div className="p-2">
-                    <div>{error}</div>
+                {error && <div className="p-2 text-center text-danger">
+                    {t('Das hat leider nicht funktioniert. Bitte senden Sie uns eine Mail an ')}
+                    <a className="color-navigation" href={`mailto: levelup@charite.de?subject=${token} failed to send`}>levelup@charite.de</a>.
                 </div>}
                 <div className="p-2">
-                    <button type="submit" className="w-100 btn btn-info" 
+                    <button type="submit" className="w-100 btn btn-info"
+                        disabled={sending}
                         onClick={() => window.confirm(t('Soll die Bewertung jetzt abgesendet werden?')) && send(token)}>
-                        absenden
+                        {sending ? <Spinner className="text-white" /> : 'absenden'}
                     </button>
                 </div>
             </div>

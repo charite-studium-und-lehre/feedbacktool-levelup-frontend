@@ -9,21 +9,24 @@ export const identifier = 'assessments'
 const baseStore = BaseStore(identifier, state => epasSelectors.getStore(state)[identifier])
 const getCurrent = state => Object.values(baseStore.getStore(state).current)
 const getFilter = state => baseStore.getStore(state).filter
+const getStatus = state => baseStore.getStore(state).status
 export const selectors = baseStore.withLoadedSelector({ 
 	getItems: state => Object.values(baseStore.getItems(state)),
 	getStore: baseStore.getStore,
 	getEpa: (state, id) => getCurrent(state).find( epa => epa.id === id ) || {},
 	getFilter,
+	getStatus,
 })
 
 const send = token => (dispatch, getState) => { 
+	dispatch({ type: `${identifier.toUpperCase()}_SENDING`})
 	const data = { token, epas: getCurrent(getState()) }
 	post(url, data)
 		.then(result => result.statue === 200 ? 
 			dispatch({ type: `${identifier.toUpperCase()}_SENT`}) :
-			dispatch({ type: `${identifier.toUpperCase()}_SEND_FAILED`})
+			dispatch({ type: `${identifier.toUpperCase()}_SEND_FAILED`, payload: result.status })
 		)
-		.catch( () => dispatch({ type: `${identifier.toUpperCase()}_SEND_FAILED`}))
+		.catch( err => dispatch({ type: `${identifier.toUpperCase()}_SEND_FAILED`, payload: err}))
 }
 export const actions = baseStore.withLoadAction(url)({
 	setEpa: (id, value) => ({ type: `${identifier.toUpperCase()}_SET_EPA`, payload: { id, value } }),
@@ -43,12 +46,14 @@ const transformAssessments = data => [
 ].reduce((f,g) => g(f), data)
 
 
-const error = (state = null, action) => {
+const status = (state = {sending: false, error: null}, action) => {
     switch(action.type) {
+        case `${identifier.toUpperCase()}_SENDING`:
+            return { sending: true, error: null }
         case `${identifier.toUpperCase()}_SENT`:
-            return null
+            return { sending: false, error: null }
         case `${identifier.toUpperCase()}_SEND_FAILED`:
-            return 'Das hat leider nicht funktioniert. Bitte senden Sie uns eine Mail an levelup.charite.de'
+            return { sending: false, error: action.payload }
 		default:
 			return state
 	}
@@ -81,4 +86,6 @@ const items = (state = {}, action) => {
 			return state
 	}
 }
-export const reducer = combineReducers({ ...baseStore.withLoadedReducer(items), [requestsIdentifier]: requestsReducer, filter, current, error })
+export const reducer = combineReducers({ 
+	...baseStore.withLoadedReducer(items), [requestsIdentifier]: requestsReducer, 
+	filter, current, status })
