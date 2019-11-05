@@ -9,7 +9,7 @@ import {selectors, actions} from './Store'
 
 const stateToProps = state => ({filter: selectors.getFilter(state), root: selectors.getItemByLabel(state, 'root')})
 
-const Title = connect((state, ownProps) => ({entry: selectors.getById(state, ownProps.entryId)}))(props => props.entry.label)
+const Title = connect((state, ownProps) => ({label: selectors.getById(state, ownProps.entryId).label}))(props => props.label)
 
 const AssessmentsView = _.compose([
     needsData(selectors.loaded, actions.load),
@@ -18,13 +18,7 @@ const AssessmentsView = _.compose([
         return <div className="card mt-2">
             <Controls resetFilter={resetFilter}/>
             <Tabs inactiveColor="#e9ecef">
-                {root.entries.map(e =>
-                    <div key={e} title={
-                        <Title entryId={e}/>
-                    }>
-                        <Item entryId={e}/>
-                    </div>
-                )}
+                {root.entries.map(e => <Item key={e} title={<Title entryId={e}/>} entryId={e}/>)}
             </Tabs>
         </div>
     })

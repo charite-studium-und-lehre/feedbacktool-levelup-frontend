@@ -1,28 +1,38 @@
-export const identifier = 'requests'
-const url = `${assessmentsUrl}/anfragen`
-const baseStore = BaseStore(`${assessmentsIdentifier}_${identifier}`, state => assessments.getStore(state)[identifier])
+import BaseStore from '../../Core/BaseStore'
+import { post } from '../../Core/DataProvider'
+import { requestsUrl as url } from '../Urls'
+import { selectors as assessmentsSelectors } from './Store'
 
-const getById = (state, token) => baseStore.getStore(state)[token]
+export const identifier = 'requests'
+const baseStore = BaseStore(identifier, state => assessmentsSelectors.getStore(state)[identifier])
+
+const getByToken = (state, token) => baseStore.getStore(state)[token]
 export const selectors = {
-	loaded: (state, token) => !!getById(state, token)
+	getByToken,
+	loaded: (state, token) => !!getByToken(state, token)
 }
 
 const makeRequest = formdata => dispatch => {
-	post(requestsUrl, formdata)
+	post(url, formdata)
 		.then( result => result.status === 200 ? 
-			dispatch({ type: `${identifier.toUpperCase()}_ASSESSMENT_REQUESTED` }) :
-			dispatch({ type: `${identifier.toUpperCase()}_ASSESSMENT_REQUEST_FAILED` }))
+			dispatch({ type: `${identifier.toUpperCase()}_SENT` }) :
+			dispatch({ type: `${identifier.toUpperCase()}_SEND_FAILED` }))
 }
 export const actions = {
-    load: token => baseStore.withLoadAction(`${requestsUrl}/${token}`)({}).load(),
-    makeRequest
+    loadWithToken: token => baseStore.withLoadAction(`${url}/${token}`)({}).load(),
+	makeRequest,
 }
 
+const transform = request => ({
+	...request,
+	datum: new Date(request.datum),
+	epas: undefined
+})
 export const reducer = (state = {}, action) => {
 	switch(action.type) {
 		case `${identifier.toUpperCase()}_DATA_FETCHED`:
-            return action.payload
+            	return { ...state, [action.payload.token]: transform(action.payload) }
 		default:
-            return state
+            	return state
 	}
 }
