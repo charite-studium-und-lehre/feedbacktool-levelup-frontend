@@ -22,7 +22,7 @@ const asTabs = HeaderComponent =>
     }
 
 export default asTabs(props =>
-    <ul className="nav nav-pills" role="tablist">
+    <ul className="nav nav-pills d-flex flex-column flex-md-row" role="tablist">
         {React.Children.map(props.children, (child, i) =>
             <li key={i} className="nav-item" onClick={() => props.selectTab(i)}>
                 <span className={`nav-link ${props.selectedTab === i ? 'active color-navigation bg-white' : ''}`} data-toggle="pill" role="tab">
