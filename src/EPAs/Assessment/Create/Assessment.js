@@ -21,8 +21,8 @@ const stateToProps = (state, ownProps) => ({
     ...assessmentsSelectors.getStatus(state),
 })
 const Assessment = [needsData(loaded, load), connect(stateToProps, actions), withTranslation()].reduceRight((f,g) => g(f), 
-    ({ t, request, root, send, match: { params: { token }}, error, sending }) =>
-    <div className="container-fluid">
+    ({ t, request, root, send, match: { params: { token }}, error, sending, sent }) =>
+    !sent ? <div className="container-fluid">
         <div className="row">
             <div className="col-lg-4">
                 <div className="d-lg-none mt-2">
@@ -54,6 +54,7 @@ const Assessment = [needsData(loaded, load), connect(stateToProps, actions), wit
                 </div>
             </div>
         </div>
-    </div>
+    </div> :
+    <div className="text-center">{t('Vielen Dank. Die Bewertung wurde abgesendet. Wir werden die anfordernde Person darüber informieren.')}</div>
 )
 export default Assessment

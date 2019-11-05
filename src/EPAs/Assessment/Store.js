@@ -46,14 +46,14 @@ const transformAssessments = data => [
 ].reduce((f,g) => g(f), data)
 
 
-const status = (state = {sending: false, error: null}, action) => {
+const status = (state = {sending: false, error: null, sent: false}, action) => {
     switch(action.type) {
         case `${identifier.toUpperCase()}_SENDING`:
-            return { sending: true, error: null }
+            return { sending: true, error: null, sent: false }
         case `${identifier.toUpperCase()}_SENT`:
-            return { sending: false, error: null }
+            return { sending: false, error: null, sent: true }
         case `${identifier.toUpperCase()}_SEND_FAILED`:
-            return { sending: false, error: action.payload }
+            return { sending: false, error: action.payload, sent: true }
 		default:
 			return state
 	}
