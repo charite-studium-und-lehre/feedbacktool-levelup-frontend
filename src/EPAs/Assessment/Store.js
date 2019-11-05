@@ -8,10 +8,12 @@ import { assessmentsUrl as url } from '../Urls'
 export const identifier = 'assessments'
 const baseStore = BaseStore(identifier, state => epasSelectors.getStore(state)[identifier])
 const getCurrent = state => Object.values(baseStore.getStore(state).current)
+const getFilter = state => baseStore.getStore(state).filter
 export const selectors = baseStore.withLoadedSelector({ 
 	getItems: state => Object.values(baseStore.getItems(state)),
 	getStore: baseStore.getStore,
-	getEpa: (state, id) => getCurrent(state).find( epa => epa.id === id ) || {}
+	getEpa: (state, id) => getCurrent(state).find( epa => epa.id === id ) || {},
+	getFilter,
 })
 
 const send = token => (dispatch, getState) => { 
@@ -25,7 +27,8 @@ const send = token => (dispatch, getState) => {
 }
 export const actions = baseStore.withLoadAction(url)({
 	setEpa: (id, value) => ({ type: `${identifier.toUpperCase()}_SET_EPA`, payload: { id, value } }),
-	send
+	send,
+	setFilter: id => ({ type: `${identifier.toUpperCase()}_SET_FILTER`, payload: { id }}),
 })
 
 const transformAssessments = data => [
@@ -51,6 +54,15 @@ const error = (state = null, action) => {
 	}
 }
 
+const filter = (state = null, action) => {
+	switch (action.type) {
+		case `${identifier.toUpperCase()}_SET_FILTER`:
+			return action.payload.id
+		default:
+			return state
+	}
+}
+
 const current = (state = {}, action) => {
     switch(action.type) {
         case `${identifier.toUpperCase()}_SET_EPA`:
@@ -69,4 +81,4 @@ const items = (state = {}, action) => {
 			return state
 	}
 }
-export const reducer = combineReducers({ ...baseStore.withLoadedReducer(items), [requestsIdentifier]: requestsReducer, current, error })
+export const reducer = combineReducers({ ...baseStore.withLoadedReducer(items), [requestsIdentifier]: requestsReducer, filter, current, error })

@@ -14,7 +14,7 @@ const getById = _.curry((state, id) => baseStore.getItems(state)[id])
 const getLeavesById = state => _.flow([ getById(state), getLeaves(state) ])
 const getLeaves = state => entry => entry.entries.length ? _.flatMap( getLeavesById(state) )(entry.entries) : [entry]
 
-const getFilter = state => baseStore.getStore(state).filter
+const getFilter = assessmentsSelectors.getFilter
 const assessmentsFnFromFilter = filter => e => filter && e.external ? e.external.filter( e => e.id === filter ) : e.external
 const getFilteredAssessments = _.flow([ getFilter, assessmentsFnFromFilter ])
 const visible = state => _.flow([ getFilteredAssessments(state), d => !getFilter(state) || (d && d.length) ])
@@ -59,7 +59,6 @@ export const selectors = baseStore.withLoadedSelector({
 	getItemByLabel: (state, label) => _.find(e => e.label === label, baseStore.getItems(state)),
 	getScore,
 	getMaxScore,
-	getFilter,
 	getAssessmentsForItem: (state, id) => _.flow([ getAssessmentsForItem, addAssessmentData(state) ])(state, id),
 })
 
@@ -73,21 +72,11 @@ const callChangeLevel = (id, newData, oldData) => dispatch => {
 
 const level = newData => epa => callChangeLevel(epa.id, newData(epa), { done: epa.done, confident: epa.confident })
 export const actions = baseStore.withLoadAction(`${url}`)({
-	setFilter: id => ({ type: `${identifier.toUpperCase()}_SET_FILTER`, payload: { id }}),
 	levelUpDone: level(epa => ({ done: epa.done + 1, confident: epa.confident })),
 	levelDownDone: level(epa => ({ done: epa.done - 1, confident: epa.confident })),
 	levelUpConfident: level(epa => ({ done: epa.done, confident: epa.confident + 1 })),
 	levelDownConfident: level(epa => ({ done: epa.done, confident: epa.confident - 1 })),
 })
-
-const filter = (state = null, action) => {
-	switch (action.type) {
-		case `${identifier.toUpperCase()}_SET_FILTER`:
-			return action.payload.id
-		default:
-			return state
-	}
-}
 
 const addEntries = epas =>
 _.map( epa => ({
@@ -132,4 +121,4 @@ function epasReducer(state = {undefined: {label: 'root', entries: []}}, action) 
 	}
 }
 
-export const reducer = combineReducers({...baseStore.withLoadedReducer(epasReducer), filter, [assessmentsIdentifier]: assessments })
+export const reducer = combineReducers({...baseStore.withLoadedReducer(epasReducer), [assessmentsIdentifier]: assessments })

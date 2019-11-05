@@ -1,12 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { withTranslation } from 'react-i18next'
-import {selectors} from '../Store'
-import { selectors as epasSelectos, actions as epasActions } from '../../Store'
+import { selectors, actions } from '../Store'
 import COLORS from "../../../colors"
 
-const stateToProps = state => ({ assessments: selectors.getItems(state), selected: epasSelectos.getFilter(state) })
-export default [withTranslation(), connect(stateToProps, epasActions)].reduceRight((fx,f) => f(fx), 
+const stateToProps = state => ({ assessments: selectors.getItems(state), selected: selectors.getFilter(state) })
+export default [withTranslation(), connect(stateToProps, actions)].reduceRight((fx,f) => f(fx), 
     ({ t, assessments, selected, setFilter }) => 
         assessments && assessments.length ? 
         <div>
