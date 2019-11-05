@@ -19,24 +19,33 @@ const stateToProps = (state, ownProps) => ({
     request: selectors.getByToken(state, ownProps.match.params.token),
     root: epasSelectors.getById(state),
 })
+const Info = withTranslation()(({ t, name, angefragteTaetigkeiten, studiName, studiEmail, kommentar, datum }) => 
+    <div className="card">
+        <div className="p-3"><Legend extended={true} title={t('Fremdbewertung abgeben')} >
+                <p>Hallo <strong>{name}</strong>!</p>
+                <p>Sie wurden am <strong>{datum.toLocaleDateString()}</strong> von <strong>{studiName}</strong> gebeten eine Einschätzung zu seinen*ihren ärztlichen Tätigkeiten abzugeben.</p>
+                {angefragteTaetigkeiten && <p><u>Tätigkeit / Kurs:</u> {angefragteTaetigkeiten}</p>}
+                {kommentar && <p><u>Kommentar:</u> {kommentar}</p>}
+                <p>Sie müssen nicht alle Items bewerten. Bei Fragen können Sie den*die Student*in unter <a className="color-navigation" href={`mailto: ${studiEmail}`}>{studiEmail}</a> erreichen. Bei technischen Problemen können Sie uns unter <a className="color-navigation" href={'mailto: levelup@charite.de'}>levelup@charite.de</a> kontaktieren.</p>
+            </Legend>
+        </div>
+    </div>)
+
 const Assessment = [needsData(loaded, load), connect(stateToProps, actions), withTranslation()].reduceRight((f,g) => g(f), 
     ({ t, request, root, send, match: { params: { token }} }) =>
     <div className="container-fluid">
         <div className="row">
             <div className="col-lg-4">
-                <CheatSheetCard />
+                <div className="d-lg-none mt-2">
+                    <Info {...request} />
+                </div>
+                <div className="sticky-top" style={{top: '4rem'}}>
+                    <CheatSheetCard />
+                </div>
             </div>
             <div className="col-lg-8 mt-2">
-                <div className="card">
-                    <div className="p-3">
-                        <Legend extended={true} title={t('Fremdbewertung abgeben')} >
-                            <p>Hallo <strong>{request.name}</strong>!</p>
-                            <p>Sie wurden am <strong>{request.datum.toLocaleDateString()}</strong> von <strong>{request.studiName}</strong> gebeten eine Einschätzung zu seinen*ihren ärztlichen Tätigkeiten abzugeben.</p>
-                            {request.angefragteTaetigkeiten && <p><u>Tätigkeit / Kurs:</u> {request.angefragteTaetigkeiten}</p>}
-                            {request.kommentar && <p><u>Kommentar:</u> {request.kommentar}</p>}
-                            <p>Sie müssen nicht alle Items bewerten. Bei Fragen können Sie den*die Student*in unter <a className="color-navigation" href={`mailto: ${request.studiEmail}`}>{request.studiEmail}</a> erreichen. Bei technischen Problemen können Sie uns unter <a className="color-navigation" href={'mailto: levelup@charite.de'}>levelup@charite.de</a> kontaktieren.</p>
-                        </Legend>
-                    </div>
+                <div className="d-none d-lg-block">
+                    <Info {...request} />
                 </div>
                 <div className="card mt-2">
                     <Tabs inactiveColor="#e9ecef">
