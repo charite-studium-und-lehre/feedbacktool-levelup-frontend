@@ -4,81 +4,30 @@ Creation-Date: 2019-06-25T17:53:18+02:00
 
 ====== Ärztliche Tätigkeiten ======
 
-
-
 ==== Hole verfügbare ärztliche Tätigkeiten: ====
 
-[[/]][[api/epa/meine]]
+**GET** [[/]][[api/epas]]
 
-Erzeugt ein Array aus EPA-Kategorien, EPAs und Fremdeinschätzungen
-
-'''
-Array:
-'''
-	'''
-	meineEPAs: Array
-	'''
-		'''
-		id: <id>,
-		beschreibung: <beschreibung>
-		parentId: <parentID oder NULL>
-		istBlatt: TRUE für EPAs, FALSE für Kategorien
-		
-		# nur für EPAs (Blätter):
-		gemacht: <level= 0-5>
-		zutrauen: <level= 0-5>
-		fremdeinschaetzungen: array:
-			fremdId: <id der Fremdeinschätzung>
-			wert: <level= 0-5>
-		
-		'''
-	'''
-	fremdbewertungen: Array
-		id: <ID der Fremdeinschätzung| null, wenn Status=offen>	
-		name: <Name des Bewerters>
-	'''
-					''email: <Email des Prüfers>''
-					''anfrageTaetigkeiten: <Text der angefragen Tätigkeiten>''
-					''anfrageKommentar: <Kommentar der Anfrage>''
-	'''
-		datum: <ISO-Datum , z.B: "2018-10-31">
-		status: <beantwortet|offen>
-	'''
-
-
-
-==== Selbstbewertung an Server senden: ====
-
-POST [[/]][[api/epas/<ID]]>
-
-POST-Parameter
+//Response//
 '''
 {
 '''
 	'''
-	zutrauen: <Wert>,
-	gemacht: <Wert>,
+	epas: [
+	'''
+		'''
+		{
+		'''
+			'''
+			id: <id>,
+			beschreibung: <beschreibung>,
+			parentId: <parentID oder NULL>,
+			istBlatt: <TRUE für EPAs, FALSE für Kategorien>
+			'''
+		'''
+		}
+		'''
+	'''
+	]
 	}
 	'''
-
-
-**Success:** 
-	//200 OK// 
-**Error:** 
-	//404 "NOT FOUND": //bei ungültiger ID.
-	//400 "BAD REQUEST":// bei ungültigem Wert.
-
-
-== Beispiel ==
-https://levelup.charite.de/backend/api/epas/111
-BODY
-'''
-{
-'''
-	'''
-	zutrauen: 2,
-	gemacht: 1
-	}
-	'''
-
-

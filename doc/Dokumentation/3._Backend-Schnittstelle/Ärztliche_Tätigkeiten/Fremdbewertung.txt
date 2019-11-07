@@ -2,19 +2,56 @@ Content-Type: text/x-zim-wiki
 Wiki-Format: zim 0.4
 Creation-Date: 2019-11-01T17:32:12+01:00
 
-====== Fremdbewertung ======
+====== Fremdbewertungen ======
 
-===== Anfrage =====
+=== lesen ===
+**GET** [[file:///C:/api/epas/fremdbewertungen/anfragen/%3CToken%3E|/api/epas/fremdbewertungen]]
+
+//Response://
+**Success:** 
+	//200 OK//
+**Error:** 
+	
+**Body:**
+'''
+{
+'''
+	'''
+	fremdbewertungen: [
+	'''
+		'''
+		{
+		'''
+			'''
+			id: <ID der Fremdeinschätzung| null, wenn Status=offen>,	
+			name: <Name des Bewerters>,
+			email: <Email des Prüfers>,
+			anfrageTaetigkeiten: <Text der angefragen Tätigkeiten>,
+			anfrageKommentar: <Kommentar der Anfrage>,
+			datum: <ISO-Datum , z.B: "2018-10-31">,
+			status: <beantwortet|offen>,
+			'''
+		'''
+		}
+		'''
+	'''
+	]
+	}
+	'''
+
+
+===== Anfragen =====
 
 === lesen ===
 **GET** [[file:///C:/api/epas/fremdbewertungen/anfragen/%3CToken%3E|/api/epas/fremdbewertungen/anfragen/<Token>]]
 
+//Response://
 **Success:** 
 	//200 OK//
 **Error:** 
 	//404 "NOT FOUND":// bei ungültigem Token.
 	
-//Response://
+**Body:**
 ''{''
 '''
 id: <ID>,
@@ -26,12 +63,8 @@ studiName: <Name des anfragenden Studis>,
 studiEmail: <Email des anfragenden Studis>,
 angefragteTaetigkeiten: <String>,
 kommentar: <String>,
-epas: [
+epas: [ <Array der zu bewertenden epas als ids (zunächst alle, in Zukunft vielleicht gefiltert?> ]
 '''
-	'''
-	<Array der zu bewertenden EPAS (zunächst alle, in Zukunft vielleicht gefiltert?>
-	]
-	'''
 
 ''}''
 
@@ -50,58 +83,9 @@ Parameter
 	'''
 	''}''
 
+//Response//
 **Success:** 
-	//201 CREATED//
+	//201 CREATED Body//
 **Error:** 
 	//400 "BAD REQUEST":// bei ungültigem Wert.
-
-
-===== Bewertung =====
-
-=== lesen ===
-**GET** [[file:///C:/api/epas/fremdbewertungen/anfragen/%3CToken%3E|/api/epas/fremdbewertungen]]
-
-**Success:** 
-	//200 OK//
-**Error:** 
-	
-//Response://
-''{''
-	'''
-	fremdbewertungen: Array
-		id: <ID der Fremdeinschätzung| null, wenn Status=offen>	
-		name: <Name des Bewerters>
-	'''
-					''email: <Email des Prüfers>''
-					''anfrageTaetigkeiten: <Text der angefragen Tätigkeiten>''
-					''anfrageKommentar: <Kommentar der Anfrage>''
-	'''
-		datum: <ISO-Datum , z.B: "2018-10-31">
-		status: <beantwortet|offen>
-	'''
-
-''}''
-
-=== erstellen ===
-**POST** [[/]][[api/epas/fremdbewertungen]]
-
-Parameter
-'''
-{
-	token: <Anfrage Token>,
-	epas: [
-		{
-			id: <Epa Id>,
-			value: <Wert zwischen 0-5>
-		},
-		...
-	]	
-'''
-	''}''
-
-**Success:** 
-	//201 CREATED//
-**Error:** 
-	//400 "BAD REQUEST":// bei ungültigem Wert.
-
 
