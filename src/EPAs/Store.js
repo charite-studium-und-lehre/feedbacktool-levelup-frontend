@@ -25,18 +25,21 @@ const getAssessmentsForItem = (state, id) => _.flow([ getById, e => getFilteredA
 const addAssessmentData = _.flow([ externalAssessmentsSelectors.getItems, as => _.map( e => ({ ...e, ...as.find( a => a.id === e.id ) })) ])
 const getLatest = _.flow([ _.sortBy( e => -e.datum ), _.head  ])
 
-const getLatestAssessment = state =>
-	_.flow([
-		epa => getFilteredAssessments(state)(epa),
-		addAssessmentData(state),
-		getLatest,
-		_.defaultTo([])
-	])
+const filterExternals = _.flow([ getFilter, filter => externals => externals.filter( ex => !filter || ex.id === filter )])
+const getLatestAssessment = state => _.flow([
+	epa => epa.id,
+	assessmentsSelectors.getExternals(state),
+	filterExternals(state) ,
+	_.sortBy( ex => -externalAssessmentsSelectors.getById(state)(ex.id).datum ) ,
+	_.head,
+	_.defaultTo([])
+])
 
 const getAssessmentScore = state =>
 	_.flow([ 
 		getLeavesById(state),
-		_.flatMap( getLatestAssessment(state) ),
+		_.map( getLatestAssessment(state) ),
+		_.flatten,
 		_.over([
 			_.sumBy( e => e.value ),
 			a => a.length * 5,

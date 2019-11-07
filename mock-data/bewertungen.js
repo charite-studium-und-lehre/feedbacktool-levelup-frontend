@@ -6,8 +6,23 @@ module.exports = {
             gemacht: 2,
             fremdbewertungen: [
                 {
-                    id: 1,
+                    id: "1",
                     wert: 4
+                },
+                {
+                    id: "2",
+                    wert: 3
+                }
+            ]
+        },
+        {
+            epaId: 112,
+            zutrauen: 1,
+            gemacht: 1,
+            fremdbewertungen: [
+                {
+                    id: "1",
+                    wert: 3
                 }
             ]
         }
