@@ -2,9 +2,10 @@ import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
 import BaseStore from '../Core/BaseStore'
 import { post } from '../Core/DataProvider'
+import { selectors as externalAssessmentsSelectors } from './Assessment/ExternalStore'
 import { reducer as assessments, identifier as assessmentsIdentifier, selectors as assessmentsSelectors } from './Assessment/Store'
+import { reducer as externalAssessments, identifier as externalAssessmentsIdentifier } from './Assessment/ExternalStore'
 import { epasUrl as url } from './Urls'
-import DummyData from './Assessment/Create/Data'
 
 const storeIdentifier = 'epas'
 export const identifier = storeIdentifier
@@ -14,15 +15,14 @@ const getById = _.curry((state, id) => baseStore.getItems(state)[id])
 const getLeavesById = state => _.flow([ getById(state), getLeaves(state) ])
 const getLeaves = state => entry => entry.entries.length ? _.flatMap( getLeavesById(state) )(entry.entries) : [entry]
 
-const getFilter = assessmentsSelectors.getFilter
-const assessmentsFnFromFilter = filter => e => filter && e.external ? e.external.filter( e => e.id === filter ) : e.external
-const getFilteredAssessments = _.flow([ getFilter, assessmentsFnFromFilter ])
-const visible = state => _.flow([ getFilteredAssessments(state), d => !getFilter(state) || (d && d.length) ])
-const addVisible = state => entry => _.flow([ getLeaves(state), _.some( visible(state) ), visible => ({ ...entry, visible }) ])(entry)
+const getFilter = externalAssessmentsSelectors.getFilter
+const getFilteredAssessments = externalAssessmentsSelectors.getFilteredAssessments
 
-const getSingleScore = (state, id, prop) => _.flow([ getLeavesById(state), _.map(prop), _.sum])(id)
+const addVisible = state => entry => _.flow([ getLeaves(state), _.some( externalAssessmentsSelectors.epaVisible(state) ), visible => ({ ...entry, visible }) ])(entry)
+
+const getSingleScore = (state, id, prop) => _.flow([ getLeavesById(state), _.map(epa => epa.id), _.map(assessmentsSelectors.getByEpaId(state)), _.map(prop), _.sum])(id)
 const getAssessmentsForItem = (state, id) => _.flow([ getById, e => getFilteredAssessments(state)(e), _.defaultTo([]) ])(state, id)
-const addAssessmentData = _.flow([ assessmentsSelectors.getItems, as => _.map( e => ({ ...e, ...as.find( a => a.id === e.id ) })) ])
+const addAssessmentData = _.flow([ externalAssessmentsSelectors.getItems, as => _.map( e => ({ ...e, ...as.find( a => a.id === e.id ) })) ])
 const getLatest = _.flow([ _.sortBy( e => -e.datum ), _.head  ])
 
 const getLatestAssessment = state =>
@@ -95,8 +95,6 @@ const addRootElement = epas => [
 const transform = _.flow([
 	_.map( epa => ({
 		label: epa.beschreibung,
-		done: epa.gemacht,
-		confident: epa.zutrauen,
 		...epa,
 	})),
 	addEntries,
@@ -108,12 +106,8 @@ const setEpa = (state, {id, value}) => ({...state, [id]: { ...state[id], ...valu
 
 function epasReducer(state = {undefined: {label: 'root', entries: []}}, action) {
 	switch (action.type) {
-		case `REQUESTS_DATA_FETCH_FAILED`:
-			return transform(DummyData.epas)
-		case `REQUESTS_DATA_FETCHED`:
-			return transform(action.payload.epas)
 		case `${identifier.toUpperCase()}_DATA_FETCHED`:
-			return transform(action.payload.meineEPAs)
+			return transform(action.payload.epas)
 		case `${identifier.toUpperCase()}_SET`:
 			return setEpa(state, action.payload)
 		default:
@@ -121,4 +115,7 @@ function epasReducer(state = {undefined: {label: 'root', entries: []}}, action) 
 	}
 }
 
-export const reducer = combineReducers({...baseStore.withLoadedReducer(epasReducer), [assessmentsIdentifier]: assessments })
+export const reducer = combineReducers({...baseStore.withLoadedReducer(epasReducer), 
+	[assessmentsIdentifier]: assessments,
+	[externalAssessmentsIdentifier]: externalAssessments,
+})

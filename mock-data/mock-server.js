@@ -21,13 +21,13 @@ const studienfortschritt = require('./studienfortschritt.js')
 router.get('/studienfortschritt',  (req, res) => res.send(studienfortschritt))
 
 const fremdbewertungen = require('./fremdbewertungen.js')
-router.get('/fremdbewertungen',  (req, res) => res.send(fremdbewertungen))
+router.get('/epas/fremdbewertungen',  (req, res) => res.send(fremdbewertungen))
 
 const anfrage = require('./anfrage.js')
 router.get('/epas/fremdbewertungen/anfragen',  (req, res) => res.send(anfrage))
 
 const bewertungen = require('./bewertungen.js')
-router.get('/epas/bewertungenn',  (req, res) => res.send(bewertungen))
+router.get('/epas/bewertungen',  (req, res) => res.send(bewertungen))
 
 app.use('/backend-develop/api', router)
 

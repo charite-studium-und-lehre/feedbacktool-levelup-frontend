@@ -5,16 +5,29 @@ import Item from './Item'
 import Tabs from '../Utils/Tabs'
 import needsData from '../Core/needsData'
 import Controls from './Assessment/View/Controls'
-import {selectors, actions} from './Store'
-import {selectors as assessmentSelectors, actions as assessmentActions } from './Assessment/Store'
+import { selectors, actions } from './Store'
+import { selectors as externalAssessmentSelectors, actions as externalAssessmentActions } from './Assessment/ExternalStore'
+import { selectors as assessmentsSelectors, actions as assessmentsActions } from '../EPAs/Assessment/Store'
 
-const stateToProps = state => ({filter: assessmentSelectors.getFilter(state), root: selectors.getItemByLabel(state, 'root')})
+const stateToProps = state => ({filter: externalAssessmentSelectors.getFilter(state), root: selectors.getItemByLabel(state, 'root')})
 
 const Title = connect((state, ownProps) => ({label: selectors.getById(state, ownProps.entryId).label}))(props => props.label)
 
+const loaded = state => [ 
+    selectors.loaded, 
+    externalAssessmentSelectors.loaded, 
+    assessmentsSelectors.loaded 
+].reduce( (f,g) => g(state) && f, true )
+
+const load = () => (...params) => [ 
+    actions.load(), 
+    externalAssessmentActions.load(), 
+    assessmentsActions.load() 
+].reduce( (f,g) => g(...params), null )
+
 const AssessmentsView = _.compose([
-    needsData(selectors.loaded, actions.load),
-    connect(stateToProps, {resetFilter: () => assessmentActions.setFilter(null)})])(
+    needsData(loaded, load),
+    connect(stateToProps, {resetFilter: () => externalAssessmentActions.setFilter(null)})])(
     ({root, resetFilter}) => {
         return <div className="card mt-2">
             <Controls resetFilter={resetFilter}/>
