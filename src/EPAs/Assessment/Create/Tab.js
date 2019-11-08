@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { selectors } from '../../Store'
+import { getEpaById } from '../../Selectors'
 import Rating from './Rating'
 
-const stateToProps = (state, ownProps) => ({ ...selectors.getById(state, ownProps.entryId) })
+const stateToProps = (state, ownProps) => ({ ...getEpaById(state, ownProps.entryId) })
 
 const Entry = connect(stateToProps)(({ label, entryId, visible }) =>
   visible ?

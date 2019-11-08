@@ -5,7 +5,6 @@ import { post } from '../Core/DataProvider'
 import { reducer as assessments, identifier as assessmentsIdentifier } from './Assessment/Store'
 import { reducer as externalAssessments, identifier as externalAssessmentsIdentifier } from './Assessment/ExternalStore'
 import { epasUrl as url } from './Urls'
-import { withVisibility } from './Selectors'
 
 const storeIdentifier = 'epas'
 export const identifier = storeIdentifier
@@ -15,8 +14,8 @@ const getById = state => id => baseStore.getItems(state)[id]
 
 export const selectors = baseStore.withLoadedSelector({
 	getStore: baseStore.getStore,
-	getById: state => _.flow([ getById(state), withVisibility(state) ]),
-	getRoot: state => _.flow([ baseStore.getItems, _.find(e => e.label === 'root'), withVisibility(state) ])(state),
+	getById,
+	getRoot: state => _.flow([ baseStore.getItems, _.find(e => e.label === 'root') ])(state),
 })
 
 const callChangeLevel = (id, newData, oldData) => dispatch => {

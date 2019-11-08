@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Score from './Score'
 import HeaderScore from './HeaderScore'
-import { selectors } from './Store'
+import { getEpaById } from './Selectors'
 
-const stateToProps = (state, ownProps) => ({ ...selectors.getById(state)(ownProps.entryId) })
+const stateToProps = (state, ownProps) => ({ ...getEpaById(state)(ownProps.entryId) })
 
 const Entry = connect(stateToProps)(({ label, entryId, visible }) =>
   visible ?

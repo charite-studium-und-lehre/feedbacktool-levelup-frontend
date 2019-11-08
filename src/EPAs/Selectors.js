@@ -6,6 +6,15 @@ import { selectors as epasSelectors } from './Store'
 const getLeavesById = state => _.flow([ epasSelectors.getById(state), getLeaves(state) ])
 const getLeaves = state => entry => entry.entries.length ? _.flatMap( getLeavesById(state) )(entry.entries) : [entry]
 
+const withVisibility = state => entry => _.flow([ 
+    getLeaves(state),
+    _.map( leaf => leaf.id ),
+    _.map( getFilteredExternals(state) ),
+    _.some( externals => !externalAssessmentsSelectors.getFilter(state) || externals.length ),
+    visible => ({ ...entry, visible })
+])(entry)
+export const getEpaById = state => _.flow([ epasSelectors.getById(state), withVisibility(state)])
+
 const filterExternals = _.flow([ 
     externalAssessmentsSelectors.getFilter, 
     filter => externals => externals.filter( ex => !filter || ex.id === filter )
@@ -25,14 +34,6 @@ export const getExternals = state => _.flow([
     getFilteredExternals(state),
     addAssessmentData(state),
 ])
-
-export const withVisibility = state => entry => _.flow([ 
-    getLeaves(state),
-    _.map( leaf => leaf.id ),
-    _.map( getFilteredExternals(state) ),
-    _.some( externals => !externalAssessmentsSelectors.getFilter(state) || externals.length ),
-    visible => ({ ...entry, visible })
-])(entry)
 
 const getSingleScore = (state, id, prop) => _.flow([ getLeavesById(state), _.map(epa => epa.id), _.map(assessmentsSelectors.getByEpaId(state)), _.map(prop), _.sum])(id)
 export const getAssessmentsForItem = (state, id) => _.flow([ 
@@ -70,3 +71,9 @@ export const getScore = (state, id) => ({
     externalScore: getAssessmentScore(state)(id),
     maxValue: getMaxScore(state, id),
 })
+
+export const loaded = _.overEvery([ 
+    epasSelectors.loaded, 
+    externalAssessmentsSelectors.loaded, 
+    assessmentsSelectors.loaded 
+])
