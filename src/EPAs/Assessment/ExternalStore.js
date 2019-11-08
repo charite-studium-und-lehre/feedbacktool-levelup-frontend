@@ -1,4 +1,3 @@
-import _ from 'lodash/fp'
 import { selectors as epasSelectors } from '../Store'
 import { combineReducers } from 'redux'
 import BaseStore from '../../Core/BaseStore'
@@ -11,9 +10,6 @@ const baseStore = BaseStore(identifier, state => epasSelectors.getStore(state)[i
 const getCurrent = state => Object.values(baseStore.getStore(state).current)
 const getFilter = state => baseStore.getStore(state).filter
 const getStatus = state => baseStore.getStore(state).status
-const assessmentsFnFromFilter = filter => e => filter && e.external ? e.external.filter( e => e.id === filter ) : e.external
-const getFilteredAssessments = _.flow([ getFilter, assessmentsFnFromFilter ])
-const epaVisible = state => _.flow([ getFilteredAssessments(state), d => !getFilter(state) || (d && d.length) ])
 const getById = state => id => Object.values(baseStore.getItems(state)).find( ass => ass.id === id)
 export const selectors = baseStore.withLoadedSelector({ 
 	getItems: state => Object.values(baseStore.getItems(state)),
@@ -22,8 +18,6 @@ export const selectors = baseStore.withLoadedSelector({
 	getEpa: (state, id) => getCurrent(state).find( epa => epa.id === id ) || {},
 	getFilter,
 	getStatus,
-	getFilteredAssessments,
-	epaVisible,
 })
 
 const send = token => (dispatch, getState) => { 

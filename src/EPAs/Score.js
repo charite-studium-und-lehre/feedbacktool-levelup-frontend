@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {selectors, actions} from './Store'
+import { getScore } from './Selectors'
+import {selectors as epaSelectors, actions} from './Store'
 import Assessments from './Assessment/View/ExternAssessingValue'
 import Level, { LevelWithEdit } from './Level'
 import ScoreWrapper from './ScoreWrapper'
@@ -40,7 +41,7 @@ const Score = ({
     </div>
 
 const stateToProps = (state, ownProps) => ({
-    entry: selectors.getById(state, ownProps.entryId),
-    ...selectors.getScore(state, ownProps.entryId),
+    entry: epaSelectors.getById(state, ownProps.entryId),
+    ...getScore(state, ownProps.entryId),
 })
 export default connect(stateToProps, actions)(Score)

@@ -25,7 +25,7 @@ const Infos = props => (
         </div>
 )
 
-const ExternAsk = ({ t, makeRequest, sending, sent, resetSent }) => {
+const ExternAsk = ({ t, makeRequest, sending, sent, resetSent, error }) => {
     const [formdata, setFormdata] = useState({})
     const handleChange = field => e => setFormdata({...formdata, [field]: e.target.value})
     const fields = [
@@ -64,7 +64,10 @@ const ExternAsk = ({ t, makeRequest, sending, sent, resetSent }) => {
         <div className="mt-2">
             <div className='mb-3'>{t(`Es wird ein Link an diese Email-Adresse gesendet, über den eine Fremdeinschätzung abgegeben werden kann.`)}</div>
             {fields.map( f => <Infos key={f.name} {...f} /> )}
-            <div className='mt-3 text-center'>
+            {error && <div className="pb-0 p-2 text-center text-danger">
+                {t('Das hat leider nicht funktioniert...')}
+            </div>}
+            <div className='mt-2 text-center'>
                 <button disabled={!isValid || sending} className="btn btn-sm btn-secondary mt-3 " style={{width:'7rem'}} onClick={() => makeRequest(formdata)}>Senden</button>
             </div>
         </div> :

@@ -2,67 +2,21 @@ import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
 import BaseStore from '../Core/BaseStore'
 import { post } from '../Core/DataProvider'
-import { selectors as externalAssessmentsSelectors } from './Assessment/ExternalStore'
-import { reducer as assessments, identifier as assessmentsIdentifier, selectors as assessmentsSelectors } from './Assessment/Store'
+import { reducer as assessments, identifier as assessmentsIdentifier } from './Assessment/Store'
 import { reducer as externalAssessments, identifier as externalAssessmentsIdentifier } from './Assessment/ExternalStore'
 import { epasUrl as url } from './Urls'
+import { withVisibility } from './Selectors'
 
 const storeIdentifier = 'epas'
 export const identifier = storeIdentifier
 
 const baseStore = BaseStore(storeIdentifier)
-const getById = _.curry((state, id) => baseStore.getItems(state)[id])
-const getLeavesById = state => _.flow([ getById(state), getLeaves(state) ])
-const getLeaves = state => entry => entry.entries.length ? _.flatMap( getLeavesById(state) )(entry.entries) : [entry]
-
-const getFilter = externalAssessmentsSelectors.getFilter
-const getFilteredAssessments = externalAssessmentsSelectors.getFilteredAssessments
-
-const addVisible = state => entry => _.flow([ getLeaves(state), _.some( externalAssessmentsSelectors.epaVisible(state) ), visible => ({ ...entry, visible }) ])(entry)
-
-const getSingleScore = (state, id, prop) => _.flow([ getLeavesById(state), _.map(epa => epa.id), _.map(assessmentsSelectors.getByEpaId(state)), _.map(prop), _.sum])(id)
-const getAssessmentsForItem = (state, id) => _.flow([ getById, e => getFilteredAssessments(state)(e), _.defaultTo([]) ])(state, id)
-const addAssessmentData = _.flow([ externalAssessmentsSelectors.getItems, as => _.map( e => ({ ...e, ...as.find( a => a.id === e.id ) })) ])
-const getLatest = _.flow([ _.sortBy( e => -e.datum ), _.head  ])
-
-const filterExternals = _.flow([ getFilter, filter => externals => externals.filter( ex => !filter || ex.id === filter )])
-const getLatestAssessment = state => _.flow([
-	epa => epa.id,
-	assessmentsSelectors.getExternals(state),
-	filterExternals(state) ,
-	_.sortBy( ex => -externalAssessmentsSelectors.getById(state)(ex.id).datum ) ,
-	_.head,
-	_.defaultTo([])
-])
-
-const getAssessmentScore = state =>
-	_.flow([ 
-		getLeavesById(state),
-		_.map( getLatestAssessment(state) ),
-		_.flatten,
-		_.over([
-			_.sumBy( e => e.value ),
-			a => a.length * 5,
-		]),
-		([ value, total ]) => ({ value, total })
-	])
-
-const getMaxScore = (state, id) => _.flow([ getLeavesById(state), leaves => leaves.length * 5 ])(id)
-
-const getScore = (state, id) => ({
-    done: getSingleScore(state, id, 'done'),
-	confident: getSingleScore(state, id, 'confident'),
-    externalScore: getAssessmentScore(state)(id),
-    maxValue: getMaxScore(state, id),
-})
+const getById = state => id => baseStore.getItems(state)[id]
 
 export const selectors = baseStore.withLoadedSelector({
 	getStore: baseStore.getStore,
-	getById: (state, id) => _.flow([ getById, addVisible(state) ])(state, id),
-	getItemByLabel: (state, label) => _.find(e => e.label === label, baseStore.getItems(state)),
-	getScore,
-	getMaxScore,
-	getAssessmentsForItem: (state, id) => _.flow([ getAssessmentsForItem, addAssessmentData(state) ])(state, id),
+	getById: state => _.flow([ getById(state), withVisibility(state) ]),
+	getRoot: state => _.flow([ baseStore.getItems, _.find(e => e.label === 'root'), withVisibility(state) ])(state),
 })
 
 const callChangeLevel = (id, newData, oldData) => dispatch => {

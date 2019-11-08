@@ -4,7 +4,7 @@ import Score from './Score'
 import HeaderScore from './HeaderScore'
 import { selectors } from './Store'
 
-const stateToProps = (state, ownProps) => ({ ...selectors.getById(state, ownProps.entryId) })
+const stateToProps = (state, ownProps) => ({ ...selectors.getById(state)(ownProps.entryId) })
 
 const Entry = connect(stateToProps)(({ label, entryId, visible }) =>
   visible ?

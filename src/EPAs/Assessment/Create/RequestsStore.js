@@ -2,11 +2,10 @@ import { combineReducers } from 'redux'
 import BaseStore from '../../../Core/BaseStore'
 import { post } from '../../../Core/DataProvider'
 import { externalAssessmentRequestsUrl as url } from '../../Urls'
-import { selectors as assessmentsSelectors } from '../Store'
-import DummyData from './Data'
+import { selectors as externalAssessmentsSelectors } from '../ExternalStore'
 
 export const identifier = 'requests'
-const baseStore = BaseStore(identifier, state => assessmentsSelectors.getStore(state)[identifier])
+const baseStore = BaseStore(identifier, state => externalAssessmentsSelectors.getStore(state)[identifier])
 
 const getStatus = state => baseStore.getStore(state).status
 const getByToken = (state, token) => baseStore.getItems(state)[token]
@@ -53,8 +52,6 @@ const transform = request => ({
 })
 const items = (state = {}, action) => {
 	switch(action.type) {
-		case `${identifier.toUpperCase()}_DATA_FETCH_FAILED`:
-			return { ...state, [DummyData.token]: transform(DummyData) }
 		case `${identifier.toUpperCase()}_DATA_FETCHED`:
             return { ...state, [action.payload.token]: transform(action.payload) }
 		default:

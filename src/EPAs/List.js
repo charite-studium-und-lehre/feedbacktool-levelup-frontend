@@ -9,9 +9,9 @@ import { selectors, actions } from './Store'
 import { selectors as externalAssessmentSelectors, actions as externalAssessmentActions } from './Assessment/ExternalStore'
 import { selectors as assessmentsSelectors, actions as assessmentsActions } from '../EPAs/Assessment/Store'
 
-const stateToProps = state => ({filter: externalAssessmentSelectors.getFilter(state), root: selectors.getItemByLabel(state, 'root')})
+const stateToProps = state => ({filter: externalAssessmentSelectors.getFilter(state), root: selectors.getRoot(state)})
 
-const Title = connect((state, ownProps) => ({label: selectors.getById(state, ownProps.entryId).label}))(props => props.label)
+const Title = connect((state, ownProps) => ({label: selectors.getById(state)(ownProps.entryId).label}))(props => props.label)
 
 const loaded = state => [ 
     selectors.loaded, 

@@ -6,7 +6,7 @@ import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import { SlideDown } from 'react-slidedown'
 import makeExtendable from '../../../Core/makeExtendable'
 import Level from '../../Level'
-import { selectors } from '../../Store'
+import { getExternals } from '../../Selectors'
 
 const ExternAssessingWithValue = makeExtendable()(({ toggleExtended, extended, externals }) =>
     <div className="container-fluid">
@@ -54,6 +54,6 @@ const ExternAssessingWithValue = makeExtendable()(({ toggleExtended, extended, e
     </div>)
 
 const stateToProps = (state, ownProps) => ({ 
-    externals: selectors.getAssessmentsForItem(state, ownProps.entryId) 
+    externals: getExternals(state)(ownProps.entryId) 
 })
 export default connect(stateToProps)(ExternAssessingWithValue)

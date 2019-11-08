@@ -24,7 +24,7 @@ const transformAssessments = data => [
 		datum: new Date(a.datum),
 		done: a.gemacht,
 		confident: a.zutrauen,
-		externals: a.fremdbewertungen.map( ass => ({ id: ass.id, value: ass.wert })),
+		externals: a.fremdbewertungen.map( ass => ({ id: ass.id, value: ass.wert })) || [],
 	})),
 	d => d.reduce( (a,v) => ({ ...a, [v.id]: v }), {})
 ].reduce((f,g) => g(f), data)
