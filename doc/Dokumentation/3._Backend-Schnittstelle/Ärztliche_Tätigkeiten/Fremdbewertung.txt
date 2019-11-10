@@ -69,7 +69,7 @@ epas: [ <Array der zu bewertenden epas als ids (zunächst alle, in Zukunft viell
 ''}''
 
 === erstellen ===
-**POST** [[/]][[api/epas/fremdbewertungen/anfragen]]
+**POST** [[/api/epas/fremdbewertungen/anfragen]]
 
 Parameter
 '''

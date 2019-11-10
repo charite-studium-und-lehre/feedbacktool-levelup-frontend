@@ -6,7 +6,7 @@ Creation-Date: 2019-06-25T17:53:18+02:00
 
 ==== Hole verfügbare ärztliche Tätigkeiten: ====
 
-**GET** [[/]][[api/epas]]
+**GET** [[/api/epas]]
 
 //Response//
 '''
