@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { withTranslation } from 'react-i18next'
-import { selectors, actions } from './Store'
+import { Spinner } from '../../../Core/needsData'
+import { selectors, actions } from './Requests/Store'
 
 const Infos = props => (
         <div className="flex-grow-1">
@@ -68,7 +69,9 @@ const Request = ({ t, makeRequest, sending, sent, resetSent, error }) => {
                 {t('Das hat leider nicht funktioniert...')}
             </div>}
             <div className='mt-2 text-center'>
-                <button disabled={!isValid || sending} className="btn btn-sm btn-secondary mt-3 " style={{width:'7rem'}} onClick={() => makeRequest(formdata)}>Senden</button>
+                <button disabled={!isValid || sending} className="btn btn-sm btn-secondary mt-3 " style={{width:'7rem'}} onClick={() => makeRequest(formdata)}>
+                    {sending ? <Spinner className="text-white" /> : t('absenden')}
+                </button>
             </div>
         </div> :
         <div className="text-center">

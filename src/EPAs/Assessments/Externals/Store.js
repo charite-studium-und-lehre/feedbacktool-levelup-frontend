@@ -36,8 +36,8 @@ export const actions = baseStore.withLoadAction(url)({
 	setFilter: id => ({ type: `${identifier.toUpperCase()}_SET_FILTER`, payload: { id }}),
 })
 
-const transformAssessments = data => [
-	d => d.fremdbewertungen,
+const transform = data => [
+	//d => d.fremdbewertungen,
 	d => d.map( a => ({ 
 		...a, 
 		id: a.id || `offen${Math.random()*10000}`, 
@@ -82,7 +82,7 @@ const current = (state = {}, action) => {
 const items = (state = {}, action) => {
     switch(action.type) {
         case `${identifier.toUpperCase()}_DATA_FETCHED`:
-            return transformAssessments(action.payload)
+            return transform(action.payload)
 		default:
 			return state
 	}

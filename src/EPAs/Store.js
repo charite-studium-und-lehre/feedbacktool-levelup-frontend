@@ -1,7 +1,6 @@
 import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
 import BaseStore from '../Core/BaseStore'
-import { post } from '../Core/DataProvider'
 import { reducer as assessments, identifier as assessmentsIdentifier } from './Assessments/Store'
 import { reducer as externalAssessments, identifier as externalAssessmentsIdentifier } from './Assessments/Externals/Store'
 import { epasUrl as url } from './Urls'
@@ -18,21 +17,7 @@ export const selectors = baseStore.withLoadedSelector({
 	getRoot: state => _.flow([ baseStore.getItems, _.find(e => e.label === 'root') ])(state),
 })
 
-const callChangeLevel = (id, newData, oldData) => dispatch => {
-	const reverse = () => dispatch({ type: `${identifier.toUpperCase()}_SET`, payload: { id, value: oldData }})
-	post(`${url}/${id}`, { gemacht: newData.done, zutrauen: newData.confident })
-		.then( result => result.status !== 200 && reverse() )
-		.catch( () => reverse())
-	dispatch({ type: `${identifier.toUpperCase()}_SET`, payload: { id, value: newData }})
-}
-
-const level = newData => epa => callChangeLevel(epa.id, newData(epa), { done: epa.done, confident: epa.confident })
-export const actions = baseStore.withLoadAction(`${url}`)({
-	levelUpDone: level(epa => ({ done: epa.done + 1, confident: epa.confident })),
-	levelDownDone: level(epa => ({ done: epa.done - 1, confident: epa.confident })),
-	levelUpConfident: level(epa => ({ done: epa.done, confident: epa.confident + 1 })),
-	levelDownConfident: level(epa => ({ done: epa.done, confident: epa.confident - 1 })),
-})
+export const actions = baseStore.withLoadAction(`${url}`)({})
 
 const addEntries = epas =>
 _.map( epa => ({
@@ -58,14 +43,10 @@ const transform = _.flow([
 	_.keyBy( epa => epa.id )
 ])
 
-const setEpa = (state, {id, value}) => ({...state, [id]: { ...state[id], ...value }})
-
 function epasReducer(state = {undefined: {label: 'root', entries: []}}, action) {
 	switch (action.type) {
 		case `${identifier.toUpperCase()}_DATA_FETCHED`:
 			return transform(action.payload.epas)
-		case `${identifier.toUpperCase()}_SET`:
-			return setEpa(state, action.payload)
 		default:
 			return state
 	}

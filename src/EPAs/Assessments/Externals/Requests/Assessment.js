@@ -49,7 +49,7 @@ const Assessment = [needsData(loaded, load), connect(stateToProps, actions), wit
                     <button type="submit" className="w-100 btn btn-info"
                         disabled={sending}
                         onClick={() => window.confirm(t('Soll die Bewertung jetzt abgesendet werden?')) && send(token)}>
-                        {sending ? <Spinner className="text-white" /> : 'absenden'}
+                        {sending ? <Spinner className="text-white" /> : t('absenden')}
                     </button>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { getScore, loaded, load } from '../Selectors'
-import {selectors as epaSelectors, actions} from '../Store'
+import { actions } from './Store'
 import Assessments from './Externals/ForItem'
 import Level, { LevelWithEdit } from './Level'
 import ScoreWrapper from './ScoreWrapper'
@@ -13,7 +13,7 @@ export const colorsBackground = ['hsla(208, 51%, 27%, .2)', 'hsl(188, 86%, 26%, 
 const Score = ({ 
     confident, done, externalScore,
     levelUpDone, levelUpConfident, levelDownDone, levelDownConfident, 
-    entryId, entry, ...props
+    entryId, ...props
 }) =>
     <div>
         <ScoreWrapper levels={[
@@ -22,15 +22,15 @@ const Score = ({
                 color={colors[0]}
                 {...props}
                 value={done}
-                increment={() => levelUpDone(entry)}
-                decrement={() => levelDownDone(entry)}/>,
+                increment={() => levelUpDone(entryId)}
+                decrement={() => levelDownDone(entryId)}/>,
             <LevelWithEdit
                 colorBackground={colorsBackground[1]}
                 color={colors[1]}
                 {...props}
                 value={confident}
-                increment={() => levelUpConfident(entry)}
-                decrement={() => levelDownConfident(entry)}/>,
+                increment={() => levelUpConfident(entryId)}
+                decrement={() => levelDownConfident(entryId)}/>,
             <Level
                 colorBackground={colorsBackground[2]}
                 color={colors[2]}
@@ -41,8 +41,6 @@ const Score = ({
         <Assessments entryId={entryId}/>
     </div>
 
-const stateToProps = (state, ownProps) => ({
-    entry: epaSelectors.getById(state, ownProps.entryId),
-    ...getScore(state, ownProps.entryId),
-})
+const stateToProps = (state, ownProps) => getScore(state, ownProps.entryId)
+
 export default needsData(loaded, load)(connect(stateToProps, actions)(Score))

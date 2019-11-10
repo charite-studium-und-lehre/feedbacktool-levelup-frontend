@@ -1,7 +1,8 @@
 import React from 'react'
 import _ from 'lodash/fp'
 import {connect} from 'react-redux'
-import { getScore } from '../Selectors'
+import needsData from '../../Core/needsData'
+import { getScore, loaded, load } from '../Selectors'
 import {withTranslation} from 'react-i18next'
 import Level from './Level'
 import { colors, colorsBackground } from './Score'
@@ -10,7 +11,7 @@ import ScoreWrapper from './ScoreWrapper'
 const stateToProps = (state, ownProps) => getScore(state, ownProps.entryId)
 
 export const withHeaderScore = WrappedComponent => 
-    _.compose([withTranslation(), connect(stateToProps)])(
+    _.compose([needsData(loaded, load), withTranslation(), connect(stateToProps)])(
     ({ t, done, confident, externalScore, ...props }) => 
     <WrappedComponent {...props} levels={[
         <div style={{color: colors[0]}}>
