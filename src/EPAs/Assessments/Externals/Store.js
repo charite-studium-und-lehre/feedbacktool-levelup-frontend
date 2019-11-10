@@ -37,7 +37,7 @@ export const actions = baseStore.withLoadAction(url)({
 })
 
 const transform = data => [
-	//d => d.fremdbewertungen,
+	d => d.fremdbewertungen,
 	d => d.map( a => ({ 
 		...a, 
 		id: a.id || `offen${Math.random()*10000}`, 
