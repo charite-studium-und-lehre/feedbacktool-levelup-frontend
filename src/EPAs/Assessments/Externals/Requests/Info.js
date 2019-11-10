@@ -1,6 +1,6 @@
 import React from 'react'
 import { withTranslation } from 'react-i18next'
-import Legend from '../../../Charting/Legend'
+import Legend from '../../../../Charting/Legend'
 
 const Info = withTranslation()(
     ({ t, name, angefragteTaetigkeiten, studiName, studiEmail, kommentar, datum }) => 

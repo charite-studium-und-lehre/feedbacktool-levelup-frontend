@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getEpaById } from '../../Selectors'
+import { getEpaById } from '../../../Selectors'
 import Rating from './Rating'
 
 const stateToProps = (state, ownProps) => ({ ...getEpaById(state, ownProps.entryId) })

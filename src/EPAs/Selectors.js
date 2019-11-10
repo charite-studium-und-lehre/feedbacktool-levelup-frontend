@@ -1,7 +1,7 @@
 import _ from 'lodash/fp'
-import { selectors as assessmentsSelectors } from './Assessment/Store'
-import { selectors as externalAssessmentsSelectors } from './Assessment/ExternalStore'
-import { selectors as epasSelectors } from './Store'
+import { selectors as assessmentsSelectors, actions as assessmentsActions } from './Assessments/Store'
+import { selectors as externalAssessmentsSelectors, actions as externalAssessmentActions } from './Assessments/Externals/Store'
+import { selectors as epasSelectors, actions as epasActions } from './Store'
 
 const getLeavesById = state => _.flow([ epasSelectors.getById(state), getLeaves(state) ])
 const getLeaves = state => entry => entry.entries.length ? _.flatMap( getLeavesById(state) )(entry.entries) : [entry]
@@ -71,6 +71,12 @@ export const getScore = (state, id) => ({
     externalScore: getAssessmentScore(state)(id),
     maxValue: getMaxScore(state, id),
 })
+
+export const load = () => _.over([ 
+    epasActions.load(), 
+    externalAssessmentActions.load(), 
+    assessmentsActions.load() 
+])
 
 export const loaded = _.overEvery([ 
     epasSelectors.loaded, 

@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { withTranslation } from 'react-i18next'
-import { selectors, actions } from '../ExternalStore'
+import { selectors, actions } from './Store'
 import COLORS from "../../../colors"
 
 const stateToProps = state => ({ assessments: selectors.getItems(state), selected: selectors.getFilter(state) })

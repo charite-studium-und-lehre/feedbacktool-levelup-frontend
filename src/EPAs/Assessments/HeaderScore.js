@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash/fp'
 import {connect} from 'react-redux'
-import { getScore } from './Selectors'
+import { getScore } from '../Selectors'
 import {withTranslation} from 'react-i18next'
 import Level from './Level'
 import { colors, colorsBackground } from './Score'

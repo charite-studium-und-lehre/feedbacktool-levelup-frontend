@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import BaseStore from '../../../Core/BaseStore'
-import { post } from '../../../Core/DataProvider'
-import { externalAssessmentRequestsUrl as url } from '../../Urls'
-import { selectors as externalAssessmentsSelectors } from '../ExternalStore'
+import BaseStore from '../../../../Core/BaseStore'
+import { post } from '../../../../Core/DataProvider'
+import { externalAssessmentRequestsUrl as url } from '../../../Urls'
+import { selectors as externalAssessmentsSelectors } from '../Store'
 
 export const identifier = 'requests'
 const baseStore = BaseStore(identifier, state => externalAssessmentsSelectors.getStore(state)[identifier])

@@ -5,10 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import { SlideDown } from 'react-slidedown'
 import makeExtendable from '../../../Core/makeExtendable'
-import Level from '../../Level'
+import Level from '../Level'
 import { getExternals } from '../../Selectors'
 
-const ExternAssessingWithValue = makeExtendable()(({ toggleExtended, extended, externals }) =>
+const ForItem = makeExtendable()(({ toggleExtended, extended, externals }) =>
     <div className="container-fluid">
         <div className="row" >
             { !!externals.length &&
@@ -56,4 +56,4 @@ const ExternAssessingWithValue = makeExtendable()(({ toggleExtended, extended, e
 const stateToProps = (state, ownProps) => ({ 
     externals: getExternals(state)(ownProps.entryId) 
 })
-export default connect(stateToProps)(ExternAssessingWithValue)
+export default connect(stateToProps)(ForItem)

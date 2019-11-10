@@ -1,10 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { getScore } from './Selectors'
-import {selectors as epaSelectors, actions} from './Store'
-import Assessments from './Assessment/View/ExternAssessingValue'
+import { getScore, loaded, load } from '../Selectors'
+import {selectors as epaSelectors, actions} from '../Store'
+import Assessments from './Externals/ForItem'
 import Level, { LevelWithEdit } from './Level'
 import ScoreWrapper from './ScoreWrapper'
+import needsData from '../../Core/needsData'
 
 export const colors = ['hsla(208, 51%, 27%)', 'hsl(188, 86%, 26%)', 'hsl(15, 100%, 25%)']
 export const colorsBackground = ['hsla(208, 51%, 27%, .2)', 'hsl(188, 86%, 26%, .2)', ' hsl(15, 100%, 25%, .2)']
@@ -44,4 +45,4 @@ const stateToProps = (state, ownProps) => ({
     entry: epaSelectors.getById(state, ownProps.entryId),
     ...getScore(state, ownProps.entryId),
 })
-export default connect(stateToProps, actions)(Score)
+export default needsData(loaded, load)(connect(stateToProps, actions)(Score))

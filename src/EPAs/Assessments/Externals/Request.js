@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { withTranslation } from 'react-i18next'
-import { selectors, actions } from '../Create/RequestsStore'
+import { selectors, actions } from './Store'
 
 const Infos = props => (
         <div className="flex-grow-1">
@@ -25,7 +25,7 @@ const Infos = props => (
         </div>
 )
 
-const ExternAsk = ({ t, makeRequest, sending, sent, resetSent, error }) => {
+const Request = ({ t, makeRequest, sending, sent, resetSent, error }) => {
     const [formdata, setFormdata] = useState({})
     const handleChange = field => e => setFormdata({...formdata, [field]: e.target.value})
     const fields = [
@@ -77,4 +77,4 @@ const ExternAsk = ({ t, makeRequest, sending, sent, resetSent, error }) => {
         </div>
 }
 
-export default [withTranslation(), connect(selectors.getStatus, actions)].reduceRight((fx, f) => f(fx), ExternAsk)
+export default [withTranslation(), connect(selectors.getStatus, actions)].reduceRight((fx, f) => f(fx), Request)

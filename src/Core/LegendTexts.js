@@ -1,6 +1,6 @@
 import React from 'react'
 import {Trans} from 'react-i18next'
-import Video from '../EPAs/static/EPAsVideo'
+import Video from '../EPAs/Common/EPAsVideo'
 import {GraphButton} from "../Exams/Ptm/GraphButton"
 
 const Legends = {

@@ -1,9 +1,9 @@
-import { selectors as epasSelectors } from '../Store'
+import { selectors as epasSelectors } from '../../Store'
 import { combineReducers } from 'redux'
-import BaseStore from '../../Core/BaseStore'
-import { post } from '../../Core/DataProvider'
-import { reducer as requestsReducer, identifier as requestsIdentifier } from './Create/RequestsStore'
-import { externalAssessmentsUrl as url } from '../Urls'
+import BaseStore from '../../../Core/BaseStore'
+import { post } from '../../../Core/DataProvider'
+import { reducer as requestsReducer, identifier as requestsIdentifier } from './Requests/Store'
+import { externalAssessmentsUrl as url } from '../../Urls'
 
 export const identifier = 'externalAssessments'
 const baseStore = BaseStore(identifier, state => epasSelectors.getStore(state)[identifier])

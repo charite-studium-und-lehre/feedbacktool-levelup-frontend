@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Score from './Score'
-import HeaderScore from './HeaderScore'
-import { getEpaById } from './Selectors'
+import Score from '../Assessments/Score'
+import HeaderScore from '../Assessments/HeaderScore'
+import { getEpaById } from '../Selectors'
 
 const stateToProps = (state, ownProps) => ({ ...getEpaById(state)(ownProps.entryId) })
 
