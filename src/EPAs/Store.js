@@ -17,7 +17,7 @@ export const selectors = baseStore.withLoadedSelector({
 	getRoot: state => _.flow([ baseStore.getItems, _.find(e => e.label === 'root') ])(state),
 })
 
-export const actions = baseStore.withLoadAction(`${url}`)({})
+export const actions = baseStore.withLoadAction(url)({})
 
 const addEntries = epas =>
 _.map( epa => ({

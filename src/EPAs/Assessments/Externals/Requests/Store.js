@@ -32,6 +32,8 @@ export const actions = {
 
 const status = (state = {sending: false, error: null, sent: false}, action) => {
     switch(action.type) {
+		case `${identifier.toUpperCase()}_DATA_FETCH_FAILED`:
+			return { sending: false, error: action.payload, sent: false }
         case `${identifier.toUpperCase()}_RESET_SENT`:
             return { sending: false, error: null, sent: false }
         case `${identifier.toUpperCase()}_SENDING`:
@@ -48,7 +50,6 @@ const status = (state = {sending: false, error: null, sent: false}, action) => {
 const transform = request => ({
 	...request,
 	datum: new Date(request.datum),
-	epas: undefined
 })
 const items = (state = {}, action) => {
 	switch(action.type) {

@@ -16,11 +16,11 @@ const Level = ({ selected, onClick, children }) =>
         }}>
         {children}
     </div>
-const stateToProps = (state, ownProps) => ({ value: selectors.getEpa(state, ownProps.entryId).value })
-const Rating = connect(stateToProps, actions)(({ t, setEpa, value, entryId }) =>
+const stateToProps = (state, ownProps) => ({ value: selectors.getByEpaId(state)(ownProps.entryId).external })
+const Rating = connect(stateToProps, actions)(({ t, setExternal, value, entryId }) =>
     <div className="text-center">
-        {[1,2,3,4,5].map( l => <Level key={l} selected={l===value} onClick={() => setEpa(entryId, l)}>{l}</Level>)}
-        <div style={{fontSize: '.8em', cursor: 'pointer'}} className="d-inline-block ml-2 color-navigation" onClick={() => setEpa(entryId, null)}>
+        {[1,2,3,4,5].map( l => <Level key={l} selected={l===value} onClick={() => setExternal(entryId, l)}>{l}</Level>)}
+        <div style={{fontSize: '.8em', cursor: 'pointer'}} className="d-inline-block ml-2 color-navigation" onClick={() => setExternal(entryId, null)}>
             <u>{t('zurücksetzen')}</u>
         </div>
     </div>

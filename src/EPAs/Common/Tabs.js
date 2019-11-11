@@ -9,14 +9,14 @@ import { selectors, actions } from '../Store'
 const Title = connect((state, ownProps) => ({label: selectors.getById(state)(ownProps.entryId).label}))(props => props.label)
 
 const stateToProps = state => ({ root: selectors.getRoot(state) })
-const EpasTabs = _.compose([
+export const asEpasTabs = ItemComponent => _.compose([
     needsData(selectors.loaded, actions.load),
     connect(stateToProps)
 ])(
     ({ root }) =>
             <Tabs inactiveColor="#e9ecef">
-                {root.entries.map(e => <Item key={e} title={<Title entryId={e}/>} entryId={e}/>)}
+                {root.entries.map(e => <ItemComponent key={e} title={<Title entryId={e}/>} entryId={e}/>)}
             </Tabs>
 )
 
-export default EpasTabs
+export default asEpasTabs(Item)

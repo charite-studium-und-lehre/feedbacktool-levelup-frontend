@@ -1,27 +1,29 @@
 import React from 'react'
+import _ from 'lodash/fp'
 import { connect } from 'react-redux'
 import { withTranslation } from 'react-i18next'
 import { selectors, actions as requestActions } from './Store'
 import { selectors as assessmentsSelectors, actions } from '../../Store'
-import { selectors as epasSelectors } from '../../../Store'
+import { selectors as epasSelectors, actions as epasActions } from '../../../Store'
 import needsData, { Spinner } from '../../../../Core/needsData'
-import Tab from './Tab'
-import Tabs from '../../../../Utils/Tabs'
+import { asItem } from '../../../Common/Item'
+import { asEpasTabs } from '../../../Common/Tabs'
 import CheatSheetCard from '../../../Common/CheatSheetCard'
 import Info from './Info'
+import Rating from './Rating'
 
-const load = ownProps => requestActions.loadWithToken(ownProps.match.params.token)
-const loaded = (state, ownProps) => selectors.loaded(state, ownProps.match.params.token)
+const load = ownProps => _.over([ requestActions.loadWithToken(ownProps.match.params.token), epasActions.load() ])
+const loaded = (state, ownProps) => selectors.loaded(state, ownProps.match.params.token) && epasSelectors.loaded(state)
 
-const Title = connect((state, ownProps) => ({label: epasSelectors.getById(state, ownProps.entryId).label}))(props => props.label)
+const Item = asItem(null, null, Rating)
+const Tabs = asEpasTabs(Item)
 
 const stateToProps = (state, ownProps) => ({ 
     request: selectors.getByToken(state, ownProps.match.params.token),
-    root: epasSelectors.getById(state),
     ...assessmentsSelectors.getStatus(state),
 })
-const Assessment = [needsData(loaded, load), connect(stateToProps, actions), withTranslation()].reduceRight((f,g) => g(f), 
-    ({ t, request, root, send, match: { params: { token }}, error, sending, sent }) =>
+const Assessment = _.compose([needsData(loaded, load), connect(stateToProps, actions), withTranslation()])(
+    ({ t, request, send, match: { params: { token }}, error, sending, sent }) =>
     !sent ? <div className="container-fluid">
         <div className="row">
             <div className="col-lg-4">
@@ -37,9 +39,7 @@ const Assessment = [needsData(loaded, load), connect(stateToProps, actions), wit
                     <Info {...request} />
                 </div>
                 <div className="card mt-2">
-                    <Tabs inactiveColor="#e9ecef">
-                        {root.entries.map(e => <Tab key={e} entryId={e} title={ <Title entryId={e}/> } /> )}
-                    </Tabs>
+                    <Tabs />
                 </div>
                 {error && <div className="p-2 text-center text-danger">
                     {t('Das hat leider nicht funktioniert. Bitte senden Sie uns eine Mail an ')}

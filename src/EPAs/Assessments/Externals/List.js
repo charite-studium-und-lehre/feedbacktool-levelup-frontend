@@ -12,7 +12,7 @@ export default [withTranslation(), connect(stateToProps, actions)].reduceRight((
             <button className='btn btn-sm color-button-color width-100' onClick={() => setFilter(null)}>Alle</button>
             <ul className='list-group'>
                 {assessments.map(e =>
-                    <li className="list-group-item d-inline font-weight-bold" key={e.name}
+                    <li className="list-group-item d-inline font-weight-bold" key={e.id}
                         onClick={() => e.open || setFilter(e.id)}
                         style={{ backgroundColor: selected === e.id ? COLORS.background.grey2: COLORS.background.base }}>
                         <div className="row">
