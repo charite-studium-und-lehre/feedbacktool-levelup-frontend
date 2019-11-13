@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import _ from 'lodash/fp'
 import BaseStore from '../../../../Core/BaseStore'
 import { post } from '../../../../Core/DataProvider'
 import { externalAssessmentRequestsUrl as url } from '../../../Urls'
@@ -9,26 +10,27 @@ const baseStore = BaseStore(identifier, state => externalAssessmentsSelectors.ge
 
 const getStatus = state => baseStore.getStore(state).status
 const getByToken = (state, token) => baseStore.getItems(state)[token]
-export const selectors = {
+export const selectors = baseStore.withLoadedSelector({
 	getByToken,
-	loaded: (state, token) => !!getByToken(state, token),
+	itemLoaded: (state, token) => !!getByToken(state, token),
 	getStatus,
-}
+	getItems: state => Object.values(baseStore.getItems(state)),
+})
 
 const makeRequest = formdata => dispatch => {
 	dispatch({ type: `${identifier.toUpperCase()}_SENDING` })
 	post(url, formdata)
-		.then( result => result.status === 200 ? 
-			dispatch({ type: `${identifier.toUpperCase()}_SENT` }) :
+		.then( result => result.status === 201 ? 
+			result.json().then( data => dispatch({ type: `${identifier.toUpperCase()}_SENT`, payload: data }) ) :
 			dispatch({ type: `${identifier.toUpperCase()}_SEND_FAILED`, payload: result.status })
 		)
 		.catch(err => dispatch({ type: `${identifier.toUpperCase()}_SEND_FAILED`, payload: err }))
 }
-export const actions = {
+export const actions = baseStore.withLoadAction(url)({
     loadWithToken: token => baseStore.withLoadAction(`${url}/${token}`)({}).load(),
 	makeRequest,
 	resetSent: () => ({ type: `${identifier.toUpperCase()}_RESET_SENT` }),
-}
+})
 
 const status = (state = {sending: false, error: null, sent: false}, action) => {
     switch(action.type) {
@@ -47,17 +49,29 @@ const status = (state = {sending: false, error: null, sent: false}, action) => {
 	}
 }
 
-const transform = request => ({
+const transformItem = request => ({
 	...request,
+	id: `request_${request.id}`,
 	datum: new Date(request.datum),
+	open: true,
 })
-const items = (state = {}, action) => {
+const transform = _.flow([
+	d => d.fremdbewertungsAnfragen,
+	_.map( transformItem ),
+	_.keyBy( request => request.id )
+])
+
+const items = baseStore.withLoadedReducer((state = {}, action) => {
 	switch(action.type) {
+		case `${identifier.toUpperCase()}_SENT`:
+			return { ...state, [action.payload.id]: transformItem(action.payload) }
 		case `${identifier.toUpperCase()}_DATA_FETCHED`:
-            return { ...state, [action.payload.token]: transform(action.payload) }
+			return action.payload.token ?
+            	{ ...state, [action.payload.token]: transformItem(action.payload) } :
+            	transform(action.payload)
 		default:
             return state
 	}
-}
+})
 
-export const reducer = combineReducers({ items, status })
+export const reducer = combineReducers({ ...items, status })

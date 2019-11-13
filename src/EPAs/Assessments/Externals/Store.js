@@ -22,10 +22,8 @@ export const actions = baseStore.withLoadAction(url)({
 const transform = data => [
 	d => d.fremdbewertungen,
 	d => d.map( a => ({ 
-		...a, 
-		id: a.id || `offen${Math.random()*10000}`, 
+		...a,
 		datum: new Date(a.datum),
-		open: a.status === 'offen',
 	})),
 	d => d.reduce( (a,v) => ({ ...a, [v.id]: v }), {})
 ].reduce((f,g) => g(f), data)

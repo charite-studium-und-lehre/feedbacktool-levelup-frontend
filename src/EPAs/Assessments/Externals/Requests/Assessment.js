@@ -13,7 +13,7 @@ import Info from './Info'
 import Rating from './Rating'
 
 const load = ownProps => _.over([ requestActions.loadWithToken(ownProps.match.params.token), epasActions.load() ])
-const loaded = (state, ownProps) => selectors.loaded(state, ownProps.match.params.token) && epasSelectors.loaded(state)
+const loaded = (state, ownProps) => selectors.itemLoaded(state, ownProps.match.params.token) && epasSelectors.loaded(state)
 
 const Item = asItem(null, null, Rating)
 const Tabs = asEpasTabs(Item)
@@ -23,7 +23,7 @@ const stateToProps = (state, ownProps) => ({
     ...assessmentsSelectors.getStatus(state),
 })
 const Assessment = _.compose([needsData(loaded, load), connect(stateToProps, actions), withTranslation()])(
-    ({ t, request, send, match: { params: { token }}, error, sending, sent }) =>
+    ({ t, request, send, request: { token }, error, sending, sent }) =>
     !sent ? <div className="container-fluid">
         <div className="row">
             <div className="col-lg-4">

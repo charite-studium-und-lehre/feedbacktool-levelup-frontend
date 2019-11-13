@@ -55,19 +55,18 @@ Creation-Date: 2019-11-01T17:32:12+01:00
 {
 '''
 	'''
-	fremdbewertungen: [
+	fremdbewertungsAnfragen: [
 	'''
 		'''
 		{
 		'''
 			'''
-			id: <ID der Fremdeinschätzung| null, wenn Status=offen>,	
+			id: <ID der Fremdeinschätzungs Anfrage>,	
 			name: <Name des Bewerters>,
 			email: <Email des Prüfers>,
 			anfrageTaetigkeiten: <Text der angefragen Tätigkeiten>,
 			anfrageKommentar: <Kommentar der Anfrage>,
 			datum: <ISO-Datum , z.B: "2018-10-31">,
-			status: <beantwortet|offen>,
 			'''
 		'''
 		}
@@ -92,8 +91,8 @@ Creation-Date: 2019-11-01T17:32:12+01:00
 '''
 id: <ID>,
 token: <Token>,
-bewerterEmail: <Email>,
-bewerterName: <String>,
+email: <Email>,
+name: <String>,
 datum: <ISO-Datum>,
 studiName: <Name des anfragenden Studis>,
 studiEmail: <Email des anfragenden Studis>,
@@ -121,7 +120,7 @@ Parameter
 
 //Response//
 **Success:** 
-	//201 CREATED Body//
+	//201 CREATED Body mit erstellter Anfrage wie unter GET //
 **Error:** 
 	//400 "BAD REQUEST":// bei ungültigem Wert.
 

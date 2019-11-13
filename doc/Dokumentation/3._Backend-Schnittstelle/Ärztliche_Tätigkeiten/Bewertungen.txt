@@ -29,7 +29,7 @@ Creation-Date: 2019-11-07T17:41:46+01:00
 			fremdbewertungen: [
 			'''
 				'''
-				fremdbewertungId: <id der Fremdbewertung>
+				fremdbewertungsId: <id der Fremdbewertung>
 				wert: <level= 0-5>
 				'''
 			'''

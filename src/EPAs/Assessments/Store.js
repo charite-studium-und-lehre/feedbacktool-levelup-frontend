@@ -23,11 +23,11 @@ const changeLevel = (newData, ids) => token => (dispatch, getState) => {
 		.then( result => {
 			if(result.status === 200) return dispatch({ type: `${identifier.toUpperCase()}_SENT`})
 			reverse()
-			dispatch({ type: `${identifier.toUpperCase()}_SEND_FAILED`})
+			dispatch({ type: `${identifier.toUpperCase()}_SEND_FAILED`, payload: result.status })
 		})
-		.catch( () => {
+		.catch( err => {
 			reverse()
-			dispatch({ type: `${identifier.toUpperCase()}_SEND_FAILED`})
+			dispatch({ type: `${identifier.toUpperCase()}_SEND_FAILED`, payload: err })
 		})
 	dispatch({ type: `${identifier.toUpperCase()}_SENDING`})
 	oldData.map( newData ).map( d => dispatch({ type: `${identifier.toUpperCase()}_SET`, payload: { id: d.id, value: d }}))
@@ -75,7 +75,7 @@ const status = (state = {sending: false, error: null, sent: false}, action) => {
         case `${identifier.toUpperCase()}_SENT`:
             return { sending: false, error: null, sent: true }
         case `${identifier.toUpperCase()}_SEND_FAILED`:
-            return { sending: false, error: action.payload, sent: true }
+            return { sending: false, error: action.payload, sent: false }
 		default:
 			return state
 	}
