@@ -28,7 +28,6 @@ const Level = ({ maxValue = 5, value = 0, color, colorBackground, ...props }) =>
 }
 
 export const LevelWithEdit = ({ increment, decrement, ...otherProps}) => {
-    const test = ()=> alert('ff')
     const condition1 = otherProps.value < 1
     const condition2 = otherProps.value >= otherProps.maxValue
      return <div>
