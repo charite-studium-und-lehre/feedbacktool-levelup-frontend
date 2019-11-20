@@ -12,6 +12,7 @@ const Tellme =({t})=> (
             <div className='col-12'>
                 <span className='font-weight-bold ' style={{borderBottom:'2px solid black'}}>{t(`news`)}:</span>
                 <p className='mt-2'>Unsere ersten Lerneinheiten für Dich sind fertig: M14 & M17</p>
+                <p className='font-weight-bold'>TellMe ist noch nicht released - tellme@charite.de</p>
             </div>
         </div>
         <div className="row">
