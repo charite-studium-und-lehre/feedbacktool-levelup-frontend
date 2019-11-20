@@ -2,34 +2,37 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import {withTranslation} from 'react-i18next'
 import {StudyToolsData, OtherToolsData } from './AllToolsData'
-import stift from './stift.svg'
-import spritze from './spritze.svg'
-
+// import stift from './stift.svg'
+// import spritze from './spritze.svg'
+console.log(window.innerWidth)
 const  MakeStairsList = props => (
-    <div className='col-12 col-lg-6'>
-          <ul className="list-group list-group-flush">
-            {props.data.map((d, i) => <div>
-             <h4 className="font-weight-bold" style={{paddingLeft: `${i}rem`}}>{d.title}</h4> 
-            <a className="font-weight-bold list-group-item " style={{color:'rgb(34, 71, 104)',paddingLeft: `${i}rem`}} key={i} href={d.href}>{d.href}</a>
-            </div>)}
-         </ul>
+    <div className='col-12 col-md-6 mt-4 mt-md-2'>
+        <h2 className='pl-3'>{props.heading}</h2>
+                 <div className='mt-4' >
+            {props.data.map((d, i) => <div className='mt-3 pl-3' style={{marginLeft: window.innerWidth > 1173 ?`${ 8 - i}rem`: '1rem'}} key={i}>
+                <h5 className="font-weight-bold">{d.title}</h5>
+                { i === 0 && props.link  ? <Link to='/consulting' className="text-primary" >{d.href}</Link>
+                :<a className="text-primary "  href={d.href} target="blank">{d.href}</a>}
+                </div>)}
+            </div>
     </div>
+
 )
 
 const  AllTools = props => (
     <div className='row'>
          <MakeStairsList 
-         data={StudyToolsData}/>
+            heading="Lern-Tools"
+            data={StudyToolsData}/>
          <MakeStairsList 
-         data={OtherToolsData}/>
+            heading="Weiteres"
+            link={true}
+            data={OtherToolsData}/>
     </div>
 )
 
 export default withTranslation()(AllTools)
 
-
-
-// function AllTools({t}) {
 
 //     let makeStairsList = dataArray => dataArray.map((data, i, array) =>
 //         <div key={i} style={{marginBottom: "1em"}}>

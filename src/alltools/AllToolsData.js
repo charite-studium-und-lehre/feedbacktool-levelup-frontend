@@ -1,7 +1,7 @@
 export const OtherToolsData = [
         {
             title: 'Beratungsangebote',
-            href: '/consulting',
+            href: 'Linksammlung zu Beratung',
         },
         {
             title: 'Fachschaft Medizin',
