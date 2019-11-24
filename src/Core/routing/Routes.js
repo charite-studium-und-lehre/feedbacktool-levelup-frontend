@@ -6,7 +6,7 @@ import Ptm from '../../Exams/Ptm/Ptm'
 import Strengths from '../../Strengths/Strengths'
 import Stations from '../../Exams/Stations/Stations'
 import Consulting from '../../consulting/Consulting'
-import AllTools from '../../alltools/AllTools'
+import AllTools from '../../AllTools/AllTools'
 import EPAs from '../../EPAs/EPAs'
 import Progress from '../../Progress/Progress'
 import Registration from '../../User/Registration'
@@ -42,7 +42,7 @@ const Routes = [
     private: false,
   },
   {
-    path: '/alltools',
+    path: '/AllTools',
     component: AllTools,
     menuName: 'Alle Tools',
     exact: true,
