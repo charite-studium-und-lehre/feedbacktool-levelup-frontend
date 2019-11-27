@@ -5,7 +5,7 @@ import {StudyToolsData, OtherToolsData } from './AllToolsData'
 import stift from '../images/stift.svg'
 import spritze from '../images/spritze.svg'
 const  MakeStairsList = props => (
-    <div className='col-12 col-md-6 mt-4 mt-md-2'>
+    <div className='col-12 col-md-6 col-xl-5 mt-4 mt-md-2'>
             <img src={props.img} alt='' style={{
                     position: "absolute",
                     height: "80%",
@@ -24,9 +24,9 @@ const  MakeStairsList = props => (
 ) 
 
 const  AllTools = props => (
-    <div className='row'>
+    <div className='row pb-3'>
          <MakeStairsList 
-         img={stift}
+             img={stift}
              translate='6rem, 9rem'
              scale='1.4'
              heading="Lern-Tools"

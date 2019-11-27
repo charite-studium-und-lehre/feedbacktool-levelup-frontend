@@ -18,7 +18,12 @@ export const OtherToolsData = [
         },
         {
             title: 'Ordnungen',
-            href: 'https://www.charite.de/studium_lehre/studiengaenge/modellstudiengang_humanmedizin/'}
+            href: 'https://www.charite.de/studium_lehre/studiengaenge/modellstudiengang_humanmedizin/'},
+
+         {
+            title: 'Medizinische Bibliothek',
+            href: 'https://bibliothek.charite.de/'
+        }
     ];
 
     export const StudyToolsData = [
@@ -45,9 +50,6 @@ export const OtherToolsData = [
             href: 'https://lernzentrum.charite.de/leistungen/raumbuchung/'},
         {
             title: 'Wikiblog',
-            href: 'https://wikiblog.charite.de'},
-        {
-            title: 'Medizinische Bibliothek',
-            href: 'https://bibliothek.charite.de/'}
+            href: 'https://wikiblog.charite.de'}
 
     ];
