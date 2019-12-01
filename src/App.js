@@ -1,5 +1,5 @@
-import React from 'react'
-import {BrowserRouter, NavLink, withRouter} from 'react-router-dom'
+import React, {useEffect} from 'react'
+import {BrowserRouter, NavLink, withRouter, useLocation} from 'react-router-dom'
 import {Route, Redirect} from 'react-router'
 import {Provider} from 'react-redux'
 import {createStore, compose, applyMiddleware} from 'redux'
@@ -15,6 +15,8 @@ import Breadcrumbs from './Core/routing/Breadcrumbs'
 import PrivateRoute from './Core/routing/PrivateRoute'
 import Routes from './Core/routing/Routes'
 import {withTranslation} from 'react-i18next'
+import ScrollToTop from './Core/ScrollToTop'
+
 
 const basename = process.env.PUBLIC_URL || '/'
 
@@ -30,6 +32,7 @@ const App = withTranslation()(() =>
             <div className="App container-fluid p-0 d-flex flex-column">
                 <Navbar />
                 <Breadcrumbs/>
+                <ScrollToTop/>
                 <div className="container-fluid flex-fill p-0">
                     {Routes.map(route => (route.private ?
                             <PrivateRoute key={route.path} path={route.path} component={route.component}
