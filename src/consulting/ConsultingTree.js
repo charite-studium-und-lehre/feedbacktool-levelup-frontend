@@ -34,8 +34,9 @@ export const ConsultingTree = t => ({
             title: t(`Referat für Studienangelegenheiten`),
             paragraph: t(`Hier erhalten Sie Informationen und Beratung zu allen allgemeinen und organisatorischen Fragen in puncto Studium.`),
             tel: "+49 30 450 576 042 ",
+            emails:['stud-hotline@charite.de'],
             address: "Hannoversche Str. 19, 3.OG",
-            talk: ["Mo-Fr 09:00-12:00, Mo-Do 13:00-16:00(Telefonisch)", "Di, Do, Fr: 9:30-12:30, Di 13:30-16:00(Sprechzeiten)"],
+            talk: ['Mo., Di. & Do. :  09:00 Uhr - 12:00 Uhr & 13:00 Uhr bis 16:00 Uhr',' Mi : ganztägig geschlossen', 'Fr. : 09:00 Uhr - 12:00 Uhr'],
             href: 'https://www.charite.de/studium_lehre/struktur_einrichtungen/referat_fuer_studienangelegenheiten/'
         },
         {

@@ -1,0 +1,79 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-11-07T17:41:46+01:00
+
+====== Bewertungen ======
+
+=== lesen ===
+**GET** [[file:///C:/api/epas/fremdbewertungen/anfragen/%3CToken%3E|/api/epas/bewertungen]]
+
+//Response//
+**Success:** 
+	//200 OK//
+**Error:** 
+
+**Body:**
+'''
+{
+'''
+	'''
+	bewertungen: [
+	'''
+		'''
+		{
+		'''
+			'''
+			epaId: <ID>,
+			gemacht: <level= 0-5>
+			zutrauen: <level= 0-5>
+			fremdbewertungen: [
+			'''
+				'''
+				fremdbewertungsId: <id der Fremdbewertung>
+				wert: <level= 0-5>
+				'''
+			'''
+			]
+			'''
+	'''
+		}
+	]
+	}
+	'''
+
+
+=== erstellen ===
+
+**POST** [[file:///C:/api/epas/bewertungen/%3CToken%3E|/api/epas/bewertungen[/<Token]]>]
+
+//Parameter//
+'''
+{
+'''
+	'''
+	bewertungen: [
+	'''
+		'''
+		{
+		'''
+			'''
+			epaId: <ID>,
+			zutrauen: <Int, null, min = 0, max = 5>,
+			gemacht: <Int, null, min = 0, max = 5>,
+			fremdbewertung: <Int, null, min = 0, max = 5>,
+			'''
+		'''
+		}
+		'''
+	'''
+	]
+	}
+	'''
+
+
+**Success:** 
+	//201 CREATED// 
+**Error:** 
+	//404 "NOT FOUND": //bei ungültiger ID.
+	//400 "BAD REQUEST":// bei ungültigem Wert.
+

@@ -1,9 +1,9 @@
-import React from "react";
-import Legend from "../../Charting/Legend";
-import Legends from "../../Core/LegendTexts";
-import Level from '../assessmentViewComponents/Level'
-import { colors as epaColors, colorsBackground as epaColorsBackground } from '../assessmentViewComponents/Score'
-import COLORS from '../../colors';
+import React from "react"
+import Legend from "../../Charting/Legend"
+import Legends from "../../Core/LegendTexts"
+import Level from '../Assessments/Level'
+import { colors as epaColors, colorsBackground as epaColorsBackground } from '../Assessments/Score'
+import COLORS from '../../colors'
 const Infos = (props) => (
     <div className='row mt-3'>
         <div className='col-12 col-sm-6 col-md-5 col-xl-4'>
