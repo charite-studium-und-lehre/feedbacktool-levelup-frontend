@@ -4,12 +4,12 @@ import _ from 'lodash/fp'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import { SlideDown } from 'react-slidedown'
-import makeExtendable from '../../../Core/makeExtendable'
-import Level from '../Level'
-import { getExternals } from '../../Selectors'
+import makeExtendable from '../../Core/makeExtendable'
+import Level from './Level'
+import { selectors } from '../Store'
 
-const ForItem = makeExtendable()(({ toggleExtended, extended, externals }) =>
-    <div className="container-fluid">
+const ExternAssessingWithValue = makeExtendable()(({ toggleExtended, extended, externals }) =>
+    <div>
         <div className="row" >
             { !!externals.length &&
                 <div className="col-sm-4 offset-sm-8 text-center" >
@@ -54,6 +54,6 @@ const ForItem = makeExtendable()(({ toggleExtended, extended, externals }) =>
     </div>)
 
 const stateToProps = (state, ownProps) => ({ 
-    externals: getExternals(state)(ownProps.entryId) 
+    externals: selectors.getExternals(state, ownProps.entryId) 
 })
-export default connect(stateToProps)(ForItem)
+export default connect(stateToProps)(ExternAssessingWithValue)

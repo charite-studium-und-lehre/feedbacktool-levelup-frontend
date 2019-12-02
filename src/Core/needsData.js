@@ -3,9 +3,7 @@ import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 
-export const Spinner = ({ className }) => 
-<div className={`${className} text-center`} 
-    style={{fontSize: '1.5rem', color: 'hsla(0, 0%, 0%, .6)'}}>
+const Spinner = () => <div className="text-center m-4" style={{fontSize: '1.5rem', color: 'hsla(0, 0%, 0%, .6)'}}>
     <FontAwesomeIcon className="fa-spin" icon={faCircleNotch} />
 </div>
 
@@ -14,7 +12,7 @@ const needsData = (loadedSelector, loadAction, spinner = true) => WrappedCompone
     ({ load, loaded, ...props }) => {
         useEffect(() => { !loaded && load(props) }, [loaded, load, props])
 
-        return loaded ? <WrappedComponent {...props} /> : (spinner && <Spinner className="m-4" />)
+        return loaded ? <WrappedComponent {...props} /> : (spinner && <Spinner />)
     }
 )
 

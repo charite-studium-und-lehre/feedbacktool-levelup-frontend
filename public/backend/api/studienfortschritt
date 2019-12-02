@@ -1,4 +1,4 @@
-module.exports = {
+{
     "meilensteine":[
        {
           "code":10,

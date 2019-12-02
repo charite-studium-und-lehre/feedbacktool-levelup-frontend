@@ -29,9 +29,8 @@ tmp_table_size = 128M
 max_heap_table_size = 64M
 table_open_cache = 16384
 
-innodb_file_per_table = 1
-max_binlog_size   = 500M
 
+innodb_file_per_table = 1
 '''
 
 

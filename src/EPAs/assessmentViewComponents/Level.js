@@ -26,19 +26,17 @@ const Level = ({ maxValue = 5, value = 0, color, colorBackground, ...props }) =>
     </div>
 }
 
-export const LevelWithEdit = ({ increment, decrement, ...otherProps}) => {
-    const condition1 = otherProps.value < 1
-    const condition2 = otherProps.value >= otherProps.maxValue
-     return <div>
-        <span style={{ cursor: condition1 ? 'auto': 'pointer' , color: condition1 ? 'rgb(108, 117, 125,.2)':'rgb(108, 117, 125)' }}>
-            <FontAwesomeIcon icon={faMinusCircle} onClick={!condition1 ? decrement :''} />
+export const LevelWithEdit = ({ increment, decrement, ...otherProps}) => 
+    <div>
+        <span style={{ cursor: 'pointer' }} className={(!decrement || otherProps.value < 1) ? 'invisible' : 'visible'}>
+            <FontAwesomeIcon icon={faMinusCircle} className="text-muted" onClick={decrement} />
         </span>
         <span className="mx-1">
             <Level {...otherProps} />
         </span>
-        <span style={{cursor: condition2 ? 'auto': 'pointer', color: condition2 ? 'rgb(108, 117, 125,.2)':'rgb(108, 117, 125)' }}>
-            <FontAwesomeIcon icon={faPlusCircle}  onClick={!condition2 ? increment :'' } />
+        <span style={{ cursor: 'pointer' }} className={(!increment || otherProps.value >= otherProps.maxValue) ? 'invisible' : 'visible'}>
+            <FontAwesomeIcon icon={faPlusCircle} className="text-muted" onClick={increment} />
         </span>
     </div>
-}
+
 export default Level

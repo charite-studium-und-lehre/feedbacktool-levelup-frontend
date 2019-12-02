@@ -1,11 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { getScore, loaded, load } from '../Selectors'
-import { actions } from './Store'
-import Assessments from './Externals/ForItem'
+import {selectors, actions} from '../Store'
+import ExternAssessingWithValue from './ExternAssessingValue'
 import Level, { LevelWithEdit } from './Level'
 import ScoreWrapper from './ScoreWrapper'
-import needsData from '../../Core/needsData'
 
 export const colors = ['hsla(208, 51%, 27%)', 'hsl(188, 86%, 26%)', 'hsl(15, 100%, 25%)']
 export const colorsBackground = ['hsla(208, 51%, 27%, .2)', 'hsl(188, 86%, 26%, .2)', ' hsl(15, 100%, 25%, .2)']
@@ -13,7 +11,7 @@ export const colorsBackground = ['hsla(208, 51%, 27%, .2)', 'hsl(188, 86%, 26%, 
 const Score = ({ 
     confident, done, externalScore,
     levelUpDone, levelUpConfident, levelDownDone, levelDownConfident, 
-    entryId, ...props
+    entryId, entry, ...props
 }) =>
     <div>
         <ScoreWrapper levels={[
@@ -22,15 +20,15 @@ const Score = ({
                 color={colors[0]}
                 {...props}
                 value={done}
-                increment={() => levelUpDone(entryId)}
-                decrement={() => levelDownDone(entryId)}/>,
+                increment={() => levelUpDone(entry)}
+                decrement={() => levelDownDone(entry)}/>,
             <LevelWithEdit
                 colorBackground={colorsBackground[1]}
                 color={colors[1]}
                 {...props}
                 value={confident}
-                increment={() => levelUpConfident(entryId)}
-                decrement={() => levelDownConfident(entryId)}/>,
+                increment={() => levelUpConfident(entry)}
+                decrement={() => levelDownConfident(entry)}/>,
             <Level
                 colorBackground={colorsBackground[2]}
                 color={colors[2]}
@@ -38,9 +36,11 @@ const Score = ({
                 maxValue={Math.max(externalScore.total, 1)}
                 value={externalScore.value}/>
         ]} />
-        <Assessments entryId={entryId}/>
+        <ExternAssessingWithValue entryId={entryId}/>
     </div>
 
-const stateToProps = (state, ownProps) => getScore(state, ownProps.entryId)
-
-export default needsData(loaded, load)(connect(stateToProps, actions)(Score))
+const stateToProps = (state, ownProps) => ({
+    entry: selectors.getById(state, ownProps.entryId),
+    ...selectors.getScore(state, ownProps.entryId),
+})
+export default connect(stateToProps, actions)(Score)
