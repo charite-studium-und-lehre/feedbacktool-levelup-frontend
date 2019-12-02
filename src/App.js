@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react'
-import {BrowserRouter, NavLink, withRouter, useLocation} from 'react-router-dom'
+import React from 'react'
+import {BrowserRouter, NavLink, withRouter} from 'react-router-dom'
 import {Route, Redirect} from 'react-router'
 import {Provider} from 'react-redux'
 import {createStore, compose, applyMiddleware} from 'redux'
