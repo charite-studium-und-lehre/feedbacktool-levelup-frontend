@@ -3,7 +3,7 @@ import _ from 'lodash/fp'
 import socketio from "socket.io-client"
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimesCircle, faPaperPlane, faEnvelope, faCheckSquare, faSquare } from '@fortawesome/free-regular-svg-icons'
+import { faTimesCircle, faPaperPlane, faEnvelope, faCheckSquare, faSquare,faCommentDots } from '@fortawesome/free-regular-svg-icons'
 import { selectors as user } from '../User/Store'
 
 const url = 'https://lu-feedback.herokuapp.com/'
@@ -12,11 +12,12 @@ const socket = socketio(url)
 
 const style = {
     position: 'fixed',
-    bottom: 0,
-    right: 0,
+   
     fontSize: '.8rem',
     zIndex: 999999,
+   
 }
+
 const stateToProps = state => ({
     loggedIn: user.isLoggedIn(state),
     user: user.getData(state),
@@ -27,7 +28,7 @@ const Feedback = _.compose([connect(stateToProps), waitForLogin])(({ user }) => 
     const messageDiv = useRef(null)
     const [ sendId, setSendId ] = useState(true)
     const [ ts, setTs ] = useState(window.localStorage.getItem('ts'))
-    const [ show, setShow ] = useState(false)
+    const [ show, setShow ] = useState(true)
     const [ messages, setMessages ] = useState([{
         text: 'Willkommen auf LevelUp! Hier hast du die Möglichkeit uns Feedback zu senden. Schreib uns einfach alles, was dir einfällt.',
         sender: 'server'
@@ -69,7 +70,7 @@ const Feedback = _.compose([connect(stateToProps), waitForLogin])(({ user }) => 
         if(e.keyCode === 13) postFeedback()
     }
 
-    return <div style={style} className="p-4">
+    return <div style={style} className="p-4 test">
         { show ? <div className="with-shadow" style={{width: '18rem', backgroundColor: 'white', border: 'none'}}>
             <div className="text-right px-2 color-bg-navigation" style={{height: '2rem', lineHeight: '2.1rem'}} onClick={() => setShow(false)} >
                 <FontAwesomeIcon style={{fontSize: '1rem'}} className="text-white" icon={faTimesCircle} />
@@ -90,10 +91,10 @@ const Feedback = _.compose([connect(stateToProps), waitForLogin])(({ user }) => 
                 meine Mailadresse mitsenden
             </div>
         </div> :
-        <div className="w-100 text-right with-shadow">
-            <button className="btn color-button-color" onClick={ () => setShow(true) }>
-                <FontAwesomeIcon style={{fontSize: '1rem'}} icon={faEnvelope} />
-            </button>
+        <div className="w-100 text-right with-shadow ">
+            <button id='tunnel' className="btn color-button-color" onClick={ () => setShow(true) }>
+                <FontAwesomeIcon style={{fontSize: '1.3rem'}} icon={faCommentDots} />
+            </button>  
         </div>}
     </div>
 })

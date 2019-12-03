@@ -94,3 +94,15 @@ input.no-outline {
 .with-shadow {
   box-shadow: 1px 1px 5px rgba(0,0,0,.2);
 }
+.test {
+  bottom: 10px;
+  right: 10px;
+  animation-name: example;
+  animation-duration: 4s;
+}
+@keyframes example {
+  from {bottom: 10px;
+        right: 10px;}
+  to {bottom: 200px;
+    right: 200px;}
+}
