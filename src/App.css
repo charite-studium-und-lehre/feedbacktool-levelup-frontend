@@ -96,13 +96,18 @@ input.no-outline {
 }
 .test {
   bottom: 10px;
-  right: 10px;
+  right: -320px;
   animation-name: example;
-  animation-duration: 4s;
+  animation-duration: 2s;
+  animation-fill-mode: forwards
 }
 @keyframes example {
-  from {bottom: 10px;
-        right: 10px;}
-  to {bottom: 200px;
-    right: 200px;}
+from {bottom: 10px;
+    right: -320px;}
+    to {
+      bottom: 10px;
+    right: 10px;
+    }
+ 
+ 
 }

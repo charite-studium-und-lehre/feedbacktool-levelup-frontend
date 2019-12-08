@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle, faPaperPlane, faEnvelope, faCheckSquare, faSquare,faCommentDots } from '@fortawesome/free-regular-svg-icons'
 import { selectors as user } from '../User/Store'
+import { SlideDown } from 'react-slidedown'
 
 const url = 'https://lu-feedback.herokuapp.com/'
 
@@ -57,6 +58,10 @@ const Feedback = _.compose([connect(stateToProps), waitForLogin])(({ user }) => 
         if(!messageDiv.current) return
         messageDiv.current.scrollTop = messageDiv.current.scrollHeight
     }, [messages])
+    useEffect(()=> setTimeout(() => {
+        setShow(false)
+    }, 5000)
+    , [])
 
     function postFeedback() {
         const message = input.current.value
@@ -70,8 +75,9 @@ const Feedback = _.compose([connect(stateToProps), waitForLogin])(({ user }) => 
         if(e.keyCode === 13) postFeedback()
     }
 
+
     return <div style={style} className="p-4 test">
-        { show ? <div className="with-shadow" style={{width: '18rem', backgroundColor: 'white', border: 'none'}}>
+        { show ? <SlideDown> <div className="with-shadow" style={{width: '18rem', backgroundColor: 'white', border: 'none'}}>
             <div className="text-right px-2 color-bg-navigation" style={{height: '2rem', lineHeight: '2.1rem'}} onClick={() => setShow(false)} >
                 <FontAwesomeIcon style={{fontSize: '1rem'}} className="text-white" icon={faTimesCircle} />
             </div>
@@ -90,12 +96,13 @@ const Feedback = _.compose([connect(stateToProps), waitForLogin])(({ user }) => 
                 <FontAwesomeIcon className="mr-1" style={{fontSize: '1.2em'}} icon={sendId ? faCheckSquare : faSquare} />
                 meine Mailadresse mitsenden
             </div>
-        </div> :
-        <div className="w-100 text-right with-shadow ">
+        </div> </SlideDown>:
+        <SlideDown>
+            <div className="w-100 text-right with-shadow ">
             <button id='tunnel' className="btn color-button-color" onClick={ () => setShow(true) }>
                 <FontAwesomeIcon style={{fontSize: '1.3rem'}} icon={faCommentDots} />
             </button>  
-        </div>}
+        </div></SlideDown>}
     </div>
 })
 
