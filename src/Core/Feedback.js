@@ -13,7 +13,8 @@ const socket = socketio(url)
 
 const style = {
     position: 'fixed',
-   
+    right: 0,
+    bottom: 0,
     fontSize: '.8rem',
     zIndex: 999999,
    
@@ -76,7 +77,7 @@ const Feedback = _.compose([connect(stateToProps), waitForLogin])(({ user }) => 
     }
 
 
-    return <div style={style} className="p-4 test">
+    return <div style={style} className="mr-3 mb-3 Feedback">
         { show ? <SlideDown> <div className="with-shadow" style={{width: '18rem', backgroundColor: 'white', border: 'none'}}>
             <div className="text-right px-2 color-bg-navigation" style={{height: '2rem', lineHeight: '2.1rem'}} onClick={() => setShow(false)} >
                 <FontAwesomeIcon style={{fontSize: '1rem'}} className="text-white" icon={faTimesCircle} />
