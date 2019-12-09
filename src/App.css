@@ -95,8 +95,6 @@ input.no-outline {
   box-shadow: 1px 1px 5px rgba(0,0,0,.2);
 }
 .Feedback {
-  right: 0;
-  bottom: 0;
   animation-name: FeedbackAnimation;
   animation-duration: 2s;
   animation-fill-mode: forwards;
