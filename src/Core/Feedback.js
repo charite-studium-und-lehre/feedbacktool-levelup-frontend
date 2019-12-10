@@ -16,8 +16,7 @@ const style = {
     right: 0,
     bottom: 0,
     fontSize: '.8rem',
-    zIndex: 999999,
-   
+    zIndex: 999999
 }
 
 const stateToProps = state => ({
