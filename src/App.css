@@ -5,11 +5,12 @@
   --color-background-button: #575a59;
   --color-background-base: #f8f9ff;
   --color-background-grey2: #BFC6D1;
+  --color-text-error: #A13030;
   --color-graphs-correct: hsla(120, 20%, 50%, .65);
-  --color-graphs-correct-small-icon: hsla(120, 30%, 50%);
+  --color-graphs-correct-small-icon: hsl(120, 30%, 50%);
   --color-graphs-wrong: hsla(0, 50%, 50%, .65);
   --color-graphs-missing-answer: hsla(240, 0%, 50%, .65);
-  --color-graphs-missing-answer-small-icon: hsla(240, 0%, 50%);
+  --color-graphs-missing-answer-small-icon: hsl(240, 0%, 50%);
   --color-graphs-total: hsla(240, 0%, 50%, .25);
   --color-graphs-grid: rgba(0,0,0,.6);
   --color-graphs-grid-text: rgba(0,0,0,.7);
@@ -84,6 +85,10 @@ ol.breadcrumb:empty {
 
 .color-button-color:hover {
   color: var(--color-background-grey2)
+}
+
+.color-text-error {
+  color: var(--color-text-error)
 }
 
 input.no-outline {

@@ -18,7 +18,7 @@ const CheatSheetCard = () => {
                     </div>)
             }
             </Legend>
-            <p style={{color: "white", lineHeight:"1rem"}}> </p>
+            <p style={{color: COLORS.background.base, lineHeight:"1rem"}}> </p>
             <Legend title={Legends.EPAs.CheatSheetCard.video.title}>
                 {Legends.EPAs.CheatSheetCard.video.text}
             </Legend>
