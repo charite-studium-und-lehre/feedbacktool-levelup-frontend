@@ -22,10 +22,3 @@ Auf Kommandozeile im Quellverzeichnis:
 ''yarn start''
 http://localhost:3000
 
-====== SmartGit free  ======
-Default Location of SmartGit's Settings Directory 
-
-Windows : %APPDATA%\syntevo\SmartGit\<major-smartgit-version> (%APPDATA% is the path defined in the environment variable APPDATA)
-MacOS   : ~/Library/Preferences/SmartGit/<major-smartgit-version> (the Finder might not show the ~/Libraries directory by default, but you can invoke open ~/Library from a terminal)
-Linux   : ${XDG_CONFIG_HOME}/smartgit/<major-smartgit-version> (if the environment variable XDG_CONFIG_HOME is not defined, ~/.config is used instead)
-

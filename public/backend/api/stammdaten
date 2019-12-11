@@ -1,4 +1,4 @@
-module.exports = { 
+{ 
     "vorname": "Marta",
     "nachname": "Musterfrau", 
     "stammdatenVorhanden": true, 

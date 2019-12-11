@@ -9,7 +9,7 @@ const Infos = props => (
         <div className="col-1" style={{color:' rgb(34, 71, 104)', fontSize:'1.3rem'}}>
             <FontAwesomeIcon icon={props.icon} />
         </div>
-        <div className="col-11">
+        <div className="col-9">
             {props.children}
         </div>
     </div>
