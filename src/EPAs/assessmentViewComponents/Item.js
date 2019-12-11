@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Score from './Score'
 import HeaderScore from './HeaderScore'
 import { selectors } from '../Store'
+import COLORS from "../../colors"
 
 const stateToProps = (state, ownProps) => ({ ...selectors.getById(state, ownProps.entryId) })
 
@@ -33,7 +34,7 @@ const Item = connect(stateToProps)(({ label, entryId, entries }) => (
 
 const ItemLevel2 = connect(stateToProps)(({ visible, entries, label, entryId }) => {
   return visible ? 
-    <div className='mb-3 overflow-hidden' style={{borderBottom: '1px solid lightgrey'}}>
+    <div className='mb-3 overflow-hidden' style={{borderBottom: '1px solid '+ COLORS.background.grey4}}>
       {entries.length ? 
         <div>
           <h6 className='text-center mt-3 mb-4'>{label}</h6>
