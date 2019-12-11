@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 
-const Spinner = () => <div className="text-center m-4" style={{fontSize: '1.5rem', color: 'hsla(0, 0%, 0%, .6)'}}>
+const Spinner = () => <div className="text-center m-4" style={{fontSize: '1.5rem'}}>
     <FontAwesomeIcon className="fa-spin" icon={faCircleNotch} />
 </div>
 
