@@ -94,12 +94,12 @@ input.no-outline {
 .with-shadow {
   box-shadow: 1px 1px 5px rgba(0,0,0,.2);
 }
-.Feedback {
-  animation-name: FeedbackAnimation;
+.feedback {
+  animation-name: feedbackAnimation;
   animation-duration: 2s;
   animation-fill-mode: forwards;
 }
-@keyframes FeedbackAnimation {
+@keyframes feedbackAnimation {
   from {
     right: 0;
     bottom: -20rem;}
