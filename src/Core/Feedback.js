@@ -30,7 +30,7 @@ const Feedback = _.compose([connect(stateToProps), waitForLogin])(({ user }) => 
     const [ ts, setTs ] = useState(window.localStorage.getItem('ts'))
     const [ show, setShow ] = useState(true)
     const [ messages, setMessages ] = useState([{
-        text: 'Willkommen auf LevelUp! Hier hast du die Möglichkeit uns Feedback zu senden. Schreib uns einfach alles, was dir einfällt.',
+        text: 'Willkommen auf LevelUp! Wir brauchen dringend dein Feedback um LevelUp zu verbessern und weiterzuentwickeln. Schreib uns einfach alles, was dir einfällt.',
         sender: 'server'
     }])
 
