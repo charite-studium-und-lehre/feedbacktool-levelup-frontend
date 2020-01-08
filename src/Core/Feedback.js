@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle, faPaperPlane, faEnvelope, faCheckSquare, faSquare,faCommentDots } from '@fortawesome/free-regular-svg-icons'
 import { selectors as user } from '../User/Store'
 import { SlideDown } from 'react-slidedown'
-
 const url = 'https://lu-feedback.herokuapp.com/'
 
 const socket = socketio(url)
@@ -76,7 +75,7 @@ const Feedback = _.compose([connect(stateToProps), waitForLogin])(({ user }) => 
     }
 
 
-    return <div style={style} className="mr-3 mb-3 Feedback">
+    return <div style={style} className="mr-3 mb-3 feedback">
         { show ? <SlideDown> <div className="with-shadow" style={{width: '18rem', backgroundColor: 'white', border: 'none'}}>
             <div className="text-right px-2 color-bg-navigation" style={{height: '2rem', lineHeight: '2.1rem'}} onClick={() => setShow(false)} >
                 <FontAwesomeIcon style={{fontSize: '1rem'}} className="text-white" icon={faTimesCircle} />
