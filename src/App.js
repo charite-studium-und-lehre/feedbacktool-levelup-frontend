@@ -44,7 +44,7 @@ const App = withTranslation()(() =>
                     )}/>
                     <Tracker />
                 </div>
-                <div className="w-100 text-center" style={{fontSize: '.9rem', color: 'grey', backgroundColor: 'lightgrey'}}>
+                <div className="w-100 text-center position-fixed" style={{fontSize: '.9rem', color: 'grey', backgroundColor: 'lightgrey', bottom:'0rem'}}>
                     <NavLink to="/impressum">Impressum / Disclaimer</NavLink>
                 </div>
                 <Feedback />
