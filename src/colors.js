@@ -68,7 +68,7 @@ const colors = {
     },
 
     textBlack: '#101010',
-
+    smiley: '#FEF102',
     default: '#ff0000',
 
     graphs: {

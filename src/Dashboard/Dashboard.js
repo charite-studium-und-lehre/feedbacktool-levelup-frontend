@@ -22,6 +22,7 @@ const Cards = () => <div className="col">
     </Link>
     <Ptm />
     <TellMe />
+    <Evasy/>
 </div>
 
 export default () =>
@@ -53,10 +54,11 @@ export default () =>
                             </Link>
                         </div>
                         <div className='mb-lg-5'>
-                            {/* <Ptm /> */}
+                            <Ptm />
+                        </div>
+                        <div className='mb-lg-5'>
                             <Evasy/>
                         </div>
-                    
                 
                     </div>
                 </div>
