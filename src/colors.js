@@ -67,8 +67,8 @@ const colors = {
         lightgrey : 'lightgrey'
     },
 
-    textBlack: '#101010',
-    smiley: '#FEF102',
+    textBlack: '#ffffff',
+    smiley: 'rgb(27, 148, 167)',
     default: '#ff0000',
 
     graphs: {
