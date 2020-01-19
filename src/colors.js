@@ -63,12 +63,12 @@ const colors = {
         grey2: 'var(--color-background-grey2)',
         grey1: '#CFD8E4',
         grey0: '#e4e9f0',
-        buttonGrey: '#6c757d',
-        lightgrey : 'lightgrey'
+        lightgrey : 'lightgrey',
+        buttonGrey: '#6c757d'
     },
 
     textBlack: '#101010',
-    smiley: '#FEF102',
+
     default: '#ff0000',
 
     graphs: {
