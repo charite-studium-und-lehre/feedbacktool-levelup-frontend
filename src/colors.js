@@ -67,7 +67,8 @@ const colors = {
         lightgrey : 'lightgrey'
     },
 
-    textBlack: '#ffffff',
+    textBlack: '#101010',
+    White: '#ffffff',
     smiley: 'rgb(27, 148, 167)',
     default: '#ff0000',
 
