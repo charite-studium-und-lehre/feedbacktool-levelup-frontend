@@ -8,7 +8,7 @@ import EPAs from './EPAs'
 import Strengths from './Strengths'
 import TellMe from './TellMe'
 import COLORS from "../colors"
-import Evasy from '../Evasys'
+import Evasy from './Evasys'
 
 const Cards = () => <div className="col">
     <Link to="/progress">
@@ -22,7 +22,7 @@ const Cards = () => <div className="col">
     </Link>
     <Ptm />
     <TellMe />
-    <Evasy/>
+    <Evasy />
 </div>
 
 export default () =>
@@ -57,9 +57,8 @@ export default () =>
                             <Ptm />
                         </div>
                         <div className='mb-lg-5'>
-                            <Evasy/>
+                            <Evasy />
                         </div>
-                
                     </div>
                 </div>
                 <div className="row d-flex d-md-none">

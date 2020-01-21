@@ -1,5 +1,5 @@
 import React from 'react'
-import COLORS from "./colors"
+import COLORS from "../colors"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTasks, faFrown, faSmile, faGrinBeam } from '@fortawesome/free-solid-svg-icons'
 
