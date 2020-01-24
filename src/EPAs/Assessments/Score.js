@@ -6,6 +6,7 @@ import Assessments from './Externals/ForItem'
 import Level, { LevelWithEdit } from './Level'
 import ScoreWrapper from './ScoreWrapper'
 import COLORS from '../../colors'
+import needsData from "../../Core/needsData";
 
 const Score = ({ 
     confident, done, externalScore,
