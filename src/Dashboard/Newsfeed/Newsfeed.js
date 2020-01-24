@@ -13,11 +13,12 @@ export const Separator = () => <div className="px-2 flex-grow-1 d-flex align-ite
 
 const stateToProps = state => ({ data: selectors.getData(state) })
 const Newsfeed = _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps), withTranslation()])(({ t, data }) => 
+    <div className="pt-3 h-100">
     <div className="position-relative h-100" style={{minHeight: '10rem', overflowX: 'hidden', overflowY: 'auto'}}>
         <div className="position-absolute" style={{top: 0, bottom: 0, left: 0, right: 0}}>
             { _.size(data) ? _.map( g => 
                 <div key={g[0].zeitsemester}>
-                    <div className="text-center font-italic mt-3 d-flex" style={{ fontSize: '.8rem' }}>
+                    <div className="text-center font-italic mb-3 d-flex" style={{ fontSize: '.8rem' }}>
                         <Separator />
                         <div style={{color: COLORS.background.grey6}}>{g[0].zeitsemester}</div>
                         <Separator />
@@ -32,7 +33,7 @@ const Newsfeed = _.compose([needsData(selectors.loaded, actions.load), connect(s
             <div className="text-center p-3">{t('Hier werden zukünftig deine Prüfungen angezeigt.')}</div>
             }
         </div>
-    </div>
+    </div></div>
 )
 
 export default Newsfeed

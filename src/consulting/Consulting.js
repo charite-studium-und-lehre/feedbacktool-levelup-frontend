@@ -10,19 +10,21 @@ function Consulting({ t }) {
     const [selectCard, setCard] = useState(0)
     const tree = ConsultingTree(t)
     return (
-        <div className="container-fluid">
+        <div>
             <div>
                 <h2 className="text-center font-weight-bold mt-3 mb-0">{t('Beratungsangebote')}</h2>
-                <div className="row" >
-                    <div className="col-12 col-md-10 col-lg-8 col-xl-6 pt-4 mx-auto">
-                        <p style={{lineHeight:'2.1rem'}}>{t(`Du brauchst professionellen Rat zu den diversen Themen des Studienalltags? Damit du immer gut informiert bist, wer dir in der jeweiligen Situation weiterhelfen kann, sind hier einige hilfreiche Beratungsangebote der Charité zusammengefasst. Falls du dringend Unterstützung für eventuelle Probleme im Studium benötigst, dann wende dich direkt per Mail an`)}:
-                        <span className='font-weight-bold' style={{ color:'rgb(34, 71, 104)', fontSize:'1.3rem'}}> {t(`medicoach@charite.de`)}</span>
-                        </p>
+                <div className="container">
+                    <div className="row" >
+                        <div className="col-12 col-md-10 col-lg-8 col-xl-6 pt-4 mx-auto">
+                            <p style={{lineHeight:'2.1rem'}}>{t(`Du brauchst professionellen Rat zu den diversen Themen des Studienalltags? Damit du immer gut informiert bist, wer dir in der jeweiligen Situation weiterhelfen kann, sind hier einige hilfreiche Beratungsangebote der Charité zusammengefasst. Falls du dringend Unterstützung für eventuelle Probleme im Studium benötigst, dann wende dich direkt per Mail an`)}:
+                            <span className='font-weight-bold' style={{ color:'rgb(34, 71, 104)', fontSize:'1.3rem'}}> {t(`medicoach@charite.de`)}</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div className=" mt-4 mt-md-5 pb-5">
-                <div className='row'>
+                <div className="row">
                     <div className='col-12 col-lg-4 d-none d-lg-block'>
                         <ul className="list-group list-group-flush">
                             {tree.ConsultingCard.map((e, i) =>
@@ -34,7 +36,7 @@ function Consulting({ t }) {
                             )}
                         </ul>
                     </div>
-                    <div className='col-12 col-lg-5 col-xl-4  d-none  d-lg-block'>
+                    <div className='col-12 col-lg-5 col-xl-4 d-none d-lg-block'>
                         <ConsultingCard
                             {...tree.ConsultingCard[selectCard]}
                         />
@@ -51,12 +53,12 @@ function Consulting({ t }) {
                             </ul>
                         </div>
                     </div>
-                    <div className='row'>
-                           { tree.ConsultingCard.map(e => 
-                            <div className='col-12 col-md-6 d-lg-none p-1'key={e.title}>
-                           <ConsultingCard infoDaten={true} { ...e}  />
-                           </div>)}
-                    </div>
+                </div>
+                <div className="row d-lg-none">
+                        { tree.ConsultingCard.map(e => 
+                        <div className='col-12 col-md-6 p-1'key={e.title}>
+                            <ConsultingCard infoDaten={true} { ...e} />
+                        </div>)}
                 </div>
             </div>
         </div>

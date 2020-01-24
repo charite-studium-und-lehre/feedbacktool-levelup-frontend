@@ -31,11 +31,12 @@ const Tracker = withRouter(() => {
 const App = withTranslation()(() =>
     <Provider store={createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)))}>
         <BrowserRouter basename={basename}>
-            <div className="App container-fluid p-0 d-flex flex-column">
+            <div className="App p-0 d-flex flex-column">
                 <Navbar />
                 <Breadcrumbs/>
                 <ScrollToTop/>
-                <div className="container-fluid flex-fill p-0">
+                <div className="flex-fill">
+                    <div>
                     {Routes.map(route => (route.private ?
                             <PrivateRoute key={route.path} path={route.path} component={route.component}
                                             exact={route.exact} /> :
@@ -46,12 +47,14 @@ const App = withTranslation()(() =>
                         <Redirect to="/dashboard"/>
                     )}/>
                     <Tracker />
+                    </div>
+                    
                 </div>
-                <div className="w-100 text-center" style={{fontSize: '.9rem', color: COLORS.background.grey5, backgroundColor: COLORS.background.lightgrey, bottom:0}}>
+                <div className="w-100 text-center" style={{fontSize: '.9rem', color: COLORS.background.grey5, backgroundColor: COLORS.background.lightgrey}}>
                     <NavLink to="/impressum">Impressum / Disclaimer</NavLink>
                 </div>
                 <Feedback />
-            </div>
+            </div> 
         </BrowserRouter>
     </Provider>
 )
