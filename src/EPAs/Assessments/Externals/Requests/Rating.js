@@ -9,7 +9,7 @@ const Level = ({ selected, onClick, children }) =>
         style={{ 
             borderRadius: '15%',
             width: '1.5rem', 
-            backgroundColor: selected ? colors.background.grey6 : colors.background.grey2,
+            backgroundColor: selected ? colors.background.grey7 : colors.background.grey3,
             border: `1px solid ${colors.background.grey5}`,
             color: 'white',
             cursor: 'pointer'
