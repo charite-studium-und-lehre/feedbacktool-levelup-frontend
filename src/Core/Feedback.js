@@ -3,13 +3,13 @@ import _ from 'lodash/fp'
 import socketio from "socket.io-client"
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimesCircle, faPaperPlane, faEnvelope, faCheckSquare, faSquare,faCommentDots } from '@fortawesome/free-regular-svg-icons'
+import { faTimesCircle, faPaperPlane, faCheckSquare, faSquare,faCommentDots } from '@fortawesome/free-regular-svg-icons'
 import { selectors as user } from '../User/Store'
 import { SlideDown } from 'react-slidedown'
-const url = 'https://lu-feedback.herokuapp.com/'
 
-const socket = socketio(url)
+const url = 'https://levelup.charite.de'
 
+const socket = socketio(url, { path: '/feedback-ws/socket.io', transports: ['websocket'] })
 const style = {
     position: 'fixed',
     right: 0,
