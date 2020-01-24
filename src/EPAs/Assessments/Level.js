@@ -2,7 +2,6 @@ import React from 'react'
 import _ from 'lodash'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons'
-
 const Square = props=> {
     const defaultStyle =  {
         height: '.6rem',

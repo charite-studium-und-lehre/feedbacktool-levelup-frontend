@@ -5,10 +5,7 @@ import { actions } from './Store'
 import Assessments from './Externals/ForItem'
 import Level, { LevelWithEdit } from './Level'
 import ScoreWrapper from './ScoreWrapper'
-import needsData from '../../Core/needsData'
-
-export const colors = ['hsla(208, 51%, 27%)', 'hsl(188, 86%, 26%)', 'hsl(15, 100%, 25%)']
-export const colorsBackground = ['hsla(208, 51%, 27%, .2)', 'hsl(188, 86%, 26%, .2)', ' hsl(15, 100%, 25%, .2)']
+import COLORS from '../../colors'
 
 const Score = ({ 
     confident, done, externalScore,
@@ -18,22 +15,22 @@ const Score = ({
     <div>
         <ScoreWrapper levels={[
             <LevelWithEdit
-                colorBackground={colorsBackground[0]}
-                color={colors[0]}
+                colorBackground={COLORS.epas.done.background}
+                color={COLORS.epas.done.value}
                 {...props}
                 value={done}
                 increment={() => levelUpDone(entryId)}
                 decrement={() => levelDownDone(entryId)}/>,
             <LevelWithEdit
-                colorBackground={colorsBackground[1]}
-                color={colors[1]}
+                colorBackground={COLORS.epas.confident.background}
+                color={COLORS.epas.confident.value}
                 {...props}
                 value={confident}
                 increment={() => levelUpConfident(entryId)}
                 decrement={() => levelDownConfident(entryId)}/>,
             <Level
-                colorBackground={colorsBackground[2]}
-                color={colors[2]}
+                colorBackground={COLORS.epas.externalAssessment.background}
+                color={COLORS.epas.externalAssessment.value}
                 {...props}
                 maxValue={Math.max(externalScore.total, 1)}
                 value={externalScore.value}/>

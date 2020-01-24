@@ -42,4 +42,3 @@ const  AllTools = props => (
 )
 
 export default withTranslation()(AllTools)
-

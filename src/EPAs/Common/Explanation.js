@@ -2,7 +2,6 @@ import React from "react"
 import Legend from "../../Charting/Legend"
 import Legends from "../../Core/LegendTexts"
 import Level from '../Assessments/Level'
-import { colors as epaColors, colorsBackground as epaColorsBackground } from '../Assessments/Score'
 import COLORS from '../../colors'
 const Infos = (props) => (
     <div className='row mt-3'>
@@ -18,7 +17,7 @@ const Infos = (props) => (
                     maxValue={5} />
                 <div className="font-weight-bold pr-2 mb-1">{props.title}</div>
             </div> :
-                <div className='btn btn-secondary text-nowrap'>{props.button}</div>
+                <div className='btn color-button-color text-nowrap'>{props.button}</div>
             }
         </div>
         <div className='col-12 col-sm-6 col-xl-8'>{props.text}</div>
@@ -40,15 +39,15 @@ export default (props) => <div className="card p-2 mt-2">
             <h5 className="mt-4">Schätze dich selbst ein</h5>
             <div>Im Laufe deines Studiums z.B. nach U- oder UaK-Kursen oder Famulaturen kannst du deine Leveleintragen.</div>
             <Infos
-                colorBackground={epaColorsBackground[0]}
-                color={epaColors[0]}
+                colorBackground={COLORS.epas.done.background}
+                color={COLORS.epas.done.value}
                 value={1}
                 title='Habe ich gemacht'
                 text='- gibt an unter welchem Level du die jeweilige Tätigkeit ausgeführt hast.'
                 {...props} />
             <Infos
-                colorBackground={epaColorsBackground[1]}
-                color={epaColors[1]}
+                colorBackground={COLORS.epas.confident.background}
+                color={COLORS.epas.confident.value}
                 value={1.7}
                 title='Traue ich mir zu'
                 text='- gibt an unter welchem Level du dir die Tätigkeit zutraust.'
@@ -64,8 +63,8 @@ export default (props) => <div className="card p-2 mt-2">
                 text='- Schau dir alle deine bisher erhaltenen Fremdbewertungen an'
                 {...props} />
             <Infos
-                colorBackground={epaColorsBackground[2]}
-                color={epaColors[2]}
+                colorBackground={COLORS.epas.externalAssessment.background}
+                color={COLORS.epas.externalAssessment.value}
                 value={0}
                 title='Wird mir zugetraut'
                 text='- gibt an unter welchem Level dir deine Lehrenden/ Ärzt*innen die Tätigkeit zutrauen. '

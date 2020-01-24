@@ -20,6 +20,20 @@ const colors = {
         darker3: '#1a393c',
         darker4: '#103136'
     },
+    epas: {
+        done: {
+            value: '#224768',
+            background: '#c9d1da'
+        },
+        confident: {
+            value: '#096C7B',
+            background: '#c3dbdf'
+        },
+        externalAssessment: {
+            value: '#802000',
+            background: '#e0c8c0'
+        }
+    },
 
     mc: {
         lighter3: '#D0847A',
@@ -49,11 +63,13 @@ const colors = {
         grey2: 'var(--color-background-grey2)',
         grey1: '#CFD8E4',
         grey0: '#e4e9f0',
-        buttonGrey: '#6c757d'
+        buttonGrey: '#6c757d',
+        lightgrey : 'lightgrey'
     },
-
+    
     textBlack: '#101010',
-
+    White: '#ffffff',
+    smiley: 'rgb(27, 148, 167)',
     default: '#ff0000',
 
     graphs: {

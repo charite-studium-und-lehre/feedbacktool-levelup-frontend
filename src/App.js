@@ -1,5 +1,5 @@
-import React from 'react'
-import {BrowserRouter, NavLink, withRouter} from 'react-router-dom'
+import React, {useEffect} from 'react'
+import {BrowserRouter, NavLink, withRouter, useLocation} from 'react-router-dom'
 import {Route, Redirect} from 'react-router'
 import {Provider} from 'react-redux'
 import {createStore, compose, applyMiddleware} from 'redux'
@@ -16,7 +16,7 @@ import PrivateRoute from './Core/routing/PrivateRoute'
 import Routes from './Core/routing/Routes'
 import {withTranslation} from 'react-i18next'
 import ScrollToTop from './Core/ScrollToTop'
-
+import COLORS from "./colors"
 
 const basename = process.env.PUBLIC_URL || '/'
 
@@ -45,7 +45,7 @@ const App = withTranslation()(() =>
                     )}/>
                     <Tracker />
                 </div>
-                <div className="w-100 text-center" style={{fontSize: '.9rem', color: 'grey', backgroundColor: 'lightgrey'}}>
+                <div className="w-100 text-center position-fixed" style={{fontSize: '.9rem', color: COLORS.background.grey5, backgroundColor: COLORS.background.lightgrey, bottom:0}}>
                     <NavLink to="/impressum">Impressum / Disclaimer</NavLink>
                 </div>
                 <Feedback />
