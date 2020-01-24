@@ -43,7 +43,11 @@ function Consulting({ t }) {
                         <div>
                             <ul className="list-group list-group-flush ">
                                 <h4 className="text-center font-weight-bold mb-4">{t(`Externe Angebote`)}</h4>
-                                {tree.ExternConsulting.map((d, i) => <a className="font-weight-bold text-center list-group-item py-3" style={{color:'rgb(34, 71, 104)'}} key={i} href={d.href}>{d.title}</a>)}
+                                {tree.ExternConsulting.map((d, i) => 
+                                    <a target="blank" className="font-weight-bold text-center list-group-item py-3" style={{color:'rgb(34, 71, 104)'}} key={i} href={d.href}>
+                                        {d.title}
+                                    </a>
+                                )}
                             </ul>
                         </div>
                     </div>
