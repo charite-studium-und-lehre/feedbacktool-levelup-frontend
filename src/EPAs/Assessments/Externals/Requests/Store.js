@@ -32,10 +32,10 @@ export const actions = baseStore.withLoadAction(url)({
 	resetSent: () => ({ type: `${identifier.toUpperCase()}_RESET_SENT` }),
 })
 
-const status = (state = {sending: false, error: null, sent: false}, action) => {
+const status = (state = {sending: false, error: null, sent: false, failed: false}, action) => {
     switch(action.type) {
 		case `${identifier.toUpperCase()}_DATA_FETCH_FAILED`:
-			return { sending: false, error: action.payload, sent: false }
+			return { sending: false, error: action.payload, sent: false, failed: true }
         case `${identifier.toUpperCase()}_RESET_SENT`:
             return { sending: false, error: null, sent: false }
         case `${identifier.toUpperCase()}_SENDING`:

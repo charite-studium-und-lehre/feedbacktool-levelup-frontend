@@ -13,16 +13,23 @@ import Info from './Info'
 import Rating from './Rating'
 
 const load = ownProps => _.over([ requestActions.loadWithToken(ownProps.match.params.token), epasActions.load() ])
-const loaded = (state, ownProps) => selectors.itemLoaded(state, ownProps.match.params.token) && epasSelectors.loaded(state)
+const loaded = (state, ownProps) => selectors.itemLoaded(state, ownProps.match.params.token) && epasSelectors.loaded(state) || selectors.getStatus(state).failed
 
 const Item = asItem(null, null, Rating)
 const Tabs = asEpasTabs(Item)
 
 const stateToProps = (state, ownProps) => ({ 
     request: selectors.getByToken(state, ownProps.match.params.token),
+    failed: selectors.getStatus(state).failed,
     ...assessmentsSelectors.getStatus(state),
 })
-const Assessment = _.compose([needsData(loaded, load), connect(stateToProps, actions), withTranslation()])(
+
+const catchFail = Comp => ({ failed, ...props }) => 
+    failed ? <p className="text-center m-2">
+        Das angegebene Token ist ungültig. Es wurde entweder bereits eine Bewertung abgeschickt, oder es liegt keine Anfrage vor.
+    </p> : <Comp {...props} />
+
+const Assessment = _.compose([needsData(loaded, load), connect(stateToProps, actions), catchFail, withTranslation()])(
     ({ t, request, send, request: { token }, error, sending, sent }) =>
     !sent ? <div className="container-fluid">
         <div className="row">
