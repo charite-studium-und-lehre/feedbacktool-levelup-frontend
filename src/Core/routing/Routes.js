@@ -13,6 +13,7 @@ import Registration from '../../User/Registration'
 import DataProtection from '../../User/DataProtection'
 import Login from '../../User/Login'
 import Impressum from '../../Core/Impressum'
+import Assessment from '../../EPAs/Assessments/Externals/Requests/Assessment'
 
 const Routes = [
   {
@@ -41,7 +42,7 @@ const Routes = [
     private: false,
   },
   {
-    path: '/alltools',
+    path: '/AllTools',
     component: AllTools,
     menuName: 'Alle Tools',
     exact: true,
@@ -105,6 +106,12 @@ const Routes = [
   {
     path: '/impressum',
     component: Impressum,
+    exact: true,
+    private: false,
+  },
+  {
+    path: '/epas/fremdbewertung/:token',
+    component: Assessment,
     exact: true,
     private: false,
   },
