@@ -22,10 +22,6 @@ const basename = process.env.PUBLIC_URL || '/'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const Tracker = withRouter(() => {
-    window._paq.push(['trackPageView'])
-    return null
-})
 const App = withTranslation()(() =>
     <Provider store={createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)))}>
         <BrowserRouter basename={basename}>
@@ -43,7 +39,6 @@ const App = withTranslation()(() =>
                     <Route exact path="/" render={() => (
                         <Redirect to="/dashboard"/>
                     )}/>
-                    <Tracker />
                 </div>
                 <div className="w-100 text-center position-fixed" style={{fontSize: '.9rem', color: COLORS.background.grey5, backgroundColor: COLORS.background.lightgrey, bottom:0}}>
                     <NavLink to="/impressum">Impressum / Disclaimer</NavLink>
