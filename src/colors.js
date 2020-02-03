@@ -66,7 +66,7 @@ const colors = {
         buttonGrey: '#6c757d',
         lightgrey : 'lightgrey'
     },
-
+    
     textBlack: '#101010',
     White: '#ffffff',
     smiley: 'rgb(27, 148, 167)',

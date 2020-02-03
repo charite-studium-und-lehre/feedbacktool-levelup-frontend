@@ -5,6 +5,8 @@ Creation-Date: 2019-10-08T21:22:25+02:00
 ====== Zu Studi werden ======
 
 http://levelup.charite.de/backend/admin/switchUser
+oder
+erst einloggen mit charite-credentials und dann auf "Datensatz wählen" klicken.
 
 Zurück wechseln kann man durch ein Logout.
 

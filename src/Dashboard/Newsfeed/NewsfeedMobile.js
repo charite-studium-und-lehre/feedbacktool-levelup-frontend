@@ -8,7 +8,7 @@ import { withTranslation } from 'react-i18next'
 
 const stateToProps = state => ({ data: selectors.getData(state) })
 const Newsfeed = _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps), withTranslation()])(({ t, data }) => 
-    <div className="pb-3">
+    <div className="pt-3">
         <div className="text-center">
         { !_.size(data) && <div className="p-3">{t('Hier werden zukünftig deine Prüfungen angezeigt.')}</div> }
         </div>
