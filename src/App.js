@@ -1,7 +1,5 @@
-import 'react-app-polyfill/ie11'
-import 'react-app-polyfill/stable'
-import React from 'react'
-import {BrowserRouter, NavLink, withRouter} from 'react-router-dom'
+import React, {useEffect} from 'react'
+import {BrowserRouter, NavLink, withRouter, useLocation} from 'react-router-dom'
 import {Route, Redirect} from 'react-router'
 import {Provider} from 'react-redux'
 import {createStore, compose, applyMiddleware} from 'redux'
@@ -24,19 +22,14 @@ const basename = process.env.PUBLIC_URL || '/'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const Tracker = withRouter(() => {
-    window._paq.push(['trackPageView'])
-    return null
-})
 const App = withTranslation()(() =>
     <Provider store={createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)))}>
         <BrowserRouter basename={basename}>
-            <div className="App p-0 d-flex flex-column">
+            <div className="App container-fluid p-0 d-flex flex-column">
                 <Navbar />
                 <Breadcrumbs/>
                 <ScrollToTop/>
-                <div className="flex-fill">
-                    <div>
+                <div className="container-fluid flex-fill p-0">
                     {Routes.map(route => (route.private ?
                             <PrivateRoute key={route.path} path={route.path} component={route.component}
                                             exact={route.exact} /> :
@@ -46,15 +39,12 @@ const App = withTranslation()(() =>
                     <Route exact path="/" render={() => (
                         <Redirect to="/dashboard"/>
                     )}/>
-                    <Tracker />
-                    </div>
-                    
                 </div>
-                <div className="w-100 text-center" style={{fontSize: '.9rem', color: COLORS.background.grey5, backgroundColor: COLORS.background.lightgrey}}>
+                <div className="w-100 text-center position-fixed" style={{fontSize: '.9rem', color: COLORS.background.grey5, backgroundColor: COLORS.background.lightgrey, bottom:0}}>
                     <NavLink to="/impressum">Impressum / Disclaimer</NavLink>
                 </div>
                 <Feedback />
-            </div> 
+            </div>
         </BrowserRouter>
     </Provider>
 )
