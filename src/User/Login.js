@@ -46,6 +46,11 @@ const Login = _.compose([
                 <div className="mt-4 p-2" style={{fontSize: '.9rem'}}>
                     {t('Bei Problemen mit dem Login melde dich bitte bei levelup@charite.de.')}
                 </div>
+                <Link to='/app-demo'>
+                    <div className='color-navigation'>
+                        <span className='font-weight-bold' style={{ cursor: 'pointer', fontSize: '1rem' }}>{t(`Demo-Version von LevelUp ansehen`)}</span>
+                    </div>
+                </Link>
             </div>
         </div>
     </div>
