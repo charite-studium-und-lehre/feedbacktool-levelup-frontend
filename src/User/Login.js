@@ -54,6 +54,11 @@ const Login = _.compose([
                         </div>
                     </Link>
                 </div>
+                <Link to='/app-demo'>
+                    <div className='color-navigation'>
+                        <span className='font-weight-bold' style={{ cursor: 'pointer', fontSize: '1rem' }}>{t(`Demo-Version von LevelUp ansehen`)}</span>
+                    </div>
+                </Link>
             </div>
         </div>
     </div>
