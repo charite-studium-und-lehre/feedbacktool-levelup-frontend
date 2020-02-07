@@ -43,7 +43,7 @@ const Login = _.compose([
                         <button type="button" className="btn btn-secondary w-100 font-weight-bold">{t(`Login`)}</button>
                     </a>
                 </div>
-                <div className="mt-4 p-2" style={{fontSize: '.9rem'}}>
+                <div className="mt-4" style={{fontSize: '.9rem'}}>
                     <div>{t('Bei Problemen mit dem Login melde dich bitte bei levelup@charite.de.')}</div>
                     <Link to='/app-demo'>
                         <div className='color-navigation'>
@@ -54,11 +54,6 @@ const Login = _.compose([
                         </div>
                     </Link>
                 </div>
-                <Link to='/app-demo'>
-                    <div className='color-navigation'>
-                        <span className='font-weight-bold' style={{ cursor: 'pointer', fontSize: '1rem' }}>{t(`Demo-Version von LevelUp ansehen`)}</span>
-                    </div>
-                </Link>
             </div>
         </div>
     </div>
