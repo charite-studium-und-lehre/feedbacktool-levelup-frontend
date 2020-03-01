@@ -18,7 +18,7 @@ const FaqData = [
 {
     question: <Trans> Kann ich LevelUp ansehen, wenn ich nicht studiere?</Trans>,
     answer: <Trans> Leider ist die Nutzung von LevelUp nur für Studierende im MSM 2.0 möglich. Es gibt jedoch eine Demo-Version für nicht-Studierende (bzw. auch für Studierende, die noch am Beginn ihres Studiums sind und die spätere Darstellung der Prüfungsergebnisse ansehen möchten). Einfach auf der Login-Seite auf die Demo-Version gehen, oder diesen Link folgen:</Trans>,
-     link: <Trans><a href='https://levelup.charite.de/app-demo'>https://levelup.charite.de/app-demo</a></Trans>
+     link: <Trans><a className='color-navigation font-weight-bold' target="blank" href='https://levelup.charite.de/app-demo'>https://levelup.charite.de/app-demo</a></Trans>
 },
 {
     question: <Trans> Kann ich LevelUp vom Handy aus nutzen?</Trans>,

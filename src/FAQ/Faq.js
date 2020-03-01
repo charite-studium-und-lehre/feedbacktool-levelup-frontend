@@ -8,7 +8,7 @@ const Faq = () => (
                     <li className="list-group-item" key={i}>
                         <div className='font-weight-bold'><span >F : </span>{e.question}</div>
                         <div className='mt-1'><span className='font-weight-bold'>A : </span>{e.answer}</div>
-                        {e.link && <a className='color-navigation font-weight-bold' target="blank" href={e.link}>{e.link}</a>}
+                        {e.link}
                     </li>
                 )
                 }
