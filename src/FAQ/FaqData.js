@@ -1,7 +1,6 @@
 import React from 'react'
 import {Trans} from 'react-i18next'
-import { color } from '../Exams/Ptm/Ptm'
-const Email = <span>Hallo</span>
+
 const FaqData = [
 {
     question: <Trans> Welche Daten brauche ich, um mich zu registrieren?</Trans>,
