@@ -32,7 +32,6 @@ const App = withTranslation()(() =>
                 <Breadcrumbs/>
                 <ScrollToTop/>
                 <div className="flex-fill">
-                    <div>
                     {Routes.map(route => (route.private ?
                             <PrivateRoute key={route.path} path={route.path} component={route.component}
                                             exact={route.exact} /> :
@@ -42,7 +41,6 @@ const App = withTranslation()(() =>
                     <Route exact path="/" render={() => (
                         <Redirect to="/dashboard"/>
                     )}/>
-                    </div>
                 </div>
                 <div className="w-100 text-center" style={{fontSize: '.9rem', color: COLORS.background.grey5, backgroundColor: COLORS.background.lightgrey}}>
                     <NavLink to="/impressum">Impressum / Disclaimer</NavLink>
