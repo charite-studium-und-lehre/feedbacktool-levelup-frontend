@@ -45,12 +45,12 @@ const Login = _.compose([
                 <div className='mb-3'>
                     <div>{t('Bei Problemen mit dem Login melde dich bitte bei levelup@charite.de.')}</div>
                 </div>
-                    <div className='color-navigation'>
-                            <a href="https://levelup.charite.de/app-demo" className='font-weight-bold' style={{
-                                cursor: 'pointer',
-                                fontSize: '1rem'
-                            }}>{t(`Demo-Version von LevelUp ansehen`)}</a>
-                    </div>
+                <div className='color-navigation'>
+                    <a href="https://levelup.charite.de/app-demo" className='font-weight-bold' style={{
+                        cursor: 'pointer',
+                        fontSize: '1rem'
+                    }}>{t(`Demo-Version von LevelUp ansehen`)}</a>
+                </div>
             </div>
         </div>
     </div>
