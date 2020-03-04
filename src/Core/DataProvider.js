@@ -1,4 +1,3 @@
-// const host = process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://levelup.charite.de'
 const host = 'https://levelup.charite.de'
 const platform = process.env.PUBLIC_URL === '/app' || process.env.PUBLIC_URL === '/app-demo'
     ? 'backend'
