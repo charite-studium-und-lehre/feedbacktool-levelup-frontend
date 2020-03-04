@@ -1,7 +1,7 @@
 import 'react-app-polyfill/ie11'
 import 'react-app-polyfill/stable'
 import React from 'react'
-import {BrowserRouter, NavLink, withRouter} from 'react-router-dom'
+import {BrowserRouter, NavLink} from 'react-router-dom'
 import {Route, Redirect} from 'react-router'
 import {Provider} from 'react-redux'
 import {createStore, compose, applyMiddleware} from 'redux'
