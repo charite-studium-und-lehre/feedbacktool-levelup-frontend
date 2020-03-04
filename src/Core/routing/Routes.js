@@ -11,6 +11,7 @@ import EPAs from '../../EPAs/EPAs'
 import Progress from '../../Progress/Progress'
 import Registration from '../../User/Registration'
 import DataProtection from '../../User/DataProtection'
+import Faq from '../../FAQ/Faq'
 import Login from '../../User/Login'
 import Impressum from '../../Core/Impressum'
 import Assessment from '../../EPAs/Assessments/Externals/Requests/Assessment'
@@ -45,6 +46,13 @@ const Routes = [
     path: '/AllTools',
     component: AllTools,
     menuName: 'Alle Tools',
+    exact: true,
+    private: false,
+  },
+  {
+    path: '/faq',
+    component: Faq,
+    menuName: 'FAQ',
     exact: true,
     private: false,
   },
