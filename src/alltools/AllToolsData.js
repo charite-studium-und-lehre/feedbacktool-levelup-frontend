@@ -29,25 +29,35 @@ export const OtherToolsData = [
 export const StudyToolsData = [
     {
         title: 'LLP',
-        href: 'https://lernziele.charite.de'},
+        href: 'https://lernziele.charite.de'
+    },
     {
         title: 'HIS',
-        href: 'https://his.charite.de'},
+        href: 'https://his.charite.de'
+    },
     {
         title: 'Campusnet',
-        href: 'https://campusnet.charite.de'},
+        href: 'https://campusnet.charite.de'
+    },
     {
         title: 'Blackboard',
         href: 'https://lms.charite.de'},
     {
         title: 'TellMe',
-        href: 'https://msm-tellme.charite.de/lernen/'},
+        href: 'https://msm-tellme.charite.de/lernen/'
+    },
     {
         title: 'Minerva (Hausarbeit M23)',
-        href: 'https://minerva.charite.de/'},
+        href: 'https://minerva.charite.de/'
+    },
     {
         title: 'Lernzentrum (Raumbuchung)',
-        href: 'https://lernzentrum.charite.de/leistungen/raumbuchung/'},
+        href: 'https://lernzentrum.charite.de/leistungen/raumbuchung/'
+    },
+    {
+        title: 'Moses',
+        href: 'https://moses.charite.de'
+    },
     {
         title: 'Wikiblog',
         href: 'https://wikiblog.charite.de'}
