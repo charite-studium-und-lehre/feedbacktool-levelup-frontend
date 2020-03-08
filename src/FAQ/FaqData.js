@@ -29,11 +29,11 @@ const FaqData = [
 },
 {
     question: <Trans> Eines meiner Prüfungsergebnisse stimmt nicht mit den Daten im HIS überein. Woran liegt das?</Trans>,
-    answer: <Trans> Möglicherweise handelt es sich um einen Importfehler. Bitte kontaktiere in diesem Fall den Support unter <span className='color-navigation font-weight-bold'>levelup@charite.de</span></Trans>
+    answer: <Trans> Möglicherweise handelt es sich um einen Importfehler. Bitte kontaktiere in diesem Fall den Support unter <a className='color-navigation font-weight-bold' href='mailto:levelup@charite.de'>levelup@charite.de</a></Trans>
 },
 {
     question: <Trans> Ich kann mich mit meinen Charité-Logindaten im LevelUp nicht anmelden/registrieren.</Trans>,
-    answer: <Trans> Bist Du aktuell im MSM 2.0 immatrikuliert? Wenn ja,  kontaktiere den Support unter <span className='color-navigation font-weight-bold'>levelup@charite.de</span></Trans>
+    answer: <Trans> Bist Du aktuell im MSM 2.0 immatrikuliert? Wenn ja,  kontaktiere den Support unter <a className='color-navigation font-weight-bold' href='mailto:levelup@charite.de'>levelup@charite.de</a></Trans>
 }
 
  ]
