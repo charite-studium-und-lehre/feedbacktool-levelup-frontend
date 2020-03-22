@@ -6,6 +6,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faBars} from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../makeExtendable'
 import {withTranslation} from 'react-i18next'
+import LevelUpLogo from '../../images/LevelupLogo.svg'
 import Routes from "./Routes"
 import { selectors as user } from '../../User/Store'
 
@@ -14,7 +15,7 @@ export default _.compose([ connect(stateToProps), withTranslation(), makeExtenda
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top flex-shrink-0">
 
-            <Link className="navbar-brand" to="/">LevelUp</Link>
+            <Link className="navbar-brand" to="/"><img className='m-0 p-0' src={LevelUpLogo} alt="LevelupLogo"  style={{width: '5rem'}}></img></Link>
 
             <button className="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
