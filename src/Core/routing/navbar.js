@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../makeExtendable'
 import { withTranslation } from 'react-i18next'
-import LevelUpLogo from '../../images/LevelupLogo.svg'
+import LevelUpLogo from '../../images/LevelupLogo.bf4f5d66.svg'
 import Routes from "./Routes"
 import { selectors as user } from '../../User/Store'
 
