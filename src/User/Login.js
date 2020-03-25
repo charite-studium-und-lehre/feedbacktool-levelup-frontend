@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash/fp'
-import backgroundImage from './Login.jpg'
+import backgroundImage from './login.jpg'
 import LevelUp from './1LU-logo.png'
 import { Redirect } from 'react-router-dom'
 import { withTranslation } from 'react-i18next'
@@ -38,8 +38,8 @@ const Login = _.compose([
                     </div>
         <div className='col-12 col-xl-8 m-auto my-5' style={{transform: 'translatey(8rem)'}} >
                     <div className='row my-5 '>
-                        <Button col='col-10 col-md-6 m-auto' title='Login' href='https://levelup.charite.de/backend/login' />
                         <Button col='col-10 col-md-6 m-auto' title='Registrieren' href='https://levelup.charite.de/backend/login' />
+                        <Button col='col-10 col-md-6 m-auto' title='Login' href='https://levelup.charite.de/backend/login' />
                     </div>
                     <div className='row my-5 '>
                         <Button col='col-6 col-md-3' title='Hilfe' href='mailto:levelup@charite.de' />
@@ -53,35 +53,3 @@ const Login = _.compose([
     </div>
 )
 export default Login
-
-
-{/* <div className='container-fluid h-100'>
-<div className='row h-100' style={background}>
-    <div className='col-md-5 offset-md-7 bg-white px-3'>
-        <h3 className='my-4 text-center'>{t(`Willkommen bei LevelUp`)}</h3>
-        <div className='mb-3'>
-            <p>{t(`Herzlich Willkommen bei LevelUp – deinem Online Feedback Tool zur integrierten Darstellung deines Studienfortschritts im Modellstudiengang 2.0.`)}</p>
-        </div>
-        <Link to='/user/dataProtection'>
-            <div className='color-navigation'>
-                <span className='font-weight-bold'
-                      style={{cursor: 'pointer', fontSize: '1rem'}}>{t(`Datenschutzhinweise`)}</span>
-            </div>
-        </Link>
-        <div className="container-form my-3 px-4">
-            <a href="https://levelup.charite.de/backend/login">
-                <button type="button" className="btn btn-secondary w-100 font-weight-bold">{t(`Login`)}</button>
-            </a>
-        </div>
-        <div className='mb-3'>
-            <div>{t('Bei Problemen mit dem Login melde dich bitte bei levelup@charite.de.')}</div>
-        </div>
-        <div className='color-navigation'>
-            <a href="https://levelup.charite.de/app-demo" className='font-weight-bold' style={{
-                cursor: 'pointer',
-                fontSize: '1rem'
-            }}>{t(`Demo-Version von LevelUp ansehen`)}</a>
-        </div>
-    </div>
-</div>
-</div> */}
