@@ -8,7 +8,7 @@ import Details from './Details'
 import Questions from './Questions'
 import { selectors, actions } from './Store'
 import colors from "../../colors";
-
+import TellMe from '../../Dashboard/TellMe'
 export const color = colors.mc.base
 export const colorTotal = colors.mc.lighter1
 export const colorPartOfTotal = colors.mc.darker0
@@ -34,6 +34,9 @@ const MC = ({ test, t }) =>
             </div>
             <div className="col-lg-4 mt-2">
                 <Questions id={test.id} />
+                 <div className='mt-3'>
+                <TellMe/>
+                 </div>
             </div>
         </div>
     </div> :
