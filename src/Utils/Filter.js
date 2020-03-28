@@ -39,7 +39,8 @@ const Filter = ({
                           onCheck={() => toggleFilter(filter)}
                           onUncheck={() => toggleFilter(filter)}
                           lineColor={colors.background}
-                          backgroundColor={colors.text} >
+                          backgroundColor={colors.text}
+                          id={`Filter-> ${filter.label}`} >
                           <span style={{color: colors.text}}>{filter.label}</span>
                 </Checkbox>
             </span>)

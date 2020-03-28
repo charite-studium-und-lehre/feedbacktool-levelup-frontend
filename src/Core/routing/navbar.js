@@ -14,7 +14,7 @@ export default _.compose([ connect(stateToProps), withTranslation(), makeExtenda
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top flex-shrink-0">
 
-            <Link className="navbar-brand" to="/">LevelUp</Link>
+            <Link className="navbar-brand" id='LevelupLogo' to="/">LevelUp</Link>
 
             <button className="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -26,17 +26,17 @@ export default _.compose([ connect(stateToProps), withTranslation(), makeExtenda
                     {Routes.map((route, i) => 
                         route.menuName && ( !route.private || loggedIn) && 
                             <li className="nav-item" key={i}>
-                                <NavLink className="nav-link" to={route.path}>{t(route.menuName)}</NavLink>
+                                <NavLink className="nav-link" id={route.menuName} to={route.path}>{t(route.menuName)}</NavLink>
                             </li>
                     )}
                 </ul>
                 <div className="float-right d-none d-lg-block" style={{cursor: 'pointer'}}>
-                    {loggedIn && <span>Willkommen {userData.vorname}</span> }
+                    {loggedIn && <span id='Willkommen'>Willkommen {userData.vorname}</span> }
                 </div>
                 <ul className="navbar-nav">
                     <li className="nav-item">
                         { loggedIn ? 
-                            <a className="nav-link pull-right" href="https://levelup.charite.de/backend/logout">{t(`logout`)}</a> :
+                            <a className="nav-link pull-right" id='logout' href="https://levelup.charite.de/backend/logout">{t(`logout`)}</a> :
                             <NavLink className="nav-link pull-right" to="/login">{t(`login`)}</NavLink>
                         }
                     </li>

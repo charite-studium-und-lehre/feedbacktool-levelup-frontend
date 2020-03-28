@@ -38,15 +38,15 @@ const icons = code => {
 
 const ChecklistItem = props => 
     <div className="mr-2 mb-2 p-1 card">
-        <div className="mr-2">
+        <div className="mr-2" id={props.beschreibung}>
             {props.link && props.erfuellt ?
-                <Link to={props.link} className="d-inline-block">
-                    <div>
+                <Link to={props.link}  className="d-inline-block">
+                    <div id={props.beschreibung}>
                         <FontAwesomeIcon style={{fontSize: '1.2rem'}} className="mx-2" icon={icons(props.code)}/>
                         {props.beschreibung}
                     </div>
                 </Link> :
-                <span>
+                <span id={props.beschreibung}>
                 <FontAwesomeIcon style={{fontSize: '1.2rem'}} className="mx-2" icon={icons(props.code)}/>
                     {props.beschreibung}
             </span>
