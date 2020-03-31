@@ -9,3 +9,8 @@ Git-Repo siehe [[1. Installation]]
 ==== Git-Einstellungen ====
 Damit man mehrere Hotifxes auf einmal haben darf, muzss folgende Option gesetzt werden:
 ''git config --add gitflow.multi-hotfix true''
+
+==== Code-Style ====
+Hier sind die Styles, die alle LevelUp-Entwickler nutzen sollten, also bitte die entsprechende Datei in der eigenen IDE importieren: 
+[[./LLP-Style-for-IntelliJ.xml]]
+[[./LLP-Style-for-other-IDEs.editorconfig]]
