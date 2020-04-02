@@ -57,12 +57,12 @@ export default (props) => <div className="card p-2 mt-2">
             <Infos
                 button='Fremdbewertung einfordern'
                 text='- Sende eine Einladung mit einer Fremdbewertungsanforderung an deine*n Dozierende*n.'
-                id='legendeText Fremdbewertung einfordern'
+                id='legendeText-> Fremdbewertung einfordern'
                 {...props} />
             <Infos
                 button='Erhaltene Fremdbewertungen '
                 text='- Schau dir alle deine bisher erhaltenen Fremdbewertungen an'
-                id='legendeText Erhaltene Fremdbewertungen'
+                id='legendeText-> Erhaltene Fremdbewertungen'
                 {...props} />
             <Infos
                 colorBackground={COLORS.epas.externalAssessment.background}
