@@ -49,10 +49,10 @@ const Details = withTranslation()(({t, id}) => {
             </Legend>
             <div>
                 <div className="mt-2">
-                    <label className="m-0 mr-2"><input type="radio" name="details.mode" checked={mode === 'modules'}
+                    <label className="m-0 mr-2"><input type="radio" name="details.mode" id='Switch-> Module' checked={mode === 'modules'}
                                                        onChange={() => setMode('modules')}
                                                        className="mx-2"/>Module</label>
-                    <label><input type="radio" name="details.mode" checked={mode === 'subjects'}
+                    <label><input type="radio" name="details.mode"id='Switch-> Fächer' checked={mode === 'subjects'}
                                   onChange={() => setMode('subjects')} className="mx-2"/>{t('Fächer')}</label>
                 </div>
             </div>

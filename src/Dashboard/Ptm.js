@@ -18,6 +18,7 @@ const Ptm = _.compose(needsData(selectors.loaded, actions.load), connect(stateTo
     ({ t, latest, ptms }) => {
     return latest ? <div className="h-100" style={{minHeight: '5rem'}}>
         <Link to={`/exams/ptms/${latest.id}`}>
+        <div className='h-100 w-100' id='PTMCard'  style={{position:'absolute', zIndex:'9'}}></div>
             <div className="h-100 position-relative">
                 <div className="position-absolute pl-3" style={{fontSize: '.75rem', top: '.7rem'}}>
                     {labels.map( (l,i) => 

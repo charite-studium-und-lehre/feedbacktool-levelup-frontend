@@ -15,8 +15,8 @@ const Legend = props => {
         <div className="d-flex">
             <div>{props.title && <h5>{props.title}</h5>}</div>
             <div className="ml-auto">
+            <div  onClick={e => {e.preventDefault(); toggle()}} id='legende-> Mehr Infos Icon' style={{width:'1.4rem', height:'1.4rem' , cursor:'pointer', position:'absolute', zIndex:'9'}}></div>
                 {props.children && <FontAwesomeIcon 
-                    onClick={e => {e.preventDefault(); toggle()}}
                     className={props.extended ? 'text-muted' : 'color-navigation'}
                     style={{fontSize: '1.3rem'}}
                     icon={faInfoCircle} />}

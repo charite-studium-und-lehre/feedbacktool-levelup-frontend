@@ -49,6 +49,7 @@ const Filters = makeExtendable()(
             <div className="text-right">
                 <button
                     className={`btn btn-sm color-button-color`}
+                    id='Button-> Filter'
                     onClick={props.toggleExtended}>
                     Filtern <FontAwesomeIcon icon={faFilter}/>
                 </button>

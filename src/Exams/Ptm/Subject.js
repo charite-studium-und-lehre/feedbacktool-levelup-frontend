@@ -32,12 +32,12 @@ const Timeline = withTranslation()(({ t, data }) =>
 const Subject = ({ data, ...props }) => (
     <div>
         <div className="row py-3" onClick={() => props.toggleExtended()} >
-            <div className="col-7 col-sm-6">
+            <div className="col-7 col-sm-6" id={`text-> ${props.titel}`}>
                 <span>#{props.rank}</span>
-                <span className="ml-1 font-weight-bold">{props.titel}</span>
+                <span className="ml-1 font-weight-bold" id={`Text-> ${props.titel}`}>{props.titel}</span>
             </div>
             <div className="col-5 col-sm-2 p-0">
-                <span className='badge'
+                <span className='badge' id={`Text-> ${props.gruppe}`}
                       style={{fontSize: '.6rem', backgroundColor: props.filterColors.background,
                           color: props.filterColors.text, border: '1px solid '+props.filterColors.line }}>
                     {props.gruppe}

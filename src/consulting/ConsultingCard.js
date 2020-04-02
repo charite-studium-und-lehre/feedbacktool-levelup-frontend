@@ -15,7 +15,7 @@ const Infos = props => (
     </div>
 ) 
 const Button =(props)=> (
-    <a className={`btn btn-primary px-4 ${props.className}`} style={{backgroundColor:' rgb(34, 71, 104)', color:'white'}} href={props.href}>Mehr erfahren</a>
+    <a className={`btn btn-primary px-4 ${props.className}`} id={props.id} style={{backgroundColor:' rgb(34, 71, 104)', color:'white'}} href={props.href}>Mehr erfahren</a>
 )
 const ContactData = props => (
     <div>
@@ -44,12 +44,12 @@ const ConsultingCard = ({ t, ...props }) => (
             </div>
             {props.infoDaten ? <div>
                 <div className='row font-weight-bold ' style={{ color: 'rgb(34, 71, 104)' }} >
-                    <div className='col-6' onClick={props.toggleExtended}>
-                    <span className='mr-2'>Kontaktdaten</span>
+                    <div className='col-6'  onClick={props.toggleExtended}>
+                    <span className='mr-2' id={`iPhone -> Kontaktdaten && ${props.title}`}>Kontaktdaten</span>
                     <FontAwesomeIcon icon={props.extended ? faChevronDown : faChevronRight} />
                     </div>
                    {  !props.extended && <div className='col-6 p-0'>
-                      <Button className='float-right' {...props}/>
+                      <Button className='float-right' id={`iPhone -> mehr erfahrem && ${props.title}`} {...props}/>
                     </div>}
                 </div>
                 {props.extended && <SlideDown className="animated fast">
@@ -57,7 +57,7 @@ const ConsultingCard = ({ t, ...props }) => (
                 </SlideDown>}
             </div>
                 :
-                <ContactData {...props} />}
+                <ContactData {...props} id={`mehr erfahrem && ${props.title}`} />}
         </div>
     </div>
 )

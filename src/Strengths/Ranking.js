@@ -27,7 +27,7 @@ const Ranking = ({t, ...props}) =>
             </SlideDown>
         </div>
         <div className="text-right">
-            <span className="color-navigation" style={{cursor: 'pointer'}} onClick={props.toggleExtended}>
+            <span className="color-navigation" id='Mehr anzeigen' style={{cursor: 'pointer'}} onClick={props.toggleExtended}>
                 {props.extended ? t('weniger anzeigen') : t('mehr anzeigen')}
             </span>
         </div>
