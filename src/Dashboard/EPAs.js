@@ -15,7 +15,7 @@ const EPAs = [needsData(loaded, load), withHeaderScore].reduce( (f,g) => g(f), (
 const Wrapper = withTranslation()(({ t }) => <DashboardCard 
     header={Math.round(Math.random() * 100) + ' %'} 
     title={t('Ärztliche Tätigkeiten')}
-    id='Epas' >
+    id='EpasCard' >
             <EPAs width='1.3rem' height='1.3rem' borderRadius='50%' />
 </DashboardCard>)
 

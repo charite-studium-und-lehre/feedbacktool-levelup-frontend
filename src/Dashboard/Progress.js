@@ -18,4 +18,4 @@ const Progress = _.compose([needsData(selectors.loaded, actions.load), connect(s
     </div>
 )
 
-export default withTranslation()(({t}) => <DashboardCard title={t('Studienfortschritt')} id='Studienfortschritt' ><Progress /></DashboardCard>)
+export default withTranslation()(({t}) => <DashboardCard title={t('StudienfortschrittCard')} id='Studienfortschritt' ><Progress /></DashboardCard>)
