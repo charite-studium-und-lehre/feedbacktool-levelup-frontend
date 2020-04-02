@@ -18,7 +18,7 @@ export default _.compose([connect(stateToProps), withTranslation(), makeExtendab
             <button className="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation" onClick={props.toggleExtended}>
-                <FontAwesomeIcon icon={faBars} />
+                <FontAwesomeIcon icon={faBars}/>
             </button>
             <div className={`collapse navbar-collapse ${props.extended && 'show'}`} id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto" onClick={props.toggleExtended}>
