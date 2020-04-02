@@ -28,7 +28,7 @@ function Consulting({ t }) {
                     <div className='col-12 col-lg-4 d-none d-lg-block'>
                         <ul className="list-group list-group-flush">
                             {tree.ConsultingCard.map((e, i) =>
-                                <li key={i} className="e text-center list-group-item px-2" style={{ backgroundColor: `${i === selectCard ? ' rgb(34, 71, 104, 0.6)' : ''}`, color: `${i === selectCard ? 'white' : ''}` }} onClick={() => setCard(i)}>{e.title}
+                                <li key={i} className="e text-center list-group-item px-2" id={e.title} style={{ backgroundColor: `${i === selectCard ? ' rgb(34, 71, 104, 0.6)' : ''}`, color: `${i === selectCard ? 'white' : ''}` }} onClick={() => setCard(i)}>{e.title}
                                     <span className='float-right' style={{ color: 'red' }}>
                                         <FontAwesomeIcon icon={i === selectCard ? faChevronDown : faChevronRight} color={i === selectCard ? 'white ' : 'rgb(34, 71, 104)'} />
                                     </span>
@@ -46,7 +46,7 @@ function Consulting({ t }) {
                             <ul className="list-group list-group-flush ">
                                 <h4 className="text-center font-weight-bold mb-4">{t(`Externe Angebote`)}</h4>
                                 {tree.ExternConsulting.map((d, i) => 
-                                    <a target="blank" className="font-weight-bold text-center list-group-item py-3" style={{color:'rgb(34, 71, 104)'}} key={i} href={d.href}>
+                                    <a className="font-weight-bold text-center list-group-item py-3" id={d.title} target="blank"  style={{color:'rgb(34, 71, 104)'}} key={i} href={d.href}>
                                         {d.title}
                                     </a>
                                 )}

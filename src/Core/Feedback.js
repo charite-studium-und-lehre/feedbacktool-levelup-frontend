@@ -94,8 +94,9 @@ const Feedback = _.compose([connect(stateToProps), waitForLogin])(({ user }) => 
             </div>
         </div> </SlideDown>:
         <SlideDown>
-            <div className="w-100 text-right with-shadow ">
+            <div className="w-100 text-right with-shadow " >
             <button id='tunnel' className="btn color-button-color" onClick={ () => setShow(true) }>
+            <div className='h-100 w-100' id='FeedbackButton' style={{position:'absolute', zIndex:'9'}}></div>
                 <FontAwesomeIcon style={{fontSize: '1.3rem'}} icon={faCommentDots} />
             </button>  
         </div></SlideDown>}
