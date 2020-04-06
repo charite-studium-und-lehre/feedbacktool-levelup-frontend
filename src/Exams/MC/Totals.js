@@ -17,6 +17,7 @@ import Legends from '../../Core/LegendTexts'
 import needsData from '../../Core/needsData'
 import AnimatedInteger from '../../Charting/AnimatedInteger'
 import PointGraph from '../../Charting/PointGraph'
+import COLORS from "../../colors";
 
 const respSwitch = (large, small) => <span><span className="d-none d-md-inline-block">{large}</span><span className="d-inline-block d-md-none">{small}</span></span>
 const PercentileArea = ({ percentiles, ...props }) => {
@@ -64,9 +65,9 @@ const Totals = ({ t, ergebnisPunktzahl, durchschnittsPunktzahl, bestehensgrenzeP
                         <div><span className="font-weight-bold">{respSwitch(t('Erreichbar'), t('max'))}: </span>{maximalPunktzahl} {t('Pkte')}</div>
                     </div>
                     <OrdinalChart xDomain={domain} yDomain={[0,Math.max(...histogram.map(d => d.y))]}>
-                        <XAxis label={t('erreichte Punkte')} />
                         <YAxis label={t('Anzahl Studierender')} />
-                        <BarGraph labels width={.75} data={histogram.map( d => ({ ...d, label: <AnimatedInteger value={d.y} />}))} color="hsla(33, 100%, 20%, .5)" highlightColor="hsla(33, 100%, 20%, .8)" />
+                        <BarGraph labels width={.75} data={histogram.map( d => ({ ...d, label: <AnimatedInteger value={d.y} />}))} color={COLORS.background.grey1} highlightColor={COLORS.background.grey5} />
+                        <XAxis label={t('erreichte Punkte')} />
                     </OrdinalChart>
                 </div>
                 )}

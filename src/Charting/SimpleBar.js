@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
-import SimpleDot from './SimpleDot'
 import colors from "../colors"
+import KohortenMittelDot from "./KohortenMittelDot"
 
 const defaultStyle = {
     lineHeight: '.8rem',
@@ -16,7 +16,7 @@ const defaultStyle = {
 
 const SimpleBar = props => {
     const total = props.total || 100
-    const colorTotal = props.colorTotal || colors.default
+    const colorTotal = props.colorTotal || colors.background.grey1
     const colorPartOfTotal = props.colorPartOfTotal || colors.default
 
     const style = _.defaults({
@@ -33,7 +33,7 @@ const SimpleBar = props => {
         className="my-1 text-center text-white animated"
         style={style}>
         <span>{props.children}</span>
-        {!_.isUndefined(props.mean) && <SimpleDot value={props.mean / total * 100} />}
+        {!_.isUndefined(props.mean) && <KohortenMittelDot valueInPercent={props.mean / total * 100} />}
     </div>
 )}
 

@@ -3,20 +3,21 @@ import _ from 'lodash/fp'
 import socketio from "socket.io-client"
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimesCircle, faPaperPlane, faEnvelope, faCheckSquare, faSquare } from '@fortawesome/free-regular-svg-icons'
+import { faTimesCircle, faPaperPlane, faCheckSquare, faSquare,faCommentDots } from '@fortawesome/free-regular-svg-icons'
 import { selectors as user } from '../User/Store'
+import { SlideDown } from 'react-slidedown'
 
-const url = 'https://lu-feedback.herokuapp.com/'
+const url = 'https://levelup.charite.de'
 
-const socket = socketio(url)
-
+const socket = socketio(url, { path: '/feedback-ws/socket.io', transports: ['websocket'] })
 const style = {
-    position: 'absolute',
-    bottom: 0,
+    position: 'fixed',
     right: 0,
+    bottom: 0,
     fontSize: '.8rem',
-    zIndex: 999999,
+    zIndex: 999999
 }
+
 const stateToProps = state => ({
     loggedIn: user.isLoggedIn(state),
     user: user.getData(state),
@@ -27,9 +28,9 @@ const Feedback = _.compose([connect(stateToProps), waitForLogin])(({ user }) => 
     const messageDiv = useRef(null)
     const [ sendId, setSendId ] = useState(true)
     const [ ts, setTs ] = useState(window.localStorage.getItem('ts'))
-    const [ show, setShow ] = useState(false)
+    const [ show, setShow ] = useState(true)
     const [ messages, setMessages ] = useState([{
-        text: 'Das hier ist LevelUp! Wir wollen dir auf dieser Plattform in Zukunft Rückmeldung zu deinem Fortschritt im Studium geben. Daher würden wir gerne deine Meinung dazu hören, was wir noch verbessern können. Schreib uns hier im Textfeld einfach alles, was dir einfällt. Bitte beachte, dass LevelUp noch nicht fertig ist und es noch ein paar Fehler geben kann. Außerdem werden hier nur Beispieldaten angezeigt, die nichts mit deinen echten Ergebnissen zu tun haben.',
+        text: 'Willkommen auf LevelUp! Wir brauchen dringend dein Feedback um LevelUp zu verbessern und weiterzuentwickeln. Schreib uns einfach alles, was dir einfällt.',
         sender: 'server'
     }])
 
@@ -56,6 +57,7 @@ const Feedback = _.compose([connect(stateToProps), waitForLogin])(({ user }) => 
         if(!messageDiv.current) return
         messageDiv.current.scrollTop = messageDiv.current.scrollHeight
     }, [messages])
+    useEffect(() => { setTimeout(() => setShow(false), 5000) }, [])
 
     function postFeedback() {
         const message = input.current.value
@@ -69,30 +71,34 @@ const Feedback = _.compose([connect(stateToProps), waitForLogin])(({ user }) => 
         if(e.keyCode === 13) postFeedback()
     }
 
-    return <div style={style} className="p-4">
-        { show && <div className="with-shadow" style={{width: '18rem', backgroundColor: 'white', border: 'none'}}>
+
+    return <div style={style} className="mr-3 mb-3 feedback">
+        { show ? <SlideDown> <div className="with-shadow" style={{width: '18rem', backgroundColor: 'white', border: 'none'}}>
             <div className="text-right px-2 color-bg-navigation" style={{height: '2rem', lineHeight: '2.1rem'}} onClick={() => setShow(false)} >
                 <FontAwesomeIcon style={{fontSize: '1rem'}} className="text-white" icon={faTimesCircle} />
             </div>
             <div ref={messageDiv} className="p-2 overflow-auto" style={{maxHeight: '17rem'}}>
                 {messages.map((msg, i) => <div className={`mt-1 text-white ${msg.sender === 'server' && 'text-right'}`} key={i}>
-                    <span style={{borderRadius: '.3rem'}} className={`text-left d-inline-block p-2 ${msg.sender === 'server' ? 'bg-info ml-3' : 'bg-secondary mr-3'}`}>{msg.text}</span>
+                    <span style={{borderRadius: '.3rem'}} className={`text-left d-inline-block p-2 ${msg.sender === 'server' ? 'bg-info ml-3' : 'bg-secondary mr-3'}`}>
+                        {msg.text}
+                    </span>
                 </div>)}
             </div>
             <div className="text-right p-2 pb-0 d-flex">
-                <input style={{border: 'none', borderBottom: '1px solid lightgrey'}} className="flex-grow-1 no-outline" placeholder="Dein Feedback..." ref={input} onKeyUp={e => handleKeyPress(e)}></input>
+                <input style={{border: 'none', borderBottom: '1px solid lightgrey'}} className="flex-grow-1 no-outline" placeholder="Dein Feedback..." ref={input} onKeyUp={e => handleKeyPress(e)} />
                 <FontAwesomeIcon className="text-primary m-2" style={{fontSize: '1rem'}} icon={faPaperPlane} onClick={ () => postFeedback() } />
             </div>
-            <div className="text-right p-2 pb-3 d-flex" style={{lineHeight: '1.2em', color: 'grey', fontSize: '.7rem'}} onClick={ () => setSendId(!sendId) }>
+            <div className="text-right p-2 pb-3 d-flex" style={{cursor: 'pointer', lineHeight: '1.2em', color: 'grey', fontSize: '.7rem'}} onClick={ () => setSendId(!sendId) }>
                 <FontAwesomeIcon className="mr-1" style={{fontSize: '1.2em'}} icon={sendId ? faCheckSquare : faSquare} />
-                meine Email-Adresse mitsenden
+                meine Mailadresse mitsenden
             </div>
-        </div>}
-        {!show && <div className="w-100 text-right with-shadow">
-            <button className="btn btn-success" onClick={ () => setShow(true) }>
-                <FontAwesomeIcon style={{fontSize: '1rem'}} icon={faEnvelope} />
-            </button>
-        </div>}
+        </div> </SlideDown>:
+        <SlideDown>
+            <div className="w-100 text-right with-shadow ">
+            <button id='tunnel' className="btn color-button-color" onClick={ () => setShow(true) }>
+                <FontAwesomeIcon style={{fontSize: '1.3rem'}} icon={faCommentDots} />
+            </button>  
+        </div></SlideDown>}
     </div>
 })
 

@@ -4,10 +4,10 @@ import _ from 'lodash/fp'
 import Legend from '../Charting/Legend'
 import Ranking from './Ranking'
 import Legends from '../Core/LegendTexts'
-import SimpleDot from '../Charting/SimpleDot'
 import needsData from '../Core/needsData'
 import { selectors as ptmSelectors, actions as ptmActions } from '../Exams/Ptm/Store'
 import { selectors as mcSelectors, actions as mcActions } from '../Exams/MC/Store'
+import { InlineKohortenMittelDot } from "../Charting/KohortenMittelDot"
 
 const ptmProps = state => ({ faecher: _.flow(ptmSelectors.getLatest, ptmSelectors.getRanking)(state) })
 const PtmRanking = _.compose(needsData(ptmSelectors.loaded, ptmActions.load), connect(ptmProps))(
@@ -45,7 +45,7 @@ const Rankings = () =>
                 <div className="card-body">
                     <Legend title={Legends.Strengths.PTM.title}>{Legends.Strengths.PTM.text}
                     <div className="position-relative">
-                        Der <SimpleDot style={{ position: 'relative', display: 'inline-block', marginLeft: '.75rem' }} value={0} /> kennzeichnet den Kohortenmittelwert
+                        Der <InlineKohortenMittelDot /> kennzeichnet den Kohortenmittelwert
                    </div>
                     </Legend>
                     <PtmRanking />

@@ -6,17 +6,25 @@ import { Link } from 'react-router-dom'
 import Legends from '../Core/LegendTexts'
 
 const datenProtection =({t})=> (
-    <div className='row px-3'>
-        <div className='col-12  col-md-10 col-lg-8 col-xl-7 mx-auto mt-2 pb-3 with-shadow'>
-         <h3 className=' my-4 text-center'>{t(`Datenschutzhinweise`)}</h3>
-          <div className='my-5 '>{Legends.DatenProtection.text}</div>
-          <Link to='/login'>
-            <div className=' ml-4 text-primary'>
+  <div className="container-fluid">
+    <div className='row'>
+      <div className='col-12 col-md-10 col-lg-8 col-xl-7 mx-auto'>
+        <div className="card my-2">
+          <div className="card-header">
+            <h3 className='text-center'>{t(`Datenschutzhinweise`)}</h3>
+          </div>
+          <div className="card-body">
+            <div>{Legends.DatenProtection.text}</div>
+            <Link to='/login'>
+              <div className='color-navigation'>
                 <FontAwesomeIcon icon={faChevronLeft}/>
-                <span className='font-weight-bold ml-2' style={{cursor:'pointer', fontSize:'15px'}}>{t(`Züruck`)}</span>
-            </div>
-          </Link>
+                <span className='font-weight-bold ml-2' style={{cursor:'pointer', fontSize:'1rem'}}>{t(`Zurück`)}</span>
+              </div>
+            </Link>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 )
 export default withTranslation() (datenProtection)

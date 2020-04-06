@@ -4,6 +4,7 @@ import { select } from 'd3-selection'
 import { scaleBand } from 'd3-scale'
 import AnimatedText from './AnimatedText'
 import { animationTime } from './Utils'
+import COLORS from '../colors'
 
 export const Bar = ({ fadeIn = true, ...props }) => {
 	const node = useRef(),
@@ -33,7 +34,9 @@ export const Bar = ({ fadeIn = true, ...props }) => {
 		y={fadeIn ? y + height : y}
 		height={fadeIn ? 0 : height}
 		width={width} 
-		onClick={props.onClick} />
+		onClick={props.onClick}
+		opacity={.9}
+	/>
 }
 
 const BarGraph = props => {
@@ -55,7 +58,7 @@ const BarGraph = props => {
 			{values.map((y,j) => 
 			<g key={j}>
 				<Bar
-					fill={ d.highlight ? (props.highlightColor || '#fe99f2') : (_.isArray(d.color) ? d.color[j] : d.color || props.color || '#fe9922')} 
+					fill={ d.highlight ? (props.highlightColor || COLORS.default) : (_.isArray(d.color) ? d.color[j] : d.color || props.color || COLORS.default)}
 					x={scale(j)}
 					y={props.yScale(y)}
 					height={props.yScale.range()[0] - props.yScale(y)}

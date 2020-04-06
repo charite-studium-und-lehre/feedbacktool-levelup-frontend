@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
     <meta http-equiv="Content-Security-Policy"
-          content="
-            default-src 'self';
-            script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdnjs.cloudflare.com;
-            font-src 'self' https://fonts.gstatic.com/ data:;
-            style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
-            img-src 'self' data: 'unsafe-inline';
-            media-src 'self' https://levelup.charite.de/videos/epa_2019.mp4 ;
-			connect-src 'self' https://levelup.charite.de lu-feedback.herokuapp.com ws://lu-feedback.herokuapp.com;
-            form-action 'self';">
+    content="
+      default-src 'self';
+      script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdnjs.cloudflare.com https://levelup.charite.de;
+      font-src 'self' https://fonts.gstatic.com/ data:;
+      style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
+      img-src 'self' data: 'unsafe-inline' http://levelup.charite.de https://levelup.charite.de;
+      media-src 'self' https://levelup.charite.de/videos/epa_2019.mp4 ;
+      connect-src 'self' http://localhost:3001 https://levelup.charite.de wss://levelup.charite.de;
+      form-action 'self';">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!--
       manifest.json provides metadata used when your web app is added to the
@@ -31,7 +31,7 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
-    <title>-- LevelUp %PUBLIC_URL% %REACT_APP_SITE_TITLE% --</title>
+    <title>LevelUp</title>
 </head>
 <body>
 <noscript>
@@ -43,21 +43,14 @@ if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) document.write
     '<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"><\/script>');
 </script>
 
-<!-- Matomo -->
+<!-- Matomo Tag Manager -->
 <script type="text/javascript">
-    var _paq = window._paq || [];
-    _paq.push(['disableCookies']);
-    _paq.push(['trackPageView']);
-    _paq.push(['enableLinkTracking']);
-    (function() {
-        var u="/matomo/";
-        _paq.push(['setTrackerUrl', u+'matomo.php']);
-        _paq.push(['setSiteId', '1']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-    })();
-</script>
-<!-- End Matomo Code -->
+  var _mtm = _mtm || [];
+  _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+  var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+  g.type='text/javascript'; g.async=true; g.defer=true; g.src='https://levelup.charite.de/matomo/js/container_DdCrw4pa.js'; s.parentNode.insertBefore(g,s);
+  </script>
+  <!-- End Matomo Tag Manager -->
 
 <div id="root"></div>
 <!--

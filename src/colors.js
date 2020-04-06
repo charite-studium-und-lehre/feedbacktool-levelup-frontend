@@ -1,5 +1,6 @@
-export default {
+import './App.css'
 
+const colors = {
     progress: {
         base: '#63940f',
         lighter2: '#cdd6b6',
@@ -18,6 +19,20 @@ export default {
         darker2: '#27303f',
         darker3: '#1a393c',
         darker4: '#103136'
+    },
+    epas: {
+        done: {
+            value: '#224768',
+            background: '#c9d1da'
+        },
+        confident: {
+            value: '#096C7B',
+            background: '#c3dbdf'
+        },
+        externalAssessment: {
+            value: '#802000',
+            background: '#e0c8c0'
+        }
     },
 
     mc: {
@@ -39,19 +54,30 @@ export default {
     },
 
     background: {
-        base: '#f8f9ff',
-        grey6: '#585e66',
-        grey5: '#9AA5B4',
+        base: 'var(--color-background-base)',
+        grey6: 'var(--color-background-button)',
+        grey7: '#838c99',
+        grey5: '#8e98a6',
         grey4: '#A7B3C3',
         grey3: '#B6BDC7',
-        grey2: '#BFC6D1',
+        grey2: 'var(--color-background-grey2)',
         grey1: '#CFD8E4',
         grey0: '#e4e9f0',
-        buttonGrey: '#6c757d'
+        buttonGrey: '#6c757d',
+        lightgrey : 'lightgrey'
     },
-
+    
     textBlack: '#101010',
+    White: '#ffffff',
+    smiley: 'rgb(27, 148, 167)',
+    default: '#ff0000',
 
-    default: '#ff0000'
-
+    graphs: {
+        correct: 'var(--color-graphs-correct)',
+        wrong: 'var(--color-graphs-wrong)',
+        missingAnswer: 'var(--color-graphs-missing-answer)',
+        total: 'var(--color-graphs-total)'
+    }
 }
+
+export default colors

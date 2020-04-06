@@ -11,17 +11,17 @@ const Tellme =({t})=> (
         <div className='row'> 
             <div className='col-12'>
                 <span className='font-weight-bold ' style={{borderBottom:'2px solid black'}}>{t(`news`)}:</span>
-                <p className='mt-2'>Unsere ersten Lerneinheiten für Dich sind fertig: M14 & M17</p>
+                <p className='mt-2'>Unsere ersten Lerneinheiten für Dich sind fertig: M3, M8, M11, M14 und M17</p>
             </div>
         </div>
         <div className="row">
             <div className='col-md-6'>
-                <a className='btn btn-secondary form-control mt-2' style={{position:'relative', bottom:'0'}} target="blank" href='https://msm-tellme.charite.de/lernen' >
+                <a className='btn color-button-color form-control mt-2' style={{position:'relative', bottom:'0'}} target="blank" href='https://msm-tellme.charite.de/lernen' >
                     {t(`Trainieren`)}<span className='ml-2'><FontAwesomeIcon icon={faDumbbell}/></span>
                 </a>
             </div>
             <div className='col-md-6'>
-                <a className='btn btn-secondary form-control mt-2' style={{position:'relative', bottom:'0'}} target="blank" href='https://msm-tellme.charite.de/lernen' >
+                <a className='btn color-button-color form-control mt-2' style={{position:'relative', bottom:'0'}} target="blank" href='https://msm-tellme.charite.de/lernen' >
                     {t(`Mitmachen`)}<span className='ml-2'><FontAwesomeIcon icon={faBookOpen}/></span>
                 </a>
             </div>

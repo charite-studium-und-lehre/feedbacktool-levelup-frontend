@@ -18,8 +18,8 @@ const stateToProps = state => ({
 const Label = ({ title, children }) => 
     <div className="mt-2 w-100 d-flex flex-column">
         <div style={{fontSize: '.8rem'}} className="text-secondary">{title}</div>
-        <div className="pt-2 d-flex align-items-center flex-grow-1" style={{fontWeight: 500}}>
-            <div>{children}</div>
+        <div className="pt-2 d-flex align-items-end flex-grow-1 text-center" style={{lineHeight: '1.2em', fontWeight: 500}}>
+            <div className="w-100">{children}</div>
         </div>
     </div>
 const Donut = ({ value, total }) => 

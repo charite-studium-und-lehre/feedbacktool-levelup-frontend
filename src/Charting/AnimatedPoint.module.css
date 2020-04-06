@@ -1,8 +1,3 @@
-.dot {
-  stroke: rgba(255, 255, 255, .4);
-}
-
 .dot:hover, .dot.selected {
-  stroke: rgba(0,0,0,.2);
   stroke-width: 11;
 }

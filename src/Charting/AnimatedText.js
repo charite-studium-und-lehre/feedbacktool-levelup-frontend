@@ -2,9 +2,10 @@ import React, { useRef, useState, useEffect } from 'react'
 import _ from 'lodash/fp'
 import { select } from 'd3-selection'
 import { animationTime } from './Utils'
+import COLORS from '../colors'
 
 const AnimatedText = ({
-        color = 'black',
+        color = COLORS.textBlack,
         textAnchor = 'middle',
         className = '',
         transform = '',

@@ -1,8 +1,8 @@
 import React from 'react'
 import {Trans} from 'react-i18next'
-import Numbers from '../EPAs/assessmentViewComponents/Numbers'
-import Video from '../EPAs/static/EPAsVideo'
-import {GraphButton} from "./GraphButton";
+import Video from '../EPAs/Common/EPAsVideo'
+import {GraphButton} from "../Exams/Ptm/GraphButton"
+
 
 const Legends = {
     Exams: {
@@ -39,7 +39,7 @@ const Legends = {
                 title: <Trans>Fragen und Antworten</Trans>,
                 text: <Trans i18nKey="exams.mc.questions.text">
                     <p>Hier kannst du dir alle Fragen der Semesterprüfung mit den dazugehörigen Antworten ansehen. Jede
-                        Frage wurde mit verschiedenen Tags versehen, mit deren Hilfe du die Fragen filtern kannst.Die
+                        Frage wurde mit verschiedenen Tags versehen, mit deren Hilfe du die Fragen filtern kannst. Die
                         Filter schwer und leicht zeigen dir wie viel deiner Mitstudierenden diese Frage beantworten
                         konnten. Schwere Fragen sind Fragen, die weniger als 40% deiner Mitstudierenden beantworten
                         konnten. Leichte Fragen hingegen konnten mehr als 80% deiner Kommilitonen beantworten.So kannst
@@ -128,156 +128,12 @@ const Legends = {
         Explanation: {
             title: <Trans>Ärztliche Tätigkeiten (EPAs)</Trans>,
             text: <Trans>
-                {/* <div className="my-2">
-                    Hier siehst du eine Übersicht zu den ärztlichen Kern-Tätigkeiten, die du im Laufe des Studiums trainieren wirst. Nutze diese Funktion, um die Entwicklung deiner praktischen Kompetenz festzuhalten und ggf. nachzusteuern. Für die Einschätzung jeder Tätigkeit gibt es 6 Level, die als Balken dargestellt
-                    <Numbers className="mx-1 d-inline-block" value={3} color="hsl(161, 100%, 25%)" colorsRgb="hsl(161, 100%, 25%, .2)" />
-                    und auf der rechten Seite in der Legende definiert sind. Das Ziel ist, dass du als Absolvent*in des Medizinstudiums dazu in der Lage bist, die hier aufgeführten Tätigkeiten zu Berufsbeginn eigenständig durchzuführen und nur Wichtiges nachgeprüft wird (Level 5).
-                </div>
-                <strong className=' d-block my-2'>Schätze Dich selber ein</strong>
-                <div>
-                    So kannst du im Laufe deines Studiums zum Beispiel nach U- oder UaK-Kursen oder Famulaturen angeben, unter welchem Level du die jeweilige Tätigkeit ausgeführt hast
-                    <Numbers className="mx-1 d-inline-block" value={3} color="hsla(208, 51%, 27%)" colorsRgb="hsla(208, 51%, 27%,.2)" width={'.9rem'} height={'.9rem'} borderRadius={'50%'} headings='Habe ich gemacht' />
-                    und unter welchem Level du dir die Tätigkeit zutraust
-                    <Numbers className="mx-1 d-inline-block" value={2} color="hsl(188, 86%, 26%)" colorsRgb="hsl(188, 86%, 26%, .2)" width={'.9rem'} height={'.9rem'} borderRadius={'50%'} headings='Traue ich mir zu' /></div>
-                <strong className=' d-block mt-2'>Bitte um eine Fremdeinschätzung</strong>
-                <div>
-                    Es ist zudem möglich, Fremdeinschätzungen von deinen Lehrenden/ Ärzt*innen einzuholen
-                    <Numbers className="mx-1 d-inline-block" value={1} color="hsl(15, 100%, 25%)" colorsRgb="hsl(15, 100%, 25%, .2)" width={'.9rem'} height={'.9rem'} borderRadius={'50%'} headings='Habe ich gemacht' />.
-                    Hierfür klickst du auf diesen Button
-                    <button className='btn btn-secondary d-inline-block mx-1'>
-                        Fremdbewertung einfordern
-                        <FontAwesomeIcon icon={faEnvelope} />
-                    </button>und kannst die E-Mail-Adresse deines Dozierenden eingeben und eine Einladung senden. Unter der E-Mail-Funktion siehst du alle bisherigen Fremdeinschätzungen.</div>
-*/}
-                <div className="my-2 w-100 position-relative">
-
-                    <div>
-                        Video: <a className="color-navigation" href="https://levelup.charite.de/videos/epa_2019.mp4">Was
-                        sind
-                        EPAs?</a>
-                    </div>
                     Hier siehst du eine Übersicht zu den ärztlichen Kern-Tätigkeiten, die du im Laufe des Studiums
                     trainieren wirst. Nutze die Funktion ärztliche Tätigkeiten, um die Entwicklung deiner praktischen
                     Kompetenz festzuhalten und ggf. nachzusteuern. Ziel ist, dass du als Absolvent*in des
                     Medizinstudiums dazu in der Lage bist, die aufgeführten Tätigkeiten zu Berufsbeginn eigenständig
                     durchzuführen und nur Wichtiges nachgeprüft wird (Level 5).
-                    <div className="d-block">
-                        Level:
-                        <Numbers className="mx-2 d-inline" value={3} color="hsl(161, 100%, 25%)"
-                                 colorsRgb="hsl(161, 100%, 25%, .2)"/>
-                    </div>
-                    <h5 className="mt-4">Schätze dich selbst ein</h5>
-                    <div>Im Laufe deines Studiums z.B. nach U- oder UaK-Kursen oder Famulaturen kannst du deine Level
-                        eintragen.
-                    </div>
-                    <div className="table-responsive-md">
-                    <table className="table table-borderless">
-                        <tbody>
-                        <tr>
-                            <td className="text-nowrap" style={{color: "#224768", lineHeight: ".9rem"}}>
-                                <Numbers
-                                    colorsRgb="#ffffff"
-                                    color="#224768"
-                                    width="1rem"
-                                    height="1rem"
-                                    borderRadius="1rem"
-                                    edit={false}
-                                    average={true}
-                                    value={1}
-                                    maxValue={5}
-                                    increment={null}
-                                    decrement={null}/>
-                                <div className="font-weight-bold pr-2">
-                                    Habe ich gemacht
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    - gibt an unter welchem Level du die jeweilige Tätigkeit ausgeführt hast.
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="text-nowrap" style={{color: "#096c7b", lineHeight: ".9rem"}}>
-                                <Numbers
-                                    colorsRgb="#ffffff"
-                                    color="#096c7b"
-                                    width="1rem"
-                                    height="1rem"
-                                    borderRadius="1rem"
-                                    edit={false}
-                                    average={true}
-                                    value={1.7}
-                                    maxValue={5}
-                                    increment={null}
-                                    decrement={null}/>
-                                <div className="font-weight-bold">
-                                    <div>Traue ich mir zu</div>
-                                </div>
-                            </td>
-                            <td >
-                                <div>
-                                    - gibt an unter welchem Level du dir die Tätigkeit zutraust.
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    </div>
-
-                    <h5 className="mt-4">Bitte um eine Fremdeinschätzung</h5>
-                    <div>
-                        Du kannst auch Fremdeinschätzungen von deinen Lehrenden/ Ärzt*innen einzuholen.
-                    </div>
-                    <div className="table-responsive-md">
-                    <table className="table table-borderless">
-                        <tbody>
-                        <tr>
-                            <td className="p-1"><div className="btn btn-secondary text-nowrap"> Fremdbewertung einfordern</div></td>
-                            <td className="p-0">
-                                <div>Sende eine Einladung mit einer Fremdbewertungsanforderung an deine*n
-                                    Dozierende*n.
-                                </div>
-                            </td>
-                        </tr>
-                        <tr >
-                            <td className="p-1"><div className="btn btn-secondary text-nowrap"> Erhaltene Fremdbewertungen</div></td>
-                            <td className="p-0">
-                                <div>
-                                    Schau dir alle deine bisher erhaltenen Fremdbewertungen an.
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="text-nowrap" style={{color: "#802000", lineHeight: ".9rem"}}>
-                                <Numbers
-                                    colorsRgb="#ffffff"
-                                    color="#802000"
-                                    width="1rem"
-                                    height="1rem"
-                                    borderRadius="1rem"
-                                    edit={false}
-                                    average={true}
-                                    value={0}
-                                    maxValue={5}
-                                    increment={null}
-                                    decrement={null}/>
-                                <div className="font-weight-bold">
-                                    <div>Wird mir zugetraut</div>
-                                </div>
-                            </td>
-                            <td className="p-0">
-                                <div>
-                                    - gibt an unter welchem Level dir deine Lehrenden/ Ärzt*innen die Tätigkeit
-                                    zutrauen.
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    </div>
-                </div>
-            </Trans>
+                 </Trans>
         },
         CheatSheetCard: {
             levels: {
@@ -285,14 +141,9 @@ const Legends = {
                 text: ['keine Ausführung',
                     'gemeinsam mit dem Arzt',
                     'unter Beobachtung des Arztes',
-                    'eigenständig, alles/vieles wird nachgeprüft (Arzt auf Station',
+                    'eigenständig, alles/vieles wird nachgeprüft (Arzt auf Station)',
                     'eigenständig, Wichtiges wird nachgeprüft (Arzt auf Station)',
-                    'eigenständig, Wichtiges wird nachgeprüft (Arzt nur telefonisch erreichbar)'
-                ].map((e, d) =>
-                    <div key={d}>
-                        <div>{`${d} - ${e}`}</div>
-                        <Numbers color="hsl(161, 100%, 25%)" colorsRgb="hsl(161, 100%, 25%, .2)" value={d}/>
-                    </div>)
+                    'eigenständig, Wichtiges wird nachgeprüft (Arzt nur telefonisch erreichbar)']
             },
             video: {
                 title: <Trans>Video: Was sind EPAs?</Trans>,

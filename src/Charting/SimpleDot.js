@@ -8,7 +8,7 @@ const defaultStyle = size => ({
     width: `${size}rem`,
     backgroundColor: COLORS.textBlack,
     borderRadius: `${size/2}rem`,
-    border: '3px solid '+ COLORS.background.base
+    border: '1px solid '+ COLORS.background.base
 })
 
 const SimpleDot = ({ className = '', size = .5, ...props }) => {

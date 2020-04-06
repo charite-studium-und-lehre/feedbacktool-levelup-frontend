@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash/fp'
-import tinycolor from 'tinycolor2'
 import { OrdinalChart } from '../../Charting/Chart'
 import { XAxis, YAxis } from '../../Charting/Axis'
 import BarGraph from '../../Charting/BarGraph'
@@ -10,19 +9,35 @@ import Legend from '../../Charting/Legend'
 import AnimatedInteger from '../../Charting/AnimatedInteger'
 import Legends from '../../Core/LegendTexts'
 import needsData from '../../Core/needsData'
-import SimpleDot from '../../Charting/SimpleDot'
 import { selectors, actions } from './Store'
-import { color } from './Ptm'
+import { InlineKohortenMittelDot } from "../../Charting/KohortenMittelDot"
+import AnimatedDiamond from "../../Charting/AnimatedDiamond"
+import colors from '../../colors'
 
 export const labels = ['richtig', 'falsch', 'nicht beantwortet']
+export const labelsAndColors = [
+    {label: labels[0], color: 'var(--color-graphs-correct)'},
+    {label: labels[1], color: 'var(--color-graphs-wrong)'},
+    {label: labels[2], color: 'var(--color-graphs-missing-answer)'}
+]
 
 const stateToProps = (state, props) => ({ data: props.id ? selectors.getById(state, props.id) : selectors.getLatest(state) })
 const Chart = _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps)])(({ data }) => 
-    <OrdinalChart xDomain={labels} yDomain={[0,Math.max(..._.flatten(data.results))+10]}>
+    <OrdinalChart xDomain={labels} yDomain={[0,Math.max(...data.results, ...data.means)+10]}>
         <XAxis />
         <YAxis label="Anzahl Fragen" ticks={{count: 4}} />
-        <BarGraph labels data={labels.map((l,i) => ({x: l, y: data.results[i], label: <AnimatedInteger value={data.results[i]} />, color: tinycolor(color).setAlpha(.9).toString()}))} />
-        <PointGraph color="rgba(0, 0, 0, .6)" data={labels.map((l, i) => ({x: l, y: data.means[i], id: i+1}))} />
+        <BarGraph labels data={
+            labelsAndColors.map((l,i) => ({
+                x: l.label, y: data.results[i],
+                label: <AnimatedInteger value={data.results[i]} />,
+                color: l.color}))} />
+        <PointGraph 
+            MarkerComponent={AnimatedDiamond}
+            color={colors.textBlack}
+            offset={.85}
+            size={15}
+            data={labels.map((l, i) => ({x: l, y: data.means[i], id: i+1}))} 
+        />
     </OrdinalChart>
 )
 
@@ -32,7 +47,7 @@ const Results = props =>
             <Legend title={Legends.Strengths.PTMResults.title}>
                 {Legends.Strengths.PTMResults.text}
             <div className="position-relative">
-                    Der <SimpleDot style={{ position: 'relative', display: 'inline-block', marginLeft: '.75rem' }} value={0} /> kennzeichnet den Kohortenmittelwert
+                    Der <InlineKohortenMittelDot /> kennzeichnet den Kohortenmittelwert.
             </div>
             </Legend>
             <div className="mt-3 p-2">

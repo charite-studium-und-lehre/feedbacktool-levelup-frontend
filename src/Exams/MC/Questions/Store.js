@@ -21,7 +21,7 @@ export const selectors = {
 export const reducer = (state = {}, action) => {
     switch(action.type) {
         case `${identifier.toUpperCase()}_DATA_FETCHED`:
-            return _.merge(state)({ [action.payload.id]: action.payload.fragen })
+            return _.merge(state)({ [action.payload.studiPruefungsId]: action.payload.fragen })
         default:
             return state
     }

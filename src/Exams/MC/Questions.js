@@ -18,8 +18,8 @@ const Infos = ({ questions, title }) => (
         </div>
         <div className="d-flex justify-content-center">
             <div className="text-center">
-                <div style={{ color: 'green' }}><FontAwesomeIcon icon={faCheck} /></div>
-                <div style={{ color: 'red' }}><FontAwesomeIcon icon={faTimes} /></div>
+                <div style={{ color: 'var(--color-graphs-correct-small-icon)' }}><FontAwesomeIcon icon={faCheck} /></div>
+                <div style={{ color: 'var(--color-graphs-wrong)' }}><FontAwesomeIcon icon={faTimes} /></div>
             </div>
             <div className="ml-1">
                 <div>{_.sumBy( q => q.antworten.some( a => a.ausgewaehlt && a.richtig ), questions )}</div>
@@ -33,10 +33,12 @@ const stateToProps = (state, ownProps) => ({ questions: selectors.getById(state,
 const loadedById = (state, ownProps) => selectors.loaded(state, ownProps.id)
 const loadById = ownProps => actions.load(ownProps.id)
 const Questions = _.compose([needsData(loadedById, loadById), connect(stateToProps), withTranslation()])(({ t, id, questions }) =>
-    <div>
+    questions.length ? <div>
         <div className="row">
             <div className="col">
-                {t('Dir wurden')} <span style={{fontSize: '1.1rem'}} className="font-weight-bold">{questions.length}</span> {t('Fragen gestellt. Davon waren...')}
+                {t('Auswertung für ')}
+                <span style={{fontSize: '1.1rem'}} className="font-weight-bold mr-1">{questions.length}</span>
+                Fragen:
             </div>
         </div>
         <div className="row mt-3">
@@ -44,18 +46,20 @@ const Questions = _.compose([needsData(loadedById, loadById), connect(stateToPro
             <Infos title='mittel' questions={questions.filter( q => q.durchschnittRichtig >= .4 && q.durchschnittRichtig <= .8 )} />
             <Infos title='leicht' questions={questions.filter( q => q.durchschnittRichtig > .8 )} />
         </div>
+        <div className="mt-2" style={{fontSize: '.7rem'}}>
+            {Legends.Exams.MC.Questions.text}
+        </div>
         <div className="mt-3">
             <Link to={`${id}/questions`}>
-                <button type="button" className="btn btn-primary">Details zu Fragen</button>
+                <button type="button" className="btn color-button-color">Details zu Fragen</button>
             </Link>
         </div>
-    </div>
+    </div> : 
+    <div className="text-center">{t('Zu dieser Prüfung liegen uns leider keine Fragen und Antworten vor.')}</div>
 )
 
 export default props => 
     <div className='card p-3' style={{fontSize: '.9rem'}}>
-        <Legend title={Legends.Exams.MC.Questions.title}>
-            {Legends.Exams.MC.Questions.text}
-        </Legend>
+        <Legend title={Legends.Exams.MC.Questions.title} />
         <Questions {...props} />
     </div>

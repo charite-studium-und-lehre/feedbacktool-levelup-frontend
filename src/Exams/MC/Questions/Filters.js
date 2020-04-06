@@ -1,28 +1,67 @@
 import React from 'react'
-import _ from 'lodash/fp'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFilter } from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faFilter} from '@fortawesome/free-solid-svg-icons'
 import Filter from '../../../Utils/Filter'
 import makeExtendable from '../../../Core/makeExtendable'
-import SlideDown from 'react-slidedown';
+import SlideDown from 'react-slidedown'
+import COLORS from "../../../colors"
 
-export const colors = ["hsla(210, 50%, 55%, .8)", "hsla(40, 50%, 55%, .8)", "hsla(150, 50%, 55%, .8)"]
-const Filters = makeExtendable(
-    ({ filters, setters, ...props }) => 
-    <div className="p-2">   
-        <div className="d-md-none text-right">
-            <button className={`btn btn-sm btn-outline-${_.some(f => f.selected, _.flatten(filters)) ? 'danger' : 'secondary'}`} onClick={props.toggleExtended}>
-                Filtern <FontAwesomeIcon icon={faFilter} />
-            </button>
-        </div>
-        <SlideDown className="animated fast">
-            {props.extended && <div>
-                <div className="d-flex">
-                    {filters.map( (f, i) => <Filter key={i} className="mr-2" filters={ f } onUpdate={ setters[i] } color={colors[i]} /> )}
-                </div>
-                {props.children}
-            </div>}
-        </SlideDown>
-    </div>, true)
+export const colors = [COLORS.background.grey7, COLORS.background.grey4, COLORS.background.grey1]
+
+const styles = [
+    { // Subjects
+        colors: {
+            background: COLORS.background.grey7,
+            line: COLORS.background.grey7,
+            text: COLORS.background.base
+        },
+        classes: ''
+    },
+    { // Modules
+        colors: {
+            background: COLORS.background.grey4,
+            line: COLORS.background.grey4,
+            text: COLORS.background.base
+        },
+        classes: 'mr-auto'
+    },
+    { // Difficult
+        colors: {
+            background: COLORS.background.grey0,
+            line: COLORS.background.grey7,
+            text: COLORS.background.grey7
+        },
+        classes: 'float-right'
+    },
+    { // Correct
+        colors: {
+            background: COLORS.background.grey0,
+            line: COLORS.background.grey7,
+            text: COLORS.background.grey7
+        },
+        classes: 'ml-auto float-right'
+    }
+]
+
+const Filters = makeExtendable()(
+    ({filters, setters, ...props}) =>
+        <div className="p-2">
+            <div className="text-right">
+                <button
+                    className={`btn btn-sm color-button-color`}
+                    onClick={props.toggleExtended}>
+                    Filtern <FontAwesomeIcon icon={faFilter}/>
+                </button>
+            </div>
+            <SlideDown className="animated fast">
+                {props.extended && <div>
+                    <div className="d-flex flex-wrap">
+                        {filters.map((f, i) => <Filter key={i} filters={f} onUpdate={setters[i]}
+                                                       className={styles[i].classes} colors={styles[i].colors}/>)}
+                    </div>
+                    {props.children}
+                </div>}
+            </SlideDown>
+        </div>)
 
 export default Filters

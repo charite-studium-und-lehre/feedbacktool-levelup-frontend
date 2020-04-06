@@ -5,8 +5,8 @@ import css from './AnimatedPoint.module.css'
 
 const AnimatedPoint = ({
         cx, cy, selected, x,
-        color = 'rgba(0,0,0,.6)',
-        fill = 'rgba(0,0,0,.6)',
+        color = 'var(--color-graphs-grid)',
+        fill = 'var(--color-graphs-grid)',
         className = '',
         r = 5,
         opacity = 1,
