@@ -7,7 +7,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../makeExtendable'
 import { withTranslation } from 'react-i18next'
 import tellMeLogo from '../../images/tellMeLogo.PNG'
-import LevelUpLogo from '../../images/LevelupLogo.jpg'
+import LevelUpLogo from '../../images/alt1.jpg'
 import Routes from "./Routes"
 import { selectors as user } from '../../User/Store'
 
