@@ -44,12 +44,12 @@ export default _.compose([connect(stateToProps), withTranslation(), makeExtendab
                     </ul>
                 </div>
             </nav>
-            <div className='float-right'>
-                <span className='mr-2'>Partner-Plattform :</span>
-                <a className='btn mt-2 mr-4' style={{border: '3px solid #dee2e6' }}  target="blank" href='https://msm-tellme.charite.de/lernen' >
-                    {/* <span className='mr-2 mt-'>Trainieren mit</span> */}
-                    <img src={tellMeLogo} alt="tellme-logo" className='' style={{ height:'1.7rem', width: '6rem' }}></img>
+            <div className='float-right mr-3'>
+                <div>Partnerlink:</div>
+                <a className='btn btn-primary mt-1 mr-3' target="blank" href='https://msm-tellme.charite.de/lernen' >
+                    <span >Trainieren mit</span>
                 </a>
+                    <img src={tellMeLogo} alt="tellme-logo"  style={{ height:'2.7rem', width: '6rem' }}></img>
             </div>
         </div>
     )
