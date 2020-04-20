@@ -7,7 +7,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../makeExtendable'
 import { withTranslation } from 'react-i18next'
 import tellMeLogo from '../../images/tellMeLogo.PNG'
-import LevelUpLogo from '../../images/alt1.jpg'
+import LevelUpLogo from '../../images/alt5-tranparenter_hintergrund.png'
 import Routes from "./Routes"
 import { selectors as user } from '../../User/Store'
 
@@ -16,7 +16,7 @@ export default _.compose([connect(stateToProps), withTranslation(), makeExtendab
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top flex-shrink-0">
-            <Link className="navbar-brand m-0 p-0" to="/"><img className='m-0 p-0' src={LevelUpLogo} alt="LevelupLogo" style={{ width: '5rem' }}></img></Link>
+            <Link className="navbar-brand m-0 p-0" to="/"><img className='m-0 p-0' src={LevelUpLogo} alt="LevelupLogo" style={{ width: '8rem' }}></img></Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation" onClick={props.toggleExtended}>
