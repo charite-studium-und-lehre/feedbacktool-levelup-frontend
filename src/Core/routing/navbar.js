@@ -14,7 +14,7 @@ const stateToProps = state => ({ loggedIn: user.isLoggedIn(state), userData: use
 export default _.compose([connect(stateToProps), withTranslation(), makeExtendable()])(function Navbar({ t, loggedIn, userData, ...props }) {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top flex-shrink-0">
-            <Link className="navbar-brand mr-2" to="/"><img className='m-0 p-0' src={LevelUpLogo} alt="LevelupLogo" style={{ width: '8rem', }}></img></Link>
+            <Link className="navbar-brand mr-2" to="/" id='LevelupLogo'><img className='m-0 p-0' src={LevelUpLogo} alt="LevelupLogo" style={{ width: '8rem', }}></img></Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation" onClick={props.toggleExtended}>
