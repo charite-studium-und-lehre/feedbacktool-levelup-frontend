@@ -17,7 +17,7 @@ const Infos = (props) => (
                     maxValue={5} />
                 <div className="font-weight-bold pr-2 mb-1">{props.title}</div>
             </div> :
-                <div className='btn color-button-color text-nowrap'>{props.button}</div>
+                <div className='btn color-button-color text-nowrap' id={props.id}>{props.button}</div>
             }
         </div>
         <div className='col-12 col-sm-6 col-xl-8'>{props.text}</div>
@@ -57,10 +57,12 @@ export default (props) => <div className="card p-2 mt-2">
             <Infos
                 button='Fremdbewertung einfordern'
                 text='- Sende eine Einladung mit einer Fremdbewertungsanforderung an deine*n Dozierende*n.'
+                id='legendeText-> Fremdbewertung einfordern'
                 {...props} />
             <Infos
-                button='Erhaltene Fremdbewertungen'
+                button='Erhaltene Fremdbewertungen '
                 text='- Schau dir alle deine bisher erhaltenen Fremdbewertungen an'
+                id='legendeText-> Erhaltene Fremdbewertungen'
                 {...props} />
             <Infos
                 colorBackground={COLORS.epas.externalAssessment.background}

@@ -40,8 +40,8 @@ const Totals = ({ t, ergebnisPunktzahl, durchschnittsPunktzahl, bestehensgrenzeP
         <div className="card p-4">
             <Legend title={LegendText.title}>{LegendText.text}</Legend>
             <div style={{textAlign: 'right'}}>
-                <label className="m-0 mr-2"><input type="radio" name="totals.mode" checked={mode === 'graph'} onChange={() => setMode('graph')} className="mx-2" />{t('Graph')}</label>
-                <label><input type="radio" name="totals.mode" checked={mode === 'histo'} onChange={() => setMode('histo')} className="mx-2" />{t('Histogramm')}</label>
+                <label className="m-0 mr-2"><input type="radio" name="totals.mode" id='Switch-> Graph' checked={mode === 'graph'} onChange={() => setMode('graph')} className="mx-2" />{t('Graph')}</label>
+                <label><input type="radio" name="totals.mode" id='Switch-> Histogramm' checked={mode === 'histo'} onChange={() => setMode('histo')} className="mx-2" />{t('Histogramm')}</label>
             </div>
             <div className="mt-3">
                 {mode === 'graph' ? (
