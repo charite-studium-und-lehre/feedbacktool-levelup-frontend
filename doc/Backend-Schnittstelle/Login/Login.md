@@ -9,7 +9,7 @@ GET-Aufruf an Server:
 
 #### Rückgabe, wenn schon eingeloggt: 
 HTTP-Code 200
-```
+```js
 {
 	"vorname": <vorname>,
 	"nachname": <nachname>,

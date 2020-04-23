@@ -1,7 +1,7 @@
 ## Details- MC-Fragen und Antworten 
 
 ### GET-Aufruf: 
-[[file:///C:/backend/api/pruefungen/%3CstudiPruefungsId%3E/fragen|/backend/api/pruefungen/<studiPruefungsId>/fragen]]
+/backend/api/pruefungen/<studiPruefungsId>/fragen
 
 success: HTTP-Code 200
 
@@ -12,7 +12,7 @@ fail: HTTP-Code 404 (keine Fragen vorhanden)
 #### Rückgabe: 
 Achtung! Es kann passieren, dass nicht bekannt ist, was ein Studi ausgewählt hat. Dann ist "ausgewaehlt" für alle Fragen "false"
 
-```
+```js
 {
 	studiPruefungsId: <Studi-Prüfungs ID>,
 
