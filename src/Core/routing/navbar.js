@@ -7,11 +7,14 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../makeExtendable'
 import { withTranslation } from 'react-i18next'
 import LevelUpLogo from '../../images/LevelupLogo.png'
+import tellMeLogo from '../../images/tellMeLogo.PNG'
 import Routes from "./Routes"
+import { useLocation } from "react-router-dom"
 import { selectors as user } from '../../User/Store'
 
 const stateToProps = state => ({ loggedIn: user.isLoggedIn(state), userData: user.getData(state) })
 export default _.compose([connect(stateToProps), withTranslation(), makeExtendable()])(function Navbar({ t, loggedIn, userData, ...props }) {
+    const { pathname } = useLocation()
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top flex-shrink-0">
             <Link className="navbar-brand mr-2" to="/" id='LevelupLogo'><img className='m-0 p-0' src={LevelUpLogo} alt="LevelupLogo" style={{ width: '8rem', }}></img></Link>
@@ -29,6 +32,17 @@ export default _.compose([connect(stateToProps), withTranslation(), makeExtendab
                         </li>
                     )}
                 </ul>
+                {
+                    pathname.includes('/exams/mcs/') ?
+                        null
+                        : <div className=' mr-auto mr-3'>
+                            <span>Partnerlink:</span>
+                            <a className='btn btn-primary m-3 py-1' target="blank" href='https://msm-tellme.charite.de/lernen' >
+                                <span >Trainieren</span>
+                            </a>
+                            <img src={tellMeLogo} alt="tellme-logo" style={{ height: '2.1rem', width: '6rem' }}></img>
+                        </div>
+                }
                 <div className="float-right d-none d-lg-block" style={{ cursor: 'pointer' }}>
                     {loggedIn && <span id='Willkommen'>Willkommen {userData.vorname}</span>}
                 </div>
@@ -41,6 +55,7 @@ export default _.compose([connect(stateToProps), withTranslation(), makeExtendab
                     </li>
                 </ul>
             </div>
+
         </nav>
     )
 })
