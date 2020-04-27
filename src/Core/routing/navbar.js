@@ -15,8 +15,8 @@ import { selectors as user } from '../../User/Store'
 const TellMeLink = () =>
     <div className='d-none d-lg-block mr-auto mr-3'>
         <span>Partnerlink:</span>
-        <a className='btn btn-primary m-3 py-1 d-none d-sm-inline' target="blank" href='https://msm-tellme.charite.de/lernen' >
-            <span >Trainieren</span>
+        <a className='btn m-3 py-1 d-none d-sm-inline' target="blank" href='https://msm-tellme.charite.de/lernen'style={{backgroundColor:'#287BC0'}} >
+            <span style={{color:'white'}} >Trainieren</span>
         </a>
         <img src={tellMeLogo} alt="tellme-logo" style={{ height: '2.1rem', width: '6rem' }}></img>
     </div>
