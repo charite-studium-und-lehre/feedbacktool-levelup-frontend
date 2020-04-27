@@ -14,6 +14,7 @@ const style = {
 }
 const Item = props =>
     <Link className="d-block pb-3" to={`/exams/${props.link}`}>
+            <div className='h-100 w-100' id={`newsfeed-> ${props.icon}`} style={{position:'absolute', zIndex:'9'}}></div>
         <div className="p-2 bg-white">
             <div className="d-flex">
                 <div className="p-1">
