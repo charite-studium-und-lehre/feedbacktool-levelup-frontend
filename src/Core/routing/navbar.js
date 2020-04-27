@@ -12,36 +12,47 @@ import Routes from "./Routes"
 import { useLocation } from "react-router-dom"
 import { selectors as user } from '../../User/Store'
 
+const TellMeLink = () =>
+    <div className='d-none d-lg-block mr-auto mr-3'>
+        <span>Partnerlink:</span>
+        <a className='btn btn-primary m-3 py-1 d-none d-sm-inline' target="blank" href='https://msm-tellme.charite.de/lernen' >
+            <span >Trainieren</span>
+        </a>
+        <img src={tellMeLogo} alt="tellme-logo" style={{ height: '2.1rem', width: '6rem' }}></img>
+    </div>
+
 const stateToProps = state => ({ loggedIn: user.isLoggedIn(state), userData: user.getData(state) })
 export default _.compose([connect(stateToProps), withTranslation(), makeExtendable()])(function Navbar({ t, loggedIn, userData, ...props }) {
     const { pathname } = useLocation()
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top flex-shrink-0">
+        <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top flex-shrink-0 border-bottom">
             <Link className="navbar-brand mr-2" to="/" id='LevelupLogo'><img className='m-0 p-0' src={LevelUpLogo} alt="LevelupLogo" style={{ width: '8rem', }}></img></Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation" onClick={props.toggleExtended}>
                 <FontAwesomeIcon icon={faBars} />
             </button>
-            <div className={`collapse navbar-collapse ${props.extended && 'show'}`} id="navbarSupportedContent">
+            <div className={`collapse navbar-collapse ${props.extended &&'show'}`} id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto" onClick={props.toggleExtended}>
                     {Routes.map((route, i) =>
-                        route.menuName && (!route.private || loggedIn) &&
-                        <li className="nav-item" key={i}>
-                            <NavLink className="nav-link" id={route.menuName} to={route.path}>{t(route.menuName)}</NavLink>
-                        </li>
+                        route.menuName && (!route.private || loggedIn) ?
+                            <li className="nav-item" key={i}>
+                                <NavLink className="nav-link" id={route.menuName} to={route.path}>{t(route.menuName)}</NavLink>
+                            </li>
+                            : route.TellMe ?
+                                <div className='d-lg-none' style={{ color: 'rgba(0, 0, 0, 0.5)' }}>
+                                    <a target="blank" href='https://msm-tellme.charite.de/lernen'>
+                                        <span className='mr-2'>Tellme</span>
+                                        <img src={tellMeLogo} alt="tellme-logo" style={{ height: '1.5rem', width: '4rem' }}></img>
+                                    </a>
+                                </div>
+                                : null
                     )}
                 </ul>
                 {
                     pathname.includes('/exams/mcs/') ?
                         null
-                        : <div className=' mr-auto mr-3'>
-                            <span>Partnerlink:</span>
-                            <a className='btn btn-primary m-3 py-1' target="blank" href='https://msm-tellme.charite.de/lernen' >
-                                <span >Trainieren</span>
-                            </a>
-                            <img src={tellMeLogo} alt="tellme-logo" style={{ height: '2.1rem', width: '6rem' }}></img>
-                        </div>
+                        : <TellMeLink />
                 }
                 <div className="float-right d-none d-lg-block" style={{ cursor: 'pointer' }}>
                     {loggedIn && <span id='Willkommen'>Willkommen {userData.vorname}</span>}

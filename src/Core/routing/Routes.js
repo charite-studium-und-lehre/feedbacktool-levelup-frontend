@@ -1,3 +1,4 @@
+import React from 'react'
 import Dashboard from '../../Dashboard/Dashboard'
 import Exams from '../../Exams/Exams'
 import MC from '../../Exams/MC/MC'
@@ -23,6 +24,9 @@ const Routes = [
     menuName: 'Dashboard',
     exact: true,
     private: true,
+  },
+  {
+    TellMe: true
   },
   {
     path: '/exams/:exam?/:id?',
