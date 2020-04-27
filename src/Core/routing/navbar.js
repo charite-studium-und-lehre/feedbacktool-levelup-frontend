@@ -42,7 +42,7 @@ export default _.compose([connect(stateToProps), withTranslation(), makeExtendab
                             : route.TellMe ?
                                 <div className='d-lg-none' style={{ color: 'rgba(0, 0, 0, 0.5)' }}>
                                     <a target="blank" href='https://msm-tellme.charite.de/lernen'>
-                                        <span className='mr-2'>Tellme</span>
+                                        {/* <span className='mr-2'>Tellme</span> */}
                                         <img src={tellMeLogo} alt="tellme-logo" style={{ height: '1.5rem', width: '4rem' }}></img>
                                     </a>
                                 </div>
