@@ -11,14 +11,17 @@ import tellMeLogo from '../../images/tellMeLogo.PNG'
 import Routes from "./Routes"
 import { useLocation } from "react-router-dom"
 import { selectors as user } from '../../User/Store'
+import Colors from "../../colors"
 
 const TellMeLink = () =>
-    <div className='d-none d-lg-block mr-auto mr-3'>
-        <span>Partnerlink:</span>
-        <a className='btn btn-primary m-3 py-1 d-none d-sm-inline' target="blank" href='https://msm-tellme.charite.de/lernen' >
-            <span >Trainieren</span>
+    <div className='d-none d-lg-block mr-auto mt-2'>
+        <span style={{fontSize:'.9rem', color: Colors.blackOpacity05, display: 'inline-block', marginTop:'.9rem'}} >Partnerlink:</span>
+        <div style={{display: 'inline-block', marginBottom:'.8rem'}}>
+        <a className='btn mx-3 py-1 d-none d-sm-inline' style={{backgroundColor:Colors.background.buttonBlue}} target="blank" href='https://msm-tellme.charite.de/lernen' >
+            <span  style={{color:Colors.white}}>Trainieren</span>
         </a>
-        <img src={tellMeLogo} alt="tellme-logo" style={{ height: '2.1rem', width: '6rem' }}></img>
+        <img className='mb-2' src={tellMeLogo} alt="tellme-logo" style={{ height: '2rem', width: '5rem' }}></img>
+        </div>
     </div>
 
 const stateToProps = state => ({ loggedIn: user.isLoggedIn(state), userData: user.getData(state) })
@@ -32,7 +35,7 @@ export default _.compose([connect(stateToProps), withTranslation(), makeExtendab
                 aria-label="Toggle navigation" onClick={props.toggleExtended}>
                 <FontAwesomeIcon icon={faBars} />
             </button>
-            <div className={`collapse navbar-collapse ${props.extended &&'show'}`} id="navbarSupportedContent">
+            <div className={`collapse navbar-collapse ${props.extended && 'show'}`} id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto" onClick={props.toggleExtended}>
                     {Routes.map((route, i) =>
                         route.menuName && (!route.private || loggedIn) ?
@@ -40,10 +43,10 @@ export default _.compose([connect(stateToProps), withTranslation(), makeExtendab
                                 <NavLink className="nav-link" id={route.menuName} to={route.path}>{t(route.menuName)}</NavLink>
                             </li>
                             : route.TellMe ?
-                                <div className='d-lg-none' style={{ color: 'rgba(0, 0, 0, 0.5)' }}>
+                                <div className='d-lg-none' style={{color: Colors.blackOpacity05}}>
                                     <a target="blank" href='https://msm-tellme.charite.de/lernen'>
-                                        <span className='mr-2'>Tellme</span>
-                                        <img src={tellMeLogo} alt="tellme-logo" style={{ height: '1.5rem', width: '4rem' }}></img>
+                                        <span className='mr-2'>Trainieren mit</span>
+                                        <img className='mb-2' src={tellMeLogo} alt="tellme-logo" style={{ height: '1.5rem', width: '4rem' }}></img>
                                     </a>
                                 </div>
                                 : null

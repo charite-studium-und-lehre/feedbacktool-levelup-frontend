@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTasks, faFrown, faSmile, faGrinBeam } from '@fortawesome/free-solid-svg-icons'
 
 
-const Icon = (props) =><span className='mr-4'><FontAwesomeIcon icon={props.icon} style={{backgroundColor:COLORS.White, color:COLORS.smiley, fontSize: '2rem',borderRadius:'50%'}}/></span>
+const Icon = (props) =><span className='mr-4'><FontAwesomeIcon icon={props.icon} style={{backgroundColor:COLORS.white, color:COLORS.smiley, fontSize: '2rem',borderRadius:'50%'}}/></span>
 
 const Evasy = () => (
     <div className='card with-border mt-2'>

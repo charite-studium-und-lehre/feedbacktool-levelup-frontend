@@ -8,7 +8,7 @@ import Details from './Details'
 import Questions from './Questions'
 import { selectors, actions } from './Store'
 import colors from "../../colors";
-import TellMe from '../../Dashboard/TellMe'
+import TellMe from './TellMe'
 export const color = colors.mc.base
 export const colorTotal = colors.mc.lighter1
 export const colorPartOfTotal = colors.mc.darker0
