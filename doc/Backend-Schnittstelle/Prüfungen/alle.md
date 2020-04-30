@@ -8,7 +8,7 @@ success: HTTP-Code 200
 GET-Aufruf ohne Parameter:
 
 #### Rückgabe: 
-```
+```js
 {
 	"pruefungen": [
 		{
@@ -55,21 +55,18 @@ PTM hat keine extra Perioden, also nur z.B. 20181
 ```
 
 #### MC-Ergebnis: 
-```
+```js
 {
 	
 	"ergebnisPunktzahl": <0..80>,
 	"durchschnittsPunktzahl": <0..80>
 	"maximalPunktzahl": <0..80>,
 	"bestehensgrenzePunktzahl": <0..80>,
-	
-
-
 }
 
 ```
 #### PTM-Ergebnis: 
-```
+```js
 {
 	
 	"ergebnisRichtigPunktzahl": <Punktzahl 0..200>,
@@ -80,19 +77,15 @@ PTM hat keine extra Perioden, also nur z.B. 20181
 	"durchschnittRichtigPunktzahl": <Punktzahl 0..200>,
 	"durchschnittFalschPunktzahl": <Punktzahl 0..200>,
 	"durchschnittWeissnichtPunktzahl": <Punktzahl 0..200>,
-	
-
-
 }
 
 ```
 
 #### Stations-Ergebnis 
-```
+```js
 {
 	"ergebnisProzentzahl": <0.00 - 1.00>,
 	"durchschnittProzentzahl": [0.00 - 1.00],
-
 }
 
 ```
