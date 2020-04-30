@@ -1,3 +1,4 @@
 ## Timeline 
 
-Siehe -> [[Prüfungen:alle]]
+Siehe  [alle.md](Prüfungen/alle.md) 
+
