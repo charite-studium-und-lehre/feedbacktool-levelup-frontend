@@ -64,13 +64,15 @@ const colors = {
         grey1: '#CFD8E4',
         grey0: '#e4e9f0',
         buttonGrey: '#6c757d',
-        lightgrey : 'lightgrey'
+        lightgrey : 'lightgrey',
+        tellmeButtonBlue:'#8C8D8D'
     },
     
     textBlack: '#101010',
-    White: '#ffffff',
+    white: '#ffffff',
     smiley: 'rgb(27, 148, 167)',
     default: '#ff0000',
+    blackOpacity05:'rgba(0, 0, 0, 0.5)',
 
     graphs: {
         correct: 'var(--color-graphs-correct)',
