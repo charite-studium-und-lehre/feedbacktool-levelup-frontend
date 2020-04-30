@@ -6,7 +6,6 @@ import NewsfeedMobile from './Newsfeed/NewsfeedMobile'
 import Ptm from './Ptm'
 import EPAs from './EPAs'
 import Strengths from './Strengths'
-import TellMe from './TellMe'
 import COLORS from "../colors"
 import Evasy from './Evasys'
 
@@ -21,7 +20,6 @@ const Cards = () => <div className="col">
         <Strengths />
     </Link>
     <Ptm />
-    <TellMe />
     <Evasy/>
 </div>
 
@@ -45,7 +43,6 @@ export default () =>
                         <Link to="/epas">
                             <EPAs />
                         </Link>
-                        <TellMe />
                     </div>
                     <div className="col-6  d-flex flex-column justify-content-around">
                         <div className='mt-lg-5'>
