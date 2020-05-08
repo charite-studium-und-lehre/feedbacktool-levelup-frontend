@@ -17,7 +17,7 @@ const TellMeLink = () =>
     <div className='d-none d-lg-block mr-auto mt-2'>
         <span style={{fontSize:'.9rem', color: Colors.blackOpacity05, display: 'inline-block', marginTop:'.9rem'}} >Partnerlink:</span>
         <div style={{display: 'inline-block', marginBottom:'.8rem'}}>
-        <a className='btn mx-3 py-1 d-none d-sm-inline' style={{backgroundColor:Colors.background.buttonBlue}} target="blank" href='https://msm-tellme.charite.de/lernen' >
+        <a className='btn mx-3 py-1 d-none d-sm-inline' style={{backgroundColor:Colors.background.tellmeButtonBlue}} target="blank" href='https://msm-tellme.charite.de/lernen' >
             <span  style={{color:Colors.white}}>Trainieren</span>
         </a>
         <img className='mb-2' src={tellMeLogo} alt="tellme-logo" style={{ height: '2rem', width: '5rem' }}></img>

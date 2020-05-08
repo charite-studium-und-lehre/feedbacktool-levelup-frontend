@@ -65,7 +65,7 @@ const colors = {
         grey0: '#e4e9f0',
         buttonGrey: '#6c757d',
         lightgrey : 'lightgrey',
-        buttonBlue:'#2375BB'
+        tellmeButtonBlue:'#8C8D8D'
     },
     
     textBlack: '#101010',

@@ -1,7 +1,7 @@
 ## Details einer Prüfung 
 
 ### GET-Aufruf: 
-[[/backend/api/pruefungen/<studiPruefungsId]]>
+`/backend/api/pruefungen/<studiPruefungsId`
 
 success: HTTP-Code 200
 
