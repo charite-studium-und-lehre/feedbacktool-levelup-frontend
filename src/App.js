@@ -28,7 +28,7 @@ const App = withTranslation()(() =>
     <Provider store={createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)))}>
         <BrowserRouter basename={basename}>
             <div className="App p-0 d-flex flex-column">
-                <Navbar />
+                {/* <Navbar /> */}
                 <Breadcrumbs />
                 <ScrollToTop />
                 <div className="flex-fill">
