@@ -1,0 +1,5 @@
+REVIEWBOARD_URL = "https://llp.charite.de/rev"
+REPOSITORY = "LevelupFrontend"
+REPOSITORY_TYPE = "git"
+BRANCH = "hotfix/trans-tags-2489"
+LAND_DEST_BRANCH = "hotfix/trans-tags-2489"
