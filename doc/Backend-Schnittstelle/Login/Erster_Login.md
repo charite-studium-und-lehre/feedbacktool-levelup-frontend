@@ -11,9 +11,13 @@ Schnittstelle:
 `/backend/api/stammdaten`
 
 #### POST-Aufruf: 
+```js
 {
 	"matrikelnummer" : <matrikelnummer>,
 }
+```
+
+
 
 #### Erfolg: 
 HTTP-Code 200
