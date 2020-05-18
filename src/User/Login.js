@@ -36,7 +36,7 @@ const Login = _.compose([
                 <div className='col-12 text-center mb-5 ' >
                     <img className='m-0 p-0 ' src={LevelUp} alt="Levelup" style={{ width: '33rem', height: '' }}></img>
                     </div>
-        <div className='col-12 col-xl-8 m-auto my-5' style={{transform: 'translatey(8rem)'}} >
+        <div className='col-12 col-xl-8 m-auto my-5' style={{transform: 'translatey(6rem)'}} >
                     <div className='row my-5 '>
                         <Button col='col-10 col-md-6 m-auto' title='Registrieren' href='https://levelup.charite.de/backend/login' />
                         <Button col='col-10 col-md-6 m-auto' title='Login' href='https://levelup.charite.de/backend/login' />
