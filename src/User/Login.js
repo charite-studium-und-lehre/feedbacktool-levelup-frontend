@@ -30,7 +30,7 @@ const Login = _.compose([
     C => props => props.loggedIn && !props.hasStammdata ? <Redirect to='/user/registration' /> : <C {...props} />,
     C => props => props.loggedIn ? <Redirect to='/dashboard' /> : <C {...props} />
 ])(({ t }) =>
-    <div className='container-fluid h-100 ' style={background(backgroundImage)}>
+    <div className='container-fluid h-100' style={background(backgroundImage)}>
         <Navbar />
         <div className='row '>
                 <div className='col-12 text-center mb-5 ' >
