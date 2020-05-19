@@ -8,8 +8,7 @@ success: HTTP-Code 200
 fail: HTTP-Code 404 not found
 
 #### Rückgabe: 
-```
-
+```js
 {
 "typ": "<ptm|mc|station>",
 "studiPruefungsId": "<ID">,
@@ -23,7 +22,7 @@ fail: HTTP-Code 404 not found
 ```
 
 #### MC-Ergebnisse: 
-```
+```js
 {
    "ergebnisPunktzahl": <0..80>,
 	"durchschnittsPunktzahl": <0..80>
@@ -32,28 +31,28 @@ fail: HTTP-Code 404 not found
 	"kohortenPunktzahlen": [ <0..80>, <0..80>, ... ],
 	"module": [
 		{
-			"code": "<Nummer, z.B. 'M10'>",
-			"titel": "<Name>",
-			"ergebnisPunktzahl": <Punkte>,
-			"durchschnittsPunktzahl": <Kohortendurchschnitt>,
-			"maximalPunktzahl": <Anzahl Fragen>,
+            "code": "<Nummer, z.B. 'M10'>",
+            "titel": "<Name>",
+            "ergebnisPunktzahl": <Punkte>,
+            "durchschnittsPunktzahl": <Kohortendurchschnitt>,
+            "maximalPunktzahl": <Anzahl Fragen>,
 		},
 	],
 	"faecher": [
 		{
-			"code": "<z.B. 'ana' für Anatomie>",
-			"titel": "<Name>",
-			"ergebnisPunktzahl": <Punkte>,
-			"gruppe": "<z.B. 'Vorklinische Fächer'>",
-			"durchschnittsPunktzahl": <Kohortendurchschnitt>,
-			"maximalPunktzahl": <Anzahl Fragen>,
+            "code": "<z.B. 'ana' für Anatomie>",
+            "titel": "<Name>",
+            "ergebnisPunktzahl": <Punkte>,
+            "gruppe": "<z.B. 'Vorklinische Fächer'>",
+            "durchschnittsPunktzahl": <Kohortendurchschnitt>,
+            "maximalPunktzahl": <Anzahl Fragen>,
 		},
 		],
 	}
 ```
 
 ### PTM-Ergebnisse: 
-```
+```js
 	{
 	"ergebnisRichtigPunktzahl": <Punktzahl 0..200>,
 	"ergebnisFalschPunktzahl": <Punktzahl 0..200>,
@@ -67,28 +66,21 @@ fail: HTTP-Code 404 not found
 
 	
 	"<faecher>": Array aus {
-			
-			"code": "<z.B. 'ana' für Anatomie>",
-			
-
-			
-			"titel": "<Name>",
-			"gruppe": "<z.B. 'Vorklinische Fächer'>",
-			
-			"ergebnisRichtigPunktzahl": <Punkte>,
-			"ergebnisFalschPunktzahl": <Punkte>,
-			"ergebnisWeissnichtPunktzahl": <Punkte>,
-			
-			"durchschnittRichtigPunktzahl": <Kohortendurchschnitt>,
-			"durchschnittFalschPunktzahl": <Kohortendurchschnitt>,
-			"durchschnittWeissnichtPunktzahl": <Kohortendurchschnitt>,
-			
-			"maximalPunktzahl": <Anzahl Fragen>,
-			
-	
+            
+            "code": "<z.B. 'ana' für Anatomie>",
+            "titel": "<Name>",
+            "gruppe": "<z.B. 'Vorklinische Fächer'>",
+            
+            "ergebnisRichtigPunktzahl": <Punkte>,
+            "ergebnisFalschPunktzahl": <Punkte>,
+            "ergebnisWeissnichtPunktzahl": <Punkte>,
+            
+            "durchschnittRichtigPunktzahl": <Kohortendurchschnitt>,
+            "durchschnittFalschPunktzahl": <Kohortendurchschnitt>,
+            "durchschnittWeissnichtPunktzahl": <Kohortendurchschnitt>,
+            
+            "maximalPunktzahl": <Anzahl Fragen>,
 		},
-	
-	
 	}
 ```
 
@@ -103,7 +95,7 @@ Klinische Stationen sind dagegen Modulen zugeordnet. Hier gibt es immer nur 1 Er
 
 Es gibt nur eins der beiden Array "faecher" oder "stationsM`odule"`
 
-```
+```js
 {
 "ergebnisProzentzahl": <Mein Gesamtergebnis 0.00 - 1.00>,
 "durchschnittProzentzahl": <Kohorte Gesamtergebnis 0.00 - 1.00>
@@ -125,4 +117,7 @@ Es gibt nur eins der beiden Array "faecher" oder "stationsM`odule"`
 	
 	"stationsModule": [  #(nur wenn vorklinisch)
 	# exakt wie bei Fächer. Hier gibt es aber immer nur 1 Ergebnis (keine Unterergebnisse)
+	]
+}
 ```
+
