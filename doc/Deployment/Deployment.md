@@ -1,30 +1,44 @@
 ## Deployment 
 
+ToDo: Deployment mit Docker
+
+### 1. Durch push auf GitHub
+
+Es findet an der Charité ein Deployment statt auf:
+
+`/var/www/levelup/<branch>`
+
+### 2. Manuell
+
 Deplayment auf Server.
 
 Linux/Max: SSH-Konfiguration empfohlen
 
-#### 1. Verbinden zum Server: 
+#### A. Verbinden zum Server: 
 `ssh s-mfal-feed-ext`
 
-#### 2a. Deployment Produktiv 
+#### B1. Deployment Produktiv 
 
-    cd /var/www/levelup/master/
-    ./build.sh
-
-
+```shell script
+cd /var/www/levelup/master/
+./build.sh
+```
 
 -> erreichbar unter 
 http://s-mfal-feed-ext.charite.de
 
 
-#### 2b. Deployment Test 
+#### B2. Deployment Test 
 
-    cd /var/www/levelup/<develop|test1|test2|test3>
+```shell script
+cd /var/www/levelup/<develop|test1|test2|test3>
+```
 
 eventuell Branch wecheln mit "git checkout <branch>
 
-    ./build.sh
+```shell script
+./build.sh
+```
 
 
 

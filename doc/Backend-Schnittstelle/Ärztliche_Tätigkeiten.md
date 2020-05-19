@@ -23,11 +23,9 @@ meineEPAs: Array
 fremdbewertungen: Array
 	id: <ID der Fremdeinschätzung| null, wenn Status=offen>	
 	name: <Name des Bewerters>
-
-				`email: <Email des Prüfers>`
-				`anfrageTaetigkeiten: <Text der angefragen Tätigkeiten>`
-				`anfrageKommentar: <Kommentar der Anfrage>`
-
+	email: <Email des Prüfers>`
+	anfrageTaetigkeiten: <Text der angefragen Tätigkeiten>`
+	anfrageKommentar: <Kommentar der Anfrage>`
 	datum: <ISO-Datum , z.B: "2018-10-31">
 	status: <beantwortet|offen>
 ```
@@ -38,6 +36,7 @@ fremdbewertungen: Array
 POST-Parameter
 
     {
+    epaId: <Wert>,
     zutrauen: <Wert>,
     gemacht: <Wert>,
     }
@@ -63,19 +62,16 @@ https://levelup.charite.de/backend/api/epas/111
 ## Fremdbewertung 
 
 ### Anfrage zur Fremdbewertung an Server senden: 
-[[/backend]][[/api/epas/fremdbewertung/anfordern]]
+`/api/epas/fremdbewertung/anfordern`
 
 POST-Parameter
 ```
 {
-
-	
 	fremdBewerterName: <String>,
 	fremdBewerterEmail: <String>,
 	angefragteTaetigkeiten: <String oder null>,
 	kommentar:  <String oder null>,	
-	
-	}
+}
 ```
 
 **Success:** 

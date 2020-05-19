@@ -8,7 +8,7 @@ https://llp-op.charite.de/projects/levelup/wiki/wiki
 
 
 #### Code für Tracker in Frontend: 
-```
+```html
 <!-- Matomo -->
 <script type="text/javascript">
   var _paq = window._paq || [];

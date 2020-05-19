@@ -13,14 +13,9 @@ HTTP-Code 200
 {
 	"vorname": <vorname>,
 	"nachname": <nachname>,
-
-			  "email": <email>,
-
+	"email": <email>,
 	"stammdatenVorhanden": <true|false>,
 	"istAdmin": <true|false>
-
-
-
 }
 ```
 
