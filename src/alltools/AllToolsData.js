@@ -23,6 +23,10 @@ export const OtherToolsData = [
      {
         title: 'Medizinische Bibliothek',
         href: 'https://bibliothek.charite.de/'
+    },
+    {
+        title: 'CIPOM',
+        href: 'https://cipom.charite.de/'
     }
 ];
 
@@ -60,6 +64,7 @@ export const StudyToolsData = [
     },
     {
         title: 'Wikiblog',
-        href: 'https://wikiblog.charite.de'}
+        href: 'https://wikiblog.charite.de'
+    }
 
 ];

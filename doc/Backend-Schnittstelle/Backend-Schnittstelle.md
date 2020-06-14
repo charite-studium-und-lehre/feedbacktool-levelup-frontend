@@ -1,6 +1,6 @@
 ## Backend-Schnittstelle 
 
-* Schnittstelle über HTTPS
+* Schnittstelle über HTTPS / REST / JSON
 
 #### Master: 
 /backend
@@ -15,10 +15,6 @@
 
 Bei fehlerhaften Parametern bei Api-Aufruf:
 **HTTP-Code 400**
-
-
-### Alternative (erstmal zurückgestellt): 
-* GraphQL
 
 
 
