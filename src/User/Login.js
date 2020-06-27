@@ -49,8 +49,7 @@ const Login = _.compose([
                     <a href="https://levelup.charite.de/app-demo" className='font-weight-bold' style={{
                         cursor: 'pointer',
                         fontSize: '1rem'
-                    }}>{t(`Demo-Version von LevelUp ansehen`)}</a>
-                    </br>
+                    }}>{t(`Demo-Version von LevelUp ansehen`)}</a><br>
                     <a href="tutorial/src/index.html" className='font-weight-bold' style={{
                         cursor: 'pointer',
                         fontSize: '1rem'
