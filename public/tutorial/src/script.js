@@ -45,7 +45,7 @@ function resize() {
     , dashwrap  = document.getElementById('dashwrap')
     , dashboard = document.getElementById('dashboard');
 
-  let scale = (width - (margin + 15) * 2) / imgwidth;
+  let scale = (width - margin * 2) / imgwidth;
 
   dashboard.style.width = scale * imgwidth;
 
