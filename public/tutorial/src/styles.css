@@ -2,7 +2,6 @@ body {
 
   margin: 0;
   padding: 0;
-
 }
 
 .sticky {
@@ -29,7 +28,6 @@ body {
   padding: 7px;
   box-shadow: 0 0 7px gray;
   border-radius: 5px;
-
 }
 
 .txt {
@@ -107,6 +105,6 @@ body {
 
 .area:hover {
 
-  border-radius: 5px;
+  border-radius: 7px;
   opacity: .2;
 }
