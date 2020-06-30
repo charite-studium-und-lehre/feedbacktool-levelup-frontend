@@ -97,14 +97,21 @@ body {
 
 .area {
 
+  color: #000;
+  font-size: 1.3vw;
+  text-decoration: none;
+  text-align: center;
+  padding: 3px;
+
   position: absolute;
-  background: #282828;
+  background: #fff;
   display: block;
   opacity: 0;
 }
 
 .area:hover {
 
-  border-radius: 7px;
-  opacity: .2;
+  border-radius: 5px;
+  box-shadow: 0 0 7px gray;
+  opacity: .9;
 }
