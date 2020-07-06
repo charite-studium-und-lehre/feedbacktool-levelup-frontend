@@ -74,11 +74,16 @@ body {
 
 }
 
-
 .sticky a {
 
   text-decoration: none;
   color: #464646;
+
+}
+
+.sticky a:hover {
+  
+  text-decoration: underline;
 
 }
 
