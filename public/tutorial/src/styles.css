@@ -1,5 +1,4 @@
-body {
-
+body { 
   margin: 0;
   padding: 0;
 }
@@ -12,7 +11,7 @@ body {
   background: #fff;
   padding: 15px;
   margin-bottom: 3vw;
-  padding-bottom: 30px;
+  padding-bottom: 15px;
   box-shadow: 0 4px 5px -5px gray;
 }
 
@@ -77,20 +76,20 @@ body {
 .sticky a {
 
   text-decoration: none;
-  color: #464646;
-
+  color: #000;
 }
 
 .sticky a:hover {
   
   text-decoration: underline;
-
 }
 
 .break {
-
   height: 8vw;
+}
 
+.break-small {
+  height: 2vw;
 }
 
 .title {
@@ -119,4 +118,48 @@ body {
   border-radius: 5px;
   box-shadow: 0 0 7px gray;
   opacity: .9;
+}
+
+p.nav-top {
+
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+p.nav-mid {
+
+  text-align: center;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.nav-bottom {
+  
+  width: 33vw;
+  margin: auto;
+  text-decoration: none;
+  font-size: 30px;
+}
+
+.arrow {
+
+  text-decoration: none;
+  color: #000;
+  padding: 7px 15px;
+  box-shadow: 0 0 7px gray;
+  border-radius: 5px;
+}
+
+.arrow:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.arrow-left {
+  float: left;
+}
+
+.arrow-right {
+  float: right;
 }
