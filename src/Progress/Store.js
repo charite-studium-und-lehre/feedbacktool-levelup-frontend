@@ -12,11 +12,11 @@ const dashboardData = () => {
 
     let getTotal = _.sumBy( () => 1 )
     let getDone = _.sumBy( e => e.erfuellt )
+    let temp = ([total, done]) => ({total, done})
 
-    let obj = []
-    obj = _.over([getTotal, getDone])
+    let obj = _.over([getTotal, getDone])
 
-    return {obj[0], obj[1]};
+    return temp(obj);
 }
 
 export const selectors = baseStore.withLoadedSelector({
