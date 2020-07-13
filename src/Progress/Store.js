@@ -12,7 +12,7 @@ const dashboardData = () => {
 
     function erfuellt(array) {
         return array.reduce((acc, el) => {if (el.erfuellt) return acc + 1})
-    })
+    }
 
     let data = _.flow([
         baseStore.getItems,
