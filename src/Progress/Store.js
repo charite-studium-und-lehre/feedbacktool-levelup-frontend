@@ -2,7 +2,6 @@ import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
 import BaseStore from '../Core/BaseStore'
 
-export const identifier = 'progress'
 const baseStore = BaseStore(identifier)
 
 const transform = _.flow([
@@ -29,6 +28,8 @@ function getDone(data) {
 
     return count;
 }
+
+export const identifier = 'progress'
 
 export const selectors = baseStore.withLoadedSelector({
     getTree: state => baseStore.getItems(state),
