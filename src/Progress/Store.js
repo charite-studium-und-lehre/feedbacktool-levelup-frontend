@@ -16,14 +16,13 @@ function erfuellt(data) {
     let count = 0;
 
     for (let i = 0; i < data.length; i++)
-        if (data.erfuellt)
-            count++;
+        if (data[i].erfuellt) count++;
 
     return count;
 }
 
 const dashboardData = _.flow([
-    _.over([ getTotal, getDone ]),
+    _.over([ getTotal, erfuellt ]),
     ([ total, done ]) => ({ total, done })
 ])
 
