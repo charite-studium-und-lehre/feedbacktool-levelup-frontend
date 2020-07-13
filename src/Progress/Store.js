@@ -6,30 +6,22 @@ export const identifier = 'progress'
 const baseStore = BaseStore(identifier)
 export const actions = baseStore.withLoadAction(`studienfortschritt`)({})
 
-const moduleIsVisible = module => module.code < 200 || module.code >= 400
+function moduleIsVisible(module) { return module.code < 200 || module.code >= 400; }
 
-const getTotal = data => data.length
+function getTotal(data) { return data.length; }
 
-const getDone = _.sumBy( e => e.erfuellt )
+function getDone(data) {
 
-function erfuellt(data) {
+    let count = 0;
 
-    return data.reduce((acc, val) => {
+    for (let i = 0; i < data.length; i++)
+        if (data[i].erfuellt) count++;
 
-        console.log(acc, val);
-        if (val.erfuellt) return acc + 1;
-    })
-
-    //let count = 0;
-
-    //for (let i = 0; i < data.length; i++)
-    //    if (data[i].erfuellt) count++;
-
-    //return count;
+    return count;
 }
 
 const dashboardData = _.flow([
-    _.over([ getTotal, erfuellt ]),
+    _.over([ getTotal, getDone ]),
     ([ total, done ]) => ({ total, done })
 ])
 
