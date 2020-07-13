@@ -17,7 +17,7 @@ const dashboardData = () => {
 
     let obj = _.over([getTotal, getDone])
 
-    return {obj[0], obj[1]};
+    return {total: obj[0], done: obj[1]};
 }
 
 export const selectors = baseStore.withLoadedSelector({
