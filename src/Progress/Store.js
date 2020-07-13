@@ -2,8 +2,8 @@ import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
 import BaseStore from '../Core/BaseStore'
 
-export const identifier = 'progress'
-const baseStore = BaseStore(identifier)
+const baseStore = BaseStore("progress")
+export const actions = baseStore.withLoadAction(`studienfortschritt`)({})
 
 const moduleIsVisible = module => module.code < 200 || module.code >= 400
 
@@ -21,7 +21,6 @@ export const selectors = baseStore.withLoadedSelector({
     getDashboardData: _.flow([ baseStore.getItems, _.flatMap( d => d.entries ), _.filter( moduleIsVisible ), dashboardData ]),
 })
 
-export const actions = baseStore.withLoadAction(`studienfortschritt`)({})
 
 const transform = _.flow([
     d => d.meilensteine,
