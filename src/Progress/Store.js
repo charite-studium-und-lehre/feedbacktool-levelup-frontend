@@ -6,26 +6,21 @@ export const identifier = 'progress'
 
 const baseStore = BaseStore(identifier)
 
-var groupBy = function(data, key) {
-  return data.reduce(function(storage, item) {
-    var group = item[key];
-
-    storage[group] = storage[group] || [];
-
-    storage[group].push(item);
-
-    return storage;
-  }, {});
-};
+function groupBy(data, key) {
+    return data.reduce(function(storage, item) {
+        var group = item[key];
+        storage[group] = storage[group] || [];
+        storage[group].push(item);
+        return storage;
+    }, {});
+}
 
 function trans(data) {
 
-    let out = {};
-
     data = data.meilensteine;
+    data = groupBy(data, 'fachsemester');
 
-    console.log(groupBy(data, 'fachsemester'));
-    console.log(_.groupBy(data, d => d.fachsemester));
+    return data;
 }
 
 const transform = _.flow([
