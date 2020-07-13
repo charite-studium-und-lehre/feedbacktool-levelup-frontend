@@ -16,14 +16,22 @@ const dashboardData = () => {
         if (el.erfuellt) return acc + 1;
     })
 
-    let obj = _.over([getTotal, getErfuellt])
+    let start = _.flow([
+        baseStore.getItems,
+        _.flatMap( d => d.entries ),
+        _.filter( moduleIsVisible )
+    ])
+
+    let func = _.over([getTotal, getErfuellt])
+    let obj = func(start)
 
     return {total: obj[0], done: obj[1]};
 }
 
 export const selectors = baseStore.withLoadedSelector({
     getTree: state => baseStore.getItems(state),
-    getDashboardData: _.flow([ baseStore.getItems, _.flatMap( d => d.entries ), _.filter( moduleIsVisible ), dashboardData ]),
+    //getDashboardData: _.flow([ baseStore.getItems, _.flatMap( d => d.entries ), _.filter( moduleIsVisible ), dashboardData ]),
+    getDashboardData: dashboardData
 })
 
 
