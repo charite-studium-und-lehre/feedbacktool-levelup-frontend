@@ -2,7 +2,8 @@ import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
 import BaseStore from '../Core/BaseStore'
 
-const baseStore = BaseStore("progress")
+export const identifier = 'progress'
+const baseStore = BaseStore(identifier)
 export const actions = baseStore.withLoadAction(`studienfortschritt`)({})
 
 const moduleIsVisible = module => module.code < 200 || module.code >= 400
