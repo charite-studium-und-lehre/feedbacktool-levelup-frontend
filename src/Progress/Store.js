@@ -14,15 +14,11 @@ const dashboardData = () => {
         return array.reduce((acc, el) => {if (el.erfuellt) return acc + 1})
     }
 
-    let data;
-    data = _.flatMap(d => d.entries)
-    data = _.filter(moduleIsVisible)
-
-    //let data = _.flow([
-    //    baseStore.getItems,
-    //    _.flatMap( d => d.entries ),
-    //    _.filter( moduleIsVisible )
-    //])
+    let data = _.flow([
+        baseStore.getItems,
+        _.flatMap( d => d.entries ),
+        _.filter( moduleIsVisible )
+    ])
 
     return {total: data.length, done: erfuellt(data)};
 }
