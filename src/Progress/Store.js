@@ -13,10 +13,7 @@ const getDone = _.sumBy( e => e.erfuellt )
 
 let temp = ([total, done]) => ({total, done})
 
-const dashboardData = _.flow([
-    _.over([ getTotal, getDone ]),
-    temp
-])
+const dashboardData = temp(_.over([ getTotal, getDone ]))
 
 export const selectors = baseStore.withLoadedSelector({
     getTree: state => baseStore.getItems(state),
