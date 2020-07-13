@@ -5,10 +5,12 @@ import BaseStore from '../Core/BaseStore'
 export const identifier = 'progress'
 const baseStore = BaseStore(identifier)
 
-const moduleIsVisible = module => moduled.code < 200 || module.code >= 400
+const moduleIsVisible = module => module.code < 200 || module.code >= 400
 
 const getTotal = _.sumBy( () => 1 )
+
 const getDone = _.sumBy( e => e.erfuellt )
+
 const dashboardData = _.flow([
     _.over([ getTotal, getDone ]),
     ([ total, done ]) => ({ total, done })
