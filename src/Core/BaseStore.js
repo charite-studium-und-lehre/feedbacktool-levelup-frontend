@@ -7,6 +7,8 @@ import { get } from './DataProvider'
 export default (identifier, getStore) => {
     getStore = getStore || (state => state[identifier])
 
+    console.log(state, state[identifier]);
+
     const loaded = ( state = false, action ) => {
         switch (action.type) {
             case `${identifier.toUpperCase()}_DATA_FETCHED`:
@@ -42,7 +44,7 @@ export default (identifier, getStore) => {
 
     return {
         getStore,
-        withLoadedSelector: selectors => ({ 
+        withLoadedSelector: selectors => ({
             loaded: state => getStore(state).loaded,
             ...selectors
         }),
@@ -54,7 +56,7 @@ export default (identifier, getStore) => {
                     .catch( err => dispatch({ type: `${identifier.toUpperCase()}_DATA_FETCH_FAILED`, payload: err }))
                 dispatch({ type: `${identifier.toUpperCase()}_DATA_FETCHING` })
             },
-            ...actions 
+            ...actions
         }),
         withLoadedReducer: (reducer = loadReducer) => ({
             loaded,
