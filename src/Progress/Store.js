@@ -14,13 +14,13 @@ const dashboardData = () => {
         if (el.erfuellt) return acc + 1;
     })
 
-    let start = _.flow([
+    let data = _.flow([
         baseStore.getItems,
         _.flatMap( d => d.entries ),
         _.filter( moduleIsVisible )
     ])
 
-    return {total: start.length, done: erfuellt(start)};
+    return {total: data.length, done: erfuellt(data)};
 }
 
 export const selectors = baseStore.withLoadedSelector({
