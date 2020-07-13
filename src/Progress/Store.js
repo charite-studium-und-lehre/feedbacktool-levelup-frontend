@@ -23,7 +23,7 @@ function erfuellt(data) {
 }
 
 const dashboardData = _.flow([
-    _.over([ getTotal, erfuellt ]),
+    _.over([ getTotal, getDone ]),
     ([ total, done ]) => ({ total, done })
 ])
 
