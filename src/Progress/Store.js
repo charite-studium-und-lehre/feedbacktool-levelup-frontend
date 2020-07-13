@@ -5,7 +5,11 @@ import BaseStore from '../Core/BaseStore'
 export const identifier = 'progress'
 const baseStore = BaseStore(identifier)
 
-const isVisible = d => d.code < 200 || d.code >= 400
+const isVisible = (d) => {
+    console.log(d);
+    return d.code < 200 || d.code >= 400
+}
+
 const getTotal = _.sumBy( () => 1 )
 const getDone = _.sumBy( e => e.erfuellt )
 const dashboardData = _.flow([
@@ -23,7 +27,7 @@ export const actions = baseStore.withLoadAction(`studienfortschritt`)({})
 const transform = _.flow([
     d => d.meilensteine,
     _.groupBy( d => d.fachsemester),
-    _.map( g => ({ 
+    _.map( g => ({
         label: g[0].fachsemester + '. Fachsemester',
         prereq: _.defaultTo({ erfuellt: true }, g.find( d => d.code === g[0].fachsemester + 300)).erfuellt,
         completed: g.find( d => d.code === g[0].fachsemester + 200 ).erfuellt,
