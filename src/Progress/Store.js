@@ -9,9 +9,7 @@ export const actions = baseStore.withLoadAction(`studienfortschritt`)({})
 const moduleIsVisible = module => module.code < 200 || module.code >= 400
 
 const getTotal = _.sumBy( () => 1 )
-function erfuellt(array) {
-    return array.reduce((acc, el) => {if (el.erfuellt) return acc + 1})
-}
+const getDone = _.sumBy( e => e.erfuellt )
 
 const dashboardData = _.flow([
     _.over([ getTotal, erfuellt ]),
