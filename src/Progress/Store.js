@@ -5,10 +5,7 @@ import BaseStore from '../Core/BaseStore'
 export const identifier = 'progress'
 const baseStore = BaseStore(identifier)
 
-const isVisible = (d) => {
-    console.log(d)
-    return d.code < 200 || d.code >= 400
-}
+const moduleIsVisible = module => moduled.code < 200 || module.code >= 400
 
 const getTotal = _.sumBy( () => 1 )
 const getDone = _.sumBy( e => e.erfuellt )
@@ -19,7 +16,7 @@ const dashboardData = _.flow([
 
 export const selectors = baseStore.withLoadedSelector({
     getTree: state => baseStore.getItems(state),
-    getDashboardData: _.flow([ baseStore.getItems, _.flatMap( d => d.entries ), _.filter( isVisible ), dashboardData ]),
+    getDashboardData: _.flow([ baseStore.getItems, _.flatMap( d => d.entries ), _.filter( moduleIsVisible ), dashboardData ]),
 })
 
 export const actions = baseStore.withLoadAction(`studienfortschritt`)({})
@@ -31,7 +28,7 @@ const transform = _.flow([
         label: g[0].fachsemester + '. Fachsemester',
         prereq: _.defaultTo({ erfuellt: true }, g.find( d => d.code === g[0].fachsemester + 300)).erfuellt,
         completed: g.find( d => d.code === g[0].fachsemester + 200 ).erfuellt,
-        entries: g.filter( isVisible ).map( d => ({ ...d, link: d.format && `/exams/${d.format}s/${d.studiPruefungsId}` })),
+        entries: g.filter( moduleIsVisible ).map( d => ({ ...d, link: d.format && `/exams/${d.format}s/${d.studiPruefungsId}` })),
     }))
 ])
 
