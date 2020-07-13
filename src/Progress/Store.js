@@ -10,8 +10,6 @@ const moduleIsVisible = module => module.code < 200 || module.code >= 400
 
 const dashboardData = () => {
 
-    let getTotal = (array) => array.length
-
     let getErfuellt = (array) => array.reduce((acc, el) => {
         if (el.erfuellt) return acc + 1;
     })
@@ -22,10 +20,8 @@ const dashboardData = () => {
         _.filter( moduleIsVisible )
     ])
 
-    let func = _.over([getTotal, getErfuellt])
-    let obj = func(start)
 
-    return {total: obj[0], done: obj[1]};
+    return {total: start.length, done: getErfuellt(start)};
 }
 
 export const selectors = baseStore.withLoadedSelector({
