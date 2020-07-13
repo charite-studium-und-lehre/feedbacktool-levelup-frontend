@@ -4,7 +4,6 @@ import BaseStore from '../Core/BaseStore'
 
 export const identifier = 'progress'
 const baseStore = BaseStore(identifier)
-export const actions = baseStore.withLoadAction(`studienfortschritt`)({})
 
 function moduleIsVisible(module) { return module.code < 200 || module.code >= 400; }
 
@@ -56,3 +55,5 @@ export const reducer = combineReducers(baseStore.withLoadedReducer(
         }
     }
 ))
+
+export const actions = baseStore.withLoadAction(`studienfortschritt`)({})
