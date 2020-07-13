@@ -12,12 +12,11 @@ const dashboardData = () => {
 
     let getTotal = (array) => array.length
 
-    let getDone = (array) => array.reduce((acc, el) => {
-        if (el.erfuellt)
-            return acc + 1;
+    let getErfuellt = (array) => array.reduce((acc, el) => {
+        if (el.erfuellt) return acc + 1;
     })
 
-    let obj = _.over([getTotal, getDone])
+    let obj = _.over([getTotal, getErfuellt])
 
     return {total: obj[0], done: obj[1]};
 }
