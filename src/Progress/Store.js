@@ -19,18 +19,14 @@ function getDone(data) {
     return count;
 }
 
-const dashboardData = _.flow([
-    _.over([ getTotal, getDone ]),
-    ([ total, done ]) => ({ total, done })
-])
-
 export const selectors = baseStore.withLoadedSelector({
     getTree: state => baseStore.getItems(state),
     getDashboardData: _.flow([
         baseStore.getItems,
         _.flatMap(d => d.entries),
         _.filter(moduleIsVisible),
-        dashboardData
+        _.over([ getTotal, getDone ]),
+        ([ total, done ]) => ({ total, done })
     ])
 })
 
