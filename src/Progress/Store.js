@@ -11,9 +11,11 @@ const getTotal = _.sumBy( () => 1 )
 
 const getDone = _.sumBy( e => e.erfuellt )
 
+let temp = ([total, done]) => ({total, done})
+
 const dashboardData = _.flow([
     _.over([ getTotal, getDone ]),
-    ([ total, done ]) => ({ total, done })
+    temp
 ])
 
 export const selectors = baseStore.withLoadedSelector({
