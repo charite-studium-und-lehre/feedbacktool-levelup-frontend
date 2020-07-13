@@ -8,13 +8,15 @@ export const actions = baseStore.withLoadAction(`studienfortschritt`)({})
 
 const moduleIsVisible = module => module.code < 200 || module.code >= 400
 
-const getTotal = _.sumBy( () => 1 )
+const getTotal = data => data.length
+
 const getDone = _.sumBy( e => e.erfuellt )
 
 function erfuellt(data) {
 
     return data.reduce((acc, val) => {
 
+        console.log(acc, val);
         if (val.erfuellt) return acc + 1;
     })
 
