@@ -12,9 +12,14 @@ const getTotal = _.sumBy( () => 1 )
 const getDone = _.sumBy( e => e.erfuellt )
 
 function erfuellt(data) {
-    console.log(data);
 
-    return null;
+    let count = 0;
+
+    for (let i = 0; i < data.length; i++)
+        if (data.erfuellt)
+            count++;
+
+    return count;
 }
 
 const dashboardData = _.flow([
