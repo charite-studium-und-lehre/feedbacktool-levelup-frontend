@@ -7,8 +7,6 @@ import { get } from './DataProvider'
 export default (identifier, getStore) => {
     getStore = getStore || (state => state[identifier])
 
-    console.log(state)
-
     const loaded = ( state = false, action ) => {
         switch (action.type) {
             case `${identifier.toUpperCase()}_DATA_FETCHED`:
