@@ -24,8 +24,8 @@ function trans(data) {
 
     data = data.meilensteine;
 
-    console.log(groupBy(data, 'fachsemester');
-    console.log(_.groupBy(data, d => d.fachsemester);
+    console.log(groupBy(data, 'fachsemester'));
+    console.log(_.groupBy(data, d => d.fachsemester));
 }
 
 const transform = _.flow([
