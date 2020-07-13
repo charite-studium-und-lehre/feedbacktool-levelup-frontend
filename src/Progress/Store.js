@@ -10,10 +10,9 @@ const moduleIsVisible = module => module.code < 200 || module.code >= 400
 
 const dashboardData = () => {
 
-    let getTotal = _.sumBy( () => 1 )
-    let getDone = _.sumBy( e => e.erfuellt )
+    let getTotal = (array) => array.length
 
-    let temp = ([total, done]) => ({total, done})
+    let getDone = _.sumBy( e => e.erfuellt )
 
     let obj = _.over([getTotal, getDone])
 
