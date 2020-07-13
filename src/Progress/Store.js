@@ -6,7 +6,7 @@ export const identifier = 'progress'
 const baseStore = BaseStore(identifier)
 
 const isVisible = (d) => {
-    console.log(d);
+    console.log(d)
     return d.code < 200 || d.code >= 400
 }
 
