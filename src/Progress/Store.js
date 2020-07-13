@@ -8,14 +8,12 @@ export const actions = baseStore.withLoadAction(`studienfortschritt`)({})
 
 const moduleIsVisible = module => module.code < 200 || module.code >= 400
 
-const dashboardData = (data) => {
-
-    function erfuellt(array) {
-        return array.reduce((acc, el) => {if (el.erfuellt) return acc + 1})
-    }
-
-    return {total: data.length, done: erfuellt(data)};
-}
+const getTotal = _.sumBy( () => 1 )
+const getDone = _.sumBy( e => e.erfuellt )
+const dashboardData = _.flow([
+    _.over([ getTotal, getDone ]),
+    ([ total, done ]) => ({ total, done })
+])
 
 export const selectors = baseStore.withLoadedSelector({
     getTree: state => baseStore.getItems(state),
