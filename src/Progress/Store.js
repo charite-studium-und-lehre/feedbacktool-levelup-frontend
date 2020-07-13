@@ -10,7 +10,7 @@ const moduleIsVisible = module => module.code < 200 || module.code >= 400
 
 const dashboardData = () => {
 
-    let getErfuellt = (array) => array.reduce((acc, el) => {
+    let erfuellt = (array) => array.reduce((acc, el) => {
         if (el.erfuellt) return acc + 1;
     })
 
@@ -20,16 +20,13 @@ const dashboardData = () => {
         _.filter( moduleIsVisible )
     ])
 
-
-    return {total: start.length, done: getErfuellt(start)};
+    return {total: start.length, done: erfuellt(start)};
 }
 
 export const selectors = baseStore.withLoadedSelector({
     getTree: state => baseStore.getItems(state),
-    //getDashboardData: _.flow([ baseStore.getItems, _.flatMap( d => d.entries ), _.filter( moduleIsVisible ), dashboardData ]),
     getDashboardData: dashboardData
 })
-
 
 const transform = _.flow([
     d => d.meilensteine,
