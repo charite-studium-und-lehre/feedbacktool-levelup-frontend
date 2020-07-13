@@ -12,7 +12,10 @@ const dashboardData = () => {
 
     let getTotal = (array) => array.length
 
-    let getDone = _.sumBy( e => e.erfuellt )
+    let getDone = (array) => array.reduce((acc, el) => {
+        if (el.erfuellt)
+            return acc + 1;
+    })
 
     let obj = _.over([getTotal, getDone])
 
