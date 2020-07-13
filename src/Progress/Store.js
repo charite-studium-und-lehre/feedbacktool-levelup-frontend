@@ -7,15 +7,18 @@ const baseStore = BaseStore(identifier)
 
 const moduleIsVisible = module => module.code < 200 || module.code >= 400
 
-const getTotal = _.sumBy( () => 1 )
-const getDone = _.sumBy( e => e.erfuellt )
 
-let temp = ([total, done]) => ({total, done})
 
 //const dashboardData = _.flow([ _.over([getTotal, getDone]), temp])
 const dashboardData = (data) => {
+
     console.log(data)
-    _.flow([ _.over([getTotal, getDone]), temp])
+
+    let getTotal = _.sumBy( () => 1 )
+    let getDone = _.sumBy( e => e.erfuellt )
+    let temp = ([total, done]) => ({total, done})
+
+    return _.flow([ _.over([getTotal, getDone]), temp])
 }
 
 export const selectors = baseStore.withLoadedSelector({
