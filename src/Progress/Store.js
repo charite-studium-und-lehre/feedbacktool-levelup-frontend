@@ -10,8 +10,8 @@ const moduleIsVisible = module => module.code < 200 || module.code >= 400
 
 const dashboardData = () => {
 
-    let erfuellt = (array) => array.reduce((acc, el) => {
-        if (el.erfuellt) return acc + 1;
+    function erfuellt(array) {
+        return array.reduce((acc, el) => if (el.erfuellt) return acc + 1)
     })
 
     let data = _.flow([
