@@ -13,7 +13,8 @@ const dashboardData = () => {
     let getTotal = _.sumBy( () => 1 )
     let getDone = _.sumBy( e => e.erfuellt )
 
-    let obj[2] = _.over([getTotal, getDone])
+    let obj = []
+    obj = _.over([getTotal, getDone])
 
     return {obj[0], obj[1]};
 }
