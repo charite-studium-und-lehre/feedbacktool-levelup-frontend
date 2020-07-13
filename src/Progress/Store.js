@@ -15,6 +15,7 @@ const dashboardData = () => {
     let temp = ([total, done]) => ({total, done})
 
     let obj = _.over([getTotal, getDone])
+    console.err(obj);
 
     return temp(obj);
 }
