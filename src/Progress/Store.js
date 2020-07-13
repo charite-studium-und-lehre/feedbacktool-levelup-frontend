@@ -12,7 +12,7 @@ const moduleIsVisible = module => module.code < 200 || module.code >= 400
 //const dashboardData = _.flow([ _.over([getTotal, getDone]), temp])
 const dashboardData = (data) => {
 
-    console.log(data)
+    console.log('data', data)
 
     let getTotal = _.sumBy( () => 1 )
     let getDone = _.sumBy( e => e.erfuellt )
