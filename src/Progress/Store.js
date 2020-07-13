@@ -14,10 +14,9 @@ const dashboardData = () => {
     let getDone = _.sumBy( e => e.erfuellt )
     let temp = ([total, done]) => ({total, done})
 
-    let obj = _.flow([ _.over([getTotal, getDone]), temp])
-    console.log(obj);
+    let obj = _.over([getTotal, getDone])
 
-    return obj;
+    return temp(obj);
 }
 
 export const selectors = baseStore.withLoadedSelector({
