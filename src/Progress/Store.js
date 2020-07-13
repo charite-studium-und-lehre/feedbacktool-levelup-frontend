@@ -12,7 +12,7 @@ const getTotal = _.sumBy( () => 1 )
 const getDone = _.sumBy( e => e.erfuellt )
 
 const dashboardData = _.flow([
-    _.over([ getTotal, erfuellt ]),
+    _.over([ getTotal, getDone ]),
     ([ total, done ]) => ({ total, done })
 ])
 
