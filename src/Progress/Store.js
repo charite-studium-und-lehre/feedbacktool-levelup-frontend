@@ -15,19 +15,22 @@ function groupBy(data, key) {
     }, {});
 }
 
-function trans(data) {
-
-    data = data.meilensteine;
-    data = groupBy(data, 'fachsemester');
-
-    for (let i = 0; i < data.length; i++) {
-
-        let obj = {};
-    }
-
-
-    return data;
-}
+//function trans(data) {
+//
+//    data = data.meilensteine;
+//    data = groupBy(data, 'fachsemester');
+//
+//    for (let i = 0; i < data.length; i++) {
+//
+//        let obj = {};
+//
+//        obj.label = data[i][0].fachsemester + '. Fachsemester';
+//        obj.prereq =
+//    }
+//
+//
+//    return data;
+//}
 
 const transform = _.flow([
     d => d.meilensteine,
