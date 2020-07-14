@@ -28,7 +28,10 @@ function trans(data) {
 
         obj.label = data[i][0].fachsemester + '. Fachsemester';
 
-        obj.prereq = data[i].find(d => d.code === data[i][0].fachsemester + 300).erfuellt ?? true;
+        let prereq = data[i].find(d => d.code === data[i][0].fachsemester + 300);
+
+        if (prereq && !prereq.erfuellt) obj.prereq = false;
+        else obj.prereq = true;
 
         obj.completed = data[i].find(d => d.code === data[i][0].fachsemester + 200).erfuellt;
 
