@@ -12,7 +12,7 @@ function groupBy(data, key) {
         storage[group] = storage[group] || [];
         storage[group].push(item);
         return storage;
-    }, {});
+    }, []);
 }
 
 function trans(data) {
@@ -21,11 +21,8 @@ function trans(data) {
     data = groupBy(data, 'fachsemester');
 
     let out = [];
-    console.log(data);
-    console.log(Array.isArray(data));
 
-
-    for (let i = 0; i < Object.keys(data).length; i++) {
+    for (let i = 0; i < data.length; i++) {
 
         let obj = {};
 
@@ -95,7 +92,7 @@ export const reducer = combineReducers(baseStore.withLoadedReducer(
     (state = {}, action) => {
         switch(action.type) {
             case `${identifier.toUpperCase()}_DATA_FETCHED`:
-                return transform(action.payload)
+                return trans(action.payload)
             default:
                 return state
         }
