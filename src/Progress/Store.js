@@ -21,11 +21,14 @@ function getDone(data) {
 }
 
 function groupBy(data, key) {
-    return data.reduce(function(storage, item) {
+
+    return data.reduce((storage, item) => {
+
         var group = item[key] - 1;
         storage[group] = storage[group] || [];
         storage[group].push(item);
         return storage;
+
     }, []);
 }
 
@@ -36,26 +39,20 @@ function transform(data) {
 
     let out = [];
 
-    console.log(data);
-
     for (let i = 0; i < data.length; i++) {
 
         let obj = {};
+        let prereq = data[i].find(d => d.code === data[i][0].fachsemester + 300);
 
         obj.label = data[i][0].fachsemester + '. Fachsemester';
 
-        let prereq = data[i].find(d => d.code === data[i][0].fachsemester + 300);
         if (prereq && !prereq.erfuellt) obj.prereq = false;
         else obj.prereq = true;
 
         obj.completed = data[i].find(d => d.code === data[i][0].fachsemester + 200).erfuellt;
-
         obj.entries = data[i].filter(moduleIsVisible).map(d => ({...d, link: d.format && `/exams/${d.format}s/${d.studiPruefungsId}`}));
-
         out.push(obj);
     }
-
-    console.log(out);
 
     return out;
 }
