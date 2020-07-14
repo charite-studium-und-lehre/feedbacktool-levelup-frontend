@@ -41,7 +41,6 @@ const transform = _.flow([
         completed: g.find( d => d.code === g[0].fachsemester + 200 ).erfuellt,
         entries: g.filter( moduleIsVisible ).map( d => ({ ...d, link: d.format && `/exams/${d.format}s/${d.studiPruefungsId}` })),
     })),
-    console.log
 ])
 
 function moduleIsVisible(module) { return module.code < 200 || module.code >= 400; }
