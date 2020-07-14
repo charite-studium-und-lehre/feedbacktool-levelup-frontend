@@ -35,6 +35,7 @@ function trans(data) {
 
         obj.entries = data[i].filter( moduleIsVisible ).map( d => ({ ...d, link: d.format && `/exams/${d.format}s/${d.studiPruefungsId}` }));
 
+        console.log(obj);
         out.push(obj);
 
     }
