@@ -124,13 +124,3 @@ input.no-outline {
       font-size: 5.6rem;
     }
   }
-  
-  
-  @media screen and (min-width: 800px) {
-    body {
-      background-color: lavender;
-    }
-  }
-  
-
-
