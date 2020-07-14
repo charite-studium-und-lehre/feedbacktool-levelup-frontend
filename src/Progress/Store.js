@@ -15,22 +15,30 @@ function groupBy(data, key) {
     }, {});
 }
 
-//function trans(data) {
-//
-//    data = data.meilensteine;
-//    data = groupBy(data, 'fachsemester');
-//
-//    for (let i = 0; i < data.length; i++) {
-//
-//        let obj = {};
-//
-//        obj.label = data[i][0].fachsemester + '. Fachsemester';
-//        obj.prereq =
-//    }
-//
-//
-//    return data;
-//}
+function trans(data) {
+
+    data = data.meilensteine;
+    data = groupBy(data, 'fachsemester');
+
+    let out = [];
+
+    for (let i = 0; i < data.length; i++) {
+
+        let obj = {};
+
+        obj.label = data[i][0].fachsemester + '. Fachsemester';
+
+        obj.prereq = _.defaultTo({ erfuellt: true }, g.find( d => d.code === g[0].fachsemester + 300)).erfuellt;
+
+        obj.completed = g.find( d => d.code === g[0].fachsemester + 200 ).erfuellt;
+
+        obj.entries = g.filter( moduleIsVisible ).map( d => ({ ...d, link: d.format && `/exams/${d.format}s/${d.studiPruefungsId}` }));
+
+        out.push(obj);
+
+    }
+    return out;
+}
 
 const transform = _.flow([
     d => d.meilensteine,
@@ -72,7 +80,7 @@ export const reducer = combineReducers(baseStore.withLoadedReducer(
     (state = {}, action) => {
         switch(action.type) {
             case `${identifier.toUpperCase()}_DATA_FETCHED`:
-                return transform(action.payload)
+                return trans(action.payload)
             default:
                 return state
         }
