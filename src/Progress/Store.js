@@ -8,7 +8,7 @@ const baseStore = BaseStore(identifier)
 
 function groupBy(data, key) {
     return data.reduce(function(storage, item) {
-        var group = item[key];
+        var group = item[key] - 1;
         storage[group] = storage[group] || [];
         storage[group].push(item);
         return storage;
