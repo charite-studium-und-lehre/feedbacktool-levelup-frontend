@@ -21,6 +21,7 @@ function trans(data) {
     data = groupBy(data, 'fachsemester');
 
     let out = [];
+    console.log(data);
 
     for (let i = 0; i < data.length; i++) {
 
