@@ -30,9 +30,9 @@ function trans(data) {
 
         obj.prereq = _.defaultTo({ erfuellt: true }, data[i].find( d => d.code === data[i][0].fachsemester + 300)).erfuellt;
 
-        obj.completed = data[i].find( d => d.code === data[i][0].fachsemester + 200 ).erfuellt;
+        //obj.completed = data[i].find( d => d.code === data[i][0].fachsemester + 200 ).erfuellt;
 
-        obj.entries = data[i].filter( moduleIsVisible ).map( d => ({ ...d, link: d.format && `/exams/${d.format}s/${d.studiPruefungsId}` })),
+        //obj.entries = data[i].filter( moduleIsVisible ).map( d => ({ ...d, link: d.format && `/exams/${d.format}s/${d.studiPruefungsId}` })),
 
         out.push(obj);
 
