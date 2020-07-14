@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'lodash'
 import COLORS from "../colors";
 
 const defaultStyle = size => ({
@@ -12,7 +11,7 @@ const defaultStyle = size => ({
 })
 
 const SimpleDot = ({ className = '', size = .5, ...props }) => {
-    const style = _.defaults({ left: `calc(${props.value}% - .4rem)` }, props.style, defaultStyle(size))
+    const style = {left: `calc(${props.value}% - .4rem)`, ...defaultStyle(size), ...props.style}
     return <div className={`animated ${className}`} style={style} />
 }
 

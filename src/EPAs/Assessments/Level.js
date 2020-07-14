@@ -8,7 +8,7 @@ const Square = props=> {
         width: '.8rem',
         display: 'inline-block'
     }
-    const style = _.defaults(props.style , defaultStyle)
+    const style = {...defaultStyle, ...props.style }
     return <div className='mr-1' style={style} />
 }
 
