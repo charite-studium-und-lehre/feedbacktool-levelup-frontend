@@ -23,6 +23,7 @@ function trans(data) {
     for (let i = 0; i < data.length; i++) {
 
         let obj = {};
+    }
 
 
     return data;
