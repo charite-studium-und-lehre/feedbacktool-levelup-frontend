@@ -6,6 +6,20 @@ export const identifier = 'progress'
 
 const baseStore = BaseStore(identifier)
 
+function moduleIsVisible(module) { return module.code < 200 || module.code >= 400; }
+
+function getTotal(data) { return data.length; }
+
+function getDone(data) {
+
+    let count = 0;
+
+    for (let i = 0; i < data.length; i++)
+        if (data[i].erfuellt) count++;
+
+    return count;
+}
+
 function groupBy(data, key) {
     return data.reduce(function(storage, item) {
         var group = item[key] - 1;
@@ -21,6 +35,8 @@ function transform(data) {
     data = groupBy(data, 'fachsemester');
 
     let out = [];
+
+    console.log(data);
 
     for (let i = 0; i < data.length; i++) {
 
@@ -42,20 +58,6 @@ function transform(data) {
     console.log(out);
 
     return out;
-}
-
-function moduleIsVisible(module) { return module.code < 200 || module.code >= 400; }
-
-function getTotal(data) { return data.length; }
-
-function getDone(data) {
-
-    let count = 0;
-
-    for (let i = 0; i < data.length; i++)
-        if (data[i].erfuellt) count++;
-
-    return count;
 }
 
 export const selectors = baseStore.withLoadedSelector({
