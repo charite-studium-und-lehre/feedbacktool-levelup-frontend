@@ -37,6 +37,7 @@ function trans(data) {
         out.push(obj);
 
     }
+    console.log(out);
     return out;
 }
 
