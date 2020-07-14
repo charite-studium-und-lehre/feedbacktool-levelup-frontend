@@ -21,13 +21,14 @@ function trans(data) {
     data = groupBy(data, 'fachsemester');
 
     let out = [];
-    console.log(data);
+    console.log(data.length);
 
     for (let i = 0; i < data.length; i++) {
 
         let obj = {};
 
         obj.label = data[i][0].fachsemester + '. Fachsemester';
+        console.log('object', obj);
 
         obj.prereq = _.defaultTo({ erfuellt: true }, data[i].find( d => d.code === data[i][0].fachsemester + 300)).erfuellt;
 
@@ -35,7 +36,6 @@ function trans(data) {
 
         obj.entries = data[i].filter( moduleIsVisible ).map( d => ({ ...d, link: d.format && `/exams/${d.format}s/${d.studiPruefungsId}` }));
 
-        console.log(obj);
         out.push(obj);
 
     }
