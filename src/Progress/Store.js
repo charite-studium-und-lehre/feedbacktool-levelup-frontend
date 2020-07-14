@@ -47,6 +47,8 @@ function trans(data) {
 
 const transform = (data) => {
 
+    console.log(data);
+
     let func = _.flow([
         _.groupBy( d => d.fachsemester),
         _.map( g => ({
