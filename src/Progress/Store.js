@@ -15,7 +15,7 @@ function groupBy(data, key) {
     }, []);
 }
 
-function trans(data) {
+function transform(data) {
 
     data = data.meilensteine;
     data = groupBy(data, 'fachsemester');
@@ -29,7 +29,6 @@ function trans(data) {
         obj.label = data[i][0].fachsemester + '. Fachsemester';
 
         let prereq = data[i].find(d => d.code === data[i][0].fachsemester + 300);
-
         if (prereq && !prereq.erfuellt) obj.prereq = false;
         else obj.prereq = true;
 
@@ -38,26 +37,7 @@ function trans(data) {
         obj.entries = data[i].filter(moduleIsVisible).map(d => ({...d, link: d.format && `/exams/${d.format}s/${d.studiPruefungsId}`}));
 
         out.push(obj);
-
     }
-    return out;
-}
-
-const transform = (data) => {
-
-    console.log(data);
-
-    let func = _.flow([
-        _.groupBy( d => d.fachsemester),
-        _.map( g => ({
-            label: g[0].fachsemester + '. Fachsemester',
-            prereq: _.defaultTo({ erfuellt: true }, g.find( d => d.code === g[0].fachsemester + 300)).erfuellt,
-            completed: g.find( d => d.code === g[0].fachsemester + 200 ).erfuellt,
-            entries: g.filter( moduleIsVisible ).map( d => ({ ...d, link: d.format && `/exams/${d.format}s/${d.studiPruefungsId}` })),
-        })),
-    ]);
-
-    let out = func(data.meilensteine);
 
     console.log(out);
 
@@ -93,7 +73,7 @@ export const reducer = combineReducers(baseStore.withLoadedReducer(
     (state = {}, action) => {
         switch(action.type) {
             case `${identifier.toUpperCase()}_DATA_FETCHED`:
-                return trans(action.payload)
+                return transform(action.payload)
             default:
                 return state
         }
