@@ -80,7 +80,7 @@ export const reducer = combineReducers(baseStore.withLoadedReducer(
     (state = {}, action) => {
         switch(action.type) {
             case `${identifier.toUpperCase()}_DATA_FETCHED`:
-                return trans(action.payload)
+                return transform(action.payload)
             default:
                 return state
         }
