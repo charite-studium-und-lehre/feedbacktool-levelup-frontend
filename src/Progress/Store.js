@@ -32,7 +32,7 @@ function trans(data) {
 
         obj.completed = data[i].find( d => d.code === data[i][0].fachsemester + 200 ).erfuellt;
 
-        //obj.entries = data[i].filter( moduleIsVisible ).map( d => ({ ...d, link: d.format && `/exams/${d.format}s/${d.studiPruefungsId}` })),
+        obj.entries = data[i].filter( moduleIsVisible ).map( d => ({ ...d, link: d.format && `/exams/${d.format}s/${d.studiPruefungsId}` }));
 
         out.push(obj);
 
@@ -80,7 +80,7 @@ export const reducer = combineReducers(baseStore.withLoadedReducer(
     (state = {}, action) => {
         switch(action.type) {
             case `${identifier.toUpperCase()}_DATA_FETCHED`:
-                return transform(action.payload)
+                return trans(action.payload)
             default:
                 return state
         }
