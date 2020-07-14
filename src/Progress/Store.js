@@ -20,19 +20,24 @@ function trans(data) {
     data = data.meilensteine;
     data = groupBy(data, 'fachsemester');
 
+    for (let i = 0; i < data.length; i++) {
+
+        let obj = {};
+
+
     return data;
 }
 
 const transform = _.flow([
     d => d.meilensteine,
     _.groupBy( d => d.fachsemester),
-    console.log,
     _.map( g => ({
         label: g[0].fachsemester + '. Fachsemester',
         prereq: _.defaultTo({ erfuellt: true }, g.find( d => d.code === g[0].fachsemester + 300)).erfuellt,
         completed: g.find( d => d.code === g[0].fachsemester + 200 ).erfuellt,
         entries: g.filter( moduleIsVisible ).map( d => ({ ...d, link: d.format && `/exams/${d.format}s/${d.studiPruefungsId}` })),
-    }))
+    })),
+    console.log
 ])
 
 function moduleIsVisible(module) { return module.code < 200 || module.code >= 400; }
