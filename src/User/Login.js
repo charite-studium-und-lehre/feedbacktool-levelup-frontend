@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash/fp'
-import backgroundImage from './login.jpg'
-import LevelUp from './1LU-logo.png'
+import backgroundImage from './loginImage.jpg'
+import backgroundImageMobil from './loginImageMobil.jpg'
 import { Redirect } from 'react-router-dom'
 import { withTranslation } from 'react-i18next'
 import makeExtendable from '../Core/makeExtendable'
@@ -30,24 +30,26 @@ const Login = _.compose([
     C => props => props.loggedIn && !props.hasStammdata ? <Redirect to='/user/registration' /> : <C {...props} />,
     C => props => props.loggedIn ? <Redirect to='/dashboard' /> : <C {...props} />
 ])(({ t }) =>
-    <div className='container-fluid h-100' style={background(backgroundImage)}>
+    <div className='container-fluid h-100' style={background(window.innerWidth < 942 ? backgroundImage : backgroundImageMobil)}>
         <Navbar />
-        <div className='row '>
-                <div className='col-12 text-center mb-5 ' >
-                    <img className='m-0 p-0 ' src={LevelUp} alt="Levelup" style={{ width: '33rem', height: '' }}></img>
-                    </div>
-        <div className='col-12 col-xl-8 m-auto my-5' style={{transform: 'translatey(6rem)'}} >
-                    <div className='row my-5 '>
-                        <Button col='col-10 col-md-6 m-auto' title='Registrieren' href='https://levelup.charite.de/backend/login' />
-                        <Button col='col-10 col-md-6 m-auto' title='Login' href='https://levelup.charite.de/backend/login' />
-                    </div>
-                    <div className='row my-5 '>
-                        <Button col='col-6 col-md-3' title='Hilfe' href='mailto:levelup@charite.de' />
-                        <Button col='col-6 col-md-3' title='Demo' href='https://levelup.charite.de/app-demo' />
-                        <Button col='col-6 col-md-3' title='Video' href='' />
-                        <Button col='col-6 col-md-3' title='Tutorial' href='' />
-                    </div>
-                
+        <div className='row'>
+            <div className='col-12 text-center mb-5 levelup'  >
+                {/* <img className='m-0 p-0 ' src={LevelUp} alt="Levelup" style={{ width: '33rem', height: '' }}></img> */}
+                <span style={{ color: '#B1B0B2', }} >Level</span>
+                <span >Up</span>
+            </div>
+            <div className='col-12 col-xl-8 m-auto my-5' style={{transform:'translateY(3em)'}} >
+                <div className='row my-5 '>
+                    <Button col='col-10 col-md-6 m-auto' title='Login' href='https://levelup.charite.de/backend/login' />
+                    <Button col='col-10 col-md-6 m-auto' title='Registrieren' href='https://levelup.charite.de/backend/login' />
+                </div>
+                <div className='row mt-4 mb-2 '>
+                    <Button col='col-6 col-md-3' title='Demo' href='https://levelup.charite.de/app-demo' />
+                    <Button col='col-6 col-md-3' title='Video' href='' />
+                    <Button col='col-6 col-md-3' title='Tutorial' href='' />
+                    <Button col='col-6 col-md-3' title='Hilfe' href='mailto:levelup@charite.de' />
+                </div>
+
             </div>
         </div>
     </div>

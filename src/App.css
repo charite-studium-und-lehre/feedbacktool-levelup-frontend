@@ -113,6 +113,24 @@ input.no-outline {
         bottom: 0;
       }
   }
+
+  .container-fluid .levelup  {
+    font-size: 10rem;
+    font-family: sans-serif;
+  
+  }
+  @media screen and (max-width : 700px) {
+    .container-fluid .levelup {
+      font-size: 5.6rem;
+    }
+  }
+  
+  
+  @media screen and (min-width: 800px) {
+    body {
+      background-color: lavender;
+    }
+  }
   
 
 
