@@ -26,6 +26,7 @@ function trans(data) {
 const transform = _.flow([
     d => d.meilensteine,
     _.groupBy( d => d.fachsemester),
+    console.log,
     _.map( g => ({
         label: g[0].fachsemester + '. Fachsemester',
         prereq: _.defaultTo({ erfuellt: true }, g.find( d => d.code === g[0].fachsemester + 300)).erfuellt,
