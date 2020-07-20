@@ -73,6 +73,7 @@ const colors = {
     smiley: 'rgb(27, 148, 167)',
     default: '#ff0000',
     blackOpacity05:'rgba(0, 0, 0, 0.5)',
+    levelupLogo : '#B1B0B2',
 
     graphs: {
         correct: 'var(--color-graphs-correct)',

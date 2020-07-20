@@ -104,6 +104,8 @@ input.no-outline {
   animation-duration: 2s;
   animation-fill-mode: forwards;
 }
+
+ /* =======feedBackButton========= */
 @keyframes feedbackAnimation {
   from {
     right: 0;
@@ -113,6 +115,17 @@ input.no-outline {
         bottom: 0;
       }
   }
+  /* =======LoginSite========= */
   
+  .container-fluid .levelup  {
+    font-size: 10rem;
+    font-family:'SathuFont';
+  
+  }
 
-
+  @media screen and (max-width : 700px) {
+    .container-fluid .levelup {
+      font-size: 5.6rem;
+      transform: translateY(2rem);
+    }
+  }
