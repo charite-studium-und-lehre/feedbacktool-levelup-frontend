@@ -12,7 +12,7 @@ const PrivateRoute = _.compose([
 ])(
   ({ component: Component, loggedIn, hasStammdata, ...rest }) =>
     <Route {...rest} render={ props => 
-      loggedIn && hasStammdata ? <Component {...props} /> : <Redirect to='/login' /> } 
+      loggedIn && hasStammdata ? <Component {...props} /> : <Component {...props} /> }
     />
 )
 
