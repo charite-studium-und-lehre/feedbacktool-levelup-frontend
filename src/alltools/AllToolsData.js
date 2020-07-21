@@ -27,6 +27,10 @@ export const OtherToolsData = [
     {
         title: 'CIPOM',
         href: 'https://cipom.charite.de/'
+    },
+    {
+        title: 'Lernzentrum',
+        href: 'https://lernzentrum.charite.de/'
     }
 ];
 
@@ -64,7 +68,6 @@ export const StudyToolsData = [
     },
     {
         title: 'Wikiblog',
-        href: 'https://wikiblog.charite.de'
-    }
+        href: 'https://wikiblog.charite.de'}
 
 ];

@@ -6,10 +6,10 @@ import { assessmentsUrl as url } from '../Urls'
 
 export const identifier = 'assessments'
 const baseStore = BaseStore(identifier, state => epasSelectors.getStore(state)[identifier])
-const getByEpaId = state => id => baseStore.getItems(state)[id] || { confident: 0, done: 0 }
+const getByEpaId = state => id => baseStore.getItems(state)[id] || { id: id, confident: 0, done: 0 }
 const getStatus = state => baseStore.getStore(state).status
 
-export const selectors = baseStore.withLoadedSelector({ 
+export const selectors = baseStore.withLoadedSelector({
 	getByEpaId,
 	getStatus,
 	getExternals: state => id => getByEpaId(state)(id).externals || [],
@@ -47,7 +47,7 @@ export const actions = baseStore.withLoadAction(url)({
 const transform = data => [
 	d => d.bewertungen,
 	d => d.map( a => ({
-		id: a.epaId, 
+		id: a.epaId,
 		datum: new Date(a.datum),
 		done: a.gemacht,
 		confident: a.zutrauen,
