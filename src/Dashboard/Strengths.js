@@ -10,7 +10,8 @@ import DashboardCard from './DashboardCard'
 
 const loaded = _.overEvery([ mcSelectors.loaded, ptmSelectors.loaded ])
 const load = () => _.over([ mcActions.load(), ptmActions.load ])
-const ptmStrongestSubject = _.flow([ ptmSelectors.getLatest, _.defaults({}), ptmSelectors.strongestSubject ])
+const ptmStrongestSubject = _.flow([ ptmSelectors.getLatest, ptmSelectors.strongestSubject ])
+
 const stateToProps = state => ({ 
     mcStrongestSubject: mcSelectors.strongestSubject(state), 
     ptmStrongestSubject: ptmStrongestSubject(state),
