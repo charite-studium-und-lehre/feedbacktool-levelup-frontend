@@ -3,7 +3,6 @@ import _ from 'lodash/fp'
 import {connect} from 'react-redux'
 import needsData from '../../Core/needsData'
 import { getScore, loaded, load } from '../Selectors'
-import {withTranslation} from 'react-i18next'
 import Level from './Level'
 import ScoreWrapper from './ScoreWrapper'
 import COLORS from '../../colors'
@@ -11,8 +10,8 @@ import COLORS from '../../colors'
 const stateToProps = (state, ownProps) => getScore(state, ownProps.entryId)
 
 export const withHeaderScore = WrappedComponent => 
-    _.compose([needsData(loaded, load), withTranslation(), connect(stateToProps)])(
-    ({ t, done, confident, externalScore, ...props }) => 
+    _.compose([needsData(loaded, load), connect(stateToProps)])(
+    ({ done, confident, externalScore, ...props }) => 
     <WrappedComponent {...props} levels={[
         <div style={{color: COLORS.epas.done.value}}>
             <div>
@@ -24,7 +23,7 @@ export const withHeaderScore = WrappedComponent =>
                     value={done} />
             </div>
             <div className="font-weight-bold">
-                {t('Habe ich gemacht')}
+                Habe ich gemacht
             </div>
         </div>,
         <div style={{color: COLORS.epas.confident.value}}>
@@ -37,7 +36,7 @@ export const withHeaderScore = WrappedComponent =>
                     value={confident} />
             </div>
             <div className="font-weight-bold">
-                {t('Traue ich mir zu')}
+                Traue ich mir zu
             </div>
         </div>,
         <div style={{color: COLORS.epas.externalAssessment.value}}>
@@ -51,7 +50,7 @@ export const withHeaderScore = WrappedComponent =>
                     value={externalScore.value}/>
             </div>
             <div className="font-weight-bold">
-                {t('Wird mir zugetraut')}
+                Wird mir zugetraut
             </div>
         </div>
     ]} />)

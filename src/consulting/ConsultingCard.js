@@ -1,5 +1,4 @@
 import React from 'react';
-import { withTranslation } from 'react-i18next'
 import { SlideDown } from 'react-slidedown'
 import makeExtendable from '../Core/makeExtendable'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -61,7 +60,7 @@ const ConsultingCard = ({ t, ...props }) => (
         </div>
     </div>
 )
-export default makeExtendable()(withTranslation()(ConsultingCard))
+export default makeExtendable()(ConsultingCard)
 
 
 

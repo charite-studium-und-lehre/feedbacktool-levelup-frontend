@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
-import {withTranslation} from 'react-i18next'
 import _ from 'lodash/fp'
 import Legend from '../../Charting/Legend'
 import AnimatedInteger from '../../Charting/AnimatedInteger'
@@ -36,7 +35,7 @@ const Chart = _.compose(needsData(selectors.loaded, actions.load), connect(state
         >{d.ergebnisPunktzahl} von {d.maximalPunktzahl}</BarWithHeader>
     ))
 
-const Details = withTranslation()(({t, id}) => {
+const Details = ( id) => {
     const [mode, setMode] = useState('modules')
     const LegendText = Legends.Exams.MC
     return (
@@ -44,7 +43,7 @@ const Details = withTranslation()(({t, id}) => {
             <Legend title={LegendText.Details.title}>
                 {LegendText.Details.text}
                 <div className="position-relative">
-                    Der <InlineKohortenMittelDot placing="inline"/> {t(`kennzeichnet den Kohortenmittelwert.`)}
+                    Der <InlineKohortenMittelDot placing="inline"/> kennzeichnet den Kohortenmittelwert.
                 </div>
             </Legend>
             <div>
@@ -53,7 +52,7 @@ const Details = withTranslation()(({t, id}) => {
                                                        onChange={() => setMode('modules')}
                                                        className="mx-2"/>Module</label>
                     <label><input type="radio" name="details.mode"id='Switch-> Fächer' checked={mode === 'subjects'}
-                                  onChange={() => setMode('subjects')} className="mx-2"/>{t('Fächer')}</label>
+                                  onChange={() => setMode('subjects')} className="mx-2"/>Fächer</label>
                 </div>
             </div>
             <div className="mt-2">
@@ -61,6 +60,6 @@ const Details = withTranslation()(({t, id}) => {
             </div>
         </div>
     )
-})
+}
 
 export default Details

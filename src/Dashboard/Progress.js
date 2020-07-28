@@ -1,7 +1,6 @@
 import React from 'react'
 import _ from 'lodash/fp'
 import { connect } from 'react-redux'
-import { withTranslation } from 'react-i18next'
 import { selectors, actions } from '../Progress/Store'
 import needsData from '../Core/needsData'
 import { animationTime } from '../Charting/Utils'
@@ -18,4 +17,4 @@ const Progress = _.compose([needsData(selectors.loaded, actions.load), connect(s
     </div>
 )
 
-export default withTranslation()(({t}) => <DashboardCard title={t('Studienfortschritt')} id='StudienfortschrittCard' ><Progress /></DashboardCard>)
+export default () => <DashboardCard title='Studienfortschritt' id='StudienfortschrittCard' ><Progress /></DashboardCard>

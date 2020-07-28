@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import {withTranslation} from 'react-i18next'
 import {StudyToolsData, OtherToolsData } from './AllToolsData'
 import stift from '../images/stift.svg'
 import spritze from '../images/spritze.svg'
@@ -41,4 +40,4 @@ const  AllTools = props => (
     </div>
 )
 
-export default withTranslation()(AllTools)
+export default AllTools
