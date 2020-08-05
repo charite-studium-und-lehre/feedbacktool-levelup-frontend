@@ -96,11 +96,11 @@ const Legends = {
         },
         PTM: {
             title: 'Starke Fächer im PTM',
-            text: '<p>Hier findest du eine Übersicht zu deinen besten Fächern im letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.<br/><strong>Achtung: </strong> Nur Fächer mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.</p>',
+            text: <p>Hier findest du eine Übersicht zu deinen besten Fächern im letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.<br/><strong>Achtung: </strong> Nur Fächer mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.</p>,
         },
         PTMResults: {
             title: 'Gesamtes Ergebnis im PTM',
-            text: '<p>Hier findest du eine generelle Auswertung deines aktuellen PTMs im Vergleich mit der Kohorte.</p>',
+            text: <p>Hier findest du eine generelle Auswertung deines aktuellen PTMs im Vergleich mit der Kohorte.</p>,
         },
         Subjects: {
             title: 'Alle Fächer',

@@ -61,4 +61,4 @@ const Questions = ({questions }) => {
 const stateToProps = (state, ownProps) => ({ questions: selectors.getById( state, ownProps.match.params.test ) })
 const loadedById = (state, ownProps) => selectors.loaded(state, ownProps.match.params.test)
 const loadById = ownProps => actions.load(ownProps.match.params.test)
-export default _.compose(needsData(loadedById, loadById), connect(stateToProps), Questions)
+export default _.compose(needsData(loadedById, loadById), connect(stateToProps))(Questions)

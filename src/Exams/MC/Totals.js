@@ -78,4 +78,4 @@ const Totals = ({ ergebnisPunktzahl, durchschnittsPunktzahl, bestehensgrenzePunk
 const stateToProps = (state, ownProps) => ( {
     ...selectors.getTotalsData(state, ownProps.id),
 })
-export default _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps),Totals)
+export default _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps))(Totals)
