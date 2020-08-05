@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash/fp'
-import { withTranslation } from 'react-i18next'
 import needsData from '../../Core/needsData'
 import Legend from '../../Charting/Legend'
 import LegendTexts from '../../Core/LegendTexts'
@@ -15,7 +14,7 @@ export const color = colors.ptm.base
 export const colorTotal = colors.ptm.darker0
 export const colorPartOfTotal = colors.ptm.darker4
 
-const Ptm = ({ test, t }) => {
+const Ptm = ({test}) => {
     const LegendText = LegendTexts.Exams.Ptm
     
     return test ?
@@ -48,8 +47,8 @@ const Ptm = ({ test, t }) => {
                 </div>
             </div>
         </div> :
-        <div className="text-center">{t('Diese Prüfung scheint nicht zu existieren.')}</div>
+        <div className="text-center">Diese Prüfung scheint nicht zu existieren.</div>
 }
 
 const stateToProps = (state, ownProps) => ({ test: selectors.getById( state, ownProps.match.params.test )})
-export default _.compose([withTranslation(), needsData(selectors.loaded, actions.load), connect(stateToProps)])(Ptm)
+export default _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps)])(Ptm)

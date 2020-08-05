@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { SlideDown } from 'react-slidedown'
-import { withTranslation } from 'react-i18next'
 import makeExtendable from '../../Core/makeExtendable'
 import { OrdinalChart } from '../../Charting/Chart'
 import AreaGraph from '../../Charting/AreaGraph'
@@ -13,10 +12,10 @@ import ColorLegend from '../../Charting/ColorLegend'
 import {GraphButton} from './GraphButton'
 import COLORS from "../../colors";
 
-const Timeline = withTranslation()(({ t, data }) =>
+const Timeline = ({ data }) =>
     <div className="col m-auto" style={{maxWidth: '40rem'}}>
-        <ColorLegend text={t('Anzahl gestellte Fragen')} style={{backgroundColor : COLORS.graphs.total}}/>
-        <ColorLegend text={t('Anzahl richtige Fragen')} style={{backgroundColor : COLORS.graphs.correct}}/>
+        <ColorLegend text='Anzahl gestellte Fragen' style={{backgroundColor : COLORS.graphs.total}}/>
+        <ColorLegend text='Anzahl richtige Fragen' style={{backgroundColor : COLORS.graphs.correct}}/>
         <div className="p-4 mt-3" style={{height: '6rem'}} >
             <OrdinalChart xDomain={data.map(d => d.zeitsemester)} yDomain={[0, Math.max(...data.map(d => d.maximalPunktzahl))]}>
                 <XAxis />
@@ -27,7 +26,7 @@ const Timeline = withTranslation()(({ t, data }) =>
                 <LineGraph data={data.map(d => ({ x: d.zeitsemester, y: d.ergebnisRichtigPunktzahl }))} color={COLORS.graphs.correct} />
             </OrdinalChart>
         </div>
-    </div>)
+    </div>
 
 const Subject = ({ data, ...props }) => (
     <div>

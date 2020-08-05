@@ -34,7 +34,7 @@ const ContactData = props => (
          <Button  className='mt-4'{...props}/>
     </div>
 )
-const ConsultingCard = ({ t, ...props }) => (
+const ConsultingCard = props  => (
     <div className="card col-12 mb-2">
         <div className="card-body ">
             <div className="mb-4">

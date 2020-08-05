@@ -10,7 +10,7 @@ const loaded = _.overEvery([ selectors.loaded, requestsSelectors.loaded ])
 const load = () => _.over([ actions.load(), requestsActions.load() ])
 const stateToProps = state => ({ assessments: [].concat(selectors.getItems(state), requestsSelectors.getItems(state)), selected: selectors.getFilter(state) })
 export default [needsData(loaded, load), connect(stateToProps, actions)].reduceRight((fx,f) => f(fx), 
-    ({ t, assessments, selected, setFilter }) => 
+    ({assessments, selected, setFilter }) => 
         assessments.length ? 
         <div>
             <button className='btn btn-sm color-button-color width-100' onClick={() => setFilter(null)}>Alle</button>
@@ -26,7 +26,7 @@ export default [needsData(loaded, load), connect(stateToProps, actions)].reduceR
                             <div className="col-sm-5">
                                 <div className="row text-nowrap">
                                     <span className="col-6">
-                                        <span style={{ backgroundColor: COLORS.background.grey2 }} className="badge px-2" >{ e.open && t('noch offen') }</span>
+                                        <span style={{ backgroundColor: COLORS.background.grey2 }} className="badge px-2" >{ e.open && 'noch offen '}</span>
                                     </span>
                                     <div className='col-6 text-right'>{e.datum.toLocaleDateString()}</div>
                                 </div>

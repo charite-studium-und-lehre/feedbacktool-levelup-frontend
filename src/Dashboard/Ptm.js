@@ -14,7 +14,7 @@ import { labels } from '../Exams/Ptm/Results'
 
 const stateToProps = state => ({ latest: selectors.getLatest(state), ptms: selectors.getTimeline(state) })
 const Ptm = _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps))(
-    ({ t, latest, ptms }) => {
+    ({ latest, ptms }) => {
     return latest ? <div className="h-100" style={{minHeight: '5rem'}}>
         <Link to={`/exams/ptms/${latest.id}`}>
         <div className='h-100 w-100' id='PTMCard'  style={{position:'absolute', zIndex:'9'}}></div>

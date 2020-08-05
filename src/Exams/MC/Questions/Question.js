@@ -1,24 +1,23 @@
 import React from 'react'
 import SimpleBar from '../../../Charting/SimpleBar'
-import { withTranslation } from 'react-i18next'
 import { colors } from './Filters'
 import COLORS from "../../../colors";
 
-const Answer = withTranslation()(({t, ...props}) => (
+const Answer = props => (
     <div className="m-1">
         <span>{props.children}</span>
         {props.richtig
-            ? (<span className='ml-1 badge' style={{backgroundColor: 'var(--color-graphs-correct)'}}>{t(`richtige Antwort`)}</span>)
+            ? (<span className='ml-1 badge' style={{backgroundColor: 'var(--color-graphs-correct)'}}>richtige Antwort</span>)
             : ''}
         {props.ausgewaehlt
             ? (<span className='ml-1 badge'
                      style={{backgroundColor: (props.ausgewaehlt===props.richtig)? 'var(--color-graphs-correct)': 'var(--color-graphs-wrong)'}}>
-                {t(`deine Antwort`)}</span>)
+                deine Antwort`</span>)
             : ''}
     </div>
-))
+)
 
-const Question = ({t, ...props}) => {
+const Question = props => {
     const tags = [
         { color: colors[0], label: props.fach.titel },
         { color: colors[1], label: props.modul.titel },
@@ -36,7 +35,7 @@ const Question = ({t, ...props}) => {
                 {props.durchschnittRichtig !== null && 
                     <SimpleBar value={Math.round(props.durchschnittRichtig * 100)}
                      colorPartOfTotal={COLORS.mc.darker0} colorTotal={COLORS.mc.lighter1}>
-                        {Math.round(props.durchschnittRichtig * 100)} {t(`% haben diese Frage richtig beantwortet`)}
+                        {Math.round(props.durchschnittRichtig * 100)} % haben diese Frage richtig beantwortet
                     </SimpleBar>
                 }
                 <div className="text-right">
@@ -47,4 +46,4 @@ const Question = ({t, ...props}) => {
     </div>
 }
 
-export default withTranslation() (Question)
+export default Question

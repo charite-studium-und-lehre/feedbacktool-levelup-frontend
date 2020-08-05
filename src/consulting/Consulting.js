@@ -7,7 +7,6 @@ import { ConsultingTree } from './ConsultingTree'
 
 function Consulting() {
     const [selectCard, setCard] = useState(0)
-    const tree = ConsultingTree()
     return (
         <div>
             <div>
@@ -26,7 +25,7 @@ function Consulting() {
                 <div className="row">
                     <div className='col-12 col-lg-4 d-none d-lg-block'>
                         <ul className="list-group list-group-flush">
-                            {tree.ConsultingCard.map((e, i) =>
+                            {ConsultingTree.ConsultingCard.map((e, i) =>
                                 <li key={i} className="e text-center list-group-item px-2" id={e.title} style={{ backgroundColor: `${i === selectCard ? ' rgb(34, 71, 104, 0.6)' : ''}`, color: `${i === selectCard ? 'white' : ''}` }} onClick={() => setCard(i)}>{e.title}
                                     <span className='float-right' style={{ color: 'red' }}>
                                         <FontAwesomeIcon icon={i === selectCard ? faChevronDown : faChevronRight} color={i === selectCard ? 'white ' : 'rgb(34, 71, 104)'} />
@@ -37,14 +36,14 @@ function Consulting() {
                     </div>
                     <div className='col-12 col-lg-5 col-xl-4 d-none d-lg-block'>
                         <ConsultingCard
-                            {...tree.ConsultingCard[selectCard]}
+                            {...ConsultingTree.ConsultingCard[selectCard]}
                         />
                     </div>
                     <div className="col-12 col-md-7 mx-md-auto col-lg-3 col-xl-4 text-center mb-4">
                         <div>
                             <ul className="list-group list-group-flush ">
                                 <h4 className="text-center font-weight-bold mb-4">Externe Angebote</h4>
-                                {tree.ExternConsulting.map((d, i) => 
+                                {ConsultingTree.ExternConsulting.map((d, i) => 
                                     <a className="font-weight-bold text-center list-group-item py-3" id={d.title} target="blank"  style={{color:'rgb(34, 71, 104)'}} key={i} href={d.href}>
                                         {d.title}
                                     </a>
@@ -54,7 +53,7 @@ function Consulting() {
                     </div>
                 </div>
                 <div className="row d-lg-none">
-                        { tree.ConsultingCard.map(e => 
+                        { ConsultingTree.ConsultingCard.map(e => 
                         <div className='col-12 col-md-6 p-1'key={e.title}>
                             <ConsultingCard infoDaten={true} { ...e} />
                         </div>)}
