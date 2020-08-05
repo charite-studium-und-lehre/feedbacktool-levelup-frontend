@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-
 import _ from 'lodash/fp'
 import needsData from '../Core/needsData'
 import { OrdinalChart } from '../Charting/Chart'
@@ -38,4 +37,4 @@ const stateToProps = (state, ownProps) => ({
     semesters: selectors.getSemesters(state),
 })
 
-export default _.compose(withRouter, needsData(selectors.loaded, actions.load), connect(stateToProps, actions),MainChart)
+export default _.compose(withRouter, needsData(selectors.loaded, actions.load), connect(stateToProps, actions))(MainChart)
