@@ -35,7 +35,7 @@ const Chart = _.compose(needsData(selectors.loaded, actions.load), connect(state
         >{d.ergebnisPunktzahl} von {d.maximalPunktzahl}</BarWithHeader>
     ))
 
-const Details = ( id) => {
+const Details = ({id}) => {
     const [mode, setMode] = useState('modules')
     const LegendText = Legends.Exams.MC
     return (

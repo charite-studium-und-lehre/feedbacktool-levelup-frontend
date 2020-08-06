@@ -12,7 +12,7 @@ export const color = colors.mc.base
 export const colorTotal = colors.mc.lighter1
 export const colorPartOfTotal = colors.mc.darker0
 
-const MC = (test) =>
+const MC = ({test}) =>
     test ? 
     <div className="container-fluid pb-2">
         <div className="row">
