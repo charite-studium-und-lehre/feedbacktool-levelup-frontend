@@ -1,35 +1,81 @@
-import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
 import BaseStore from '../Core/BaseStore'
 
 export const identifier = 'progress'
+
 const baseStore = BaseStore(identifier)
 
-const isVisible = d => d.code < 200 || d.code >= 400
-const getTotal = _.sumBy( () => 1 )
-const getDone = _.sumBy( e => e.erfuellt )
-const dashboardData = _.flow([
-    _.over([ getTotal, getDone ]),
-    ([ total, done ]) => ({ total, done })
-])
+function moduleIsVisible(module) { return module.code < 200 || module.code >= 400; }
+
+function getDone(data) {
+
+    let count = 0;
+
+    data.forEach(entry => {
+        if (entry.erfuellt) count++;
+    });
+
+    return count;
+}
+
+function groupBy(data, key) {
+
+    return data.reduce((storage, item) => {
+
+        var group = item[key] - 1;
+        storage[group] = storage[group] || [];
+        storage[group].push(item);
+        return storage;
+
+    }, []);
+}
+
+function transform(data) {
+
+    data = data.meilensteine;
+    data = groupBy(data, 'fachsemester');
+
+    let output = [];
+
+    data.forEach(element => {
+
+        let object = {};
+        let bedingung = element.find(d => d.code === element[0].fachsemester + 300);
+
+        object.label = element[0].fachsemester + '. Fachsemester';
+
+        if (bedingung && !bedingung.erfuellt) object.prereq = false;
+        else object.prereq = true;
+
+        object.completed = element.find(d => d.code === element[0].fachsemester + 200).erfuellt;
+
+        object.entries = element
+            .filter(moduleIsVisible)
+            .map(d => ({
+                ...d,
+                link: (d.format && `/exams/${d.format}s/${d.studiPruefungsId}`)
+            }));
+
+        output.push(object);
+    })
+
+    return output;
+}
+
+function dashboard(state) {
+
+    let temp = baseStore.getItems(state);
+
+    temp = temp.flatMap(d => d.entries);
+    temp = temp.filter(moduleIsVisible);
+
+    return {total: temp.length, done: getDone(temp)};
+}
 
 export const selectors = baseStore.withLoadedSelector({
     getTree: state => baseStore.getItems(state),
-    getDashboardData: _.flow([ baseStore.getItems, _.flatMap( d => d.entries ), _.filter( isVisible ), dashboardData ]),
+    getDashboardData: dashboard,
 })
-
-export const actions = baseStore.withLoadAction(`studienfortschritt`)({})
-
-const transform = _.flow([
-    d => d.meilensteine,
-    _.groupBy( d => d.fachsemester),
-    _.map( g => ({ 
-        label: g[0].fachsemester + '. Fachsemester',
-        prereq: _.defaultTo({ erfuellt: true }, g.find( d => d.code === g[0].fachsemester + 300)).erfuellt,
-        completed: g.find( d => d.code === g[0].fachsemester + 200 ).erfuellt,
-        entries: g.filter( isVisible ).map( d => ({ ...d, link: d.format && `/exams/${d.format}s/${d.studiPruefungsId}` })),
-    }))
-])
 
 export const reducer = combineReducers(baseStore.withLoadedReducer(
     (state = {}, action) => {
@@ -41,3 +87,5 @@ export const reducer = combineReducers(baseStore.withLoadedReducer(
         }
     }
 ))
+
+export const actions = baseStore.withLoadAction(`studienfortschritt`)({})
