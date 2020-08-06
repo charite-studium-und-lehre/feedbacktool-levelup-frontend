@@ -7,14 +7,11 @@ const baseStore = BaseStore(identifier)
 
 function moduleIsVisible(module) { return module.code < 200 || module.code >= 400; }
 
-function getTotal(data) { return data.length; }
-
 function getDone(data) {
 
     let count = 0;
 
-    for (let i = 0; i < data.length; i++)
-        if (data[i].erfuellt) count++;
+    data.forEach(entry => {if (entry.erfuellt) count++;});
 
     return count;
 }
@@ -63,7 +60,7 @@ function dashboard(state) {
     temp = temp.flatMap(d => d.entries);
     temp = temp.filter(moduleIsVisible);
 
-    return {total: getTotal(temp), done: getDone(temp)};
+    return {total: temp.length, done: getDone(temp)};
 }
 
 export const selectors = baseStore.withLoadedSelector({
