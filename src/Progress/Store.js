@@ -1,4 +1,3 @@
-import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
 import BaseStore from '../Core/BaseStore'
 
@@ -57,15 +56,19 @@ function transform(data) {
     return out;
 }
 
+function dashboard(state) {
+
+    let temp = baseStore.getItems(state);
+
+    temp = temp.flatMap(d => d.entries);
+    temp = temp.filter(moduleIsVisible);
+
+    return {total: getTotal(temp), done: getDone(temp)};
+}
+
 export const selectors = baseStore.withLoadedSelector({
     getTree: state => baseStore.getItems(state),
-    getDashboardData: _.flow([
-        baseStore.getItems,
-        _.flatMap(d => d.entries),
-        _.filter(moduleIsVisible),
-        _.over([ getTotal, getDone ]),
-        ([ total, done ]) => ({ total, done })
-    ])
+    getDashboardData: dashboard,
 })
 
 export const reducer = combineReducers(baseStore.withLoadedReducer(
