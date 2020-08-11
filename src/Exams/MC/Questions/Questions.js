@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
-import { connect } from 'react-redux'
-import _ from 'lodash/fp'
-import { withTranslation } from 'react-i18next'
-import Legend from '../../../Charting/Legend'
-import Legends from '../../../Core/LegendTexts'
-import needsData from '../../../Core/needsData'
-import Question from './Question'
-import Filters from './Filters'
-import { selectors, actions } from './Store'
+import React, {useState} from "react";
+import {connect} from "react-redux";
+import _ from "lodash/fp";
+import {withTranslation} from "react-i18next";
+import Legend from "../../../Charting/Legend";
+import Legends from "../../../Core/LegendTexts";
+import needsData from "../../../Core/needsData";
+import Question from "./Question";
+import Filters from "./Filters";
+import {actions, selectors} from "./Store";
+
 
 const Questions = ({ t, questions }) => {
     const [ subjectsFilters, setSubjectsFilters ] = useState(
@@ -41,7 +42,6 @@ const Questions = ({ t, questions }) => {
                     <div className="card p-3">
                         <div className="row">
                             <div className="col">
-                                {/* <h4 className="mr-auto">Semesterprüfung - {match.params.test}</h4> */}
                                 <Legend title={LegendText.title}>{LegendText.text}</Legend>
                             </div>
                         </div>

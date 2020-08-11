@@ -76,7 +76,6 @@ const getTimeline = (state, _) => {
         ...value,
         link: `mcs/${value.id}`
     })]));
-    console.log(pruefungenWithLink);
     return pruefungenWithLink;
 
 };
