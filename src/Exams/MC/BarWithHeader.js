@@ -8,7 +8,11 @@ export default function BarWithHeader(props) {
     return (
         <div className='row'>
             <div className=" col-12">
-                <div style={styles.columnLabel}>{name}</div>
+                <div style={{
+                    fontSize: ".9rem",
+                    marginBottom: "-.3rem",
+                    color: "var(--color-graphs-grid-text)"
+                }}>{name}</div>
                 <div className="animated w-100">
                     <SimpleBar height={height} width={width}
                                value={result} mean={mean} total={total}
@@ -20,14 +24,4 @@ export default function BarWithHeader(props) {
         </div>
     );
 }
-
-const styles = _ => ({
-    columnLabel: {
-        color: {
-            fontSize: ".9rem",
-            marginBottom: "-.3rem",
-            color: "var(--color-graphs-grid-text)"
-        }
-    }
-});
 
