@@ -1,13 +1,15 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDumbbell } from '@fortawesome/free-solid-svg-icons'
-import tellMeLogo from '../../images/tellMeLogo.PNG'
+import React from "react";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faDumbbell} from "@fortawesome/free-solid-svg-icons";
+import tellMeLogo from "../../images/tellMeLogo.PNG";
 
-const Tellme = () => (
+
+const TellMe = () => (
     <div className='card p-3' style={{ fontSize: '.9rem' }}>
         <div className='row'>
             <div className=' col-12'>
-                <img src={tellMeLogo} alt="tellme-logo" className='pb-1 mb-2 mr-3' style={{ width: '7rem' }}></img>
+                <img src={tellMeLogo} alt="tellme-logo" className='pb-1 mb-2 mr-3'
+                     style={styles.tellMeLogo}/>
                 <span className='mt-3 font-weight-bold'>Das Lehr-/Lerntool für den MSM 2.0</span>
             </div>
             <div className='col-12'>
@@ -19,4 +21,11 @@ const Tellme = () => (
         </div>
     </div>
 )
-export default Tellme
+
+const styles = _ => ({
+    tellMeLogo: {
+        width: "7rem"
+    }
+});
+
+export default TellMe;
