@@ -1,66 +1,94 @@
-import React, {useState} from 'react'
-import {connect} from 'react-redux'
-import {withTranslation} from 'react-i18next'
-import _ from 'lodash/fp'
-import Legend from '../../Charting/Legend'
-import AnimatedInteger from '../../Charting/AnimatedInteger'
-import Legends from '../../Core/LegendTexts'
-import needsData from '../../Core/needsData'
-import BarWithHeader from './BarWithHeader'
-import {selectors, actions} from './Store'
+import React, {useState} from "react";
+import {connect} from "react-redux";
+import {withTranslation} from "react-i18next";
+import _ from "lodash/fp";
+import Legend from "../../Charting/Legend";
+import AnimatedInteger from "../../Charting/AnimatedInteger";
+import Legends from "../../Core/LegendTexts";
+import needsData from "../../Core/needsData";
+import BarWithHeader from "./BarWithHeader";
+import {actions, selectors} from "./Store";
 import COLORS from "../../colors";
-import { InlineKohortenMittelDot } from "../../Charting/KohortenMittelDot"
+import {InlineKohortenMittelDot} from "../../Charting/KohortenMittelDot";
+import utils from "./Utils";
 
-const stateToProps = (state, ownProps) => ({...selectors.getById(state, ownProps.id)})
-const Chart = _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps))(({mode, faecher, module}) => mode === 'modules'
-    ? _.sortBy(m => m.code, module).map((d, i) =>
+
+const stateToProps = (state, ownProps) => ({...selectors.getById(state, ownProps.id)});
+
+const Chart = _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps))(({mode, faecher, module}) => mode === "modules"
+    ? module.sort(utils.naturalCompareCodes).map((module, index) => {
+        return <ModulBarWithHeader module={module} key={index}/>;
+    })
+    : faecher.map(fach => {
+            return <FachBarWithHeader fach={fach} faecher={faecher}/>;
+        }
+    ));
+
+const ModulBarWithHeader = ({key, module}) => {
+    const {titel, ergebnisPunktzahl, durchschnittsPunktzahl} = module;
+    const colorTotal = COLORS.mc.lighter1;
+    const colorPartial = COLORS.mc.darker0;
+    return (
         <BarWithHeader
-            key={i}
-            name={d.titel}
-            result={d.ergebnisPunktzahl}
+            key={key}
+            name={titel}
+            result={ergebnisPunktzahl}
             total={1}
-            mean={d.durchschnittsPunktzahl}
-            colorTotal={COLORS.mc.lighter1}
-            colorPartOfTotal={COLORS.mc.darker0}
-        ><AnimatedInteger value={_.round(d.ergebnisPunktzahl * 100)}/> %</BarWithHeader>)
-    : faecher.map(d =>
-        <BarWithHeader
-            key={d.code}
-            name={d.titel}
-            result={d.ergebnisPunktzahl}
-            total={d.maximalPunktzahl}
-            width={d.maximalPunktzahl * 100 / _.max(faecher.map(s => s.maximalPunktzahl)) + "%"}
-            mean={d.durchschnittsPunktzahl}
-            colorTotal={COLORS.mc.lighter1}
-            colorPartOfTotal={COLORS.mc.darker0}
-        >{d.ergebnisPunktzahl} von {d.maximalPunktzahl}</BarWithHeader>
-    ))
+            mean={durchschnittsPunktzahl}
+            colorTotal={colorTotal}
+            colorPartOfTotal={colorPartial}
+        ><AnimatedInteger value={Math.round(ergebnisPunktzahl * 100)}/> %</BarWithHeader>
+    );
+};
+
+const FachBarWithHeader = ({fach, faecher}) => {
+    const {code, titel, ergebnisPunktzahl, maximalPunktzahl, durchschnittsPunktzahl} = fach;
+    const colorTotal = COLORS.mc.lighter1;
+    const colorPartial = COLORS.mc.darker0;
+    const width = maximalPunktzahl * 100 / Math.max.apply(Math, faecher.map(fach => fach.maximalPunktzahl));
+    return (<BarWithHeader
+        key={code}
+        name={titel}
+        result={ergebnisPunktzahl}
+        total={maximalPunktzahl}
+        width={`${width}%`}
+        mean={durchschnittsPunktzahl}
+        colorTotal={colorTotal}
+        colorPartOfTotal={colorPartial}
+    >{ergebnisPunktzahl} von {maximalPunktzahl}</BarWithHeader>);
+};
 
 const Details = withTranslation()(({t, id}) => {
-    const [mode, setMode] = useState('modules')
-    const LegendText = Legends.Exams.MC
+    // mode is set to either modules or faecher
+    const [mode, setMode] = useState("modules");
+    const LegendText = Legends.Exams.MC;
     return (
         <div className='card p-3'>
             <Legend title={LegendText.Details.title}>
                 {LegendText.Details.text}
                 <div className="position-relative">
-                    Der <InlineKohortenMittelDot placing="inline"/> {t(`kennzeichnet den Kohortenmittelwert.`)}
+                    Der <InlineKohortenMittelDot
+                    placing="inline"/> {t(`kennzeichnet den Kohortenmittelwert.`)}
                 </div>
             </Legend>
             <div>
                 <div className="mt-2">
-                    <label className="m-0 mr-2"><input type="radio" name="details.mode" id='Switch-> Module' checked={mode === 'modules'}
-                                                       onChange={() => setMode('modules')}
+                    <label className="m-0 mr-2"><input type="radio" name="details.mode"
+                                                       id='Switch-> Module'
+                                                       checked={mode === "modules"}
+                                                       onChange={() => setMode("modules")}
                                                        className="mx-2"/>Module</label>
-                    <label><input type="radio" name="details.mode"id='Switch-> Fächer' checked={mode === 'subjects'}
-                                  onChange={() => setMode('subjects')} className="mx-2"/>{t('Fächer')}</label>
+                    <label><input type="radio" name="details.mode" id='Switch-> Fächer'
+                                  checked={mode === "subjects"}
+                                  onChange={() => setMode("subjects")}
+                                  className="mx-2"/>{t("Fächer")}</label>
                 </div>
             </div>
             <div className="mt-2">
                 <Chart mode={mode} id={id}/>
             </div>
         </div>
-    )
-})
+    );
+});
 
-export default Details
+export default Details;
