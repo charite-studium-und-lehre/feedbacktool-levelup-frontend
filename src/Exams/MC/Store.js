@@ -1,7 +1,6 @@
 import _ from "lodash/fp";
 import {combineReducers} from "redux";
 import {scaleLinear} from "d3-scale";
-import {minQuestions} from "../../Utils/Constants";
 import BaseStore from "../BaseStore";
 import {identifier as questionsIdentifier, reducer as questionsReducer} from "./Questions/Store";
 
@@ -9,17 +8,17 @@ import {identifier as questionsIdentifier, reducer as questionsReducer} from "./
 export const identifier = "mcs";
 const baseStore = BaseStore(identifier);
 
-const getScale = kp =>
+const getScale = kohortenPunktzahlen =>
     scaleLinear()
-        .domain([0, kp.length - 1])
+        .domain([0, kohortenPunktzahlen.length - 1])
         .range([100, 0]);
 
-const percent = _.flow([
+const calculateComparativePercentage = _.flow([
     _.over([
         getScale,
-        (kp, ergebnis) => [
-            kp.filter(d => d < ergebnis).length,
-            kp.filter(d => d <= ergebnis).length
+        (kohortenPunkzahlen, ergebnisPunkzahl) => [
+            kohortenPunkzahlen.filter(kohortenPunktzahl => kohortenPunktzahl < ergebnisPunkzahl).length,
+            kohortenPunkzahlen.filter(kohortenPunktzahl => kohortenPunktzahl <= ergebnisPunkzahl).length
         ]
     ]),
     ([scale, p]) => _.map(scale, p),
@@ -27,112 +26,76 @@ const percent = _.flow([
     _.round
 ]);
 
-const addPercent = ergebnis => ({
-    ...ergebnis,
-    percent: percent(ergebnis.kohortenPunktzahlen, ergebnis.ergebnisPunktzahl)
-});
+const getPercent = ergebnis => {
+    const {kohortenPunktzahlen, ergebnisPunktzahl} = ergebnis;
+    return {
+        percent: calculateComparativePercentage(kohortenPunktzahlen, ergebnisPunktzahl)
+    };
+};
 
-const histogram = _.flow([
-    _.groupBy(d => Math.floor(d / 5)),
-    _.map(d => ({
-        x: Math.floor(d[0] / 5) * 5,
-        y: d.length
-    }))
-]);
-
-const histogramES6 = kps => {
-    let groupedKps = kps.map(kp => ({group: Math.floor(kp / 5) * 5, value: kp})).reduce((r, a) => {
+const histogram = kohortenPunktzahlen => {
+    let groupedKohortenPunktzahlen = kohortenPunktzahlen.map(kohortenPunktzahl => ({
+        group: Math.floor(kohortenPunktzahl / 5) * 5,
+        value: kohortenPunktzahl
+    })).reduce((r, a) => {
         r[a.group] = [...r[a.group] || [], a.value];
         return r;
     }, {});
 
-    return Object.entries(groupedKps).map(group => ({x: group[0], y: group[1].length}));
+    return Object.entries(groupedKohortenPunktzahlen).map(group => ({
+        x: group[0],
+        y: group[1].length
+    }));
 };
 
-const addHistogram = ergebnis => ({
-    ...ergebnis,
-    histogram: _.map(d => ({
-        ...d,
-        highlight: Math.floor(ergebnis.ergebnisPunktzahl / 5) * 5 === d.x
-    }))(histogram(ergebnis.kohortenPunktzahlen))
-});
-
-const addHistogramES6 = ergebnis => {
+const getHistogram = ergebnis => {
     const {kohortenPunktzahlen, ergebnisPunktzahl} = ergebnis;
     const ownGroup = Math.floor(ergebnisPunktzahl / 5) * 5;
     return {
-        ...ergebnis,
-        histogram: histogramES6(kohortenPunktzahlen).map(group => ({
-            ...group,
-            highlight: ownGroup === group.x
-        }))
+        histogram: histogram(kohortenPunktzahlen).map(group => {
+            return {
+                ...group,
+                highlight: ownGroup.toString() === group.x
+            };
+        })
     };
 };
 
-const addGraphData = ergebnis => ({
-    ...ergebnis,
-    graphData: ergebnis.kohortenPunktzahlen
-        .sort(_.subtract)
-        .map((d, i) => ({x: getScale(ergebnis.kohortenPunktzahlen)(i), y: d}))
-});
-
-const addGraphDataES6 = ergebnis => {
-    const { kohortenPunktzahlen } = ergebnis;
-    return  {
-        ...ergebnis,
+const getGraphData = ergebnis => {
+    const {kohortenPunktzahlen} = ergebnis;
+    return {
         graphData: kohortenPunktzahlen
             .sort(_.subtract)
             .map((d, i) => ({x: getScale(kohortenPunktzahlen)(i), y: d}))
-    }
-}
+    };
+};
 
-const findById = id => exams => exams[id];
+const getTimeline = (state, _) => {
+    const pruefungen = baseStore.getItems(state);
+    const pruefungenWithLink = Object.fromEntries(Object.entries(pruefungen).map(([key, value]) => [key, ({
+        ...value,
+        link: `mcs/${value.id}`
+    })]));
+    console.log(pruefungenWithLink);
+    return pruefungenWithLink;
 
-const toTimeline = exam => ({
-    ...exam,
-    link: `mcs/${exam.id}`
-});
-const getTimeline = _.flow([baseStore.getItems, _.map(toTimeline)]);
+};
 
-const getById = (state, id) =>
-    _.flow([baseStore.getItems, findById(id)])(state);
-const getTotalsData = _.flow([
-    getById,
-    e => e.gesamtErgebnis,
-    addPercent,
-    addHistogram,
-    addGraphData
-]);
-const getSubjectsTotals = _.flow([
-    baseStore.getItems,
-    _.flatMap(i => i.faecher),
-    _.groupBy(f => f.code),
-    _.map(g => ({
-        ...g[0],
-        ergebnisPunktzahl: _.sumBy("ergebnisPunktzahl")(g),
-        maximalPunktzahl: _.sumBy("maximalPunktzahl")(g)
-    }))
-]);
+const getPruefungById = (state, id) => baseStore.getItems(state)[id];
 
-const getRanking = _.flow([
-    getSubjectsTotals,
-    _.filter(s => s.maximalPunktzahl >= minQuestions),
-    _.sortBy([
-        s => -s.ergebnisPunktzahl / s.maximalPunktzahl,
-        s => -s.maximalPunktzahl
-    ])
-]);
-
-const getRankingES6 = () => {
-    return getSubjectsTotals.filter(subject => subject.maximalPunktzahl >= minQuestions).sort((a, b) => a)
-}
+const getTotalsData = (state, id) => {
+    let pruefungGesamtErgebnis = getPruefungById(state, id).gesamtErgebnis;
+    return {
+        ...pruefungGesamtErgebnis,
+        ...getPercent(pruefungGesamtErgebnis),
+        ...getHistogram(pruefungGesamtErgebnis),
+        ...getGraphData(pruefungGesamtErgebnis)
+    };
+};
 
 export const selectors = baseStore.withLoadedSelector({
     getStore: baseStore.getStore,
-    getById,
-    strongestSubject: _.flow([getRanking, _.first]),
-    getRanking,
-    getSubjectsTotals,
+    getById: getPruefungById,
     getTimeline,
     getTotalsData
 });
