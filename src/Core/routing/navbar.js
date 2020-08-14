@@ -37,13 +37,13 @@ export default _.compose([connect(stateToProps), withTranslation(), makeExtendab
             </button>
             <div className={`collapse navbar-collapse ${props.extended && 'show'}`} id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto" onClick={props.toggleExtended}>
-                    {Routes.map((route, i) =>
+                    {Routes.map((route, index) =>
                         route.menuName && (!route.private || loggedIn) ?
-                            <li className="nav-item" key={i}>
+                            <li className="nav-item" key={index}>
                                 <NavLink className="nav-link" id={route.menuName} to={route.path}>{t(route.menuName)}</NavLink>
                             </li>
                             : route.TellMe ?
-                                <div className='d-lg-none' key={i} style={{color: Colors.blackOpacity05}}>
+                                <div className='d-lg-none' key={index} style={{color: Colors.blackOpacity05}}>
                                     <a target="blank" href='https://msm-tellme.charite.de/lernen'>
                                         <span className='mr-2'>Trainieren mit</span>
                                         <img className='mb-2' src={tellMeLogo} alt="tellme-logo" style={{ height: '1.5rem', width: '4rem' }}></img>
