@@ -57,8 +57,7 @@ function getStudienfortschrittDashboardData(state) {
     studienleistungen = studienleistungen.flatMap(d => d.entries);
     studienleistungen = studienleistungen.filter(moduleIsVisible);
 
-    let done = 0;
-    studienleistungen.forEach(element => element.erfuellt ? done++ : 0);
+    let done = studienleistungen.reduce((acc, elm) => elm.erfuellt ? ++acc : acc, 0);
 
     return {total: studienleistungen.length, done: done};
 }
