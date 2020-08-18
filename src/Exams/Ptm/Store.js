@@ -2,32 +2,33 @@ import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
 import { minQuestions } from '../../Utils/Constants'
 import BaseStore from '../BaseStore'
+import {flow} from '../../Core/functions'
 
 export const identifier = 'ptms'
 const baseStore = BaseStore(identifier)
 
 const findById = id => ptms => ptms[id]
-const findSubject = subject => _.flow([_.find({'titel': subject}), _.defaultTo({})])
+const findSubject = subject => flow([_.find({'titel': subject}), _.defaultTo({})])
 const getFaecher = ptm => ptm.faecher
-const getSubjects = _.flow([ getFaecher ])
-const getSubject = subject => _.flow([ getSubjects, findSubject(subject) ])
-const getRanking = _.flow([ getSubjects, _.filter(s => s.maximalPunktzahl >= minQuestions), _.sortBy([ s => -s.ergebnisRichtigPunktzahl / s.maximalPunktzahl, s => -s.maximalPunktzahl ]) ])
+const getSubjects = flow([ getFaecher ])
+const getSubject = subject => flow([ getSubjects, findSubject(subject) ])
+const getRanking = flow([ getSubjects, _.filter(s => s.maximalPunktzahl >= minQuestions), _.sortBy([ s => -s.ergebnisRichtigPunktzahl / s.maximalPunktzahl, s => -s.maximalPunktzahl ]) ])
 
 const toTimeline = ptm => ({
     ...ptm,
     link: `ptms/${ptm.id}`
 })
-const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
+const getTimeline = flow([ baseStore.getItems, _.map( toTimeline ) ])
 
 export const selectors = baseStore.withLoadedSelector({
-    getSubjectByName: (state, id, subject) => _.flow([ baseStore.getItems, findById(id), getSubject(subject) ])(state),
+    getSubjectByName: (state, id, subject) => flow([ baseStore.getItems, findById(id), getSubject(subject) ])(state),
     getAllForSubject: (state, subject) => 
-        _.flow([ baseStore.getItems, _.map(ptm => ({ ...getSubject(subject)(ptm), zeitsemester: ptm.zeitsemester })) ])(state),
-    getById: (state, id) => _.flow([ baseStore.getItems, findById(id) ])(state),
-    getLatest: _.flow([ baseStore.getItems, _.sortBy('periodeCode'), _.last ]),
+        flow([ baseStore.getItems, _.map(ptm => ({ ...getSubject(subject)(ptm), zeitsemester: ptm.zeitsemester })) ])(state),
+    getById: (state, id) => flow([ baseStore.getItems, findById(id) ])(state),
+    getLatest: flow([ baseStore.getItems, _.sortBy('periodeCode'), _.last ]),
     getSubjects,
     getRanking,
-    strongestSubject: _.flow([ getRanking, _.first ]),
+    strongestSubject: flow([ getRanking, _.first ]),
     getTimeline,
     getFaecher,
 })

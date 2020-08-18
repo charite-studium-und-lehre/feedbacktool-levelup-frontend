@@ -2,6 +2,7 @@ import { randomUniform } from 'd3-random'
 import { scalePow } from 'd3-scale'
 import _ from 'lodash/fp'
 import seedrandom from 'seedrandom'
+import {flow, over} from '../../Core/functions'
 
 export const Subjects = [
     {
@@ -48,8 +49,8 @@ export const Subjects = [
     },
 ]
 
-const rnd = _.flow([seedrandom, randomUniform.source, rnd => (a,b) => _.round(rnd(a,b)())])
-const SubjectsWithNumbers = _.flow([rnd, random => Subjects.map( 
+const rnd = flow([seedrandom, randomUniform.source, rnd => (a,b) => _.round(rnd(a,b)())])
+const SubjectsWithNumbers = flow([rnd, random => Subjects.map( 
     cat => ({ 
         ...cat, 
         subjects: cat.subjects.map( s => ({
@@ -66,9 +67,9 @@ const SubjectsWithNumbers = _.flow([rnd, random => Subjects.map(
 
 const timesemesters = _.flatMap( y => [{ label: `SoSe ${y}`, value: y*10+1 }, { label: `WiSe ${y}`, value: y*10+2 }] )( _.range( 2016, 2019 ) )
 const scale = scalePow().domain([20161,20192]).range([10, 150])
-const createResult = _.flow([
-    _.over([
-        _.flow([seedrandom, randomUniform.source, rnd => (a,b) => _.round(rnd(a,b)())]),
+const createResult = flow([
+    over([
+        flow([seedrandom, randomUniform.source, rnd => (a,b) => _.round(rnd(a,b)())]),
         _.identity
     ]), 
     ([random, timesemester]) => ({
@@ -89,6 +90,7 @@ const createResult = _.flow([
         zeitsemester: timesemester.label
     })
 ])
+console.log(createResult)
 
-const Results = _.map(createResult)(timesemesters)
+const Results = timesemesters.map(createResult)
 export default Results
