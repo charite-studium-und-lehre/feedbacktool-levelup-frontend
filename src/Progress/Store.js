@@ -5,8 +5,6 @@ export const identifier = 'progress'
 
 const baseStore = BaseStore(identifier)
 
-function moduleIsVisible(module) { return module.code < 200 || module.code >= 400; }
-
 function groupBy(data, key) {
 
     return data.reduce((storage, item) => {
@@ -26,25 +24,26 @@ function getStudienfortschrittDisplayData(studienleistungen) {
 
     let studienfortschrittDisplayData = [];
 
-    studienleistungen.forEach(element => {
+    studienleistungen.forEach(studienleistung => {
 
-        let object = {};
-        let zulassungsVoraussetzungFuerStudienleistung = element.find(d => d.code === element[0].fachsemester + 300);
+        let displayDataVonStudienleistung = {};
 
-        object.label = element[0].fachsemester + '. Fachsemester';
+        let zulassungsVoraussetzungFuerStudienleistung = studienleistung.find(d => d.code === studienleistung[0].fachsemester + 300);
 
-        object.prereq = !zulassungsVoraussetzungFuerStudienleistung || zulassungsVoraussetzungFuerStudienleistung.erfuellt;
+        displayDataVonStudienleistung.label = studienleistung[0].fachsemester + '. Fachsemester';
 
-        object.completed = element.find(d => d.code === element[0].fachsemester + 200).erfuellt;
+        displayDataVonStudienleistung.prereq = !zulassungsVoraussetzungFuerStudienleistung || zulassungsVoraussetzungFuerStudienleistung.erfuellt;
 
-        object.entries = element
-            .filter(moduleIsVisible)
-            .map(d => ({
-                ...d,
-                link: (d.format && `/exams/${d.format}s/${d.studiPruefungsId}`)
+        displayDataVonStudienleistung.completed = studienleistung.find(d => d.code === studienleistung[0].fachsemester + 200).erfuellt;
+
+        displayDataVonStudienleistung.entries = studienleistung
+            .filter(studienleistung => (studienleistung.code < 200 || studienleistung.code >= 400))
+            .map(datensatz => ({
+                ...datensatz,
+                link: (datensatz.format && `/exams/${datensatz.format}s/${datensatz.studiPruefungsId}`)
             }));
 
-        studienfortschrittDisplayData.push(object);
+        studienfortschrittDisplayData.push(displayDataVonStudienleistung);
     })
 
     return studienfortschrittDisplayData;
@@ -54,12 +53,12 @@ function getStudienfortschrittDashboardData(state) {
 
     let studienleistungen = baseStore.getItems(state);
 
-    studienleistungen = studienleistungen.flatMap(d => d.entries);
-    studienleistungen = studienleistungen.filter(moduleIsVisible);
+    studienleistungen = studienleistungen.flatMap(studienleistung => studienleistung.entries);
+    studienleistungen = studienleistungen.filter(studienleistung => (studienleistung.code < 200 || studienleistung.code >= 400))
 
-    let done = studienleistungen.reduce((acc, elm) => elm.erfuellt ? ++acc : acc, 0);
+    let doneCount = studienleistungen.reduce((accumulator, element) => element.erfuellt ? ++accumulator : accumulator, 0);
 
-    return {total: studienleistungen.length, done: done};
+    return {total: studienleistungen.length, done: doneCount};
 }
 
 export const selectors = baseStore.withLoadedSelector({
