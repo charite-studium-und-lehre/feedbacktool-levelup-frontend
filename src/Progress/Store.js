@@ -28,13 +28,13 @@ function getStudienfortschrittDisplayData(studienleistungen) {
 
         let displayDataVonStudienleistung = {};
 
-        let zulassungsVoraussetzungFuerStudienleistung = studienleistung.find(d => d.code === studienleistung[0].fachsemester + 300);
+        let zulassungsVoraussetzungFuerStudienleistung = studienleistung.find(datensatz => datensatz.code === studienleistung[0].fachsemester + 300);
 
         displayDataVonStudienleistung.label = studienleistung[0].fachsemester + '. Fachsemester';
 
         displayDataVonStudienleistung.prereq = !zulassungsVoraussetzungFuerStudienleistung || zulassungsVoraussetzungFuerStudienleistung.erfuellt;
 
-        displayDataVonStudienleistung.completed = studienleistung.find(d => d.code === studienleistung[0].fachsemester + 200).erfuellt;
+        displayDataVonStudienleistung.completed = studienleistung.find(datensatz => datensatz.code === studienleistung[0].fachsemester + 200).erfuellt;
 
         displayDataVonStudienleistung.entries = studienleistung
             .filter(studienleistung => (studienleistung.code < 200 || studienleistung.code >= 400))
