@@ -51,12 +51,6 @@ const Login = _.compose([
                         fontSize: '1rem'
                     }}>{t(`Demo-Version von LevelUp ansehen`)}</a>
                 </div>
-                <div className='color-navigation'>
-                    <a href="tutorial/src/index.html" className='font-weight-bold' style={{
-                        cursor: 'pointer',
-                        fontSize: '1rem'
-                    }}>{t(`Tutorial ansehen`)}</a>
-                </div>
             </div>
         </div>
     </div>
