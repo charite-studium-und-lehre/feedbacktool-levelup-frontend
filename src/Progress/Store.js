@@ -37,7 +37,7 @@ function getStudienfortschrittDisplayData(studienleistungen) {
         displayDataVonStudienleistung.completed = studienleistung.find(datensatz => datensatz.code === studienleistung[0].fachsemester + 200).erfuellt;
 
         displayDataVonStudienleistung.entries = studienleistung
-            .filter(studienleistung => (studienleistung.code < 200 || studienleistung.code >= 400))
+            .filter(datensatz => (datensatz.code < 200 || datensatz.code >= 400))
             .map(datensatz => ({
                 ...datensatz,
                 link: (datensatz.format && `/exams/${datensatz.format}s/${datensatz.studiPruefungsId}`)
