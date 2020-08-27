@@ -5,7 +5,6 @@ import { Link, NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../makeExtendable'
-import { withTranslation } from 'react-i18next'
 import LevelUpLogo from '../../images/LevelupLogo.png'
 import tellMeLogo from '../../images/tellMeLogo.PNG'
 import Routes from "./Routes"
@@ -25,7 +24,7 @@ const TellMeLink = () =>
     </div>
 
 const stateToProps = state => ({ loggedIn: user.isLoggedIn(state), userData: user.getData(state) })
-export default _.compose([connect(stateToProps), withTranslation(), makeExtendable()])(function Navbar({ t, loggedIn, userData, ...props }) {
+export default _.compose([connect(stateToProps), makeExtendable()])(function Navbar({ loggedIn, userData, ...props }) {
     const { pathname } = useLocation()
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top flex-shrink-0 border-bottom">
@@ -40,7 +39,7 @@ export default _.compose([connect(stateToProps), withTranslation(), makeExtendab
                     {Routes.map((route, i) =>
                         route.menuName && (!route.private || loggedIn) ?
                             <li className="nav-item" key={i}>
-                                <NavLink className="nav-link" id={route.menuName} to={route.path}>{t(route.menuName)}</NavLink>
+                                <NavLink className="nav-link" id={route.menuName} to={route.path}>{route.menuName}</NavLink>
                             </li>
                             : route.TellMe ?
                                 <div className='d-lg-none' style={{color: Colors.blackOpacity05}}>
@@ -63,8 +62,8 @@ export default _.compose([connect(stateToProps), withTranslation(), makeExtendab
                 <ul className="navbar-nav">
                     <li className="nav-item">
                         {loggedIn ?
-                            <a className="nav-link pull-right" id='logout' href="https://levelup.charite.de/backend/logout">{t(`logout`)}</a> :
-                            <NavLink className="nav-link pull-right" to="/login">{t(`login`)}</NavLink>
+                            <a className="nav-link pull-right" id='logout' href="https://levelup.charite.de/backend/logout">logout</a> :
+                            <NavLink className="nav-link pull-right" to="/login">login</NavLink>
                         }
                     </li>
                 </ul>

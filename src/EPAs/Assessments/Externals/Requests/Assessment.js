@@ -1,7 +1,6 @@
 import React from 'react'
 import _ from 'lodash/fp'
 import { connect } from 'react-redux'
-import { withTranslation } from 'react-i18next'
 import { selectors, actions as requestActions } from './Store'
 import { selectors as assessmentsSelectors, actions } from '../../Store'
 import { selectors as epasSelectors, actions as epasActions } from '../../../Store'
@@ -29,8 +28,8 @@ const catchFail = Comp => ({ failed, ...props }) =>
         Das angegebene Token ist ungültig. Es wurde entweder bereits eine Bewertung abgeschickt, oder es liegt keine Anfrage vor.
     </p> : <Comp {...props} />
 
-const Assessment = _.compose([needsData(loaded, load), connect(stateToProps, actions), catchFail, withTranslation()])(
-    ({ t, request, send, request: { token }, error, sending, sent }) =>
+const Assessment = _.compose([needsData(loaded, load), connect(stateToProps, actions), catchFail])(
+    ({request, send, request: { token }, error, sending, sent }) =>
     !sent ? <div className="container-fluid">
         <div className="row">
             <div className="col-lg-4">
@@ -49,19 +48,19 @@ const Assessment = _.compose([needsData(loaded, load), connect(stateToProps, act
                     <Tabs />
                 </div>
                 {error && <div className="p-2 text-center text-danger">
-                    {t('Das hat leider nicht funktioniert. Bitte senden Sie uns eine Mail an ')}
+                    Das hat leider nicht funktioniert. Bitte senden Sie uns eine Mail an.
                     <a className="color-navigation" href={`mailto: levelup@charite.de?subject=${token} failed to send`}>levelup@charite.de</a>.
                 </div>}
                 <div className="p-2">
                     <button type="submit" className="w-100 btn btn-info"
                         disabled={sending}
-                        onClick={() => window.confirm(t('Soll die Bewertung jetzt abgesendet werden?')) && send(token)}>
-                        {sending ? <Spinner className="text-white" /> : t('absenden')}
+                        onClick={() => window.confirm('Soll die Bewertung jetzt abgesendet werden?') && send(token)}>
+                        {sending ? <Spinner className="text-white" /> : 'absenden'}
                     </button>
                 </div>
             </div>
         </div>
     </div> :
-    <div className="text-center">{t('Vielen Dank. Die Bewertung wurde abgesendet. Wir werden die anfordernde Person darüber informieren.')}</div>
+    <div className="text-center">Vielen Dank. Die Bewertung wurde abgesendet. Wir werden die anfordernde Person darüber informieren.</div>
 )
 export default Assessment

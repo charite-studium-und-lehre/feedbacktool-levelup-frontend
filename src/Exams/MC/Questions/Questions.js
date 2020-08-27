@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash/fp'
-import { withTranslation } from 'react-i18next'
 import Legend from '../../../Charting/Legend'
 import Legends from '../../../Core/LegendTexts'
 import needsData from '../../../Core/needsData'
@@ -9,7 +8,7 @@ import Question from './Question'
 import Filters from './Filters'
 import { selectors, actions } from './Store'
 
-const Questions = ({ t, questions }) => {
+const Questions = ({questions }) => {
     const [ subjectsFilters, setSubjectsFilters ] = useState(
         _.compose([_.map(s => ({ label: s.titel, pred: q => s.code === q.fach.code })), _.uniqBy( q => q.code ), _.map( q => q.fach )])(questions)
     )
@@ -46,7 +45,7 @@ const Questions = ({ t, questions }) => {
                             </div>
                         </div>
                         <Filters filters={filters} setters={[ setSubjectsFilters, setModulesFilters, setDifficultyFilter, setCorrectFilter ]}>
-                            <div className="font-weight-bold mt-2">{filteredQuestions.length} von {questions.length} {t(`Fragen angezeigt`)}</div>
+                            <div className="font-weight-bold mt-2">{filteredQuestions.length} von {questions.length} Fragen angezeigt</div>
                         </Filters>
                         <div className="row mt-2">
                             <div className="col">
@@ -62,4 +61,4 @@ const Questions = ({ t, questions }) => {
 const stateToProps = (state, ownProps) => ({ questions: selectors.getById( state, ownProps.match.params.test ) })
 const loadedById = (state, ownProps) => selectors.loaded(state, ownProps.match.params.test)
 const loadById = ownProps => actions.load(ownProps.match.params.test)
-export default _.compose(needsData(loadedById, loadById), connect(stateToProps), withTranslation()) (Questions)
+export default _.compose(needsData(loadedById, loadById), connect(stateToProps))(Questions)

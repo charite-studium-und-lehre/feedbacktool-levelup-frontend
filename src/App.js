@@ -16,7 +16,6 @@ import Navbar from './Core/routing/navbar'
 import Breadcrumbs from './Core/routing/Breadcrumbs'
 import PrivateRoute from './Core/routing/PrivateRoute'
 import Routes from './Core/routing/Routes'
-import { withTranslation } from 'react-i18next'
 import ScrollToTop from './Core/ScrollToTop'
 import COLORS from "./colors"
 
@@ -24,7 +23,7 @@ const basename = process.env.PUBLIC_URL || '/'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const App = withTranslation()(() =>
+const App =() =>
     <Provider store={createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)))}>
         <BrowserRouter basename={basename}>
             <div className="App p-0 d-flex flex-column">
@@ -49,6 +48,5 @@ const App = withTranslation()(() =>
             </div>
         </BrowserRouter>
     </Provider>
-)
 
 export default App
