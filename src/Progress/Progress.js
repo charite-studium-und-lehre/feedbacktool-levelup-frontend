@@ -10,16 +10,15 @@ const LegendColor = ({ color }) => <span className="d-inline-block ml-2 mr-1" st
 const stateToProps = state => ({ data: selectors.getTree(state) })
 
 const Progress = compose([needsData(selectors.loaded, actions.load), connect(stateToProps)])
-
 (
     ({ data }) =>
     <div className="container-fluid">
         <div className="row mb-1">
             <div className="col">
                 <Legend title="Studienfortschritt">
-                    <LegendColor color={colors[0]} />{'abgeschlossen'}
-                    <LegendColor color={colors[1]} />{'offen'}
-                    <LegendColor color={colors[2]} />{'Voraussetzungen nicht erfüllt'}
+                    <LegendColor color={colors[0]} />abgeschlossen
+                    <LegendColor color={colors[1]} />offen
+                    <LegendColor color={colors[2]} />Voraussetzungen nicht erfüllt
                 </Legend>
             </div>
         </div>

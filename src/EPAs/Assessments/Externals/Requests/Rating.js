@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withTranslation } from 'react-i18next'
 import colors from '../../../../colors'
 import { selectors, actions } from '../../Store'
 
@@ -17,13 +16,13 @@ const Level = ({ selected, onClick, children }) =>
         {children}
     </div>
 const stateToProps = (state, ownProps) => ({ value: selectors.getByEpaId(state)(ownProps.entryId).external })
-const Rating = connect(stateToProps, actions)(({ t, setExternal, value, entryId }) =>
+const Rating = connect(stateToProps, actions)(({ setExternal, value, entryId }) =>
     <div className="text-center">
         {[1,2,3,4,5].map( l => <Level key={l} selected={l===value} onClick={() => setExternal(entryId, l)}>{l}</Level>)}
         <div style={{fontSize: '.8em', cursor: 'pointer'}} className="d-inline-block ml-2 color-navigation" onClick={() => setExternal(entryId, null)}>
-            <u>{t('zurücksetzen')}</u>
+            <u>zurücksetzen</u>
         </div>
     </div>
 )
 
-export default withTranslation()(Rating)
+export default Rating

@@ -1,6 +1,5 @@
 import React from 'react'
 import _ from 'lodash/fp'
-import { withTranslation } from 'react-i18next'
 import SimpleBar from '../../Charting/SimpleBar'
 import makeExtendable from '../../Core/makeExtendable'
 import SlideDown from 'react-slidedown'
@@ -45,4 +44,4 @@ const Station = props =>
         </div>
     </div>
 
-export default _.compose([ withTranslation(), makeExtendable() ])(Station)
+export default _.compose([makeExtendable() ])(Station)
