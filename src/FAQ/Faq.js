@@ -1,7 +1,7 @@
 import React from 'react'
 import faqData from './FaqData'
 const Faq = () => (
-    <div className='row mt-4'>
+    <div className='row my-4'>
         <div className='col-xl-9 col-12' >
             <ul className="list-group">
                 {faqData.map((e,i) =>
