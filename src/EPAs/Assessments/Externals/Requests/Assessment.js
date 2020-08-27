@@ -12,7 +12,7 @@ import Info from './Info'
 import Rating from './Rating'
 
 const load = ownProps => _.over([ requestActions.loadWithToken(ownProps.match.params.token), epasActions.load() ])
-const loaded = (state, ownProps) => selectors.itemLoaded(state, ownProps.match.params.token) && epasSelectors.loaded(state) || selectors.getStatus(state).failed
+const loaded = (state, ownProps) => selectors.itemLoaded(state, ownProps.match.params.token) && (epasSelectors.loaded(state) || selectors.getStatus(state).failed)
 
 const Item = asItem(null, null, Rating)
 const Tabs = asEpasTabs(Item)

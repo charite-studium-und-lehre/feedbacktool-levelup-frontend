@@ -31,10 +31,10 @@ const App =() =>
                 <Breadcrumbs />
                 <ScrollToTop />
                 <div className="flex-fill">
-                    {Routes.map(route => (route.private ?
-                        <PrivateRoute key={route.path} path={route.path} component={route.component}
+                    {Routes.map((route, i) => (route.private ?
+                        <PrivateRoute key={i} path={route.path} component={route.component}
                             exact={route.exact} /> :
-                        <Route key={route.path} path={route.path} component={route.component}
+                        <Route key={i} path={route.path} component={route.component}
                             exact={route.exact} />
                     ))}
                     <Route exact path="/" render={() => (

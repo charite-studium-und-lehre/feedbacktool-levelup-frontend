@@ -42,7 +42,7 @@ export default _.compose([connect(stateToProps), makeExtendable()])(function Nav
                                 <NavLink className="nav-link" id={route.menuName} to={route.path}>{route.menuName}</NavLink>
                             </li>
                             : route.TellMe ?
-                                <div className='d-lg-none' style={{color: Colors.blackOpacity05}}>
+                                <div className='d-lg-none' key={i} style={{color: Colors.blackOpacity05}}>
                                     <a target="blank" href='https://msm-tellme.charite.de/lernen'>
                                         <span className='mr-2'>Trainieren mit</span>
                                         <img className='mb-2' src={tellMeLogo} alt="tellme-logo" style={{ height: '1.5rem', width: '4rem' }}></img>
