@@ -16,7 +16,7 @@ const background = (image) => ({
 })
 const Button = props => (
     <div className={`${props.col} my-3 my-md-5`} >
-        <a className='btn btn-info form-control mt-2' href={props.href} style={{ MaxHeight: '5rem', fontSize: '4.5vmin ' }}>{props.title}</a>
+        <a className='btn btn-info form-control mt-2' target="blank" href={props.href} style={{ MaxHeight: '5rem', fontSize: '4.5vmin ' }}>{props.title}</a>
     </div>
 )
 const stateToProps = state => ({
@@ -44,7 +44,7 @@ const Login = _.compose([
                 </div>
                 <div className='row mt-4 mb-2 '>
                     <Button col='col-6 col-md-3' title='Demo' href='https://levelup.charite.de/app-demo' />
-                    <Button col='col-6 col-md-3' title='Video' href='' />
+                    <Button col='col-6 col-md-3' title='Video' href='https://levelup.charite.de/videos/Klickvideo.mp4' />
                     <Button col='col-6 col-md-3' title='Tutorial' href='https://levelup.charite.de/app/tutorial/src/index.html' />
                     <Button col='col-6 col-md-3' title='Hilfe' href='mailto:levelup@charite.de' />
                 </div>
