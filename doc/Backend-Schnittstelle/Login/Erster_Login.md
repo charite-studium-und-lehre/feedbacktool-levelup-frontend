@@ -20,14 +20,14 @@ Schnittstelle:
 
 
 #### Erfolg: 
-HTTP-Code 200
+HTTP-Code *200*
 
 -> Backend: dem Benutzer wird ein Login-hash hinzugefügt, damit der Benutzer diese Seite nur einmal ausfüllen muss.
 
 Der Nutzer kann nun als vollständig eingeloggt betrachtet und auf das Dashboard weitergeleitet werden.
 
 #### Fail: 
-HTTP-Code: 400 (Falsche Parameter, z.B. matrikelnummer vergessen)
+*HTTP-Code: 400:* (Falsche Parameter, z.B. matrikelnummer vergessen)
 
-HTTP-Code: 404: Parameter sind richtig, aber es wurde kein Studi gefunden, auf den Name/Matrikel-Hash passt.
+*HTTP-Code: 404:* Parameter sind richtig, aber es wurde kein Studi gefunden, auf den Name/Matrikel-Hash passt.
 

@@ -1,10 +1,10 @@
 ## Logout 
 
-## Logout aus LevelUp UND Charité-SSO 
+### 1. Logout aus LevelUp UND Charité-SSO 
 
 Nutzer wird im Frontend weitergeleitet auf
 
-**/backend/logout**
+`/backend/logout`
 
 (Kein Api-Aufruf)
 

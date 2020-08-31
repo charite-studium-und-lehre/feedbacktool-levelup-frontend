@@ -1,7 +1,7 @@
 ## alle 
 
 #### GET-Aufruf: 
-[[/backend/api/pruefungen]]
+`/backend/api/pruefungen`
 
 success: HTTP-Code 200
 
@@ -12,20 +12,16 @@ GET-Aufruf ohne Parameter:
 {
 	"pruefungen": [
 		{
-			"name": "<Bezeichnung>",
-			"typ": "<typ>",
-
-							"format": "<mc|station|ptm>",
-
-			"studiPruefungsId": "<ID">,
-			"periodeCode": <siehe periodeCode>,
-
-							"periodeText": <z.B. 'WiSe2018 Haupttermin'>,
-							"gesamtErgebnis": <siehe PTM-Ergebnis|MC-Ergebnis|Stations-Ergebnis>
-							"ergebnisse"     : <einzelergebnisse, siehe "Details einer Prüfung" >,
-		},
-	]
-
+            "name": "<Bezeichnung>",
+            "typ": "<typ>",
+            "format": "<mc|station|ptm>",
+            "studiPruefungsId": "<ID">,
+            "periodeCode": <siehe periodeCode>,
+            "periodeText": <z.B. 'WiSe2018 Haupttermin'>,
+            "gesamtErgebnis": <siehe PTM-Ergebnis|MC-Ergebnis|Stations-Ergebnis>
+            "ergebnisse": <einzelergebnisse, siehe "Details einer Prüfung" >,
+        },
+    ]
 }
 ```
 
