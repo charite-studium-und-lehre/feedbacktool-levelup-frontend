@@ -6,7 +6,9 @@ const FaqData = [
     },
     {
         question: 'Wie nutze ich LevelUp?',
-        answer: <Fragment><a className="color-navigation font-weight-bold" href="https://levelup.charite.de/app/tutorial/src/index.html">Hier</a> geht es zum Tutorial für das Tool, und <a className="color-navigation font-weight-bold" href="">Hier</a> geht es zu einem kurzen Clickvideo, in dem gezeigt wird, wie man auf der Seite navigiert.</Fragment> 
+        AnswerWithLinks: ['Hier', ' geht es zum Tutorial für das Tool, und ', 'Hier', ' geht es zu einem kurzen Clickvideo, in dem gezeigt wird, wie man auf der Seite navigiert.'],
+        tutorialLink: 'https://levelup.charite.de/app/tutorial/src/index.html',
+        clickvideoLink: 'https://levelup.charite.de/videos/Klickvideo.mp4'
     },
     {
         question: 'Welche Daten brauche ich, um mich zu registrieren?',
@@ -19,7 +21,8 @@ const FaqData = [
     {
         question: 'Kann ich LevelUp ansehen, wenn ich nicht studiere?',
         answer: 'Leider ist die Nutzung von LevelUp nur für Studierende im MSM 2.0 möglich. Es gibt jedoch eine Demo-Version für nicht-Studierende (bzw. auch für Studierende, die noch am Beginn ihres Studiums sind und die spätere Darstellung der Prüfungsergebnisse ansehen möchten). Einfach auf der Login-Seite auf die Demo-Version gehen, oder diesen Link folgen:',
-        link: <a className="color-navigation font-weight-bold" target="blank" href="https://levelup.charite.de/app-demo">https://levelup.charite.de/app-demo</a>
+        linkHref: 'https://levelup.charite.de/app-demo',
+        linkTitle: 'https://levelup.charite.de/app-demo'
     },
     {
         question: 'Kann ich LevelUp vom Handy aus nutzen?',
@@ -32,17 +35,20 @@ const FaqData = [
     {
         question: 'Eines meiner Prüfungsergebnisse stimmt nicht mit den Daten im HIS überein. Woran liegt das?',
         answer: 'Möglicherweise handelt es sich um einen Importfehler. Bitte kontaktiere in diesem Fall den Support unter',
-        email: <a className="color-navigation font-weight-bold" href="mailto:levelup@charite.de">levelup@charite.de</a>
+        linkHref: 'mailto:levelup@charite.de',
+        linkTitle: 'levelup@charite.de'
     },
     {
         question: 'Was ist TELLme?',
         answer: 'TELLme ist ein Lerntool für den MSM 2.0, mit dem du echte MC-Fragen üben kannst. Wir haben TELLme auf LevelUp verlinkt, damit du leicht zwischen deinen Prüfungsergebnissen und den Übungs-MC-Fragen navigieren kannst. Alles weitere zum TELLme-Tool findest du dort auf der Plattform. Bei Problemen mit dem Tool bitte eine Email an ',
-        email: <a className="color-navigation font-weight-bold" href="mailto:tellme@charite.de">tellme@charite.de</a>
+        linkHref: 'mailto:tellme@charite.de">tellme@charite.de',
+        linkTitle: 'tellme@charite.de'
     },
     {
         question: 'Ich kann mich mit meinen Charité-Logindaten im LevelUp nicht anmelden/registrieren.',
         answer: 'Bist Du aktuell im MSM 2.0 immatrikuliert? Wenn ja,  kontaktiere den Support unter',
-        email: <a className="color-navigation font-weight-bold" href="mailto:levelup@charite.de">levelup@charite.de</a>
+        linkHref: 'mailto:levelup@charite.de',
+        linkTitle: 'levelup@charite.de'
     }
 
 ]
