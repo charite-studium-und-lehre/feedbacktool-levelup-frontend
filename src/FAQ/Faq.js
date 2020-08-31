@@ -25,7 +25,7 @@ const Faq = () => (
     <div className='row my-4'>
         <div className='col-xl-9 col-12' >
             <ul className="list-group">
-                {faqData.map(data =>
+                {faqData.map((data, index) =>
                     <li className="list-group-item" key={data.question}>
                         <div className='font-weight-bold'><span >F : </span>{data.question}</div>
                         <div className='mt-1'>
