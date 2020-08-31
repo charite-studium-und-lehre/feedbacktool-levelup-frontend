@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+
 const FaqData = [
     {
         question: 'Was ist LevelUp und wofür brauche ich das Tool?',
