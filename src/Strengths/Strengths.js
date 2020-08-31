@@ -6,13 +6,12 @@ import Legends from '../Core/LegendTexts'
 
 const Strengths = ({match}) => {
     const LegendText = Legends.Strengths
+    const legende = <Legend title={LegendText.Explanation.title}>{LegendText.Explanation.text.map((text, index) => <p style={{fontWeight: index === 1 && 'bold'}} key={text}>{text}</p>)}</Legend>
     return (
         <div className="container-fluid">
             <div className="card mt-2">
                 <div className="card-body">
-                    <Legend title={LegendText.Explanation.title}>
-                        {LegendText.Explanation.text}
-                    </Legend>
+                  {legende}
                 </div>
             </div>
             <div className="mt-2">
