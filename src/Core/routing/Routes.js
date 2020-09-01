@@ -1,4 +1,3 @@
-import React from 'react'
 import Dashboard from '../../Dashboard/Dashboard'
 import Exams from '../../Exams/Exams'
 import MC from '../../Exams/MC/MC'
