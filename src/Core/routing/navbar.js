@@ -5,7 +5,6 @@ import { Link, NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../makeExtendable'
-import { withTranslation } from 'react-i18next'
 import LevelUpLogo from '../../images/LevelupLogo.png'
 import tellMeLogo from '../../images/tellMeLogo.PNG'
 import Routes from "./Routes"
@@ -25,7 +24,7 @@ const TellMeLink = (props) =>
     </div>
 
 const stateToProps = state => ({ loggedIn: user.isLoggedIn(state), userData: user.getData(state) })
-export default _.compose([connect(stateToProps), withTranslation(), makeExtendable()])(function Navbar({ t, loggedIn, userData, ...props }) {
+export default _.compose([connect(stateToProps), makeExtendable()])(function Navbar({ loggedIn, userData, ...props }) {
     const { pathname } = useLocation()
     const navbarLogin = !pathname.includes('login')
     return (
@@ -38,13 +37,13 @@ export default _.compose([connect(stateToProps), withTranslation(), makeExtendab
             </button>
             <div className={`collapse navbar-collapse ${props.extended && 'show'}`} id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto" onClick={props.toggleExtended}>
-                    {Routes.map((route, i) =>
+                    {Routes.map((route, index) =>
                         route.menuName && (!route.private || loggedIn) ?
-                            <li className="nav-item" key={i}>
-                                <NavLink className="nav-link" id={route.menuName} to={route.path}>{t(route.menuName)}</NavLink>
+                            <li className="nav-item" key={index}>
+                                <NavLink className="nav-link" id={route.menuName} to={route.path}>{route.menuName}</NavLink>
                             </li>
                             : route.TellMe ?
-                                <div className='d-lg-none' style={{color: Colors.blackOpacity05}} key={i}>
+                                <div className='d-lg-none' style={{color: Colors.blackOpacity05}} key={index}>
                                     <a target="blank" href='https://msm-tellme.charite.de/lernen'>
                                         <span className='mr-2'>Trainieren mit</span>
                                         <img className='mb-2' src={tellMeLogo} alt="tellme-logo" style={{ height: '1.5rem', width: '4rem' }}></img>
@@ -64,8 +63,8 @@ export default _.compose([connect(stateToProps), withTranslation(), makeExtendab
                { navbarLogin ? <ul className="navbar-nav">
                     <li className="nav-item">
                         {loggedIn ?
-                            <a className="nav-link pull-right" id='logout' href="https://levelup.charite.de/backend/logout">{t(`logout`)}</a> :
-                            <NavLink className="nav-link pull-right" to="/login">{t(`login`)}</NavLink>
+                            <a className="nav-link pull-right" id='logout' href="https://levelup.charite.de/backend/logout">logout</a> :
+                            <NavLink className="nav-link pull-right" to="/login">login</NavLink>
                         }
                     </li>
                     
