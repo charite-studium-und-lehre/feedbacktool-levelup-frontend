@@ -47,8 +47,6 @@ function resize() {
 
   let scale = (width - (margin + padding) * 2.077) / imgwidth;
 
-  // dashboard.style.width = scale * imgwidth;
-
   let dashrect  = dashboard.getBoundingClientRect();
 
   for (let i = 0; i < 5; i++) {
