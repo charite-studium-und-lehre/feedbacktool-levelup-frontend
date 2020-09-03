@@ -38,8 +38,7 @@ function resize() {
   window.onresize = resize;
 
   let imgwidth  = 1879
-    // , width  = window.innerWidth
-    , width  = screen.width
+    , width  = window.innerWidth
     , height = window.innerHeight
     , margin = parseInt(window.getComputedStyle(document.getElementById('66wrap')).marginLeft, 10)
     , padding = parseInt(window.getComputedStyle(document.getElementById('dashwrap')).paddingLeft, 10)
