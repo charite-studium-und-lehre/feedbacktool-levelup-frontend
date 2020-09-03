@@ -38,16 +38,14 @@ function resize() {
   window.onresize = resize;
 
   let imgwidth  = 1879
-    , imgheight = 931
     , width  = window.innerWidth
     , height = window.innerHeight
     , margin = parseInt(window.getComputedStyle(document.getElementById('66wrap')).marginLeft, 10)
+    , padding = parseInt(window.getComputedStyle(document.getElementById('dashwrap')).paddingLeft, 10)
     , dashwrap  = document.getElementById('dashwrap')
     , dashboard = document.getElementById('dashboard');
 
-  let scale = (width - (margin + 10) * 2) / imgwidth;
-
-  dashboard.style.width = scale * imgwidth;
+  let scale = (width - (margin + padding) * 2.077) / imgwidth;
 
   let dashrect  = dashboard.getBoundingClientRect();
 
