@@ -14,9 +14,3 @@ body {
 #root {
   height: 100%;
 }
-
-@font-face {
-  font-family: 'SathuFont';
-  font-style: normal;
-  src: url('./font/Sathu.ttf');
-}

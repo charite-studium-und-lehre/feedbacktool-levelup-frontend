@@ -116,16 +116,20 @@ input.no-outline {
       }
   }
   /* =======LoginSite========= */
-  
-  .container-fluid .levelup  {
-    font-size: 10rem;
-    font-family:'SathuFont';
-  
-  }
-
+  .container-fluid .levelup {
+    height:21rem;
+    width:100%;
+    transform:translateY(-2.5rem)
+ }
+ .container-fluid .buttonsContainer {
+  transform:translateY(3rem)
+}
   @media screen and (max-width : 700px) {
     .container-fluid .levelup {
-      font-size: 5.6rem;
-      transform: translateY(2rem);
+     height: 10rem;
+     transform:translateY(0)
+    }
+    .container-fluid .buttonsContainer {
+      transform:translateY(7rem)
     }
   }
