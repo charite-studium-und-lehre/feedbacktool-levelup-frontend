@@ -31,7 +31,7 @@ const Faq = () => (
                         <div className='mt-1'>
                             <span className='font-weight-bold'>A : </span>
                             <span>{data.answer || <AnswerWithLinks data={data.AnswerWithLinks} tutorialLink={data.tutorialLink} clickvideoLink={data.clickvideoLink} />} </span>
-                            <span><Link href={data.linkHref}>{data.linkTitle}</Link></span>
+                            <span><Link href={(data.email && `mailTo:${data.email}`)|| data.link}>{data.email || data.link}</Link></span>
                         </div>
                     </li>
                 )
