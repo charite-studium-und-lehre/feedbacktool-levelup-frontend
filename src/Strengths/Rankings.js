@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash/fp'
 import Legend from '../Charting/Legend'
@@ -31,12 +31,16 @@ const McRanking = _.compose(needsData(mcSelectors.loaded, mcActions.load), conne
 )
 
 const Rankings = () => {
+    const Legende = (props) =>
+        <Fragment>{props.text.map((text, index) =>
+            <p style={{ fontWeight: index === 1 && 'bold' }} key={text}>{text}</p>)}
+        </Fragment>
     return <div className="row">
         <div className="col-md-6 mb-2">
             <div className="card">
                 <div className="card-body">
                     <Legend title={Legends.Strengths.MC.title}>
-                        {Legends.Strengths.MC.text.map((text, index) => <p style={{ fontWeight: index === 1 && 'bold' }} key={text}>{text}</p>)}
+                        <Legende text={Legends.Strengths.MC.text} />
                     </Legend>
                     <McRanking />
                 </div>
@@ -46,7 +50,7 @@ const Rankings = () => {
             <div className="card">
                 <div className="card-body">
                     <Legend title={Legends.Strengths.PTM.title}>
-                        {Legends.Strengths.PTM.text.map((text, index) => <p style={{ fontWeight: index === 1 && 'bold' }} key={text}>{text}</p>)}
+                        <Legende text={Legends.Strengths.PTM.text} />
                         <div className="position-relative">
                             Der <InlineKohortenMittelDot /> kennzeichnet den Kohortenmittelwert
                    </div>

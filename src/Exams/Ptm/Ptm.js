@@ -17,7 +17,11 @@ export const colorPartOfTotal = colors.ptm.darker4
 
 const Ptm = ({ test }) => {
     const LegendText = LegendTexts.Exams.Ptm.Subjects
-    const legende = <Legend title={LegendText.title}>{LegendText.text.map((text, index) => <p key={text}>{text} {index === 1 && <GraphButton />}</p>)}</Legend>
+    const legende = <Legend
+        title={LegendText.title}>
+        {LegendText.text.map((text, index) =>
+            <p key={text}>{text} {index === 1 && <GraphButton />}</p>)}
+    </Legend>
 
     return test ?
         <div className="container-fluid mb-2">
