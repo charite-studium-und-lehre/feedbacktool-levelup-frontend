@@ -27,6 +27,10 @@ export const OtherToolsData = [
     {
         title: 'CIPOM',
         href: 'https://cipom.charite.de/'
+    },
+    {
+        title: 'Lernzentrum',
+        href: 'https://lernzentrum.charite.de/'
     }
 ];
 
