@@ -1,9 +1,8 @@
 import React from 'react'
 import SimpleBar from '../../Charting/SimpleBar'
-import { withTranslation } from 'react-i18next'
 import * as defs from '../../Exams/MC/MC'
 
-const McInfo = withTranslation() ( ({ t, ...props }) =>
+const McInfo =  (props) =>
     <div className="d-flex h-100 flex-column" >
         <div style={{fontSize: '.9rem'}} id='MC'>{props.kurzName}</div>
         <div className="flex-grow-1 d-flex align-items-center">
@@ -16,5 +15,4 @@ const McInfo = withTranslation() ( ({ t, ...props }) =>
             </SimpleBar>
         </div>
     </div>
-)
 export default McInfo

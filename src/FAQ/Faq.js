@@ -7,7 +7,7 @@ const Faq = () => (
                 {faqData.map((e,i) =>
                     <li className="list-group-item" key={i}>
                         <div className='font-weight-bold'><span >F : </span>{e.question}</div>
-                        <div className='mt-1'><span className='font-weight-bold'>A : </span>{e.answer}</div>
+                        <div className='mt-1'><span className='font-weight-bold'>A : </span><span>{e.answer}</span> <span>{e.email}</span></div>
                         {e.link}
                     </li>
                 )

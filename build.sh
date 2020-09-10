@@ -20,4 +20,10 @@ rm -rf buildFinished
 mv build buildFinished
 
 cat htaccess-dist | sed s/RewriteBase/RewriteBase\ \\\/$DIR/g > buildFinished/.htaccess
-curl -X POST --data-urlencode "payload={\"text\": \"New deployment for $GIT_BRANCH by `whoami`.\nÄnderung: `git log -1 --pretty=%B`\nGo to https://levelup.charite.de/$DIR to access it.\"}" $SLACK_URL
+
+if [[ -v $DEPLOY_MESSAGE ]]; then
+  DEPLOY_MESSAGE="New deployment for $GIT_BRANCH by `whoami`.\nÄnderung: `git log -1 --pretty=%B`\nGo to https://levelup.charite.de/$DIR to access it."
+fi
+DEPLOY_MESSAGE="$DEPLOY_MESSAGE Aufruf unter https://levelup.charite.de/$DIR"
+
+curl -X POST --data-urlencode "payload={\"text\": \"$DEPLOY_MESSAGE\"}" $SLACK_URL

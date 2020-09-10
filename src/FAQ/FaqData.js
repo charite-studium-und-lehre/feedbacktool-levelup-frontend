@@ -1,3 +1,4 @@
+import React from 'react'
 const FaqData = [
 {
     question: 'Welche Daten brauche ich, um mich zu registrieren?',
@@ -14,7 +15,7 @@ const FaqData = [
 {
     question: 'Kann ich LevelUp ansehen, wenn ich nicht studiere?',
     answer: 'Leider ist die Nutzung von LevelUp nur für Studierende im MSM 2.0 möglich. Es gibt jedoch eine Demo-Version für nicht-Studierende (bzw. auch für Studierende, die noch am Beginn ihres Studiums sind und die spätere Darstellung der Prüfungsergebnisse ansehen möchten). Einfach auf der Login-Seite auf die Demo-Version gehen, oder diesen Link folgen:',
-     link: '<a className="color-navigation font-weight-bold"target="blank"href="https://levelup.charite.de/app-demo">https://levelup.charite.de/app-demo</a>'
+     link: <a className="color-navigation font-weight-bold"target="blank"href="https://levelup.charite.de/app-demo">https://levelup.charite.de/app-demo</a>
 },
 {
     question: 'Kann ich LevelUp vom Handy aus nutzen?',
@@ -26,11 +27,13 @@ const FaqData = [
 },
 {
     question: 'Eines meiner Prüfungsergebnisse stimmt nicht mit den Daten im HIS überein. Woran liegt das?',
-    answer: 'Möglicherweise handelt es sich um einen Importfehler. Bitte kontaktiere in diesem Fall den Support unter <a className="color-navigation font-weight-bold"href="mailto:levelup@charite.de">levelup@charite.de</a>'
+    answer: 'Möglicherweise handelt es sich um einen Importfehler. Bitte kontaktiere in diesem Fall den Support unter',
+    email :<a className="color-navigation font-weight-bold"href="mailto:levelup@charite.de">levelup@charite.de</a>
 },
 {
     question: 'Ich kann mich mit meinen Charité-Logindaten im LevelUp nicht anmelden/registrieren.',
-    answer: 'Bist Du aktuell im MSM 2.0 immatrikuliert? Wenn ja,  kontaktiere den Support unter <a className="color-navigation font-weight-bold"href="mailto:levelup@charite.de">levelup@charite.de</a>'
+    answer:'Bist Du aktuell im MSM 2.0 immatrikuliert? Wenn ja,  kontaktiere den Support unter',
+    email: <a className="color-navigation font-weight-bold"href="mailto:levelup@charite.de">levelup@charite.de</a>
 }
 
 ]

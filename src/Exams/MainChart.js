@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { withTranslation } from 'react-i18next'
 import _ from 'lodash/fp'
 import needsData from '../Core/needsData'
 import { OrdinalChart } from '../Charting/Chart'
@@ -9,7 +8,7 @@ import PointGraph from '../Charting/PointGraph'
 import { selectors, actions } from './Store'
 import { XAxis } from '../Charting/Axis'
 
-const MainChart = ({ t, graphs, history, fromQuery = { id: -1 }, selected, setSelected, semesters }) => {
+const MainChart = ({ graphs, history, fromQuery = { id: -1 }, selected, setSelected, semesters }) => {
     useEffect( () => {
         if(selected === fromQuery.id) return
         setSelected(fromQuery)
@@ -26,7 +25,7 @@ const MainChart = ({ t, graphs, history, fromQuery = { id: -1 }, selected, setSe
                     color={g.color} />
             )}
         </OrdinalChart> :
-        <div className="text-center">{t('Hier werden zukünftig deine Prüfungen angezeigt.')}</div>
+        <div className="text-center">Hier werden zukünftig deine Prüfungen angezeigt.</div>
         }
     </div>
 }
@@ -38,4 +37,4 @@ const stateToProps = (state, ownProps) => ({
     semesters: selectors.getSemesters(state),
 })
 
-export default _.compose(withRouter, needsData(selectors.loaded, actions.load), connect(stateToProps, actions), withTranslation())(MainChart)
+export default _.compose(withRouter, needsData(selectors.loaded, actions.load), connect(stateToProps, actions))(MainChart)

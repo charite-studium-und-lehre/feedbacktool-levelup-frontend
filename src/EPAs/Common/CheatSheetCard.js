@@ -1,5 +1,4 @@
 import React from 'react'
-import { withTranslation } from 'react-i18next'
 import makeExtendable from '../../Core/makeExtendable'
 import Legend from "../../Charting/Legend"
 import Level from '../Assessments/Level'
@@ -24,4 +23,4 @@ const CheatSheetCard = () => {
         </div>
     )
 }
-export default withTranslation()(makeExtendable()(CheatSheetCard))
+export default makeExtendable()(CheatSheetCard)
