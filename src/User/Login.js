@@ -14,7 +14,7 @@ const background = (image) => ({
     backgroundSize: 'cover'
 })
 const Button = props => (
-    <div className={`${props.col} my-3 my-md-5`} >
+    <div className={`${props.col} my-2 my-md-5`} >
         <a className='btn btn-info form-control mt-2' target={props.target} href={props.href} style={{ MaxHeight: '5rem', fontSize: '4.5vmin ' }}>{props.title}</a>
     </div>
 )
