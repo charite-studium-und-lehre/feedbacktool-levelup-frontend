@@ -13,8 +13,8 @@ const background = {
 }
 
 const stateToProps = state => ({
-    loggedIn: true,
-    hasStammdata: true,
+    loggedIn: user.isLoggedIn(state),
+    hasStammdata: user.getData(state).stammdatenVorhanden,
 })
 
 const Login = _.compose([
@@ -38,7 +38,7 @@ const Login = _.compose([
                     </div>
                 </Link>
                 <div className="container-form my-3 px-4">
-                    <a href="http://192.168.99.100:8080/login">
+                    <a href="https://levelup.charite.de/backend/login">
                         <button type="button" className="btn btn-secondary w-100 font-weight-bold">{t(`Login`)}</button>
                     </a>
                 </div>

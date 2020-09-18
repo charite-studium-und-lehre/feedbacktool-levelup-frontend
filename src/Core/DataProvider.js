@@ -1,8 +1,8 @@
-const host = 'localhost:3000'
+const host = 'https://levelup.charite.de'
 const platform = process.env.PUBLIC_URL === '/app' || process.env.PUBLIC_URL === '/app-demo'
-    ? ''
-    : ''
-const backendUrl = `${host}/`
+                 ? 'backend'
+                 : 'backend-develop'
+const backendUrl = `${host}/${platform}/api`
 
 export const get = url =>
     fetch(`${backendUrl}/${url}`, {
