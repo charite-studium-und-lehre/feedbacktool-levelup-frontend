@@ -1,5 +1,5 @@
 import React from 'react'
-import _ from 'lodash/fp'
+import { compose } from 'lodash/fp'
 import { connect } from 'react-redux'
 import Checklist, { colors } from './Checklist'
 import { selectors, actions } from './Store'
@@ -8,7 +8,10 @@ import Legend from '../Charting/Legend'
 
 const LegendColor = ({ color }) => <span className="d-inline-block ml-2 mr-1" style={{ backgroundColor: color, width: '1rem', height: '.8rem' }}></span>
 const stateToProps = state => ({ data: selectors.getTree(state) })
-const Progress = _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps)])(({ data }) =>
+
+const Progress = compose([needsData(selectors.loaded, actions.load), connect(stateToProps)])
+(
+    ({ data }) =>
     <div className="container-fluid">
         <div className="row mb-1">
             <div className="col">
