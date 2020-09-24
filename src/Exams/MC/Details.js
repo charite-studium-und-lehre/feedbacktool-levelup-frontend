@@ -5,7 +5,7 @@ import {InlineKohortenMittelDot} from '../../Charting/KohortenMittelDot'
 import Legend                    from '../../Charting/Legend'
 import Legends                   from '../../Core/LegendTexts'
 import needsData                 from '../../Core/needsData'
-import {chartingFunction}        from './DetailsUtils'
+import {chartingFunction}        from './DetailsChartingUtils'
 import {actions, selectors}      from './Store'
 
 const stateToProps = (state, ownProps) => ({...selectors.getById(state, ownProps.id)})

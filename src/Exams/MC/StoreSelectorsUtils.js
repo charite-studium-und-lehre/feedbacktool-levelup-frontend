@@ -1,17 +1,17 @@
 import {scaleLinear} from 'd3-scale'
 import _             from 'lodash/fp'
 
-export const getScale = kp =>
+export const getScale = kohortenPunkzahlen =>
     scaleLinear()
-        .domain([0, kp.length - 1])
+        .domain([0, kohortenPunkzahlen.length - 1])
         .range([100, 0])
 
-export const percent = _.flow([
+export const calculateComparativePercentage = _.flow([
     _.over([
         getScale,
-        (kp, ergebnis) => [
-            kp.filter(d => d < ergebnis).length,
-            kp.filter(d => d <= ergebnis).length
+        (kohortenPunkzahlen, ergebnisPunkzahl) => [
+            kohortenPunkzahlen.filter(d => d < ergebnisPunkzahl).length,
+            kohortenPunkzahlen.filter(d => d <= ergebnisPunkzahl).length
         ]
     ]),
     ([scale, p]) => _.map(scale, p),
@@ -19,9 +19,9 @@ export const percent = _.flow([
     _.round
 ])
 
-export const addPercent = ergebnis => ({
+export const getPercent = ergebnis => ({
     ...ergebnis,
-    percent: percent(ergebnis.kohortenPunktzahlen, ergebnis.ergebnisPunktzahl)
+    percent: calculateComparativePercentage(ergebnis.kohortenPunktzahlen, ergebnis.ergebnisPunktzahl)
 })
 
 export const histogram = _.flow([
@@ -32,7 +32,7 @@ export const histogram = _.flow([
     }))
 ])
 
-export const addHistogram = ergebnis => ({
+export const getHistogram = ergebnis => ({
     ...ergebnis,
     histogram: _.map(d => ({
         ...d,
@@ -40,7 +40,7 @@ export const addHistogram = ergebnis => ({
     }))(histogram(ergebnis.kohortenPunktzahlen))
 })
 
-export const addGraphData = ergebnis => ({
+export const getGraphData = ergebnis => ({
     ...ergebnis,
     graphData: ergebnis.kohortenPunktzahlen
                        .sort(_.subtract)
@@ -48,7 +48,7 @@ export const addGraphData = ergebnis => ({
 })
 
 export const findById = id => exams => exams[id]
-export const toTimeline = exam => ({
+export const getTimeline = exam => ({
     ...exam,
     link: `mcs/${exam.id}`
 })

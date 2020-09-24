@@ -1,10 +1,10 @@
 import _                                                              from 'lodash/fp'
-import {minQuestions}                                                 from '../../Utils/Constants'
-import {addGraphData, addHistogram, addPercent, findById, toTimeline} from './StoreSelectorsUtils'
+import {minQuestions}                                                  from '../../Utils/Constants'
+import {getGraphData, getHistogram, getPercent, findById, getTimeline as getTimelineUtils} from './StoreSelectorsUtils'
 
 export function createStoreSelectors(baseStore) {
 
-    const getTimeline = _.flow([baseStore.getItems, _.map(toTimeline)])
+    const getTimeline = _.flow([baseStore.getItems, _.map(getTimelineUtils)])
 
     const getById = (state, id) =>
         _.flow([baseStore.getItems, findById(id)])(state)
@@ -12,9 +12,9 @@ export function createStoreSelectors(baseStore) {
     const getTotalsData = _.flow([
         getById,
         e => e.gesamtErgebnis,
-        addPercent,
-        addHistogram,
-        addGraphData
+        getPercent,
+        getHistogram,
+        getGraphData
     ])
 
     const getSubjectsTotals = _.flow([

@@ -9,7 +9,7 @@ export function chartingFunction({mode, faecher, module}) {
                .sort(naturalCompareCodes)
                .map((module, index) => <ModulBarWithHeader module={module} key={index}/>)
            : faecher
-               .map(fach => <FachBarWithHeader fach={fach} faecher={faecher}/>)
+               .map((fach, index) => <FachBarWithHeader fach={fach} faecher={faecher} key={index}/>)
 }
 
 function naturalCompareCodes(a, b) {
@@ -29,35 +29,30 @@ function naturalCompareCodes(a, b) {
 }
 
 
-const ModulBarWithHeader = ({key, module}) => {
+const ModulBarWithHeader = ({module}) => {
     const {titel, ergebnisPunktzahl, durchschnittsPunktzahl} = module
     const colorTotal = COLORS.mc.lighter1
     const colorPartial = COLORS.mc.darker0
     return (
-        <BarWithHeader
-            key={key}
-            name={titel}
-            result={ergebnisPunktzahl}
-            total={1}
-            mean={durchschnittsPunktzahl}
-            colorTotal={colorTotal}
-            colorPartOfTotal={colorPartial}>
-
+        <BarWithHeader name={titel}
+                       result={ergebnisPunktzahl}
+                       total={1}
+                       mean={durchschnittsPunktzahl}
+                       colorTotal={colorTotal}
+                       colorPartOfTotal={colorPartial}>
             <AnimatedInteger value={Math.round(ergebnisPunktzahl * 100)}/>
             %
-
         </BarWithHeader>
     )
 }
 
 const FachBarWithHeader = ({fach, faecher}) => {
-    const {code, titel, ergebnisPunktzahl, maximalPunktzahl, durchschnittsPunktzahl} = fach
+    const {titel, ergebnisPunktzahl, maximalPunktzahl, durchschnittsPunktzahl} = fach
     const colorTotal = COLORS.mc.lighter1
     const colorPartial = COLORS.mc.darker0
     const width = maximalPunktzahl * 100 / Math.max.apply(Math, faecher.map(fach => fach.maximalPunktzahl))
     return (
-        <BarWithHeader key={code}
-                       name={titel}
+        <BarWithHeader name={titel}
                        result={ergebnisPunktzahl}
                        total={maximalPunktzahl}
                        width={`${width}%`}
