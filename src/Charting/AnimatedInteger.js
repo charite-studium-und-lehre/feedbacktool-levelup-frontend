@@ -7,7 +7,7 @@ import { animationTime as at } from './Utils'
 
 const AnimatedInteger = ({ ease = easeQuadInOut, initial, animationTime = at, ...props }) => {
     const [value, setValue] = useState(initial === undefined ? props.value : initial)
-
+    
     useEffect(() => {
         const interpolator = interpolateNumber(value, props.value)
         const id = _.uniqueId()

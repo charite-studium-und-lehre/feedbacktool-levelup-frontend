@@ -1,5 +1,4 @@
 import React from 'react'
-import { withTranslation } from 'react-i18next'
 import needsData from '../Core/needsData'
 import { selectors, actions } from '../EPAs/Store'
 import { withHeaderScore } from '../EPAs/Assessments/HeaderScore'
@@ -12,11 +11,11 @@ const EPAs = [needsData(loaded, load), withHeaderScore].reduce( (f,g) => g(f), (
         {levels.map( (l, i) => <div key={i} className="flex-grow-1 m-2 text-center">{l}</div>)}
     </div>)
 
-const Wrapper = withTranslation()(({ t }) => <DashboardCard 
+const Wrapper = () => <DashboardCard 
     header={Math.round(Math.random() * 100) + ' %'} 
-    title={t('Ärztliche Tätigkeiten')}
+    title='Ärztliche Tätigkeiten'
     id='EpasCard' >
             <EPAs width='1.3rem' height='1.3rem' borderRadius='50%' />
-</DashboardCard>)
+</DashboardCard>
 
 export default Wrapper

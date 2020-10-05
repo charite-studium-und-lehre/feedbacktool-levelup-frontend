@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { withTranslation } from 'react-i18next'
 import _ from 'lodash/fp'
 import needsData from '../../Core/needsData'
 import Filter from '../../Utils/Filter'
@@ -11,7 +10,7 @@ import { minQuestions } from '../../Utils/Constants'
 import COLORS from "../../colors"
 
 const stateToProps = (state, { id }) => _.flow(selectors.getById, selectors.getSubjects, _.sortBy( s => -s.ergebnisRichtigPunktzahl / s.maximalPunktzahl ), r => ({ faecher: r}))(state, id)
-const Subjects = _.compose(needsData(selectors.loaded, actions.load), withTranslation(), connect(stateToProps))( ({ t, faecher, id }) => {
+const Subjects = _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps))( ({ faecher, id }) => {
     const categories = _.keys(_.groupBy( s => s.gruppe, faecher ))
     const filterColors = {
         background: COLORS.background.grey5,
@@ -37,7 +36,7 @@ const Subjects = _.compose(needsData(selectors.loaded, actions.load), withTransl
             <Filter className="w-100" filters={ filters } onUpdate={ setFilters } colors={filterColors}/>
         </div>
         <div className="align-middle my-2 pr-1">
-            <input type="text" placeholder={`${t('Fach suchen')}...`} id='Fach suchen' onKeyUp={e => setSearch(e.target.value)} className={`p-1 ${css.input}`}></input>
+            <input type="text" placeholder='Fach suchen...' id='Fach suchen' onKeyUp={e => setSearch(e.target.value)} className={`p-1 ${css.input}`}></input>
         </div>
         <div className={css.subjects}>
         {filtered.map((s, rank) =>

@@ -2,11 +2,10 @@ import React from 'react'
 import _ from 'lodash'
 import makeExtendable from '../Core/makeExtendable'
 import SimpleBar from '../Charting/SimpleBar'
-import { withTranslation } from 'react-i18next'
 import COLORS from "../colors";
 import SlideDown from 'react-slidedown';
 
-const Ranking = ({t, ...props}) =>
+const Ranking = props =>
     props.subjects.length ? 
     <div>
         <div>
@@ -20,7 +19,7 @@ const Ranking = ({t, ...props}) =>
                         value={s.value}
                         total={s.maximalPunktzahl}
                         mean={props.mean && s.mean}>
-                        {s.value} von {s.maximalPunktzahl} {t(`richtig`)}
+                        {s.value} von {s.maximalPunktzahl} richtig
                     </SimpleBar>
                 </div>
             )}
@@ -28,10 +27,10 @@ const Ranking = ({t, ...props}) =>
         </div>
         <div className="text-right">
             <span className="color-navigation" id='Mehr anzeigen' style={{cursor: 'pointer'}} onClick={props.toggleExtended}>
-                {props.extended ? t('weniger anzeigen') : t('mehr anzeigen')}
+                {props.extended ? 'weniger anzeigen' : 'mehr anzeigen'}
             </span>
         </div>
     </div> :
-    <div className="text-center">{t('Noch keine Ergebnisse gefunden.')}</div>
+    <div className="text-center">Noch keine Ergebnisse gefunden.</div>
 
-export default withTranslation()(makeExtendable()(Ranking))
+export default makeExtendable()(Ranking)

@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import _ from 'lodash/fp'
 import needsData from '../../Core/needsData'
 import Totals from './Totals'
-import { withTranslation } from 'react-i18next'
 import Details from './Details'
 import Questions from './Questions'
 import { selectors, actions } from './Store'
@@ -13,7 +12,7 @@ export const color = colors.mc.base
 export const colorTotal = colors.mc.lighter1
 export const colorPartOfTotal = colors.mc.darker0
 
-const MC = ({ test, t }) =>
+const MC = ({test}) =>
     test ? 
     <div className="container-fluid pb-2">
         <div className="row">
@@ -40,7 +39,7 @@ const MC = ({ test, t }) =>
             </div>
         </div>
     </div> :
-    <div className="text-center">{t('Diese Prüfung scheint nicht zu existieren.')}</div>
+    <div className="text-center">Diese Prüfung scheint nicht zu existieren.</div>
 
 const stateToProps = (state, ownProps) => ({ test: selectors.getById( state, ownProps.match.params.test )})
-export default _.compose([needsData(selectors.loaded, actions.load), withTranslation(), connect(stateToProps)])(MC)
+export default _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps)])(MC)
