@@ -13,6 +13,8 @@ import Registration from '../../User/Registration'
 import DataProtection from '../../User/DataProtection'
 import Faq from '../../FAQ/Faq'
 import Login from '../../User/Login'
+import Tutorial from '../../Tutorial/Tutorial'
+import StudienFortSchritt from '../../Tutorial/StudientFortSchritt'
 import Impressum from '../../Core/Impressum'
 import Assessment from '../../EPAs/Assessments/Externals/Requests/Assessment'
 
@@ -59,6 +61,13 @@ const Routes = [
     exact: true,
     private: false,
   },
+  {
+  path: '/tutorial',
+  component: Tutorial,
+  menuName: 'Tutorial',
+  exact: true,
+  private: false,
+},
   {
     path: '/login',
     component: Login,
