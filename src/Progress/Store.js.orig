@@ -1,0 +1,134 @@
+import { combineReducers } from 'redux'
+import BaseStore from '../Core/BaseStore'
+
+export const identifier = 'progress'
+
+const baseStore = BaseStore(identifier)
+
+<<<<<<< HEAD
+function moduleIsVisible(module) { return module.code < 200 || module.code >= 400; }
+
+function getDone(data) {
+
+    let count = 0;
+
+    data.forEach(entry => {if (entry.erfuellt) count++;});
+
+    return count;
+}
+
+=======
+>>>>>>> hotfix/Tutorial_Code_Verzeichnis_2558
+function groupBy(data, key) {
+
+    return data.reduce((storage, item) => {
+
+        var group = item[key] - 1;
+        storage[group] = storage[group] || [];
+        storage[group].push(item);
+        return storage;
+
+    }, []);
+}
+
+<<<<<<< HEAD
+function transform(data) {
+
+    data = data.meilensteine;
+    data = groupBy(data, 'fachsemester');
+
+    let out = [];
+
+    for (let i = 0; i < data.length; i++) {
+
+        let obj = {};
+        let prereq = data[i].find(d => d.code === data[i][0].fachsemester + 300);
+
+        obj.label = data[i][0].fachsemester + '. Fachsemester';
+
+        if (prereq && !prereq.erfuellt) obj.prereq = false;
+        else obj.prereq = true;
+
+        obj.completed = data[i].find(d => d.code === data[i][0].fachsemester + 200).erfuellt;
+        obj.entries = data[i].filter(moduleIsVisible).map(d => ({...d, link: d.format && `/exams/${d.format}s/${d.studiPruefungsId}`}));
+        out.push(obj);
+    }
+
+    return out;
+}
+
+function dashboard(state) {
+
+    let temp = baseStore.getItems(state);
+
+    temp = temp.flatMap(d => d.entries);
+    temp = temp.filter(moduleIsVisible);
+
+    return {total: temp.length, done: getDone(temp)};
+=======
+function getStudienfortschrittDisplayData(studienleistungen) {
+
+    studienleistungen = studienleistungen.meilensteine;
+    studienleistungen = groupBy(studienleistungen, 'fachsemester');
+
+    let studienfortschrittDisplayData = [];
+
+    studienleistungen.forEach(studienleistung => {
+
+        let displayDataVonStudienleistung = {};
+
+        let zulassungsVoraussetzungFuerStudienleistung = studienleistung.find(datensatz => datensatz.code === studienleistung[0].fachsemester + 300);
+
+        displayDataVonStudienleistung.label = studienleistung[0].fachsemester + '. Fachsemester';
+
+        displayDataVonStudienleistung.prereq = !zulassungsVoraussetzungFuerStudienleistung || zulassungsVoraussetzungFuerStudienleistung.erfuellt;
+
+        displayDataVonStudienleistung.completed = studienleistung.find(datensatz => datensatz.code === studienleistung[0].fachsemester + 200).erfuellt;
+
+        displayDataVonStudienleistung.entries = studienleistung
+            .filter(datensatz => (datensatz.code < 200 || datensatz.code >= 400))
+            .map(datensatz => ({
+                ...datensatz,
+                link: (datensatz.format && `/exams/${datensatz.format}s/${datensatz.studiPruefungsId}`)
+            }));
+
+        studienfortschrittDisplayData.push(displayDataVonStudienleistung);
+    })
+
+    return studienfortschrittDisplayData;
+}
+
+function getStudienfortschrittDashboardData(state) {
+
+    let studienleistungen = baseStore.getItems(state);
+
+    studienleistungen = studienleistungen.flatMap(studienleistung => studienleistung.entries);
+    studienleistungen = studienleistungen.filter(studienleistung => (studienleistung.code < 200 || studienleistung.code >= 400))
+
+    let doneCount = studienleistungen.reduce((accumulator, element) => element.erfuellt ? ++accumulator : accumulator, 0);
+
+    return {total: studienleistungen.length, done: doneCount};
+>>>>>>> hotfix/Tutorial_Code_Verzeichnis_2558
+}
+
+export const selectors = baseStore.withLoadedSelector({
+    getTree: state => baseStore.getItems(state),
+<<<<<<< HEAD
+    getDashboardData: dashboard,
+=======
+    getDashboardData: getStudienfortschrittDashboardData,
+>>>>>>> hotfix/Tutorial_Code_Verzeichnis_2558
+})
+
+export const reducer = combineReducers(baseStore.withLoadedReducer(
+    (state = {}, action) => {
+        switch(action.type) {
+            case `${identifier.toUpperCase()}_DATA_FETCHED`:
+                return getStudienfortschrittDisplayData(action.payload)
+            default:
+                return state
+        }
+    }
+))
+
+export const actions = baseStore.withLoadAction(`studienfortschritt`)({})
