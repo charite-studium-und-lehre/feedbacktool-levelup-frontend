@@ -8,17 +8,17 @@ import BarGraph from '../Charting/BarGraph'
 import PointGraph from '../Charting/PointGraph'
 import Legend from '../Charting/Legend'
 import Legends from '../Core/LegendTexts'
-import { withTranslation } from 'react-i18next'
 
 const labels = ['richtig', 'falsch', 'nicht beantwortet']
 const confidence = ['geraten', 'wahrscheinlich', 'sicher']
 
 const colors = scaleOrdinal(schemeBlues[3])
 
-const PTMResults = ({ t, data }) =>
+const PTMResults = ({ data }) =>
     <div className="card">
         <div className="card-body">
-            <Legend title={Legends.Strengths.PTMResults.title}>{Legends.Strengths.PTMResults.text}
+            <Legend title={Legends.Strengths.PTMResults.title}>
+                <p>{Legends.Strengths.PTMResults.text}</p>
                 <div className="mt-2">{confidence.map((c, i) => 
                     <span key={i} className="d-inline-block mr-2" style={{height: '1.2rem', lineHeight: '1.2rem'}}>
                         <span className="d-inline-block mr-1" style={{width: '2rem', height: '100%', backgroundColor: colors(i)}}>&nbsp;</span>
@@ -41,4 +41,4 @@ const PTMResults = ({ t, data }) =>
         </div>
     </div>
 
-export default withTranslation() (PTMResults)
+export default PTMResults

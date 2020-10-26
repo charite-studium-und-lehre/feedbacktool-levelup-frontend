@@ -12,30 +12,30 @@ import 'react-slidedown/lib/slidedown.css'
 import 'video-react/dist/video-react.css'
 import './App.css'
 import Feedback from './Core/Feedback'
-import Navbar from './Core/routing/navbar'
+import DashboardNavbar from './Core/routing/DashboardNavbar'
 import Breadcrumbs from './Core/routing/Breadcrumbs'
 import PrivateRoute from './Core/routing/PrivateRoute'
 import Routes from './Core/routing/Routes'
-import { withTranslation } from 'react-i18next'
 import ScrollToTop from './Core/ScrollToTop'
 import COLORS from "./colors"
+
 
 const basename = process.env.PUBLIC_URL || '/'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const App = withTranslation()(() =>
+const App =() =>
     <Provider store={createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)))}>
         <BrowserRouter basename={basename}>
             <div className="App p-0 d-flex flex-column">
-                <Navbar />
+                <DashboardNavbar />
                 <Breadcrumbs />
                 <ScrollToTop />
                 <div className="flex-fill">
-                    {Routes.map(route => (route.private ?
-                        <PrivateRoute key={route.path} path={route.path} component={route.component}
+                    {Routes.map((route, i) => (route.private ?
+                        <PrivateRoute key={i} path={route.path} component={route.component}
                             exact={route.exact} /> :
-                        <Route key={route.path} path={route.path} component={route.component}
+                        <Route key={i} path={route.path} component={route.component}
                             exact={route.exact} />
                     ))}
                     <Route exact path="/" render={() => (
@@ -49,6 +49,5 @@ const App = withTranslation()(() =>
             </div>
         </BrowserRouter>
     </Provider>
-)
 
 export default App

@@ -1,6 +1,5 @@
 import React from 'react'
 import _ from 'lodash/fp'
-import { withTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -32,11 +31,11 @@ const Infos = ({ questions, title }) => (
 const stateToProps = (state, ownProps) => ({ questions: selectors.getById(state, ownProps.id) })
 const loadedById = (state, ownProps) => selectors.loaded(state, ownProps.id)
 const loadById = ownProps => actions.load(ownProps.id)
-const Questions = _.compose([needsData(loadedById, loadById), connect(stateToProps), withTranslation()])(({ t, id, questions }) =>
+const Questions = _.compose([needsData(loadedById, loadById), connect(stateToProps),])(({ id, questions }) =>
     questions.length ? <div>
         <div className="row">
             <div className="col">
-                {t('Auswertung für ')}
+                Auswertung für 
                 <span style={{fontSize: '1.1rem'}} className="font-weight-bold mr-1">{questions.length}</span>
                 Fragen:
             </div>
@@ -55,7 +54,7 @@ const Questions = _.compose([needsData(loadedById, loadById), connect(stateToPro
             </Link>
         </div>
     </div> : 
-    <div className="text-center">{t('Zu dieser Prüfung liegen uns leider keine Fragen und Antworten vor.')}</div>
+    <div className="text-center">Zu dieser Prüfung liegen uns leider keine Fragen und Antworten vor.</div>
 )
 
 export default props => 

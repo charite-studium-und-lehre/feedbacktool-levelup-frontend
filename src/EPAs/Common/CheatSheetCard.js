@@ -1,10 +1,10 @@
 import React from 'react'
-import { withTranslation } from 'react-i18next'
 import makeExtendable from '../../Core/makeExtendable'
 import Legend from "../../Charting/Legend"
 import Level from '../Assessments/Level'
 import COLORS from '../../colors'
 import Legends from "../../Core/LegendTexts"
+import Video from './EPAsVideo'
 
 const CheatSheetCard = () => {
     return (
@@ -13,15 +13,15 @@ const CheatSheetCard = () => {
                 {Legends.EPAs.CheatSheetCard.levels.text.map((e, d) =>
                     <div key={d}>
                         <div>{`${d} - ${e}`}</div>
-                        <Level color={COLORS.background.grey7} colorBackground={COLORS.background.grey1} value={d}/>
+                        <Level color={COLORS.background.grey7} colorBackground={COLORS.background.grey1} value={d} />
                     </div>)
-            }
+                }
             </Legend>
-            <p style={{color: COLORS.background.base, lineHeight:"1rem"}}> </p>
+            <p style={{ color: COLORS.background.base, lineHeight: "1rem" }}> </p>
             <Legend title={Legends.EPAs.CheatSheetCard.video.title}>
-                {Legends.EPAs.CheatSheetCard.video.text}
+                <Video />
             </Legend>
         </div>
     )
 }
-export default withTranslation()(makeExtendable()(CheatSheetCard))
+export default makeExtendable()(CheatSheetCard)

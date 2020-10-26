@@ -2,15 +2,14 @@ import React, { useState } from 'react'
 import _ from 'lodash/fp'
 import SlideDown from 'react-slidedown'
 import { connect } from 'react-redux'
-import { withTranslation } from 'react-i18next'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMailBulk, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { actions } from './Store'
 import Request from './Request'
 import List from './List'
 
-export default _.compose([connect(null, { resetFilter: () => actions.setFilter(null) }), withTranslation()])(
-    ({ t, ...props }) => {
+export default _.compose([connect(null, { resetFilter: () => actions.setFilter(null) })])(
+    (props) => {
 
         const Button = props =>
             <div className={` ${props.className || ''}`}>
@@ -29,13 +28,13 @@ export default _.compose([connect(null, { resetFilter: () => actions.setFilter(n
                     <Button icon={faMailBulk} active={extended === 1}
                         onClick={() => { toggle(1); props.resetFilter(); }}
                         id='Button Erhaltene Fremdbewertungen'>
-                        {t('Erhaltene Fremdbewertungen')}
+                        Erhaltene Fremdbewertungen
                     </Button>
                 </div>
                 <div className="col-sm-6 text-sm-right">
                     <Button icon={faEnvelope} active={extended === 2}
                         onClick={() => toggle(2)} id='Button Fremdbewertung einfordern'>
-                        {t('Fremdbewertung einfordern')}
+                        Fremdbewertung einfordern
                     </Button>
                 </div>
             </div>
