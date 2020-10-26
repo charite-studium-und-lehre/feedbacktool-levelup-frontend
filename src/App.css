@@ -104,6 +104,8 @@ input.no-outline {
   animation-duration: 2s;
   animation-fill-mode: forwards;
 }
+
+ /* =======feedBackButton========= */
 @keyframes feedbackAnimation {
   from {
     right: 0;
@@ -113,6 +115,21 @@ input.no-outline {
         bottom: 0;
       }
   }
-  
-
-
+  /* =======LoginSite========= */
+  .container-fluid .levelup {
+    height:21rem;
+    width:100%;
+    transform:translateY(-2.5rem)
+ }
+ .container-fluid .buttonsContainer {
+  transform:translateY(3rem)
+}
+  @media screen and (max-width : 700px) {
+    .container-fluid .levelup {
+     height: 10rem;
+     transform:translateY(0)
+    }
+    .container-fluid .buttonsContainer {
+      transform:translateY(10.5rem)
+    }
+  }
