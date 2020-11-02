@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd `dirname $0`
-git pull --rebase
+git pull
 
 DIR=app-`basename $(pwd)`
 if [ $DIR = "app-master" -o $DIR = "app-levelup" ]; then
