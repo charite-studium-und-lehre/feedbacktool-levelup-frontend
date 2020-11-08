@@ -115,13 +115,6 @@ body {
   opacity: 0;
 }
 
-.area:hover {
-
-  border-radius: 5px;
-  box-shadow: 0 0 7px gray;
-  opacity: .9;
-}
-
 p.nav-top {
 
   text-align: center;

@@ -15,7 +15,7 @@ import Faq from '../../FAQ/Faq'
 import Login from '../../User/Login'
 import Impressum from '../../Core/Impressum'
 import Assessment from '../../EPAs/Assessments/Externals/Requests/Assessment'
-import Tutorial from '../../Tutorial/Tutorial'
+import Tutorial from '../../Tutorial/Components/Tutorial'
 
 const Routes = [
   {
