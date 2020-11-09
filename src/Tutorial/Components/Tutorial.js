@@ -13,12 +13,12 @@ const Icon = props =>
   <div className='col-6' onClick={props.onClick}>
     <FontAwesomeIcon icon={props.icon} style={{ fontSize: '3rem', color: 'gray', cursor: 'pointer', ...props.style }} />
   </div>
-const Slider = [<Dashboard />, <Fortschritt />, <Epas />, <Starkefächer />, <Ptms />, <Timeline />]
 
 const Tutorial = () => {
   const [slide, setSlide] = useState(0)
   const moveLeft = () => setSlide(slide => slide - 1)
   const moveRigth = () => setSlide(slide => slide + 1)
+  const Slider = [<Dashboard onClick={(index)=> setSlide(index)} />, <Fortschritt />, <Epas />, <Starkefächer />, <Ptms />, <Timeline />]
   return (
     <div className='mb-5'>
       {Slider[slide]}

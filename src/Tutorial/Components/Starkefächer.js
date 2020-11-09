@@ -1,23 +1,13 @@
-import React, {useState} from 'react'
-import Dashboard from './Dashboard.js'
+import React from 'react'
+import Title from './Title'
 import img1 from "../slides/6-1.png"
 import img2 from "../slides/6-2.png"
 import Slide from './Slide'
 
-export default () => {
-  const [dashboard, setDashboard] = useState(0);
-
-  if (dashboard) return <Dashboard/>
-  return (
+export default () => 
     <div>
-      <div className="sticky">
-        <p className="back-button" onClick={() => setDashboard(true)}>Zurück</p>
-      <p className="vw66 title">
-        <b>Starken-Schwächen-Analyse - Wie kann ich meine Schwächen und Defizite in bestimmten Fächern erkennen?</b>
-      </p>
-    </div>
-
-    <div className="vw66">
+      <Title text='Starken-Schwächen-Analyse - Wie kann ich meine Schwächen und Defizite in bestimmten Fächern erkennen?'/>
+    <div className="w-75 mx-auto">
     <Slide
           img={img1}
           text='Hierfür haben wir die „Starke Fächer“-Seite entworfen.' 
@@ -28,5 +18,4 @@ export default () => {
           />
     </div>
   </div>
-  )
-}
+
