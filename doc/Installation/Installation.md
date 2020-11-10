@@ -1,10 +1,3 @@
-
-### Git-Repo Frontend: 
-`ssh://levelup/var/git/levelup.git`
-
-### Git-Repo Feedbackbot 
-`ssh://levelup/var/git/feedbackbot.git`
-
 ### Abhängigkeiten 
 * nodeJS
 * yarn

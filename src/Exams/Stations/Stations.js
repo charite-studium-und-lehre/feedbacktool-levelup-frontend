@@ -8,7 +8,6 @@ import Filter from '../../Utils/Filter'
 import needsData from '../../Core/needsData'
 import StationsChart from './StationsChart'
 import Legends from '../../Core/LegendTexts'
-import { withTranslation } from 'react-i18next'
 import { selectors, actions } from './Store'
 import colordefs from "../../colors";
 import { InlineKohortenMittelDot } from "../../Charting/KohortenMittelDot"
@@ -18,7 +17,7 @@ export const colorTotal = colordefs.pp.lighter1
 export const colorPartOfTotal = colordefs.pp.darker0
 const colors = scaleOrdinal(schemeSpectral[6])
 
-const Stations = ({ t, data, groupFilters = [], setGroupFilters }) => {
+const Stations = ({ data, groupFilters = [], setGroupFilters }) => {
     const semesters = []
     const categoryColors = c => colors(semesters.indexOf(c))
 
@@ -35,14 +34,14 @@ const Stations = ({ t, data, groupFilters = [], setGroupFilters }) => {
             <div className="row ">
                 <div className="col ">
                     <div className="p-2">
-                        <h4 className="mr-auto">{t('Mündlich-praktische Prüfungen')}</h4>
+                        <h4 className="mr-auto">Mündlich-praktische Prüfungen</h4>
                     </div>
                     <div className="row col " style={{ minHeight: '25rem' }}>
                         <div className="card px-4 py-4 w-100 overflow-hidden">
                             <Legend title={LegendText.title}>
                                 {LegendText.text}
                                 <div className="position-relative">
-                                    {t(`Der`)} <InlineKohortenMittelDot />{t(` kennzeichnet den Kohortenmittelwert.`)}
+                                    Der <InlineKohortenMittelDot /> kennzeichnet den Kohortenmittelwert.
                                 </div>
                             </Legend>
                             <div className="mt-2 mb-3 d-flex flex-wrap">
@@ -70,4 +69,4 @@ const stateToProps = state => ({
     data: selectors.getItems(state), 
     groupFilters: selectors.getGroupFilters(state) 
 })
-export default _.flowRight([needsData(selectors.loaded, actions.load), withTranslation(), connect(stateToProps, actions)])(Stations)
+export default _.flowRight([needsData(selectors.loaded, actions.load), connect(stateToProps, actions)])(Stations)

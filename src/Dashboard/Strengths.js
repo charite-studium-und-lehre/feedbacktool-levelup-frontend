@@ -1,7 +1,6 @@
 import React from 'react'
 import _ from 'lodash/fp'
 import { connect } from 'react-redux'
-import { withTranslation } from 'react-i18next'
 import AnimatedDonut from '../Charting/AnimatedDonut'
 import needsData from '../Core/needsData'
 import { selectors as mcSelectors, actions as mcActions } from '../Exams/MC/Store'
@@ -30,13 +29,13 @@ const Donut = ({ value, total }) =>
             </AnimatedDonut>
         </div>
     </div>
-const Strengths = _.compose([withTranslation(), needsData(loaded, load), connect(stateToProps)])(({ t, mcStrongestSubject, ptmStrongestSubject }) =>
-    <div className="">
+const Strengths = _.compose([needsData(loaded, load), connect(stateToProps)])(({ mcStrongestSubject, ptmStrongestSubject }) =>
+    <div>
         { (mcStrongestSubject || ptmStrongestSubject) && 
         <div>
             <div className="d-flex">
-                { mcStrongestSubject && <Label title={t('in deinen gesamten MCs')}>{mcStrongestSubject.titel}</Label> }
-                { ptmStrongestSubject && <Label title={t('im letzten PTM')}>{ptmStrongestSubject.titel}</Label> }
+                { mcStrongestSubject && <Label title='in deinen gesamten MCs'>{mcStrongestSubject.titel}</Label> }
+                { ptmStrongestSubject && <Label title='im letzten PTM'>{ptmStrongestSubject.titel}</Label> }
             </div>
             <div className="d-flex">
                 {mcStrongestSubject && <Donut total={mcStrongestSubject.maximalPunktzahl} value={mcStrongestSubject.ergebnisPunktzahl} /> }
@@ -44,16 +43,16 @@ const Strengths = _.compose([withTranslation(), needsData(loaded, load), connect
             </div>
         </div>}
         {!ptmStrongestSubject && !mcStrongestSubject && 
-            <div className="p3">{t('Es liegen noch keine Ergebnisse vor.')}</div>
+            <div className="p3">Es liegen noch keine Ergebnisse vor.</div>
         }
     </div>
 )
 
-const Wrapper = withTranslation()(({ t }) => <DashboardCard 
+const Wrapper = () => <DashboardCard 
     header={Math.round(Math.random() * 100) + ' p'} 
-    title={t(`Starke Fächer`)}
+    title='Starke Fächer'
     id='StarkeFächerCard' >
             <Strengths />
-</DashboardCard>)
+</DashboardCard>
 
 export default Wrapper

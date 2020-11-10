@@ -1,5 +1,4 @@
-import React from 'react'
-import {Trans} from 'react-i18next'
+import React, {Fragment} from 'react'
 import Video from '../EPAs/Common/EPAsVideo'
 import {GraphButton} from "../Exams/Ptm/GraphButton"
 
@@ -7,137 +6,115 @@ import {GraphButton} from "../Exams/Ptm/GraphButton"
 const Legends = {
     Exams: {
         MainChart: {
-            title: <Trans>Deine Prüfungsergebnisse</Trans>,
-            text: <Trans>Hier siehst du einen Überblick über deine bisherigen Prüfungsergebnisse. Über die Checkboxen
-                kannst du selber auswählen, welche Prüfungsergebnisse du angezeigt bekommen möchtest. Du kannst auf die
-                jeweiligen Ergebnisse klicken, um detaillierte Informationen zu erhalten (z.B. Ergebnisse der einzelnen
-                Module).</Trans>,
+            title: 'Deine Prüfungsergebnisse',
+            text: 'Hier siehst du einen Überblick über deine bisherigen Prüfungsergebnisse. Über die Checkboxen kannst du selber auswählen, welche Prüfungsergebnisse du angezeigt bekommen möchtest. Du kannst auf die jeweiligen Ergebnisse klicken, um detaillierte Informationen zu erhalten (z.B. Ergebnisse der einzelnen Module).',
         },
         MC: {
             Summary: {
-                title: <Trans>Zusammenfassung deiner Antworten in den Semesterprüfungen</Trans>,
-                text: <Trans>Hier siehst du eine Aufstellung nach Fächern der von dir beantworteten Fragen in deinen
-                    Semesterprüfungen.</Trans>,
+                title: 'Zusammenfassung deiner Antworten in den Semesterprüfungen',
+                text: 'Hier siehst du eine Aufstellung nach Fächern der von dir beantworteten Fragen in deinen Semesterprüfungen.',
             },
             Totals: {
-                title: <Trans>Gesamtes Ergebnis</Trans>,
-                text: <Trans>Dies ist eine Darstellung deines Prüfungsergebnisses. Der kumulative Graph stellt dar, in
-                    welchem Verhältnis du zu deiner Kohorte abgeschnitten hast. Durch das einfache Histogramm lässt sich
-                    die Verteilung der Prüfungsergebnisse einsehen.</Trans>,
+                title: 'Gesamtes Ergebnis',
+                text: 'Dies ist eine Darstellung deines Prüfungsergebnisses. Der kumulative Graph stellt dar, in welchem Verhältnis du zu deiner Kohorte abgeschnitten hast. Durch das einfache Histogramm lässt sich die Verteilung der Prüfungsergebnisse einsehen.',
             },
             Details: {
-                title: <Trans>Detaillierte Ergebnisse</Trans>,
-                text: <Trans>Hier kannst du sehen, wie du in den zu dieser Semesterprüfung dazugehörigen Modulen und
-                    Fächern in Vergleich zu der Kohorte abgeschnitten hast.</Trans>,
+                title: 'Detaillierte Ergebnisse',
+                text: 'Hier kannst du sehen, wie du in den zu dieser Semesterprüfung dazugehörigen Modulen und Fächern in Vergleich zu der Kohorte abgeschnitten hast.',
             },
             Questions: {
-                title: <Trans>Fragen und Antworten</Trans>,
-                text: <Trans>Schwere Fragen konnten weniger als 40% deiner Mitstudierenden beantworten, leichte Fragen
-                    mehr als 80%.</Trans>,
+                title: 'Fragen und Antworten',
+                text: 'Schwere Fragen konnten weniger als 40% deiner Mitstudierenden beantworten, leichte Fragen mehr als 80%.',
             },
             QuestionsDetails: {
-                title: <Trans>Fragen und Antworten</Trans>,
-                text: <Trans i18nKey="exams.mc.questions.text">
-                    <p>Hier kannst du dir alle Fragen der Semesterprüfung mit den dazugehörigen Antworten ansehen. Jede
+                title: 'Fragen und Antworten',
+                text: <p>Hier kannst du dir alle Fragen der Semesterprüfung mit den dazugehörigen Antworten ansehen. Jede
                         Frage wurde mit verschiedenen Tags versehen, mit deren Hilfe du die Fragen filtern kannst. Die
                         Filter schwer und leicht zeigen dir wie viel deiner Mitstudierenden diese Frage beantworten
                         konnten. Schwere Fragen sind Fragen, die weniger als 40% deiner Mitstudierenden beantworten
                         konnten. Leichte Fragen hingegen konnten mehr als 80% deiner Kommilitonen beantworten.So kannst
                         du dir z.B. nur die Fragen anzeigen lassen, die du falsch beantwortest hast.</p>
-                </Trans>
+                
             }
         },
         Ptm: {
             Totals: {
-                title: <Trans>Gesamtes Ergebnis</Trans>,
-                text: <Trans>Hier findest du eine generelle Auswertung deines PTMs im Vergleich mit der Kohorte.</Trans>
+                title: 'Gesamtes Ergebnis',
+                text: 'Hier findest du eine generelle Auswertung deines PTMs im Vergleich mit der Kohorte.'
             },
             Timeline: {
-                title: <Trans>Deine Entwicklung</Trans>,
-                text: <Trans>Hier findest du eine generelle Auswertung deines PTMs im zeitlichen Verlauf.</Trans>
+                title: 'Deine Entwicklung',
+                text: 'Hier findest du eine generelle Auswertung deines PTMs im zeitlichen Verlauf.'
             },
             Strengths: {
-                title: <Trans>Starke Fächer in diesem PTM</Trans>,
-                text: <Trans>Hier findest du eine Übersicht zu deinen besten theoretischen, klinischen und
-                    Querschnittsfächern im PTM diesen Semesters. Die Auswertung beruht auf dem Verhältnis der richtig
-                    beantworteten im Vergleich zu allen beantworteten Fragen.</Trans>,
+                title: 'Starke Fächer in diesem PTM',
+                text: 'Hier findest du eine Übersicht zu deinen besten theoretischen, klinischen und Querschnittsfächern im PTM diesen Semesters. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen beantworteten Fragen.',
             },
             Subjects: {
-                title: <Trans>Alle Fächer</Trans>,
-                text: <Trans>
-                    <p>Hier findest du eine Übersicht zu deinen Leistungen in den theoretischen, klinischen und
+                title: 'Alle Fächer',
+                text: <Fragment><p>Hier findest du eine Übersicht zu deinen Leistungen in den theoretischen, klinischen und
                         Querschnittsfächern. Die Ergebnisse innerhalb des grünen Balken basieren auf deinem letzten PTM
                         und zeigen das Verhältnis zwischen richtig beantworteten und allen gestellten Fragen.</p>
+                        
                     <p>Deine Entwicklung im PTM innerhalb eines bestimmten Faches siehst du in der darunter stehenden
                         Graphik<GraphButton/></p>
-                </Trans>,
+                    </Fragment>
+                ,
             },
             Organsystem: {
-                title: <Trans>Alle Organsystem</Trans>,
-                text: <Trans>Hier findest du eine Übersicht zu deinen Leistungen in den theoretischen, klinischen und
-                    Querschnittsfächern. Die Ergebnisse basieren auf deinem letzten PTM. Die Auswertung beruht auf dem
-                    Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.</Trans>,
+                title: 'Alle Organsystem',
+                text: 'Hier findest du eine Übersicht zu deinen Leistungen in den theoretischen, klinischen und Querschnittsfächern. Die Ergebnisse basieren auf deinem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.',
             },
         },
         Stations: {
             Explanation: {
-                title: <Trans>Ergebnisse</Trans>,
-                text: <Trans>Hier siehst Du die Ergebnisse deiner absolvierten mündlich-praktischen Prüfungen. Klick auf die jeweilige Station und Du bekommst genauere Informationen zu den jeweiligen Teilaufgaben.</Trans>,
+                title: 'Ergebnisse',
+                text: 'Hier siehst Du die Ergebnisse deiner absolvierten mündlich-praktischen Prüfungen. Klick auf die jeweilige Station und Du bekommst genauere Informationen zu den jeweiligen Teilaufgaben.',
             },
         },
     },
     Strengths: {
         Explanation: {
-            title: <Trans>Deine Stärken und Schwächen</Trans>,
-            text: <Trans i18nKey="strengths.main.text">
-                <p>Auf dieser Seite findest du eine Übersicht zu deinen stärkeren und schwächeren Fächern in den
+            title: 'Deine Stärken und Schwächen',
+            text:  <Fragment><p>Auf dieser Seite findest du eine Übersicht zu deinen stärkeren und schwächeren Fächern in den
                     Semesterprüfungen und dem PTM. Die Auswertung basiert auf den Ergebnissen aller zurückliegenden
                     Semesterprüfungen und dem Ergebnis des aktuellen PTMs.</p>
                 <strong>Wichtig:</strong>
                 <p>Die Anzahl der gestellten Fragen pro Fach kann sich durch die Verteilung der Fächer im Curriculum und
                     bei der Auswahl der MC-Fragen in den Klausuren stark unterscheiden. Weiterhin findet keine
                     Gewichtung des Rankings der Fächer nach schweren und leichten Fragen statt.</p>
-            </Trans>
+                    </Fragment>
+            
         },
         MC: {
-            title: <Trans>Starke Fächer in den Semesterprüfungen</Trans>,
-            text: <Trans>
-                <p>Hier findest du eine Übersicht zu deinen besten Fächern basierend auf allen deinen Semesterprüfungen.
+            title: 'Starke Fächer in den Semesterprüfungen',
+            text:   <p>Hier findest du eine Übersicht zu deinen besten Fächern basierend auf allen deinen Semesterprüfungen.
                     Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten
                     Fragen.<br/><strong>Achtung: </strong>Nur Fächer mit mehr als 4 Fragen werden dargestellt um
                     Verzerrungen der Auswertung zu vermeiden.</p>
-            </Trans>,
+            ,
         },
         PTM: {
-            title: <Trans>Starke Fächer im PTM</Trans>,
-            text: <Trans><p>Hier findest du eine Übersicht zu deinen besten Fächern im letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.<br/><strong>Achtung: </strong> Nur Fächer mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.</p></Trans>,
+            title: 'Starke Fächer im PTM',
+            text: <p>Hier findest du eine Übersicht zu deinen besten Fächern im letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.<br/><strong>Achtung: </strong> Nur Fächer mit mehr als 4 Fragen werden dargestellt um Verzerrungen der Auswertung zu vermeiden.</p>,
         },
         PTMResults: {
-            title: <Trans>Gesamtes Ergebnis im PTM</Trans>,
-            text: <Trans><p>Hier findest du eine generelle Auswertung deines aktuellen PTMs im Vergleich mit der Kohorte.</p></Trans>,
+            title: 'Gesamtes Ergebnis im PTM',
+            text: <p>Hier findest du eine generelle Auswertung deines aktuellen PTMs im Vergleich mit der Kohorte.</p>,
         },
         Subjects: {
-            title: <Trans>Alle Fächer</Trans>,
-            text: <Trans>Hier findest du eine Übersicht zu deinen Leistungen in den theoretischen, klinischen und
-                Querschnittsfächern. Die Ergebnisse basieren zum einen auf allen deinen Semesterprüfungen (MCs) und zum
-                anderen auf deinem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im
-                Vergleich zu allen gestellten Fragen.</Trans>,
+            title: 'Alle Fächer',
+            text: 'Hier findest du eine Übersicht zu deinen Leistungen in den theoretischen, klinischen und Querschnittsfächern. Die Ergebnisse basieren zum einen auf allen deinen Semesterprüfungen (MCs) und zum anderen auf deinem letzten PTM. Die Auswertung beruht auf dem Verhältnis der richtig beantworteten im Vergleich zu allen gestellten Fragen.',
         },
     },
     EPAs: {
         Explanation: {
-            title: <Trans>Ärztliche Tätigkeiten (EPAs)</Trans>,
-            text: <Trans>
-                    Hier siehst du eine Übersicht zu den ärztlichen Kern-Tätigkeiten, die du im Laufe des Studiums
-                    trainieren wirst. Nutze die Funktion ärztliche Tätigkeiten, um die Entwicklung deiner praktischen
-                    Kompetenz festzuhalten und ggf. nachzusteuern. Ziel ist, dass du als Absolvent*in des
-                    Medizinstudiums dazu in der Lage bist, die aufgeführten Tätigkeiten zu Berufsbeginn eigenständig
-                    durchzuführen und nur Wichtiges nachgeprüft wird (Level 5).
-                 </Trans>
+            title: 'Ärztliche Tätigkeiten (EPAs)',
+            text: ' Hier siehst du eine Übersicht zu den ärztlichen Kern-Tätigkeiten, die du im Laufe des Studiums trainieren wirst. Nutze die Funktion ärztliche Tätigkeiten, um die Entwicklung deiner praktischen Kompetenz festzuhalten und ggf. nachzusteuern. Ziel ist, dass du als Absolvent*in des Medizinstudiums dazu in der Lage bist, die aufgeführten Tätigkeiten zu Berufsbeginn eigenständig durchzuführen und nur Wichtiges nachgeprüft wird (Level 5).'
         },
         CheatSheetCard: {
             levels: {
-                title: <Trans>Level der Eigenständigkeit</Trans>,
+                title: 'Level der Eigenständigkeit',
                 text: ['keine Ausführung',
                     'gemeinsam mit dem Arzt',
                     'unter Beobachtung des Arztes',
@@ -146,14 +123,13 @@ const Legends = {
                     'eigenständig, Wichtiges wird nachgeprüft (Arzt nur telefonisch erreichbar)']
             },
             video: {
-                title: <Trans>Video: Was sind EPAs?</Trans>,
-                text: <Trans><Video/></Trans>
+                title: 'Video: Was sind EPAs?',
+                text: <Video/>
             }
         }
     },
     DatenProtection: {
-        text: <Trans>
-            <p>Deine Daten werden vertrauensvoll behandelt und sind nicht für Dritte einsehbar.</p>
+        text: <Fragment><p>Deine Daten werden vertrauensvoll behandelt und sind nicht für Dritte einsehbar.</p>
             <p>Bestimmte Angebote der Webseite kannst Du nur nutzen, wenn Du dich zuvor als Nutzer registrierst. Dabei
                 wird nach deiner Einwilligung ein Hash erstellt und gespeichert, der nur dir nach Login die Zuordnung
                 deiner Prüfungsdaten erlaubt.</p>
@@ -177,7 +153,8 @@ const Legends = {
                 E-Mail-Adresse senden: levelup@charite.de</p>
             <p>Nach Mitteilung Deines Löschbegehrens wird das Nutzerkonto, das heißt der gespeicherte Hash, von uns
                 innerhalb von wenigen Werktagen gelöscht.</p>
-        </Trans>
+                </Fragment>
+        
     }
 }
 
