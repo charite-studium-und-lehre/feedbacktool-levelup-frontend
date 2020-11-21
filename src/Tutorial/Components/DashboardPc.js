@@ -1,3 +1,4 @@
+import { style } from 'd3-selection'
 import React, { useState } from 'react'
 import img1 from "../slides/1-1.png"
 import img2 from "../slides/1-2.png"
@@ -10,19 +11,19 @@ const Slide = props => {
   const [show, setShow] = useState(false)
   return (
     <div className='mt-4' onMouseEnter={() => setShow(!show)} onMouseLeave={() => setShow(!show)} onClick={() => props.onClick(props.index)} style={{ position: 'relative' }}>
-      <div style={{ width: '100%', opacity: show ? '0.07' : '1' }}>
+      <div style={{ width: '100%', opacity: show ?'0.07' : '1' }}>
         <img style={{ width: '100%' }} src={props.slide}></img>
       </div>
-      {show && <div className='p-2 pad' style={{ position: 'absolute', top: '0', fontSize: '1.3rem' }}>
+      {show && <div className='p-2 pad mt-2' style={{position: 'absolute', top: '0', fontSize: '1.3rem'}}>
         <p>{props.text}</p>
       </div>
       }
     </div>
   )
 }
-const Dashboard = (props) =>
+const DashboardPc = (props) =>
   <div className="row mt-5">
-    <div className='col-8 m-auto pad'>
+    <div className='col-md-8 col-9 m-auto   pad'>
       <div className="row h-100 flex-row-reverse">
         <div className="col-lg-4 mt-3">
           <Slide
@@ -69,4 +70,4 @@ const Dashboard = (props) =>
       </div>
     </div>
   </div>
-export default Dashboard
+export default DashboardPc
