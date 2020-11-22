@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import _ from 'lodash/fp'
+import groupBy from '../Utils/groupBy'
 import { scaleBand } from 'd3-scale'
 import { reducer as ptmsReducer, identifier as ptmsIdentifier, selectors as PtmSelectors } from './Ptm/Store'
 import { reducer as mcReducer, identifier as mcIdentifier, selectors as MCSelectors } from './MC/Store'
@@ -13,13 +14,24 @@ export const identifier = 'exams'
 export const url = 'pruefungen'
 const baseStore = BaseStore(identifier)
 
-const toNavigationData = _.flow(
-    _.groupBy( d => d.zeitsemester ),
-    _.map( g => { 
-        const scale = scaleBand([0,g.length-1],[0,1])
-        return g.map( (d, i) => ({ ...d, x: d.zeitsemester, y: scale(i) + scale.bandwidth() * .5 }))
-    }),
-    _.flatten)
+const toNavigationData = function(examData) {
+    let data = groupBy(examData, 'zeitsemester');
+    let pre = [], post = [];
+
+    for (let zeitsemester in data) {
+        const scale = scaleBand([0, data[zeitsemester].length - 1], [0, 1]);
+        let group = data[zeitsemester].map(
+            (d, i) => ({ ...d, x: d.zeitsemester, y: scale(i) + scale.bandwidth() * .5})
+        );
+        pre.push(group);
+    }
+
+    for (let i = 0; i < pre.length; i++)
+        for (let j = 0; j < pre[i].length; j++)
+            post.push(pre[i][j]);
+
+    return post;
+}
 
 const graphs = state => [
     {
