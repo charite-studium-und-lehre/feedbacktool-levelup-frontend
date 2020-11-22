@@ -1,21 +1,9 @@
 import { combineReducers } from 'redux'
 import BaseStore from '../Core/BaseStore'
+import groupBy from '../Utils/groupBy'
 
 export const identifier = 'progress'
-
 const baseStore = BaseStore(identifier)
-
-function groupBy(data, key) {
-
-    return data.reduce((storage, item) => {
-
-        var group = item[key] - 1;
-        storage[group] = storage[group] || [];
-        storage[group].push(item);
-        return storage;
-
-    }, []);
-}
 
 function getStudienfortschrittDisplayData(studienleistungen) {
 
