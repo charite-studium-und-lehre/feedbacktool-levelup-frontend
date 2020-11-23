@@ -6,7 +6,7 @@ import img4 from "../slides/1-4.png"
 import img5 from "../slides/1-5.png"
 import img6 from "../slides/1-6.png"
 
-const Slide = props => 
+const Slide = props =>
     <div className='mt-4 pad' onClick={() => props.onClick(props.index)} style={{ position: 'relative' }}>
       <div>
         <img style={{ width: '100%' }} src={props.slide}></img>
