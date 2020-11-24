@@ -28,7 +28,7 @@ const Login = _.compose([
     C => props => props.loggedIn && !props.hasStammdata ? <Redirect to='/user/registration' /> : <C {...props} />,
     C => props => props.loggedIn ? <Redirect to='/dashboard' /> : <C {...props} />
 ])(() =>
-    <div className='container-fluid h-100' style={background(window.innerWidth < 1025 ? backgroundLogin : backgroundMobil)}>
+    <div className='container-fluid h-100' style={background(window.innerWidth < 942 ? backgroundLogin : backgroundMobil)}>
         <Navbar />
         <div className='row'>
             <div className='col-12 text-center levelup '>
@@ -45,7 +45,6 @@ const Login = _.compose([
                     <Button col='col-6 col-md-3' title='Tutorial' target='blank' href='https://levelup.charite.de/app/tutorial/src/index.html' />
                     <Button col='col-6 col-md-3' title='Hilfe' href='mailto:levelup@charite.de' />
                 </div>
-
             </div>
         </div>
     </div>

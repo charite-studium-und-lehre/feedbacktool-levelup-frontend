@@ -40,7 +40,6 @@ const Questions = ({questions }) => {
                     <div className="card p-3">
                         <div className="row">
                             <div className="col">
-                                {/* <h4 className="mr-auto">Semesterprüfung - {match.params.test}</h4> */}
                                 <Legend title={LegendText.title}><p>{LegendText.text}</p></Legend>
                             </div>
                         </div>
