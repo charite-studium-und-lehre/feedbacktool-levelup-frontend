@@ -40,7 +40,7 @@ const Questions = ({questions }) => {
                     <div className="card p-3">
                         <div className="row">
                             <div className="col">
-                                <Legend title={LegendText.title}>{LegendText.text}</Legend>
+                                <Legend title={LegendText.title}><p>{LegendText.text}</p></Legend>
                             </div>
                         </div>
                         <Filters filters={filters} setters={[ setSubjectsFilters, setModulesFilters, setDifficultyFilter, setCorrectFilter ]}>

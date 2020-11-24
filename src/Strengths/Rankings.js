@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash/fp'
 import Legend from '../Charting/Legend'
@@ -11,31 +11,37 @@ import { InlineKohortenMittelDot } from "../Charting/KohortenMittelDot"
 
 const ptmProps = state => ({ faecher: _.flow(ptmSelectors.getLatest, ptmSelectors.getRanking)(state) })
 const PtmRanking = _.compose(needsData(ptmSelectors.loaded, ptmActions.load), connect(ptmProps))(
-    ({ faecher }) => <Ranking mean 
-        subjects={faecher.map( s => ({ 
-            ...s, 
-            value: s.ergebnisRichtigPunktzahl, 
-            mean: s.durchschnittRichtigPunktzahl 
-        }))} 
+    ({ faecher }) => <Ranking mean
+        subjects={faecher.map(s => ({
+            ...s,
+            value: s.ergebnisRichtigPunktzahl,
+            mean: s.durchschnittRichtigPunktzahl
+        }))}
     />
 )
 
 const mcProps = state => ({ faecher: mcSelectors.getRanking(state) })
 const McRanking = _.compose(needsData(mcSelectors.loaded, mcActions.load), connect(mcProps))(
-    ({ faecher }) => <Ranking 
-        subjects={faecher.map( s => ({ 
-            ...s, 
+    ({ faecher }) => <Ranking
+        subjects={faecher.map(s => ({
+            ...s,
             value: s.ergebnisPunktzahl
-        }))} 
+        }))}
     />
 )
 
-const Rankings = () =>
-    <div className="row">
+const Rankings = () => {
+    const Legende = (props) =>
+        <Fragment>{props.text.map((text, index) =>
+            <p style={{ fontWeight: index === 1 && 'bold' }} key={text}>{text}</p>)}
+        </Fragment>
+    return <div className="row">
         <div className="col-md-6 mb-2">
             <div className="card">
                 <div className="card-body">
-                    <Legend title={Legends.Strengths.MC.title}>{Legends.Strengths.MC.text}</Legend>
+                    <Legend title={Legends.Strengths.MC.title}>
+                        <Legende text={Legends.Strengths.MC.text} />
+                    </Legend>
                     <McRanking />
                 </div>
             </div>
@@ -43,9 +49,10 @@ const Rankings = () =>
         <div className="col-md-6 mb-2">
             <div className="card">
                 <div className="card-body">
-                    <Legend title={Legends.Strengths.PTM.title}>{Legends.Strengths.PTM.text}
-                    <div className="position-relative">
-                        Der <InlineKohortenMittelDot /> kennzeichnet den Kohortenmittelwert
+                    <Legend title={Legends.Strengths.PTM.title}>
+                        <Legende text={Legends.Strengths.PTM.text} />
+                        <div className="position-relative">
+                            Der <InlineKohortenMittelDot /> kennzeichnet den Kohortenmittelwert
                    </div>
                     </Legend>
                     <PtmRanking />
@@ -53,5 +60,5 @@ const Rankings = () =>
             </div>
         </div>
     </div>
-
+}
 export default Rankings
