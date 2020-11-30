@@ -1,4 +1,3 @@
-import { style } from 'd3-selection'
 import React, { useState } from 'react'
 import img1 from "../slides/1-1.png"
 import img2 from "../slides/1-2.png"
@@ -6,24 +5,21 @@ import img3 from "../slides/1-3.png"
 import img4 from "../slides/1-4.png"
 import img5 from "../slides/1-5.png"
 import img6 from "../slides/1-6.png"
+import Title from './Title'
 
-const Slide = props => {
-  const [show, setShow] = useState(false)
-  return (
-    <div className='mt-4' onMouseEnter={() => setShow(!show)} onMouseLeave={() => setShow(!show)} onClick={() => props.onClick(props.index)} style={{ position: 'relative' }}>
-      <div style={{ width: '100%', opacity: show ?'0.07' : '1' }}>
+const Slide = props =>
+    <div className='mt-4 pad' onClick={() => props.onClick(props.index)} style={{ position: 'relative' }}>
+      <div>
         <img style={{ width: '100%' }} src={props.slide}></img>
       </div>
-      {show && <div className='p-2 pad mt-2' style={{position: 'absolute', top: '0', fontSize: '1.3rem'}}>
+      <div className='px-2 pad mt-2' style={{fontSize: window.innerWidth < 1025 ?'0.7rem':'1.3rem' }}>
         <p>{props.text}</p>
       </div>
-      }
     </div>
-  )
-}
-const DashboardPc = (props) =>
+    
+const Dashboard = props =>
   <div className="row mt-5">
-    <div className='col-md-8 col-9 m-auto   pad'>
+    <div className='col-10 m-auto pad px-2'>
       <div className="row h-100 flex-row-reverse">
         <div className="col-lg-4 mt-3">
           <Slide
@@ -70,4 +66,4 @@ const DashboardPc = (props) =>
       </div>
     </div>
   </div>
-export default DashboardPc
+export default Dashboard

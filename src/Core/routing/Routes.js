@@ -132,7 +132,7 @@ const Routes = [
     component: Tutorial,
     menuName: 'Tutorial',
     exact: true,
-    private: true,
+    private: false,
   },
 ]
 
