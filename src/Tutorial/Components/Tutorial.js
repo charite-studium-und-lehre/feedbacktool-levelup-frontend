@@ -7,7 +7,6 @@ import Timeline from './Timeline'
 import Starkefächer from './Starkefächer'
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import './styles.css'
 
 const Icon = props => <FontAwesomeIcon icon={props.icon} style={{ fontSize: '3rem', color: 'gray', cursor: 'pointer', ...props.style }} />
 const Tutorial = () => {
@@ -28,8 +27,10 @@ const Tutorial = () => {
           </div>
         </div>
       </div>
-      { slide > 0 && <div className='mx-auto mt-4' onClick={() => setSlide(0)} style={{ color: '#224768', fontSize: '1.2rem', width:'9rem', cursor:'pointer' }}> <strong>Tutorialdashboard</strong></div>}
-      </div>
+      { slide > 0 && <div className='mx-auto mt-4' onClick={() => setSlide(0)} style={{ color: '#224768', fontSize: '1.2rem', width: '11rem', cursor: 'pointer' }}>
+        <strong>Tutorial-Dashboard</strong>
+      </div>}
+    </div>
   )
 }
 export default Tutorial
