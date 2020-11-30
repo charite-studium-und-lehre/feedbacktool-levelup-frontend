@@ -17,7 +17,6 @@ const Tutorial = () => {
   const Slider = [<Dashboard onClick={(index) => setSlide(index)} />, <Fortschritt />, <Epas />, <Starkefächer />, <Ptms />, <Timeline />]
   return (
     <div className='mb-5 position-relative'>
-      { slide > 0 && <strong onClick={() => setSlide(0)} style={{ position: 'absolute', top: '1rem', left: '1rem', color: '#224768', fontSize: '1.4' }}>Zurück</strong>}
       {Slider[slide]}
       <div className='row mt-4 mx-auto '>
         <div className='col-6 offset-3'>
@@ -29,7 +28,8 @@ const Tutorial = () => {
           </div>
         </div>
       </div>
-    </div>
+      { slide > 0 && <div className='mx-auto mt-4' onClick={() => setSlide(0)} style={{ color: '#224768', fontSize: '1.2rem', width:'9rem', cursor:'pointer' }}> <strong>Tutorialdashboard</strong></div>}
+      </div>
   )
 }
 export default Tutorial
