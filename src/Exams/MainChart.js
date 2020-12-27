@@ -6,6 +6,7 @@ import { OrdinalChart } from '../Charting/Chart'
 import PointGraph from '../Charting/PointGraph'
 import { selectors, actions } from './Store'
 import { XAxis } from '../Charting/Axis'
+import { compose } from '../Utils/compose'
 
 const MainChart = ({ graphs, history, fromQuery = { id: -1 }, selected, setSelected, semesters }) => {
     useEffect( () => {
@@ -36,12 +37,9 @@ const stateToProps = (state, ownProps) => ({
     semesters: selectors.getSemesters(state),
 })
 
-export default function(data) {
-
-    let compose = connect(stateToProps, actions)(MainChart)
-    compose = needsData(selectors.loaded, actions.load)(compose);
-    compose = withRouter(compose);
-
-    return compose(data);
-}
+export default compose(
+    withRouter,
+    needsData(selectors.loaded, actions.load),
+    connect(stateToProps, actions)
+)(MainChart)
 
