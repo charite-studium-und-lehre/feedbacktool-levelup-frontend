@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import _ from 'lodash/fp'
+import { compose } from '../../Utils/compose'
 import needsData from '../../Core/needsData'
 import Totals from './Totals'
 import Details from './Details'
@@ -42,4 +42,7 @@ const MC = ({pruefung}) =>
     <div className="text-center">Diese Prüfung scheint nicht zu existieren.</div>
 
 const stateToProps = (state, ownProps) => ({ pruefung: selectors.getById( state, ownProps.match.params.test )})
-export default _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps)])(MC)
+export default compose([
+    needsData(selectors.loaded, actions.load),
+    connect(stateToProps)
+])(MC)

@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'lodash/fp'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,6 +7,8 @@ import Legend from '../../Charting/Legend'
 import Legends from '../../Core/LegendTexts'
 import needsData from '../../Core/needsData'
 import { selectors, actions } from './Questions/Store'
+import { compose } from '../../Utils/compose'
+import { sumBy } from '../../Utils/sumBy'
 
 const Infos = ({ questions, title }) => (
     <div className='col-4 text-center text-nowrap'>
@@ -21,8 +22,8 @@ const Infos = ({ questions, title }) => (
                 <div style={{ color: 'var(--color-graphs-wrong)' }}><FontAwesomeIcon icon={faTimes} /></div>
             </div>
             <div className="ml-1">
-                <div>{_.sumBy( q => q.antworten.some( a => a.ausgewaehlt && a.richtig ), questions )}</div>
-                <div>{_.sumBy( q => q.antworten.some( a => a.ausgewaehlt && !a.richtig ), questions )}</div>
+                <div>{sumBy(q => q.antworten.some(a => a.ausgewaehlt && a.richtig), questions )}</div>
+                <div>{sumBy(q => q.antworten.some(a => a.ausgewaehlt && !a.richtig), questions )}</div>
             </div>
         </div>
     </div>
@@ -31,11 +32,12 @@ const Infos = ({ questions, title }) => (
 const stateToProps = (state, ownProps) => ({ questions: selectors.getById(state, ownProps.id) })
 const loadedById = (state, ownProps) => selectors.loaded(state, ownProps.id)
 const loadById = ownProps => actions.load(ownProps.id)
-const Questions = _.compose([needsData(loadedById, loadById), connect(stateToProps),])(({ id, questions }) =>
+
+const view = ({ id, questions }) =>
     questions.length ? <div>
         <div className="row">
             <div className="col">
-                Auswertung für 
+                Auswertung für
                 <span style={{fontSize: '1.1rem'}} className="font-weight-bold mr-1">{questions.length}</span>
                 Fragen:
             </div>
@@ -53,11 +55,15 @@ const Questions = _.compose([needsData(loadedById, loadById), connect(stateToPro
                 <button type="button" className="btn color-button-color"id='Button-> Details zu Fragen'>Details zu Fragen</button>
             </Link>
         </div>
-    </div> : 
+    </div> :
     <div className="text-center">Zu dieser Prüfung liegen uns leider keine Fragen und Antworten vor.</div>
-)
 
-export default props => 
+const Questions = compose([
+    needsData(loadedById, loadById),
+    connect(stateToProps)
+])(view)
+
+export default props =>
     <div className='card p-3' style={{fontSize: '.9rem'}}>
         <Legend title={Legends.Exams.MC.Questions.title} />
         <Questions {...props} />

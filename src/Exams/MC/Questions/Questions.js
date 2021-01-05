@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import Legend from '../../../Charting/Legend'
 import Legends from '../../../Core/LegendTexts'
 import needsData from '../../../Core/needsData'
