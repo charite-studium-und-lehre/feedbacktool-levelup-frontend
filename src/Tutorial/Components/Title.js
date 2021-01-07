@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react' 
 
 const Title = props =>
     <div className="pt-3 pb-2 mb-4 row " style={{ boxShadow: '0 4px 5px -5px gray' }}>
