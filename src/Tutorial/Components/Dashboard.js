@@ -11,7 +11,7 @@ const Slide = props =>
     <div>
       <img style={{ width: '100%' }} src={props.slide}></img>
     </div>
-    <div className='px-2 pad mt-2' style={{ fontSize: window.innerWidth < 1025 ? '0.7rem' : '1.3rem' }}>
+    <div className='px-2 pad mt-2' style={{ fontSize: window.innerWidth < 1025 ? '0.6rem' : '1.3rem' }}>
       <p>{props.text}</p>
     </div>
   </div>
