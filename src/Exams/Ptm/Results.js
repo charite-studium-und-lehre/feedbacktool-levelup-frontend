@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import _ from 'lodash/fp'
 import { OrdinalChart } from '../../Charting/Chart'
 import { XAxis, YAxis } from '../../Charting/Axis'
 import BarGraph from '../../Charting/BarGraph'
@@ -13,6 +12,7 @@ import { selectors, actions } from './Store'
 import { InlineKohortenMittelDot } from "../../Charting/KohortenMittelDot"
 import AnimatedDiamond from "../../Charting/AnimatedDiamond"
 import colors from '../../colors'
+import {compose} from '../../Utils/compose'
 
 export const labels = ['richtig', 'falsch', 'nicht beantwortet']
 export const labelsAndColors = [
@@ -22,7 +22,7 @@ export const labelsAndColors = [
 ]
 
 const stateToProps = (state, props) => ({ data: props.id ? selectors.getById(state, props.id) : selectors.getLatest(state) })
-const Chart = _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps)])(({ data }) => 
+const Chart = compose([needsData(selectors.loaded, actions.load), connect(stateToProps)])(({ data }) =>
     <OrdinalChart xDomain={labels} yDomain={[0,Math.max(...data.results, ...data.means)+10]}>
         <XAxis />
         <YAxis label="Anzahl Fragen" ticks={{count: 4}} />
@@ -31,12 +31,12 @@ const Chart = _.compose([needsData(selectors.loaded, actions.load), connect(stat
                 x: l.label, y: data.results[i],
                 label: <AnimatedInteger value={data.results[i]} />,
                 color: l.color}))} />
-        <PointGraph 
+        <PointGraph
             MarkerComponent={AnimatedDiamond}
             color={colors.textBlack}
             offset={.85}
             size={15}
-            data={labels.map((l, i) => ({x: l, y: data.means[i], id: i+1}))} 
+            data={labels.map((l, i) => ({x: l, y: data.means[i], id: i+1}))}
         />
     </OrdinalChart>
 )
