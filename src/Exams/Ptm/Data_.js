@@ -48,16 +48,17 @@ export const Subjects = [
     },
 ]
 
-const rnd = _.flow([seedrandom, randomUniform.source, rnd => (a,b) => _.round(rnd(a,b)())])
-const SubjectsWithNumbers = _.flow([rnd, random => Subjects.map( 
-    cat => ({ 
-        ...cat, 
+const rnd = _.flow([seedrandom, randomUniform.source, rnd => (a,b) => Math.round(rnd(a,b)())])
+
+const SubjectsWithNumbers = _.flow([rnd, random => Subjects.map(
+    cat => ({
+        ...cat,
         subjects: cat.subjects.map( s => ({
             gruppe: cat.title,
             ...s,
             maximalPunktzahl: Math.max(0, rnd(s.titel)(3,20) + random(0,4)),
-        })).map(s => ({ 
-            ...s, 
+        })).map(s => ({
+            ...s,
             ergebnisPunktzahl: random(0, s.maximalPunktzahl),
             durchschnittsPunktzahl: random(1, s.maximalPunktzahl)
         }))
@@ -70,14 +71,14 @@ const createResult = _.flow([
     _.over([
         _.flow([seedrandom, randomUniform.source, rnd => (a,b) => _.round(rnd(a,b)())]),
         _.identity
-    ]), 
+    ]),
     ([random, timesemester]) => ({
         alt: true,
         gesamtErgebnis: {},
         results: [
             Math.round(scale(timesemester.value)),
             30,
-            90 
+            90
         ],
         means: [77, 22, 101],
         studiPruefungsId: _.uniqueId(),

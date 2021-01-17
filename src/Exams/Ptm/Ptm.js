@@ -1,15 +1,15 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import _ from 'lodash/fp'
+import {connect} from 'react-redux'
+import {compose} from '../../Utils/compose'
 import needsData from '../../Core/needsData'
 import Legend from '../../Charting/Legend'
 import LegendTexts from '../../Core/LegendTexts'
 import Subjects from './Subjects'
 import Results from './Results'
 import Timeline from './Timeline'
-import { selectors, actions } from './Store'
+import {selectors, actions} from './Store'
 import colors from "../../colors";
-import { GraphButton } from "./GraphButton"
+import {GraphButton} from "./GraphButton"
 
 export const color = colors.ptm.base
 export const colorTotal = colors.ptm.darker0
@@ -57,4 +57,4 @@ const Ptm = ({ test }) => {
 }
 
 const stateToProps = (state, ownProps) => ({ test: selectors.getById(state, ownProps.match.params.test) })
-export default _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps)])(Ptm)
+export default compose([needsData(selectors.loaded, actions.load), connect(stateToProps)])(Ptm)
