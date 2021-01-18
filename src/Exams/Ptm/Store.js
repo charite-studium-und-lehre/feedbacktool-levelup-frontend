@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import {compose} from '../../Utils/compose'
+import {compose} from '../../Utils/utils'
 import BaseStore from '../BaseStore'
 import {getSubject, toTimeline, getRanking, getLatest, getAllForSubject} from './StoreUtils'
 

@@ -13,11 +13,11 @@ const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
 
 const getFilterState = _.flow(baseStore.getStore, s => s.groupFilter)
 const getGroups = _.flow(_.map( d => d.fachsemester ), _.uniq)
-const getFilters = state => groups => groups.map(g => ({ 
+const getFilters = state => groups => groups.map(g => ({
     label: `${g}. Fachsemester`,
     value: g,
-    pred: e => e.fachsemester === g, 
-    selected: getFilterState(state).indexOf(g) >= 0 
+    pred: e => e.fachsemester === g,
+    selected: getFilterState(state).indexOf(g) >= 0
 }))
 
 const filter = filters => data => data.filter(_.overSome(filters.filter(f => f.selected).map(f => f.pred)))

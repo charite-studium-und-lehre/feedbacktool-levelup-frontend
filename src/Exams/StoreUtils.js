@@ -60,6 +60,7 @@ export function getById(state, id) {
 }
 
 export function toNavigationData(exams) {
+
     let semesters = groupBy(exams, 'zeitsemester');
     let step1 = [], step2 = [];
 
