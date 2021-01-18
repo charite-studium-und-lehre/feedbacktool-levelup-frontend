@@ -10,7 +10,7 @@ import Legends from '../../Core/LegendTexts'
 import {selectors, actions} from './Store'
 import colordefs from "../../colors";
 import {InlineKohortenMittelDot} from "../../Charting/KohortenMittelDot"
-import {compose} from "../../Utils/compose";
+import {compose} from "../../Utils/utils";
 
 export const color = colordefs.pp.base
 export const colorTotal = colordefs.pp.lighter1

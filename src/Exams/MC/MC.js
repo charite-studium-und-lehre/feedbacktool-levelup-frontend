@@ -1,11 +1,11 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { compose } from '../../Utils/compose'
+import {connect} from 'react-redux'
+import {compose} from '../../Utils/utils'
 import needsData from '../../Core/needsData'
 import Totals from './Totals'
 import Details from './Details'
 import Questions from './Questions'
-import { selectors, actions } from './Store'
+import {selectors, actions} from './Store'
 import colors from "../../colors";
 import TellMe from './TellMe'
 export const color = colors.mc.base

@@ -7,7 +7,7 @@ import Legend from '../../Charting/Legend'
 import Legends from '../../Core/LegendTexts'
 import needsData from '../../Core/needsData'
 import { selectors, actions } from './Questions/Store'
-import { compose } from '../../Utils/compose'
+import { compose } from '../../Utils/utils'
 import { sumBy } from '../../Utils/sumBy'
 
 const Infos = ({ questions, title }) => (

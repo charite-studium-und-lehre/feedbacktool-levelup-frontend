@@ -16,7 +16,7 @@ import needsData from '../../Core/needsData'
 import AnimatedInteger from '../../Charting/AnimatedInteger'
 import PointGraph from '../../Charting/PointGraph'
 import COLORS from "../../colors";
-import {compose} from '../../Utils/compose'
+import {compose} from '../../Utils/utils'
 
 const respSwitch = (large, small) => <span><span className="d-none d-md-inline-block">{large}</span><span className="d-inline-block d-md-none">{small}</span></span>
 

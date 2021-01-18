@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
-import { connect } from 'react-redux'
+import React, {useState} from 'react'
+import {connect} from 'react-redux'
 import Legend from '../../../Charting/Legend'
 import Legends from '../../../Core/LegendTexts'
 import needsData from '../../../Core/needsData'
 import Question from './Question'
 import Filters from './Filters'
-import { selectors, actions } from './Store'
-import { filterType, filterDifficulty, filterCorrectness, bakeFilters, filterAll } from './QuestionsUtils'
-import { compose } from '../../../Utils/compose'
+import {selectors, actions} from './Store'
+import {filterType, filterDifficulty, filterCorrectness, bakeFilters, filterAll } from './QuestionsUtils'
+import {compose} from '../../../Utils/utils'
 
 
 const Questions = ({questions}) => {

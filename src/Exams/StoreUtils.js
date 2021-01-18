@@ -1,11 +1,11 @@
-import { groupBy } from '../Utils/groupBy'
-import { scaleBand } from 'd3-scale'
-import { color as mcColor } from './MC/MC'
-import { color as ptmColor } from './Ptm/Ptm'
-import { color as stationsColor } from './Stations/Stations'
-import { selectors as PtmSelectors } from './Ptm/Store'
-import { selectors as MCSelectors } from './MC/Store'
-import { selectors as StationsSelectors } from './Stations/Store'
+import {groupBy} from '../Utils/groupBy'
+import {scaleBand} from 'd3-scale'
+import {color as mcColor} from './MC/MC'
+import {color as ptmColor} from './Ptm/Ptm'
+import {color as stationsColor} from './Stations/Stations'
+import {selectors as PtmSelectors} from './Ptm/Store'
+import {selectors as MCSelectors} from './MC/Store'
+import {selectors as StationsSelectors} from './Stations/Store'
 
 export const graphs = state => [
     {
@@ -35,15 +35,17 @@ export const selected = (state = -1, action) => {
 }
 
 export function getSemesters(state) {
+
     let exams = graphs(state);
     let semesters = [];
 
     for (let i = 0; i < exams.length; i++)
         for (let j = 0; j < exams[i].data.length; j++)
-            if (semesters.indexOf(exams[i].data[j].zeitsemester) === -1)
-                semesters.push(exams[i].data[j].zeitsemester);
+            semesters.push(exams[i].data[j].zeitsemester);
 
-    semesters = semesters.sort(semester => semester.split(' ').reverse().join(''));
+    semesters = [...new Set(semesters)];
+
+    semesters.sort((a, b) => a.split(' ')[1] - b.split(' ')[1]);
 
     return semesters;
 }

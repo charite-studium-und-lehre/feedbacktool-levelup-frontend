@@ -12,7 +12,7 @@ import { selectors, actions } from './Store'
 import { InlineKohortenMittelDot } from "../../Charting/KohortenMittelDot"
 import AnimatedDiamond from "../../Charting/AnimatedDiamond"
 import colors from '../../colors'
-import {compose} from '../../Utils/compose'
+import {compose} from '../../Utils/utils'
 
 export const labels = ['richtig', 'falsch', 'nicht beantwortet']
 export const labelsAndColors = [

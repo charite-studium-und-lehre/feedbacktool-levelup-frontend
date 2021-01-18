@@ -10,7 +10,7 @@ import {XAxis, YAxis} from '../../Charting/Axis'
 import SimpleDot from '../../Charting/SimpleDot'
 import {selectors, actions} from './Store'
 import {labels} from './Results'
-import {compose} from '../../Utils/compose'
+import {compose} from '../../Utils/utils'
 
 const colors = ['hsla(120, 20%, 50%, .65)', 'hsla(0, 50%, 50%, .65)', 'hsla(240, 0%, 50%, .65)']
 const graphs = labels.map( (l, i) => ({ label: l, value: colors[i] }))

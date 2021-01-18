@@ -1,40 +1,43 @@
-import _ from 'lodash/fp'
 import BaseStore from '../BaseStore'
-import { combineReducers } from 'redux'
+import {combineReducers} from 'redux'
+import {stationsReducer, filter, toTimeline} from './StoreUtils'
+import {compose} from '../../Utils/utils'
 
 export const identifier = 'stations'
 const baseStore = BaseStore(identifier)
 
-const toTimeline = exam => ({
-    link: `stations/${exam.id}`,
-    ...exam
-})
-const getTimeline = _.flow([ baseStore.getItems, _.map( toTimeline ) ])
+const getTimeline = (state) => Object.values(baseStore.getItems(state)).map(toTimeline)
+const getFilterState = (state) => baseStore.getStore(state).groupFilter
 
-const getFilterState = _.flow(baseStore.getStore, s => s.groupFilter)
-const getGroups = _.flow(_.map( d => d.fachsemester ), _.uniq)
-const getFilters = state => groups => groups.map(g => ({
+export const getFilters = state => groups => groups.map(g => ({
     label: `${g}. Fachsemester`,
     value: g,
     pred: e => e.fachsemester === g,
     selected: getFilterState(state).indexOf(g) >= 0
 }))
 
-const filter = filters => data => data.filter(_.overSome(filters.filter(f => f.selected).map(f => f.pred)))
-const getGroupFilters = state => _.flow(baseStore.getItems, getGroups, getFilters(state))(state)
+const getGroupFilters = state => {
+    let exams = Object.values(baseStore.getItems(state)).map(exam => exam.fachsemester);
+    exams = [...new Set(exams)];
+    exams = getFilters(state)(exams);
+    return exams;
+}
 
 export const selectors = baseStore.withLoadedSelector({
     getItems: baseStore.getItems,
-    getFilteredItems: state => _.flow(baseStore.getItems, filter(getGroupFilters(state))),
+    getFilteredItems: state => filter(getGroupFilters(state))(Object.values(baseStore.getItems)),
     getTimeline,
     getGroupFilters,
 })
 
 export const actions = baseStore.withLoadAction({
-    setGroupFilters: groups => ({ type: 'STATIONS_FILTER_GROUPS', payload: groups }),
+    setGroupFilters: groups => ({
+        type: 'STATIONS_FILTER_GROUPS',
+        payload: groups
+    }),
 })
 
-const groupFilter = ( state = [], action ) => {
+const groupFilter = (state = [], action) => {
     switch(action.type) {
         case 'EXAMS_SELECT':
             return identifier.startsWith(action.payload.format) ? [action.payload.fachsemester] : []
@@ -45,11 +48,10 @@ const groupFilter = ( state = [], action ) => {
     }
 }
 
-const stationsReducer = ( state = {}, action ) => {
-    switch (action.type) {
-        default:
-            return state
-    }
-}
-
-export const reducer = combineReducers({ items: _.compose([ baseStore.withSelectReducer, baseStore.withLoadedReducer() ])(stationsReducer), groupFilter })
+export const reducer = combineReducers({
+    items: compose([
+        baseStore.withSelectReducer,
+        baseStore.withLoadedReducer()
+    ])(stationsReducer),
+    groupFilter
+})

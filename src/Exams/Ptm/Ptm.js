@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {compose} from '../../Utils/compose'
+import {compose} from '../../Utils/utils'
 import needsData from '../../Core/needsData'
 import Legend from '../../Charting/Legend'
 import LegendTexts from '../../Core/LegendTexts'

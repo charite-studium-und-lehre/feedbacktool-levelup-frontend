@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux'
 import BaseStore from '../BaseStore'
-import {compose} from '../../Utils/compose'
+import {compose} from '../../Utils/utils'
 import {identifier as questionsIdentifier, reducer as questionsReducer} from './Questions/Store'
 import {createStoreSelectors} from './StoreSelectors'
 
