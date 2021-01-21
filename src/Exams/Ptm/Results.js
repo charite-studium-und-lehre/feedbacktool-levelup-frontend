@@ -45,7 +45,7 @@ const Results = props =>
     <div className="card">
         <div className="card-body">
             <Legend title={Legends.Strengths.PTMResults.title}>
-                {Legends.Strengths.PTMResults.text}
+                <p>{Legends.Strengths.PTMResults.text}</p>
             <div className="position-relative">
                     Der <InlineKohortenMittelDot /> kennzeichnet den Kohortenmittelwert.
             </div>

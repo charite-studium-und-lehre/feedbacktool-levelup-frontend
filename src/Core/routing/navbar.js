@@ -67,7 +67,7 @@ export default _.compose([connect(stateToProps), makeExtendable()])(function Nav
                             <NavLink className="nav-link pull-right" to="/login">login</NavLink>
                         }
                     </li>
-                    
+
                 </ul>
                 : null
                 }
