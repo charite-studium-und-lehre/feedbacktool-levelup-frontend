@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/helper-regex": "^7.10.5",
+    "@babel/helper-builder-react-jsx": "^7.10.4",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-regular-svg-icons": "^5.12.0",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
