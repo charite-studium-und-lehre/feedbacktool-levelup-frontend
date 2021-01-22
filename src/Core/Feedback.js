@@ -57,7 +57,7 @@ const Feedback = _.compose([connect(stateToProps), waitForLogin])(({ user }) => 
         if(!messageDiv.current) return
         messageDiv.current.scrollTop = messageDiv.current.scrollHeight
     }, [messages])
-    useEffect(() => { setTimeout(() => setShow(false), 500) }, [])
+    useEffect(() => { setTimeout(() => setShow(false), 5000) }, [])
 
     function postFeedback() {
         const message = input.current.value

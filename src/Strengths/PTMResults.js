@@ -17,8 +17,7 @@ const colors = scaleOrdinal(schemeBlues[3])
 const PTMResults = ({ data }) =>
     <div className="card">
         <div className="card-body">
-            <Legend title={Legends.Strengths.PTMResults.title}>
-                <p>{Legends.Strengths.PTMResults.text}</p>
+            <Legend title={Legends.Strengths.PTMResults.title}>{Legends.Strengths.PTMResults.text}
                 <div className="mt-2">{confidence.map((c, i) => 
                     <span key={i} className="d-inline-block mr-2" style={{height: '1.2rem', lineHeight: '1.2rem'}}>
                         <span className="d-inline-block mr-1" style={{width: '2rem', height: '100%', backgroundColor: colors(i)}}>&nbsp;</span>
