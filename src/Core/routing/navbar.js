@@ -16,7 +16,7 @@ const TellMeLink = (props) =>
     <div className={`d-none d-lg-block mt-2 ${props.margin}`}>
         <span style={{fontSize:'.9rem', color: Colors.blackOpacity05, display: 'inline-block', marginTop:'.9rem'}} >Partnerlink:</span>
         <div style={{display: 'inline-block', marginBottom:'.8rem'}}>
-        <a className='btn mx-3 py-1 d-none d-sm-inline' style={{backgroundColor:Colors.background.tellmeButtonBlue}} target="blank" href='https://dsfz-online.charite.de/' >
+        <a className='btn mx-3 py-1 d-none d-sm-inline' style={{backgroundColor:Colors.background.tellmeButtonBlue}} target="blank" href='https://msm-tellme.charite.de/lernen' >
             <span  style={{color:Colors.white}}>Trainieren</span>
         </a>
         <img className='mb-2' src={tellMeLogo} alt="tellme-logo" style={{ height: '2rem', width: '5rem' }}></img>
@@ -44,7 +44,7 @@ export default _.compose([connect(stateToProps), makeExtendable()])(function Nav
                             </li>
                             : route.TellMe ?
                                 <div className='d-lg-none' style={{color: Colors.blackOpacity05}} key={index}>
-                                    <a target="blank" href='https://dsfz-online.charite.de/'>
+                                    <a target="blank" href='https://msm-tellme.charite.de/lernen'>
                                         <span className='mr-2'>Trainieren mit</span>
                                         <img className='mb-2' src={tellMeLogo} alt="tellme-logo" style={{ height: '1.5rem', width: '4rem' }}></img>
                                     </a>
@@ -67,7 +67,7 @@ export default _.compose([connect(stateToProps), makeExtendable()])(function Nav
                             <NavLink className="nav-link pull-right" to="/login">login</NavLink>
                         }
                     </li>
-
+                    
                 </ul>
                 : null
                 }
