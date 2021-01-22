@@ -13,7 +13,7 @@ const Tellme = () => (
             <div className='col-12'>
                 <p className='mt-2 p-0 '>Hier kannst du dein aktuelles Wissen zu den originalen MC-Fragen testen</p>
             </div>
-            <a className='btn color-button-color ml-3 mt-2 px-4' style={{ position: 'relative', bottom: '0' }} target="blank" href='https://msm-tellme.charite.de/lernen' >
+            <a className='btn color-button-color ml-3 mt-2 px-4' style={{ position: 'relative', bottom: '0' }} target="blank" href='https://dsfz-online.charite.de/' >
                 Trainieren mit<span className='ml-2'><FontAwesomeIcon icon={faDumbbell} /></span>
             </a>
         </div>
