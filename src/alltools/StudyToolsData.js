@@ -18,7 +18,7 @@ export const StudyToolsData = [
         {
             title: 'TellMe',
             description: 'Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. ',
-            href: 'https://dsfz-online.charite.de/'},
+            href: 'https://msm-tellme.charite.de/lernen/'},
         {
             title: 'Minerva (Hausarbeit M23)',
             description: 'Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. Dies ist eine Beschreibung. ',

@@ -52,7 +52,7 @@ export const StudyToolsData = [
         href: 'https://lms.charite.de'},
     {
         title: 'TellMe',
-        href: 'https://dsfz-online.charite.de/'
+        href: 'https://msm-tellme.charite.de/lernen/'
     },
     {
         title: 'Minerva (Hausarbeit M23)',
