@@ -1,29 +1,28 @@
-import _ from 'lodash/fp'
 import BaseStore from '../Core/BaseStore'
-import { identifier, actions, selectors } from './Store'
+import { identifier } from './Store'
+import {
+    identity,
+    examsSelected,
+    dataFetched,
+    withLoadAction,
+    withLoadedSelector
+} from './BaseStoreUtils'
 
-const selectItem = (state, id) => ({ ...state, selected: state.id === id })
 const withSelectReducer = reducer => (state, action) => {
     switch(action.type) {
         case 'EXAMS_SELECT':
-            return _.keyBy( i => i.id, _.map(i => selectItem(i, action.payload.id), state))
+            return examsSelected(state, action.payload.id);
         default:
-            return reducer(state, action)
+            return reducer(state, action);
     }
 }
 
 export default newIdentifier => {
 
-    const transformResult = _.flow([
-        d => d.pruefungen,
-        _.filter( e => newIdentifier.startsWith(e.format) ),
-        _.map( e => ({ ...e, id: '' + e.studiPruefungsId })),
-    ])
-    
-    const examsLoadedReducer = (transform = _.identity) => reducer => (state, action) => {
+    const examsLoadedReducer = (transform = identity) => reducer => (state, action) => {
         switch(action.type) {
             case 'EXAMS_DATA_FETCHED':
-                return _.flow([ transformResult, _.map(transform), _.keyBy( e => e.id ) ])(action.payload)
+                return dataFetched(action.payload, newIdentifier, transform)
             default:
                 return reducer(state, action)
         }
@@ -32,8 +31,8 @@ export default newIdentifier => {
     const baseStore = BaseStore(newIdentifier, state => state[identifier].items[newIdentifier])
     return {
         ...baseStore,
-        withLoadAction: _.merge({ load: () => actions.load() }),
-        withLoadedSelector: _.merge({ loaded: state => selectors.loaded(state) }),
+        withLoadAction: withLoadAction,
+        withLoadedSelector: withLoadedSelector,
         withLoadedReducer: examsLoadedReducer,
         withSelectReducer,
     }

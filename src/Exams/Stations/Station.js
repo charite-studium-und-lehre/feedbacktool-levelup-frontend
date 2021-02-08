@@ -1,10 +1,9 @@
 import React from 'react'
-import _ from 'lodash/fp'
 import SimpleBar from '../../Charting/SimpleBar'
 import makeExtendable from '../../Core/makeExtendable'
 import SlideDown from 'react-slidedown'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faChevronDown} from '@fortawesome/free-solid-svg-icons'
 import COLORS from "../../colors";
 
 const Station = props =>
@@ -23,9 +22,9 @@ const Station = props =>
                     </SimpleBar>
                 </div>
                 <div style={{opacity: props.extended ? 1 : 0}} className="animated">
-                    {props.data.details && 
+                    {props.data.details &&
                         <SlideDown className="mb-4">
-                            {props.extended && 
+                            {props.extended &&
                                 <div>
                                     {props.data.details.map( s =>
                                         <Station
@@ -44,4 +43,4 @@ const Station = props =>
         </div>
     </div>
 
-export default _.compose([makeExtendable() ])(Station)
+export default makeExtendable()(Station)
