@@ -4,11 +4,7 @@ name: CI
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
-on:
-  push:
-    branches: [ not-set-up-yet ]
-  pull_request:
-    branches: [ not-set-up-yet ]
+on:  [push, pull_request]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -16,18 +12,11 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-
-    # Runs a single command using the runners shell
-    - name: Run a one-line script
-      run: echo Hello, world!
-
-    # Runs a set of commands using the runners shell
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it 
+    - name: Send message to ms teams
+      uses: dhollerbach/github-action-send-message-to-ms-teams@1.0.10
+      with:
+        webhook: 'https://charitede.webhook.office.com/webhookb2/05cdecbb-03b1-4cf7-934e-d6e1853711be@afe91939-923e-432c-bc66-cbc3ec18d02c/IncomingWebhook/1c6de73e11ab40c493f8ef6dcf337f85/ed938071-d67b-4ba0-82fc-652e714d5056'
+        message: 'Pull request'
