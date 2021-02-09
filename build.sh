@@ -22,7 +22,7 @@ mv build buildFinished
 
 cat htaccess-dist | sed s/RewriteBase/RewriteBase\ \\\/$DIR/g > buildFinished/.htaccess
 
-if [[ -v $DEPLOY_MESSAGE ]]; then
+if [[ -z $DEPLOY_MESSAGE ]]; then
   DEPLOY_MESSAGE="New deployment for $GIT_BRANCH by `whoami`.\nÄnderung: `git log -1 --pretty=%B`\nGo to https://levelup.charite.de/$DIR to access it."
 fi
 DEPLOY_MESSAGE="$DEPLOY_MESSAGE Aufruf unter https://levelup.charite.de/$DIR"
