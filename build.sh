@@ -28,3 +28,4 @@ fi
 DEPLOY_MESSAGE="$DEPLOY_MESSAGE Aufruf unter https://levelup.charite.de/$DIR"
 
 curl -X POST --data-urlencode "payload={\"text\": \"$DEPLOY_MESSAGE\"}" $SLACK_URL
+curl -H "Content-Type: application/json" -d "{\"text\": \"$DEPLOY_MESSAGE\"}" $TEAMS_URL
