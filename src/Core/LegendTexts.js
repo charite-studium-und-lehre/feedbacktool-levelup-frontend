@@ -32,7 +32,7 @@ const Legends = {
                         Frage wurde mit verschiedenen Tags versehen, mit deren Hilfe du die Fragen filtern kannst. Die
                         Filter schwer und leicht zeigen dir wie viel deiner Mitstudierenden diese Frage beantworten
                         konnten. Schwere Fragen sind Fragen, die weniger als 40% deiner Mitstudierenden beantworten
-                        konnten. Leichte Fragen hingegen konnten mehr als 80% deiner Kommilitonen beantworten.So kannst
+                        konnten. Leichte Fragen hingegen konnten mehr als 80% deiner Kommilitonen beantworten. So kannst
                         du dir z.B. nur die Fragen anzeigen lassen, die du falsch beantwortest hast.</p>
                 
             }
