@@ -64,7 +64,7 @@ export const ConsultingTree = {
         },
         {
             title: 'Familienbüro',
-            paragraph: 'Familienbüro:Sie studieren an der Charité und betreuen Kinder? Sie suchen einen Kitaplatz? Sie pflegen Angehörige? Sie haben Fragen und benötigen Informationen rund um das Thema Vereinbarkeit von Studium und Familie?',
+            paragraph: 'Sie studieren an der Charité und betreuen Kinder? Sie suchen einen Kitaplatz? Sie pflegen Angehörige? Sie haben Fragen und benötigen Informationen rund um das Thema Vereinbarkeit von Studium und Familie?',
             tel: "+49 030 450 577 257",
             emails: ["familienbuero@charite.de", "vaeterbeauftragte@charite.de"],
             address: "Westring 1, 1. Etage, R1.1011 CVK",
