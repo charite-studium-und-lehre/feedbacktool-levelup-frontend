@@ -1,11 +1,11 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import _ from 'lodash/fp'
+import {connect} from 'react-redux'
+import {compose} from '../../Utils/utils'
 import needsData from '../../Core/needsData'
 import Totals from './Totals'
 import Details from './Details'
 import Questions from './Questions'
-import { selectors, actions } from './Store'
+import {selectors, actions} from './Store'
 import colors from "../../colors";
 import TellMe from './TellMe'
 export const color = colors.mc.base
@@ -42,4 +42,7 @@ const MC = ({pruefung}) =>
     <div className="text-center">Diese Prüfung scheint nicht zu existieren.</div>
 
 const stateToProps = (state, ownProps) => ({ pruefung: selectors.getById( state, ownProps.match.params.test )})
-export default _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps)])(MC)
+export default compose([
+    needsData(selectors.loaded, actions.load),
+    connect(stateToProps)
+])(MC)

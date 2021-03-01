@@ -1,16 +1,16 @@
-import _                         from 'lodash/fp'
-import React, {useState}         from 'react'
-import {connect}                 from 'react-redux'
-import {InlineKohortenMittelDot} from '../../Charting/KohortenMittelDot'
-import Legend                    from '../../Charting/Legend'
-import Legends                   from '../../Core/LegendTexts'
-import needsData                 from '../../Core/needsData'
-import {chartingFunction}        from './DetailsChartingUtils'
-import {actions, selectors}      from './Store'
+import React, {useState} from 'react'
+import {connect} from 'react-redux'
+import {InlineKohortenMittelDot } from '../../Charting/KohortenMittelDot'
+import Legend from '../../Charting/Legend'
+import Legends from '../../Core/LegendTexts'
+import needsData from '../../Core/needsData'
+import {chartingFunction} from './DetailsChartingUtils'
+import {actions, selectors} from './Store'
+import {compose} from '../../Utils/utils'
 
 const stateToProps = (state, ownProps) => ({...selectors.getById(state, ownProps.id)})
 const dependancyOfMCStore = needsData(selectors.loaded, actions.load)
-const onLoadCreateChartByFunction = _.compose(dependancyOfMCStore, connect(stateToProps))
+const onLoadCreateChartByFunction = compose(dependancyOfMCStore, connect(stateToProps))
 
 const Chart = onLoadCreateChartByFunction(chartingFunction)
 
