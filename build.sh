@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd `dirname $0`
-git pull --rebase
+git pull
 
 DIR=app-`basename $(pwd)`
 if [ $DIR = "app-master" -o $DIR = "app-levelup" ]; then
@@ -13,6 +13,7 @@ echo -e "  ---  Build für Verzeichnis \e[44m\e[97m $DIR \e[0m - Git-Branch \e[4
 
 DATUM=`date '+%d.%m.%Y %H:%M'`
 yarn install
+yarn upgrade
 
 echo Ausführen von:    PUBLIC_URL="/$DIR" REACT_APP_SITE_TITLE="Branch $GIT_BRANCH, Deployment am $DATUM" yarn build
 PUBLIC_URL="/$DIR" REACT_APP_SITE_TITLE="Branch $GIT_BRANCH, Deployment am $DATUM" yarn build
@@ -27,3 +28,4 @@ fi
 DEPLOY_MESSAGE="$DEPLOY_MESSAGE Aufruf unter https://levelup.charite.de/$DIR"
 
 curl -X POST --data-urlencode "payload={\"text\": \"$DEPLOY_MESSAGE\"}" $SLACK_URL
+curl -H "Content-Type: application/json" -d "{\"text\": \"$DEPLOY_MESSAGE\"}" $TEAMS_URL

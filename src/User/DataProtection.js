@@ -13,7 +13,7 @@ const datenProtection =()=> (
             <h3 className='text-center'>Datenschutzhinweise</h3>
           </div>
           <div className="card-body">
-            <div>{Legends.DatenProtection.text}</div>
+            <div>{Legends.DatenProtection.text.map(text => <p>{text}</p> )}</div>
             <Link to='/login'>
               <div className='color-navigation'>
                 <FontAwesomeIcon icon={faChevronLeft}/>

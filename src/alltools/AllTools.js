@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom' 
 import {StudyToolsData, OtherToolsData } from './AllToolsData'
 import stift from '../images/stift.svg'
 import spritze from '../images/spritze.svg'
