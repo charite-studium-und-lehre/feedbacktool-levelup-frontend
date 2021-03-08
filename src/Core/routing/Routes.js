@@ -130,7 +130,7 @@ const Routes = [
   {
     path: '/tutorial',
     component: Tutorial,
-    menuName: 'Tutorial',
+    // menuName: 'Tutorial',
     exact: true,
     private: false,
   },
