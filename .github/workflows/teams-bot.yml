@@ -1,0 +1,14 @@
+name: Teams deployment message
+
+on:
+  push
+
+jobs:
+  send-message:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Send message to ms teams
+      uses: dhollerbach/github-action-send-message-to-ms-teams@1.0.10
+      with:
+        webhook: 'https://charitede.webhook.office.com/webhookb2/05cdecbb-03b1-4cf7-934e-d6e1853711be@afe91939-923e-432c-bc66-cbc3ec18d02c/IncomingWebhook/1c6de73e11ab40c493f8ef6dcf337f85/ed938071-d67b-4ba0-82fc-652e714d5056'
+        message: 'Push request'
