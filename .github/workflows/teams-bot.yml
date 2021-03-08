@@ -7,5 +7,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: |
-        msg=$(git symbolic-ref --short HEAD)
-        echo $msg
+        branch=$(git symbolic-ref --short HEAD)
+        author=$(git log -1 --pretty=format:'%an')
+        branch="Branch: $branch\nAuthor: $author\n"
+        echo $branch
