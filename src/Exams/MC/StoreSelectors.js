@@ -1,7 +1,6 @@
 import {minQuestions} from '../../Utils/Constants'
 import {getTotals, getTimeline as getTimelineUtils} from './StoreSelectorsUtils'
-import {groupBy} from '../../Utils/groupBy'
-import {sumBy} from '../../Utils/sumBy'
+import {groupBy, sumBy} from '../../Utils/utils'
 
 export function createStoreSelectors(baseStore) {
 

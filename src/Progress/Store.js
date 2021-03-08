@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import BaseStore from '../Core/BaseStore'
-import {groupBy} from '../Utils/groupBy'
+import {groupBy} from '../Utils/utils'
 
 export const identifier = 'progress'
 const baseStore = BaseStore(identifier)

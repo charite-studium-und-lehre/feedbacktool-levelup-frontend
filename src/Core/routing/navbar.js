@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import _ from 'lodash/fp'
 import { Link, NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
@@ -11,6 +10,7 @@ import Routes from "./Routes"
 import { useLocation } from "react-router-dom"
 import { selectors as user } from '../../User/Store'
 import Colors from "../../colors"
+import { compose } from "../../Utils/utils"
 
 const TellMeLink = (props) =>
     <div className={`d-none d-lg-block mt-2 ${props.margin}`}>
@@ -23,8 +23,12 @@ const TellMeLink = (props) =>
         </div>
     </div>
 
-const stateToProps = state => ({ loggedIn: user.isLoggedIn(state), userData: user.getData(state) })
-export default _.compose([connect(stateToProps), makeExtendable()])(function Navbar({ loggedIn, userData, ...props }) {
+const stateToProps = state => ({
+    loggedIn: user.isLoggedIn(state),
+    userData: user.getData(state)
+})
+
+export default compose([connect(stateToProps), makeExtendable()])(function Navbar({ loggedIn, userData, ...props }) {
     const { pathname } = useLocation()
     const navbarLogin = !pathname.includes('login')
     return (
@@ -67,7 +71,7 @@ export default _.compose([connect(stateToProps), makeExtendable()])(function Nav
                             <NavLink className="nav-link pull-right" to="/login">login</NavLink>
                         }
                     </li>
-                    
+
                 </ul>
                 : null
                 }

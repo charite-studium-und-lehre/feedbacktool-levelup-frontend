@@ -31,3 +31,16 @@ export const compose = (...functions) => (parameters) => {
 
     return out;
 }
+
+export function groupBy(xs, key) {
+
+    return xs.reduce(function(rv, x) {
+
+        (rv[x[key]] = rv[x[key]] || []).push(x);
+
+        return rv;
+
+    }, []);
+}
+
+export const sumBy = (func, arr) => arr.reduce((acc, item) => acc + func(item), 0)

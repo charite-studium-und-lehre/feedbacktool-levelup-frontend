@@ -7,8 +7,7 @@ import Legend from '../../Charting/Legend'
 import Legends from '../../Core/LegendTexts'
 import needsData from '../../Core/needsData'
 import { selectors, actions } from './Questions/Store'
-import { compose } from '../../Utils/utils'
-import { sumBy } from '../../Utils/sumBy'
+import { compose, sumBy } from '../../Utils/utils'
 
 const Infos = ({ questions, title }) => (
     <div className='col-4 text-center text-nowrap'>
