@@ -33,4 +33,4 @@ const Tutorial = () => {
     </div>
   )
 }
-export default Tutorial
+export default Tutorial 
