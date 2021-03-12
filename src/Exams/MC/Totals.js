@@ -1,40 +1,53 @@
-import React, { useState } from 'react'
-import { connect } from 'react-redux'
-import _ from 'lodash/fp'
-import { curveStep } from 'd3-shape'
+import React, {useState} from 'react'
+import {connect} from 'react-redux'
+import {curveStep} from 'd3-shape'
 import tinycolor from 'tinycolor2'
-import { LinearChart, OrdinalChart } from '../../Charting/Chart'
+import {LinearChart, OrdinalChart} from '../../Charting/Chart'
 import LineGraph from '../../Charting/LineGraph'
 import AreaGraph from '../../Charting/AreaGraph'
 import BarGraph from '../../Charting/BarGraph'
 import LineMarker from '../../Charting/LineMarker'
 import Legend from '../../Charting/Legend'
-import { XAxis, YAxis } from '../../Charting/Axis'
-import { mobileWidth } from '../../Charting/Utils'
-import { selectors, actions } from './Store'
+import {XAxis, YAxis} from '../../Charting/Axis'
+import {mobileWidth} from '../../Charting/Utils'
+import {selectors, actions} from './Store'
 import Legends from '../../Core/LegendTexts'
 import needsData from '../../Core/needsData'
 import AnimatedInteger from '../../Charting/AnimatedInteger'
 import PointGraph from '../../Charting/PointGraph'
 import COLORS from "../../colors";
+import {compose} from '../../Utils/utils'
 
 const respSwitch = (large, small) => <span><span className="d-none d-md-inline-block">{large}</span><span className="d-inline-block d-md-none">{small}</span></span>
+
 const PercentileArea = ({ percentiles, ...props }) => {
     const id = 'areagraph'
     const color = tinycolor('hsla(120, 100%, 10%, .2)')
-    const colors = _.range(0, percentiles.length).map( i => color.lighten(20).toString() )
+    const colors = [...Array(percentiles.length).keys()].map(i => color.lighten(20).toString())
+
     return <g>
         <clipPath id={id}>
             <AreaGraph {...props} curve={curveStep} ></AreaGraph>
         </clipPath>
-        {percentiles.map( (p, i) => <rect key={i} x={props.xScale(p[0])} width={props.xScale(p[1]) - props.xScale(p[0])} height='100%' fill={colors[i]} clipPath={`url(#${id})`} /> )}
+        {percentiles.map((p, i) => <rect key={i} x={props.xScale(p[0])} width={props.xScale(p[1]) - props.xScale(p[0])} height='100%' fill={colors[i]} clipPath={`url(#${id})`} />)}
     </g>
 }
-const Totals = ({ ergebnisPunktzahl, durchschnittsPunktzahl, bestehensgrenzePunktzahl, kohortenPunktzahlen, maximalPunktzahl, percent, histogram, graphData }) => {
+const Totals = ({
+    ergebnisPunktzahl,
+    durchschnittsPunktzahl,
+    bestehensgrenzePunktzahl,
+    kohortenPunktzahlen,
+    maximalPunktzahl,
+    percent,
+    histogram,
+    graphData
+}) => {
     const [ mode, setMode ] = useState('histo')
-
-    const domain = window.innerWidth <= mobileWidth ? histogram.map(d => d.x) : _.range(0,Math.ceil(maximalPunktzahl / 5)).map(d => d*5)
+    const domain = window.innerWidth <= mobileWidth ?
+        histogram.map(d => d.x) :
+        [...Array(Math.ceil(maximalPunktzahl / 5)).keys()].map(d => d*5)
     const LegendText = Legends.Exams.MC.Totals
+
     return (
         <div className="card p-4">
             <Legend title={LegendText.title}>{LegendText.text}</Legend>
@@ -75,7 +88,7 @@ const Totals = ({ ergebnisPunktzahl, durchschnittsPunktzahl, bestehensgrenzePunk
     )
 }
 
-const stateToProps = (state, ownProps) => ( {
+const stateToProps = (state, ownProps) => ({
     ...selectors.getTotalsData(state, ownProps.id),
 })
-export default _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps))(Totals)
+export default compose(needsData(selectors.loaded, actions.load), connect(stateToProps))(Totals)
