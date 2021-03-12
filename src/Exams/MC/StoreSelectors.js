@@ -1,43 +1,45 @@
-import _                                                              from 'lodash/fp'
-import {minQuestions}                                                  from '../../Utils/Constants'
-import {getGraphData, getHistogram, getPercent, findById, getTimeline as getTimelineUtils} from './StoreSelectorsUtils'
+import {minQuestions} from '../../Utils/Constants'
+import {getTotals, getTimeline as getTimelineUtils} from './StoreSelectorsUtils'
+import {groupBy} from '../../Utils/groupBy'
+import {sumBy} from '../../Utils/sumBy'
 
 export function createStoreSelectors(baseStore) {
 
-    const getTimeline = _.flow([baseStore.getItems, _.map(getTimelineUtils)])
+    const getTimeline = (state) =>
+        Object.values(baseStore.getItems(state)).map(getTimelineUtils)
 
-    const getById = (state, id) =>
-        _.flow([baseStore.getItems, findById(id)])(state)
+    const getById = (state, id) => baseStore.getItems(state)[id];
 
-    const getTotalsData = _.flow([
-        getById,
-        e => e.gesamtErgebnis,
-        getPercent,
-        getHistogram,
-        getGraphData
-    ])
+    const getTotalsData = (state, id) =>
+        getTotals(getById(state, id).gesamtErgebnis);
 
-    const getSubjectsTotals = _.flow([
-        baseStore.getItems,
-        _.flatMap(i => i.faecher),
-        _.groupBy(f => f.code),
-        _.map(g => ({
-            ...g[0],
-            ergebnisPunktzahl: _.sumBy('ergebnisPunktzahl')(g),
-            maximalPunktzahl: _.sumBy('maximalPunktzahl')(g)
-        }))
-    ])
+    const getSubjectsTotals = (state) => {
 
-    const getRanking = _.flow([
-        getSubjectsTotals,
-        _.filter(s => s.maximalPunktzahl >= minQuestions),
-        _.sortBy([
-            s => -s.ergebnisPunktzahl / s.maximalPunktzahl,
-            s => -s.maximalPunktzahl
-        ])
-    ])
+        let exams = Object.values(baseStore.getItems(state))
+            .map(exam => exam.faecher).flat();
 
-    let strongestSubject = _.flow([getRanking, _.first])
+        return Object.values(groupBy(exams, "code"))
+            .map(group => ({
+                ...group[0],
+                ergebnisPunktzahl: sumBy(fach => fach.ergebnisPunktzahl, group),
+                maximalPunktzahl: sumBy(fach => fach.maximalPunktzahl, group)
+            }));
+    }
+
+    const getRanking = (state) => {
+
+        let totals = getSubjectsTotals(state)
+            .filter(s => s.maximalPunktzahl >= minQuestions);
+
+        totals.sort((a, b) => b.maximalPunktzahl - a.maximalPunktzahl)
+            .sort((a, b) =>
+                b.ergebnisPunktzahl / b.maximalPunktzahl -
+                a.ergebnisPunktzahl / a.maximalPunktzahl);
+
+        return totals;
+    }
+
+    const strongestSubject = (state) => getRanking(state)[0];
 
     return baseStore.withLoadedSelector({
         getStore: baseStore.getStore,

@@ -1,34 +1,49 @@
-import React, { useState } from 'react'
-import { connect } from 'react-redux'
-import _ from 'lodash/fp'
-import { scaleOrdinal } from 'd3-scale'
-import { schemeSpectral } from 'd3-scale-chromatic'
+import React, {useState} from 'react'
+import {connect} from 'react-redux'
+import {scaleOrdinal} from 'd3-scale'
+import {schemeSpectral} from 'd3-scale-chromatic'
 import Legend from '../../Charting/Legend'
 import Filter from '../../Utils/Filter'
 import needsData from '../../Core/needsData'
 import StationsChart from './StationsChart'
 import Legends from '../../Core/LegendTexts'
-import { selectors, actions } from './Store'
+import {selectors, actions} from './Store'
 import colordefs from "../../colors";
-import { InlineKohortenMittelDot } from "../../Charting/KohortenMittelDot"
+import {InlineKohortenMittelDot} from "../../Charting/KohortenMittelDot"
+import {compose} from "../../Utils/utils";
 
 export const color = colordefs.pp.base
 export const colorTotal = colordefs.pp.lighter1
 export const colorPartOfTotal = colordefs.pp.darker0
 const colors = scaleOrdinal(schemeSpectral[6])
 
-const Stations = ({ data, groupFilters = [], setGroupFilters }) => {
+const Stations = ({data, groupFilters = [], setGroupFilters}) => {
+
     const semesters = []
     const categoryColors = c => colors(semesters.indexOf(c))
 
-    const [categoryFilters, setCategoryFilters] = useState(semesters.map(c => ({ label: c, pred: d => d.category === c, selected: true, color: categoryColors(c) })))
+    const [categoryFilters, setCategoryFilters] = useState(
+        semesters.map(c => ({
+            label: c,
+            pred: d => d.category === c,
+            selected: true,
+            color: categoryColors(c)
+        }))
+    )
 
     const LegendText = Legends.Exams.Stations.Explanation
-    const filteredData = _.filter(_.overSome(groupFilters.filter(f => f.selected).map(f => f.pred)), data)
-        // .map(e => ({
-        //     ...e, stations: e.stationsModule
-        //         .filter(_.overSome(categoryFilters.filter(f => f.selected).map(f => f.pred)))
-        // }))
+
+    let filters = groupFilters.filter(f => f.selected).map(f => f.pred)
+
+    const filteredData = Object.values(data)
+        .filter(exam => {
+            let filtered = false;
+            for (let i = 0; i < filters.length; i++)
+                if (filters[i](exam))
+                    filtered = true;
+            return filtered;
+        })
+
     return (
         <div className="container-fluid">
             <div className="row ">
@@ -65,8 +80,12 @@ const Stations = ({ data, groupFilters = [], setGroupFilters }) => {
         </div>)
 }
 
-const stateToProps = state => ({ 
-    data: selectors.getItems(state), 
-    groupFilters: selectors.getGroupFilters(state) 
+const stateToProps = state => ({
+    data: selectors.getItems(state),
+    groupFilters: selectors.getGroupFilters(state)
 })
-export default _.flowRight([needsData(selectors.loaded, actions.load), connect(stateToProps, actions)])(Stations)
+
+export default compose([
+    needsData(selectors.loaded, actions.load),
+    connect(stateToProps, actions)
+])(Stations)

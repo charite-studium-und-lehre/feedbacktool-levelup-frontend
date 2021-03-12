@@ -1,7 +1,6 @@
-import _                          from 'lodash/fp'
-import BaseStore                  from '../../../Core/BaseStore'
-import {url}                      from '../../Store'
-import {selectors as mcSelectors} from '../Store'
+import BaseStore from '../../../Core/BaseStore'
+import { url } from '../../Store'
+import { selectors as mcSelectors } from '../Store'
 
 export const identifier = 'questions'
 export const TYPE_QUESTIONS_DATA_FETCHED = identifier.toUpperCase() + '_DATA_FETCHED'
@@ -28,7 +27,10 @@ export const selectors = {
 export const reducer = (state = {}, action) => {
     switch (action.type) {
         case TYPE_QUESTIONS_DATA_FETCHED:
-            return _.merge(state)({[action.payload.studiPruefungsId]: action.payload.fragen})
+            return {
+                ...state,
+                [action.payload.studiPruefungsId]: action.payload.fragen
+            }
         default:
             return state
     }
