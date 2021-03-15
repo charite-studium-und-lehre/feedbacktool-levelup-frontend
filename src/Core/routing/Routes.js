@@ -126,13 +126,6 @@ const Routes = [
     exact: true,
     private: false,
   },
-  {
-    path: '/tutorial',
-    component: Tutorial,
-    menuName: 'Tutorial',
-    exact: true,
-    private: false,
-  },
 ]
 
 export default Routes
