@@ -1,4 +1,4 @@
-import {groupBy} from '../Utils/groupBy'
+import {groupBy} from '../Utils/utils'
 import {scaleBand} from 'd3-scale'
 import {color as mcColor} from './MC/MC'
 import {color as ptmColor} from './Ptm/Ptm'
