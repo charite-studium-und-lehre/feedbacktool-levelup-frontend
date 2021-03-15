@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import _ from 'lodash/fp'
+import {compose} from '../Utils/utils'
 import socketio from "socket.io-client"
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -23,7 +23,7 @@ const stateToProps = state => ({
     user: user.getData(state),
 })
 const waitForLogin = Comp => props => props.loggedIn ? <Comp {...props} /> : null
-const Feedback = _.compose([connect(stateToProps), waitForLogin])(({ user }) => {
+const Feedback = compose([connect(stateToProps), waitForLogin])(({ user }) => {
     const input = useRef(null)
     const messageDiv = useRef(null)
     const [ sendId, setSendId ] = useState(true)
@@ -41,7 +41,7 @@ const Feedback = _.compose([connect(stateToProps), waitForLogin])(({ user }) => 
     useEffect(() => {
         const messageHandler = data => pushMessage( { text: data, sender: 'server' } )
         socket.on('message', messageHandler)
-        const tsHandler = data => { 
+        const tsHandler = data => {
             window.localStorage.setItem('ts', data)
             setTs( data )
         }
@@ -49,7 +49,7 @@ const Feedback = _.compose([connect(stateToProps), waitForLogin])(({ user }) => 
         socket.emit('join', ts)
         return () => {
             socket.off('message', messageHandler)
-            socket.off('ts', tsHandler) 
+            socket.off('ts', tsHandler)
         }
     })
 
@@ -98,7 +98,7 @@ const Feedback = _.compose([connect(stateToProps), waitForLogin])(({ user }) => 
             <button id='tunnel' className="btn color-button-color" onClick={ () => setShow(true) }>
             <div className='h-100 w-100' id='FeedbackButton' style={{position:'absolute', zIndex:'9'}}></div>
                 <FontAwesomeIcon style={{fontSize: '1.3rem'}} icon={faCommentDots} />
-            </button>  
+            </button>
         </div></SlideDown>}
     </div>
 })

@@ -1,4 +1,4 @@
-import _ from 'lodash/fp'
+import {flow} from '../Utils/utils'
 import { get } from './DataProvider'
 /*
 * Provides basic functions to stores which need to load data from an external source
@@ -42,7 +42,7 @@ export default (identifier, getStore) => {
 
     return {
         getStore,
-        withLoadedSelector: selectors => ({ 
+        withLoadedSelector: selectors => ({
             loaded: state => getStore(state).loaded,
             ...selectors
         }),
@@ -54,13 +54,13 @@ export default (identifier, getStore) => {
                     .catch( err => dispatch({ type: `${identifier.toUpperCase()}_DATA_FETCH_FAILED`, payload: err }))
                 dispatch({ type: `${identifier.toUpperCase()}_DATA_FETCHING` })
             },
-            ...actions 
+            ...actions
         }),
         withLoadedReducer: (reducer = loadReducer) => ({
             loaded,
             fetching,
             items: reducer,
         }),
-        getItems: _.flow([getStore, store => store.items]),
+        getItems: flow([getStore, store => store.items]),
     }
 }
