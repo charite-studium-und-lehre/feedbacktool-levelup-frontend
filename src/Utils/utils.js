@@ -1,20 +1,51 @@
-export const overSome = (...funcs) => (element) => {
+export const merge = (add) => (orig) => {
+
+    let results = [];
+
+    for (let i = 0; i < collection.length; i++)
+        results.push(func(collection[i]))
+
+    return results;
+}
+
+export const map = (func) => (collection) => {
+
+    let results = [];
+
+    for (let i = 0; i < collection.length; i++)
+        results.push(func(collection[i]))
+
+    return results;
+}
+
+export const over = (...funcs) => (args) => {
+
+    funcs = funcs.flat();
+    let results = [];
+
+    for (let i = 0; i < funcs.length; i++)
+        results.push(funcs[i](args))
+
+    return results;
+}
+
+export const overSome = (...funcs) => (args) => {
 
     funcs = funcs.flat();
 
     for (let i = 0; i < funcs.length; i++)
-        if (funcs[i](element))
+        if (funcs[i](args))
             return true;
 
     return false;
 }
 
-export const overEvery = (...funcs) => (element) => {
+export const overEvery = (...funcs) => (args) => {
 
     funcs = funcs.flat();
 
     for (let i = 0; i < funcs.length; i++)
-        if (!funcs[i](element))
+        if (!funcs[i](args))
             return false;
 
     return true;
@@ -45,11 +76,11 @@ export function groupBy(xs, key) {
 
 export const sumBy = (func, arr) => arr.reduce((acc, item) => acc + func(item), 0)
 
-export const flow = (...functions) => (parameters) => {
+export const flow = (...functions) => (args) => {
 
     functions = functions.flat();
 
-    let out = functions[0](parameters);
+    let out = functions[0](args);
 
     for (let i = 1; i < functions.length; i++)
         out = functions[i](out);
