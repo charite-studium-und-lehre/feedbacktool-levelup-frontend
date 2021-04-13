@@ -1,11 +1,11 @@
 export const merge = (add) => (orig) => {
 
-    let results = [];
+    return Object.assign(orig, add);
+}
 
-    for (let i = 0; i < collection.length; i++)
-        results.push(func(collection[i]))
+export const size = (obj) => {
 
-    return results;
+    return Object.keys(obj).length;
 }
 
 export const map = (func) => (collection) => {
@@ -18,13 +18,14 @@ export const map = (func) => (collection) => {
     return results;
 }
 
-export const over = (...funcs) => (args) => {
+export const over = (...funcs) => (...args) => {
 
     funcs = funcs.flat();
     let results = [];
 
-    for (let i = 0; i < funcs.length; i++)
-        results.push(funcs[i](args))
+    for (let i = 0; i < funcs.length; i++) {
+        results.push(funcs[i].apply(null, args))
+    }
 
     return results;
 }

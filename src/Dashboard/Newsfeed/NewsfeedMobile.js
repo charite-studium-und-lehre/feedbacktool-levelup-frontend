@@ -1,19 +1,19 @@
 import React from 'react'
-import _ from 'lodash/fp'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import needsData from '../../Core/needsData'
-import { selectors, actions } from './Store'
+import {selectors, actions} from './Store'
 import Item from './Item'
+import {compose, size} from '../../Utils/utils'
 
-const stateToProps = state => ({ data: selectors.getData(state) })
-const Newsfeed = _.compose([needsData(selectors.loaded, actions.load), connect(stateToProps)])(({ data }) => 
+const stateToProps = state => ({data: selectors.getData(state)})
+const Newsfeed = compose([needsData(selectors.loaded, actions.load), connect(stateToProps)])(({data}) =>
     <div className="pt-3">
         <div className="text-center">
-        { !_.size(data) && <div className="p-3">Hier werden zukünftig deine Prüfungen angezeigt.</div> }
+        { !size(data) && <div className="p-3">Hier werden zukünftig deine Prüfungen angezeigt.</div> }
         </div>
-        { !!_.size(data) && data[0].map( d => 
+        { !!size(data) && data[0].map( d =>
             <Item key={d.link} icon={d.icon} color={d.color} link={d.link}>
-                <d.comp {...d} /> 
+                <d.comp {...d} />
             </Item>
         )}
     </div>

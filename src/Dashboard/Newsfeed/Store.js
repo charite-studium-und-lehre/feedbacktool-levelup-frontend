@@ -1,4 +1,3 @@
-import _ from 'lodash/fp'
 import MCInfo from './MCInfo'
 import PtmInfo from './PtmInfo'
 import StationsInfo from './StationsInfo'
@@ -9,19 +8,19 @@ import {selectors as PtmSelectors} from '../../Exams/Ptm/Store'
 import {color as stationsColor} from '../../Exams/Stations/Stations'
 import {color as mcColor} from '../../Exams/MC/MC'
 import {color as ptmColor} from '../../Exams/Ptm/Ptm'
-import {flow, over, map} from '../../Utils/utils'
+import {flow, over, map, merge, groupBy} from '../../Utils/utils'
 
 const getData = flow([
     over([
-        flow([StationsSelectors.getTimeline, map(_.merge({icon: 'PP', color: stationsColor, comp: StationsInfo}))]),
-        flow([MCSelectors.getTimeline, map(_.merge({icon: 'MC', color: mcColor, comp: MCInfo}))]),
-        flow([PtmSelectors.getTimeline, map(_.merge({icon: 'PTM', color: ptmColor, comp: PtmInfo}))]),
+        flow([StationsSelectors.getTimeline, map(merge({icon: 'PP', color: stationsColor, comp: StationsInfo}))]),
+        flow([MCSelectors.getTimeline, map(merge({icon: 'MC', color: mcColor, comp: MCInfo}))]),
+        flow([PtmSelectors.getTimeline, map(merge({icon: 'PTM', color: ptmColor, comp: PtmInfo}))]),
     ]),
-    _.flatten,
-    _.sortBy( g => '' + g.periodeCode ),
-    _.reverse,
-    _.groupBy( d => d.zeitsemester ),
-    _.values,
+    array => array.flat(),
+    array => array.sort((a, b) => ('' + a.periodeCode) - ('' + b.periodeCode)),
+    array => array.reverse(),
+    array => groupBy(array, 'zeitsemester'),
+    object => Object.values(object),
 ])
 
 const selectors = {
@@ -33,4 +32,4 @@ const actions = {
     load: ExamsActions.load
 }
 
-export { selectors, actions }
+export {selectors, actions}
