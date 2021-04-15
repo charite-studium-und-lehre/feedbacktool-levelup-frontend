@@ -18,5 +18,5 @@ jobs:
         branch=$(git symbolic-ref --short HEAD)
         author=$(git log -1 --pretty=format:'%an')
         commit=$(git show-branch --no-name HEAD)
-        post="Branch: $branch\nAuthor: $author\n Commit: $commit\nAufruf unter: $base$branch"
+        post="Branch: $branch | Author: $author | Commit: $commit | Aufruf unter: $base$branch"
         curl -H 'Content-Type: application/json' -d "{\"text\": \"$post\"}" 'https://charitede.webhook.office.com/webhookb2/05cdecbb-03b1-4cf7-934e-d6e1853711be@afe91939-923e-432c-bc66-cbc3ec18d02c/IncomingWebhook/1c6de73e11ab40c493f8ef6dcf337f85/ed938071-d67b-4ba0-82fc-652e714d5056'
