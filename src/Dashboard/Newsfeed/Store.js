@@ -8,20 +8,30 @@ import {selectors as PtmSelectors} from '../../Exams/Ptm/Store'
 import {color as stationsColor} from '../../Exams/Stations/Stations'
 import {color as mcColor} from '../../Exams/MC/MC'
 import {color as ptmColor} from '../../Exams/Ptm/Ptm'
-import {flow, over, map, merge, groupBy} from '../../Utils/utils'
+import {groupBy} from '../../Utils/utils'
 
-const getData = flow([
-    over([
-        flow([StationsSelectors.getTimeline, map(merge({icon: 'PP', color: stationsColor, comp: StationsInfo}))]),
-        flow([MCSelectors.getTimeline, map(merge({icon: 'MC', color: mcColor, comp: MCInfo}))]),
-        flow([PtmSelectors.getTimeline, map(merge({icon: 'PTM', color: ptmColor, comp: PtmInfo}))]),
-    ]),
-    array => array.flat(),
-    array => array.sort((a, b) => ('' + a.periodeCode) - ('' + b.periodeCode)),
-    array => array.reverse(),
-    array => groupBy(array, 'zeitsemester'),
-    object => Object.values(object),
-])
+const getData = data => {
+
+    let stationen = StationsSelectors.getTimeline(data).map(
+        station => ({...station, ...{icon: 'PP', color: stationsColor, comp: StationsInfo}})
+    )
+
+    let mcs = MCSelectors.getTimeline(data).map(
+        mc => ({...mc, ...{icon: 'MC', color: mcColor, comp: MCInfo}})
+    )
+
+    let ptms = PtmSelectors.getTimeline(data).map(
+        ptm => ({...ptm, ...{icon: 'PTM', color: ptmColor, comp: PtmInfo}})
+    )
+
+    let epas = [...stationen, ...mcs, ...ptms]
+
+    epas = epas.flat()
+        .sort((a, b) => ('' + a.periodeCode) - ('' + b.periodeCode))
+        .reverse()
+
+    return Object.values(groupBy(epas, 'zeitsemester'))
+}
 
 const selectors = {
     getData,
