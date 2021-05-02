@@ -1,27 +1,22 @@
 ## Feedback-Bot 
 
-## Git-Repository: 
-ssh://levelup/var/git/feedbackbot.git
-
-TODO: Umziehen auf GitHub
-
-## Installation der Abhängigkeiten 
-Man brauch pm2 als Prozessmanager für Node.
-
-`yarn global add pm2`
-
-`sudo pm2 startup systemd` (Für Systeme mit systemd (Linux))
+Feedback-Bot sendet die von Nutzern übergebenen Nachrichten in den Teams Chat "Feedbackbot"
 
 ## Installation 
-Checkout auf dem Server auf `/var/www/feedbackbot`
 
-#### Skript zu pm2 hinzufügen: 
+Checkout auf dem Server auf `/var/www/levelup/feedbackbot`
+Run `npm i`
 
-pm2 ist der Hintergrund-Prozess-Manager von node.
+## Anlegen Crontab
 
-`pm2 start index.js`
+`sudo crontab -e`
 
-#### Als Dev (Datei wirdbeobachtet): 
-`pm2 start index.js --watch`
+### Rebuild täglich 
+00 00 * * * cd /var/www/levelup/feedbackbot/; sudo pm2 delete index.js; sudo pm2 start index.js;
+
+### Rebuild bei dem reboot
+@reboot cd /var/www/levelup/feedbackbot/; sudo pm2 delete index.js; sudo pm2 start index.js;
+
+
 
 
