@@ -5,6 +5,7 @@ Feedback-Bot sendet die von Nutzern übergebenen Nachrichten in den Teams Chat "
 ## Installation 
 
 Checkout auf dem Server auf `/var/www/levelup/feedbackbot`
+
 Run `npm i`
 
 ## Anlegen Crontab
