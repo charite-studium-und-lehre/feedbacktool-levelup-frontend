@@ -1,26 +1,26 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import _ from 'lodash/fp'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import tinycolor from 'tinycolor2'
 import needsData from '../Core/needsData'
-import { selectors, actions } from '../Exams/Ptm/Store'
+import {selectors, actions} from '../Exams/Ptm/Store'
 import DashboardCard from './DashboardCard'
-import { LinearChart } from '../Charting/Chart'
+import {LinearChart} from '../Charting/Chart'
 import LineGraph from '../Charting/LineGraph'
 import AreaGraph from '../Charting/AreaGraph'
-import { color } from '../Exams/Ptm/Ptm'
-import { labels } from '../Exams/Ptm/Results'
+import {color} from '../Exams/Ptm/Ptm'
+import {labels} from '../Exams/Ptm/Results'
+import {compose} from '../Utils/utils'
 
-const stateToProps = state => ({ latest: selectors.getLatest(state), ptms: selectors.getTimeline(state) })
-const Ptm = _.compose(needsData(selectors.loaded, actions.load), connect(stateToProps))(
-    ({ latest, ptms }) => {
+const stateToProps = state => ({latest: selectors.getLatest(state), ptms: selectors.getTimeline(state)})
+const Ptm = compose(needsData(selectors.loaded, actions.load), connect(stateToProps))(
+    ({latest, ptms}) => {
     return latest ? <div className="h-100" style={{minHeight: '5rem'}}>
         <Link to={`/exams/ptms/${latest.id}`}>
         <div className='h-100 w-100' id='PTMCard'  style={{position:'absolute', zIndex:'9'}}></div>
             <div className="h-100 position-relative">
                 <div className="position-absolute pl-3" style={{fontSize: '.75rem', top: '.7rem'}}>
-                    {labels.map( (l,i) => 
+                    {labels.map( (l,i) =>
                         <div className="d-inline-block mr-4" key={i} style={{lineHeight: '1.9rem'}}>
                             <span style={{fontSize: `${(2-i)*.5+1.4}rem`, fontWeight: 500}} className="mr-1">{latest.results[i]}</span>
                             {l}
@@ -41,11 +41,11 @@ const Ptm = _.compose(needsData(selectors.loaded, actions.load), connect(stateTo
                 </div>
             </div>
         </Link>
-    </div> : 
+    </div> :
     <div className="p-3">Es liegen noch keine PTM Ergebnisse vor.</div>
 })
 
-const Wrapper =() => <DashboardCard 
+const Wrapper =() => <DashboardCard
         noPadding
         title={<div className="px-3 pt-3">PTM</div>}>
             <Ptm />
