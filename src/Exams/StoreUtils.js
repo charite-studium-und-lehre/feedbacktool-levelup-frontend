@@ -45,7 +45,15 @@ export function getSemesters(state) {
 
     semesters = [...new Set(semesters)];
 
-    semesters.sort((a, b) => a.split(' ')[1] - b.split(' ')[1]);
+    // Sort by year; if year is the same sort by semester: SoSe before WiSe
+    semesters.sort((a, b) => {
+        a = a.split(' ');
+        b = b.split(' ');
+        if ((a[1] - b[1]) == 0)
+            return a[0].charCodeAt(0) - b[0].charCodeAt(0);
+        else
+            return a[1] - b[1];
+    });
 
     return semesters;
 }
