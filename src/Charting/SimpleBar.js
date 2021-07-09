@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'lodash'
 import colors from "../colors"
 import KohortenMittelDot from "./KohortenMittelDot"
 
@@ -19,21 +18,22 @@ const SimpleBar = props => {
     const colorTotal = props.colorTotal || colors.background.grey1
     const colorPartOfTotal = props.colorPartOfTotal || colors.default
 
-    const style = _.defaults({
+    const style = {
         backgroundImage: 'linear-gradient(to right, '+ colorPartOfTotal +' 100%,  transparent)',
         backgroundRepeat: 'no-repeat',
         backgroundSize: `${props.value / total * 100}% 100%`,
         backgroundColor: colorTotal,
         height: props.height,
         width: props.width,
-    }, defaultStyle)
-    
+        ...defaultStyle
+    }
+
     return (
-    <div 
+    <div
         className="my-1 text-center text-white animated"
         style={style}>
         <span>{props.children}</span>
-        {!_.isUndefined(props.mean) && <KohortenMittelDot valueInPercent={props.mean / total * 100} />}
+        {!(props.mean === undefined) && <KohortenMittelDot valueInPercent={props.mean / total * 100} />}
     </div>
 )}
 
