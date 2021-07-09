@@ -18,14 +18,14 @@ const SimpleBar = props => {
     const colorTotal = props.colorTotal || colors.background.grey1
     const colorPartOfTotal = props.colorPartOfTotal || colors.default
 
-    const style = defaultStyle ? defaultStyle :
-    {
+    const style = {
         backgroundImage: 'linear-gradient(to right, '+ colorPartOfTotal +' 100%,  transparent)',
         backgroundRepeat: 'no-repeat',
         backgroundSize: `${props.value / total * 100}% 100%`,
         backgroundColor: colorTotal,
         height: props.height,
         width: props.width,
+        ...defaultStyle
     }
 
     return (
