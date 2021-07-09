@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react'
-import _ from 'lodash'
 import { select } from 'd3-selection'
 import { scaleBand } from 'd3-scale'
 import AnimatedText from './AnimatedText'
@@ -8,8 +7,8 @@ import COLORS from '../colors'
 
 export const Bar = ({ fadeIn = true, ...props }) => {
 	const node = useRef(),
-	[x] = useState(props.x), 
-	[y] = useState(props.y), 
+	[x] = useState(props.x),
+	[y] = useState(props.y),
 	[width] = useState(props.width),
 	[height] = useState(props.height),
 	[fill] = useState(props.fill)
@@ -33,14 +32,14 @@ export const Bar = ({ fadeIn = true, ...props }) => {
 		x={x}
 		y={fadeIn ? y + height : y}
 		height={fadeIn ? 0 : height}
-		width={width} 
+		width={width}
 		onClick={props.onClick}
 		opacity={.9}
 	/>
 }
 
 const BarGraph = props => {
-	const width = props.xScale.bandwidth ? props.xScale.bandwidth() : (props.data.length > 1 ? 
+	const width = props.xScale.bandwidth ? props.xScale.bandwidth() : (props.data.length > 1 ?
 		(props.xScale(Math.max(...props.data.map(d => d.x))) - props.xScale(Math.min(...props.data.map(d => d.x)))) / (props.data.length - 1) * (props.width || 1) :
 		(props.xScale.range()[1] * (props.width || .8)))
 	const offset = (props.offset || 0) * width
@@ -55,21 +54,21 @@ const BarGraph = props => {
 			.range([props.xScale(d.x) + dx, props.xScale(d.x) + dx + width])
 			.paddingOuter(0)
 		return <g key={d.x} className="bar animated" style={props.style}>
-			{values.map((y,j) => 
+			{values.map((y,j) =>
 			<g key={j}>
 				<Bar
-					fill={ d.highlight ? (props.highlightColor || COLORS.default) : (_.isArray(d.color) ? d.color[j] : d.color || props.color || COLORS.default)}
+					fill={ d.highlight ? (props.highlightColor || COLORS.default) : (Array.isArray(d.color) ? d.color[j] : d.color || props.color || COLORS.default)}
 					x={scale(j)}
 					y={props.yScale(y)}
 					height={props.yScale.range()[0] - props.yScale(y)}
-					width={scale.bandwidth()} 
+					width={scale.bandwidth()}
 					onClick={() => clickHandler(d, i)} />
-				{props.labels && 
-					<AnimatedText 
+				{props.labels &&
+					<AnimatedText
 					startPos={{y:props.yScale(y) - 3 + props.yScale.range()[0] - props.yScale(y)}}
-					x={scale(j) + scale.bandwidth()/2 } 
+					x={scale(j) + scale.bandwidth()/2 }
 					y={props.yScale(y) - 3}>
-						{_.isArray(d.label) ? d.label[j] : d.label || y}
+						{Array.isArray(d.label) ? d.label[j] : d.label || y}
 					</AnimatedText>
 				}
 			</g>)}
