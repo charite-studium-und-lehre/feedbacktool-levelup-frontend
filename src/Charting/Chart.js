@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react'
-// import _ from 'lodash/fp'
 import { scaleLinear, scaleBand, scaleTime } from 'd3-scale'
 import { debounce } from '../Utils/utils'
 

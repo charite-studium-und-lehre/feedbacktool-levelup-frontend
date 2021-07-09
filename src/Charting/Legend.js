@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'lodash/fp'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../Core/makeExtendable'
@@ -16,7 +15,7 @@ const Legend = props => {
             <div>{props.title && <h5>{props.title}</h5>}</div>
             <div className="ml-auto">
             <div  onClick={e => {e.preventDefault(); toggle()}} id='legende-> Mehr Infos Icon' style={{width:'1.4rem', height:'1.4rem' , cursor:'pointer', position:'absolute', zIndex:'9'}}></div>
-                {props.children && <FontAwesomeIcon 
+                {props.children && <FontAwesomeIcon
                     className={props.extended ? 'text-muted' : 'color-navigation'}
                     style={{fontSize: '1.3rem'}}
                     icon={faInfoCircle} />}
@@ -31,6 +30,11 @@ const Legend = props => {
         </SlideDown>
     </div>
 }
-const defaultOpen = props => 
-    _.defaultTo(true, window.localStorage.getItem(props.storageId)) && window.innerWidth > mobileWidth
+const defaultOpen = props => {
+    let item = window.localStorage.getItem(props.storageId)
+    item = (item === undefined || item === null) ? true : item
+    return (
+        item && window.innerWidth > mobileWidth
+    )
+}
 export default makeExtendable(defaultOpen)(Legend)

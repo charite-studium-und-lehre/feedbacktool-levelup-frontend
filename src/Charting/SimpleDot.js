@@ -11,8 +11,16 @@ const defaultStyle = size => ({
     border: '1px solid '+ COLORS.background.base
 })
 
-const SimpleDot = ({ className = '', size = .5, ...props }) => {
-    const style = _.defaults({ left: `calc(${props.value}% - .4rem)` }, props.style, defaultStyle(size))
+const SimpleDot = ({
+    className = '',
+    size = .5,
+    ...props
+}) => {
+    const style = {
+        left: `calc(${props.value}% - .4rem)`,
+        ...props.style,
+        ...defaultStyle(size)
+    }
     return <div className={`animated ${className}`} style={style} />
 }
 
