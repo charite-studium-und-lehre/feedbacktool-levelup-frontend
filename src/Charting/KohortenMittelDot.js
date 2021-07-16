@@ -1,7 +1,12 @@
 import React from 'react'
 import { DiamondShape } from './AnimatedDiamond'
 
-const KohortenMittelDot = ({ className = '', valueInPercent = 0, sizeInEm = 1, ...otherProps}) => 
+const KohortenMittelDot = ({
+    className = '',
+    valueInPercent = 0,
+    sizeInEm = 1,
+    ...otherProps
+}) =>
     <span
         className={'animated position-absolute ' + className}
         style={{

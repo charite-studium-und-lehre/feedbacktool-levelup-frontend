@@ -15,10 +15,16 @@ class Label extends Component {
     constructor(props) {
         super(props)
         this.ref = React.createRef()
-        this.padding = {left:4, right: 4, top: 4, bottom: 4, ...this.props.padding }
+        this.padding = {
+            left:4,
+            right: 4,
+            top: 4,
+            bottom: 4,
+            ...this.props.padding
+        }
         this.state = { x: props.x, y: props.y }
     }
-    
+
     componentDidMount() {
         const bbox = select(this.ref.current).node().getBBox()
         select(this.ref.current)

@@ -37,7 +37,14 @@ const Chart = asChart(copyPropsToChildren)
 export default Chart
 
 const withLinearScales = WrappedComponent => props => {
-    const { width, height, xDomain, yDomain, ...otherProps } = props
+    const {
+        width,
+        height,
+        xDomain,
+        yDomain,
+        ...otherProps
+    } = props
+
     const xScale = scaleLinear()
         .domain(xDomain || [])
         .range([0, width])
@@ -54,7 +61,17 @@ const LinearScales = withLinearScales(copyPropsToChildren)
 const LinearChart = asChart(withLinearScales(copyPropsToChildren))
 
 const withOrdinalScales = WrappedComponent => props => {
-    const { width, height, offset, scale, xDomain, yDomain, padding, ...otherProps } = props
+    const {
+        width,
+        height,
+        offset,
+        scale,
+        xDomain,
+        yDomain,
+        padding,
+        ...otherProps
+    } = props
+
     const xScale = scaleBand()
         .domain(xDomain || [])
         .rangeRound([(offset || 0) * width, (offset || 0) * width + width * (scale || 1)])
@@ -86,7 +103,17 @@ const withTimeScales = WrappedComponent => props => {
 }
 
 const withHorizontalOrdinalScales = WrappedComponent => props => {
-	const { width, height, offset, scale, xDomain, yDomain, padding, ...otherProps } = props
+	const {
+        width,
+        height,
+        offset,
+        scale,
+        xDomain,
+        yDomain,
+        padding,
+        ...otherProps
+    } = props
+
 	const scales = {
 		xScale: scaleLinear().domain(xDomain || [0,100]).range([0, width]),
 		yScale: scaleBand()
@@ -102,4 +129,13 @@ const TimeScales = withTimeScales(copyPropsToChildren)
 
 const TimeChart = asChart(withTimeScales(copyPropsToChildren))
 
-export { asChart, LinearChart, LinearScales, OrdinalChart, OrdinalScales, withHorizontalOrdinalScales, TimeChart, TimeScales }
+export {
+    asChart,
+    LinearChart,
+    LinearScales,
+    OrdinalChart,
+    OrdinalScales,
+    withHorizontalOrdinalScales,
+    TimeChart,
+    TimeScales
+}
