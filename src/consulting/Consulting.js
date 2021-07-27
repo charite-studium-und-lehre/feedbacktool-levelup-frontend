@@ -14,8 +14,8 @@ function Consulting() {
                 <div className="container">
                     <div className="row" >
                         <div className="col-12 col-md-10 col-lg-8 col-xl-6 pt-4 mx-auto">
-                            <p style={{lineHeight:'2.1rem'}}>Du brauchst professionellen Rat zu den diversen Themen des Studienalltags? Damit du immer gut informiert bist, wer dir in der jeweiligen Situation weiterhelfen kann, sind hier einige hilfreiche Beratungsangebote der Charité zusammengefasst. Falls du dringend Unterstützung für eventuelle Probleme im Studium benötigst, dann wende dich direkt per Mail an:
-                            <span className='font-weight-bold' style={{ color:'rgb(34, 71, 104)', fontSize:'1.3rem'}}>medicoach@charite.de</span>
+                            <p style={{lineHeight:'2.1rem'}}>Du brauchst professionellen Rat zu den diversen Themen des Studienalltags? Damit du immer gut informiert bist, wer dir in der jeweiligen Situation weiterhelfen kann, sind hier einige hilfreiche Beratungsangebote der Charité zusammengefasst. Falls du dringend Unterstützung für eventuelle Probleme im Studium benötigst, dann wende dich direkt per Mail an: 
+                            <span className='font-weight-bold' style={{ color:'rgb(34, 71, 104)', fontSize:'1.3rem'}}> medicoach@charite.de</span>
                             </p>
                         </div>
                     </div>
