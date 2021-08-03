@@ -10,7 +10,14 @@ import COLORS from '../colors'
 
 const defaultColors = [ COLORS.progress.base, COLORS.progress.lighter2]
 
-const Graph = ({ data, xScale, yScale, width = .2, colors = defaultColors, animationTime = at}) =>
+const Graph = ({
+    data,
+    xScale,
+    yScale,
+    width = .2,
+    colors = defaultColors,
+    animationTime = at
+}) =>
     <g transform={`translate(${xScale(.5)}, ${yScale(.5)})`}>
     {pie().sortValues(null).value( d => d.value || d )(data).map((d, i) => {
         const int = interpolate(d.startAngle, d.endAngle);
@@ -28,7 +35,7 @@ const Graph = ({ data, xScale, yScale, width = .2, colors = defaultColors, anima
     })}
     </g>
 
-const AnimatedDonut = ({ children, ...props }) => 
+const AnimatedDonut = ({ children, ...props }) =>
     <div className="position-relative m-auto d-flex align-items-center h-100 w-100">
         <div className="position-absolute h-100 w-100">
             <LinearChart xDomain={[0,1]} yDomain={[1,0]}>

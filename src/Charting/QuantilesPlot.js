@@ -4,7 +4,11 @@ import LineGraph from './LineGraph'
 import tinycolor from 'tinycolor2'
 
 function transformData(data, q1, q2) {
-    return data.map((d) => ({x: d.x, y0: d[q1], y1: d[q2]}))
+    return data.map((d) => ({
+        x: d.x,
+        y0: d[q1],
+        y1: d[q2]
+    }))
 }
 
 export default function QuantilesPlot(props) {

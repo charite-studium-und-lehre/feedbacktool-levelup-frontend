@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'lodash'
 
 const defaultStyle = {
     height: '.8em',
@@ -9,7 +8,7 @@ const defaultStyle = {
 }
 const ColorLegend = (props) => {
 
-    const style = _.defaults(props.style, defaultStyle)
+    const style = props.style ? props.style : defaultStyle
     return (
         <div style={{ fontSize: '.8em' }} >
             <div className="mr-2" style={style}></div>

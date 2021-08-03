@@ -16,12 +16,22 @@ class AnimatedRect extends Component {
     constructor(props) {
         super(props)
 		this.node = React.createRef()
-		this.state = { x: props.x, y: props.y, height: props.height, width: props.width }
+		this.state = {
+            x: props.x,
+            y: props.y,
+            height: props.height,
+            width: props.width
+        }
     }
 
     componentDidUpdate() {
 		select(this.node.current)
-			.datum({ x: this.props.x, y: this.props.y, height: this.props.height, width: this.props.width })
+			.datum({
+                x: this.props.x,
+                y: this.props.y,
+                height: this.props.height,
+                width: this.props.width
+            })
             .transition()
 			.duration(animationTime)
 			.attr('x', p => p.x)
@@ -31,7 +41,7 @@ class AnimatedRect extends Component {
     }
 
     render() {
-        return <rect 
+        return <rect
             ref={this.node}
             rx={this.props.r}
             ry={this.props.r}
@@ -40,10 +50,10 @@ class AnimatedRect extends Component {
             strokeDasharray={this.props.strokeDasharray}
             strokeWidth={this.props.strokeWidth}
             style={this.props.style}
-            x={this.state.x} 
-            y={this.state.y} 
-            height={this.state.height} 
-            width={this.state.width} 
+            x={this.state.x}
+            y={this.state.y}
+            height={this.state.height}
+            width={this.state.width}
             className={`animated rect ${this.props.className}`}
             onClick={() => this.props.onClick(this.props.x)} />
     }
