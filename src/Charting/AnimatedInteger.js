@@ -11,19 +11,16 @@ const AnimatedInteger = ({
     animationTime = at,
     ...props
 }) => {
-
     const [value, setValue] = useState(initial === undefined ? props.value : initial)
-
     useEffect(() => {
         const interpolator = interpolateNumber(value, props.value)
-        const id = '' + (new Date()).getTime()
+        const id = (new Date()).getTime()
         select('body').transition(id)
             .ease(ease)
             .tween('text', () => compose(setValue, Math.round, interpolator))
             .duration(animationTime)
         return () => { select('body').interrupt(id) }
     }, [props.value])
-
     return <>{value}</>
 }
 
