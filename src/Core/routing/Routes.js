@@ -15,7 +15,7 @@ import Faq from '../../FAQ/Faq'
 import Login from '../../User/Login'
 import Impressum from '../../Core/Impressum'
 import Assessment from '../../EPAs/Assessments/Externals/Requests/Assessment'
-
+import Tutorial from '../../Tutorial/Components/Tutorial'
 const Routes = [
   {
     path: '/dashboard',
@@ -123,6 +123,13 @@ const Routes = [
   {
     path: '/epas/fremdbewertung/:token',
     component: Assessment,
+    exact: true,
+    private: false,
+  },
+  {
+    path: '/tutorial',
+    component: Tutorial,
+    menuName: 'Tutorial',
     exact: true,
     private: false,
   },
