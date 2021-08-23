@@ -35,7 +35,7 @@ export const ConsultingTree = {
             paragraph: 'Hier erhalten Sie Informationen und Beratung zu allen allgemeinen und organisatorischen Fragen in puncto Studium.',
             tel: "+49 30 450 576 042 ",
             address: "Hannoversche Str. 19, 3.OG",
-            talk: ["Mo-Fr 09:00-12:00, Mo-Do 13:00-16:00(Telefonisch)", "Di, Do, Fr: 9:30-12:30, Di 13:30-16:00(Sprechzeiten)"],
+            talk: ["Mo-Fr 09:00-12:00, Mo-Do 13:00-16:00 (Telefonisch)", "Di, Do, Fr: 9:30-12:30, Di 13:30-16:00 (Sprechzeiten)"],
             href: 'https://www.charite.de/studium_lehre/struktur_einrichtungen/referat_fuer_studienangelegenheiten/'
         },
         {
