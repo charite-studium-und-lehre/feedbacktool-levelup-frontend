@@ -17,17 +17,17 @@ const ForItem = makeExtendable()(({ toggleExtended, extended, externals }) =>
                         <div className="font-italic" style={{cursor:'pointer', fontSize: '.8rem'}}>
                             ({_.sortBy(e => -e.datum, externals)[0].datum.toLocaleDateString()})
                         </div>
-                        <span style={{cursor:'pointer'}}><FontAwesomeIcon icon={extended? faMinus : faPlus}/></span>  
+                        <span style={{cursor:'pointer'}}><FontAwesomeIcon icon={extended? faMinus : faPlus}/></span>
                     </div>
                 </div>
             }
         </div>
         <div className="row" >
-            { extended && 
+            { extended &&
                 <div className="col-12">
                     <SlideDown className="animated fast">
                         <ul className='list-group mt-1 mb-2'>
-                        {externals.map(e => 
+                        {externals.map(e =>
                             <li className='list-group-item border' key={e.id} style={{ fontWeight:'bold'}}>
                                 <div className='row'>
                                     <div className="col-5 d-flex flex-column justify-content-around">
@@ -53,7 +53,7 @@ const ForItem = makeExtendable()(({ toggleExtended, extended, externals }) =>
         </div>
     </div>)
 
-const stateToProps = (state, ownProps) => ({ 
-    externals: getExternals(state)(ownProps.entryId) 
+const stateToProps = (state, ownProps) => ({
+    externals: getExternals(state)(ownProps.entryId)
 })
 export default connect(stateToProps)(ForItem)
