@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import _ from 'lodash/fp'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import { SlideDown } from 'react-slidedown'
@@ -15,7 +14,7 @@ const ForItem = makeExtendable()(({ toggleExtended, extended, externals }) =>
                 <div className="col-sm-4 offset-sm-8 text-center" >
                     <div onClick={toggleExtended}>
                         <div className="font-italic" style={{cursor:'pointer', fontSize: '.8rem'}}>
-                            ({_.sortBy(e => -e.datum, externals)[0].datum.toLocaleDateString()})
+                            ({externals.sort((a, b) => b.datum - a.datum)[0].datum.toLocaleDateString()})
                         </div>
                         <span style={{cursor:'pointer'}}><FontAwesomeIcon icon={extended? faMinus : faPlus}/></span>
                     </div>
