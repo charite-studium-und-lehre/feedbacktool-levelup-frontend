@@ -1,9 +1,9 @@
-import _ from 'lodash/fp'
 import { combineReducers } from 'redux'
 import BaseStore from '../Core/BaseStore'
 import { reducer as assessments, identifier as assessmentsIdentifier } from './Assessments/Store'
 import { reducer as externalAssessments, identifier as externalAssessmentsIdentifier } from './Assessments/Externals/Store'
 import { epasUrl as url } from './Urls'
+import { flow } from '../Utils/utils.js'
 
 const storeIdentifier = 'epas'
 export const identifier = storeIdentifier
@@ -14,36 +14,43 @@ const getById = state => id => baseStore.getItems(state)[id]
 export const selectors = baseStore.withLoadedSelector({
 	getStore: baseStore.getStore,
 	getById,
-	getRoot: state => _.flow([ baseStore.getItems, _.find(e => e.label === 'root') ])(state),
+	getRoot: state => flow([
+        baseStore.getItems,
+        items => Object.values(items).find(item => item.label === 'root'),
+    ])(state),
 })
 
 export const actions = baseStore.withLoadAction(url)({})
 
-const addEntries = epas =>
-_.map( epa => ({
+const addEntries = epas => epas.map(epa => ({
 	...epa,
-	entries: epas.filter( e => e.parentId === epa.id ).map( epa => epa.id )
-}))(epas)
+	entries: epas.filter(e => e.parentId === epa.id).map(epa => epa.id)
+}))
 
-const addRootElement = epas => [
-	{ 
-		label: 'root', 
-		entries: epas.filter( epa => epa.parentId === null ).map( epa => epa.id )
-	}, 
-	...epas
-]
+const addRootElement = epas => [{label: 'root', entries: epas.filter(epa => epa.parentId === null).map(epa => epa.id)}, ...epas]
 
-const transform = _.flow([
-	_.map( epa => ({
+const transform = flow([
+	epas => epas.map(epa => ({
 		label: epa.beschreibung,
 		...epa,
 	})),
 	addEntries,
 	addRootElement,
-	_.keyBy( epa => epa.id )
+    epas => {
+        let out = {}
+        epas.forEach(epa => out[epa.id] = epa)
+        return out
+    }
 ])
 
-function epasReducer(state = {undefined: {label: 'root', entries: []}}, action) {
+const defaultState = {
+    undefined: {
+        label: 'root',
+        entries: []
+    }
+}
+
+const epasReducer = (state = defaultState, action) => {
 	switch (action.type) {
 		case `${identifier.toUpperCase()}_DATA_FETCHED`:
 			return transform(action.payload.epas)
@@ -52,7 +59,8 @@ function epasReducer(state = {undefined: {label: 'root', entries: []}}, action) 
 	}
 }
 
-export const reducer = combineReducers({...baseStore.withLoadedReducer(epasReducer), 
+export const reducer = combineReducers({
+    ...baseStore.withLoadedReducer(epasReducer),
 	[assessmentsIdentifier]: assessments,
 	[externalAssessmentsIdentifier]: externalAssessments,
 })

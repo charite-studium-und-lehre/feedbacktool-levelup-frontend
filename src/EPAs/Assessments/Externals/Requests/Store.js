@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux'
-import _ from 'lodash/fp'
 import BaseStore from '../../../../Core/BaseStore'
 import { post } from '../../../../Core/DataProvider'
 import { externalAssessmentRequestsUrl as url } from '../../../Urls'
@@ -56,12 +55,14 @@ const transformItem = request => ({
 	datum: new Date(request.datum),
 	open: true,
 })
+
 const transform = flow([
 	d => d.fremdbewertungsAnfragen,
     d => d.map(item => transformItem(item)),
-	// _.map( transformItem ),
-    d => console.log(d),
-	_.keyBy( request => request.id )
+	d => d.map(request => {
+        let id = request.id
+        return { [id]: request }
+    })
 ])
 
 const items = baseStore.withLoadedReducer((state = {}, action) => {
