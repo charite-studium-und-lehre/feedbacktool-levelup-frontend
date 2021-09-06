@@ -7,7 +7,7 @@ const FaqData = [
     {
         question: 'Wie nutze ich LevelUp?',
         AnswerWithLinks: ['Hier', ' geht es zum Tutorial für das Tool, und ', 'Hier', ' geht es zu einem kurzen Clickvideo, in dem gezeigt wird, wie man auf der Seite navigiert.'],
-        tutorialLink: '/tutorial',
+        tutorialLink: '/app-test1/tutorial',
         clickvideoLink: 'https://levelup.charite.de/videos/Klickvideo.mp4'
     },
     {
