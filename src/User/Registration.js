@@ -7,6 +7,7 @@ import { faCheckSquare, faSquare } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../Core/makeExtendable'
 import { Link } from 'react-router-dom'
 import { selectors as user, actions } from './Store'
+import { compose } from '../Utils/utils.js'
 
 const Info = ({ name, children }) => (
     <div className="row">
@@ -28,16 +29,33 @@ const errorToText = error => {
             return 'Mit der Matrikelnummer stimmt was nicht...'
     }
 }
+
 const stateToProps = state => ({ ...user.getData(state), error: user.getError(state), loggedIn: user.isLoggedIn(state) })
-const registration = _.compose([makeExtendable(), connect(stateToProps, actions) ])(
-    ({ extended, toggleExtended, nachname, vorname, email, istAdmin, stammdatenVorhanden, loggedIn, sendStammdaten, error }) => {
-    if(!loggedIn || stammdatenVorhanden) return <Redirect to="/" />
+
+export default makeExtendable()(connect(stateToProps, actions)(({
+    extended,
+    toggleExtended,
+    nachname,
+    vorname,
+    email,
+    istAdmin,
+    stammdatenVorhanden,
+    loggedIn,
+    sendStammdaten,
+    error
+}) => {
+
+    if (!loggedIn || stammdatenVorhanden) return <Redirect to="/" />
+
     const matrikelnummer = useRef()
+
     const openSwitchUser = () => {
         const w = window.open('/backend/admin/switchUser', '_blank')
         w.onblur = () => window.location.reload()
     }
-    return <div className='row'>
+
+    return (
+        <div className='row'>
             <div className='col-12 mt-2'>
                 <div className="p-4">
                     <div className='card p-4 mx-auto' style={{maxWidth: '50rem'}}>
@@ -70,7 +88,7 @@ const registration = _.compose([makeExtendable(), connect(stateToProps, actions)
                         </div>
                         <div className="text-danger text-center">{errorToText(error)}</div>
                         <button className='btn btn-secondary mt-3' disabled={!extended} onClick={() => sendStammdaten(matrikelnummer.current.value)}>Absenden</button>
-                        {istAdmin && 
+                        {istAdmin &&
                             <div className="text-center mt-1">
                                 <span onClick={ openSwitchUser  }>Datensatz wählen</span>
                             </div>
@@ -78,6 +96,6 @@ const registration = _.compose([makeExtendable(), connect(stateToProps, actions)
                     </div>
                 </div>
             </div>
-    </div>
-})
-export default registration
+        </div>
+    )
+}))
