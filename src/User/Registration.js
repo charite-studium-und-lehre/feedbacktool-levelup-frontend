@@ -1,5 +1,4 @@
 import React, { useRef } from 'react'
-import _ from 'lodash/fp'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,7 +6,6 @@ import { faCheckSquare, faSquare } from '@fortawesome/free-solid-svg-icons'
 import makeExtendable from '../Core/makeExtendable'
 import { Link } from 'react-router-dom'
 import { selectors as user, actions } from './Store'
-import { compose } from '../Utils/utils.js'
 
 const Info = ({ name, children }) => (
     <div className="row">
@@ -30,7 +28,11 @@ const errorToText = error => {
     }
 }
 
-const stateToProps = state => ({ ...user.getData(state), error: user.getError(state), loggedIn: user.isLoggedIn(state) })
+const stateToProps = state => ({
+    ...user.getData(state),
+    error: user.getError(state),
+    loggedIn: user.isLoggedIn(state)
+})
 
 export default makeExtendable()(connect(stateToProps, actions)(({
     extended,

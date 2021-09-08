@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import _ from 'lodash/fp'
 import backgroundLogin from '../images/backgroundLogin.jpg'
 import backgroundMobil from '../images/backgroundLoginMobile.jpg'
 import logoSchrift from'../images/logoSchrift.svg'
@@ -8,31 +7,32 @@ import { Redirect } from 'react-router-dom'
 import { selectors as user } from './Store'
 import Navbar from '../Core/routing/navbar'
 
-
 const background = (image) => ({
     background: `url(${image}) no-repeat center`,
     backgroundSize: 'cover'
 })
+
 const Button = props => (
     <div className={`${props.col} my-2 my-md-5`} >
         <a className='btn btn-info form-control mt-2' target={props.target} href={props.href} style={{ MaxHeight: '5rem', fontSize: '4.5vmin ' }}>{props.title}</a>
     </div>
 )
+
 const stateToProps = state => ({
     loggedIn: user.isLoggedIn(state),
     hasStammdata: user.getData(state).stammdatenVorhanden,
 })
 
-const Login = _.compose([
-    connect(stateToProps),
-    C => props => props.loggedIn && !props.hasStammdata ? <Redirect to='/user/registration' /> : <C {...props} />,
-    C => props => props.loggedIn ? <Redirect to='/dashboard' /> : <C {...props} />
-])(() =>
+const toRegistration = C => props => props.loggedIn && !props.hasStammdata ? <Redirect to='/user/registration' /> : <C {...props} />
+
+const toDashboard = C => props => props.loggedIn ? <Redirect to='/dashboard' /> : <C {...props} />
+
+const Login = connect(stateToProps)(toRegistration(toDashboard(() =>
     <div className='container-fluid h-100' style={background(window.innerWidth < 942 ? backgroundLogin : backgroundMobil)}>
         <Navbar />
         <div className='row'>
             <div className='col-12 text-center levelup '>
-               <img src={logoSchrift} style={{height:'100%', width:'100%'}}></img>
+               <img src={logoSchrift} style={{height:'100%', width:'100%'}} alt='logo'></img>
             </div>
             <div className='col-12 col-xl-8 m-auto buttonsContainer'>
                 <div className='row '>
@@ -48,5 +48,6 @@ const Login = _.compose([
             </div>
         </div>
     </div>
-)
+)))
+
 export default Login
