@@ -1,17 +1,19 @@
 import React from 'react'
-import _ from 'lodash/fp'
 import {connect} from 'react-redux'
 import needsData from '../../../Core/needsData'
 import { selectors, actions } from './Store'
 import { selectors as requestsSelectors, actions as requestsActions } from './Requests/Store'
 import COLORS from "../../../colors"
+import { overEvery, over } from '../../../Utils/utils.js'
 
-const loaded = _.overEvery([ selectors.loaded, requestsSelectors.loaded ])
-const load = () => _.over([ actions.load(), requestsActions.load() ])
+// TODO: test with student with external assessments
+
+const loaded = overEvery([ selectors.loaded, requestsSelectors.loaded ])
+const load = () => over([ actions.load(), requestsActions.load() ])
 const stateToProps = state => ({ assessments: [].concat(selectors.getItems(state), requestsSelectors.getItems(state)), selected: selectors.getFilter(state) })
-export default [needsData(loaded, load), connect(stateToProps, actions)].reduceRight((fx,f) => f(fx), 
-    ({assessments, selected, setFilter }) => 
-        assessments.length ? 
+export default [needsData(loaded, load), connect(stateToProps, actions)].reduceRight((fx,f) => f(fx),
+    ({assessments, selected, setFilter }) =>
+        assessments.length ?
         <div>
             <button className='btn btn-sm color-button-color width-100' onClick={() => setFilter(null)}>Alle</button>
             <ul className='list-group'>
@@ -36,8 +38,8 @@ export default [needsData(loaded, load), connect(stateToProps, actions)].reduceR
                 )}
             </ul>
         </div>
-        : 
+        :
         <div >
-            Hier sind künftig deine Fremeinschätzungen zu sehen, die du von Dozierenden angefordert oder bereits erhalten hast.
+            Hier sind künftig deine Fremdeinschätzungen zu sehen, die du von Dozierenden angefordert oder bereits erhalten hast.
         </div>
 )

@@ -5,10 +5,14 @@ import { reducer as requestsReducer, identifier as requestsIdentifier } from './
 import { externalAssessmentsUrl as url } from '../../Urls'
 
 export const identifier = 'externalAssessments'
+
 const baseStore = BaseStore(identifier, state => epasSelectors.getStore(state)[identifier])
+
 const getFilter = state => baseStore.getStore(state).filter
+
 const getById = state => id => Object.values(baseStore.getItems(state)).find( ass => ass.id === id)
-export const selectors = baseStore.withLoadedSelector({ 
+
+export const selectors = baseStore.withLoadedSelector({
 	getItems: state => Object.values(baseStore.getItems(state)),
 	getStore: baseStore.getStore,
 	getById,
@@ -21,11 +25,14 @@ export const actions = baseStore.withLoadAction(url)({
 
 const transform = data => [
 	d => d.fremdbewertungen,
-	d => d.map( a => ({ 
+	d => d.map( a => ({
 		...a,
 		datum: new Date(a.datum),
 	})),
-	d => d.reduce( (a,v) => ({ ...a, [v.id]: v }), {})
+	d => d.reduce( (a,v) => ({
+        ...a,
+        [v.id]: v
+    }), {})
 ].reduce((f,g) => g(f), data)
 
 const filter = (state = null, action) => {
@@ -45,6 +52,7 @@ const items = (state = {}, action) => {
 			return state
 	}
 }
-export const reducer = combineReducers({ 
-	...baseStore.withLoadedReducer(items), [requestsIdentifier]: requestsReducer, 
-	filter })
+export const reducer = combineReducers({
+	...baseStore.withLoadedReducer(items), [requestsIdentifier]: requestsReducer,
+	filter
+})
