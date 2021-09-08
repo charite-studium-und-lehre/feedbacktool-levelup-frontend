@@ -8,7 +8,8 @@ const defaultStyle = {
 }
 const ColorLegend = (props) => {
 
-    const style = props.style ? props.style : defaultStyle
+    const style = {...defaultStyle, ...props.style}
+
     return (
         <div style={{ fontSize: '.8em' }} >
             <div className="mr-2" style={style}></div>
