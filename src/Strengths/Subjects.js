@@ -16,7 +16,9 @@ const Sub = ({subjects, flash}) => {
 
     categories = Object.fromEntries(categories)
 
-    return (<SubjectsTabs>
+    const active = Array.from(categories).find(cat => cat.find(subject => subject.name === flash))
+
+    return (<SubjectsTabs active={active}>
         {
             Object.entries(categories).reverse().map(([cat, subs]) =>
                 <div key={cat} title={cat} className="d-flex flex-wrap justify-content-around">
