@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
-import _ from 'lodash/fp'
 import Legend from '../Charting/Legend'
 import Ranking from './Ranking'
 import Legends from '../Core/LegendTexts'
@@ -8,9 +7,11 @@ import needsData from '../Core/needsData'
 import { selectors as ptmSelectors, actions as ptmActions } from '../Exams/Ptm/Store'
 import { selectors as mcSelectors, actions as mcActions } from '../Exams/MC/Store'
 import { InlineKohortenMittelDot } from "../Charting/KohortenMittelDot"
+import { compose, flow } from '../Utils/utils.js'
 
-const ptmProps = state => ({ faecher: _.flow(ptmSelectors.getLatest, ptmSelectors.getRanking)(state) })
-const PtmRanking = _.compose(needsData(ptmSelectors.loaded, ptmActions.load), connect(ptmProps))(
+const ptmProps = state => ({ faecher: flow(ptmSelectors.getLatest, ptmSelectors.getRanking)(state) })
+
+const PtmRanking = compose(needsData(ptmSelectors.loaded, ptmActions.load), connect(ptmProps))(
     ({ faecher }) => <Ranking mean
         subjects={faecher.map(s => ({
             ...s,
@@ -21,7 +22,7 @@ const PtmRanking = _.compose(needsData(ptmSelectors.loaded, ptmActions.load), co
 )
 
 const mcProps = state => ({ faecher: mcSelectors.getRanking(state) })
-const McRanking = _.compose(needsData(mcSelectors.loaded, mcActions.load), connect(mcProps))(
+const McRanking = compose(needsData(mcSelectors.loaded, mcActions.load), connect(mcProps))(
     ({ faecher }) => <Ranking
         subjects={faecher.map(s => ({
             ...s,

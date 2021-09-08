@@ -1,28 +1,36 @@
-import _ from 'lodash/fp'
 import { selectors as MCSelectors, actions as MCActions } from '../Exams/MC/Store'
 import { selectors as PtmSelectors, actions as PtmActions } from '../Exams/Ptm/Store'
+import { flow, over, overEvery } from '../Utils/utils.js'
 
-const getData = _.flow(
-    _.over([MCSelectors.getSubjectsTotals, _.flow(PtmSelectors.getLatest, PtmSelectors.getFaecher)]),
-    _.map(_.keyBy(s => s.titel)),
+const getData = flow(
+
+    over([MCSelectors.getSubjectsTotals, flow(PtmSelectors.getLatest, PtmSelectors.getFaecher)]),
+
+    data => data.map(exams => {
+        let out = {}
+        for (let i = 0; i < exams.length; i++) out[exams[i].titel] = exams[i]
+        return out
+    }),
+
     ([ mcFaecher, ptmFaecher ]) => {
-        const subs = _.uniq(_.keys(mcFaecher).concat(_.keys(ptmFaecher)))
-        return subs.map( s => ({ 
-            titel: s, 
-            mc: mcFaecher[s] && { ...mcFaecher[s], value: mcFaecher[s].ergebnisPunktzahl }, 
+        const subs = [...new Set([...Object.keys(mcFaecher), ...Object.keys(ptmFaecher)])]
+        return subs.map(s => ({
+            titel: s,
+            mc: mcFaecher[s] && { ...mcFaecher[s], value: mcFaecher[s].ergebnisPunktzahl },
             ptm: ptmFaecher[s] && { ...ptmFaecher[s], value: ptmFaecher[s].ergebnisRichtigPunktzahl },
         }))
     },
+
     d => ({ subjects: d })
 )
 
 const selectors = {
-    loaded: _.overEvery([ PtmSelectors.loaded, MCSelectors.loaded ]),
+    loaded: overEvery([PtmSelectors.loaded, MCSelectors.loaded]),
     getData,
 }
 
 const actions = {
-    load: () => _.over([PtmActions.load(), MCActions.load()])
+    load: () => over([PtmActions.load(), MCActions.load()])
 }
 
 export { selectors, actions }
