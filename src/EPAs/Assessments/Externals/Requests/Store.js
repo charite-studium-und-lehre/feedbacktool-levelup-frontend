@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
-import _ from 'lodash/fp'
 import BaseStore from '../../../../Core/BaseStore'
 import { post } from '../../../../Core/DataProvider'
 import { externalAssessmentRequestsUrl as url } from '../../../Urls'
 import { selectors as externalAssessmentsSelectors } from '../Store'
+import { flow } from '../../../../Utils/utils.js'
 
 export const identifier = 'requests'
 const baseStore = BaseStore(identifier, state => externalAssessmentsSelectors.getStore(state)[identifier])
@@ -20,7 +20,7 @@ export const selectors = baseStore.withLoadedSelector({
 const makeRequest = formdata => dispatch => {
 	dispatch({ type: `${identifier.toUpperCase()}_SENDING` })
 	post(url, formdata)
-		.then( result => result.status === 201 ? 
+		.then( result => result.status === 201 ?
 			result.json().then( data => dispatch({ type: `${identifier.toUpperCase()}_SENT`, payload: data }) ) :
 			dispatch({ type: `${identifier.toUpperCase()}_SEND_FAILED`, payload: result.status })
 		)
@@ -55,10 +55,14 @@ const transformItem = request => ({
 	datum: new Date(request.datum),
 	open: true,
 })
-const transform = _.flow([
+
+const transform = flow([
 	d => d.fremdbewertungsAnfragen,
-	_.map( transformItem ),
-	_.keyBy( request => request.id )
+    d => d.map(item => transformItem(item)),
+	d => d.map(request => {
+        let id = request.id
+        return { [id]: request }
+    })
 ])
 
 const items = baseStore.withLoadedReducer((state = {}, action) => {

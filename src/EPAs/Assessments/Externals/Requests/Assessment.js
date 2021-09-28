@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'lodash/fp'
 import { connect } from 'react-redux'
 import { selectors, actions as requestActions } from './Store'
 import { selectors as assessmentsSelectors, actions } from '../../Store'
@@ -10,25 +9,26 @@ import { asEpasTabs } from '../../../Common/Tabs'
 import CheatSheetCard from '../../../Common/CheatSheetCard'
 import Info from './Info'
 import Rating from './Rating'
+import { over, compose } from '../../../../Utils/utils.js'
 
-const load = ownProps => _.over([ requestActions.loadWithToken(ownProps.match.params.token), epasActions.load() ])
+const load = ownProps => over([ requestActions.loadWithToken(ownProps.match.params.token), epasActions.load() ])
 const loaded = (state, ownProps) => selectors.itemLoaded(state, ownProps.match.params.token) && (epasSelectors.loaded(state) || selectors.getStatus(state).failed)
 
 const Item = asItem(null, null, Rating)
 const Tabs = asEpasTabs(Item)
 
-const stateToProps = (state, ownProps) => ({ 
+const stateToProps = (state, ownProps) => ({
     request: selectors.getByToken(state, ownProps.match.params.token),
     failed: selectors.getStatus(state).failed,
     ...assessmentsSelectors.getStatus(state),
 })
 
-const catchFail = Comp => ({ failed, ...props }) => 
+const catchFail = Comp => ({ failed, ...props }) =>
     failed ? <p className="text-center m-2">
         Das angegebene Token ist ungültig. Es wurde entweder bereits eine Bewertung abgeschickt, oder es liegt keine Anfrage vor.
     </p> : <Comp {...props} />
 
-const Assessment = _.compose([needsData(loaded, load), connect(stateToProps, actions), catchFail])(
+const Assessment = compose([needsData(loaded, load), connect(stateToProps, actions), catchFail])(
     ({request, send, request: { token }, error, sending, sent }) =>
     !sent ? <div className="container-fluid">
         <div className="row">

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import _ from 'lodash/fp'
 import SlideDown from 'react-slidedown'
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -7,8 +6,9 @@ import { faMailBulk, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { actions } from './Store'
 import Request from './Request'
 import List from './List'
+import { compose } from '../../../Utils/utils.js'
 
-export default _.compose([connect(null, { resetFilter: () => actions.setFilter(null) })])(
+export default compose([connect(null, { resetFilter: () => actions.setFilter(null) })])(
     (props) => {
 
         const Button = props =>
