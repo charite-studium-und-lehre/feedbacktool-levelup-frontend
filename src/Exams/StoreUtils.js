@@ -49,7 +49,7 @@ export function getSemesters(state) {
     semesters.sort((a, b) => {
         a = a.split(' ');
         b = b.split(' ');
-        if ((a[1] - b[1]) == 0)
+        if ((a[1] - b[1]) === 0)
             return a[0].charCodeAt(0) - b[0].charCodeAt(0);
         else
             return a[1] - b[1];
