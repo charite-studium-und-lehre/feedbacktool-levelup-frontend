@@ -35,12 +35,12 @@ export default () =>
                     <NewsfeedMobile />
                 </div>
             </div>
-            <div className="col-lg-8 py-2">
+            <div className="col-lg-8 py-5">
                 <div className="row h-100 d-none d-md-flex">
                     <div className="col-6 d-flex flex-column justify-content-around">
-                        <Link to="/progress">
+                        <a target='_blank' href='https://www.charite.de/service/stellenangebot/angebot/detailinfo/studentischer_mitarbeiterin_stud_hk_082107_fpfsl/'>
                             <Aktuell />
-                        </Link>
+                        </a>
                         <Link to="/progress">
                             <Progress />
                         </Link>
