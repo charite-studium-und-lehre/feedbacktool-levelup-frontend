@@ -42,7 +42,7 @@ const registration = _.compose([makeExtendable(), connect(stateToProps, actions)
                 <div className="p-4">
                     <div className='card p-4 mx-auto' style={{maxWidth: '50rem'}}>
                         <div>
-                            <h4 className='text-center mb-4 mt-2 mb-4'>`Registrierung bei LevelUp</h4>
+                            <h4 className='text-center mb-4 mt-2 mb-4'>Registrierung bei LevelUp</h4>
                             <p className='mb-0'>Bitte bestätige mit deiner Matrikelnummer, dass du LevelUp nutzen willst!</p>
                             <p>Nur dadurch können deine Prüfungsdaten dem aktuellen Login zugeordnet werden.</p>
                             <h6 className='font-weight-bold'>Datenschutzhinweise:</h6>

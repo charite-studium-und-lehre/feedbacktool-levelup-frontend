@@ -42,7 +42,7 @@ const Login = _.compose([
                 <div className='row mt-3 mb-2 '>
                     <Button col='col-6 col-md-3' title='Demo' target='blank' href='https://levelup.charite.de/app-demo' />
                     <Button col='col-6 col-md-3' title='Video' target='blank' href='https://levelup.charite.de/videos/Klickvideo.mp4' />
-                    <Button col='col-6 col-md-3' title='Tutorial' target='blank' href='/app-test1/tutorial'/>
+                    <Button col='col-6 col-md-3' title='Tutorial' target='blank' href='/app/tutorial'/>
                     <Button col='col-6 col-md-3' title='Hilfe' href='mailto:levelup@charite.de' />
                 </div>
 

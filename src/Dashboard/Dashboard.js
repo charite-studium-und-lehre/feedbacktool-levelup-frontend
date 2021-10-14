@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Progress from './Progress'
+import Aktuell from './Aktuell'
 import Newsfeed from './Newsfeed/Newsfeed'
 import NewsfeedMobile from './Newsfeed/NewsfeedMobile'
 import Ptm from './Ptm'
@@ -37,6 +38,9 @@ export default () =>
             <div className="col-lg-8 py-2">
                 <div className="row h-100 d-none d-md-flex">
                     <div className="col-6 d-flex flex-column justify-content-around">
+                        <Link to="/progress">
+                            <Aktuell />
+                        </Link>
                         <Link to="/progress">
                             <Progress />
                         </Link>
