@@ -9,9 +9,11 @@ import AnimatedInteger from '../Charting/AnimatedInteger'
 import DashboardCard from './DashboardCard'
 
 const Aktuell = props =>
-    <div className="m-auto" style={{width: '20rem', height: '10rem', fontSize:'1.3rem'}}>
-      Wir suchen eine\einen Student Mittelalter\in
+    <div className=" mt-3" style={{width: '30rem', height: '6rem', fontSize:'1rem'}}>
+     Wir suchen eine*n studentische*n Mitarbeiter*in zur Unterstützung der Evaluation der Lehre, weiter Infos unter dann 
+       <a className="color-navigation font-weight-bold"  href='https://www.charite.de/service/stellenangebot/angebot/detailinfo/studentischer_mitarbeiterin_stud_hk_082107_fpfsl/'> Link </a>
+       , wir freuen uns auf deine Bewerbung!
     </div>
 
 
-export default () => <DashboardCard title='Aktuell :' ><Aktuell/></DashboardCard>
+export default () => <DashboardCard title='Aktuelles :' ><Aktuell/></DashboardCard>
