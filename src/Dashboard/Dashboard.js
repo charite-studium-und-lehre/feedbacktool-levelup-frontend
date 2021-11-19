@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Progress from './Progress'
-import Aktuell from './Aktuell'
 import Newsfeed from './Newsfeed/Newsfeed'
 import NewsfeedMobile from './Newsfeed/NewsfeedMobile'
 import Ptm from './Ptm'
@@ -38,9 +37,7 @@ export default () =>
             <div className="col-lg-8 py-5">
                 <div className="row h-100 d-none d-md-flex">
                     <div className="col-6 d-flex flex-column justify-content-around">
-                        <a target='_blank' href='https://www.charite.de/service/stellenangebot/angebot/detailinfo/studentischer_mitarbeiterin_stud_hk_082107_fpfsl/'>
-                            <Aktuell />
-                        </a>
+            
                         <Link to="/progress">
                             <Progress />
                         </Link>
