@@ -24,5 +24,5 @@ const Evasy = () => (
         </div>
     </div>
 )
-export default Evasy
+export default Evasy 
 
